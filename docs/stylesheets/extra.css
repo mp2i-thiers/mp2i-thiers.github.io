@@ -1,0 +1,11 @@
+.md-typeset .admonition {
+    font-size: 0.8rem;
+}
+
+.md-typeset details, .tabbed-set {
+    font-size: 0.8rem;
+}
+.md-typeset .mermaid{
+    width: 1000px;
+}
+
