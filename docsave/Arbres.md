@@ -424,13 +424,16 @@ fait de la fonction de hash).
         * Le dernier niveau (éventuellement incomplet) est rempli sans trou enpartant de la gauche.
 
 #### Précisions et conséquences
-• Un arbre du type précédent est dit de type tas-max (racine=max).
-• tas-min : l’étiquette du père est plus petite que celle des fils.
-Les branches sont toutes de longueur h ou h − 1, enlever les feuilles de
-profondeur h donne un arbre parfait, les nœuds internes de profondeur h − 1
-d’arité ≥ 1 sont à gauche des feuilles de profondeur h − 1, si il y a un nœud
-interne de profondeur h − 1 avec un seul fils, son fils est une feuille et c’est le
-dernier nœud dans le parcours en largeur.
+
+!!! note ""
+    * Un arbre du type précédent est dit de type tas-max (racine=max).
+    * tas-min : l’étiquette du père est plus petite que celle des fils.
+    Les branches sont toutes de longueur h ou h − 1, enlever les feuilles de
+    profondeur h donne un arbre parfait, les nœuds internes de profondeur h − 1
+    d’arité ≥ 1 sont à gauche des feuilles de profondeur h − 1, si il y a un nœud
+    interne de profondeur h − 1 avec un seul fils, son fils est une feuille et c’est le
+    dernier nœud dans le parcours en largeur.
+
 Exemple
 
 Figure – Un tas. Si on enlève les feuilles de profondeur 2, l’arbre est parfait
