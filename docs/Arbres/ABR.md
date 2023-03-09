@@ -1,5 +1,4 @@
 #  Arbre Binaire de Recherche
-##   AutoCours
 
 ``` mermaid
 graph TB; 
@@ -187,7 +186,7 @@ graph TB;
     style E display:none
 ```
 
-### Liste triée
+### Liste triée
 Si la liste est déjà triée, on obtient une liste chaînée.
 
 Figure – ABR obtenu par ```create([1;4;2;3]);;```
@@ -287,7 +286,7 @@ N (40, Nil, Nil)))
 
 _Figure – En rouge, la fusion des deux arbres bleus_
 
-#### Correction de la fusion
+#### Correction de la fusion
 !!! note "Preuve par induction" 
     On montre que si on fusionne deux ABR a, b tels que max
     a ≤ min b, alors le nouvel arbre formé est un ABR contenant toutes les
@@ -312,7 +311,7 @@ _Figure – En rouge, la fusion des deux arbres bleus_
     grand que celles de ga (qui est un ABR) donc ```N(x, ga, d)``` est un ABR avec
     toutes les étiquettes de a, b.
 
-#### Complexité de la fusion
+#### Complexité de la fusion
 * Soient deux ABR g , d :
     Il y a au plus autant d’appels internes que le minimum de hauteur des
     sous arbres.
@@ -357,7 +356,7 @@ __Opérations usuellement fournies:__
     le placement d’un nœud dans l’arbre est fait selon sa clé et non sur sa valeur.
     En OCAML, explorons 3 façons de définir les dictionnaires.
 
-#### Dictionnaires par liste de paires
+#### Dictionnaires par liste de paires
 Méthode la plus simple. Persistante.
 
 ```Ocaml
@@ -368,7 +367,7 @@ let m = [ " Sally Smart " , " 555 -9999 " ;
 List . assoc " John Doe " m ;;
 (* # - : string = "555 -1212" *)
 ```
-#### Dictionnaires par AVL
+#### Dictionnaires par AVL
 
 !!! note ""
     * Les arbres AVL ont été historiquement les premiers arbres binaires de
@@ -395,7 +394,7 @@ find " John Doe " m ;;
 Structure persistante basée sur les arbres équilibrés.
 Ajout/Suppression/Recherche en temps logarithmique.
 
-#### Dictionnaires par table de hachage
+#### Dictionnaires par table de hachage
 
 ```Ocaml
 (* dictionnaires par table de hachage polymorphe *)
