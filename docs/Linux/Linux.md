@@ -10,10 +10,10 @@ Linux
     site à pour seul but d’être plus compréhensible pendant les périodes de
     révision que des diaporamas.
 
-1 Système d’exploitation  
-2 Présentation de Linux  
-3 Système de fichiers  Vue logique  Les principaux répertoires systèmes  
-4 Le shell bash  
+ Système d’exploitation  
+ Présentation de Linux  
+ Système de fichiers  Vue logique  Les principaux répertoires systèmes  
+ Le shell bash  
 
 #### Avant-propos
 
@@ -31,7 +31,7 @@ Un cours sur Linux très complet : Linux France et un autre : Telecom  Paris
 Des précisions sur l’architecture des fichiers sous Linux ici et la  nomenclature des systèmes de fichiers là.  
 Un cours du MIT  
 
-## Système d’exploitation
+##  
 
 #### Présentation
 <p align='center'><img src='/images/d5c87ac1434fe878c1a6506bdc52c42c.bmp'/></p>
@@ -66,7 +66,7 @@ Dans les systèmes POSIX, l’extension du nom de ficheir (tous les  caractères
 Mais elle est pratique pour l’utilisateur car il voit bien à quel type de  fichier il a à faire.  
 Un fichier exécutable n’a pas nécéssairement un nom se terminant par  .exe  L’utilisation de l’extension pour déterminer le type de fichier est une  caractéristique de Windows  
 
-## Présentation de Linux
+##   
 
 #### Historique (PI)
 
@@ -115,9 +115,13 @@ Le noyau oﬀre ses fonctions (l’accès aux ressources qu’il gère) au  trav
 
 Processus : programme en cours d’exécution par un ordinateur.  Régulièrement, il a besoin d’accéder à des ressources protégées (comme  une écriture en mémoire). Le noyau prend alors le relai du processus pour  rendre le service demandé et lui rend le contrôle lorsque les actions voulues  ont été réalisées.  
 
-## Système de fichiers
 
-### Système de fichiers
+ Système d’exploitation  
+ Présentation de Linux  
+ Système de fichiers  Vue logique  Les principaux répertoires systèmes  
+ Le shell bash  
+
+###   
 
 #### Système de fichier
 
@@ -166,7 +170,7 @@ unNomDeFichier .
 
 _Figure – Le système de fichiers Linux (d’après malekal)_
 
-Aller à la page concernant les chemins  
+        
 
 #### Exemple personnel
 <p align='center'><img src='/images/94856b0ae5a3d879c096d273826bb764.bmp'/></p>
@@ -175,7 +179,7 @@ _Figure – Une image de mon répertoire home donnée par la commande tree_
 
 L’option -d pour ne lister que les répertoires, l’option -L pour indiquer  la profondeur de récursion.  
 
-### Système de fichiers
+###   
 
 #### Principaux répertoires
 
@@ -282,7 +286,7 @@ nécessaires lors du démarrage du système.
 
 !!! quote "Définition"
     ...
-( Lycée Thiers )
+   
 
 
 Données des applications des utilisateurs.  
@@ -378,9 +382,7 @@ ce répertoire =⇒ impossible d’utiliser le système.
 méthode il les utilise.  
 /boot. En fait, il s’agit du système lui-même ! Ultra sensible !  
 
-## Le shell bash
-
-### Le shell bash
+###   
 
 #### Avertissement
 
@@ -455,9 +457,9 @@ ls ). Entrer q pour quitter. ♥
 Consulter la documentation Ubuntu
 Le manuel est décomposé en plusieurs sections**
 
-1 Programmes exécutables ou commandes de l’interpréteur de  
+ Programmes exécutables ou commandes de l’interpréteur de  
 commandes (shell) ;  
-2 Appels système (Fonctions fournies par le noyau) ;  3 Appels de bibliothèque (fonctions fournies par des bibliothèques) ;  4 Fichiers spéciaux (situés généralement dans /dev) ;  5 Formats des fichiers et conventions (Par exemple /etc/passwd) ;...  
+ Appels système (Fonctions fournies par le noyau) ;   Appels de bibliothèque (fonctions fournies par des bibliothèques) ;   Fichiers spéciaux (situés généralement dans /dev) ;   Formats des fichiers et conventions (Par exemple /etc/passwd) ;...  
 
 
 Parfois deux pages de manuel ont le même nom comme printf (en  
@@ -467,7 +469,7 @@ Entrer q pour quitter le manuel.
 #### Chemins absolus et relatifs ♥
 
 
-consulter l’exemple d’arborescence  
+    
 Un élément de l’arborescence est repéré par son nom (par exemple  nom.jpg ) précédé de :  
 son chemin absolu depuis la racine (ex :  /home/sue/Pictures/family/nom.jpg )  son chemin relatif depuis le répertoire courant. Par exemple, si je suis  dans pets : ../../family/nom.jpg  
 / : sépare les noms de fichiers  
@@ -476,30 +478,38 @@ son chemin absolu depuis la racine (ex :  /home/sue/Pictures/family/nom.jpg )  s
 #### Commentaire
 
 
+```linenums="1"
+# kalin
+```
+
 Les commentaires ne sont pas interprétés :  
 La commande kalin n’existe pas, elle soulève une erreur :  
 $ kalin  La commande << kalin > > n ’ a pas é t é trouv ée , ...  
 Le caractère # n’est pas interprété. On peut écrire kalin sans  erreur :  
-$ # kalin  $  
+$ $  
 
 #### Contenu d’un répertoire ♥
 
 
 La commande ls donne le contenu d’un répertoire :  
 sans argument : les entrées du répertoire courant ls  avec argument : les entrées repérées par le (ou les) argument(s) :  ls myFile, ls myRep, ls /etc /usr/bin  
-pour aﬃcher les fichiers cachés ls -a (indique notamment  .bashrc si je suis en ˜ )  pour pour tous les attributs (type, droits, liens physiques, propriétaire,  groupe, taille, date, nom) ls -l  ls -al au lieu de ls -a -l .  $ l s −l h  t o t a l 1 , 8M  −rw−rw−r−− 1 i v a n  −rw−rw−r−− 1 i v a n  
-2021 a c c e s D i r e c t . png  2021 a c c e s S e q u e n t i e l . png  
-67K ao û t  138K ao û t  
-i v a n  i v a n  
-25  25  
+pour aﬃcher les fichiers cachés ls -a (indique notamment  .bashrc si je suis en ˜ )  pour pour tous les attributs (type, droits, liens physiques, propriétaire,  groupe, taille, date, nom) ls -l  ls -al au lieu de ls -a -l .  $   −            −−−−−       −−−−−       
+                                  
+          
+          
+    
 Dans l’ordre : droits, nombres d’alias, username, groupname, taille  (par défaut en octet), date de dernière modif., nom de fichier.  ls -i aﬃche le numéro d’inode.  
 
 #### Aﬃchage d’une chaîne de caractère
 
 
+```linenums="1"
+# afficher coucou
+```
+
 La commande echo aﬃche une ligne de texte  
 (Le caractère # indique le début d’un commentaire  
-$ echo ’ coucou ’ # afficher coucou  coucou  
+$ echo ’ coucou ’ coucou  
 le choix des guillements est important : "’" (touche 4),  "”" (touche 3) et "‘" (ALT GR + 7) n’ont pas le même sens.  
 Pour aﬃcher le contenu d’une variable d’environnement :  
 $ echo $LANG  fr_FR . UTF -8  
@@ -543,9 +553,14 @@ ls [!b-z]* désigne les noms qui ne commencent pas par une lettre  entre b et z 
 ; sépare deux commandes sur une même ligne  Les guillemets verticaux simples ’ (touche 4) délimitent une chaîne  de caractères contenant des espaces (à l’intérieur, tous les  métacaractères perdent leur signification) ;  Les guillemets verticaux doubles ” (touche 3) délimitent une chaîne  de caractères contenant des espaces (à l’intérieur, tous les  métacaractères perdent leur signification, à l’exception des  métacaractères ‘ et $) ;  Les guillemets obliques gauche-droite ‘ (ALT GR + 7)  "capturent" la sortie standard pour former un nouvel argument ou  une nouvelle commande ;  \ annule la signification du métacaractère qui suit : c’est un  caractère dit d’échappement.  le & à la fin d’une commande permet de lancer celle-ci en tâche de  fond, donc sans bloquer le terminal.  
 
 
+```linenums="1"
+# est - ce un dossier ?
+# afficher la r é ponse du test pr é c é dent
+```
+
 Métacaractères de modification (PI)  Parenthèses  
 (...) : les parenthèses encadrent une suite de commandes qui sont  exécutées par un shell secondaire. En particulier, les assignements  n’ont pas d’eﬀet en dehors des parenthèses.  
-{...} : les accolades encadrent une suite de commandes qui sont  exécutées par le shell principal. En particulier, les assignements ont un  eﬀet en dehors des accolades.  [...] : les crochets sont utilisés pour les instructions  conditionnelles. Ils encadrent une expression à valeur bouléenne.  $ [ -d presentationLinux . tex ] # est - ce un dossier ?  $ echo $ ? # afficher la r é ponse du test pr é c é dent  1  
+{...} : les accolades encadrent une suite de commandes qui sont  exécutées par le shell principal. En particulier, les assignements ont un  eﬀet en dehors des accolades.  [...] : les crochets sont utilisés pour les instructions  conditionnelles. Ils encadrent une expression à valeur bouléenne.  $ [ -d presentationLinux . tex ] $ echo $ ? 1  
 On obtient 0 si le fichier existe et est un répertoire, 1 sinon.  
 ...  
 
@@ -643,18 +658,35 @@ Situation : un répertoire parent P possède deux sous-répertoires Rep1 et  Rep
 Copier le fichier file1 du répertoire Rep1 dans le répertoire Rep2  sans changer le nom : cp Rep1/file1 Rep2/  Copier le fichier file1 du répertoire Rep1 dans le répertoire Rep2 en  changeant le nom : cp Rep1/file1 Rep2/file2  Je suis dans Rep1. Changer le nom du fichier file1 en restant dans  le même répertoire : mv file1 file2 .  Je suis dans Rep1. déplacer le fichier file1 sans changer son nom  mv file1 ../Rep2/ .  Je suis dans le répertoire parent de P. Je veux copier récursivement P  et tout ce qu’il contient (donc aussi les sous-répertoires) dans un  nouveau répertoire P2 : cp -r P1 P2  
 
 
+```linenums="1"
+# Creer r é pertoire Asup
+# aller au r é pertoire Asup
+# pas de contenu
+# cr é er le fichier vide asup
+# afficher fichiers cach é s
+# supprimer asup
+# plus de contenu
+```
+
 Créer, remplir, vider, supprimer un répertoire  Exemple  
-$ mkdir Asup # Creer r é pertoire Asup  
-$ cd Asup # aller au r é pertoire Asup  $ ls # pas de contenu  
-$ touch asup # cr é er le fichier vide asup  $ ls - al # afficher fichiers cach é s  total 8  drwxrwxr - x 2 ivan ivan 4096 ao ^u t  drwxrwxr - x 3 ivan ivan 4096 ao ^u t  0 ao ^u t  -rw - rw -r - - 1 ivan ivan  
+$ mkdir Asup 
+$ cd Asup $ ls 
+$ touch asup $ ls - al total 8  drwxrwxr - x 2 ivan ivan 4096 ao ^u t  drwxrwxr - x 3 ivan ivan 4096 ao ^u t  0 ao ^u t  -rw - rw -r - - 1 ivan ivan  
 19 15:28 .  19 15:28 ..  19 15:28 asup  
-$ rm asup # supprimer asup  $ ls # plus de contenu  
+$ rm asup $ ls 
 
+
+```linenums="1"
+# revenir au p è re
+# supprime rep Asup
+# creer un r é pertoire et son fils
+# supprimer un r é pertoire et son fils
+```
 
 Créer, remplir, vider, supprimer un répertoire  Exemple  
-$ cd .. # revenir au p è re  $ rmdir Asup # supprime rep Asup  
+$ cd .. $ rmdir Asup 
 Les répertoires Nouveau et son fils AutreNouveau sont créés  simultannément puis supprimés de même  
-$ mkdir -p Nouveau / AutreNouveau # creer un r é pertoire et son fils  $ rmdir -p Nouveau / AutreNouveau # supprimer un r é pertoire et son fils  
+$ mkdir -p Nouveau / AutreNouveau $ rmdir -p Nouveau / AutreNouveau 
 
 #### Explorer un fichier
 
@@ -662,7 +694,7 @@ $ mkdir -p Nouveau / AutreNouveau # creer un r é pertoire et son fils  $ rmdir 
 grep aﬃche les lignes vérifiant un pattern.  Contenu d’un fichier myfile  
 t o t o  t o t  t o t o o  a t o t o  t i t i  
 grep "toto" myfile cherche le mot "toto" dans myfile  
-grep -c "toto" myfile cherche le nombre d’occurences du mot  "toto" dans myfile.  Option grep -n "toto" pour aﬃcher les numéros de lignes.  Le joker * n’a pas ici la même signification que le métacaractère du  shell ! grep "toto*" myfile cherche les lignes contenant au moins  un tot suivi par 0, 1 ou plusieurs lettres "o" (renvoie toto, tot,  totoo et atoto)  ( Lycée Thiers )  
+grep -c "toto" myfile cherche le nombre d’occurences du mot  "toto" dans myfile.  Option grep -n "toto" pour aﬃcher les numéros de lignes.  Le joker * n’a pas ici la même signification que le métacaractère du  shell ! grep "toto*" myfile cherche les lignes contenant au moins  un tot suivi par 0, 1 ou plusieurs lettres "o" (renvoie toto, tot,  totoo et atoto)       
 
 #### Explorer un fichier (suite)
 
@@ -681,8 +713,7 @@ Le système d’exploitation d’un ordinateur basique est installé sur le  dis
 Les périphériques de stockage sont associés à un répertoire particulier.  Par exemple le disque dur principal sur lequel l’OS est installé est  associé au répertoire /  L’utilisateur peut choisir de monter temporairement un système de  fichier par ses propres moyens grâce à la commande mount . En  général le montage se fait dans le répertoire /mnt.  Les opérations de montage manuel nécessitent généralement les droits  du superuser.  
 <p align='center'><img src='/images/2d315bde3c6e3e42e352fb96383fc0c6.bmp'/></p>
 
-_Figure – Un bouton pour "éjecter" la clé
-Linux_
+_Figure – Un bouton pour "éjecter" la clé_
 
 Les médias amovibles (comme une clé USB) sont, sous Ubuntu,  montés automatiquement (i.e. appel automatique de mount ) dans  le répertoire /media.  Par exemple si l’utilisateur toto insère une clé USB, son arborescence  de fichier est visible dans un répertoire comme /media/toto/CLE.  Tous les fichiers de la clés sont disponibles dans ce répertoire.  Et les créations/modifications/suppressions de fichier dans ce  répertoire sont répercutées sur la clé.  Pour démonter un média amovible, il y a en général une interface  graphique.  
 
@@ -690,7 +721,11 @@ Les médias amovibles (comme une clé USB) sont, sous Ubuntu,  montés automatiq
 Pour démonter manuellement un système de fichier, on utilise la  commande umount .  Cette commande requiert en général les droits du superuser.  
 
 
-Tube  L’opérateur |  
+```linenums="1"
+|
+```
+
+Tube  L’opérateur 
 On peut rediriger la sortie d’une commande vers l’entrée d’une autre.  
 L’opérateur "|" réalise cette opération.  Récupérer la liste des sous-répertoires :  
 on utilise ls -al qui donne toutes les indications sur les fichiers du  répertoire courant.  Les lignes qui commencent par un d correspondent à un répertoire.  Pour les récupérer, on envoie la sortie de ls sur l’entrée de grep ,  auquel on demande de filtrer les lignes qui commencent par d :  ivan @ fixe :~/.../ TD$ ls - al | grep " ^ d "  drwxrwxr - x 28 ivan ivan  drwxr - xr - x 17 ivan ivan  3 ivan ivan  drwxrwxr - x  3 ivan ivan  drwxrwxr - x  drwxrwxr - x  2 ivan ivan  ....  

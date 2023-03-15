@@ -1,5 +1,6 @@
 #  Arbre Binaire de Recherche
 
+<div align=center>
 ``` mermaid
 graph TB; 
     A((1))-->B((2))
@@ -17,6 +18,7 @@ graph TB;
     G-->N((14))
     G-->O((15))
 ```
+</div>
 
 Ce cours a été automatiquement traduit des transparents de M.Noyer par
 Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
