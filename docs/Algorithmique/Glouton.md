@@ -66,7 +66,7 @@ let greedy_change (coins:int array) (v:int):
     change ;;
 ```
 
-!!! note "Paramètres et variables"
+!!! info "Paramètres et variables"
     Paramètres :  
 
     - `coins` : tableau des valeurs de pièces.  
@@ -77,7 +77,7 @@ let greedy_change (coins:int array) (v:int):
     - `!i` : valeur courante de pièce
     - `change.(!i)` : nb de pièces de la valeur courante  
     - `!cur` : somme restant à rendre.  
-
+    - 
 ### Correction du programme
 
 Un variant de boucle est `!cur + !i`. Terminaison OK.  
@@ -87,10 +87,10 @@ Le fait que $v_1 = 1$, assure que `!i≥0` et donc l’accès valide  au tableau
 
 ### Optimalité
 
-!!!quote "Proposition"  
+!!!definition "Proposition"  
     Si `coins` décrit le système monétaire de la zone euro, alors le  programme `greedy_change` cacule un rendu de monnaie avec le  nombre minimal d’éléments.  
 
-!!!quote "Remarque"
+!!!tip "Remarque"
     Un système de pièces qui, tel celui de la zone euro, permet un rendu optimal est qualifié de canonique.  
 
 ### Preuve
