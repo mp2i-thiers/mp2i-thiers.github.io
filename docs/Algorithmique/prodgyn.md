@@ -1,8 +1,5 @@
 # Programmation dynamique
 
-!!! danger
-    Ce cours n'a pas été entièrement reverifié après le passage du programme. Pensez à supprimer ce message si vous avez reverifié ce cours
-
 !!! warning
     Ce cours a été automatiquement traduit des transparents de M.Noyer par
     Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
@@ -71,7 +68,7 @@ La programmation dynamique s’applique à des problèmes  d’optimisations : i
 
 ### Suites de Fibonacci
 
-Voirt TD dédié.  
+Voir TD dédié.  
 
 ### Partition équilibrée d'un tableau d'entiers positifs
 
@@ -95,7 +92,7 @@ On note S la somme des éléments de $E$ et S(A) la somme des éléments  d’un
 Pour E = {$e, . . . , e_n$} :  
 On gère deux sous-ensembles E, E initialisés resp. en {$e_1$}, ∅.  
 On place les éléments suivants dans E un à un jusqu’à ce que  §($E_2$) > §($E_1$). Les éléments suivants sont alors placés dans $E_1$ etc.  
-**Malheureusement, même en triant les éléments de E , la solution  fournie n’est pas toujours optimale.  **
+**Malheureusement, même en triant les éléments de E , la solution  fournie n’est pas toujours optimale.**
 
 !!! example "Exercice"
     Implanter cet algorithme. Donner sa complexité. Exhiber un exemple où la solution n’est pas optimale.
@@ -112,7 +109,7 @@ Soit A ⊂ E tel que :
 
 Si S(A) ≤ S/2, soit (F, G) partition de E telle que S(F) ≤ S(G). Alors S(F) ≤ S/2.  
 Puisque A réalise la meilleure distance à S/2 :  
-$$S(F ) ≤ S(A) et S(E \ A) ≤ S(G ) $$
+$$S(F ) ≤ S(A) \text{ et } S(E \setminus A) ≤ S(G) $$
 Et donc $|S(E \ A) − S(A)| ≤ |S(G ) − S(F )|$
 
 De même si $S(A) ≥ S/2$.
@@ -123,15 +120,16 @@ On en déduit que **(A, E \ A) réalise une  partition équilibrée de E .**
 
 ##### Méthode descendante
 
-**Maths pas encore faites**
+On cherche ($E_1$, $E_2$), partition équilibrée de E  
+La remarque 2 du slide précédent suggère de travailler avec a) la  demi-somme des éléments de E et b) l’ensemble $E_1$ (puisqu’on trouve  alors $E_2$ facilement).  
 
-On cherche (E, E), partition équilibrée de E  La remarque 2 du slide précédent suggère de travailler avec a) la  demi-somme des éléments de E et b) l’ensemble E (puisqu’on trouve  alors E facilement).  
+Agorithme récursif : On gère un ensemble E et la demi-somme $S = \frac{1}{2}\sum_{e \in E} e$ des éléments de E . On cherche à construire $E_1$.
+Prendre e ∈ E et calculer la distance |$S(E_1) − S$| dans 2 cas :  
 
-Agorithme récursif : On gère un ensemble E et la demi-somme  e∈E e des éléments de E . On cherche à construire E.  S =  Prendre e ∈ E et calculer la distance |S(E) − S| dans 2 cas :  
-{sum symbol}  
-    - En mettant e dans E. Cela revient à ajouter e à la solution au problème  lorsque E = E \ {e} et S = S − e  
-    - En ne mettant pas e dans E. On calcule la solution au problème lorsque  E \ {e} et S est inchangé.  
-Choisir la meilleure des 2 options : celle qui améliore la distance de la  somme des éléments de E à la demi-somme S.  
+- En mettant e dans E. Cela revient à ajouter e à la solution au problème  lorsque E = E \ {e} et S = S − e  
+- En ne mettant pas e dans $E_1$. On calcule la solution au problème lorsque E \ {e} et S est inchangé.  
+
+**Choisir la meilleure des 2 options : celle qui améliore la distance de la  somme des éléments de $E_1$ à la demi-somme S.**
 
 !!! example "Exercice"
     Les multi-ensemble de nombres sont implémentés par des listes.
@@ -140,14 +138,18 @@ Choisir la meilleure des 2 options : celle qui améliore la distance de la  somm
 
 ##### Méthode ascendante avec tableau de bouléen
 
-E = {e, . . . , en−}, multi-ensemble de nombres entiers positifs,  S = {sum symbol}  
-e∈E e.  
-On construit une matrice de bouléens T de taille (n + 1) × (S + 1)  On fait en sorte que le coeﬃcient Ti,j (i ≥ 0, j ≥ 0) soit vrai si et  seulement si il existe un sous-ensemble de {ek | k ≤ i − 1} dont la  somme des éléments vaut j.  On cherche une relation de récurrence qui construit Ti,j connaissant les  Ti',j' pour (i', j') < (i, j) au sens lexicographique.  
+E = {$e_0$, . . . , $e_{n−1}$}, multi-ensemble de nombres entiers positifs, $S = \sum_{e \in E} e$ et |E| = n.  
 
-Ligne 0 : Pour k ≥ 0, T,k désigne la possibilité pour que la somme  des éléments de l’ensemble {ek | k ≤ 0 − 1} = ∅ vale k. Ainsi T,k est  faux sauf si k = 0.  Pour i ≥ 0, Ti, j est vrai si et seulement si il existe un sous-ensemble  de {e, . . . , ei } dont la somme des éléments vaut j. Ceci se décompose  en :  
-Ou bien il existe un sous-ensemble de {e, . . . , ei−} dont la somme des  éléments vaut j. Ceci est équivalent à "Ti,j est vrai".  Ou bien, il existe un sous-ensemble de {e, . . . , ei−} dont la somme des  éléments vaut j − ei (chose impossible si j < ei ). Ceci est équivalent à  "Ti,j−ei est vrai" lorsque j ≥ ei .  
-Relation de récurrence : pour i ≥ 1, j ≥ 0, Ti,j est équivalent à :  
-Ti,j ou (j ≥ ei et Ti,j−ei )  
+- On construit une matrice de bouléens T de taille (n + 1) × (S + 1)  
+- On fait en sorte que le coeﬃcient $T_{i,j}$ (i ≥ 0, j ≥ 0) soit vrai si et  seulement si il existe un sous-ensemble de {$e_k$ | k ≤ i − 1} dont la  somme des éléments vaut j.  
+- On cherche **une relation de récurrence qui construit $T_{i,j}$** connaissant les $T_{i',j'}$ pour (i', j') < (i, j) au sens lexicographique.  
+
+!!!note
+    - Ligne 0 : Pour k ≥ 0, $T_{0,k}$ désigne la possibilité pour que la somme  des éléments de l’ensemble {$e_k$ | k ≤ 0 − 1} = ∅ vale k. Ainsi T,k est  faux sauf si k = 0.  
+    - Pour i ≥ 0, T_{i+1, j} est vrai si et seulement si il existe un sous-ensemble  de {e, . . . , $e_i$ } dont la somme des éléments vaut j. Ceci se décompose en :  
+        - Ou bien il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j. Ceci est équivalent à "$T_{i,j}$ est vrai".  
+        - Ou bien, il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j − $e_i$ (chose impossible si j < $e_i$ ). Ceci est équivalent à  "$T_{i,j−e_i}$ est vrai" lorsque j ≥ ei .  
+    - **Relation de récurrence :** pour i ≥ 1, j ≥ 0, Ti,j est équivalent à :  **T_{i,j} ou ($j ≥ e_i$ et $T_{i,j−e_i}$)**  
 
 #### Code : construction du tableau de bouléens
 
@@ -156,9 +158,13 @@ Ti,j ou (j ≥ ei et Ti,j−ei )
 
 #### Construction de la partition équilibrée
 
-Une fois trouvés le tableau de bouléens T et la somme m, on construit E  récursivement en lui ajoutant ou pas l’élément courant.  
-On part de Tn,m (qui est Vrai) et E = ∅.  On parcourt une suite (Ti,mi )in,n−,... de coeﬃcients avec mi ↓ et  mn = m.  C’est donc une suite dont les indices sont positifs et décroissants  strictement au sens lexicographique, ce qui assure la terminaison de la  récursion.  Invariant "Ti,mi est vrai". Critère de déplacement dans la matrice :  
-Si Ti−,mi est vrai, alors on peut trouver un sous-ensemble de  {e, . . . , ei−} qui a pour somme mi . Donc E peut ne pas contenir  ei− : il reste inchangé.  Sinon c’est que Ti−,mi −ei− est vrai. On peut trouver un sous-ensemble  de {e, . . . , ei−} qui a pour somme m − ei−. On ajoute donc ei− à E.  
+Une fois trouvés le tableau de bouléens T et la somme m, on construit $E_1$  récursivement en lui ajoutant ou pas l’élément courant.  
+On part de $T_{n,m}$ (qui est Vrai) et $E_1$ = ∅.  On parcourt une suite $(T_{i,m_i})_{i=n,n-1,...1}$ de coeﬃcients avec $m_i$ ↓ et  $m_n = m$.  C’est donc une suite dont les indices sont positifs et décroissants  strictement au sens lexicographique, ce qui assure la terminaison de la  récursion.  
+
+Invariant "$T_{i,m_i}$ est vrai". Critère de déplacement dans la matrice :  
+
+- Si $T_{i−1,m_i}$ est vrai, alors on peut trouver un sous-ensemble de  {e, . . . , $e_{i−2}$} qui a pour somme $m_i$ . Donc $E_1$ peut ne pas contenir  $e_{i−1}$ : il reste inchangé.  
+- Sinon c’est que $T_{i−1,m_i−e_i−1}$ est vrai. On peut trouver un sous-ensemble  de {e, . . . , $e_i−2$} qui a pour somme m − $e_{i−1}$. On ajoute donc $e_{i−1}$ à $E_1$.  
 
 !!! example "Exercice"
     Ecrire la fonction `partitition : int array -> int array` telle que `partitition e` renvoie sous forme de tableau l’ensemble E. Donner sa complexité.
