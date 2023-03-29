@@ -90,25 +90,43 @@ On note S la somme des éléments de $E$ et S(A) la somme des éléments  d’un
 #### Approche gloutonne
 
 Pour E = {$e, . . . , e_n$} :  
-On gère deux sous-ensembles E, E initialisés resp. en {$e_1$}, ∅.  
+On gère deux sous-ensembles $E_1$, $E_2$ initialisés resp. en {$e_1$}, ∅.  
 On place les éléments suivants dans E un à un jusqu’à ce que  §($E_2$) > §($E_1$). Les éléments suivants sont alors placés dans $E_1$ etc.  
 **Malheureusement, même en triant les éléments de E , la solution  fournie n’est pas toujours optimale.**
 
 !!! example "Exercice"
     Implanter cet algorithme. Donner sa complexité. Exhiber un exemple où la solution n’est pas optimale.
 
+!!! tip "Correction"
+    ```ocaml linenums="1"
+    let greedy_partition e =
+        let rec aux l l1 l2 s1 s2 =
+            match l with
+            | [] -> l1, l2
+            |x::q -> if x + s1 < s2 then
+                    aux q (x::l1) l2 (s1+x) s2
+                else aux q (x::l2) l1 (s2+x) s1
+        in match e with
+            | [] -> [], []
+            | x::q -> aux q [x] [] x 0
+    ;;
+    ```
+
 #### Algorithme basé sur la demi-somme
 
 On dispose d’un ensemble d’entiers positifs E .  
-Si $E_1$ et $E_2$ réalisent une partition équilibrée de E , quitte à les  échanger, on peut supposer S($E_1$) ≤ S($E_2$).  
-Comme S($E_1$) + S($E_2$) = S, on a $S(E_1) ≤ \frac{S}{2} \leq S(E_2)$ les éléments sont entiers, on obtient $S(E_1) ≤ S/2 ≤ (E_2)$.  
+Si $E_1$ et $E_2$ réalisent une partition équilibrée de E , quitte à les  échanger, on peut supposer $S(E_1) ≤ S(E_2)$
+
+Comme S($E_1$) + S($E_2$) = S, on a $S(E_1) ≤ \frac{S}{2} \leq S(E_2)$ les éléments sont entiers, on obtient $S(E_1) ≤ S//2 ≤ S(E_2)$.  
 
 #### Distance à la demi-somme
 
 Soit A ⊂ E tel que :  
 
-Si S(A) ≤ S/2, soit (F, G) partition de E telle que S(F) ≤ S(G). Alors S(F) ≤ S/2.  
-Puisque A réalise la meilleure distance à S/2 :  
+$$|S//2 - \sum_{a\in A} a| = min(\{|S//2 - \sum_{x \in X} x| \text{ avec } X \subset E\})$$
+
+Si S(A) ≤ S//2, soit (F, G) partition de E telle que S(F) ≤ S(G). Alors S(F) ≤ S//2.  
+Puisque A réalise la meilleure distance à S//2 :  
 $$S(F ) ≤ S(A) \text{ et } S(E \setminus A) ≤ S(G) $$
 Et donc $|S(E \ A) − S(A)| ≤ |S(G ) − S(F )|$
 
@@ -123,10 +141,10 @@ On en déduit que **(A, E \ A) réalise une  partition équilibrée de E .**
 On cherche ($E_1$, $E_2$), partition équilibrée de E  
 La remarque 2 du slide précédent suggère de travailler avec a) la  demi-somme des éléments de E et b) l’ensemble $E_1$ (puisqu’on trouve  alors $E_2$ facilement).  
 
-Agorithme récursif : On gère un ensemble E et la demi-somme $S = \frac{1}{2}\sum_{e \in E} e$ des éléments de E . On cherche à construire $E_1$.
+Agorithme récursif : On gère un ensemble E et la demi-somme S des éléments de E . On cherche à construire $E_1$.
 Prendre e ∈ E et calculer la distance |$S(E_1) − S$| dans 2 cas :  
 
-- En mettant e dans E. Cela revient à ajouter e à la solution au problème  lorsque E = E \ {e} et S = S − e  
+- En mettant e dans $E_1$. Cela revient à ajouter e à la solution au problème  lorsque E = E \ {e} et S = S − e  
 - En ne mettant pas e dans $E_1$. On calcule la solution au problème lorsque E \ {e} et S est inchangé.  
 
 **Choisir la meilleure des 2 options : celle qui améliore la distance de la  somme des éléments de $E_1$ à la demi-somme S.**
@@ -144,12 +162,12 @@ E = {$e_0$, . . . , $e_{n−1}$}, multi-ensemble de nombres entiers positifs, $S
 - On fait en sorte que le coeﬃcient $T_{i,j}$ (i ≥ 0, j ≥ 0) soit vrai si et  seulement si il existe un sous-ensemble de {$e_k$ | k ≤ i − 1} dont la  somme des éléments vaut j.  
 - On cherche **une relation de récurrence qui construit $T_{i,j}$** connaissant les $T_{i',j'}$ pour (i', j') < (i, j) au sens lexicographique.  
 
-!!!note
+!!!note ""
     - Ligne 0 : Pour k ≥ 0, $T_{0,k}$ désigne la possibilité pour que la somme  des éléments de l’ensemble {$e_k$ | k ≤ 0 − 1} = ∅ vale k. Ainsi T,k est  faux sauf si k = 0.  
     - Pour i ≥ 0, T_{i+1, j} est vrai si et seulement si il existe un sous-ensemble  de {e, . . . , $e_i$ } dont la somme des éléments vaut j. Ceci se décompose en :  
         - Ou bien il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j. Ceci est équivalent à "$T_{i,j}$ est vrai".  
         - Ou bien, il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j − $e_i$ (chose impossible si j < $e_i$ ). Ceci est équivalent à  "$T_{i,j−e_i}$ est vrai" lorsque j ≥ ei .  
-    - **Relation de récurrence :** pour i ≥ 1, j ≥ 0, Ti,j est équivalent à :  **T_{i,j} ou ($j ≥ e_i$ et $T_{i,j−e_i}$)**  
+    - **Relation de récurrence :** pour i ≥ 1, j ≥ 0, $T_{i,j}$ est équivalent à :  **$T_{i,j}$ ou ($j ≥ e_i$ et $T_{i,j−e_i}$)**  
 
 #### Code : construction du tableau de bouléens
 
