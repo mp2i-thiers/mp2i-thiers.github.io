@@ -1,29 +1,7 @@
 #  Arbre Binaire de Recherche
-
-<div align=center>
-``` mermaid
-graph TB; 
-    A((1))-->B((2))
-    A-->C((3))
-    B-->D((4))
-    B-->E((5))
-    C-->F((6))
-    C-->G((7))
-    D-->H((8))
-    D-->I((9))
-    E-->J((10))
-    E-->K((11))
-    F-->L((12))
-    F-->M((13))
-    G-->N((14))
-    G-->O((15))
-```
-</div>
-
-Ce cours a été automatiquement traduit des transparents de M.Noyer par
-Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-site à pour seul but d’être plus compréhensible pendant les périodes de
-révision que des diaporamas.
+!!! danger ""
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par
+    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 ???+ abstract "Sommaire"
     - Arbre binaire de recherche
@@ -163,7 +141,7 @@ Description informelle pour un arbre de hauteur $h$ à $n$ nœuds.
     * Il y a $O(h)$ pour cette descente. Pour chaque nœud interne, les opérations hors appel récursif sont à coût constant.
     * Dans le cas d’arrêt, le coût est également constant.
     * Donc complexité en $O(h)$.
-    * On comprend l’intérêt de "contrôler" $h$. En pratique, on essaye de conserver $h \leq C \log(n)$ pour une certaine constante. Si on arrive à maintenir cette contrainte au fil des insertions, on obtient un arbre équilibré).
+    * On comprend l’intérêt de "contrôler" $h$. En pratique, on essaye de conserver $h \leq C \log(n)$ pour une certaine constante. Si on arrive à maintenir cette contrainte au fil des insertions, on obtient un arbre équilibré.
 
 ### Création
 ``` Ocaml linenums="1" title="Créer un ABR à partir d’une liste "
@@ -277,8 +255,9 @@ let rec merge a b = match a , b with
 Dans cette fusion, la racine de l’arbre gauche devient systématiquement la
 racine de l’arbre retourné. On aurait pu privilégier l’arbre droit.
 ```Ocaml linenums="1"
-let a1 = N (3 , N (2 , Nil , Nil ) ,N (4 , Nil , Nil ) ) in let a2 = N (30 , N
-(20 , Nil , Nil ) ,N (40 , Nil , Nil ) ) in merge a1 a2 ;;
+let a1 = N (3 , N (2 , Nil , Nil ) ,N (4 , Nil , Nil ) ) in 
+let a2 = N (30 , N(20 , Nil , Nil ) ,N (40 , Nil , Nil ) ) in
+merge a1 a2 ;;
 
 (* Et on obtient : *)
 N (3, N (2, Nil, Nil),
@@ -296,7 +275,7 @@ _Figure – En rouge, la fusion des deux arbres bleus_
 
     * __Cas de base :__ si un des deux arbres est vide, on renvoie l’autre. C’est un
     ABR par hyp. et il contient bien toutes les étiquettes des deux arbres.
-    * __Hérédité.__ Soient ```a = N(x, ga, da)``` et ```b = N(y , gb, db)``` non vides avec max a $\leq$ min b.
+    * __Hérédité.__ Soient ```a = N(x, ga, da)``` et ```b = N(y , gb, db)``` non vides avec $\max a \leq \min b$.
         * Notre hypothèse d’induction (HI) est que la fusion d’un sous-terme
         immédiats de a avec un sous-terme immédiat de b est un ABR
         contenant toutes les étiquettes de ses deux sous-termes.
@@ -435,35 +414,65 @@ fait de la fonction de hash).
     interne de profondeur h − 1 avec un seul fils, son fils est une feuille et c’est le
     dernier nœud dans le parcours en largeur.
 
-Exemple
+###### Exemple
+WIP
+Figure – Un tas.
+Si on enlève les feuilles de profondeur 2, l’arbre est parfait (cf. fig. [13] pour la représentation en array) 
+Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche. 
 
-Figure – Un tas. Si on enlève les feuilles de profondeur 2, l’arbre est parfait
-(cf. fig. [13] pour la représentation en array)
-Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli
-en commençant par la gauche.
-Contre-exemples
-Les arbres suivants ne sont pas des tas :
-Figure – Un nœud de hauteur h − 1 et d’arité 1 est à gauche d’un nœud de
-hauteur h − 1 d’arité 2
-Figure – Un père a un fils d’étiquette plus grande que la sienne
-Page 13/30
-Scpr de nono le 03/03/23 à 17:46
-AutoCours - Arbre binaire de recherche
-Hauteur d’un arbre complet gauche
-Soit A un arbre complet gauche à n nœuds et de hauteur p
-• L’avant dernier niveau (qui correspond à un arbre parfait) est rempli. Et
-le dernier niveau contient au moins une feuille.
-2 p −1< n≤ 2p+1 −1⏟
-taille min. d’un arbre parfait plus gros que A
-⇒ 2 p ≤ n<2p+1
-⇒ p ≤ log2 n< p+1
-⌊log2 n⌋= p
-Exemple
-Figure – Un tableau représentant un tas
-BFS
-Observer le lien entre le parcours en largeur et la représentation en
-tableau.
-Contrexemples
+###### Contre-exemples 
 Les arbres suivants ne sont pas des tas :
 
+WIP
+Figure – Un nœud de hauteur h − 1 et d’arité 1 est à gauche d’un nœud de hauteur h − 1 d’arité 2 
 
+WIP
+Figure – Un père a un fils d’étiquette plus grande que la sienne 
+
+#### Hauteur d’un arbre complet gauche 
+!!! note ""
+    Soit A un arbre complet gauche à n nœuds et de hauteur p 
+    * L’avant dernier niveau (qui correspond à un arbre parfait) est rempli. Et le dernier niveau contient au moins une feuille. 
+
+#### Exemple 
+
+WIP
+Figure – Un tableau représentant un tas 
+
+!!!quote "BFS" 
+    Observer le lien entre le parcours en largeur et la représentation en tableau. 
+    Contrexemples 
+Les arbres suivants ne sont pas des tas : 
+Figure – Un nœud de hauteur h − 1 et d’arité 1 est à gauche d’un nœud de hauteur h − 1 d’arité 2 
+Figure – Un père a un fils d’étiquette plus grande que la sienne 
+Tas et tableaux 
+On peut stocker un tas dans un tableau dont on n’utilise pas (pour le moment) le premier élément.
+    • La racine occupe l’élément d’indice 1, 
+    • Les fils du nœud d’indice k (avec k > 0) sont aux indices 2k et 2k + 1 (si ceux-ci ne dépassent pas la longueur du tableau).
+    •  le père du nœud d’indice k est à l’indice . 
+Figure – Relations père/fils dans un tableau représentant un tas (cf. tas de la fig. [7]) 
+
+En CAML 
+(* correspond au schéma précédent en OCAML *) 
+let t = [|6; 12; 9; 6; 2; 7; 5; 0; 67; 33|];;
+Lorsqu’on crée un tableau représentant un tas : 
+    • Il faut prévoir la taille du tableau à l’instant initial (6 ici) et les éventuels ajouts à eﬀectuer (en clair prévoir plus de place que la simple taille du tableau à l’instant 0). 
+    • Le premier élément du tableau désigne la taille du tas (qui est diﬀérente de celle du tableau).
+    • Les éléments 0, 67, 33 en fin de tableau ne sont pas considérés comme appartenant au tas. Ils seront remplacés par les valeurs éventuellement ajoutées au tas. 
+Un problème
+Le type de la taille du tas (int) fige le type du tableau avec l’implémentation précédente. Toutes les valeurs du tas doivent être des entiers... 
+
+(* pour dissocier le type de la taille du tas de celui de ses éléments,  on peut utiliser un type enregistrement *) 
+type ’a myHeap =
+	{ mutable length : int ; heap : ’a array };;
+Opérations sur les tas 
+    • Ajouter : ajout d’un élément dans le tas binaire en préservant la structure de tas. 
+    • Retirer : retirer un élément d’indice donné et rectifier le tableau pour qu’il corresponde de nouveau à un tas. 
+    • Construire : construction du tas binaire à partir d’un ensemble d’éléments. 
+Considérons que l’on veuille ajouter le nœud x à notre tas binaire :
+On insère x à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau), puis on eﬀectue l’opération suivante (que l’on appelle percolation vers le haut ou percolate-up) pour rétablir si nécessaire la propriété d’ordre du tas binaire : 
+    • Tant que x n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père. 
+On veut ajouter 50 dans un tas-max : 
+Figure – On cherche le seul emplacement possible pour préserver la structure d’arbre complet gauche 
+
+Figure – le nœud d’étiquette 50 est placé provisoirement. On le compare à son père (28) 
