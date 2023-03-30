@@ -164,7 +164,7 @@ E = {$e_0$, . . . , $e_{n−1}$}, multi-ensemble de nombres entiers positifs, $S
 
 !!!note ""
     - Ligne 0 : Pour k ≥ 0, $T_{0,k}$ désigne la possibilité pour que la somme  des éléments de l’ensemble {$e_k$ | k ≤ 0 − 1} = ∅ vale k. Ainsi T,k est  faux sauf si k = 0.  
-    - Pour i ≥ 0, T_{i+1, j} est vrai si et seulement si il existe un sous-ensemble  de {e, . . . , $e_i$ } dont la somme des éléments vaut j. Ceci se décompose en :  
+    - Pour i ≥ 0, $T_{i+1, j}$ est vrai si et seulement si il existe un sous-ensemble  de {e, . . . , $e_i$ } dont la somme des éléments vaut j. Ceci se décompose en :  
         - Ou bien il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j. Ceci est équivalent à "$T_{i,j}$ est vrai".  
         - Ou bien, il existe un sous-ensemble de {e, . . . , $e_{i−1}$} dont la somme des  éléments vaut j − $e_i$ (chose impossible si j < $e_i$ ). Ceci est équivalent à  "$T_{i,j−e_i}$ est vrai" lorsque j ≥ ei .  
     - **Relation de récurrence :** pour i ≥ 1, j ≥ 0, $T_{i,j}$ est équivalent à :  **$T_{i,j}$ ou ($j ≥ e_i$ et $T_{i,j−e_i}$)**  
@@ -174,6 +174,30 @@ E = {$e_0$, . . . , $e_{n−1}$}, multi-ensemble de nombres entiers positifs, $S
 !!! example "Exercice"
     Ecrire la fonction `tableau : int array -> bool array array * int` telle que `tableau e` renvoie le tuple T,m où t est décrit au transparent précédent et m est la plus grande somme d’éléments de E plus petite que S/2. Evaluer la complexité de votre fonction.  
 
+!!! tip "Correction (à priori ça fonctionnne)"
+    ```ocaml linenums="1"
+    let tableau (arr:int array) = 
+        let s = sum arr in
+        let l = Array.length arr in
+        let matrice = Array.make_matrix (l+1) (s+1) false in
+        matrice.(0).(0) <- true;
+
+        for i=1 to l do
+            for j=0 to s do
+                matrice.(i).(j) <- 
+                    matrice.(i-1).(j) || 
+                        (j >= arr.(i-1) && matrice.(i-1).(j-arr.(i-1)))
+            done
+        done;
+
+        let rec aux' m j = match m with
+            | true -> j
+            | false -> (aux' matrice.(l).(j-1) (j-1))
+        in matrice, aux' matrice.(l).(s) (s+1)
+
+    ;;
+    ```
+
 #### Construction de la partition équilibrée
 
 Une fois trouvés le tableau de bouléens T et la somme m, on construit $E_1$  récursivement en lui ajoutant ou pas l’élément courant.  
@@ -182,7 +206,28 @@ On part de $T_{n,m}$ (qui est Vrai) et $E_1$ = ∅.  On parcourt une suite $(T_{
 Invariant "$T_{i,m_i}$ est vrai". Critère de déplacement dans la matrice :  
 
 - Si $T_{i−1,m_i}$ est vrai, alors on peut trouver un sous-ensemble de  {e, . . . , $e_{i−2}$} qui a pour somme $m_i$ . Donc $E_1$ peut ne pas contenir  $e_{i−1}$ : il reste inchangé.  
-- Sinon c’est que $T_{i−1,m_i−e_i−1}$ est vrai. On peut trouver un sous-ensemble  de {e, . . . , $e_i−2$} qui a pour somme m − $e_{i−1}$. On ajoute donc $e_{i−1}$ à $E_1$.  
+- Sinon c’est que $T_{i−1,m_i−e_i−1}$ est vrai. On peut trouver un sous-ensemble  de {e, . . . , $e_{i−2}$} qui a pour somme m − $e_{i−1}$. On ajoute donc $e_{i−1}$ à $E_1$.  
 
 !!! example "Exercice"
     Ecrire la fonction `partitition : int array -> int array` telle que `partitition e` renvoie sous forme de tableau l’ensemble E. Donner sa complexité.
+
+!!! tip "Correction mais pb de index out of bound alors que c'est son code"
+    ```ocaml linenums="1"
+    let partitition (e:int array) = 
+        let n = Array.length e in
+        let t, m = tableau e in
+        let e1 = Array.make n 0 in
+        let rec _part i s = match i with
+            | 0 -> ()
+            | _ -> if t.(i-1).(s) then _part (i-1) s 
+                else (e1.(i-1)<-1; _part (i-1) (s - e.(i-1)))
+            in _part n m;
+
+        let size = sum e1 in
+        let res = Array.make size (-1) and cpt = ref 0 in
+        for i = 0 to (n-1) do
+            if (e1.(i) = 1) then (res.(!cpt) <- e.(i); incr cpt)
+        done;
+        res;;
+    ;;
+    ```
