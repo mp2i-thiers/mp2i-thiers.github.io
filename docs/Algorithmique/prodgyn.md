@@ -211,13 +211,13 @@ Invariant "$T_{i,m_i}$ est vrai". Critère de déplacement dans la matrice :
 !!! example "Exercice"
     Ecrire la fonction `partitition : int array -> int array` telle que `partitition e` renvoie sous forme de tableau l’ensemble E. Donner sa complexité.
 
-!!! tip "Correction mais pb de index out of bound alors que c'est son code"
+!!! tip "Correction donné par Matéo"
     ```ocaml linenums="1"
     let partitition e = 
         let n_= Array.length e in
         let t,m = tableau e in
         let e1 = Array.make n 0 in
-        
+
         let rec _part i s =
             match i with 
                 |0 -> ()
