@@ -214,7 +214,7 @@ Invariant "$T_{i,m_i}$ est vrai". Critère de déplacement dans la matrice :
 !!! tip "Correction donné par Matéo"
     ```ocaml linenums="1"
     let partitition e = 
-        let n_= Array.length e in
+        let n = Array.length e in
         let t,m = tableau e in
         let e1 = Array.make n 0 in
 

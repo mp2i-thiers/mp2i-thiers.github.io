@@ -97,9 +97,9 @@ Dans un graphe général orienté, on distingue le degré sortant ou  extérieur
 
 !!! quote "Définition"
     Soit G = (S, A) un graphe fini simple.
-    Notons {v_1,..., $v_n$} les sommets de S.
+    Notons $\{v_1,..., v_n\}$ les sommets de S.
     On appelle matrice d’adjacence sommets-sommets de G = (S, A) la
-    matrice n × n A = $(a_{ij})_1{≤i,j≤n}$ telle que
+    matrice n×n A = $(a_{ij})_1{≤i,j≤n}$ telle que
     
     $$
     a_{ij} = 
