@@ -8,9 +8,9 @@
 
 ## Crédits
 
-Wikipédia : théorie des graphes  
-Wikipédia : graphes simples  
-Toujours le Mansuy.  
+- [Wikipédia : théorie des graphes](https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_graphes)
+- [Wikipédia : graphes simples](https://fr.wikipedia.org/wiki/Graphe_simple)
+- Toujours le Mansuy.  
 
 ## Historique
 
@@ -51,13 +51,13 @@ Les arêtes multiples ne sont pas au programme.
 La définition suivante ne s’applique pas aux graphes avec arêtes multiples.
 
 !!! quote "Définition"
-    Un graphe (simple) non orienté G est un couple (V, E) où E ⊆ P(V ) est un ensemble de paires ou de singleton d’éléments de V. On appelle sommets les éléments de V et arcs ceux de E.
+    Un graphe (simple) non orienté G est un couple (V, E) où E ⊆ P(V) est un ensemble de paires ou de singleton d’éléments de V. On appelle sommets les éléments de V et arcs ceux de E.
 
 La lettre E est utilisée pour les arcs car en anglais, _arcs_ se dit _edge_.  
 Certains auteurs utilisent un vocabulaire spécial pour les graphes non  orientés. Par exemple, une arête (undirected edge) désigne un arc.  
 Soit a = {x, y}. On dit que :  
 
-- a relie les sommets x et y , x et y sont adjacents ou encore **voisins**
+- a relie les sommets x et y, x et y sont adjacents ou encore **voisins**
 - a est incidente avec x et y ou encore x et y sont incidents avec a.  
 
 ### Graphe simple orienté
@@ -65,9 +65,9 @@ Soit a = {x, y}. On dit que :
 Au programme ne figurent que les graphes avec au plus un seul arc d’un  sommet à un autre.
 
 !!! quote "Définition"
-    Un graphe simple orienté G est un couple (V , A) où :
+    Un graphe simple orienté G est un couple (V, A) où :
 
-    - V est appelé l’ensemble des sommets de G ,
+    - V est appelé l’ensemble des sommets de G,
     - et A ⊆ $V²$  est un ensemble de couples d’éléments de V appelé  l’ensemble des arcs de G.
   
 La lettre V est utilisée pour les sommets car en anglais, sommet se  dit vertex (au pluriel vertices).  
@@ -86,24 +86,37 @@ Un arc est noté a = (x, y) ou a = x → y et on dit que :
 Dans un graphe général (orienté ou non), on appelle degré d’un  sommet s et on note d(s), le nombre d’arcs incidents au sommet s. (=Nombre d'arc d'un sommet)
 Dans un graphe général orienté, on distingue le degré sortant ou  extérieur $d^{+}(s)$ qui est égal au nombre d’arcs dont s est l’extrémité  initiale et le degré entrant ou intérieur $d^{−}(s)$ qui est égal au nombre  d’arcs dont s est l’extrémité finale.  
 
-!!! danger
-    schema et dernier point de la page 12
+!!!note inline end ""
+    - $d^{-}(S_3) = 3$
+    - $d^{+}(S_3) = 1$
+    - $d(S_3) = 4$
+
+![Graphe](/images/graphes1.png)
 
 ### Matrice d’adjacence sommets-sommets
 
 !!! quote "Définition"
     Soit G = (S, A) un graphe fini simple.
-    Notons {v, . . . , $v_n$} les sommets de S.
+    Notons {v_1,..., $v_n$} les sommets de S.
     On appelle matrice d’adjacence sommets-sommets de G = (S, A) la
-    matrice n × n A = $(a_{ij} )≤i,j≤n$ telle que
-    $a_{ij}$ = 1 si il existe un arc de vi à vj
-    0 sinon
+    matrice n × n A = $(a_{ij})_1{≤i,j≤n}$ telle que
+    
+    $$
+    a_{ij} = 
+    \begin{equation} 
+        \begin{cases}
+            1 \text{ si il existe un arc de } v_i \text{ à } v_j\\
+            0 \text{ sinon}
+        \end{cases}
+    \end{equation}
+    $$
 
-Remarque
+!!!tip ""
+    **Remarque**
 
-- La matrice d’adjacence dépend de la numérotation des sommets. Il  faut que cette numérotation soit connue pour comprendre la matrice.  
-- A une numérotation des sommets correspond une unique matrice  d’ajacence sommets-sommets.  
-- Inadaptée pour les arêtes (ou les arcs) multiples. Présence de boucle  si $a_{ii} = 1$.  Graphe non orienté =⇒ matrice symétrique.  
+    - La matrice d’adjacence dépend de la numérotation des sommets. Il  faut que cette numérotation soit connue pour comprendre la matrice.  
+    - A une numérotation des sommets correspond une unique matrice  d’ajacence sommets-sommets.  
+    - Inadaptée pour les arêtes (ou les arcs) multiples. Présence de boucle  si $a_{ii} = 1$.  Graphe non orienté => matrice symétrique.  
 
 ### Liste d’adjacence
 
@@ -112,19 +125,57 @@ Remarque
 
     On appelle liste d’adjacence de G toute liste de couples (s, l) où s parcourt S et l est une liste de ses voisins.
 
-Remarque
+!!!tip ""
+    **Remarque**
 
-Si une numérotation des sommets est choisie, on peut se contenter de
-donner la liste des voisins. La première liste donne les voisins du premier sommet, la seconde celle du second sommet etc...
+    Si une numérotation des sommets est choisie, on peut se contenter de
+    donner la liste des voisins. La première liste donne les voisins du premier sommet, la seconde celle du second sommet etc...
 
 ### Exemple de repésentation
 
-!!! danger
-    Problèmes avec les images et tableaux à refaire
-
 #### Cas non orienté
 
+<p align='center'><img src='/images/graphes2.png'/></p>
+
+_Figure - Un graphe étiqueté non orienté_
+
+##### Matrice d'adjacence
+
+Matrice symétrique
+
+$$\begin{pmatrix}0 & 1 & 1 & 1\\1 & 0 & 0 & 0\\1 & 0 & 0 & 1\\1 & 0 & 1 & 0\end{pmatrix}$$
+
+##### Liste d'adjacence
+
+```
+[(’A’, [’B’, ’C’, ’D’]), (’B’, [’A’]), (’C’, [’A’, ’D’]), (’D’, [’C’, ’A’])]
+```
+ou
+```
+[[’B’, ’C’, ’D’], [’A’], [’A’, ’D’], [’C’, ’A’]]
+```
+
 #### Cas orienté
+
+<p align='center'><img src='/images/graphes3.png'/></p>
+
+_Figure - Un graphe étiqueté orienté_
+
+##### Matrice d'adjacence
+
+Matrice non symétrique
+
+$$\begin{pmatrix}0 & 1 & 1 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 1\\1 & 0 & 0 & 0\end{pmatrix}$$
+
+##### Liste d'adjacence
+
+```
+[(’A’, [’B’, ’C’]), (’B’,[]), (’C’, [’D’]), (’D’,[’A’])] 
+```
+ou
+```
+[[’B’, ’C’], [], [’D’], [’A’]]
+```
 
 ### Matrices d’adjacence : quelle représentation ?
 
@@ -142,23 +193,26 @@ Avec un tel choix :
 
 #### Listes d’adjacence en Ocaml : quelle représentation ?
 
-En Ocaml pour un graphe G = (V , E ) :  
-On peut considérer une liste L de longueur |V | de tuples (s, l) ou s  est un sommet et l la liste des voisins de s.  
+En Ocaml pour un graphe G = (V, E) :  
+On peut considérer une liste L de longueur |V| de tuples (s, l) ou s  est un sommet et l la liste des voisins de s.  
 
-- Avantages : pas de place mémoire perdue ; possibilité d’ajouter un  nouveau sommet après avoir vérifié que ce sommet n’est pas déjà dans  la liste.  
-- Inconvénients : Accès à la liste d’adjacence de s en O(|V |) ; test de  voisinage entre s et x en O(|V | + deg s) ; ajout d’un arc (s, x) en  O(|V | + deg s).  
+!!!note ""
+    - Avantages : pas de place mémoire perdue ; possibilité d’ajouter un  nouveau sommet après avoir vérifié que ce sommet n’est pas déjà dans  la liste.  
+    - Inconvénients : Accès à la liste d’adjacence de s en O(|V|) ; test de  voisinage entre s et x en O(|V| + deg s) ; ajout d’un arc (s, x) en  O(|V| + deg s).  
+
 
 On peut préferer gérer un tableau de listes l plutôt qu’une liste de  tuples (les sommets sont alors des nombres).  
 
-- Avantage : l’accès à la liste d’adjacence de s est en O(1) ; test de  voisinage avec x en O(deg s) ; ajout d’un arc (s, x) en O(deg s) (il faut  vérifier que l’arc n’est pas déjà présent - usage de list.mem -).  
-- Inconvénient : pour ajouter un sommet, il faut recopier le tableau.  
+!!!note ""
+    - Avantage : l’accès à la liste d’adjacence de s est en O(1) ; test de  voisinage avec x en O(deg s) ; ajout d’un arc (s, x) en O(deg s) (il faut  vérifier que l’arc n’est pas déjà présent - usage de list.mem -).  
+    - Inconvénient : pour ajouter un sommet, il faut recopier le tableau.  
 
 #### Listes d’adjacence en C : quelle représentation ?  
 
 ##### Tableau de liste de chaînes
 
-Dans le même esprit qu’en Ocaml, pour représenter G = (V , E )  
-Tableau t des successeurs de chaque sommet.  t[i] pointe sur la liste des sucesseurs du sommet i.  Accès direct à un sommet via t.  Complexité spatiale optimale en O(|S| + |V |)  
+Dans le même esprit qu’en Ocaml, pour représenter G = (V, E)  
+Tableau t des successeurs de chaque sommet.  t[i] pointe sur la liste des sucesseurs du sommet i.  Accès direct à un sommet via t.  Complexité spatiale optimale en O(|S| + |V|)  
 
 <p align='center'><img src='/images/30d6807e73ede3051cac8121b52565f8.bmp'/></p>
 
@@ -173,226 +227,189 @@ Chaque sommet est représenté 1 et 1 seule fois.  Chaque sommet est associé à
 
 _Figure – Partage physique des données (F.Pesseaux)_
 
-!!!danger
-    EN CHANTIER FFFFFFF
-
 #### Sous-graphes
 
-il ne faut
-pas conserver d’arc dont une extrémité a été supprimée de
-l’ensemble des sommetsOn garde tous les sommets, on enlève certains arcs.
-
-
 Convention : V pour vertice, E pour edge.  
-Un sous-graphe est un graphe contenu dans un autre graphe :  "H = (VH , EH ) est un sous-graphe de G = (VG , EG ) si VH ⊂ VG ,  EH ⊂ EG et pour tout arc (resp. arête) de EH , les extrémités sont  dans VH".  On supprime des arcs et des sommets avec la contrainte qu’.  
-Un sous-graphe couvrant (ou graphe partiel) est un sous-graphe ayant  le même ensemble de sommets que le graphe qui le contient.  "H est un sous-graphe couvrant de G (ou H couvre G ) si VH = VG  et EH ⊂ EG ."  
 
+- Un sous-graphe est un graphe contenu dans un autre graphe :  "$H = (V_H, E_H)$ est un sous-graphe de $G = (V_G, E_G)$ si $V_H ⊂ V_G$,  $E_H ⊂ E_G$ et pour tout arc (resp. arête) de $E_H$, les extrémités sont  dans $V_H$".  
+On supprime des arcs et des sommets avec la contrainte qu’**il ne faut pas conserver d’arc dont une extrémité a été supprimée de
+l’ensemble des sommets.**
 
-```linenums="1"
-On enlève des sommets, toutes les arêtes correspondant à ces
-sommets et uniquement celles-là.
-```
+- Un sous-graphe couvrant (ou graphe partiel) est un sous-graphe ayant  le même ensemble de sommets que le graphe qui le contient.  "H est un sous-graphe couvrant de G (ou H couvre G) si $V_H = V_G$  et $E_H ⊂ E_G$."  **On garde tous les sommets, on enlève certains arcs.**
 
-Convention : V pour vertice, E pour edge.  
-Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "H est un sous-graphe induit de G si, pour tout (x, y ) ∈ V   H ,  l’existence d’un lien entre x et y dans H est équivalente à l’existence  d’un lien entre x et y dans G ."  
+- Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "H est un sous-graphe induit de G si, pour tout $(x, y) \in V_H^2$, l’existence d’un lien entre x et y dans H est équivalente à l’existence  d’un lien entre x et y dans G."  
+**On enlève des sommets, toutes les arêtes correspondant à ces
+sommets et uniquement celles-là.**
 
 #### Exemples
 
+<p align='center'><img src='/images/graphes4.png'/></p>
 
-```linenums="1"
-Un Le ```
+## Chaînes et chemins, connexité
 
-S  
-S  
-S  S  
-S  
-S  
-S  S  
-S  
-S  
-S  S  
-S  
-S  S  
-S  
-S  
-S  S  
-S  
-S  
-S  S  
-S  
-Le graphe complet  
-graphe couvrant  
-sous-graphe induit  par {S, S, S, S}  
-
-##    
-
-####  Historique
-
-
- Graphes, représentation, sous-graphes  
- Chaînes et chemins, connexité  
-Accessibilité  Connexité  
- Graphes particuliers  
-Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML  
- Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  
+### Accessibilité
 
 #### Chaînes et Chemins
 
+!!!note ""
+    Soit G = (S, E) un graphe.  
 
-Soit G = (S, E ) un graphe.  
-Un chemin d’un sommet x à un sommet y est une séquence de (au  moins 2) sommets x = x, x . . . , xn−, xn = y dans laquelle chaque xi  admet xi pour voisin.  Un sommet y est accessible depuis x s’il existe un chemin de x à y .  La longueur d’un chemin est égale au nombre d’arêtes qui la  constituent.  Un chemin simple est une chemin qui ne contient pas plusieurs fois  une même arête/arc (on dit aussi eulérien).  Un chemin élémentaire est une chemin qui ne passe pas plusieurs fois  par un même sommet.  élémentaire =⇒ simple.  En CPGE, les chaînes sont souvent élémentaires (pas de doublon de  sommet sauf pour définir les cycles).  Certains auteurs utilisent le mot chaîne pour désigner les chemins  dans les graphes non orientés.  
+    - Un chemin d’un sommet x à un sommet y est une séquence de (au  moins 2) sommets $x = x, x..., x_{n−1}, x_n$ = y dans laquelle chaque $x_i$  admet $x_i$ pour voisin.  
+    - Un sommet y est _accessible_ depuis x s’il existe un chemin de x à y.  
+    - La _longueur_ d’un chemin est égale au nombre d’arêtes qui la  constituent.  
+    - Un chemin _simple_ est une chemin qui ne contient pas plusieurs fois  une même arête/arc (on dit aussi _eulérien_).  
+    - Un chemin _élémentaire_ est une chemin qui ne passe pas plusieurs fois  par un même sommet.  
+    - élémentaire => simple.  
+    - En CPGE, les chaînes sont souvent élémentaires (pas de doublon de  sommet sauf pour définir les cycles).  
+    - Certains auteurs utilisent le mot chaîne pour désigner les chemins  dans les graphes non orientés.  
+
+    Un chemin est dit simple ou eulérien si chacun de ses arcs/arêtes  n’est emprunté qu’une fois.
 
 #### Cycles et circuits
 
-
-Un chemin est dit simple ou eulérien si chacun de ses arcs/arêtes  n’est emprunté qu’une fois.  Un cycle x, x, . . . , xn est un chemin eulérien dont les extrémités sont  confondues.  
-Un cycle est dit élémentaire si, lorsqu’on enlève un arc quelconque, le  chemin restant est élémentaire.  
+Un cycle $x_0, x_1,..., x_n$ est un chemin eulérien dont les extrémités sont  confondues (souvent on le suppose simple).  
+Un cycle est dit _élémentaire_ si, lorsqu’on enlève un arc quelconque, le  chemin restant est élémentaire.  
 Un graphe est acyclique s’il ne possède aucun cycle.  
-Certains auteurs distinguent la notion de circuit (pour les graphes  orientés) de celle de cycle (pour les graphes non orientés)  
+Certains auteurs distinguent la notion de circuit (pour les graphes orientés) de celle de cycle (pour les graphes non orientés)  
 
-#### Distance
+#### Distance et diamètre
 
+La distance entre deux sommets x et y d’un graphe G = (S, A)  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la  longueur d’un plus court chemin (resp. chaîne) allant de x à y s’il en  existe un ou bien $+\infty$ sinon.
 
-La distance entre deux sommets x et y d’un graphe G = (S, A)  orienté (resp. non orienté) est notée dG (x, y ) et est égale à la  longueur d’un plus court chemin (resp. chaîne) allant de x à y s’il en  existe un ou bien +∞ sinon.  
-Il s’agit bien d’une distance au sens mathématiques. En particulier,  elle vérifie l’inégalité triangulaire  ∀(x, y , z) ∈ S , dG (x, z) ≤ dG (x, y ) + dG (y , z).  Le diamètre d’un graphe G est la valeur : supx,y ∈S  dG (x, y ). C’est  "la longueur du plus long plus court chemin entre deux sommets".  
+Il s’agit bien d’une distance au sens mathématiques. En particulier,  elle vérifie l’inégalité triangulaire  
+$\forall (x, y, z) \in S^3, d_G (x, z) \leq d_G (x, y) + d_G (y, z)$. 
 
-####  Historique
+Le diamètre d’un graphe G est la valeur : $sup_{(x,y) \in S^2} d_G (x, y)$. C’est "la longueur du plus long plus court chemin entre deux sommets".  
 
-
- Graphes, représentation, sous-graphes  
- Chaînes et chemins, connexité  
-Accessibilité  Connexité  
- Graphes particuliers  
-Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML  
- Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  
+### Connexité
 
 #### Relation de connexité
 
+La connexité dans un graphe non orienté est une relation binaire entre  deux sommets : x et y sont en relation de connexité si et seulement si  y est accessible depuis x.  
+Comme le graphe est non orienté, si y est accessible depuis x, alors x  est accessible depuis y.  La connexité est une relation d’équivalence.  Les classes d’équivalences sont appelées composantes connexes. La  composante connexe d’un sommet x est notée ici $\dot{x}$ et vaut :  
 
-La connexité dans un graphe non orienté est une relation binaire entre  deux sommets : x et y sont en relation de connexité si et seulement si  y est accessible depuis x.  Comme le graphe est non orienté, si y est accessible depuis x, alors x  est accessible depuis y .  La connexité est une relation d’équivalence.  Les classes d’équivalences sont appelées composantes connexes. La  composante connexe d’un sommet x est notée ici ˙x et vaut :  
-˙x = {y ∈ V |  
-il existe une chaîne de x à y } .  
-Un graphe est dit connexe si il possède une seule composante  connexe.  La connexité est étendue aux graphes orientés en ne tenant pas  compte du sens des arcs.  
+$$\dot{x} = \{y ∈ V| \text{ il existe une chaîne de x à y }\}$$
+
+Un graphe est dit _connexe_ si il possède une seule composante  connexe. La connexité est étendue aux graphes orientés en ne tenant pas compte du sens des arcs.  
 
 #### Relation de forte connexité
 
-
-```linenums="1"
-Il peut y avoir un chemin de à sans chemin de à .
-L’inclusion réciproque est en général fausse.
-```
-
 La relation de forte connexité est une relation binaire entre sommets  d’un graphe orienté : x et y sont en relation de forte connexité si et  seulement si  
-il existe un chemin de x à y et il existe un chemin de y à x,  ou bien x = y .  
-x y y xLes classes d’équivalence de la relation de forte connexité sont  appelées composantes fortement connexes.  La composante fortement connexe de x, notée ici ˜x vaut :  
-˜x = {y ∈ S | il existe un chemin de x à y et de y à x} .  
-Elle vérifie ˜x ⊂ ˙x. On dit qu’un graphe est fortement connexe si et seulement si il est  constitué d’une seule composante fortement connexe, c’est à dire si  pour tout couple de sommet (x, y ) il existe un chemin allant de x à y  et réciproquement.  
+
+- il existe un chemin de x à y et il existe un chemin de y à x 
+- ou bien x = y.  
+
+_Il peut y avoir un chemin de x à y sans chemin de y à x._
+
+Les classes d’équivalence de la relation de forte connexité sont  appelées composantes fortement connexes. La composante fortement connexe de x, notée ici $\tilde{x}$ vaut :  
+
+$$ \tilde{x} = \{y \in S| \text{il existe un chemin de x à y et de y à x} \} $$
+
+Elle vérifie $\tilde{x} ⊂ \dot{x}$. **L’inclusion réciproque est en général fausse.**
+
+On dit qu’un graphe est fortement connexe si et seulement si il est  constitué d’une seule composante fortement connexe, c’est à dire si  pour tout couple de sommet (x, y) il existe un chemin allant de x à y  et réciproquement.  
 
 #### Connexité : exemple
 
+``` mermaid
+graph TB; 
+    A((S_1))-->B((S_8))
+    D((S_7))-->B
+    A-->D
+    J((S_10))-->C((S_2))
+    C-->A
+    C-->D
+    J-->B
+    E((S_3))-->C
+    E-->H((S_5))
+    H-->G((S_4))
+    G-->E
+    F((S_6))-->C
+    D-->F
+    H-->F
+```
 
-S  
-(cid:99)S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-Graphe connexe (quand on ne considère pas le sens des ﬂèches).  S est accessible depuis tous les sommets.  ˜S = {S}. Donc le graphe n’est pas fortement connexe, sinon ˜S  contiendrait tous les sommets.  Sommets accessibles depuis S : {S, S, S, S, S}.  Sommets coaccessibles depuis S : {S, S, S, S, S, S}.  ˜S = {S, S, S, S} est l’intersection des accessibles et des  coaccessibles.  
+_Graphe connexe (quand on ne considère pas le sens des ﬂèches)._
+
+$S_8$ est accessible depuis tous les sommets.  $\tilde{S_8} = \{S_8\}$. Donc le graphe n’est pas fortement connexe, sinon $\tilde{S_8}$  contiendrait tous les sommets.  
+
+- Sommets accessibles depuis $S_2 : \{S_1, S_2, S_6, S_7, S_8\}$.  
+- Sommets coaccessibles depuis $S_2 : \{S_1, S_2, S_5, S_6, S_7, S_{10}\}$.  
+- $\tilde{S_2} = \{S_1, S_2, S_6, S_7\}$ est l’intersection des accessibles et des  coaccessibles.  
 
 #### Isthme
 
+!!!danger "Cette partie sur l'isthme a été modifié sur la dernière version du pdf mais nous n'y avons pas encore accès !"
 
-Une arête u d’un graphe G non orienté est appelée un isthme si sa  suppression augmente le nombre de composante connexes du graphe.  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
+Une arête u d’un graphe G non orienté est appelée un _isthme_ si sa  suppression augmente le nombre de composante connexes du graphe.  
+
+<p align='center'><img src='/images/graphes5.png'/></p>
+
 Une seule composante connexe.  
 
+<p align='center'><img src='/images/graphes6.png'/></p>
 
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-Deux composantes connexes après suppression de {S, S}.  
+Deux composantes connexes après suppression de $\{S_4, S_5\}$.  
 
+!!!warning ""
+    **Proposition**
 
-!!! quote "Définition"
-    Proposition
+    Soit G un graphe non orienté. Une arête u est un isthme si et seulement si u n’appartient à aucun cycle  de G.  
 
+???+note "Preuve"
+    Soit $u = \{x, y\}$ une arête avec $x \neq y$. On montre que u est un isthme si et  seulement si u n’appartient à aucun cycle de G  
 
-Soit G un graphe non orienté.  Une arête u est un isthme si et seulement si u n’appartient à aucun cycle  de G .  
-
-#### Preuve
-
-
-Soit u = {x, y } une arête avec x (cid:54)= y . On montre que u est un isthme si et  seulement si u n’appartient à aucun cycle de G  
-Supposons que u soit un isthme. Si il y a un cycle passant par u, alors  il y a un cycle allant de y à y passant par x et donc deux façons de  joindre y à x.  Supprimer u, laisserait alors x et y dans la même composante  connexe. u ne serait pas un isthme. ABSURDE.  
-Si u n’appartient à aucun cycle, supposons qu’il y ait un chemin  allant de x à y ne passant pas par u. En y ajoutant u, on obtient un  cycle passant par u : ABSURDE.  Si on supprime u, on ne peut donc plus joindre y depuis x et donc on  augmente le nombre des composantes connexes =⇒ isthme.  
+    - Supposons que u soit un isthme. Si il y a un cycle passant par u, alors  il y a un cycle allant de y à y passant par x et donc deux façons de  joindre y à x.  
+    Supprimer u, laisserait alors x et y dans la même composante  connexe. u ne serait pas un isthme. ABSURDE.  
+    - Si u n’appartient à aucun cycle, supposons qu’il y ait un chemin  allant de x à y ne passant pas par u. En y ajoutant u, on obtient un  cycle passant par u : ABSURDE.  
+    Si on supprime u, on ne peut donc plus joindre y depuis x et donc on  augmente le nombre des composantes connexes => isthme.  
 
 #### Nombre d’arêtes et de sommets
 
+!!!warning ""
+    **Proposition**
 
-!!! quote "Définition"
-    Proposition
+    Soit G un graphe non orienté sans boucle de n sommets et p arêtes.  
 
+    - G connexe => p ≥ n − 1,  
+    - G acyclique (i.e. pas de cycle simple) => p ≤ n − 1.  
 
-!!! quote "Définition"
-    Corollaire
-Si G non orienté sans boucle est acyclique connexe, alors p = n − 1.
+!!! quote "Corollaire"
+    Si G non orienté sans boucle est acyclique connexe, alors p = n − 1.
 
+???+note "Preuve"
 
-Soit G un graphe non orienté sans boucle de n sommets et p arêtes.  
-G connexe =⇒ p ≥ n − 1,  
-G acyclique (i.e. pas de cycle simple) =⇒ p ≤ n − 1.  
+    ##### Si G = (V, A) NO est connexe, p ≥ n − 1
 
-#### Preuve : si G = (V , A) NO est connexe, p ≥ n − 1.
+    Par récurrence forte :
 
-
-Par récurrence forte :  
-Vrai si n = 1. Alors p ≥ 0. Le graphe est connexe et p ≥ n − 1.  
-Si n = 2, il faut qu’il y ait une arête entre les deux sommets pour que  le graphe soit connexe. Alors p ≥ 1 = n − 1.  
-Cas de base : OK. (Remarque on pourrait ajouter des boucles ça ne  changerait rien).  
-
-
-Par récurrence forte :  
-n = 1, 2 : OK  Si P(k) pour n ≥ 2 et tout k ≤ n. Soit G connexe à n + 1 sommets.  Tout sommet possède au moins une arête incidente car G est  connexe.  
-Si G possède un sommet x de degré d(x) = 1, x n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime x et son  unique arrête adjacente, le sous-graphe G' obtenu est connexe à n  sommets. Par HR le nombre d’arêtes de G' est p(cid:48) ≥ n − 1. En  remettant l’arête de x, on a au moins (n + 1) − 1 arêtes dans G .  Sinon, tous les degrés sont ≥ 2. La somme des degrés dans un graphe  est {sum symbol}  x∈V d(x) = 2p car toutes les arêtes sont comptées deux fois. On  a donc  
-2p =  
-{sum symbol}  
-x∈V  
-≥ 2 |V | = 2n + 2  
-d(x)    ≥  
-Donc p ≥ n + 1 ≥ (n + 1) − 1. OK  
+    - Vrai si n = 1. Alors p ≥ 0. Le graphe est connexe et p ≥ n − 1.  
+    - Si n = 2, il faut qu’il y ait une arête entre les deux sommets pour que  le graphe soit connexe. Alors p ≥ 1 = n − 1.  
+    - Cas de base : OK. (Remarque on pourrait ajouter des boucles ça ne  changerait rien).  
+    - Si P(k) pour n ≥ 2 et tout k ≤ n. Soit G connexe à n + 1 sommets. Tout sommet possède au moins une arête incidente car G est connexe.  
+  
+        - Si G possède un sommet x de degré d(x) = 1, x n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime x et son  unique arrête adjacente, le sous-graphe G' obtenu est connexe à n  sommets. Par HR le nombre d’arêtes de G' est p' ≥ n − 1. En  remettant l’arête de x, on a au moins (n + 1) − 1 arêtes dans G.  
+        - Sinon, tous les degrés sont ≥ 2. La somme des degrés dans un graphe est $\sum_{x \in V}d(x) = 2p$ car toutes les arêtes sont comptées deux fois. On  a donc 
+        $$2p = \sum_{x \in V} \underbrace{d(x)}_{\geq 2} \leq 2|V| = 2n+2 $$ 
+        OK  
 
 
-Si G NO sans boucle a au moins n arêtes, il n’est pas  acyclique  
-On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G | = n.  Cas de base n = 3. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
+    ##### Si G NO sans boucle a au moins n arêtes, il n’est pas acyclique  
+    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  Cas de base n = 3. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
 
-#### Si G NO a au moins n arêtes, il n’est pas acyclique
+    ##### Si G NO a au moins n arêtes, il n’est pas acyclique
 
+    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. Considérons un  sommet quelconque x.  
 
-On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G | = n.  Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. Considérons un  sommet quelconque x.  
-S’il n’y a pas d’arête incidente à x, le graphe privé de x a n sommets  et n + 1 arêtes. Il y a un cycle par HR.  
-Si il existe une arête incidente à x qui n’est pas un isthme elle est  alors sur un cycle et G possède donc un cycle : OK.  
+    - S’il n’y a pas d’arête incidente à x, le graphe privé de x a n sommets  et n + 1 arêtes. Il y a un cycle par HR.  
+    - Si il existe une arête incidente à x qui n’est pas un isthme elle est  alors sur un cycle et G possède donc un cycle : OK.  
 
-#### Preuve : si G NO a au moins n arêtes, il n’est pas acyclique
+    - Si toutes arête x-incidente est un isthme, soit $u = \{x, y\} \in A$.  Retirons u. Alors x se retrouve dans une composante connexe  diﬀérente de celle de y.  Séparons la composante connexe de x et ses arêtes (formant un sous graphe $G_1$) du reste du graphe (notons $G_2$ ce reste).  
+        - $G_1$ possède, disons k sommets (1 ≤ k < n + 1), l’autre n + 1 − k. $G_1$ possède $q_1$ arêtes et $G_2$ en a $q_2$ avec $q_1 + q_2 = n$.  
+        - Si $q_1 ≥ k$, il y a un cycle dans $G_1$ par HR donc dans G puisque $G_1$ est  un sous-graphe de G : Prouvé.  
+        - Sinon, $q_2 = n − q_1 > n − k$ donc $q_2 ≥ (n − k) + 1$ et le sous-graphe G par HR a un cycle donc G aussi. CQFD  
 
-
-On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G | = n.  Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. Considérons un  sommet quelconque x.  
-Si toutes arête x-incidente est un isthme, soit u = {x, y } ∈ A.  Retirons u. Alors x se retrouve dans une composante connexe  diﬀérente de celle de y .  Séparons la composante connexe de x et ses arêtes (formant un sous  graphe G) du reste du graphe (notons G ce reste).  
-G possède , disons k sommets (1 ≤ k < n + 1), l’autre n + 1 − k. G  possède q arêtes et G en a q avec q + q = n.  Si q ≥ k, il y a un cycle dans G par HR donc dans G puisque G est  un sous-graphe de G : Prouvé.  Sinon, q = n − q > n − k donc q ≥ (n − k) + 1 et le sous-graphe G  par HR a un cycle donc G aussi. CQFD  
+!!!danger "Fin du cours du 31/03/2023 donc j'ai pas vérifié le cours après"
 
 #### Caractérisation des arbres non enracinés
 
@@ -476,8 +493,8 @@ S
     Définition
 
 
-Un sommet r d’un graphe orienté G = (S, E ) est une racine de G si  pour tout sommet x de G il existe un chemin de r à x.  
-On dit qu’un graphe orienté G = (S, E ) est une arborescence s’il  possède un unique élément x de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de x à tous les  autres sommets.  
+Un sommet r d’un graphe orienté G = (S, E) est une racine de G si  pour tout sommet x de G il existe un chemin de r à x.  
+On dit qu’un graphe orienté G = (S, E) est une arborescence s’il  possède un unique élément x de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de x à tous les  autres sommets.  
 
 #### Exemples
 
@@ -524,7 +541,7 @@ Un graphe complet est un graphe  non orienté où  tous les sommets sont deux à
 #### Graphe biparti
 <p align='center'><img src='/images/bed36094a5610d0a25130a62ba143350.bmp'/></p>
 
-Un graphe biparti G = (S, A)  est un graphe non orienté  admettant une partition {P, P}  de ses sommets telle que  {x, y } ∈ A =⇒ (x, y ) ∈ P × P ∪ P × P  Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
+Un graphe biparti G = (S, A)  est un graphe non orienté  admettant une partition {P, P}  de ses sommets telle que  {x, y } ∈ A => (x, y) ∈ P × P ∪ P × P  Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
 
 #### Graphe biparti complet
 <p align='center'><img src='/images/3cb1e408033346b06bd97000d16d069e.bmp'/></p>
@@ -570,8 +587,8 @@ Voir TD pour les exercices
 
 ```linenums="1"
 type graphe = int array array ;;
-let g = Array . make_matrix 4 4 0;;
-g .(0) .(1) < -1; g .(0) .(2) < -1; g .(1) .(3) < -1; g .(2) .(1) < -1;;
+let g = Array. make_matrix 4 4 0;;
+g.(0).(1) < -1; g.(0).(2) < -1; g.(1).(3) < -1; g.(2).(1) < -1;;
 ```
 
   
@@ -685,7 +702,7 @@ On peut choisir de traiter le sommet s après ses successeurs. Idéalement,  les
 #### Graphe de liaison induit
 
 
-Soit G = (S, A) un graphe et s ∈ S. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes {u, v } ∈ A (resp. les arcs) par lesquelles  passent l’exploration de G , (l’exploration passe par {u, v } (resp.  (u, v )) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis s :  
+Soit G = (S, A) un graphe et s ∈ S. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes {u, v } ∈ A (resp. les arcs) par lesquelles  passent l’exploration de G, (l’exploration passe par {u, v } (resp.  (u, v)) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis s :  
 on débute avec le graphe (s, ∅)  lors du traitement d’un sommet s vert on ajoute chaque voisin bleu t  et l’arête (resp. arc) {s, t} (resp. (s, t)) au graphe induit.  On construit ainsi un graphe connexe ayant k sommets et k − 1 arêtes,  autrement dit un arbre ou une arborescence.  
 Le graphe de liaison induit par une exploration complète de G est un  ensemble d’arbre ou d’arborescence.  
 
@@ -693,7 +710,7 @@ Le graphe de liaison induit par une exploration complète de G est un  ensemble 
 
 
 On colorie tous les sommets en bleu (O(n)) puis on lance  l’exploration de n’importe quel sommet.  
-Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts , et n’en sort qu’au plus une fois (quand il  devient rouge).  
+Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts, et n’en sort qu’au plus une fois (quand il  devient rouge).  
 On suppose que ces opérations d’entrée et de sortie dans la liste  soient de coût constant. Pour réaliser cette condition, la solution que  nous adopterons consistera à utiliser un tableau de couleurs R,V,B  pour connaître en temps constant le statut d’un sommet.  
 
 ###   
@@ -843,13 +860,13 @@ Solution : considérer les listes de voisins comme des piles. On dépile  jusqu�
 
 
 On analyse le nombre d’opérations engendrées par la présence d’un  sommet donné s en haut de la pile. Il suﬃra de sommer sur tous les  sommets pour obtenir la complexité totale. (Ajouter aussi le coût  d’initialisation en O(n).  
-Le sommet s entre toujours dans la pile (soit du fait de la boucle tant  que, soit du fait de Profondeur). Le coloriage assure que le sommet  ne revient pas dans la pile verte quand il l’a quittée.  Le sommet s apparaît au plus deg s  + 1 fois au sommet de la pile  (s’en convaincre avec le graphe x → y ).  A chaque apparition au sommet de la pile verte, il y a une recherche  d’un voisin bleu (qui peut être faite en O(1) si pile de voisins) un  coloriage/empilement dans la pile verte parfois (au plus deg s  fois).  s est dépilé puis colorié en rouge une seule fois.  
-La présence de s en haut de la pile engendre donc un nombre  d’opérations (majoré par un nombre) proportionnel à son nombre de  présences au sommet, soit 1 + deg s .  
+Le sommet s entre toujours dans la pile (soit du fait de la boucle tant  que, soit du fait de Profondeur). Le coloriage assure que le sommet  ne revient pas dans la pile verte quand il l’a quittée.  Le sommet s apparaît au plus deg s  + 1 fois au sommet de la pile  (s’en convaincre avec le graphe x → y).  A chaque apparition au sommet de la pile verte, il y a une recherche  d’un voisin bleu (qui peut être faite en O(1) si pile de voisins) un  coloriage/empilement dans la pile verte parfois (au plus deg s  fois).  s est dépilé puis colorié en rouge une seule fois.  
+La présence de s en haut de la pile engendre donc un nombre  d’opérations (majoré par un nombre) proportionnel à son nombre de  présences au sommet, soit 1 + deg s.  
 
 #### Complexité totale
 
 
-Pour un graphe G = (V , E ) avec |E | = p et |V | = n  
+Pour un graphe G = (V, E) avec |E | = p et |V | = n  
 On somme les nombres d’opérations occasionnées par chaque sommet  pour obtenir la complexité totale.  
 Le nombre total d’opération est (majoré par un nombre) proportionnel  à  
 {sum symbol}  
@@ -882,7 +899,7 @@ S
 S  
 S  
 S  
-Soit Gl = (V , L) le graphe de liaison induit par le parcours en  profondeur d’un graphe G . Un arc u → v est :  un arc de liaison si et seulement si u → v ∈ L  un arc retour si et seulement si u est un descendant de v dans L.  un arc avant si et seulement si v est un descendant de u dans L et  u → v /∈ L (on prend de l’avance par rapport au cheminement normal  dans L)  un arc couvrant sinon (tous les autres arcs).  
+Soit Gl = (V, L) le graphe de liaison induit par le parcours en  profondeur d’un graphe G. Un arc u → v est :  un arc de liaison si et seulement si u → v ∈ L  un arc retour si et seulement si u est un descendant de v dans L.  un arc avant si et seulement si v est un descendant de u dans L et  u → v /∈ L (on prend de l’avance par rapport au cheminement normal  dans L)  un arc couvrant sinon (tous les autres arcs).  
 
 #### Variante
 
