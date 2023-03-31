@@ -213,21 +213,26 @@ Invariant "$T_{i,m_i}$ est vrai". Critère de déplacement dans la matrice :
 
 !!! tip "Correction mais pb de index out of bound alors que c'est son code"
     ```ocaml linenums="1"
-    let partitition (e:int array) = 
-        let n = Array.length e in
-        let t, m = tableau e in
+    let partitition e = 
+        let n_= Array.length e in
+        let t,m = tableau e in
         let e1 = Array.make n 0 in
-        let rec _part i s = match i with
-            | 0 -> ()
-            | _ -> if t.(i-1).(s) then _part (i-1) s 
-                else (e1.(i-1)<-1; _part (i-1) (s - e.(i-1)))
-            in _part n m;
+        
+        let rec _part i s =
+            match i with 
+                |0 -> ()
+                | _ -> if t.(i-1).(s) then _part (i-1) s
+                else (*c'est que t. (i-1).(s-e.(i0-1)) = true *) 
+                (e1.(i-1)<-1; _part (i-1) (s - e.(i-1)))
+        in 
+        _part n m;
 
         let size = sum e1 in
-        let res = Array.make size (-1) and cpt = ref 0 in
+        let res = Array.make size (-1) and cpt = ref 0 in 
+
         for i = 0 to (n-1) do
-            if (e1.(i) = 1) then (res.(!cpt) <- e.(i); incr cpt)
+            if e1. (i) = 1 then (res. (!cpt) <- e.(i); incr cpt)
         done;
-        res;;
+        res
     ;;
     ```
