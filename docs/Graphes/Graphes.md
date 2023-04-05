@@ -339,9 +339,7 @@ $S_8$ est accessible depuis tous les sommets.  $\tilde{S_8} = \{S_8\}$. Donc le 
 
 #### Isthme
 
-!!!danger "Cette partie sur l'isthme a été modifié sur la dernière version du pdf mais nous n'y avons pas encore accès !"
-
-Une arête u d’un graphe G non orienté est appelée un _isthme_ si sa  suppression augmente le nombre de composante connexes du graphe.  
+Une arête u d’un graphe G non orienté est appelée un _isthme_ si sa suppression met ses extrémités dans deux composantes connexes  diﬀérentes (donc la suppression augmente le nombre de composante  connexes du graphe).  
 
 <p align='center'><img src='/images/graphes5.png'/></p>
 
@@ -359,10 +357,9 @@ Deux composantes connexes après suppression de $\{S_4, S_5\}$.
 ???+note "Preuve"
     Soit $u = \{x, y\}$ une arête avec $x \neq y$. On montre que u est un isthme si et  seulement si u n’appartient à aucun cycle de G  
 
-    - Supposons que u soit un isthme. Si il y a un cycle passant par u, alors  il y a un cycle allant de y à y passant par x et donc deux façons de  joindre y à x.  
-    Supprimer u, laisserait alors x et y dans la même composante  connexe. u ne serait pas un isthme. ABSURDE.  
-    - Si u n’appartient à aucun cycle, supposons qu’il y ait un chemin  allant de x à y ne passant pas par u. En y ajoutant u, on obtient un  cycle passant par u : ABSURDE.  
-    Si on supprime u, on ne peut donc plus joindre y depuis x et donc on  augmente le nombre des composantes connexes => isthme.  
+    - Supposons que u soit un isthme. Supprimer u met x, y dans deux  composantes connexes diﬀérentes. Cela veut dire qu’il n’existe pas de  chemin de x à y qui ne passe pas par u. Et donc, u n’est sur aucun  cycle.  
+    - Si u n’appartient à aucun cycle, supposons qu’il y ait un chemin  allant de x à y ne passant pas par u (on peut le prendre élémetaire).  En y ajoutant u, on obtient un cycle passant par u : ABSURDE.  
+    Si on supprime u, on ne peut donc plus joindre y depuis x. Alors x, y  sont dans deux CC diﬀérentes. On en déduit que u est un istme.  
 
 #### Nombre d’arêtes et de sommets
 
@@ -379,7 +376,7 @@ Deux composantes connexes après suppression de $\{S_4, S_5\}$.
 
 ???+note "Preuve"
 
-    ##### Si G = (V, A) NO est connexe, p ≥ n − 1
+    ##### Si G = (V, E) non orienté est connexe, p ≥ n − 1
 
     Par récurrence forte :
 
@@ -390,174 +387,145 @@ Deux composantes connexes après suppression de $\{S_4, S_5\}$.
   
         - Si G possède un sommet x de degré d(x) = 1, x n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime x et son  unique arrête adjacente, le sous-graphe G' obtenu est connexe à n  sommets. Par HR le nombre d’arêtes de G' est p' ≥ n − 1. En  remettant l’arête de x, on a au moins (n + 1) − 1 arêtes dans G.  
         - Sinon, tous les degrés sont ≥ 2. La somme des degrés dans un graphe est $\sum_{x \in V}d(x) = 2p$ car toutes les arêtes sont comptées deux fois. On  a donc 
-        $$2p = \sum_{x \in V} \underbrace{d(x)}_{\geq 2} \leq 2|V| = 2n+2 $$ 
-        OK  
+        $$2p = \sum_{x \in V} \underbrace{d(x)}_{\geq 2} \geq 2|V| = 2n+2 $$ 
+        Donc $p \geq n+1 \geq (n+1) - 1$. OK
 
 
-    ##### Si G NO sans boucle a au moins n arêtes, il n’est pas acyclique  
-    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  Cas de base n = 3. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
+    ##### Si G est non orienté sans boucle a au moins n arêtes, il n’est pas acyclique  
+    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  
+    
+    - Cas de base n = 3. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
+    - Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. 
+    Considérons un  sommet quelconque x.  
 
-    ##### Si G NO a au moins n arêtes, il n’est pas acyclique
+        - S’il n’y a pas d’arête incidente à x, le graphe privé de x a n sommets  et n + 1 arêtes. Il y a un cycle par HR.  
+        - Si il existe une arête incidente à x qui n’est pas un isthme elle est  alors sur un cycle et G possède donc un cycle : OK.  
 
-    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. Considérons un  sommet quelconque x.  
-
-    - S’il n’y a pas d’arête incidente à x, le graphe privé de x a n sommets  et n + 1 arêtes. Il y a un cycle par HR.  
-    - Si il existe une arête incidente à x qui n’est pas un isthme elle est  alors sur un cycle et G possède donc un cycle : OK.  
-
-    - Si toutes arête x-incidente est un isthme, soit $u = \{x, y\} \in A$.  Retirons u. Alors x se retrouve dans une composante connexe  diﬀérente de celle de y.  Séparons la composante connexe de x et ses arêtes (formant un sous graphe $G_1$) du reste du graphe (notons $G_2$ ce reste).  
-        - $G_1$ possède, disons k sommets (1 ≤ k < n + 1), l’autre n + 1 − k. $G_1$ possède $q_1$ arêtes et $G_2$ en a $q_2$ avec $q_1 + q_2 = n$.  
-        - Si $q_1 ≥ k$, il y a un cycle dans $G_1$ par HR donc dans G puisque $G_1$ est  un sous-graphe de G : Prouvé.  
-        - Sinon, $q_2 = n − q_1 > n − k$ donc $q_2 ≥ (n − k) + 1$ et le sous-graphe G par HR a un cycle donc G aussi. CQFD  
-
-!!!danger "Fin du cours du 31/03/2023 donc j'ai pas vérifié le cours après"
+        - Si toutes arête x-incidente est un isthme, soit $u = \{x, y\} \in A$.  Retirons u. Alors x se retrouve dans une composante connexe  diﬀérente de celle de y.  
+        Séparons la composante connexe de x et ses arêtes (formant un sous graphe $G_1$) du reste du graphe (notons $G_2$ ce reste).  
+            - $G_1$ possède, disons k sommets (1 ≤ k < n + 1), l’autre n + 1 − k. $G_1$ possède $q_1$ arêtes et $G_2$ en a $q_2$ avec $q_1 + q_2 = n$.  
+            - Si $q_1 ≥ k$, il y a un cycle dans $G_1$ par HR donc dans G puisque $G_1$ est  un sous-graphe de G : Prouvé.  
+            - Sinon, $q_2 = n − q_1 > n − k$ donc $q_2 ≥ (n − k) + 1$ et le sous-graphe G par HR a un cycle donc G aussi. CQFD  
 
 #### Caractérisation des arbres non enracinés
 
-
 !!! quote "Définition"
-    Définition
-On appelle arbre non enraciné tout graphe non orienté sans boucle
-acyclique et connexe.
+    On appelle _arbre non enraciné_ tout graphe non orienté sans boucle acyclique et connexe.
+
+!!! quote "Remarque"
+    On dit en général _arbre_ plutôt que _arbre non enraciné_ mais cette appelation amène des confusions avec la notion d’arbre définie inductivement.
 
 
-!!! quote "Définition"
-    Remarque
-On dit en général arbre plutôt que arbre non enraciné mais cette appelation
-amène des confusions avec la notion d’arbre définie inductivement.
-
-
-!!! quote "Définition"
-    Proposition
-
-
-Soit un graphe non orienté sans boucle G de n sommets et p arêtes, les  aﬃrmations suivantes sont équivalentes :  
- G est un arbre non enraciné,  
- G est acyclique et contient n − 1 arêtes (p = n − 1),  
- G est connexe et contient p + 1 sommets.  
+!!! quote "Proposition"
+    Soit un graphe non orienté sans boucle G de n sommets et p arêtes, les  aﬃrmations suivantes sont équivalentes :  
+    - G est un arbre non enraciné,  
+    - G est acyclique et contient n − 1 arêtes (p = n − 1),  
+    - G est connexe et contient p + 1 sommets.  
+  
 On a déjà vu les sens directs.  
 
-#### Preuve
+!!!note ""
+    **Preuve**
 
+    ##### Si G acyclique et n = p − 1  
+    Si x, y sont deux éléments non reliés par un chemin, on ajoute l’arête  {x, y }  
+    Cela crée un cycle puisque le nombre d’arête est égal à celui des  sommets.  
+    Ce nouveau cycle passe par l’arête {x, y} (avant, il n’y en avait pas).  
+    Puisque cycle il y a, c’est que x et y sont joignables sans passer par  {x, y} : Absurde.  
+    Done pour tous sommets x et y, il y a un chemin de l'un à l'autre : G est donc connexe
 
-Si G acyclique et n = p − 1  
-Si x, y sont deux éléments non reliés par un chemin, on ajoute l’arête  {x, y }  
-Cela crée un cycle puisque le nombre d’arête est égal à celui des  sommets.  
-Ce nouveau cycle passe par l’arête {x, y } (avant, il n’y en avait pas).  
-Puisque cycle il y a, c’est que x et y sont joignables sans passer par  {x, y } : Absurde.  
+    ##### Si G est connexe et n = p − 1  
+    Si G possède un cycle, soit {x, y } une arête de ce cycle.  
+    Alors il y a un autre chemin de x à y que cette arête. Donc on peut  enlever l’arête {x, y } en conservant le caractère connexe.  
+    Mais alors le nouveau graphe G' est encore connexe et possède n  sommets et n − 2 arêtes. ABSURDE  
 
+## Graphes particuliers
 
-Si G est connexe et n = p − 1  
-Si G possède un cycle, soit {x, y } une arête de ce cycle.  
-Alors il y a un autre chemin de x à y que cette arête. Donc on peut  enlever l’arête {x, y } en conservant le caracètre connexe.  Mais alors le nouveau graphe G' est encore connexe et possède n  sommets et n − 2 arêtes. ABSURDE  
-
-##  
-
-###  
-
-#### Arbres et forêts
-
+### Arbres et forêts
 
 Pour certains auteurs, un arbre est un graphe non orienté connexe et  acyclique. S’il a n sommets, il possède donc n − 1 arêtes.  
-Comme il y a conﬂit avec la définition du cours, ces graphes non  orientés connexes acycliques sont dits arbres non enracinés (on l’a  déjà vu).  `A contrario, on parle des objets du premier chapitre (définis  inductivement) comme des arbres.  
-Dans un arbre non enraciné, on peut choisir une racine. Il y a alors un  chemin unique de la racine à tous les sommets (voir prop. 3.3). La  présence de la racine induit alors une orientation.  La structure ainsi construite est ce que certains auteurs appellent  arborescence ou arbre enraciné  
+Comme il y a conﬂit avec la définition du cours, ces graphes non  orientés connexes acycliques sont dits arbres non enracinés (on l’a  déjà vu).  
+_À contrario_, on parle des objets du premier chapitre (définis  inductivement) comme des _arbres_.  
+
+Dans un arbre non enraciné, on peut choisir une _racine_. Il y a alors un  chemin unique de la racine à tous les sommets (cela se montre). La  présence de la racine induit alors une orientation.  La structure ainsi construite est ce que certains auteurs appellent  _arborescence_ ou _arbre enraciné_ (cf def 6)  
+
+Une arborescence n’est pas encore un des objets que nous manipulons  sous le nom d’arbres. Il n’y a pas, dans les arborescences de notion  comme fils gauche et fils droit. Il manque une notion de latéralisation.  
 
 #### Forêts
 
-
-Une forêt est un graphe non orienté acyclique, c’est une union disjointe  d’arbres non enracinés (qui en sont les composantes connexes).  
+Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  d’arbres non enracinés (qui en sont les composantes connexes).  
 
 #### Exemples
 
-
-```linenums="1"
-Une forêt
-```
-
-
-Un arbre non enraciné  S  
-S  
-S  
-S  
-S  
-Un autre  
-X  
-X  
-X  
-S  
-S  
+!!!danger "Image page 51"
 
 #### Racine, arborescence
 
-
 !!! quote "Définition"
-    Définition
-
-
-Un sommet r d’un graphe orienté G = (S, E) est une racine de G si  pour tout sommet x de G il existe un chemin de r à x.  
-On dit qu’un graphe orienté G = (S, E) est une arborescence s’il  possède un unique élément x de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de x à tous les  autres sommets.  
+    Un sommet r d’un graphe orienté G = (V , E) est une racine de G si  pour tout sommet x de G il existe un chemin de r à x.  
+    
+    On dit qu’un graphe orienté G = (V , E) est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de $x_0$ à tous les  autres sommets.  
 
 #### Exemples
 
+!!!danger "Image page 53"
 
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-S  
-Pas de racine  
-Une arborescence (racine : S)  
-
-###  
+### Graphes non orientés particuliers
 
 #### Statut de cette section
 
-
 Cette section donne quelques exemples de graphes particuliers sans  qu’aucune preuve ne soit donnée.  
 
-#### ´Etoiles, peignes, chenilles
-<p align='center'><img src='/images/1f82360efa419b92666109593eee8c4d.bmp'/></p><p align='center'><img src='/images/21598397633b4a64bfa72795022014e5.bmp'/></p>
+#### Etoiles, peignes, chenilles
 
-´Etoile               
-Chenille         ≥            ≥   
-Peigne                        
+_Etoile_ : Un arbre dont un sommet est adjacent à tous les autres.
+
+!!!danger "Image page 56"
+
+_Chenille_ : arbre tel que tout sommet de degré $\geq$ 2 est adjacent à au plus deux sommets de degré $\geq$ 2.
+<p align='center'><img src='/images/1f82360efa419b92666109593eee8c4d.bmp'/></p>
+
+_Peigne_ : Bon j'ai vraiment besoin de décrire ça ?
+
+<p align='center'><img src='/images/21598397633b4a64bfa72795022014e5.bmp'/></p>
 
 #### Graphe planaire
-<p align='center'><img src='/images/598390c394c9d54c0b8f1bed3302516a.bmp'/></p>
 
-Un graphe est planaire  si on peut le dessiner sans  qu’aucune arête n’en coupe  une autre.  4-coloriabilité :  les sommets d’un graphe planaire  peuvent être coloriés  avec 4 couleurs sans  que deux sommets adjacents  ne soient de la même couleur.  
+Un graphe est _planaire_  si on peut le dessiner sans  qu’aucune arête n’en coupe  une autre.  
+
+_4-coloriabilité_ :  les sommets d’un graphe planaire  peuvent être coloriés  avec 4 couleurs sans  que deux sommets adjacents  ne soient de la même couleur.  
+
+<p align='center'><img src='/images/598390c394c9d54c0b8f1bed3302516a.bmp'/></p>
 
 #### Graphe complet, tournoi
 
+!!!danger "Image page 58"
 
-Un graphe complet est un graphe  non orienté où  tous les sommets sont deux à deux adjacents.  Un tournoi est un graphe orienté  obtenu à partir d’un graphe complet  en orientant chaque arête.  
+Un graphe _complet_ est un graphe  non orienté où  tous les sommets sont deux à deux adjacents.  
+
+Un _tournoi_ est un graphe orienté  obtenu à partir d’un graphe complet  en orientant chaque arête.  
 
 #### Graphe biparti
+
+Un graphe _biparti_ G = (V , E)  est un graphe (orienté ou non orienté)  admettant une partition $\{P_1, P_2\}$  de ses sommets telle que  {x, y } ∈ E => $(x, y) ∈ P_1 × P_2 ∪ P_2 × P_1$  
+
+Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
+
 <p align='center'><img src='/images/bed36094a5610d0a25130a62ba143350.bmp'/></p>
 
-Un graphe biparti G = (S, A)  est un graphe non orienté  admettant une partition {P, P}  de ses sommets telle que  {x, y } ∈ A => (x, y) ∈ P × P ∪ P × P  Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
-
 #### Graphe biparti complet
-<p align='center'><img src='/images/3cb1e408033346b06bd97000d16d069e.bmp'/></p>
 
-_Figure – Exemples de graphes bipartis complets_
+!!!danger "Image page 60"
 
-Un graphe est dit biparti complet (ou encore est appelé une biclique) s’il  est biparti et contient le nombre maximal d’arêtes.  Si U est de cardinal m et V est de cardinal n le graphe biparti complet est  noté Km,n.  
+Un graphe est dit _biparti complet_ (ou encore est appelé une _biclique_) s’il  est biparti et contient le nombre maximal d’arêtes.  Si P est de cardinal m et $P_2$ est de cardinal n le graphe biparti complet  est noté $K_{m,n}$.  
 
-##    OCAML
+## Un peu de OCAML
 
-###    OCAML
+### Liste d’adjacence
 
-#### Liste d’adjacence
+!!!danger "Image"
 
-
-```linenums="1"
+```ocaml linenums="1"
 type graphe = int list array ;;
 (* graphe orient é *)
 let g1 = [| [1; 2]; [2] ;[ 0]|];;
@@ -565,30 +533,18 @@ let g1 = [| [1; 2]; [2] ;[ 0]|];;
 let g2 = [ |[ 1 ; 2 ]; [ 2 ; 0 ] ; [0 ;1 ] |] ; ;
 ```
 
-  
-  
-  
-  
-
 Les sommets sont numérotés de 0 à |g | − 1.  
-0  
-g  
-2  
-1  
-0  
-g  
-2  
-1  
+
 Voir TD pour les exercices  
   
-
+!!!danger "Je suis pas allé plus loin"
 #### Matrice d’adjacence
 
 
 ```linenums="1"
 type graphe = int array array ;;
-let g = Array. make_matrix 4 4 0;;
-g.(0).(1) < -1; g.(0).(2) < -1; g.(1).(3) < -1; g.(2).(1) < -1;;
+let g = Array . make_matrix 4 4 0;;
+g .(0) .(1) < -1; g .(0) .(2) < -1; g .(1) .(3) < -1; g .(2) .(1) < -1;;
 ```
 
   
@@ -605,16 +561,14 @@ Voir TD pour les exercices
 
 ##   
 
-####  Historique
 
-
+ Historique  
  Graphes, représentation, sous-graphes  
  Chaînes et chemins, connexité  
 Accessibilité  Connexité  
  Graphes particuliers  
 Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML  
- Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  
+ Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
 
 #### Définition
 
@@ -626,92 +580,78 @@ En théorie des graphes, un parcours de graphe est un algorithme  consistant à 
 
 Les algorithmes de parcours ne sont pas une fin en eux-mêmes. Ils servent  comme outil pour étudier une propriété globale du graphe, par exemple :  
 Connexité et forte connexité  
-Existence d’un circuit ou d’un cycle (ce qu’on appelle tri topologique)  
+Existence d’un circuit ou d’un cycle et, le cas échéant, définition d’un  ordre total sur les sommets compatible avec le sens des arcs (ce qu’on  appelle tri topologique)  
 Calcul des plus courts chemins (notamment l’algorithme de Dijkstra)  
 Calcul d’un arbre recouvrant (notamment l’algorithme de Prim)  
 Algorithmes pour les ﬂots maximums (comme l’algorithme de  Ford-Fulkerson).  
+Coloration des sommets etc.  
 
 #### Analyse
 
 
 La diﬃculté de l’exploration consiste à éviter de visiter plusieurs fois  un même sommet. Pour cela on met en oeuvre un marquage des  sommets par des couleurs.  Lors d’une exploration, chaque sommet passe par trois couleurs :  
 bleu tant que la visite du sommet n’a pas commencée  vert dès que sa visite commence et tant le traitement n’est pas terminé  rouge dès que le traitement est terminé  
-L’exploration à partir d’un sommet s ne permet pas nécessairement  d’explorer tout le graphe (il peut y avoir plusieurs composantes  connexes). Pour eﬀectuer une exploration complète il faut relancer le  parcours à partir d’un sommet bleu tant qu’il en existe.  
+L’exploration à partir d’un sommet s ne permet pas nécessairement  d’explorer tout le graphe (il peut y avoir plusieurs CC/CFC). Pour  eﬀectuer une exploration complète il faut relancer le parcours à partir  d’un sommet bleu tant qu’il en existe.  
 
-#### Parcours de tous les sommets
-
-
-```linenums="1"
-t a n t q u e                
-f a i r e
-```
-
-On gère trois listes (ou piles ou files) Rouges (déjà traités), Verts  (traitement en cours), Bleus (à traiter). Colorer un sommet consiste à  l’ajouter à une de ces listes/piles/files et à le retirer des autres.  
-  
-  
-  
-  
-                 
-    
-  
-
-         s      ∗                    s  ∗          
-    
-                       s ∗                   ∗  
-Dès qu’un sommet bleu est abordé, il devient vert. Suivant les traitements,  on peut choisir de le rendre rouge avant ses successeurs ou après.  
-  
-
-#### Parcours à partir d’un sommet s0
+#### Parcours à partir d’un sommet
 
 
 ```linenums="1"
-p r o c e d u r e          
-t a n t q u e
+t a n t q u e             
 f a i r e
-f i n f a i r e
+s i
+s i n o n
+s i
 ```
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+On gère une structure S (pile, file, ou autre). On dispose d’une fonction  d’ajout (dans) et de retrait (de) cette structure. Depuis un sommet donné  on peut sélectionner un successeur (par exemple un voisin).  Le parcours débute par un sommet s.  
+∗                            
+    
+                 S          s            
 
- s  ∗                 s ∗  
-               
-             s      ∗              ∗  
+
+    
+                       s ∗  
+s       
+  
+  
+  
+  
+  
+  
+  
+         s  S           
+s      
+s    
+   
+                                              
+              
+              S   
                   
+         S  
 
-  s ∈      ∗              ∗  
-        ∗                     t  s ∗           O∗          ∗   
-                       
-∗              ∗  
-s           
-       ∗  
-t        
-        
-            ∗  
-
-On peut choisir de traiter le sommet s après ses successeurs. Idéalement,  les tests sont tous en O(1), les colorations ainsi que le choix d’un sommet  vert aussi. Le traitement est plus ou moins coûteux (souvent O(1) mais  pas toujours).  
+s ∈ S   
+   
+                      
+                
+s    
+Dès qu’un sommet bleu est abordé, il devient vert. Suivant les traitements,  on peut choisir de traiter s à plusieurs endroits (L6 ou L11).  
+   
   
 
 #### Graphe de liaison induit
 
 
-Soit G = (S, A) un graphe et s ∈ S. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes {u, v } ∈ A (resp. les arcs) par lesquelles  passent l’exploration de G, (l’exploration passe par {u, v } (resp.  (u, v)) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis s :  
-on débute avec le graphe (s, ∅)  lors du traitement d’un sommet s vert on ajoute chaque voisin bleu t  et l’arête (resp. arc) {s, t} (resp. (s, t)) au graphe induit.  On construit ainsi un graphe connexe ayant k sommets et k − 1 arêtes,  autrement dit un arbre ou une arborescence.  
+Soit G = (V , E) un graphe et s ∈ S. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes {u, v } ∈ E (resp. les arcs) par lesquelles  passent l’exploration de G , (l’exploration passe par {u, v } (resp.  (u, v)) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis s :  
+on débute avec le graphe (s, ∅)  lors du passage du parcours par un sommet s vert on ajoute chaque  voisin bleu t et l’arête (resp. arc) {s, t} (resp. (s, t)) au graphe induit  (mais peut-être pas tous en même temps).  On construit ainsi un graphe connexe ayant k sommets et k − 1 arêtes,  autrement dit un arbre ou une arborescence.  
 Le graphe de liaison induit par une exploration complète de G est un  ensemble d’arbre ou d’arborescence.  
 
 #### Tableau de couleurs
 
 
 On colorie tous les sommets en bleu (O(n)) puis on lance  l’exploration de n’importe quel sommet.  
-Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts, et n’en sort qu’au plus une fois (quand il  devient rouge).  
-On suppose que ces opérations d’entrée et de sortie dans la liste  soient de coût constant. Pour réaliser cette condition, la solution que  nous adopterons consistera à utiliser un tableau de couleurs R,V,B  pour connaître en temps constant le statut d’un sommet.  
+Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts , et n’en sort qu’au plus une fois (quand il  devient rouge).  
+On s’arrange pour que que ces opérations d’entrée et de sortie  dans/de l’accumulateur sont de coût constant. Pour réaliser cette  condition, la solution que nous adoptons consiste à utiliser un tableau  de couleurs R,V,B.  
 
 ###   
 
@@ -724,30 +664,28 @@ L’ensemble des sommets Verts est représenté par une file  (bibliothèque OCA
 ```linenums="1"
 p r o c e d u r e                
 t a n t que      
-dans 
 f a i r e
-p o u r                   
+p o u r                
 s i         a l o r s
-dans 
-p r o c e d u r e                      
+p r o c e d u r e                             
 a l o r s
 s i
 ```
 
+F : file des sommets verts.  
 
+            
          
        
           
- 
 
          
 
-               
-          
+        ∗                     ∗  
                 
 
           
-                      
+                        
 
   
   
@@ -762,36 +700,66 @@ s i
   
   
   
+  
          
-     
     
        
           
-               
+                  
              ∗         
       ∗  
+Variant de boucle tant que : nombre de sommets bleus + nombre de  sommets verts. L’algorithme termine.  
      
   
+
+#### Coût des opérations de file
+
+
+Pour un graphe G = (V , E) avec |E | = p et |V | = n  
+Tous les sommets sont coloriés en bleu exactement une fois au début  puis plus jamais : O(n).  
+Un sommet finit toujours par entrer dans la file (soit du fait de la  boucle tant que , soit du fait de Largeur).  Du fait des tests de couleurs, il n’y entre qu’une fois.  
+Un sommet finit toujours par quitter la file car l’algorithme termine.  
+Les opérations d’enfilement/défilement sont en O(1). Le coût total de  gestion de file est en Θ(n).  
+
+#### Gestion des listes d’adjacence
+
+
+Pour un graphe G = (V , E) avec |E | = p et |V | = n  
+Une liste d’adjacence donnée n’est balayée qu’une fois et une seule  (puisque chaque sommet est ajouté dans la file puis défilé une fois et  une seule). Chaque élément de cette liste donne lieu à des opérations  de coloriage/enfilement en O(1).  
+La somme des longueurs des listes d’adjacence est en Θ(|E |) = Θ(p).  Donc le temps total consacré au balayage des listes d’adjacence est en  Θ(p).  
+Enfin la coloration initiale est en Θ(n).  
+Le total des opérations est en Θ(n + p) pour le parcours en largeur.  
 
 #### Propriétés du parcours en largeur d’abord
 
 
-s est le premier sommet rouge. Un sommet devient rouge avant ses  sucesseurs dans l’ordre de parcours.  Un sommet rouge n’a que des sommets adjacents verts ou rouges  Si un sommet x est rouge alors il existe une chaîne/un chemin allant de  s à x constituée uniquement de sommets rouge.  A la fin du parcours tous les sommets sont soit bleus, soit rouges (et la  file des verts est vide).  
+Considérons un parcours en largeur depuis un sommet s :  
+s est le premier sommet rouge. Un sommet devient rouge avant ses  sucesseurs dans l’ordre de parcours.  Un sommet rouge n’a que des sommets adjacents verts ou rouges (en  exo).  Si un sommet x est rouge alors il existe une chaîne/chemin allant de s  à x constituée uniquement de sommets rouges (en exo).  Si un sommet x est vert alors il existe une chaîne/chemin allant de s à  x constituée uniquement de sommets verts ou rouges (en exo).  A la fin du parcours tous les sommets sont soit bleus, soit rouges (et la  file des verts est vide).  
 Conséquence : à la fin de l’appel de Largeur les sommets rouges sont  tous les sommets accessibles à partir de s.  
+
+#### Preuve : accessiblité = coloration en rouge
+
+
+Posons G = (V , E) et faison un bfs depuis s ∈ V . On montre qu’il y a un  chemin vert/rouge depuis s vers tout sommet de la file, et qu’existe un  chemin totalement rouge de s vers tout sommet rouge.  
+Au tour 1, s sort de la file et devient rouge. Alors il y a un chemin  rouge de s à s. Et tous les voisins de s deviennent verts : donc il y a  un chemin rouge/vert vers eux.  Supposons la propriété vraie au tour k. Soit s le sommet défilé au  tour k + 1. Il faut vérifier la propriété pour le nouveau sommet rouge  et les nouveaux verts.  
+s devient rouge. Puisque s était dans la file, il y a été placé par un  sommet x qui est devenu rouge. Par HR, il y a un chemin rouge de s à  x et donc (en ajoutant l’arc (x, s)) de s à s.  Tout sommet y qui devient vert est un voisin de s. Comme il y a un  chemin rouge de s à s, il y a un chemin rouge/vert de s à y .  
+
+
+Posons G = (V , E) et faisons un bfs depuis s ∈ V .  
+Si un sommet x est rouge, il y a un chemin (rouge) depuis s vers x  donc x est accessible.  Réciproquement. On montre que si un sommet est à une distance  k ≤ n de s, alors il est rouge à la fin du BFS.  
+Vrai pour la distance d = 0. s est accessible depuis s et il est rouge.  Cas de base OK.  Si la propriété est vraie pour tout sommet accesible à la distance k de  s, soit x à la distance k + 1 (s’il n’existe pas de sommet à la distance  k + 1, il n’en existe pas non plus à une distance supérieure et la  propriété est prouvée).  Alors le prédécesseur y de x dans un PCC de s à x est à la distance k  de s (un sous-chemin de PCC est un PCC). Par HR, il devient rouge à  un moment.  Donc si x est bleu au moment où y devient rouge, alors y le marque en  vert et x finit par devenir rouge.  Et si x est déjà marqué quand y devient rouge, alors x devient rouge.  (Tout sommet qui entre dans la file en sort et devient rouge)         
 
 
 Voir cette animation  
 
-####  Historique
 
-
+ Historique  
  Graphes, représentation, sous-graphes  
  Chaînes et chemins, connexité  
 Accessibilité  Connexité  
  Graphes particuliers  
 Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML  
- Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  
+ Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
 
 #### Présentation
 
@@ -807,18 +775,19 @@ On gère une pile des sommets verts (bibliothèque OCAML listes ou  stack, pytho
 p r o c e d u r e                   
 t a n t que   
 f a i r e
-dans  
-```
+dans   ```
 
 On utilise une pile pour gérer les sommets verts.  
 
   
          
-    ∗                              
-                                               
+    ∗           
+                     
            
           ∗  
+                                
       
+ ∗              ∗  
                          
   
   
@@ -842,10 +811,9 @@ On utilise une pile pour gérer les sommets verts.
   
   
   
-  
-                                                        
-                 
-        
+                                        
+ ∗                  
+      ∗   
    
      
   
@@ -860,17 +828,17 @@ Solution : considérer les listes de voisins comme des piles. On dépile  jusqu�
 
 
 On analyse le nombre d’opérations engendrées par la présence d’un  sommet donné s en haut de la pile. Il suﬃra de sommer sur tous les  sommets pour obtenir la complexité totale. (Ajouter aussi le coût  d’initialisation en O(n).  
-Le sommet s entre toujours dans la pile (soit du fait de la boucle tant  que, soit du fait de Profondeur). Le coloriage assure que le sommet  ne revient pas dans la pile verte quand il l’a quittée.  Le sommet s apparaît au plus deg s  + 1 fois au sommet de la pile  (s’en convaincre avec le graphe x → y).  A chaque apparition au sommet de la pile verte, il y a une recherche  d’un voisin bleu (qui peut être faite en O(1) si pile de voisins) un  coloriage/empilement dans la pile verte parfois (au plus deg s  fois).  s est dépilé puis colorié en rouge une seule fois.  
-La présence de s en haut de la pile engendre donc un nombre  d’opérations (majoré par un nombre) proportionnel à son nombre de  présences au sommet, soit 1 + deg s.  
+Le sommet s entre toujours dans la pile (soit du fait de la boucle tant  que, soit du fait de Profondeur). Le coloriage assure que le sommet  ne revient pas dans la pile verte quand il l’a quittée.  Le sommet s apparaît au plus deg s  + 1 fois au sommet de la pile  (s’en convaincre avec le graphe x → y).  A chaque apparition au sommet de la pile verte, il y a une recherche  d’un voisin bleu (on peut la rendre AU TOTAL en O(deg s) pour tout  l’algo) ; un coloriage/empilement dans la pile verte parfois (au plus  deg s  fois).  s est dépilé puis colorié en rouge une seule fois.  
+La présence de s en haut de la pile engendre donc un nombre  d’opérations (majoré par un nombre) proportionnel à son nombre de  présences au sommet, soit 1 + deg s .  
 
 #### Complexité totale
 
 
-Pour un graphe G = (V, E) avec |E | = p et |V | = n  
+Pour un graphe G = (V , E) avec |E | = p et |V | = n  
 On somme les nombres d’opérations occasionnées par chaque sommet  pour obtenir la complexité totale.  
 Le nombre total d’opération est (majoré par un nombre) proportionnel  à  
 {sum symbol}  
-s∈V 1 + deg s = n + {sum symbol}  
+s∈V (1 + deg s) = n + {sum symbol}  
 i∈V deg s = n + p = O(n + p)  
 Même si on ajoute le coût d’initialisation en O(n), l’ensemble reste en  O(n + p)  
 
@@ -878,10 +846,9 @@ Même si on ajoute le coût d’initialisation en O(n), l’ensemble reste en  O
 
 
 Les invariants suivants sont maintenus  
-A la fin d’un passage dans la boucle tant que : un sommet est vert  si et seulement s’il est dans la pile  
 A tout moment, la pile décrit un chemin entre s (la base) et le haut  de la pile.  
 Lorsqu’on colorie un sommet x en vert, tous les sommets bleus  accessibles à partir de x seront coloriés en rouges avant que x ne le  soit.  
-A la fin du parcours, l’ensemble des sommets rouges est l’ensemble  des sommets accessibles à partir de s.  
+A la fin du parcours, l’ensemble des sommets rouges est l’ensemble  des sommets accessibles à partir de s qui étaient bleus au moment  l’entrée de s dans la pile.  
 
 
 Voir cette animation  
@@ -899,7 +866,7 @@ S
 S  
 S  
 S  
-Soit Gl = (V, L) le graphe de liaison induit par le parcours en  profondeur d’un graphe G. Un arc u → v est :  un arc de liaison si et seulement si u → v ∈ L  un arc retour si et seulement si u est un descendant de v dans L.  un arc avant si et seulement si v est un descendant de u dans L et  u → v /∈ L (on prend de l’avance par rapport au cheminement normal  dans L)  un arc couvrant sinon (tous les autres arcs).  
+Soit Gl = (V , L) le graphe de liaison induit par le parcours en  profondeur d’un graphe G . Un arc u → v est :  un arc de liaison si et seulement si u → v ∈ L  un arc retour si et seulement si u est un descendant de v dans L.  un arc avant si et seulement si v est un descendant de u dans L et  u → v /∈ L (on prend de l’avance par rapport au cheminement normal  dans L)  un arc couvrant sinon (tous les autres arcs).  
 
 #### Variante
 
@@ -948,3 +915,103 @@ dans
 A noter qu’il n’y a plus vraiment de raison d’utiliser trois couleurs ; deux  suﬃsent.  
      
   
+
+###   
+
+#### Généralités
+
+
+```linenums="1"
+acyclique ```
+
+Graphe : un graphe qui ne contient pas de circuit/cycle.  Certain problèmes n’ont de solution que pour des graphes acycliques :  plus court chemin, ordonnancement...  
+Si un graphe est acyclique on peut concevoir des algorithmes qui  s’arrangent pour traiter tous les prédecesseurs d’un sommet donné  avant de traiter ce sommet (variante du parcours en profondeur).  
+
+
+```linenums="1"
+Cas des graphes orientés
+Propriété ```
+
+Propriétés  
+: Un graphe contient un circuit si et seulement si lors du  parcours en profondeur l’un des successeurs du sommet en haut de la  pile verte est déjà vert.  
+Exemple  
+S  
+S  
+(cid:47) S  
+S  
+(cid:47) S  
+(cid:47) S  
+S  
+S  
+S  
+S  
+S  S  S  S  S a pour successeur S qui est déjà vert =⇒ un circuit.  
+
+
+```linenums="1"
+Cas des graphes orientés
+```
+
+Propriétés  
+Autre façon de dire que le graphe est acyclique : le graphe de liaison  induit par un parcours en profondeur d’un graphe sans circuit ne  génère aucun arc retour.  
+Exemple  
+S  
+S  
+(cid:47) S  
+S  
+(cid:47) S  
+(cid:47) S  
+S  
+S  
+S  
+S  
+Il y a des arcs retour (en vert)  =⇒ des circuits  
+
+
+```linenums="1"
+Cas des graphes orientés
+```
+
+Propriétés  
+L’algorithme pour la détection de circuit dans un graphe est une variante  du parcours en profondeur : quand on examine les arcs issus du sommet de  la pile, il suﬃt de regarder si un arc ne pointe pas vers un nœud vert. On  s’arête dès que c’est le cas.  
+
+#### Preuve de la méthode
+
+
+!!! quote "Définition"
+    S’il existe un arc retour
+
+
+!!! quote "Définition"
+    Réciproquement Supposons l’existence d’un cycle. On peut enlever des
+
+
+```linenums="1"
+Cas des graphes orientés
+```
+
+On montre que la présence d’un cycle est équivalente à l’existence d’un arc  retour.  
+Si la pile verte V a r > 1 sommets, le dernier  
+sommet vert a été ajouté parce qu’il existe un arc de  V [−2] à V [−1] (notations Python).  Par récurrence, on obtient l’existence d’un chemin de  tout sommet dans la pile vers les sommets supérieurs.  Donc si on empile un sommet, et qu’un de ses  successeurs est déjà vert (ce qui est la définition d’un  arc retour), il y a un cycle.  
+sommets juqu’à ce qu’il ne contienne que des sommets  distincts.  
+
+
+```linenums="1"
+Cas des graphes orientés (Réciproque)
+```
+
+Preuve de la méthode  
+Supposons l’existence d’un cycle. On peut le considérer sans doublon  (sinon enlever des sommets juqu’à ce qu’il ne contienne que des sommets  distincts).  Soit x le premier sommet du cycle à être empilé. Tous les autres sommets  du cycle sont bleus.  
+Le second sommet du cycle sera vert avant que x devienne rouge  puisque c’est un voisin de x.  
+De proche en proche, on établit que à un moment tous les sommets  du cycle sont dans la pile. Donc, le dernier sommet du cycle avant x,  notons le y , devient vert alors que x est encore dans la pile. Comme il  y a un arc (y , x), cet arc est un arc retour.  
+
+
+ Historique  
+ Graphes, représentation, sous-graphes  
+ Chaînes et chemins, connexité  
+Accessibilité  Connexité  
+ Graphes particuliers  
+Arbres et forêts  Graphes non orientés particuliers  
+ Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
+
+###   
