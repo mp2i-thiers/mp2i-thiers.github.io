@@ -40,8 +40,8 @@ _Figure – Un graphe orienté avec des arcs - un graphe non orienté et ses ar�
 **Exemple : plan d’une ville.**  
 <p align='center'><img src='/images/dc5ea5b5757bf7df068e7878c83ff666.bmp'/></p>
 
-_Figure – Un multigraphe non orienté : ses arêtes multiples en rouge et ses
-boucles en bleu_
+_Figure – Un multigraphe non orienté : ses arêtes multiples en bleu et ses
+boucles en rouge_x
 
 En anglais, sommet se dit _vertice_, arête se dit _undirected edge_ et arc  se dit _directed edge_.  
 Les arêtes multiples ne sont pas au programme.  
@@ -254,7 +254,7 @@ sommets et uniquement celles-là.**
 !!!note ""
     Soit G = (S, E) un graphe.  
 
-    - Un chemin d’un sommet x à un sommet y est une séquence de (au  moins 2) sommets $x = x, x..., x_{n−1}, x_n$ = y dans laquelle chaque $x_i$  admet $x_i$ pour voisin.  
+    - Un chemin d’un sommet x à un sommet y est une séquence de (au  moins 2) sommets $x = x_0, x_1,..., x_{n−1}, x_n$ = y dans laquelle chaque $x_i$  admet $x_{i+1}$ pour voisin.  
     - Un sommet y est _accessible_ depuis x s’il existe un chemin de x à y.  
     - La _longueur_ d’un chemin est égale au nombre d’arêtes qui la  constituent.  
     - Un chemin _simple_ est une chemin qui ne contient pas plusieurs fois  une même arête/arc (on dit aussi _eulérien_).  
@@ -277,7 +277,8 @@ Certains auteurs distinguent la notion de circuit (pour les graphes orientés) d
 La distance entre deux sommets x et y d’un graphe G = (S, A)  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la  longueur d’un plus court chemin (resp. chaîne) allant de x à y s’il en  existe un ou bien $+\infty$ sinon.
 
 Il s’agit bien d’une distance au sens mathématiques. En particulier,  elle vérifie l’inégalité triangulaire  
-$\forall (x, y, z) \in S^3, d_G (x, z) \leq d_G (x, y) + d_G (y, z)$. 
+
+$$ \forall (x, y, z) \in S^3, d_G (x, z) \leq d_G (x, y) + d_G (y, z) $$
 
 Le diamètre d’un graphe G est la valeur : $sup_{(x,y) \in S^2} d_G (x, y)$. C’est "la longueur du plus long plus court chemin entre deux sommets".  
 
@@ -339,15 +340,16 @@ $S_8$ est accessible depuis tous les sommets.  $\tilde{S_8} = \{S_8\}$. Donc le 
 
 #### Isthme
 
-Une arête u d’un graphe G non orienté est appelée un _isthme_ si sa suppression met ses extrémités dans deux composantes connexes  diﬀérentes (donc la suppression augmente le nombre de composante  connexes du graphe).  
+!!!quote "Définition"
+    Une arête u d’un graphe G non orienté est appelée un _isthme_ si sa suppression met ses extrémités dans deux composantes connexes  diﬀérentes (donc la suppression augmente le nombre de composante  connexes du graphe).  
 
 <p align='center'><img src='/images/graphes5.png'/></p>
 
-Une seule composante connexe.  
+_Une seule composante connexe._
 
 <p align='center'><img src='/images/graphes6.png'/></p>
 
-Deux composantes connexes après suppression de $\{S_4, S_5\}$.  
+_Deux composantes connexes après suppression de $\{S_4, S_5\}$._
 
 !!!warning ""
     **Proposition**
@@ -392,7 +394,8 @@ Deux composantes connexes après suppression de $\{S_4, S_5\}$.
 
 
     ##### Si G est non orienté sans boucle a au moins n arêtes, il n’est pas acyclique  
-    On considère des graphes NO à au moins 3 sommets. On raisonne par  récurrence forte sur |G| = n.  
+    On raisonne par **contraposée** sur $\text{G acyclique} \Rightarrow p \leq n-1$.
+    On considère des graphes non orientés à au moins 3 sommets. On raisonne par récurrence forte sur |G| = n.  
     
     - Cas de base n = 3. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
     - Supposons P(k) pour k ≥ 3 et tout k ≤ n. Soit G à n + 1 sommets et  p = n + 1 arêtes. On montre qu’il possède un cycle. 
