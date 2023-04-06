@@ -541,70 +541,54 @@ Les sommets sont numérotés de 0 à |g | − 1.
 Voir TD pour les exercices  
   
 !!!danger "Je suis pas allé plus loin"
+
 #### Matrice d’adjacence
 
 
-```linenums="1"
+```Ocaml linenums="1"
 type graphe = int array array ;;
 let g = Array . make_matrix 4 4 0;;
 g .(0) .(1) < -1; g .(0) .(2) < -1; g .(1) .(3) < -1; g .(2) .(1) < -1;;
 ```
 
-  
-  
-  
+Voir TD pour les exercices 
+
+!!!danger "Image"
 
 
-(cid:47) 3  
-0  
-1  
-2  
-Voir TD pour les exercices  
-  
-
-##   
-
-
- Historique  
- Graphes, représentation, sous-graphes  
- Chaînes et chemins, connexité  
-Accessibilité  Connexité  
- Graphes particuliers  
-Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
-
-#### Définition
-
-
-En théorie des graphes, un parcours de graphe est un algorithme  consistant à explorer les sommets d’un graphe de proche en proche à  partir d’un sommet initial. Un cas particulier important est le parcours  d’arbre.  Un parcours d’un graphe permet de choisir, à partir des sommets  visités, le sommet suivant à visiter.  Le problème consiste à déterminer un ordre sur les visites des  sommets.  Une fois le choix fait, l’ordre des visites induit une numérotation des  sommets visités (l’ordre de leur découverte) et un choix sur l’arc ou  l’arête utilisé pour atteindre un nouveau sommet à partir des sommets  déjà visités.  Les arcs ou arêtes distingués forment une arborescence ou un arbre, et  les numéros des sommets sont croissants sur les chemins de  l’arborescence ou les chaînes de l’arbre depuis la racine.  
+!!! Quote "Définition"
+    * En théorie des graphes, un parcours de graphe est un algorithme  consistant à explorer les sommets d’un graphe de proche en proche à  partir d’un sommet initial. Un cas particulier important est le parcours  d’arbre. 
+    * Un parcours d’un graphe permet de choisir, à partir des sommets  visités, le sommet suivant à visiter. 
+    * Le problème consiste à déterminer un ordre sur les visites des  sommets.  Une fois le choix fait,l’ordre des visites induit une numérotation des  sommets visités (l’ordre de leur découverte) et un choix sur l’arc ou  l’arête utilisé pour atteindre un nouveau sommet à partir des sommets  déjà visités.  
+    * Les arcs ou arêtes distingués forment une arborescence ou un arbre, et  les numéros des sommets sont croissants sur les chemins de  l’arborescence ou les chaînes de l’arbre depuis la racine.  
 
 #### Finalité
-
-
 Les algorithmes de parcours ne sont pas une fin en eux-mêmes. Ils servent  comme outil pour étudier une propriété globale du graphe, par exemple :  
-Connexité et forte connexité  
-Existence d’un circuit ou d’un cycle et, le cas échéant, définition d’un  ordre total sur les sommets compatible avec le sens des arcs (ce qu’on  appelle tri topologique)  
-Calcul des plus courts chemins (notamment l’algorithme de Dijkstra)  
-Calcul d’un arbre recouvrant (notamment l’algorithme de Prim)  
-Algorithmes pour les ﬂots maximums (comme l’algorithme de  Ford-Fulkerson).  
-Coloration des sommets etc.  
+
+* Connexité et forte connexité  
+* Existence d’un circuit ou d’un cycle et, le cas échéant, définition d’un  ordre total sur les sommets compatible avec le sens des arcs (ce qu’on  appelle tri topologique)  
+* Calcul des plus courts chemins (notamment l’algorithme de Dijkstra)  
+* Calcul d’un arbre recouvrant (notamment l’algorithme de Prim)  
+* Algorithmes pour les ﬂots maximums (comme l’algorithme de  Ford-Fulkerson).  
+* Coloration des sommets etc.  
 
 #### Analyse
 
-
-La diﬃculté de l’exploration consiste à éviter de visiter plusieurs fois  un même sommet. Pour cela on met en oeuvre un marquage des  sommets par des couleurs.  Lors d’une exploration, chaque sommet passe par trois couleurs :  
-bleu tant que la visite du sommet n’a pas commencée  vert dès que sa visite commence et tant le traitement n’est pas terminé  rouge dès que le traitement est terminé  
-L’exploration à partir d’un sommet s ne permet pas nécessairement  d’explorer tout le graphe (il peut y avoir plusieurs CC/CFC). Pour  eﬀectuer une exploration complète il faut relancer le parcours à partir  d’un sommet bleu tant qu’il en existe.  
+!!! note ""
+    * La diﬃculté de l’exploration consiste à éviter de visiter plusieurs fois  un même sommet. Pour cela on met en oeuvre un marquage des  sommets par des couleurs.  Lors d’une exploration, chaque sommet passe par trois couleurs :  
+        * <code style='color:royalblue'>bleu</code> tant que la visite du sommet n’a pas commencée  
+        * <code style='color:olivedrab'>vert</code> dès que sa visite commence et tant le traitement n’est pas terminé  
+        * <code style='color:crimson'>rouge</code> dès que le traitement est terminé  
+    * L’exploration à partir d’un sommet s ne permet pas nécessairement  d’explorer tout le graphe (il peut y avoir plusieurs CC/CFC). Pour  eﬀectuer une exploration complète il faut relancer le parcours à partir  d’un sommet bleu tant qu’il en existe.  
 
 #### Parcours à partir d’un sommet
 
 
 ```linenums="1"
-t a n t q u e             
-f a i r e
-s i
-s i n o n
-s i
+/*Parcourir les sommets bleus accessibles depuis s_0*/
+Colorer en bleu tous les sommets 
+Créer une structure S vide,
+
 ```
 
 On gère une structure S (pile, file, ou autre). On dispose d’une fonction  d’ajout (dans) et de retrait (de) cette structure. Depuis un sommet donné  on peut sélectionner un successeur (par exemple un voisin).  Le parcours débute par un sommet s.  
