@@ -540,229 +540,165 @@ Les sommets sont numérotés de 0 à |g | − 1.
 
 Voir TD pour les exercices  
   
-!!!danger "Je suis pas allé plus loin"
 #### Matrice d’adjacence
 
-
-```linenums="1"
+```ocaml linenums="1"
 type graphe = int array array ;;
 let g = Array . make_matrix 4 4 0;;
 g .(0) .(1) < -1; g .(0) .(2) < -1; g .(1) .(3) < -1; g .(2) .(1) < -1;;
 ```
 
+!!! danger "Image page 64"
   
-  
-  
-
-
-(cid:47) 3  
-0  
-1  
-2  
 Voir TD pour les exercices  
-  
-
-##   
-
-
- Historique  
- Graphes, représentation, sous-graphes  
- Chaînes et chemins, connexité  
-Accessibilité  Connexité  
- Graphes particuliers  
-Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
 
 #### Définition
 
-
-En théorie des graphes, un parcours de graphe est un algorithme  consistant à explorer les sommets d’un graphe de proche en proche à  partir d’un sommet initial. Un cas particulier important est le parcours  d’arbre.  Un parcours d’un graphe permet de choisir, à partir des sommets  visités, le sommet suivant à visiter.  Le problème consiste à déterminer un ordre sur les visites des  sommets.  Une fois le choix fait, l’ordre des visites induit une numérotation des  sommets visités (l’ordre de leur découverte) et un choix sur l’arc ou  l’arête utilisé pour atteindre un nouveau sommet à partir des sommets  déjà visités.  Les arcs ou arêtes distingués forment une arborescence ou un arbre, et  les numéros des sommets sont croissants sur les chemins de  l’arborescence ou les chaînes de l’arbre depuis la racine.  
+En théorie des graphes, un parcours de graphe est un algorithme  consistant à explorer les sommets d’un graphe de proche en proche à  partir d’un sommet initial. Un cas particulier important est le parcours  d’arbre.
+Un parcours d’un graphe permet de choisir, à partir des sommets  visités, le sommet suivant à visiter.
+Le problème consiste à déterminer un ordre sur les visites des  sommets.
+Une fois le choix fait, l’ordre des visites induit une numérotation des  sommets visités (l’ordre de leur découverte) et un choix sur l’arc ou  l’arête utilisé pour atteindre un nouveau sommet à partir des sommets  déjà visités.
+Les arcs ou arêtes distingués forment une arborescence ou un arbre, et  les numéros des sommets sont croissants sur les chemins de  l’arborescence ou les chaînes de l’arbre depuis la racine.  
 
 #### Finalité
 
+Les algorithmes de parcours ne sont pas une fin en eux-mêmes. Ils servent  comme outil pour étudier une propriété globale du graphe, par exemple :
 
-Les algorithmes de parcours ne sont pas une fin en eux-mêmes. Ils servent  comme outil pour étudier une propriété globale du graphe, par exemple :  
-Connexité et forte connexité  
-Existence d’un circuit ou d’un cycle et, le cas échéant, définition d’un  ordre total sur les sommets compatible avec le sens des arcs (ce qu’on  appelle tri topologique)  
-Calcul des plus courts chemins (notamment l’algorithme de Dijkstra)  
-Calcul d’un arbre recouvrant (notamment l’algorithme de Prim)  
-Algorithmes pour les ﬂots maximums (comme l’algorithme de  Ford-Fulkerson).  
-Coloration des sommets etc.  
+- Connexité et forte connexité
+- Existence d’un circuit ou d’un cycle et, le cas  échéant, définition d’un  ordre total sur les sommets compatible avec le sens des arcs (ce qu’on  appelle tri topologique)  
+- Calcul des plus courts chemins (notamment l’algorithme de Dijkstra)  
+- Calcul d’un arbre recouvrant (notamment l’algorithme de Prim)  
+- Algorithmes pour les ﬂots maximums (comme l’algorithme de  Ford-Fulkerson).  
+- Coloration des sommets etc.  
 
 #### Analyse
 
+La diﬃculté de l’exploration consiste à éviter de visiter plusieurs fois  un même sommet. Pour cela on met en oeuvre un marquage des  sommets par des couleurs.  Lors d’une exploration, chaque sommet passe par trois couleurs :
 
-La diﬃculté de l’exploration consiste à éviter de visiter plusieurs fois  un même sommet. Pour cela on met en oeuvre un marquage des  sommets par des couleurs.  Lors d’une exploration, chaque sommet passe par trois couleurs :  
-bleu tant que la visite du sommet n’a pas commencée  vert dès que sa visite commence et tant le traitement n’est pas terminé  rouge dès que le traitement est terminé  
+- bleu tant que la visite du sommet n’a pas commencée  
+- vert dès que sa visite commence et tant le traitement n’est pas terminé  
+- rouge dès que le traitement est terminé  
+
 L’exploration à partir d’un sommet s ne permet pas nécessairement  d’explorer tout le graphe (il peut y avoir plusieurs CC/CFC). Pour  eﬀectuer une exploration complète il faut relancer le parcours à partir  d’un sommet bleu tant qu’il en existe.  
 
 #### Parcours à partir d’un sommet
 
+On gère une structure S (pile, file, ou autre). On dispose d’une fonction  d’ajout (dans) et de retrait (de) cette structure. Depuis un sommet donné  on peut sélectionner un successeur (par exemple un voisin).  Le parcours débute par un sommet s.  
 
-```linenums="1"
-t a n t q u e             
-f a i r e
-s i
-s i n o n
-s i
+```ocaml linenums="1"
+/* parcourir les sommets bleus accessibles depuis s0 ∗/
+Colorer en bleu tous les sommets .
+Créer une structure S vide , y ajouter s0 ,colorer s0 en vert
+tant que S n’est pas vide faire
+retirer un sommet s de S
+(traiter s et le colorer en Rouge ) ou bien le rajouter à S
+si s a des successeurs Bleus
+en choisir un ou même plusieurs ;
+le/les colorer en Vert ; le/les ajouter à S ;
+sinon
+si s ∈ S , le retrirer définitivement , traiter + colorer s en Rouge
 ```
 
-On gère une structure S (pile, file, ou autre). On dispose d’une fonction  d’ajout (dans) et de retrait (de) cette structure. Depuis un sommet donné  on peut sélectionner un successeur (par exemple un voisin).  Le parcours débute par un sommet s.  
-∗                            
-    
-                 S          s            
-
-
-    
-                       s ∗  
-s       
-  
-  
-  
-  
-  
-  
-  
-         s  S           
-s      
-s    
-   
-                                              
-              
-              S   
-                  
-         S  
-
-s ∈ S   
-   
-                      
-                
-s    
 Dès qu’un sommet bleu est abordé, il devient vert. Suivant les traitements,  on peut choisir de traiter s à plusieurs endroits (L6 ou L11).  
-   
-  
 
 #### Graphe de liaison induit
 
+Soit G = (V , E) un graphe et $s_0 \in S$. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes$\left \{u,v \right \}\in E$ (resp. les arcs) par lesquelles  passent l’exploration de G , (l’exploration passe par $\left \{u,v \right \}$ (resp.  (u, v)) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis $s_0$ :  
 
-Soit G = (V , E) un graphe et s ∈ S. On appelle graphe de liaison  induit par l’exploration de G à partir de x, le sous-graphe de G  engendré par les arêtes {u, v } ∈ E (resp. les arcs) par lesquelles  passent l’exploration de G , (l’exploration passe par {u, v } (resp.  (u, v)) si celle-ci provoque le coloriage du sommet v en vert).  Pour un parcours depuis s :  
-on débute avec le graphe (s, ∅)  lors du passage du parcours par un sommet s vert on ajoute chaque  voisin bleu t et l’arête (resp. arc) {s, t} (resp. (s, t)) au graphe induit  (mais peut-être pas tous en même temps).  On construit ainsi un graphe connexe ayant k sommets et k − 1 arêtes,  autrement dit un arbre ou une arborescence.  
+- on débute avec le graphe ($s_0,\varnothing$)
+- lors du passage du parcours par un sommet s vert on ajoute chaque  voisin bleu t et l’arête (resp. arc) $\left \{s,t \right \}$ (resp. (s, t)) au graphe induit  (mais peut-être pas tous en même temps).
+- On construit ainsi un graphe connexe ayant k sommets et k − 1 arêtes,  autrement dit un arbre ou une arborescence.
+
 Le graphe de liaison induit par une exploration complète de G est un  ensemble d’arbre ou d’arborescence.  
 
 #### Tableau de couleurs
 
-
 On colorie tous les sommets en bleu (O(n)) puis on lance  l’exploration de n’importe quel sommet.  
-Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts , et n’en sort qu’au plus une fois (quand il  devient rouge).  
+Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur Verts , et n’en sort qu’au plus une fois (quand il  devient rouge).
 On s’arrange pour que que ces opérations d’entrée et de sortie  dans/de l’accumulateur sont de coût constant. Pour réaliser cette  condition, la solution que nous adoptons consiste à utiliser un tableau  de couleurs R,V,B.  
-
-###   
 
 #### Algorithme
 
-
-L’ensemble des sommets Verts est représenté par une file  (bibliothèque OCAML queue par exemple)  Principe : on explore le graphe à partir d’un sommet en visitant  d’abord tous les sommets voisins (à une distance 1), puis tous les  sommets voisins de ses voisins (à une distance 2)....  
-
-
-```linenums="1"
-p r o c e d u r e                
-t a n t que      
-f a i r e
-p o u r                
-s i         a l o r s
-p r o c e d u r e                             
-a l o r s
-s i
-```
+L’ensemble des sommets Verts est représenté par une file  (bibliothèque OCAML queue par exemple) 
+**Principe** : on explore le graphe à partir d’un sommet en visitant  d’abord tous les sommets voisins (à une distance 1), puis tous les  sommets voisins de ses voisins (à une distance 2)....  
 
 F : file des sommets verts.  
 
-            
-         
-       
-          
-
-         
-
-        ∗                     ∗  
-                
-
-          
-                        
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-         
+``` ocaml linenums="1"
+procedure Largeur(G: graphe , s : sommet , F : f i l e )
+    Colorier s en vert et Enfiler s
+    tant que F non vide faire
+        Defiler x
+        pour chaque voisin y de x :
+            si y est bleu alors
+                Enfiler y et le colorier en vert
+            Colorier x en rouge
+procedure Largeur_totale (G:graphe, F:file)
+    Pour chaque sommet s :
+        si s est bleu alors
+            Largeur(G, s, F)
     
-       
-          
-                  
-             ∗         
-      ∗  
+Colorier tous les sommets en bleu
+Créer une file vide F /∗ file des sommets verts ∗/
+Largeur_totale(G, F)
+```
+
 Variant de boucle tant que : nombre de sommets bleus + nombre de  sommets verts. L’algorithme termine.  
-     
-  
 
 #### Coût des opérations de file
 
+Pour un graphe G = (V , E) avec $\left |E  \right | = p $ et $\left |V \right | = n $  
 
-Pour un graphe G = (V , E) avec |E | = p et |V | = n  
-Tous les sommets sont coloriés en bleu exactement une fois au début  puis plus jamais : O(n).  
-Un sommet finit toujours par entrer dans la file (soit du fait de la  boucle tant que , soit du fait de Largeur).  Du fait des tests de couleurs, il n’y entre qu’une fois.  
-Un sommet finit toujours par quitter la file car l’algorithme termine.  
-Les opérations d’enfilement/défilement sont en O(1). Le coût total de  gestion de file est en Θ(n).  
+- Tous les sommets sont coloriés en bleu exactement une fois au début  puis plus jamais : $O(n)$.
+- Un sommet finit toujours par entrer dans la file (soit du fait de la  boucle tant que , soit du fait de Largeur).  Du fait des tests de couleurs, il n’y entre qu’une fois.
+- Un sommet finit toujours par quitter la file car l’algorithme termine.
+- Les opérations d’enfilement/défilement sont en $O(1)$. Le coût total de  gestion de file est en $\Theta(n)$.  
 
 #### Gestion des listes d’adjacence
 
+Pour un graphe G = (V , E) avec $\left |E  \right | = p $ et $\left |V \right | = n $
 
-Pour un graphe G = (V , E) avec |E | = p et |V | = n  
-Une liste d’adjacence donnée n’est balayée qu’une fois et une seule  (puisque chaque sommet est ajouté dans la file puis défilé une fois et  une seule). Chaque élément de cette liste donne lieu à des opérations  de coloriage/enfilement en O(1).  
-La somme des longueurs des listes d’adjacence est en Θ(|E |) = Θ(p).  Donc le temps total consacré au balayage des listes d’adjacence est en  Θ(p).  
-Enfin la coloration initiale est en Θ(n).  
-Le total des opérations est en Θ(n + p) pour le parcours en largeur.  
+- Une liste d’adjacence donnée n’est balayée qu’une fois et une seule (puisque chaque sommet est ajouté dans la file puis défilé une fois et  une seule). Chaque élément de cette liste donne lieu à des opérations  de coloriage/enfilement en $O(1)$.
+- La somme des longueurs des listes d’adjacence est en $\Theta(\left|E \right|) = \Theta(p)$.  Donc le temps total consacré au balayage des listes d’adjacence est en  $\Theta(p)$.
+- Enfin la coloration initiale est en $\Theta(n)$.
+- Le total des opérations est en $\Theta(n + p)$ pour le parcours en largeur.  
 
 #### Propriétés du parcours en largeur d’abord
 
+Considérons un parcours en largeur depuis un sommet s :
 
-Considérons un parcours en largeur depuis un sommet s :  
-s est le premier sommet rouge. Un sommet devient rouge avant ses  sucesseurs dans l’ordre de parcours.  Un sommet rouge n’a que des sommets adjacents verts ou rouges (en  exo).  Si un sommet x est rouge alors il existe une chaîne/chemin allant de s  à x constituée uniquement de sommets rouges (en exo).  Si un sommet x est vert alors il existe une chaîne/chemin allant de s à  x constituée uniquement de sommets verts ou rouges (en exo).  A la fin du parcours tous les sommets sont soit bleus, soit rouges (et la  file des verts est vide).  
+- s est le premier sommet rouge. Un sommet devient rouge avant ses  sucesseurs dans l’ordre de parcours.
+- Un sommet rouge n’a que des sommets adjacents verts ou rouges (en  exo).  
+- Si un sommet x est rouge alors il existe une chaîne/chemin allant de s  à x constituée uniquement de sommets rouges (en exo).  
+- Si un sommet x est vert alors il existe une chaîne/chemin allant de s à  x constituée uniquement de sommets verts ou rouges (en exo).  
+- A la fin du parcours tous les sommets sont soit bleus, soit rouges (et la  file des verts est vide).  
+
 Conséquence : à la fin de l’appel de Largeur les sommets rouges sont  tous les sommets accessibles à partir de s.  
 
 #### Preuve : accessiblité = coloration en rouge
 
+!!! note "Preuve : accessiblité = coloration en rouge"
+    Posons G = (V , E) et faison un bfs depuis $s_0\in V$ . On montre qu’il y a un  chemin vert/rouge depuis $s_0$ vers tout sommet de la file, et qu’existe un  chemin totalement rouge de $s_0$ vers tout sommet rouge. 
 
-Posons G = (V , E) et faison un bfs depuis s ∈ V . On montre qu’il y a un  chemin vert/rouge depuis s vers tout sommet de la file, et qu’existe un  chemin totalement rouge de s vers tout sommet rouge.  
-Au tour 1, s sort de la file et devient rouge. Alors il y a un chemin  rouge de s à s. Et tous les voisins de s deviennent verts : donc il y a  un chemin rouge/vert vers eux.  Supposons la propriété vraie au tour k. Soit s le sommet défilé au  tour k + 1. Il faut vérifier la propriété pour le nouveau sommet rouge  et les nouveaux verts.  
-s devient rouge. Puisque s était dans la file, il y a été placé par un  sommet x qui est devenu rouge. Par HR, il y a un chemin rouge de s à  x et donc (en ajoutant l’arc (x, s)) de s à s.  Tout sommet y qui devient vert est un voisin de s. Comme il y a un  chemin rouge de s à s, il y a un chemin rouge/vert de s à y .  
+    - Au tour 1, $s_0$ sort de la file et devient rouge. Alors il y a un chemin  rouge de $s_0$ à $s_0$. Et tous les voisins de s deviennent verts : donc il y a  un chemin rouge/vert vers eux.
+    - Supposons la propriété vraie au tour k. Soit s le sommet défilé au  tour k + 1. Il faut vérifier la propriété pour le nouveau sommet rouge  et les nouveaux verts.  
 
+        - s devient rouge. Puisque s était dans la file, il y a été placé par un  sommet x qui est devenu rouge. Par HR, il y a un chemin rouge de s à  x et donc (en ajoutant l’arc (x, s)) de s à s.
+        - Tout sommet y qui devient vert est un voisin de s. Comme il y a un  chemin rouge de s à s, il y a un chemin rouge/vert de s à y .  
 
-Posons G = (V , E) et faisons un bfs depuis s ∈ V .  
-Si un sommet x est rouge, il y a un chemin (rouge) depuis s vers x  donc x est accessible.  Réciproquement. On montre que si un sommet est à une distance  k ≤ n de s, alors il est rouge à la fin du BFS.  
-Vrai pour la distance d = 0. s est accessible depuis s et il est rouge.  Cas de base OK.  Si la propriété est vraie pour tout sommet accesible à la distance k de  s, soit x à la distance k + 1 (s’il n’existe pas de sommet à la distance  k + 1, il n’en existe pas non plus à une distance supérieure et la  propriété est prouvée).  Alors le prédécesseur y de x dans un PCC de s à x est à la distance k  de s (un sous-chemin de PCC est un PCC). Par HR, il devient rouge à  un moment.  Donc si x est bleu au moment où y devient rouge, alors y le marque en  vert et x finit par devenir rouge.  Et si x est déjà marqué quand y devient rouge, alors x devient rouge.  (Tout sommet qui entre dans la file en sort et devient rouge)         
+    Posons G = (V , E) et faisons un bfs depuis $s_0 \in V$.  
 
+    - Si un sommet x est rouge, il y a un chemin (rouge) depuis s vers x  donc x est accessible.
+    - Réciproquement. On montre que si un sommet est à une distance  k ≤ n de s, alors il est rouge à la fin du BFS. 
 
-Voir cette animation  
+        - Vrai pour la distance d = 0. $s_0$ est accessible depuis s et il est rouge.  
+        Cas de base OK.
+        - Si la propriété est vraie pour tout sommet accesible à la distance k de  $s_0$, soit x à la distance k + 1 (s’il n’existe pas de sommet à la distance  k + 1, il n’en existe pas non plus à une distance supérieure et la  propriété est prouvée).
+        - Alors le prédécesseur y de x dans un PCC de $s_0$ à x est à la distance k  de $s_0$ (un sous-chemin de PCC est un PCC). Par HR, il devient rouge à  un moment.
+        - Donc si x est bleu au moment où y devient rouge, alors y le marque en  vert et x finit par devenir rouge.
+        Et si x est déjà marqué quand y devient rouge, alors x devient rouge.  (Tout sommet qui entre dans la file en sort et devient rouge)         
 
-
- Historique  
- Graphes, représentation, sous-graphes  
- Chaînes et chemins, connexité  
-Accessibilité  Connexité  
- Graphes particuliers  
-Arbres et forêts  Graphes non orientés particuliers  
- Un peu de OCAML   Parcours de graphes  Présentation  Parcours en largeur d’abord  Parcours en profondeur d’abord  Graphe acyclique  Tri topologique  Composantes fortement connexes (CFC)  
+!!! danger "jsuis pas aller plus loin"
 
 #### Présentation
 
