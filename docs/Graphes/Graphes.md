@@ -384,7 +384,7 @@ _Deux composantes connexes après suppression de $\{S_4, S_5\}$._
 
     - Vrai si n = 1. Alors p ≥ 0. Le graphe est connexe et p ≥ n − 1.  
     - Si n = 2, il faut qu’il y ait une arête entre les deux sommets pour que  le graphe soit connexe. Alors p ≥ 1 = n − 1.  
-    - Cas de base : OK. (Remarque on pourrait ajouter des boucles ça ne  changerait rien).  
+    - Cas de base : OK. (_Remarque_ : on pourrait ajouter des boucles ça ne  changerait rien).  
     - Si P(k) pour n ≥ 2 et tout k ≤ n. Soit G connexe à n + 1 sommets. Tout sommet possède au moins une arête incidente car G est connexe.  
   
         - Si G possède un sommet x de degré d(x) = 1, x n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime x et son  unique arrête adjacente, le sous-graphe G' obtenu est connexe à n  sommets. Par HR le nombre d’arêtes de G' est p' ≥ n − 1. En  remettant l’arête de x, on a au moins (n + 1) − 1 arêtes dans G.  

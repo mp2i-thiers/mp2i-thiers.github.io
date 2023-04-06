@@ -32,7 +32,7 @@ Il faut bien comprendre que même si elle ne fournit pas toujours de solution op
 
 ### Présentation
 
-Soit un ensemble C (pour "coins") de n valeurs entières de billets et pièces de monnaies $v_1 < v_2 < ··· < v_n$. Par exemple  C = {1e,2e,5e,10e,20e,100e,200e}
+Soit un ensemble C (pour "coins") de n valeurs entières de billets et pièces de monnaies $v_1 < v_2 < ··· < v_n$. Par exemple  C = {1e, 2e, 5e, 10e, 20e, 100e, 200e}
 
 Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de billets et de pièces pour rendre une somme donnée. Par exemple, la somme de 49e peut être rendue en utilisant  49 pièces de 1e, ou 2 billets de 20e, un billet de 5e et deux pièces de 2e. Donc 5 billets/pièces rendues VS 49. Ce nombre 5 est  d’ailleurs le plus petit qu’on puisse trouver pour le système de  pièces C .  
 
@@ -50,18 +50,17 @@ Il reste alors à rendre 9e. On choisit la plus grande valeur de  pièce plus pe
 ### Code
 
 ```ocaml linenums="1"
-let greedy_change (coins:int array) (v:int):
-    int array =
-        let n = Array.length coins in
-        let change = Array.make n 0 in
-        let cur = ref v and i = ref (n-1) in
-        while !cur > 0 do
-            let c = coins.(!i) in
-            if !cur < c then decr i
-            else (
-                change.(!i) <- change.(!i)+1;
-                cur :=! cur - c
-            )
+let greedy_change (coins:int array) (v:int): int array =
+    let n = Array.length coins in
+    let change = Array.make n 0 in
+    let cur = ref v and i = ref (n-1) in
+    while !cur > 0 do
+        let c = coins.(!i) in
+        if !cur < c then decr i
+        else (
+            change.(!i) <- change.(!i)+1;
+            cur := !cur - c
+        )
     done ;
     change ;;
 ```
@@ -77,7 +76,7 @@ let greedy_change (coins:int array) (v:int):
     - `!i` : valeur courante de pièce
     - `change.(!i)` : nb de pièces de la valeur courante  
     - `!cur` : somme restant à rendre.  
-    - 
+
 ### Correction du programme
 
 Un variant de boucle est `!cur + !i`. Terminaison OK.  
@@ -87,10 +86,14 @@ Le fait que $v_1 = 1$, assure que `!i≥0` et donc l’accès valide  au tableau
 
 ### Optimalité
 
-!!!definition "Proposition"  
+!!!warning ""
+    **Proposition**
+
     Si `coins` décrit le système monétaire de la zone euro, alors le  programme `greedy_change` cacule un rendu de monnaie avec le  nombre minimal d’éléments.  
 
-!!!tip "Remarque"
+!!!tip ""
+    **Remarque**
+
     Un système de pièces qui, tel celui de la zone euro, permet un rendu optimal est qualifié de canonique.  
 
 ### Preuve
