@@ -467,7 +467,7 @@ Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  
 
 #### Exemples
 
-!!!danger "Image page 51"
+<p align='center'><img src='/images/graphes7.png'/></p>
 
 #### Racine, arborescence
 
@@ -478,7 +478,7 @@ Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  
 
 #### Exemples
 
-!!!danger "Image page 53"
+<p align='center'><img src='/images/graphes8.png'/></p>
 
 ### Graphes non orientés particuliers
 
@@ -490,7 +490,7 @@ Cette section donne quelques exemples de graphes particuliers sans  qu’aucune 
 
 _Etoile_ : Un arbre dont un sommet est adjacent à tous les autres.
 
-!!!danger "Image page 56"
+<p align='center'><img src='/images/graphes9.png'/></p>
 
 _Chenille_ : arbre tel que tout sommet de degré $\geq$ 2 est adjacent à au plus deux sommets de degré $\geq$ 2.
 <p align='center'><img src='/images/1f82360efa419b92666109593eee8c4d.bmp'/></p>
@@ -509,9 +509,11 @@ _4-coloriabilité_ :  les sommets d’un graphe planaire  peuvent être colorié
 
 #### Graphe complet, tournoi
 
-!!!danger "Image page 58"
+<p align='center'><img src='/images/graphes10.png'/></p>
 
 Un graphe _complet_ est un graphe  non orienté où  tous les sommets sont deux à deux adjacents.  
+
+<p align='center'><img src='/images/graphes11.png'/></p>
 
 Un _tournoi_ est un graphe orienté  obtenu à partir d’un graphe complet  en orientant chaque arête.  
 
@@ -525,28 +527,28 @@ Les arbres (et plus généralement les forêts)  sont des graphes bipartis.
 
 #### Graphe biparti complet
 
-!!!danger "Image page 60"
-
 Un graphe est dit _biparti complet_ (ou encore est appelé une _biclique_) s’il  est biparti et contient le nombre maximal d’arêtes.  Si P est de cardinal m et $P_2$ est de cardinal n le graphe biparti complet  est noté $K_{m,n}$.  
+
+<p align='center'><img src='/images/graphes12.png'/></p>
 
 ## Un peu de OCAML
 
 ### Liste d’adjacence
 
-!!!danger "Image"
 
 ```ocaml linenums="1"
 type graphe = int list array ;;
-(* graphe orient é *)
+(* graphe orienté *)
 let g1 = [| [1; 2]; [2] ;[ 0]|];;
-(* graphe non orient é *)
+(* graphe non orienté *)
 let g2 = [ |[ 1 ; 2 ]; [ 2 ; 0 ] ; [0 ;1 ] |] ; ;
 ```
 
-Les sommets sont numérotés de 0 à |g | − 1.  
+Les sommets sont numérotés de 0 à |g| − 1.  
+
+<p align='center'><img src='/images/graphes13.png'/></p>
 
 Voir TD pour les exercices  
-  
 
 #### Matrice d’adjacence
 
@@ -556,7 +558,7 @@ let g = Array . make_matrix 4 4 0;;
 g .(0) .(1) < -1; g .(0) .(2) < -1; g .(1) .(3) < -1; g .(2) .(1) < -1;;
 ```
 
-!!! danger "Image page 64"
+<p align='center'><img src='/images/graphes14.png'/></p>
   
 Voir TD pour les exercices  
 
@@ -798,7 +800,7 @@ Les invariants suivants sont maintenus
 
 #### Vocabulaire
 
-!!!danger "image page 90"
+<p align='center'><img src='/images/graphes15.png'/></p>
 
 Soit Gl = (V , L) le graphe de liaison induit par le parcours en  profondeur d’un graphe G . Un arc u → v est :  
 
@@ -852,14 +854,16 @@ Si un graphe est acyclique on peut concevoir des algorithmes qui  s’arrangent 
     Un graphe contient un circuit si et seulement si lors du  parcours en profondeur l’un des successeurs du sommet en haut de la  pile verte est déjà vert.  
 
 Exemple :
-!!!danger "image page 95"
+
+<p align='center'><img src='/images/graphes16.png'/></p>
 
 $S_6$ a pour successeur $S_1$ qui est déjà vert $\Rightarrow$ un circuit.  
 
 Autre façon de dire que le graphe est acyclique : le graphe de liaison  induit par un parcours en profondeur d’un graphe sans circuit ne  génère aucun arc retour.  
 
 Exemple  
-!!!danger "image page 96"
+
+<p align='center'><img src='/images/graphes17.png'/></p>
 
 Il y a des arcs retour (en vert) $\Rightarrow$ des circuits  
 
@@ -898,7 +902,9 @@ On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc 
 !!!quote "Définition: Tri topologique"
     On appelle `tri topologique` d'un graphe orienté G = (S, A) toute injection $r: S\rightarrow \mathbb{N}$ telle que $\forall x \rightarrow y \in A: r(x) \le r(y)$. On appelle r(x) le _rang_ du sommet x.
 
-!!!danger "Image exemple"
+<p align='center'><img src='/images/graphes18.png'/></p>
+
+    Oui, c'est trop chiant à recopier
 
 #### Tri topologique et acyclicité
 
@@ -960,4 +966,4 @@ On verra en MPI une meilleure méthode : l'algorithme de Kosaraju-Sharir.
 
 Idée : Le graphe des cfc est orienté et acyclique et on le parcourt dans l'ordre inverse d'un de ses tris topologiques.
 
-!!!danger "images page 110"
+<p align='center'><img src='/images/graphes19.png'/></p>
