@@ -24,7 +24,9 @@ Trouver une promenade à partir d’un point donné qui fasse revenir à  ce poi
 
 _Figure – Abstraction du problème des 7 ponts de Königsberg_
 
-!!! definition "Théorème"
+!!! definition ""
+    **Théroème**
+
     Un graphe connexe admet un circuit eulérien _si et  seulement si_ tous ses sommets sont de degré pair.  Ici un des sommets a 3 voisins : pas de circuit eulérien.  
 
 ## Graphes, représentation, sous-graphes
@@ -37,11 +39,11 @@ Un graphe est un ensemble de points dans lequel on fait apparaître  une ou plus
 
 _Figure – Un graphe orienté avec des arcs - un graphe non orienté et ses arêtes._
 
-**Exemple : plan d’une ville.**  
-<p align='center'><img src='/images/dc5ea5b5757bf7df068e7878c83ff666.bmp'/></p>
+!!!example ""
+    **Exemple : plan d’une ville.**  
+    <p align='center'><img src='/images/dc5ea5b5757bf7df068e7878c83ff666.bmp'/></p>
 
-_Figure – Un multigraphe non orienté : ses arêtes multiples en bleu et ses
-boucles en rouge_x
+    Figure – Un multigraphe non orienté : ses arêtes multiples en bleu et ses boucles en rouge
 
 En anglais, sommet se dit _vertice_, arête se dit _undirected edge_ et arc  se dit _directed edge_.  
 Les arêtes multiples ne sont pas au programme.  
@@ -241,9 +243,10 @@ l’ensemble des sommets.**
 **On enlève des sommets, toutes les arêtes correspondant à ces
 sommets et uniquement celles-là.**
 
-#### Exemples
+!!!example ""
+    **Exemples**
 
-<p align='center'><img src='/images/graphes4.png'/></p>
+    <p align='center'><img src='/images/graphes4.png'/></p>
 
 ## Chaînes et chemins, connexité
 
@@ -310,33 +313,34 @@ Elle vérifie $\tilde{x} ⊂ \dot{x}$. **L’inclusion réciproque est en géné
 
 On dit qu’un graphe est fortement connexe si et seulement si il est  constitué d’une seule composante fortement connexe, c’est à dire si  pour tout couple de sommet (x, y) il existe un chemin allant de x à y  et réciproquement.  
 
-#### Connexité : exemple
+!!!example ""
+    **Connexité : exemple**
 
-``` mermaid
-graph TB; 
-    A((S1))-->B((S8))
-    D((S7))-->B
-    A-->D
-    J((S10))-->C((S2))
-    C-->A
-    C-->D
-    J-->B
-    E((S3))-->C
-    E-->H((S5))
-    H-->G((S4))
-    G-->E
-    F((S6))-->C
-    D-->F
-    H-->F
-```
+    ``` mermaid
+    graph TB; 
+        A((S1))-->B((S8))
+        D((S7))-->B
+        A-->D
+        J((S10))-->C((S2))
+        C-->A
+        C-->D
+        J-->B
+        E((S3))-->C
+        E-->H((S5))
+        H-->G((S4))
+        G-->E
+        F((S6))-->C
+        D-->F
+        H-->F
+    ```
 
-_Graphe connexe (quand on ne considère pas le sens des ﬂèches)._
+    _Graphe connexe (quand on ne considère pas le sens des ﬂèches)._
 
-$S8$ est accessible depuis tous les sommets.  $\tilde{S8} = \{S8\}$. Donc le graphe n’est pas fortement connexe, sinon $\tilde{S8}$  contiendrait tous les sommets.  
+    $S8$ est accessible depuis tous les sommets.  $\tilde{S8} = \{S8\}$. Donc le graphe n’est pas fortement connexe, sinon $\tilde{S8}$  contiendrait tous les sommets.  
 
-- Sommets accessibles(qui partent de S2) depuis $S2 : \{S1, S2, S6, S7, S8\}$.  
-- Sommets coaccessibles(qui viennent vers S2) depuis $S2 : \{S1, S2, S3, S4, S5, S6, S7, S10\}$.  
-- $\tilde{S2} = \{S1, S2, S6, S7\}$ est l’intersection des accessibles et des  coaccessibles.  
+    - Sommets accessibles(qui partent de S2) depuis $S2 : \{S1, S2, S6, S7, S8\}$.  
+    - Sommets coaccessibles(qui viennent vers S2) depuis $S2 : \{S1, S2, S3, S4, S5, S6, S7, S10\}$.  
+    - $\tilde{S2} = \{S1, S2, S6, S7\}$ est l’intersection des accessibles et des  coaccessibles.  
 
 #### Isthme
 
@@ -465,9 +469,10 @@ Une arborescence n’est pas encore un des objets que nous manipulons  sous le n
 
 Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  d’arbres non enracinés (qui en sont les composantes connexes).  
 
-#### Exemples
+!!!example ""
+    **Exemple**
 
-<p align='center'><img src='/images/graphes7.png'/></p>
+    <p align='center'><img src='/images/graphes7.png'/></p>
 
 #### Racine, arborescence
 
@@ -476,9 +481,10 @@ Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  
     
     On dit qu’un graphe orienté G = (V , E) est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de $x_0$ à tous les  autres sommets.  
 
-#### Exemples
+!!!example ""
+    **Exemple**
 
-<p align='center'><img src='/images/graphes8.png'/></p>
+    <p align='center'><img src='/images/graphes8.png'/></p>
 
 ### Graphes non orientés particuliers
 
@@ -519,7 +525,7 @@ Un _tournoi_ est un graphe orienté  obtenu à partir d’un graphe complet  en 
 
 #### Graphe biparti
 
-Un graphe _biparti_ G = (V , E)  est un graphe (orienté ou non orienté)  admettant une partition $\{P_1, P_2\}$  de ses sommets telle que  {x, y } ∈ E => $(x, y) ∈ P_1 × P_2 ∪ P_2 × P_1$  
+Un graphe _biparti_ G = (V , E)  est un graphe (orienté ou non orienté)  admettant une partition $\{P_1, P_2\}$  de ses sommets telle que  $\{x, y\} \in E \Rightarrow (x, y) ∈ P_1 × P_2 ∪ P_2 × P_1$  
 
 Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
 
@@ -534,7 +540,6 @@ Un graphe est dit _biparti complet_ (ou encore est appelé une _biclique_) s’i
 ## Un peu de OCAML
 
 ### Liste d’adjacence
-
 
 ```ocaml linenums="1"
 type graphe = int list array ;;
@@ -671,6 +676,14 @@ Largeur_totale(G, F)
 
 Variant de boucle tant que : nombre de sommets bleus + nombre de  sommets verts. L’algorithme termine.  
 
+Animation du parcours en largeur d'abord :
+<p align="center"><img src="/images/bfs_anim.gif"></p>
+
+A la fin on obtient :
+<p align="center"><img src="/images/graphes20.png"></p>
+Avec en rouge le graphe de liaison induit.
+Deux arborescences de racines respectives $S_1$ et $S_5$.
+
 #### Coût des opérations de file
 
 Pour un graphe G = (V , E) avec $|E| = p$ et $|V| = n$  
@@ -723,8 +736,6 @@ Conséquence : à la fin de l’appel de Largeur les sommets rouges sont  tous l
     - Alors le prédécesseur y de x dans un PCC de $s_0$ à x est à la distance k  de $s_0$ (un sous-chemin de PCC est un PCC). Par HR, il devient rouge à  un moment.
     - Donc si x est bleu au moment où y devient rouge, alors y le marque en  vert et x finit par devenir rouge.
     Et si x est déjà marqué quand y devient rouge, alors x devient rouge.  (Tout sommet qui entre dans la file en sort et devient rouge)         
-
-!!!danger "Animation"
 
 ### Parcours en profondeur d'abord
 
@@ -796,7 +807,11 @@ Les invariants suivants sont maintenus
 - Lorsqu’on colorie un sommet x en vert, tous les sommets bleus  accessibles à partir de x seront coloriés en rouges avant que x ne le  soit.  
 - A la fin du parcours, l’ensemble des sommets rouges est l’ensemble  des sommets accessibles à partir de s qui étaient bleus au moment  l’entrée de s dans la pile.  
 
-!!!danger "animation"  
+Animation du parcours en largeur d'abord :
+<p align="center"><img src="/images/dfs_anim.gif"></p>
+
+A la fin on obtient :
+<p align="center"><img src="/images/graphes21.png"></p>
 
 #### Vocabulaire
 
@@ -853,21 +868,22 @@ Si un graphe est acyclique on peut concevoir des algorithmes qui  s’arrangent 
 
     Un graphe contient un circuit si et seulement si lors du  parcours en profondeur l’un des successeurs du sommet en haut de la  pile verte est déjà vert.  
 
-Exemple :
+!!!example ""
+    **Exemple**
 
-<p align='center'><img src='/images/graphes16.png'/></p>
+    <p align='center'><img src='/images/graphes16.png'/></p>
 
-$S_6$ a pour successeur $S_1$ qui est déjà vert $\Rightarrow$ un circuit.  
+    $S_6$ a pour successeur $S_1$ qui est déjà vert $\Rightarrow$ un circuit.  
 
-Autre façon de dire que le graphe est acyclique : le graphe de liaison  induit par un parcours en profondeur d’un graphe sans circuit ne  génère aucun arc retour.  
+    Autre façon de dire que le graphe est acyclique : le graphe de liaison  induit par un parcours en profondeur d’un graphe sans circuit ne  génère aucun arc retour.  
 
-Exemple  
+    ---
 
-<p align='center'><img src='/images/graphes17.png'/></p>
+    <p align='center'><img src='/images/graphes17.png'/></p>
 
-Il y a des arcs retour (en vert) $\Rightarrow$ des circuits  
+    Il y a des arcs retour (en vert) $\Rightarrow$ des circuits  
 
-L’algorithme pour la détection de circuit dans un graphe est une variante  du parcours en profondeur : quand on examine les arcs issus du sommet de  la pile, il suﬃt de regarder si un arc ne pointe pas vers un nœud vert. On  s’arête dès que c’est le cas.  
+    L’algorithme pour la détection de circuit dans un graphe est une variante  du parcours en profondeur : quand on examine les arcs issus du sommet de  la pile, il suﬃt de regarder si un arc ne pointe pas vers un nœud vert. On  s’arête dès que c’est le cas.  
 
 !!!note ""
     **Preuve de la méthode**
@@ -904,8 +920,6 @@ On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc 
 
 <p align='center'><img src='/images/graphes18.png'/></p>
 
-    Oui, c'est trop chiant à recopier
-
 #### Tri topologique et acyclicité
 
 !!!warning ""
@@ -915,7 +929,7 @@ On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc 
 
 !!!note ""
     **Preuve**
-    
+
     ##### Graphe acyclique vers tri topologique
     
     Pour trier topologiquement un graphe acyclique orienté contenant n sommets, on effectue un parcours en profondeur et on numérote de manière décroissante les sommets à partir de n au fur et à mesure qu’ils deviennent rouges : r(s) = n si s est le premier rouge, r(s) = 1 si s est le dernier. On montre que la méthode est correcte.
