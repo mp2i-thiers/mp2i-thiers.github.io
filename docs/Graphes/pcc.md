@@ -1,13 +1,8 @@
 # Plus cours chemin
 
-!!! danger
-    Ce cours n'a pas été entièrement reverifié après le passage du programme. Pensez à supprimer ce message si vous avez reverifié ce cours
-
 !!! warning
     Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d’être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 ## Généralités
 
@@ -81,7 +76,7 @@ Lors du parcours en largeur les sommets sont explorés par distance croissante a
 
 Pour rechercher un PCC(=plus court chemin) dans un graphe, il faut s'assurer au préalable que celui-c ne possède pas de circuit de poids négatif. Cela ne veut pas dire que le graphe ne peut pas contenir d'arcs de poids négatif.
 
-```mermaid  
+```mermaid
 graph LR
 A(A) -- -1 --> B(B)
 C(C) -- 1 --> A
@@ -110,465 +105,430 @@ Pour les PCC, on l’utilise en calculant d’abord les PCC passant par un
 sous-ensemble de sommets avant de s’attaquer aux PCC passant par
 un ensemble de sommets plus gros.
 
-!!!danger "Pas encore fini de corriger la suite"
-
 ## Algorithme de Floyd-Warshall
 
 ### Présentation
 
-L'lagorithme de Floyd-Warshall (parfois appelé algorithme de Roy)
+L'lagorithme de Floyd-Warshall (parfois appelé algorithme de Roy-Floyd-Warshall car décrit par Bernard Roy en 1959) est un algorithme pour déterminer les distances des plus courts chemins entre toutes les paires de sommets dans un graphe orienté et pondéré, en temps cubique en le nombre de sommets.
 
-i,j .  
-On note W k la matrice des W k  Pour k = 0, W  est la matrice d’adjacence par poids.  Trouvons une relation de récurrence. On considère un chemin C entre  i et j de poids minimal dont les sommets intermédiaires sont dans  {1, 2, 3, . . ., k}. De deux choses l’une :  soit C n’emprunte pas le sommet k ;  soit C emprunte exactement une fois le sommet k (car les circuits sont  de poids positifs ou nuls) et C est donc la concaténation de deux  chemins, Ci,k entre i et k et Ck,j entre k et j respectivement, dont les  sommets intermédiaires sont dans {1, 2, 3, . . ., k − 1}. Par principe de  sous-optimalité, si C est optimal, Ci,k, Ck,j aussi.  
-i,j = min(W k−  
-Cela nous donne la relation de récurrence , W k−  W k  {1, 2, 3, 4, . . ., n}. Ainsi on résoud les sous-problèmes par valeur de k  croissante.  
-k,j ), pour tous i, j et k dans  
-i,k + W k−  
-i,j  
+Il prend en entrée un graphe orienté et valué, décrit par une matrice d'adjacence donnant le poids d'un arc lorsqu'il existe et la valeur $+\infty$ sinon. Le graphe ne doit pas posséder de circuit de poids strictement négatif.
 
-### Exemple
+C'est un exemple de programmation dynamique.
 
-```linenums="1"
-34 2213
+Notons $\{1, 2, \dots, n\}$ l'ensemble des sommets du graphe.
+On note aussi $W_{ij}^k$ la valeur de l'arc allant de $i$ à $j$ n'empruntant que des sommets intermédiaires dans $\{1, 2, \dots, k\}$ s'il en existe un, et $+\infty$ sinon.
+
+On note $W^k$ la matrice des $W_{ij}^k$
+
+Pour k=0, $W^0$ est la matrice d’adjacence par poids.
+Trouvons une relation de récurrence. On considère un chemin $C$ entre $i$ et $j$ de poids minimal dont les sommets intermédiaires sont dans $\{1, 2, \dots, k\}$. De deux choses l’une :
+
+- soit $C$ n’emprunte pas le sommet $k$ ; 
+- soit $C$ emprunte exactement une fois le sommet $k$ (car les circuits sont de poids positifs ou nuls) et $C$ est donc la concaténation de deux chemins, $C_{i,k} entre $i$ et $k$ et $C_{k,j}$ entre $k$ et $j$ respectivement, dont les sommets intermédiaires sont dans $\{1, 2, \dots, k-1\}$. Par principe de sous-optimalité, si $C$ est optimal, $C_{i,k}$, $C_{k,j}$ aussi.
+
+Cela nous donne la relation de récurrence $\color{red}{W_{i,j}^k = \min(W_{i,j}^{k-1}, W_{i,k}^{k-1} + W_{k,j}^{k-1})}$, pour tous $i, j$ et $k$ dans $\{1, 2, \dots, n\}$. Ainsi on résoud les sous-problèmes par valeur de $k$ croissante.
+
+### Pseudo-code
+
+#### 1er
+
+Inconvénients : on crée une matrice à chaque itération. Coûteux en mémoire.
+
+```ocaml linenums="1"
+fonction FloydWarshall(G)
+    entree: un graphe orienté pondéré G
+    sortie: la matrice des plus courts chemins W^n
+    W⁰ <- matrice n*n d'adjacence pondérée
+    pour k allant de 1 à n faire
+        créer une matrice W^k
+        pour i allant de 1 à n faire
+            pour j allant de 1 à n faire
+                W^k_{i,j} <- min(W^{k-1}_{i,j}, W^{k-1}_{i,k} + W^{k-1}{k,j})
+        
+    renvoyer W^n
 ```
 
-  
-      
-2  
-  
-−  
-1  
-  
-4  
-−  
-(cid:47) 3  
-  
-  
-      
-Sommets interm. dans {1}  0 ∞  ∞  −2  0 min(, − ) ∞  4  2  0  ∞ ∞  ∞  0  ∞ −1  13  21 34  42  
-Chemins :  
-      
-      
-  
-  
+#### 2nd
 
+Avantage : il n'y a plus qu'une matrice modifiée à chaque itération
 
-```linenums="1"
-1 41 2421 4213
+Complexité temporelle en $\Theta(n^3)$ (triple boucle toujours parcourue)
+
+Complexité en mémoire de l'ordre du nombre de coefficients, donc $\Theta(n^2)$
+
+```ocaml linenums="1"
+fonction FloydWarshall(G)
+    entree: un graphe orienté pondéré G
+    sortie: la matrice des plus courts chemins W^n
+    W <- matrice n*n d'adjacence pondérée
+    pour k allant de 1 à n faire
+        pour i allant de 1 à n faire
+            pour j allant de 1 à n faire
+                W_{i,j} <- min(W_{i,j}, W_{i,k} + W_{k,j})
+        
+    renvoyer W
 ```
 
-  
-      
-2  
-  
-−  
-1  
-  
-4  
-−  
-(cid:47) 3  
-  
-Sommets interm. dans {1; 2}  
-0  4  ∞  
-−2  2  0  
-∞  0  ∞  min(+∞, −+ ) −1 min(+∞, −+ )  13  21 213  34  42 
-Chemins :  
-      
-      
-  
-  
-  
-      
-∞  ∞  2  0  
+???example "Exemple"
+    Graphe :
+    ```mermaid
+    graph LR
+    A(1) -- -2 --> C(3)
+    B(2) -- 4 --> A
+    B -- 3 --> C
+    C -- 2 --> D
+    D -- -1 --> B
+    ```
 
+    Initialisation :
 
-```linenums="1"
-2 22 2134
-2134
-```
+    $$\begin{pmatrix}
+    0 & +\infty & -2 & +\infty \\
+    4 & 0 & 3 & +\infty \\
+    +\infty & +\infty & 0 & 2 \\
+    +\infty & -1 & +\infty & 0
+    \end{pmatrix}$$
 
-  
-      
-2  
-  
-−  
-1  
-  
-4  
-−  
-(cid:47) 3  
-  
-Sommets interm. dans {1; 2; 3}  0 ∞ −2 min(∞, −+ )  min(∞, + )  2  0  4  2  ∞ ∞ 0  1  0  3 −1    
-  
-  
-      
-Chemins :  
-13 21 213 34  42 421  
-4213  
-      
-      
+    Chemins :
+    
+    $$\begin{pmatrix}
+    13 & \\
+    21 & 23\\
+    34 & \\
+    42 & \\
+    \end{pmatrix}$$
 
+    Pas de circuit de poids négatif. On ne fera pas mieux que 0 pour aller de x à x.
 
-```linenums="1"
-0 13 21 2134 1342
-2134
-342 3421
-```
+    **Sommets intermédiaires dans $\{1\}$:**
 
-  
-      
-2  
-  
-−  
-1  
-  
-4  
-−  
-(cid:47) 3  
-  
-Sommets interm. dans {1; 2; 3; 4}  
-0  4  
-3  
-  
-0  
-min(∞, − ) −2 0  4      2    0  
-−1  
-min(∞, + ) min(∞, −+ )  
-Chemins :  
-      
-  
-13 21 213 34 4213  42 421  
-2  0  1    
-      
-k = 4. On s’arrête là.  
+    $$\begin{pmatrix}
+    0 & +\infty & -2 & +\infty \\
+    4 & 0 & min(\textbf{3}, \textbf{4}, \textbf{-2}) & +\infty \\
+    +\infty & +\infty & 0 & 2 \\
+    +\infty & -1 & +\infty & 0
+    \end{pmatrix}$$
 
+    Chemins :
 
-Correction de Floyd-Warshall lorsque G ne contient pas de  cycle de poids strictement négatif  
-Invariant : W k  passant que par des sommets intermédiaires de la liste v, v, . . ., vk .  
-i,j est égal au poids d’un chemin minimal reliant vi à vj et ne  
-Cas de base : Vrai si k = 0 car W k  qui relie vi à vj sans passer par aucun sommet intermédiaire. OK  
-i,j est le poids du chemin minimal  
+    $$\begin{pmatrix}
+    13 & \\
+    21 & \textbf{213}\\
+    34 & \\
+    42 & \\
+    \end{pmatrix}$$
 
+    **Sommets intermédiaires dans $\{1; 2\}$:**
 
-Correction de Floyd-Warshall lorsque G ne contient pas de  cycle de poids strictement négatif  
-Invariant : W k  passant que par des sommets intermédiaires de la liste v, v, . . ., vk .  
-i,j est égal au poids d’un chemin minimal reliant vi à vj et ne  
-Si k < n, on suppose l’invariant réalisé et on considère C = vi (cid:32) vj  un PCC ne passant que par les sommets intermédiaire v, . . ., vk.  Si C ne passe pas par vk, alors, par HR, son poids est W k  i,j = W k  i,j .  S’il passe par vk, alors il n’y passe qu’une fois (pas de circuit de  poids négatif). Il se décompose en C = vi (cid:32) vk et C = vk (cid:32) vj  qui sont des chemins ne passant que par des sommets dans v, . . ., vk .  Par principe d’optimalité, ces chemins sont les meilleurs ne passant que  par v, . . ., vk, vk. Donc, par HR, leurs poids sont W k  k,j .  i,k + W k  Et le poids de C est W k  i,k + W k  i,j, W k  Finalement, min(W k  chemin reliant vi à vj et ne passant que par les sommets intermédiaire  v, . . ., vk.  
-k,j ) est le poids minimal d’un  
-i,k et W k  
-k,j .  
-Si k = n, W contient les longueurs de tous les PCC.  
+    $$\begin{pmatrix}
+    0 & +\infty & -2 & +\infty \\
+    4 & 0 & 2 & +\infty \\
+    +\infty & +\infty & 0 & 2 \\
+    min(+\infty, \textbf{-1+4}) & -1 & min(+\infty, \textbf{-1+2}) & 0
+    \end{pmatrix}$$
 
+    Chemins :
 
- Généralités  
- Algorithme de Floyd-Warshall  
- Algorithme de Dijkstra  
+    $$\begin{pmatrix}
+    13 & \\
+    21 & 213\\
+    34 & \\
+    42 & \textbf{421} & \textbf{4213} \\
+    \end{pmatrix}$$
+
+    **Sommets intermédiaires dans $\{1; 2; 3\}$:**
+
+    $$\begin{pmatrix}
+    0 & +\infty & -2 & min(+\infty, \textbf{-2+2}) \\
+    4 & 0 & 2 & min(+\infty, \textbf{2+2}) \\
+    +\infty & +\infty & 0 & 2 \\
+    3 & -1 & 1 & 0\\
+    \end{pmatrix}$$
+
+    Chemins : 
+
+    $$\begin{pmatrix}
+    13 & \textbf{134} & \\
+    21 & 213 & \textbf{2134}\\
+    34 & & \\
+    42 & 421 & 4213 \\
+    \end{pmatrix}$$
+
+    **Sommets intermédiaires dans $\{1; 2; 3; 4\}$:**
+
+    $$\begin{pmatrix}
+    0 & min(+\infty, \textbf{0-1}) & -2 & 0 \\
+    4 & 0 & 2 & 4 \\
+    min(+\infty, \textbf{3+2}) & min(\infty, \textbf{-1+2}) & 0 & 2 \\
+    3 & -1 & 1 & 0\\
+    \end{pmatrix}$$
+
+    Chemins :
+    
+    $$\begin{pmatrix}
+    13 & \textbf{134} & \textbf{1342}\\
+    21 & 213 & \textbf{2134}\\
+    34 & \textbf{342} & \textbf{3421} \\
+    42 & 421 & 4213 \\
+    \end{pmatrix}$$
+
+    k=4 : On s'arrête là
+
+### Floyd-Warshall : Fermeture transitive
+
+Le problème de la _fermeture transitive_ dans un graphe non pondéré $G =(V,E)$ consiste à déterminer si deux sommets $a$ et $b$ peuvent être reliés par un chemin allant de $a$ à $b$.
+
+Pour cela, on utilise la _matrice d'adjacence bouléenne $W$_ dans laquelle $W_{i,j}$ vaut vrai si il existe un chemin allant de $i$ à $j$ et faux sinon.
+
+La relation de récurrence devient :
+
+$$W_{i,j}^k \leftarrow W_{i,j}^{k-1} \lor (W_{i,k}^{k-1} \land W_{k,j}^{k-1})$$
+
+On ne cherche pas la longueur d'un chemin mais seulement s'il en existe un.
+
+!!!note ""
+    **Correction de Floyd-Warshall lorsque G ne contient pas de cycle de poids strictement négatif**
+
+    Invariant : $W^k_{i,j}$ est égal au poids d'un chemin minimal reliant $v_i$ à $v_j$ et ne passant que par des sommets intermédiaires de la liste $v_1, \dots, v_k$. 
+
+    Cas de base : Vrai si k = 0 car $W^k_{i,j}$ est le poids du chemin minimal qui relie $v_i$ à $v_j$ sans passer par aucun sommet intermédiaire. OK 
+
+    Si $k < n$, on suppose l’invariant réalisé et on considère $C = v_i \rightsquigarrow v_j$  un PCC ne passant que par les sommets intermédiaire $v_1, \dots, v_{k+1}$. 
+    
+    - Si $C$ ne passe pas par $v_{k+1}$, alors, par HR, son poids est $W^{k+1}_{i,j} = W^k_{i,j}$. 
+    - S’il passe par $v_{k+1}$, alors il n’y passe qu’une fois (pas de circuit de poids négatif). Il se décompose en $C_1 = v_i \rightsquigarrow v_{k+1}$ et $C_2 = v_{k+1} \rightsquigarrow v_j$ qui sont des chemins ne passant que par des sommets dans $v_1, \dots, v_{k}$ . Par principe d’optimalité, ces chemins sont les meilleurs ne passant que par $v_1, \dots, v_{k}, v_{k+1}$. Donc, par HR, leurs poids sont $W^k_{i,k+1}$ et $W^k_{k+1,j}$. Le poids de $C$ est donc $W^k_{i,k+1} + W^k_{k+1,j}$.
+    - Finalement, $min(w^k_{i,j}, W^k_{i,k+1} + W^k_{j+1,j})$ est le poids minimal d'un chemin reliant $v_i$ à $v_j$ et ne passant que par les sommets intermédiaire $v_1, \dots, v_{k+1}$. 
+
+    Si $k=n$, $W$ contient les longueurs de tous les PCC. 
+
+## Algorithme de Dijkstra
+
+### Présentation
+
+Calcule, dans un graphe orienté pondéré par des réels positifs, les plus courts chemins à partir d'une source unique en direction de tous les autres sommets.
+
+Dû à l'informaticien néerlandais Edsger Dijkstra (par ailleurs prix Turing), publié en 1959.
+
+Comme les arcs sont de poids positifs, on peut supprimer les boucles : passer par une boucle ne raccourcira jamais un chemin. Dans la suite, nos graphes sont sans boucle.
 
 ### Principe
 
+$G$ a pour ensemble de sommets $[\![ 1, n ]\!]$
 
-```linenums="1"
-t a n t que f a i r e
-p o u r
-s i f a i r e
-f i n s i
-s i f i n s i
-f i n f a i r e
-f i n f a i r e
+On cherche les PCC depuis la _source_ (ou _entrée_) $e$ vers tous les autres sommets.
+
+Principe :
+
+- A chaque tour, on choisit parmi tous les sommets verts celui dont la distance à l'enrée est la plus petite(le plus court chemin). Ce sommet devient rouge.
+- Tout voisin bleu du sommet choisi est ajouté à l'ensemble des sommets verts (en ce sens c'est un parcours en largeur). Les informations concernant les distances à la source des voisins du sommet qui vient de devenir rouge sont mises à jour.
+
+C'est un algorithme glouton dont le résultat est optimal. Nous avons vu qu'il existe des algos gloutons non optimaux(par exemple pour la coloration).
+
+L'ensemble des sommets verts est noté $F$ car il est souvent implémenté avec un file de priorité. Graphe $G = (S,A)$
+
+```ocaml linenums="1"
+F := {e} /*sommets en cours de traitement (=verts)*/
+E := ∅ /*sommets traités = sommets rouges*/
+D := tableau des distances minimales (d_e = 0, k /= e, d_k = +∞)
+tant que F /= ∅ faire
+    choisir k dans F avec d_k minimal
+    F := F \ {k}
+    E := E ∪ {k} /*k devient rouge*/
+    pour tout voisin v de k non rouge faire
+        si v pas dans F /*si v est bleu*/
+            F := F ∪ {v} /*v devient vert*/
+        fin si
+        si d_k + w(k->v) < d_v
+            /*passer par k pour atteindre v est plus rentable*/
+            d_v := d_k + w(k->v) /*maj tab. des distances*/
+        fin si
+    fin faire
+fin faire
 ```
 
-L’ensemble des sommets verts est noté F car il est souvent implémenté  avec une file de priorité. Graphe G = (S, A).  
-F {e} ∗                          ∗  
-   E ∅ ∗    D                                 
-F (cid:54) ∅ 
-          
-      ∗  
- de    k (cid:54) e ⇒ dk  ∞   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-       k ∈ F     dk         F F \ {k}  E E ∪ {k} ∗ k         
-          v  k        v /∈ F  ∗   v        ∗  
-     ∗  
+### Variant
 
-F F ∪ {v } ∗v            ∗  
-dk  w k → v  < dv   
-∗          k              v         dv dk  w k → v  ∗   
-                ∗  
-        ∗  
+Pour un graphe $G (S, A)$, on note $B=S \setminus (F \cup E)$ l'ensemble des sommets bleus.
 
+- Variant : $|F| + |B|$ (cardinal de l'ensemble de sommets verts ou bleus). Quantité entière positive.
+- C'est une quantité décroissante strictement à la fin de chaque tour de boucle car :
 
+    - on retire toujours un sommet de $F$ (si ce n'est pas possible, $F=\emptyset$ et l'algorithme s'arrête).
+    - tout sommet ajouté à $F$ est retiré de $B$.
+    - ainsi, l'ensemble ds sommets verts ou bleus comporte un élément de moins à la fin d'un tour par rapport au tour précédent.
 
+!!!example ""
+    **Exemple**
 
-### Exemple
+    On gère en plus un tableau $P$ (prédécesseur) qui garde en mémoire la dernière étape sur le chemin de la source au sommet considéré.
 
+    <p align="center"><img src="/images/pcc_anim.gif"></p>
 
-```linenums="1"
-125
-11
+    $$
+    \begin{array}{c|c|c|c}
+    \text{F} & \text{E} & \text{T} & \text{P} \\
+    \hline
+    \{1\} & \emptyset & [\![0; \infty; \infty; \infty ; \infty ]\!] & [\![ 1,-1,-1,-1,-1]\!] \\
+    \{2; 5\} & \{1\} & [\![0; 12; \infty; \infty ; 5 ]\!] & [\![ 1,1,-1,-1,1]\!] \\
+    \{2;3;4\} & \{1;5\} & [\![0; 6; 9; 7 ; 5 ]\!] & [\![ 1,5,5,5,1]\!] \\
+    \{3;4\} & \{1;5;2\} & [\![0; 6; 8; 7 ; 5 ]\!] & [\![ 1,5,2,5,1]\!] \\
+    \{3\} & \{1;5;2;4\} & [\![0; 6; 8; 7 ; 5 ]\!] & [\![ 1,5,2,5,1]\!] \\
+    \emptyset & \{1;5;2;4;3\} & [\![0; 6; 8; 7 ; 5 ]\!] & [\![ 1,5,2,5,1]\!] \\
+    \end{array}
+    $$
+
+    PCC pour aller de 1 à 3 :
+    
+    - On a $T = [\![0; 6; 8; 7 ; 5 ]\!]$ et $P = [\![ 1,5,2,5,1]\!]$.
+    - prédecesseur de 3 : $P[3] = 2$.
+    - prédecesseur de 2 : $P[2] = 5$.
+    - prédecesseur de 5 : $P[5] = 1$.
+    - Donc 1523 avec un coût de 8.
+
+### Correction
+
+Pour un graphe $G$ d'ensemble de sommets $S$, notons $D$ le tableau des distances et $\delta(e,u)$ la longueur d'un PCC de $e$ à $u$, $w(a, b)$ le poids de l'arc $a \rightarrow b$.
+
+!!!definition ""
+    **Théorème**
+
+    A la fin de l'lgorithme de Dijkstra, on a $d_u = \delta(e, u)$ pour tout sommet $u \in S$.
+
+!!!note ""
+    **Notations**
+
+    On note $F^k; E^k, d_u^k$ les valeurs de $F, E, d_u$ à la fin de l'itération $k$.
+
+    $F^k$ est l'ensemble des sommets verts à la fin de l'itération $k$, $E^k$ l'ensemble des sommets rouges et $S \setminus (F^k \cup E^k)$ l'ensemble des sommets bleus.
+
+    Un sommmet $u$ est bleu à la fin de l'étape $k$ si et seulement si $d_u = +\infty$ si et seulement si $u$ n'est voisin d'aucun sommet rouge à la fin de l'étape $k$.
+
+    Pour tout sommet $u \in S$, $d_u < +\infty$ documente un chemin de $e$ à u$ n'empruntant que des sommets verts ou rouges.
+
+!!!tip ""
+    **Rappel**
+
+    A la fin du parcours, les sommets accessibles depuis $e$ sont dans $E$
+
+Invariant de boucle :
+
+1. Sommets rouges : $\forall u \in E^k, d_u^k = \delta(e, u)$ **(point 1)**
+2. Sommet $v$ vert ou bleu différents de $e$ : $d_v^k = min(\{d_u^k + w(u, v) | u \in E^k\})$ ce qui revient par le point 1 à $d_v^k = min(\{\delta(e, u) + w(u, v) | u \in E^k\})$ **(point 2)**
+
+!!!tip ""
+    **Remarque**
+
+    La distance $d^k_v$ est donc le poids minimal d'un chemin vert-rouge de $e$ à $v$ dont l'avant dernier sommet est rouge.
+
+    Pour un sommet bleu $v$ à l'étape k, les $w(u, v)$ pour $u$ rouge étant infinis(car $v$ n'est pas voisin d'un rouge), on retrouve que $d_v^k = +\infty$.
+
+**Cas de base :**
+
+- Au tour 0 (avant la boucle) :
+    - L'ensemble des sommets rouge est vide, donc pour un sommet $v \neq e$ le minimum des sommes $\delta(u,v) + w(u,v)$ pour les u rouges est infini. Or $d_v^0 = +\infty$ : Point 2 OK.
+    - Le point 1 est vrai car il n'y a pas de sommet rouge.
+
+- A la fin du 1er tour de boucle $e$ est rouge, $d_e^1 = 0 = \delta(e, e)$ (Point 1 OK) et $d_v^1 = w(e,v)$ pour tout $v \neq e$ donc $d_v^1 = min(\{\delta(e, u) + w(e,v) | u \in E^1\})$ (Point 2 OK) puisque seul $e$ est rouge.
+
+**Hérédité (pour le point 1) :**
+
+Soit $u$ un sommet rouge à la fin de l'étape $k+1(k \geq 1)$.
+
+- On a $d_u^{k+1} = d_u^k$ (pas de changement dans le tableau des distances).
+- Comme $u$ est rouge, il est accessible, donc $d_u^{k+1}$ est fini, donc le chemin qui le document n'emprunte que des sommets verts ou rouges.
+- Si $u \notin E^{k+1}\setminus E^k$, c'est à dire si $u$ n'est pas le sommet qu'on vient de rendre rouge, alors $u in E^k$ et par HR $d_u^k = \delta(e, u)$ (Point 1 OK).
+- Si $u$ entre dans $E^{k+1}$ alors au début du passage $k+1$, $u$ est vert ($u \in F^k$) et $d_u^k \leq d_s^k$ pour tout sommet vert $s$ (car $u$ est choisi).
+    - Soit $e \rightsquigarrow u$ un PCC et $v$ son premier sommet non rouge ($u=v$ possible). Les sous chemins $e \rightsquigarrow v$ et $v \rightsquigarrow u$ sont des PCC par principe d'optimalité. Comme les poids des arcs sont positifs (condition Dijkstra), il vient que $\delta(e, u) \geq \delta(e, v)$.
+    - Le prédécesseur $r$ de $v$ dans $e \rightsquigarrow v$ est rouge et différent de $u$ donc $d_r^k = \delta(e, r)$ par HR.
+    - Comme $v$ n'est pas rouge, il vérifie le point donc 
+
+    $$
+    \begin{align}
+        d_v^k & = min(\{\delta(e,x) + w(x,v) | x \in E^k\})\text{ par HR.(2)}\\ \nonumber
+        &\underbrace{=}_{e\rightsquigarrow r \rightarrow v \text{ PCC}} \delta(e, r) + w(r, v) = \delta(e,v)\\ \nonumber
+    \end{align} \\
+    \text{Ainsi } d^k_v = \delta(e,v)
+    $$
+
+    - $\color{red}{\text{On a } \delta(e,u) \geq \delta(e,v)}$. Et $d^k_v \geq d^k_u$ car $u$ est choisi. Or, $d_u^k$ est le poids d'un chemin de $e$ à $u$ donc plus grand que $\delta(e,u)$ alors
+
+    $$
+        \delta(e,u) \geq \delta(e,v) = d^k_v \geq d^k_u \geq \delta(e,u) \text{ Point 1 OK}
+    $$
+
+**Hérédité (pour le point 2) :**
+
+Soit $v$ un sommet vert ou bleu à la fin de l'étape $k+1$ $\color{red}{\text{non voisin}}$ de l'élément $u$ qui entre dans $E^{k+1}$.
+
+- Alors $d_v^k = d^{k+1}_v$ car $d^k_u + w(u,v) = +\infty$
+- On a :
+    
+    $$
+    \begin{align}
+        D^{k+1}_v &= d^k_v& \\ \nonumber
+        &= min(\{\delta(e, x) + w(x, v) | x \in E^k\})&\\ \nonumber
+        &= min(\{\delta(x,k) + w(x, v) | x \in E^k\}\cup\{\underbrace{\delta(e,u)+w(u,v)}_{=+\infty}\}) &\\ \nonumber
+        &= min(\{\delta(e,x) + w(x, v) | x \in E^{k+1}\})\color{red}{\text{ : Point 2 OK}} \nonumber
+    \end{align}
+    $$
+
+- Le sommet $v$ est vert ou bleu à l'étape $k$ mais vert à l'étape $k+1$.
+
+    - $d_v^k = min(\{\delta(e, x) + w(x, v) | x \in E^k\})$ par HR.2
+    - $d_v^{k+1} = min(d^k_v, \underbrace{d_u^k}_{=\delta(e,u)\text{ par HR.1}} + w(u,v))$ par algo Dijkstra
+
+- On a donc encore
+
+    $$
+        d^{k+1}_v = min(\{\delta(e, x) + w(x, v) | x \in \underbrace{E^{k+1}}_{E^k\cup\{u\}}\}) \text{ Point 2 OK dans ce cas}
+    $$
+
+### Complexité pour une source e
+
+#### Force brute pour un graphe de n sommets et p arcs
+
+```ocaml linenums="1"
+F:={e}; E:=∅; D:= tableau des distances minimales;
+tant que F non vide faire
+    Choisir k dans F avec d_k minimal /*explorer D en O(n)*/
+    F:=F\{k}; E:=E∪{k}; /*MAJ en O(1) si E,F tableaux*/
+    pour tout voisin r de k non rouge faire
+        si r pas dans F faire /* cas r bleu*/
+            F:=F∪{r}; /*O(1)*/
+        si d_k + w(k->r) < d_r faire
+            d_r:=d_k + w(k->r); /*maj tableau des distances en O(1)*/
 ```
 
-  
-1  
-  
-  
-3  
-  
-  
-2  
-  
-F  {1}  {2; 5}  
-E  ∅  {1}  
-T  0; ∞; ∞; ∞; ∞  (cid:75)  (cid:74)  0; ; ∞; ∞; (cid:75)  (cid:74)  
-  
-  
-4  
-  
-(cid:47) 5  P  1; −1; −1; −1; −1  (cid:74)  (cid:75)  1; ; −1; −1; (cid:74)  
-(cid:75)  
+Au plus $n$ transferts de $F$ vers $E$ (ligne L4). Pour chacun recherche (ligne L3) du plus petit élément vert dans le tableau des distances : $O(n)$
 
+(L5 à L9) Coût des vérifications et mises à jour pour un sommet $k$ :
+$O (deg^{+} k )$. Au total, complexité en multiple de :
+$\sum_{k = 0}^{n-1} n + deg^{+} k = n^2 + p = O(n^2)$
 
-```linenums="1"
-697555```
+#### Avec file de priorité pour un graphe de n sommets et p arcs
 
-  
-1  
-  
-  
-3  
-  
-  
-2  
-  
-  
-  
-(cid:47) 5  
-4  
-  
-F  {1}  {2; 5}  {2; 3; 4}  
-E  ∅  {1}  {1; 5}  
-T  0; ∞; ∞; ∞; ∞  (cid:74)  (cid:75)  0; 12; ∞; ∞; 5  (cid:74)  (cid:75)  0; ; ; ; 5  (cid:75)  (cid:74)  
-P  1; −1; −1; −1; −1  (cid:74)  (cid:75)  1; 1; −1; −1; 1  (cid:74)  (cid:75)  1; ; ; ; 1  (cid:75)  (cid:74)  
+Puisqu’on gère un ensemble $F$ des sommets verts et un tableau $T$ des distances à la source, on peut les fusionner en une seule file de priorité d’éléments $(s ,d (e,s ))$.
 
+On implante les files de priorité comme des tas. On considère donc un tas-min (fils plus grands que père). Création par descente en $O (n)$. On gère en interne un tableau des positions dans le tas pour chercher en $O (1)$ un sommet.
 
-```linenums="1"
-82```
-
-  
-1  
-  
-  
-3  
-  
-  
-2  
-  
-  
-  
-(cid:47) 5  
-4  
-  
-F  {1}  {2; 5}  {2; 3; 4}  {3; 4}  
-E  ∅  {1}  {1; 5}  {1; 5; 2}  
-T  0; ∞; ∞; ∞; ∞  (cid:74)  (cid:75)  0; 12; ∞; ∞; 5  (cid:74)  (cid:75)  0; 6; 9; 7; 5  (cid:75)  (cid:74)  0; 6; ; 7; 5  (cid:75)  (cid:74)  
-P  1; −1; −1; −1; −1  (cid:74)  (cid:75)  1; 1; −1; −1; 1  (cid:74)  (cid:75)  1; 5; 5; 5; 1  (cid:75)  (cid:74)  1; 5; ; 5; 1  (cid:75)  (cid:74)  
-
-
-  
-1  
-  
-  
-3  
-  
-  
-2  
-  
-  
-  
-(cid:47) 5  
-4  
-  
-F  {1}  {2; 5}  {2; 3; 4}  {3; 4}  {3}  
-E  ∅  {1}  {1; 5}  {1; 5; 2}  {1; 5; 2; 4}  
-T  0; ∞; ∞; ∞; ∞  (cid:75)  (cid:74)  0; 12; ∞; ∞; 5  (cid:74)  (cid:75)  0; 6; 9; 7; 5  (cid:75)  (cid:74)  0; 6; 8; 7; 5  (cid:74)  (cid:75)  0; 6; 8; 7; 5  (cid:75)  (cid:74)  
-P  1; −1; −1; −1; −1  (cid:75)  (cid:74)  1; 1; −1; −1; 1  (cid:74)  (cid:75)  1; 5; 5; 5; 1  (cid:75)  (cid:74)  1; 5; 2; 5; 1  (cid:74)  (cid:75)  1; 5; 2; 5; 1  (cid:75)  (cid:74)  
-
-
-  
-1  
-  
-  
-3  
-  
-  
-2  
-  
-  
-  
-(cid:47) 5  
-4  
-  
-F  {1}  {2; 5}  {2; 3; 4}  {3; 4}  {3}  ∅  
-E  ∅  {1}  {1; 5}  {1; 5; 2}  {1; 5; 2; 4}  {1; 5; 2; 4; 3}  
-T  0; ∞; ∞; ∞; ∞  (cid:75)  (cid:74)  0; 12; ∞; ∞; 5  (cid:74)  (cid:75)  0; 6; 9; 7; 5  (cid:74)  (cid:75)  0; 6; f 8; 7; 5  (cid:74)  0; 6; 8; 7; 5  (cid:75)  (cid:74)  0; 6; 8; 7; 5  (cid:75)  (cid:74)  
-(cid:75)  
-P  1; −1; −1; −1; −1  (cid:75)  (cid:74)  1; 1; −1; −1; 1  (cid:74)  (cid:75)  1; 5; 5; 5; 1  (cid:75)  (cid:74)  1; 5; 2; 5; 1  (cid:74)  (cid:75)  1; 5; 2; 5; 1  (cid:75)  (cid:74)  1; 5; 2; 5; 1  (cid:75)  (cid:74)  
-
-
-  
-  
-3  
-  
-  
-  
-2  
-  
-  
-(cid:47) 5  PCC pour aller de 1 à 3 :  
-1  
-  
-4  
-  
-On a T =  
-0; 6; 8; 7; 5  (cid:75)  (cid:74)  prédecesseur de 3 : 2  
-et P =  
-.  1; 5; 2; 5; 1  (cid:75)  (cid:74)  
-prédecesseur de 2 : 5  
-prédecesseur de 5 : 1  
-donc : 1523 avec un coût de 8  
-
-
-```linenums="1"
-Sommets voisins du sommet qui devient rouge
+```ocaml linenums="1"
+E:=∅; /*sommets rouges*/
+T:= tas-min des couples (sommet, distance depuis e); /*O(n)*/
+tant que T /= ∅ :
+    retirer le sommet (k, d(e,k)) du tas T /*O(ln n)*/
+    E:=E ∪ {k};
+    pour tout voisin r de k non traité :
+        /*nb passages : deg^+ k*/
+        si d(e,k)+w(k->r) < d(e,r): /*O(1)*/
+            MAJ T avec d(e,r):=d(e,k)+w(k->r) /*O(ln n)*/
 ```
 
-Cas des sommets verts ou bleus : Hérédité Point 2  u 
-Soit v vert ou bleu à la fin de l’étape k + 1 et voisin de l’élément rouge u  entrant dans E k.  
-Le sommet v est vert ou bleu à l’étape k mais vert à l’étape k + 1.  
-  
-    
-d k  v = min  
-  
-  v = min(d k  d k  v,  
-On a donc encore  
-  
-    
-  
-E k    E k\{u}  
-δ(e, x) + w (x, v ) | x ∈  
- par HR.2.  
-d k  u    δe,u    
-+w (u, v )) par algo Dijkstra  
-d k  v = min(  
-δ(e, x) + w (x, v ) | x ∈ E k      E k ∪{u}  
-    
-  
-    )    
-Point 2 OK dans ce cas.  
+- Complexité de chaque accès/maj dans la file majoré en $O (\log n)$. La file de priorité contient au plus $n$ éléments.
+- Par passage dans la boucle `while` : choix puis suppression du sommet $k$ le plus prioritaire : $O(\log n)$. Pour ses $deg^{+} k$ voisins, au plus $deg^{+} k$ maj de clés. Donc coût pour $k$ en $O((1+deg^{+}k)\log n)$. Coût total 
 
+$$ n + \sum_{e=0}^{n-1} (deg^{+} k + 1) \log n = n + n \log n + \log n \sum_{e=0}^{n-1} deg^{+} k \leq n \log n + p \log n $$
 
-```linenums="1"
-Force brute pour un graphe de sommets et arcs
-t a n t que f a i r e
-p o u r
-f a i r e
-s i
-s i ```
-
-Complexité pour une source e  n p 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-F {e}  E ∅  D                                F (cid:54) ∅ 
-       k ∈ F     dk        ∗          D  On∗  F F \ {k}  E E ∪ {k}  ∗  O  
-  E, F         ∗  
-
-          r  k        r /∈ F  ∗    r     ∗  F F ∪ {r } ∗O∗  
-dk  w k → r  < dr   
-dr dk  w k → r  ∗   
-                O∗  
-Au plus n transferts de F vers E (ligne L4). Pour chacun recherche  (ligne L3) du plus petit élément vert dans le tableau des distances :  O(n)  (L5 à L9) Coût des vérifications et mises à jour pour un sommet k :  O(deg k). Au total, complexité en multiple de :  n−  {sum symbol}  
-n + deg k = n + p = O(n)  
-k     
-
-
-```linenums="1"
-Avec file de priorité pour un graphe de sommets et arcs
-t a n t que p o u r
-s i ```
-
-Complexité pour une source e  n p 
-Puisqu’on gère un ensemble F des sommets verts et un tableau T des  distances à la source, on peut les fusionner en une seule file de priorité  d’éléments (s, d(e, s)).  On implante les files de priorité comme des tas. On considère donc un  tas-min (fils plus grands que père). Création par descente en O(n).  On gère en interne un tableau des positions dans le tas pour chercher  en O(1) un sommet.  
- E emptyset  ∗    T     −              
-T (cid:54) ∅   
-      ∗  
-                 e   
- ∗On∗  
-   k, de, k     T ∗O n∗  
-        E E ∪ {k}  
-  
-  
-  
-  
-  
-  
-          r  k          ∗           de, k  w k → r  < de, r   ∗O∗  
-  k ∗  
-      de, r de, k  w k → r  ∗On∗  
-
-
-```linenums="1"
-Avec file de priorité pour un graphe de sommets et arcs
-t a n t que p o u r
-s i ```
-
-Complexité pour une source e  n p 
- E emptyset  ∗    T     −              
-T (cid:54) ∅   
-      ∗  
-                 e   
- ∗On∗  
-   k, de, k     T ∗O n∗  
-        E E ∪ {k}  
-  
-  
-  
-  
-  
-          r  k          de, k  w k → r  < de, r   ∗O∗  
-      de, r de, k  w k → r  ∗On∗  
-Complexité de chaque accès/maj dans la file majoré en O(ln n). La  file de priorité T est de taille au plus n.  Par passage dans boucle while : choix puis suppression du sommet k  le plus prioritaire : O(ln n). Pour ses deg k voisins, au plus deg k  maj de clés. Donc coût pour k en O((1 + deg k) ln n). Coût total  
-n−  {sum symbol}  
-(deg k + 1) ln n = n + n ln n + ln n  
-n +  
-e  
-n−  {sum symbol}  
-e  
-deg k ≤ n ln n + p ln n  
-
-
-```linenums="1"
-Avec file de priorité pour un graphe de sommets et arcs
-```
-
-Complexité pour une source e  n p 
-Complexité en O((n + p) ln n)  Si p ln n = O(n), c’est à dire si p = O( n  priorités est au moins aussi bonne qu’en force brute.  
- n ) la complexité avec file de  
-Si le graphe est creux (peu d’arêtes), p = O(n) et donc la complexité  avec file de priorité est O(n ln n).  
-Mais si le graphe est dense (par exemple complet) il y a un nombre  d’arc ou d’arêtes en p = O(n) et donc la complexité est en  O(n ln n).  Dans ce cas, l’implémentation par file de priorité n’est pas  intéressante.  
+- Complexité en $O((n + p) \log n)$
+- Si $p \log n = O(n^2)$, c'est à dire si $p = O(\frac{n^2}{\log n})$, la complexité avec file de priorités est au moins aussi bonne qu'en force brute.
+- Si le graphe est creux (peu d'arêtes), $p=O(n)$, et donc la complexité avec file de priorité est $O(n \log n)$.
+- Mais si le graphe est dense (par exemple complet) il y a un nombre d'arc ou d'arêtes en $p=O(n^2)$, et donc la complexité avec file de priorité est $O(n^2 \log n)$. Dans ce cas, l'implémentation par file de priorité n'est pas intéressante.
