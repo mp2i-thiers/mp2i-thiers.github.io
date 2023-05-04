@@ -755,12 +755,12 @@ On utilise une pile pour gérer les sommets verts.
 procedure Profondeur(G: graphe, P pile)
     Si P non vide
         x := Peek P /*Récupère le sommet de la pile sans dépiler */ 
-        S'il existe un voisin bleu y de x
+        Tant qu'il existe un voisin bleu y de x faire
             Empiler ce voisin; /*il devient vert*/ 
             Profondeur (G,P)
-        Sinon
-            Depiler x
-            Colorier en rouge
+        
+        Depiler x
+        Colorier en rouge
 
 Colorier tous les sommets en bleu
 Créer une pile P vide /* Pile des sommets verts */

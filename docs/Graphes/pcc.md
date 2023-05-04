@@ -124,7 +124,7 @@ Pour k=0, $W^0$ est la matrice d’adjacence par poids.
 Trouvons une relation de récurrence. On considère un chemin $C$ entre $i$ et $j$ de poids minimal dont les sommets intermédiaires sont dans $\{1, 2, \dots, k\}$. De deux choses l’une :
 
 - soit $C$ n’emprunte pas le sommet $k$ ; 
-- soit $C$ emprunte exactement une fois le sommet $k$ (car les circuits sont de poids positifs ou nuls) et $C$ est donc la concaténation de deux chemins, $C_{i,k} entre $i$ et $k$ et $C_{k,j}$ entre $k$ et $j$ respectivement, dont les sommets intermédiaires sont dans $\{1, 2, \dots, k-1\}$. Par principe de sous-optimalité, si $C$ est optimal, $C_{i,k}$, $C_{k,j}$ aussi.
+- soit $C$ emprunte exactement une fois le sommet $k$ (car les circuits sont de poids positifs ou nuls) et $C$ est donc la concaténation de deux chemins, $C_{i,k}$ entre $i$ et $k$ et $C_{k,j}$ entre $k$ et $j$ respectivement, dont les sommets intermédiaires sont dans $\{1, 2, \dots, k-1\}$. Par principe de sous-optimalité, si $C$ est optimal, $C_{i,k}$, $C_{k,j}$ aussi.
 
 Cela nous donne la relation de récurrence $\color{red}{W_{i,j}^k = \min(W_{i,j}^{k-1}, W_{i,k}^{k-1} + W_{k,j}^{k-1})}$, pour tous $i, j$ et $k$ dans $\{1, 2, \dots, n\}$. Ainsi on résoud les sous-problèmes par valeur de $k$ croissante.
 
