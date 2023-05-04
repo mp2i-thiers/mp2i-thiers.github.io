@@ -850,7 +850,7 @@ $$
 \begin{align}
 C(n) &≤ \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}}^\text{nb échanges au pire...}_\text{...pour chaque node}}&\\
 &≤ \sum_{k=0}^p (\frac{n}{2^{p-k}} + 1)(p-k)\overbrace{\leq}^\text{ cgt. var. k = p-k } \sum_{k=0}^p ( \frac{n}{2^k} + 1 )k&\\
-&<= \overbrace{ \frac{p(p+1)}{2} }{ O(log_2(n)^2) } \overbrace{\sum_{k=0}^p {\frac{k}{2^k}}}^{série CV donc majorée} = O( n )&
+&<= \overbrace{ \frac{p(p+1)}{2} }^{O(log_2(n)^2) } \underbrace{\sum_{k=0}^p {\frac{k}{2^k}}}_\text{série CV donc majorée} = O( n )&
 \end{align}
 $$
 
