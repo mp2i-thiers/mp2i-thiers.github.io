@@ -199,7 +199,7 @@ Graphe simple orienté connexe avec un sommet initial (ou d’entrée)  E et un 
 
 Il y a un seul arc de sortie d’un sommet bloc d’instructions. Et, le plus  souvent, deux arcs de sortie (dits _arcs de décision_) des sommets de  décision correspondant aux valeurs positives ou négatives des  conditions.  
 
-### Exemple : calcul de X n
+### Exemple : calcul de $X_n$
 
 ```C linenums="1"
 float power (float x, int n){
@@ -275,79 +275,71 @@ Et donc la condition du chemin rouge est
 
 $$¬(j +k ≤ l ∨k +l ≤ j ∨j +l ≤ k)∧j \neq k ∧j \neq l ∧l \neq k ∧0 \neq 0∧0 \neq 1$$  
 
-Cette formule est une antilogie : le chemin rouge est infaisable.  
+Cette formule est une _antilogie_ : le chemin rouge est infaisable.  
 
 ### Indécidabilité de la recherche de chemins infaisables
 
-!!!danger "Je me suis arrêté ici, page 32/49"
-
-```linenums="1"
-v o i d s y r a c u s e ( i n t x ) // on ne c o n s i d è r e
-que d e s e n t i e r s 0
-w h i l e ( x !=1) ( x%2==0) x=x / 2 ;
-i f
-e l s e x = 3x +1;
-p r i n t f ( ” f i n i n” ) ;
+```C linenums="1"
+void syracuse(int x) {
+    // on ne considère qye des entiers > 0
+    while (x!=1){
+        if (x%2==0)
+            x=x/2;
+        else
+            x=3*x+1;
+    }
+    printf(" fini\n");
 ```
 
-  
-  
-  
-  
-  
-  
-  
-  
-{  
->
-{  
-
-* 
-}  \
-}  
 La conjecture veut que au  bout d’un moment x = 1.  
-E  
-x \neq 1  
-  
-S  
-(cid:15)  x mod 2 = 0    
-  
-x=x/2  On ne sait pas s’il existe des  chemins infaisables de E à S.  
-x=3*x+1  
 
+<p align='center'><img src='/images/tests6.png'/></p>
 
-Syracuse : La discipline de test (DT) x=2 sensibilise le  chemin C  
-Etant donné un chemin faisable, on sait trouver les conditions pour le  parcourir.  
-soit le chemin C : E,  x!=1,  x%2==0,x=x/2,x!=1,S.  Quelle condition le  vérifie ?  
-x \neq 1  x mod 2 = 0 : x est pair  
-x  2  
-= 1  
-S  
-E  
-x \neq 1  
-(cid:15)  x %2 ==0  
+On ne sait pas s’il existe des  chemins infaisables de E à S.  
+
+### Syracuse : La discipline de test (DT) x=2 sensibilise le  chemin C
+
+Etant donné un chemin faisable, on sait trouver les conditions pour le  parcourir.
+
+<p align='center'><img src='/images/tests7.png'/></p>
+
+- soit le chemin C : E,  
+  x!=1,  
+  x%2==0,x=x/2,
+  x!=1,S.  
   
-  
-x=3*x+1  
-  
-x=x/2  
+Quelle condition le  vérifie ?  
+
+- $x \neq 1$
+  x mod 2 = 0 : x est pair  
+  x/2 = 1  
+
 On trouve x = 2.  
 
 ### Critère de couverture
 
+On appelle _critère de couverture_ une condition définissant un  ensemble de chemins du graphe de ﬂot de contrôle.  
 
-On appelle critère de couverture une condition définissant un  ensemble de chemins du graphe de ﬂot de contrôle.  Génération de tests grâce à un critère de couverture :  
-Sélectionner un ensemble minimal de chemins satisfaisant le critère.  Eliminer les chemins infaisables  Pour chaque chemin faisable, on définit un ensemble de conditions  associées sur les entrées (c’est à dire un objectif de test).  Pour chaque objectif de test (donc pour chaque chemin faisable)  choisir un cas de test (donc des valeurs d’entrées satisfaisant la  condition associée au chemin).  
+Génération de tests grâce à un critère de couverture :  
+
+- Sélectionner un ensemble minimal de chemins satisfaisant le critère.  
+- Eliminer les chemins infaisables  
+- Pour chaque chemin faisable, on définit un ensemble de conditions  associées sur les entrées (c’est à dire un objectif de test).  
+- Pour chaque objectif de test (donc pour chaque chemin faisable)  choisir un cas de test (donc des valeurs d’entrées satisfaisant la  condition associée au chemin).  
 
 ### Critère "tous les sommets"
 
-
 Critère atteint lorsque tous les sommets du graphe de contrôle sont  parcourus.  
-On définit le taux de couverture des sommets par  
-τs =  
-nombre de sommets parcourus  nombre de sommets  
-Exigence minimale pour la certification en aéronautique (norme  EUROCAE ED-12B) : τs = 1.  Qualification niveau C : Un défaut peut provoquer un problème  majeur entraînant un dysfonctionnement des équipements vitaux de  l’appareil.  
 
+On définit le **taux de couverture des sommets** par  
+
+$$ \tau_s = \frac{nombre de sommets parcourus}{nombre de sommets}$$
+
+Exigence minimale pour la certification en aéronautique (norme  EUROCAE ED-12B) : $\tau_s = 1$.  
+
+Qualification niveau C : Un défaut peut provoquer un problème  majeur entraînant un dysfonctionnement des équipements vitaux de  l’appareil.  
+
+!!!danger "Je me suis arrêté ici, page 36/49"
 
 ```linenums="1"
 i n t y
