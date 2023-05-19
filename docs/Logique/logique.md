@@ -415,7 +415,7 @@ Pour travailler avec une proposition p, il est souvent utile de  considérer une
 
 #### forme normale conjonctive/disjonctive
 
-!!! quote "Proposition"
+!!! warning ""
     Toute proposition est sémantiquement équivalente à une forme normale conjonctive (resp. forme normale disjonctive).
 
 !!! quote "Remarque"
@@ -555,7 +555,7 @@ a  1  1  1  1  0  0  0  0  Lire positivement les variables  des lignes à 1 pour
 
 #### Forme normale conjonctive
 
-!!! quote "Proposition"
+!!! warning ""
     Toute proposition est sémantiquement équivalente à une FNCM (resp.  FNDM) unique à l’ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
 
 !!! quote "Remarque"
