@@ -160,12 +160,12 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
 
 Remettre des parenthèses  
 
-- \neg a \vee  b \wedge  c  
-- ((\neg a) \vee  (b \wedge  c))  
-- \neg a \wedge  b \vee  c  
-- (((\neg a) \wedge  b) \vee  c)  
-- a \vee  \neg b \wedge  c \rightarrow  a \wedge  c  
-- [(a \vee  ((\neg b) \wedge  c)) \rightarrow  (a \wedge  c)]  
+- $\neg a \vee  b \wedge  c$  
+- $((\neg a) \vee  (b \wedge  c))$ 
+- $\neg a \wedge  b \vee  c$  
+- $(((\neg a) \wedge  b) \vee  c)$  
+- $a \vee  \neg b \wedge  c \rightarrow  a \wedge  c$  
+- $(a \vee  ((\neg b) \wedge  c)) \rightarrow  (a \wedge  c)$ 
 
 ## Sémantique
 
