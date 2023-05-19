@@ -115,6 +115,7 @@ Aucun système logique cohérent assez riche pour exprimer  l’arithmétique ne
     - de trois connecteurs binaires notés $\vee , \wedge , \rightarrow$ et appelés connecteurs  logiques de disjonction, conjonction et d’implication.  
   
 !!! tip ""
+    **Remarque**
     - On dit aussi opérateur pour "connecteur"  
     - Dans certains cours, on ajoute aussi l’opérateur $\Leftrightarrow$ et le XOR.
     Dans certains autres, seulement $\neg , \vee , \wedge$ , voire même $\neg , \wedge$ .
@@ -137,6 +138,7 @@ Aucun système logique cohérent assez riche pour exprimer  l’arithmétique ne
 $(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d’un arbre binaire (dit  arbre syntaxique) :  
 
 !!! tip ""
+    **Remarque**
     Puisque les propositions sont construites comme des arbres binaires, il est naturel de parler de leur taille et de leur hauteur.
 
 #### Simplification de l’écriture
@@ -173,6 +175,7 @@ Remettre des parenthèses
     Un contexte (ou une distribution de vérité) sur un ensemble de variables propositionnelles V est une application de V dans l’ensemble des bouléens B.
 
 !!! tip ""
+    **Remarque**
     - Si |V| = n, alors il y a 2n distributions de vérité.
     - L’ensemble des bouléens peut être représenté de diﬀérentes fa_ons.
     - Dans ce cours, on pose B = {0, 1}, et on identifie B avec l’anneau  Z/2Z (donc 1 + 1 = 0 en particulier.)
@@ -194,6 +197,7 @@ Remettre des parenthèses
         $$
 
 !!! tip ""
+    **Remarque**
     Observer l’analogie avec les fonctions caractéristiques.
 
 #### Implication
@@ -237,6 +241,7 @@ b  1  0  1  0
     On dit qu’une proposition p est une tautologie lorsque p $\equiv$ V (c’est à dire que la dernière colonne de sa table de vérité ne contient que des 1).
 
 !!! tip ""
+    **Remarque**
     - Par exemple a $\wedge$ V est sémantiquement équivalente à a.  
     - Montrer que le tiers exclu $\text{a} \vee \neg \text{a}$ est une tautologie.  
     - Certains auteurs parlent d’équivalence logique.  
@@ -290,7 +295,8 @@ $(a \vee n) \rightarrow ((\neg c)\vee (b \wedge V)), \mu(a) = 1; \mu(b) = \mu(c)
     - Une proposition p est dite satisfiable si il existe un contexte $\mu$ tel que  $\varepsilon_\mu(p) = 1$. On dit que $\mu$ est un modèle de p et on note $\mu \models p$.  
     - Une proposition qui n’est pas satisfiable est apellée une antilogie. On  dit aussi que l’expression est insatisfiable.  
 
-!!! quote "Exemple"
+!!! example ""
+    **Exemples**
     - Le tiers exclu $a \vee  \neg a$ est une tautologie, $(a \wedge  b) \rightarrow  b$ aussi.  
     - $a \rightarrow  b$ est satisfiable mais n’est pas une tautologie.  
     - $a \wedge  \neg a$ est insatisfiable.  
@@ -396,6 +402,7 @@ Pour travailler avec une proposition p, il est souvent utile de  considérer une
     $p_1 \wedge  p_2 \dotsb \wedge  p_n$ (resp. $p_1 \vee  p_2 \dotsb \vee  p_n$)
 
 !!! tip ""
+    **Remarque**
     Par convention :
     - Une conjonction de 0 proposition est V  
     - Une disjonction de 0 proposition est F  
@@ -415,9 +422,11 @@ Pour travailler avec une proposition p, il est souvent utile de  considérer une
 #### forme normale conjonctive/disjonctive
 
 !!! warning ""
+    **Proposition**
     Toute proposition est sémantiquement équivalente à une forme normale conjonctive (resp. forme normale disjonctive).
 
 !!! tip ""
+    **Remarque**
     - Fait : On n’a besoin que des 3 opérateurs $\neg , \vee , \wedge$
     - Convertir une proposition en forme normale conjonctive requiert  l’utilisation de règles de transformation logiques, comme l’élimination de double négations, les lois de De Morgan, et la loi de distributivité.
     - Principe : ramener la négation "au contact" des variables (de Morgan), "remonter" les $\wedge$ (distibutivité) et supprimer les $\neg \neg$. Par exemple, si $v_1, v_2, v_3, v_4$ sont des variables :
@@ -522,6 +531,7 @@ $$
     - On appelle mAxterme de $v_1, \dotsb , v_n$, une clAuse où chaque variable $v_i$  apparaît exactement une fois (et il n’y a pas d’autre variable).  
 
 !!! tip ""
+    **Remarque**
     Les 4 (à l’ordre près) maxtermes de $v_1$ et $v_2$ sont
     $v_1 \vee  v_2, v_1 \vee  \neg v_2, \neg v_1 \vee  v_2, \neg v_1 \vee  \neg v_2$.  
     On confond les maxtermes $v_1 \vee  v_2 et v_2 \vee  v_1$.  
@@ -555,9 +565,11 @@ a  1  1  1  1  0  0  0  0  Lire positivement les variables  des lignes à 1 pour
 #### Forme normale conjonctive
 
 !!! warning ""
+    **Proposition**
     Toute proposition est sémantiquement équivalente à une FNCM (resp.  FNDM) unique à l’ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
 
 !!! tip ""
+    **Remarque**
     Dans ce qui suit on dit que deux FNDM sont égales si elles ont les mêmes mintermes (les mintermes sont donnés à l’ordre des littéraux près).
 
 #### Existence de la FNDC
