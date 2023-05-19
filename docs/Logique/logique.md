@@ -4,23 +4,20 @@
 !!! danger
     Ce cours n'a pas été entièrement reverifié après le passage du programme. Pensez à supprimer ce message si vous avez reverifié ce cours
 
-!!! warning 
+!!! warning
     Ce cours a été automatiquement traduit des transparents de M.Noyer par
     Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
     site à pour seul but d’être plus compréhensible pendant les périodes de
     révision que des diaporamas.
 ## Crédits
 
-
 Wikipedia,  
 Mansuy,  
 Becirspahic.  
 
-
 ## Introduction
 
 #### Proposition
-
 
 Notion aﬃnée au cours des siècles.  
 
@@ -51,23 +48,23 @@ C’est celle du cours de maths en CPGE.
 
 Quand le cardinal de l’ensemble des valeurs possibles que peuvent  prendre les propositions est 2, on parle de logique classique ou  bouléenne.  
 
-Il existe d’autres logiques. Elles sont parfois tri-valuées. Par exemple  Vrai, Faux, Je ne sais pas. 
+Il existe d’autres logiques. Elles sont parfois tri-valuées. Par exemple  Vrai, Faux, Je ne sais pas.
 
 Pourquoi faudrait-il d’autres logiques ?  
-$\color{red} \text {En logique classique "je suis ici ou ailleurs" (ce qu’on appelle le  tiers exclu) est toujours vrai.} $ Cependant "si $x\in \mathbb{Q}$ alors machin  sinon truc" n’est exploitable que si on possède un test  d’appartenance à $\mathbb{Q}$ en temps fini, ce qui n’est pas le cas. Les  logiciens intuitionnistes refusent le tiers exclu.  
+$$\color{red} \text {En logique classique "je suis ici ou ailleurs" (ce qu’on appelle le  tiers exclu) est toujours vrai.} $$ Cependant "si $x\in \mathbb{Q}$ alors machin  sinon truc" n’est exploitable que si on possède un test  d’appartenance à $\mathbb{Q}$ en temps fini, ce qui n’est pas le cas. Les  logiciens intuitionnistes refusent le tiers exclu.  
 
 #### Tiers exclu
 
-Le principe du tiers exclu a été introduit par Aristote comme  conséquence du principe de non-contradiction. Le principe de  non-contradiction stipule que pour toute proposition P on ne peut  pas avoir P et \neg P (non P) en même temps.  
+Le principe du tiers exclu a été introduit par Aristote comme  conséquence du principe de non-contradiction. Le principe de  non-contradiction stipule que pour toute proposition P on ne peut  pas avoir P et $\neg P$ (non P) en même temps.  
 
-La proposition \neg (P \wedge  \neg P) (toujours vraie dans toute les logiques)  équivaut sémantiquement (par utilisation de règle de De Morgan) à  \neg P \vee  \neg \neg P.  
-On retrouve le tiers exclu SI ON ACCEPTE que \neg \neg P et P sont  sémantiquement équivalents.  
+La proposition $\neg (P \wedge  \neg P)$ (toujours vraie dans toute les logiques)  équivaut sémantiquement (par utilisation de règle de De Morgan) à  $\neg P \vee  \neg \neg P$.  
+On retrouve le tiers exclu SI ON ACCEPTE que $\neg \neg P$ et P sont  sémantiquement équivalents.  
 
 #### D’autres mathématiques
 
 La logique intuitionniste qui engendre les mathématiques  constructives, admet le principe de non-contradiction mais réfute celui  du tiers exclu.  
 
-Pour un constructiviste, le raisonnement "si a ∈ A alors bla sinon  bli" n’a de sens que s’il existe un test pour déterminer l’appartenance  à A.  Les constructivistes réfutent aussi l’axiome du choix qui dit en  substance que "dans un ensemble infini, je peux choisir un  élément", au motif que "je ne peux pas choisir si je ne sais pas  comment choisir". 
+Pour un constructiviste, le raisonnement "si a ∈ A alors bla sinon  bli" n’a de sens que s’il existe un test pour déterminer l’appartenance  à A.  Les constructivistes réfutent aussi l’axiome du choix qui dit en  substance que "dans un ensemble infini, je peux choisir un  élément", au motif que "je ne peux pas choisir si je ne sais pas  comment choisir".
 
 La plupart des théorèmes de CPGE sont adaptables en  mathématiques constructives (parfois, les énoncés sont les mêmes,  d’autre fois, il faut adapter).
 En revanche l’affirmation "tout K-espace vectoriel admet une
@@ -109,34 +106,35 @@ Aucun système logique cohérent assez riche pour exprimer  l’arithmétique ne
 #### L’alphabet
 
 !!! quote "Définition"
-    On considère un alphabet Σ constitué :
+    On considère un alphabet $\Sigma$ constitué :
+
     - de symboles Vrai et Faux notés V et F,  
-    - de variables propositionnelles en nombre dénombrable notées dans ce  cours en lettres romaines a, b, \dotsb , $a_1$, \dotsb , $z_{32}$, \dotsb
+    - de variables propositionnelles en nombre dénombrable notées dans ce cours en lettres romaines a, b, $\dotsb$ , $a_1$, $\dotsb$ , $z_{32}$, $\dotsb$
     - de deux symboles de parenthèses "(,)" (ouvrante et fermante).  
-    - d’un connecteur unaire \neg  dit de négation  
-    - de trois connecteurs binaires notés \vee , \wedge , \rightarrow  et appelés connecteurs  logiques de disjonction, conjonction et d’implication.  
+    - d’un connecteur unaire $\neg$  dit de négation  
+    - de trois connecteurs binaires notés $\vee , \wedge , \rightarrow$ et appelés connecteurs  logiques de disjonction, conjonction et d’implication.  
+  
 !!! quote "Remarque"
     - On dit aussi opérateur pour "connecteur"  
-    - Dans certains cours, on ajoute aussi l’opérateur \Leftrightarrow et le XOR.
-    Dans certains autres, seulement \neg , \vee , \wedge , voire même \neg , \wedge .
-    - Le NAND (A NAND B vaut \neg (A \wedge  B)) est universel.  
+    - Dans certains cours, on ajoute aussi l’opérateur $\Leftrightarrow$ et le XOR.
+    Dans certains autres, seulement $\neg , \vee , \wedge$ , voire même $\neg , \wedge$ .
+    - Le NAND (A NAND B vaut $\neg (A \wedge  B)$) est universel.  
 
 #### Ensemble des propositions
-
 
 !!! quote "Définition"
     On appelle langage des propositions le langage défini inductivement par :
     - les constantes et les variables propositionnelles sont dans le langage,
     - si A est dans le langage, alors (A) aussi,
-    - si A est dans le langage (\neg A) aussi, 
-    - si A, B sont dans le langage alors (A \vee  B), (A \wedge  B) et (A → B) aussi.  
+    - si A est dans le langage $(\neg A)$ aussi, 
+    - si A, B sont dans le langage alors $(A \vee  B)$, $(A \wedge  B)$ et $(A \rightarrow B)$ aussi.  
 
 #### Représentation arborescente
 
 !!! danger
     jsp faire les graphes
 
-(((\neg a) \vee  b) \wedge  (\neg c)) se représente sous la forme d’un arbre binaire (dit  arbre syntaxique) :  
+$(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d’un arbre binaire (dit  arbre syntaxique) :  
 
 !!! quote "Remarque"
     Puisque les propositions sont construites comme des arbres binaires, il est naturel de parler de leur taille et de leur hauteur.
@@ -145,7 +143,7 @@ Aucun système logique cohérent assez riche pour exprimer  l’arithmétique ne
 
 On ne note pas les parenthèses autour de la racine.  
 
-On convient (souvent, mais je ne trouve pas _a si commode) que  l’opérateur de négation \neg  a priorité sur les autres, que la conjonction  et la disjonction ont priorité sur l’implication, et enfin que la  conjonction a priorité sur la disjonction.  C’est très classique !  
+On convient (souvent, mais je ne trouve pas _a si commode) que  l’opérateur de négation $\neg$  a priorité sur les autres, que la conjonction  et la disjonction ont priorité sur l’implication, et enfin que la  conjonction a priorité sur la disjonction.  C’est très classique !  
 
 Pour passer des écritures sans parenthèses aux écritures avec  parenthèses, une règle simple : plus l’opérateur est prioritaire, plus il a  de parenthèses autour de lui.  
 
@@ -161,11 +159,11 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
 Remettre des parenthèses  
 
 - $\neg a \vee  b \wedge  c$  
-- $((\neg a) \vee  (b \wedge  c))$ 
+- $((\neg a) \vee  (b \wedge  c))$  
 - $\neg a \wedge  b \vee  c$  
 - $(((\neg a) \wedge  b) \vee  c)$  
 - $a \vee  \neg b \wedge  c \rightarrow  a \wedge  c$  
-- $(a \vee  ((\neg b) \wedge  c)) \rightarrow  (a \wedge  c)$ 
+- $[(a \vee  ((\neg b) \wedge  c)) \rightarrow  (a \wedge  c)]$  
 
 ## Sémantique
 
@@ -185,13 +183,16 @@ Remettre des parenthèses
 
 !!! quote "Définition"
     Soit µ un contexte sur un ensemble de variables V à valeur dans B = Z/2Z. On appelle évaluation (ou encore interprétation) associée à $\mu$ l’application notée $\varepsilon_\mu$ définie sur  l’ensemble des propositions par :
-    - $\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0 $
+
+    - $\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0$
     - pour toute variable $v \in V, \varepsilon_\mu(v ) = \mu(v )$
-    - pour toute expression $p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p) $
+    - pour toute expression $p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p)$
     - pour toutes expressions p et p :  
-        $ \varepsilon_\mu(p_1 \wedge p_2) = \varepsilon_\mu(p_1)\varepsilon_\mu(p_2) $
-        $\varepsilon_\mu(p_1 \vee p_2) = \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_1)\varepsilon_\mu(p_2) $
-        $ \varepsilon_\mu(p_1 \rightarrow p_2) = 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1).  $
+        $\varepsilon_\mu(p_1 \wedge p_2) = \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)$
+        $\varepsilon_\mu(p_1 \vee p_2) = \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)$
+        $$
+         \varepsilon_\mu(p_1 \rightarrow p_2) = 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1).
+        $$
 
 !!! quote "Remarque"
     Observer l’analogie avec les fonctions caractéristiques.
@@ -200,21 +201,32 @@ Remettre des parenthèses
 
 - Comme on va le voir a $\rightarrow$ b est sémantiquement équivalent à  $\neg$a $\vee$ b, c’est à dire que les deux propositions ont la même valeur de  vérité pour toute interprétation.
 - L’interprétation de l’implication donnée au transparent précédent  s’obtient par calcul :  
-$\varepsilon_\mu((\neg p_1) \vee  p_2) =  \varepsilon_\mu(\neg p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(\neg p_1)\varepsilon_\mu(p_2)  \newline = (1 − \varepsilon_\mu(p_1)) + \varepsilon_\mu(p_2) − (1 − \varepsilon_\mu(p_1))\varepsilon_\mu(p_2)  \newline = 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_2) + \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)  \newline = 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1)  \newline =\varepsilon_\mu(p_1 \rightarrow  p_2)  $
+
+$$
+\begin{align}
+\varepsilon_\mu((\neg p_1) \vee  p_2)
+    &=  \varepsilon_\mu(\neg p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(\neg p_1)\varepsilon_\mu(p_2)  \\
+    &= (1 − \varepsilon_\mu(p_1)) + \varepsilon_\mu(p_2) − (1 − \varepsilon_\mu(p_1))\varepsilon_\mu(p_2)  \\
+    &= 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_2) + \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)  \\
+    &= 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1)  \\
+    &=\varepsilon_\mu(p_1 \rightarrow  p_2)
+\end{align}
+$$
+
 
 #### Tables de vérité
 
 !!! danger
     jsp faire les tableaux
 
-Les 4 opérateurs de la logique classique  Table du ET  a \wedge  b  a  1  1  0  1  0  0  0  0  
-Table du OU  a \vee  b  a  1  1  1  1  1  0  0  0  
+Les 4 opérateurs de la logique classique  Table du ET  $a \wedge  b$  a  1  1  0  1  0  0  0  0  
+Table du OU  $a \vee  b$  a  1  1  1  1  1  0  0  0  
 b  1  0  1  0  
 b  1  0  1  0  
 Table du NOT  a  1  0  
-\neg a  0  1  
+$\neg a$  0  1  
 Table d’implication  a  1  1  0  0  
-a \rightarrow  b  1  0  1  1  
+$a \rightarrow  b$  1  0  1  1  
 b  1  0  1  0  
 
 #### Equivalence sémantique
@@ -222,10 +234,8 @@ b  1  0  1  0
 !!! quote "Définition"
     Deux propositions p, q sont dites sémantiquement équivalentes si elles ont même table de vérité. Ceci revient à dire que pour tout contexte $\mu$, si $\varepsilon_\mu$ de l’une vaut 1, alors pour l’autre aussi.On note p $\equiv$ q.
 
-
 !!! quote "Définition"
     On dit qu’une proposition p est une tautologie lorsque p $\equiv$ V (c’est à dire que la dernière colonne de sa table de vérité ne contient que des 1).
-
 
 !!! quote "Remarque"
     - Par exemple a $\wedge$ V est sémantiquement équivalente à a.  
@@ -252,7 +262,7 @@ a  1  1  0  0
 - Les opérateurs $\wedge$  et $\vee$  sont associatifs : en conséquence on peut écrire  ((a $\vee$  b) $\vee$  (c $\vee$  d)) comme a $\vee$  b $\vee$  c $\vee$  d
 - $\rightarrow$  n’est pas associatif : a $\rightarrow$  (b $\rightarrow$  c) n’est pas sémantiquement  équivalent à (a $\rightarrow$  b) $\rightarrow$  c
 - Exercice : montrer ces assertions par des tables de vérité.  
-- L’implication n’est pas associative mais par convention  A $\rightarrow$  B $\rightarrow$  C $\rightarrow$  D se lit A $\rightarrow$  (B $\rightarrow$  (C $\rightarrow$  D)). 
+- L’implication n’est pas associative mais par convention  A $\rightarrow$  B $\rightarrow$  C $\rightarrow$  D se lit A $\rightarrow$  (B $\rightarrow$  (C $\rightarrow$  D)).
 Observer l’analogie avec une fonction f de type a->b->c->d en  Ocaml : f x est de type b->c->d.  
 
 #### D’autres opérateurs
@@ -261,11 +271,11 @@ Observer l’analogie avec une fonction f de type a->b->c->d en  Ocaml : f x est
     - Montrer qu’on peut se passer de l’opérateur d’implication.  
     -  On définit l’opérateur binaire NOR ainsi : NOR(a, b) a la table de  $\neg (a \vee  b)$. Montrer que NOR(a, b) est sémantiquement équivalent à  $\neg a \wedge\neg$ b (seconde loi de De Morgan).  
     - L’opérateur binaire NAND est défini ainsi : NAND(a, b) a la table de $\neg (a \wedge  b)$. Montrer que NAND(a, b) est sémantiquement équivalent à  $\neg a \vee  \neg b$ (première loi de De Morgan).
-    - L’opérateur binaire $\Leftrightarrow $ est défini ainsi : $a \Leftrightarrow  b$ a la table de  $(a \rightarrow b) \wedge  (b \rightarrow   a)$. Montrer que $a$ XOR $b$ est sémantquement  équivalent à $\neg (a \Leftrightarrow  b)$.  
+    - L’opérateur binaire $\Leftrightarrow$ est défini ainsi : $a \Leftrightarrow  b$ a la table de  $(a \rightarrow b) \wedge  (b \rightarrow   a)$. Montrer que $a$ XOR $b$ est sémantquement  équivalent à $\neg (a \Leftrightarrow  b)$.  
 
 #### Calcul à partir de l’arbre syntaxique
 
-$(a \vee n) \rightarrow ((\neg c)\vee (b \wedge V)), \mu(a) = 1; \mu(b) = \mu(c) = 0. Commencer par les feuilles et remonter aux pères? $
+$(a \vee n) \rightarrow ((\neg c)\vee (b \wedge V)), \mu(a) = 1; \mu(b) = \mu(c) = 0$. Commencer par les feuilles et remonter aux pères?
 
 !!! danger
     jsp faire les tableaux et ca a bug
@@ -325,7 +335,7 @@ Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des ta
     - Associativité $(p_1 \wedge  (p_2 \wedge  p_3))\Leftrightarrow ((p_1 \wedge  p_2) \wedge  p_3)$
     - Idempotence $(p_1 \wedge  p_1) \Leftrightarrow p_1$
 
-#### Propriétés de $\vee $
+#### Propriétés de $\vee$
 
 Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
@@ -409,7 +419,7 @@ Pour travailler avec une proposition p, il est souvent utile de  considérer une
     Toute proposition est sémantiquement équivalente à une forme normale conjonctive (resp. forme normale disjonctive).
 
 !!! quote "Remarque"
-    - Fait : On n’a besoin que des 3 opérateurs $\neg , \vee , \wedge $
+    - Fait : On n’a besoin que des 3 opérateurs $\neg , \vee , \wedge$
     - Convertir une proposition en forme normale conjonctive requiert  l’utilisation de règles de transformation logiques, comme l’élimination de double négations, les lois de De Morgan, et la loi de distributivité.
     - Principe : ramener la négation "au contact" des variables (de Morgan), "remonter" les $\wedge$ (distibutivité) et supprimer les $\neg \neg$. Par exemple, si $v_1, v_2, v_3, v_4$ sont des variables :
     $\underset{\textsf{F. ni conjonctive ni disjonctive}}{\underbrace{\neg(v_1\wedge (v_2\vee \neg v_3)) \vee v_4}} \equiv \neg v_1 \vee \neg(v_2 \vee \neg v_3) \vee v_4 \newline \equiv \neg v_1 \vee (\neg v_2 \wedge \neg \neg v_3) \vee v_4 \equiv (\neg v_1 \vee \neg v_2 \vee v_4) \wedge (\neg v_1 \vee v_3 \vee v_4)$
@@ -442,12 +452,12 @@ où v est une variable.
 - On descend $\neg$ par les lois de De Morgan au contact des variables.
 -On applique la distributivité pour faire descendre les $\vee$ et remonter les $\wedge$.
 
-#### Uniquement des $\neg$  et des $\wedge
+#### Uniquement des $\neg$  et des $\wedge$
 
-Toute proposition peut "s’exprimer" sans constante : V est  remplacé par v \vee  \neg v ; F par v \wedge  \neg v où v est une variable.  
-Tous les opérateurs peuvent se définir avec \neg , \wedge , \vee  uniquement.  
-une disjonction a \vee  b peut s’exprimer comme la négation d’une  conjonction \neg (\neg a \wedge  \neg b)  
-En appliquant ces règles, on obtient que toute proposition est  sémantiquement équivalente à une expression ne contenant que des  variables et les connecteurs \neg , \wedge . Ceci nous sert au transparent  suivant.  
+Toute proposition peut "s’exprimer" sans constante : V est  remplacé par $v \vee  \neg v ; F par v \wedge  \neg v$ où $v$ est une variable.  
+Tous les opérateurs peuvent se définir avec $\neg , \wedge , \vee$  uniquement.  
+une disjonction $a \vee  b$ peut s’exprimer comme la négation d’une  conjonction $\neg (\neg a \wedge  \neg b)$  
+En appliquant ces règles, on obtient que toute proposition est  sémantiquement équivalente à une expression ne contenant que des  variables et les connecteurs $\neg , \wedge$ . Ceci nous sert au transparent  suivant.  
 
 #### Preuve d’existence d’une forme normale conjonctive
 
@@ -461,7 +471,9 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
     - Alors par De Morgan (encore) :
     $p \equiv \neg (\neg m_1 \wedge  \dotsb \wedge  \neg m_n) \equiv (\neg \neg m_1) \vee  \dotsb \vee  (\neg \neg m_n) \equiv m_1 \vee  \dotsb \vee  m_n$. 
     - On a bien ce qu’on veut :  
-        $p \equiv \bigvee_{i=1}^n (\bigwedge_{k_i=1}^{n_i} l_{i,k_i})  \underset{\textsf{distributivité}}{\underbrace{\equiv}}~~\overbrace{\underset {\underset {k_n \in \llbracket 1~,~n_n \rrbracket}{\vdots}}{\bigwedge_{k_1 \in \llbracket 1~;~ n_1 \rrbracket}}\underset{\textsf{clause}}{l_{1,k_1 \vee \dotsb \vee l_{n,k_n}}}}^{\textsf{conjonction de clauses}}$
+    $$
+    p \equiv \bigvee_{i=1}^n (\bigwedge_{k_i=1}^{n_i} l_{i,k_i})  \underset{\textsf{distributivité}}{\underbrace{\equiv}}~~\overbrace{\underset {\underset {k_n \in [\![1~,~n_n]\!]}{\vdots}}{\bigwedge_{k_1 \in [\![1~;~ n_1]\!]}}\underset{\textsf{clause}}{l_{1,k_1 \vee \dotsb \vee l_{n,k_n}}}}^{\textsf{conjonction de clauses}}
+    $$
 
 #### Preuve d’existence d’une forme conjonctive
 
@@ -470,18 +482,20 @@ Récurrence sur la taille de la proposition p. HR : p est équivalente à une  c
 - Si p est un littéral : OK.
 - Si p = $\neg$q : OK
 - Si $p = f_1 \wedge  f_2,$ par HR $f_1 \equiv p_1 \wedge  \dotsb \wedge  p_n$ et $f_2 \equiv q_1 \wedge  \dotsb \wedge  q_n$ où les  $p_k , q_r$ sont des clauses.  
-$p \underset{\textsf{assoc. de}~\wedge}{\underbrace{\equiv}}  \underset{\textsf{conjonction de clauses}}{\underbrace{p_1 \wedge  \dotsb \wedge  p_{n_1} \wedge  q_1 \wedge  \dotsb \wedge  q_{n_2}}}$
+$$
+p \underset{\textsf{assoc. de}~\wedge}{\underbrace{\equiv}}  \underset{\textsf{conjonction de clauses}}{\underbrace{p_1 \wedge  \dotsb \wedge  p_{n_1} \wedge  q_1 \wedge  \dotsb \wedge  q_{n_2}}}
+$$
 Ce qu’on veut.  
 - Si p = $f_1 \vee f_2$ alors, par HR, p est équivalent à une formule de la
 forme $(p_1 \wedge \dotsb \wedge p_{n_1} ) \vee (q_1 \wedge \dotsb \wedge q_{n_2} )$ où les $p_i ,q_j$ sont des clauses.
 Et par distributivité :
-$p \equiv \underset{(k_1,k_2)\in \llbracket1,n_1 \rrbracket \times \llbracket 1, n_2 \rrbracket }{\bigvee} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}$
+$p \equiv \underset{(k_1,k_2)\in [\![1,n_1]\!] \times [\![1, n_2]\!] }{\bigvee} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}$
 
 #### Forme normale disjonctive
 
 - On sait que toute proposition peut s’exprimer comme conjonction de  clause.  
-- Soit p une proposition, alors $\neg $p s’écrit sous la forme
-$\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n $ avec $ c_i = l_{i,1} \vee  \dotsb \vee  l_{i,n_i}$ .  
+- Soit p une proposition, alors $\neg$p s’écrit sous la forme
+$\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n$ avec $c_i = l_{i,1} \vee  \dotsb \vee  l_{i,n_i}$ .  
 - Donc $p \equiv \neg \neg p \equiv \neg c_1 \vee  \dotsb \vee  \neg c_n$ par De Morgan.  
 - Or chaque $\neg c_i$ est équivalent sémantiquement à une conjonction de  littéraux (par De Morgan) : $\neg c_i \equiv \neg l_{i,1} \wedge  \dotsb \wedge  \neg l_{i,n_i}$ .  
 - Donc toute proposition peut s’écrire comme disjonction de monômes.  
@@ -492,7 +506,14 @@ $\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n $ avec $ c_i = l_{i,1} \vee  \dots
 Considérons la proposition en forme disjonctive :  $(\textsf{x}_1 \wedge  \textsf{y}_1) \vee  (\textsf{x}_2 \wedge  \textsf{y}_2) \vee  \dotsb \vee  (\textsf{x}_n \wedge  \textsf{y}_n)$ de taille linéaire  
 
 Par distributivité, sa FNC, de taille 2n, est de la forme :  
-$(\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{x}_n) \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \newline \dotsb \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_k \vee  \textsf{y}_{k+1} \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \newline ~~  \wedge (\textsf{x}_1 \vee  \textsf{y}_2 \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  (\textsf{y}_1 \vee  \textsf{y}_ 2\vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) $
+
+$$
+\begin{align}
+(\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{x}_n) \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \\
+\dotsb \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_k \vee  \textsf{y}_{k+1} \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \\
+\wedge (\textsf{x}_1 \vee  \textsf{y}_2 \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  (\textsf{y}_1 \vee  \textsf{y}_ 2\vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n)
+\end{align}
+$$
 
 #### Mintermes, maxtermes
 
@@ -503,7 +524,7 @@ $(\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \tex
 
 !!! quote "Remarque"
     Les 4 (à l’ordre près) maxtermes de $v_1$ et $v_2$ sont
-    $ v_1 \vee  v_2, v_1 \vee  \neg v_2, \neg v_1 \vee  v_2, \neg v_1 \vee  \neg v_2 $.  
+    $v_1 \vee  v_2, v_1 \vee  \neg v_2, \neg v_1 \vee  v_2, \neg v_1 \vee  \neg v_2$.  
     On confond les maxtermes $v_1 \vee  v_2 et v_2 \vee  v_1$.  
 
 #### Forme normale conjonctive
@@ -595,7 +616,7 @@ Soit une expression p à n variables,
 #### Problème SAT_
 
 - Comment tester qu’une proposition est satisfiable ? Il s’agit du  problème dit SAT.  
-- Comment tester qu’une proposition p est une tautologie ? Si on sait  résoudre le problème SAT, il suﬃt de montrer que \neg p est insatisfiable.  
+- Comment tester qu’une proposition p est une tautologie ? Si on sait  résoudre le problème SAT, il suﬃt de montrer que $\neg$ p est insatisfiable.  
 - Pour le problème SAT, on peut simplement calculer sa table. Mais on  a alors une complexité en O(2n), si n est le nombre de variables.  
 - Des algorithmes plus eﬃcaces (en pratique, c’est à dire sauf cas  pathologiques) existent (DPLL) et passent par une mise sous FNC.  Mais dans le pire des cas ce passage à la FNC est lui-même de  complexité exponentielle.  
 
@@ -612,9 +633,9 @@ Soit p une proposition mise sous forme conjonctive avec des 2-clauses
 - On construit un graphe orienté :  
   - Ses sommets sont tous les littéraux formés avec les variables  apparaissant dans la proposition.
   - Les arcs sont des couples de littéraux de la forme $(a, \neg b)$ ou $(\neg a, b)$  mais pas tous ...
-  - Pour deux littéraux $a, b$, l’arc $(\neg a, b) $ est présent si et seulement si la  disjonction $a \vee b$ est dans p. Et dans ce cas $(a, \neg b)$ est présent aussi.
+  - Pour deux littéraux $a, b$, l’arc $(\neg a, b)$ est présent si et seulement si la  disjonction $a \vee b$ est dans p. Et dans ce cas $(a, \neg b)$ est présent aussi.
   - Ceci correspond à $a \vee  b \equiv (\neg a \rightarrow  b) \wedge  (\neg b \rightarrow  a)$  
-- Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable v de p. Si $\neg $v est dedans, il y a un chemin  d’implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v $.  
+- Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable v de p. Si $\neg$v est dedans, il y a un chemin  d’implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v$.  
 - Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si  p est satisfiable, $v \Leftrightarrow \neg v$ aussi : ABSURDE.  
 - Donc si $v$ et $\neg v$ sont dans la même composante connexe, p n’est pas  satisfiable (Aspvall-Plass-Tarjan).  
 
@@ -628,11 +649,11 @@ p = $(v_1 \vee  v_2) \wedge  (\neg v_1 \vee  v_3) \wedge  (v_1 \vee  \neg v_2) \
 v  
 (cid:47) v  
 v  
-\neg v  
-\neg v  
-(cid:47) \neg v  
+$\neg$ v  
+$\neg$ v  
+(cid:47) $\neg$ v  
 
-- $\neg v_1$ accède à $v_1$ via $v_2$ et 
+- $\neg v_1$ accède à $v_1$ via $v_2$ et
 - $v_1$ accède à $\neg v_1$ via $\neg v_3$  
 - Donc $v_1$ et $\neg v_1$ sont dans la même composante connexe.
 - Par suite p n’est pas satisfiable.  
@@ -644,4 +665,4 @@ v
 - Un problème P NP-complet vérifie :  
   - Il est possible de vérifier une solution de P eﬃcacement (en temps  polynomial) : on me donne un candidat solution, et je peux vérifier en  temps polynomial ce qu’il en est. La classe des problèmes vérifiant  cette propriété est notée NP.
   - tous les problèmes de la classe NP se ramènent à P via une réduction  polynomiale. Cela signifie que le problème est au moins aussi diﬃcile  que tous les autres problèmes de la classe NP (aspect "complet").  Appliqué à la satisfiabilité, cela signifie que si on me donne un  problème de la classe NP, je peux le transformer en temps polynomial  en un problème de satisfiabilité.
-- Bien sûr, un problème de la classe P (polynomial) vérifie la première  condition. On a donc P $\subset $ NP, mais a-t-on NP $\subset $ P ?  
+- Bien sûr, un problème de la classe P (polynomial) vérifie la première  condition. On a donc P $\subset$ NP, mais a-t-on NP $\subset$ P ?  
