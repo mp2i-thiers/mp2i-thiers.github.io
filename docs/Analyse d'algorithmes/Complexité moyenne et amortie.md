@@ -1,0 +1,362 @@
+# Complexité moyenne et amortie
+
+!!! warning
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par
+    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
+    site à pour seul but d’être plus compréhensible pendant les périodes de
+    révision que des diaporamas.
+
+## Crédits
+
+- Wikipedia (Analyse amortie)
+
+- "Option informatique MPSI - MP/MP*" Roger MANSUY (Vuibert)
+
+- "Algorithmique - 3ème édition Cours avec 957 exercices et 158 problèmes" Thomas H. Cormen, Charles Leiserson, Ronald Rivest, Cliﬀord Stein (Dunod)
+
+- "Informatique - MP2I/MPI - CPGE 1re et 2e années" Balabonski Thibaut, Conchon Sylvain, Filliâtre Jean-Christophe, Nguyen Kim, Sartre Laurent (ellipse)
+
+## Tri rapide
+
+Dans le tri rapide, on sépare l'entrée en deux listes en comparant à un élément pivot, on les trie séparément et on les fusionne par concaténation.
+
+- Dans le tri rapide, la fonction de division est délicate et celle de fusion triviale. C'est le contraire pour le tri fusion.
+
+- On donne une version pour les listes. On peut en donner une version en place pour des tableaux.
+
+- Mis au point en 1960 par Tony Hoare, alors étudiant en visite à l'université d'Etat de Moscou.
+
+- Possède une variante Quick select pour le calcul du k-ième élément d'une liste sans procéder au tri préalable (application : calcul de la médiane).
+
+### Partition
+
+```ocaml linenums="1"
+let rec partition l p = match l with
+| []   -> [] ,[]
+| t::q -> let (l1,l2) = partition q p in
+    if t <= p then (t::l1,l2) else (l1,t::l2);;
+```
+
+#### Terminaison
+
+Les cas de bases terminent, l'appel interne se fait avec une liste strictement plus courte que la liste initiale et il n'y a pas de boucle ou d'appel à une fonction qui ne termine pas.
+
+C'est tout bon !
+
+#### Complexité temporelle
+
+dans tous les cas de la forme $C_{n} = C_{n} - 1 + 1$ pour une liste de taille n. Linéaire.
+
+Montrons que la fonction retourne deux listes dont la 1ere contient tous les éléments de l plus petits que le pivot, les éléments strictement plus grands étant dans la seconde.
+
+Cas de base : OK de façon évidente
+
+Supposons que partition q p partitionne correctement q en l1, l2. Supposons aussi t ≤ p. Alors dans le tuple retourné :
+
+- On ajoute t à la liste l1 des éléments de q plus petits que p. On obtient exactement tous les éléments de l plus petits que le pivot.
+
+- La liste l2 est constituée exactement des éléments de q strictement plus grands que p ; donc (puisque t ≤ p) exactement ceux ceux de l.
+
+- Correction OK. Le cas t \> p cas est laissé au lecteur.
+
+### Tri rapide
+
+```ocaml linenums="1"
+let rec tri_rapide l = match l with
+    | [] -> []
+    | t::q -> let (l1,l2) = partition q t in
+        (tri_rapide l1)@(t::(tri_rapide l2));;
+```
+
+#### Terminaison
+
+Variant |l|.
+
+- Le cas de base termine (envoie de la liste vide).
+
+- L'appel à partition termine (déjà vu).
+
+- Seulement deux appels internes, tous deux eﬀectués avec des listes de taille strictement inférieure à \|l\| (puisque \|l1\| + \|l2\| = \|l\| − 1).
+
+- Terminaison OK.
+
+#### Correction :
+
+Cas de base : OK.
+
+Supposons que les deux appels internes retournent une version triée de
+l1 et de l2 .
+
+- Par correction de partition : l1 contient les éléments de q plus petits ou égaux au pivot et l2 les éléments strictement plus grands.
+
+- La concaténation retournée
+  - est triée : d'abords les éléments plus petits que le pivot     rangés dans l'ordre, puis le pivot, puis les éléments plus     grands que le pivot rangés dans l'ordre.
+  - contient exactement tous les éléments de q (puisque la réunion     de l1 et l2 les contient) plus l'élément manquant t .
+  - La concaténation est la version triée de l .
+
+Hérédité OK
+
+### Tri rapide : complexité en nombre de comparaisons
+
+#### Cas où l'une des listes est toujours vide
+
+Supposons que l'une des listes retournée par partition soit vide à chaque fois (cela se produit par exemple si la liste est déjà triée).
+
+On désigne par Tn la complexité temporelle en nombre de compraisons pour une liste triée de taille n.
+
+- Alors Tn vériﬁe une relation de la forme Tn = Tn−1 + n − 1. (n − 1 : nombre de comparaisons dans partition ).
+
+- Complexité en somme des premiers entiers soit O(n2).
+
+On montre dans la suite que ce cas est bien le pire, c'est à dire que la complexité Cn en nombre de comparaisons est la pire si le pivot est à une extrémité et donc que Cn = Tn.
+
+Hypothèse de récurrence selon n (= HR(n) ):$\forall q \leq n$ :\
+→ $T_{q}$ est la pire complexité\
+→ $\forall k \in \{ 1,\ldots,n\},T_{k - 1} + T_{n - k} + n–1 \leq T_{n}$ (avec égalité si k=1)
+
+- Cas de base n = 1 : $T₀ = 0 = T₁,k \in \{ 1\} \text{ alors }T_{1 - 1} + T_{1 - 1} + 1–1 = 0 \leq T₁$ et T₁ est la pire complexité.
+
+- Si HR(n) est vérifiée. Soit $k \in \{ 1,\ldots,n + 1\}$
+  
+  $$ T_{k - 1} + \color{red}{T_{n + 1–k}} + n\underset{\text{def. de T}}{=}T_{k - 1} + {\color{red}T_{n - k} + (n - k)}\color{black} + n–1 + 1\underset{\text{HR(n)}}{\leq}T_{n} + (n–k + 1) \leq T_{n} + n = T_{n + 1} $$
+  
+  ce qu'on veut.
+
+- Si $C_{n + 1}$ désigne la pire complexité (la PIIIIIIIRE), soit k la position réalisant le pire. On a $C_{n + 1} = C_{k - 1} + C_{n + 1 - k} + n\underset{HR(n)}{\leq}T_{k - 1} + T_{n + 1 - k} + n \leq T_{n + 1}$ Donc $T_{n + 1}$ est pire que le PIIIIIIIREEEEEE
+
+### Complexité moyenne du tri rapide
+
+La complexité moyenne C (n) du tri rapide pour une liste de taille n est la moyenne des complexités pour les diﬀérentes positions du pivot.
+
+Elle vériﬁe (si la position ﬁnale du pivot est équiprobable) :
+
+$$C(n) = \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)=n-1+\frac{1}{n}\sum_{k=0}^{n-1}(C(k) + C(n-k-1))$$
+
+On constate que chaque terme apparaît deux fois.
+
+Alors $C(n) = n - 1 + \frac{2}{n}\sum_{k = 0}^{n - 1}C(k)$
+d'où $nC(n) = 2\sum_{k = 0}^{n - 1}C(k) + n(n - 1)$ et donc ainsi :
+
+$$
+\begin{align}
+nC(n) - (n-1)C(n-1) &\underbrace =_\text{def} \color{red}{2\sum_{k=0}^{n-1}C(k)}\color{black}+n(n-1)-(n-1)C(n-1) \nonumber\\
+&= \color{red}{2C(n-1)+2\sum_{k=0}^{n-2}C(k) + (n-1)(n-2)}\color{black} - (n-1)(n-2) +n(n-1) - (n-1)C(n-1) \nonumber\\
+&= 2C(n-1) +\color{red}{(n-1)C(n-1)}\color{black} -(n-1)(n-2) + n(n-1)-(n-1)C(n-1) \nonumber\\
+&= 2C(n-1)+n(n-1)-(n-1)(n-2) \nonumber\\
+&\Rightarrow nC(n)-(n-1)C(n-1) = 2(n-1) \nonumber
+\end{align}
+$$
+
+Il vient ainsi
+
+$\frac{C(n)}{n + 1}–\frac{C(n - 1)}{n} = \frac{2(n - 1)}{n(n + 1)} = \frac{4}{n + 1}–\frac{2}{n}$ (décomposition en éléments simples)
+
+Par télescopage, et puisque C(0) = 0 :
+
+$\begin{matrix}
+\frac{C(n)}{n + 1}–\frac{C(0)}{1} = \frac{C(n)}{n + 1} \\
+ = 4\sum_{k = 1}^{n}\frac{1}{k + 1}–2\sum_{k = 1}^{n}\frac{1}{k} \\
+ = 4\sum_{k = 2}^{n + 1}\frac{1}{k} - 2\sum_{k = 1}^{n}\frac{1}{k} \\
+ = 2\sum_{k = 2}^{n}\frac{1}{k} + \frac{4}{n + 1} - 2 \\
+ = 2\sum_{k = 1}^{n}\frac{1}{k} + \frac{4}{n + 1}–4 \leq 2\underset{\sim \ln(n)}{\overset{\sum_{k = 1}^{n}\frac{1}{k}}{\underbrace{}}} + \underset{O\left( \frac{1}{n} \right)}{\overset{\frac{4}{n + 1}}{\underbrace{}}} \\
+\end{matrix}$
+
+Sachant que $\sum_{k = 1}^{n}\frac{1}{k} = \ln n + \gamma + O\left( \frac{1}{n} \right)$ où γ est la constante d'Euler ($\gamma \simeq 0,577$) alors :
+
+$$\frac{C(n)}{n+1} = (2 \ln n + 2\gamma + O(\frac{1}{n}))+\frac{4}{n+1}-4=2\ln n +2\gamma + O(\frac{1}{n}) -4$$
+
+Donc $C(n) = O\left( n\log n \right)$.
+
+On peut minorer de la même façon, donc
+$C_{n} = \Theta\left( n\log n \right)$
+
+## Complexité amortie
+
+### Présentation
+
+L'analyse amortie est une méthode d'évaluation de la complexité temporelle des opérations sur une structure de données (tableaux, piles, ﬁles, arbres...).
+
+Elle consiste principalement à majorer le coût cumulé d'une suite d'opérations pour attribuer à chaque opération la moyenne de cette majoration, en prenant en compte le fait que les cas chers surviennent rarement et isolément et compensent les cas bon marché.
+
+### Exemple du compteur binaire
+
+On veut représenter, pour un entier n, tous les tableaux possibles de bouléens de longueur n.
+
+Un tel tableau t peut être vu comme la représentation binaire d'en entier positif sur n bits. Il y en a 2n − 1. On choisit la version little endian (bit de poids faible en t[0]), donc 1 s'écrit
+
+|  1  |  0  |  0  |  0  |
+| --- | --- | --- | --- |
+
+Pour avoir tous les tableaux, on part du tableau entièrement nul et on lui applique itérativement un incrément de 1 (donc 2n fois) :
+
+```C linenums="1"
+void incr(bool c[], int n){
+    int i = 0;
+    while(i<n && c[i]==1){ //propagation de la retenue
+        c [i] = 0 ;
+        i++;
+    }
+    if (i<n) c[i] = 1 ;
+}
+```
+
+Nous voulons mesurer la complexité de cette fonction.
+
+### Analyse grossière
+
+Pour un tableau de taille n.
+
+La complexité dépend du nombre de tour dans la boucle while.
+
+Meileur cas : si t[0]==0 , alors pas de passage dans la boucle, deux
+accès seulement (en lecture puis écriture).
+
+Pire cas : tous les bits à 1. Pour chacun des n passages, un accès en
+lecture puis un en écriture. 2n accès .
+
+Dans le pire cas, la complexité est en O(n) pour un tableau.
+
+Majorer le coût des 2n appels à incr : n2n.
+
+C'est trop imprécis car passer n fois dans la boucle arrive
+exceptionnellement.
+
+!!!example "Exemple"
+    | Numéro  | Paramètre    | Nombre de tours
+    | ------- | ------------ | ---------------
+    | 0       | 0000 . . . 0 | 0
+    | 1       | 1000 . . . 0 | 1
+    | 2       | 0100 . . . 0 | 0
+    | 3       | 1100 . . . 0 | 2
+    | 4       | 0010 . . . 0 | 0
+    | 5       | 1010 . . . 0 | 1
+    | 6       | 0110 . . . 0 | 0
+    | 7       | 1110 . . . 0 | 3
+    | 8       | 0001 . . . 0 | 0
+    | 9       | 1001 . . . 0 | 1
+    | 10      | 0101 . . . 0 | 0
+    | 11      | 1101 . . . 0 | 2
+    | 12      | 0011 . . . 0 | 0
+    | 13      | 1011 . . . 0 | 1
+    | 14      | 0111 . . . 0 | 0
+    | 15      | 1111 . . . 0 | 4
+
+    Total : 14 passages dans while
+
+    Sur 16 appels consécutifs à incr :
+
+    - Un appel sur 2 : 0 tour de boucle ;
+
+    - Un appel sur 4 : 1 tours de boucle ;
+
+    - Un appel sur 8 : 2 tours de boucle ;
+
+    - Un appel sur 16 : 3 tours de boucle ;
+
+### Cadre d'étude de complexité amortie
+
+On eﬀectue une étude de complexité amortie pour des algorithmes qui
+
+- ont une faible complexité pour de nombreuses entrées ;
+
+- sont coûteux pour certaines entrées (peu nombreuses en proportion) ;
+
+- vériﬁent que dans toute séquence d'appel à l'algorithme, les entrées coûteuses interviennent assez rarement pour que le coût moyen reste faible.
+
+### Diﬀérentes méthodes
+
+Il y a 3 méthodes usuelles d'analyse amortie : la méthode de l'agrégat, la méthode comptable et la méthode du potentiel (seule étudiée ici).
+
+Méthode du potentiel : A chaque entrée possible x, on associe un nombre positif ou nul φ(x) dit potentiel. Il représente un coût latent dans l'entrée mais pas encore réalisé.
+
+Une séquence d'un algorithme ayant de bonnes propriétés de complexité amortie alterne entre :
+
+- de (nombreuses) opérations de faible coût faisant monter progressivement le potentiel,
+
+- et de (peu nombreuses) opérations de coût élevé faisant diminuer
+
+- brusquement le potentiel.
+
+Dans l'exemple du compteur binaire, le potentiel est le nombre de 1 dans le tableau.
+
+### Coût amorti d'une opération
+
+!!!quote "Coût amorti"
+    Soit une opération op dont l'exécution produit une sortie $x_{s}$ à partir d'une entrée $x_{e}$. Le coût réel C de op est la complexité temporelle de son exécution. Son coût amorti A et la somme du coût réel et de la variation de potentiel : $A = C + \varphi(x_s) - \varphi(x_e)$.
+
+Dans cette déﬁnition, les entrées et sorties représentent au sens large ce qui est donné à l'algorithme (paramètres, état de la mémoire au début de l'appel) et ce qu'il produit (résultats renvoyés, état de la mémoire en sortie).
+
+Une séquence d'opérations consécutives est une suite d'appels à un algorithme de sorte que chaque sortie d'un appel soit l'entrée du suivant.
+
+On montre que le coût réel est toujours inférieur au coût amorti.
+
+### Théorème d'amortissement
+
+!!!danger ""
+    **Théorème**
+
+    Soit une suite de n opérations x0−→x1−→x2 . . .−→xn
+    à partir d'une entrée x0 telle que φ(x0) = 0. En notant Ci le coût réel de l'opération xi et Ai son coût amorti, on a la relation d'amortissement suivante :
+
+    $$\sum_{i=1}^{n}C_i \leq \sum_{i=1}^{n}A_i$$
+
+!!!note ""
+    **Preuve**
+
+    $$ \sum_{i=1}^{n}A_i = \sum_{i=1}^{n}C_i + \sum_{i=1}^{n}(\varphi(x_i) - \varphi(x_{i-1})) = \sum_{i=1}^{n}C_i + \varphi(x_n) - \varphi(x_0) \geq \sum_{i=1}^{n}C_i$$
+
+### Corollaire au th. d'amortissement
+
+!!!warning ""
+    **Corollaire**
+
+    Avec les notations du th. d'amortissement, si le coût amorti est borné par une constante k, alors la complexité moyenne au sein d'une séquence arbitraire de n opérations est bornée par k.
+
+!!!note ""
+    **Démonstration**
+
+    $$\sum_{i=1}^n C_i \leq \sum_{i=1}^n A_i \leq \sum_{i=1}^n k = kn$$
+
+### Retour au compteur binaire
+
+Complexité en nombre d'accès aux cases du tableau :
+
+Soit k le nombre de 1 consécutifs depuis la position 0. L'appel incr(c,n) réalise :
+
+- 2(k + 1) accès mémoire si k \< n.
+
+- 2n accès si k = n.
+
+On déﬁnit le potentiel φ(c) du tableau c par
+
+$$\Phi(c) = 2 \times \underset{|c|_{1}}{\overset{(\text{nombre de 1 dans c})}{\underbrace{}}}$$
+
+Si $c_{i}$ possède k bits 1 consécutifs depuis la position 0, alors soit k' tel que $|c|_{1} = k + k’$. Une application de incr, transforme $c_{i}$ en $c_{i + 1}$.
+
+Le delta de potentiel est
+
+$$ \phi(c_{i+1}) - \phi(c_i) = $$
+
+- $2(k’ + 1) - 2(k + k’) = 2 - 2k \text{ si k différent de n}$
+- $-2k \text{ si k = n}$
+
+Complexité en nombre d'accès aux cases du tableau :
+
+$$ A_{i+1} = C_{i+1} + \phi(c_{i+1}) - \phi(c_i) =$$
+
+- 2(k + 1) + 2 - 2k = 4 si k < n.
+- 2k - 2k = si k = n.
+
+On en déduit que la complexité amortie est bornée par 4. D'après le corollaire du th. d'amortissement, toute séquence d'incrémentation commençant en 00 . . . 0 réalise moins de 4 opérations d'accès au tableau par appel à incr .
+
+## Complexité moyen vs complexité amortie
+
+La complexité moyenne est une moyenne (donc calculée avec des probabilités) :
+
+- Elle donne :
+  - Une complexité supposée représentative du plus grand nombre     d'entrée ;
+  - Sans apporter aucune garantie sur la complexité d'une opération     particulière ni même sur une séquence particulière d'opérations.
+
+- La complexité amortie apporte une borne garantie à toute séquence d'opération.
+  - Son calcul n'utilise pas de probabilité ;
+  - Elle ne dit rien de la complexité d'une opération particulière     mais assure un équilibre à toute séquence d'opérations.
