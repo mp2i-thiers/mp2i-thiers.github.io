@@ -118,7 +118,7 @@ Hypothèse de récurrence selon n (= HR(n) ):$\forall q \leq n$ :\
 
 - Si HR(n) est vérifiée. Soit $k \in \{ 1,\ldots,n + 1\}$
   
-  $$ T_{k - 1} + \color{red}{T_{n + 1–k}} + n\underset{\text{def. de T}}{=}T_{k - 1} + {\color{red}T_{n - k} + (n - k)}\color{black} + n–1 + 1\underset{\text{HR(n)}}{\leq}T_{n} + (n–k + 1) \leq T_{n} + n = T_{n + 1} $$
+  $$ T_{k - 1} + \textcolor{red}{T_{n + 1–k}} + n\underset{\text{def. de T}}{=}T_{k - 1} + \textcolor{red}{T_{n - k} + (n - k)} + n–1 + 1\underset{\text{HR(n)}}{\leq}T_{n} + (n–k + 1) \leq T_{n} + n = T_{n + 1} $$
   
   ce qu'on veut.
 
@@ -139,11 +139,11 @@ d'où $nC(n) = 2\sum_{k = 0}^{n - 1}C(k) + n(n - 1)$ et donc ainsi :
 
 $$
 \begin{align}
-nC(n) - (n-1)C(n-1) &\underbrace =_\text{def} \color{red}{2\sum_{k=0}^{n-1}C(k)}\color{black}+n(n-1)-(n-1)C(n-1) \nonumber\\
-&= \color{red}{2C(n-1)+2\sum_{k=0}^{n-2}C(k) + (n-1)(n-2)}\color{black} - (n-1)(n-2) +n(n-1) - (n-1)C(n-1) \nonumber\\
-&= 2C(n-1) +\color{red}{(n-1)C(n-1)}\color{black} -(n-1)(n-2) + n(n-1)-(n-1)C(n-1) \nonumber\\
-&= 2C(n-1)+n(n-1)-(n-1)(n-2) \nonumber\\
-&\Rightarrow nC(n)-(n-1)C(n-1) = 2(n-1) \nonumber
+nC(n) - (n-1)C(n-1) &\underbrace =_\text{def} \textcolor{red}{2\sum_{k=0}^{n-1}C(k)}+n(n-1)-(n-1)C(n-1) \nonumber\\
+    &= \textcolor{red}{2C(n-1)+2\sum_{k=0}^{n-2}C(k) + (n-1)(n-2)}- (n-1)(n-2) +n(n-1) - (n-1)C(n-1) \nonumber\\
+    &= 2C(n-1) +\textcolor{red}{(n-1)C(n-1)}-(n-1)(n-2) + n(n-1)-(n-1)C(n-1) \nonumber\\
+    &= 2C(n-1)+n(n-1)-(n-1)(n-2) \nonumber\\
+    &\Rightarrow nC(n)-(n-1)C(n-1) = 2(n-1) \nonumber
 \end{align}
 $$
 
