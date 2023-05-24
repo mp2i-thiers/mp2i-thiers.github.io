@@ -12,21 +12,22 @@
 
 Un algorithme glouton (greedy algorithm en anglais, parfois  appelé aussi algorithme gourmand, ou goulu) est un  algorithme qui suit le principe de réaliser, étape par étape, un  choix optimum local, afin d’obtenir un résultat optimum  global (Wikipedia).  
 
-!!!note "Exemples classiques"  
+!!!example ""
+    **Exemples classiques**
+
     - Rendu de monnaie
     - Coloration des sommets d’un graphe
     - Algorithme de Dijkstra pour la recherche de PCC ;  
 
 Un algorithme glouton fournit le plus souvent une solution au  problème. Dans les cas où il ne donne pas systématiquement  la solution optimale, il est appelé une _heuristique gloutonne_.  
 
-### Exemple d’heuristique gloutonne
+!!!example "Exemple d’heuristique gloutonne"
+    <p align='center'><img src='/images/03712f414ec74a36cb0b171efa9cd16a.bmp'/></p>
 
-<p align='center'><img src='/images/03712f414ec74a36cb0b171efa9cd16a.bmp'/></p>
+    Un algorithme glouton peut retourner une solution sous-optimale.  
 
-Un algorithme glouton peut retourner une solution sous-optimale.  
-
-En partant du point A et en cherchant à monter selon la plus  forte pente, un algorithme glouton trouvera le maximum local  m, mais pas le maximum global M.
-Il faut bien comprendre que même si elle ne fournit pas toujours de solution optimale, une stratégie gloutonne est souvent adoptée en raison de la simplicité de sa mise en œuvre.
+    En partant du point A et en cherchant à monter selon la plus  forte pente, un algorithme glouton trouvera le maximum local  m, mais pas le maximum global M.
+    Il faut bien comprendre que même si elle ne fournit pas toujours de solution optimale, une stratégie gloutonne est souvent adoptée en raison de la simplicité de sa mise en œuvre.
 
 ## Exemple du rendu de monnaie
 
@@ -65,7 +66,9 @@ let greedy_change (coins:int array) (v:int): int array =
     change ;;
 ```
 
-!!! info "Paramètres et variables"
+!!!note ""
+    **Paramètres et variables**
+
     Paramètres :  
 
     - `coins` : tableau des valeurs de pièces.  
@@ -96,20 +99,22 @@ Le fait que $v_1 = 1$, assure que `!i≥0` et donc l’accès valide  au tableau
 
     Un système de pièces qui, tel celui de la zone euro, permet un rendu optimal est qualifié de canonique.  
 
-### Preuve
+!!!note ""
+    **Preuve**
 
-Certaines combinaison de pièces ne peuvent se trouver dans une solution optimale :  
+    Certaines combinaison de pièces ne peuvent se trouver dans une solution optimale :  
 
-- Une pièce de valeur val = 1,5,10,50 ou 100 n’est jamais  utilisé deux fois dans une solution optimale. En eﬀet, pour  chacune de ces valeurs il est plus avantageux de rendre une  pièce de valeur 2val plutôt que deux de valeur val.
-- Une pièce de valeur 2 ou 20 n’est jamais utilisée 3 fois dans  une solution optimale. En eﬀet 3 pièces de valeur 2 sont  avantageusement remplacée par par une pièce de valeur 1 et  une de 5 ; 3 pièces de valeur 20 sont remplacées par une 10 et  une de 50.
-- Une pièce de valeur 1 n’accompagne jamais deux pièces de valeur 2 : on pourrait remplacer l’ensemble par une pièce de 5.  Une pièce de valeur 10 n’accompagne jamais deux pièces de  valeur 20 : on pourrait remplacer l’ensemble par une pièce de  50.  
+    - Une pièce de valeur val = 1,5,10,50 ou 100 n’est jamais  utilisé deux fois dans une solution optimale. En eﬀet, pour  chacune de ces valeurs il est plus avantageux de rendre une  pièce de valeur 2val plutôt que deux de valeur val.
+    - Une pièce de valeur 2 ou 20 n’est jamais utilisée 3 fois dans  une solution optimale. En eﬀet 3 pièces de valeur 2 sont  avantageusement remplacée par par une pièce de valeur 1 et  une de 5 ; 3 pièces de valeur 20 sont remplacées par une 10 et  une de 50.
+    - Une pièce de valeur 1 n’accompagne jamais deux pièces de valeur 2 : on pourrait remplacer l’ensemble par une pièce de 5.  Une pièce de valeur 10 n’accompagne jamais deux pièces de  valeur 20 : on pourrait remplacer l’ensemble par une pièce de  50.  
 
-Ecrivons un petit programme qui prend en compte les  contraintes précédentes et faisons le tourner pour explorer  exhaustivement toutes les combinaisons possibles de pièces de  moins de 200 euros (TODO du prof). On constate que la plus grande somme possible remboursable  avec ces pièces est  
-$2 × 2 + 5 + 2 × 20 + 50 + 100 = 199$
+    Ecrivons un petit programme qui prend en compte les  contraintes précédentes et faisons le tourner pour explorer  exhaustivement toutes les combinaisons possibles de pièces de  moins de 200 euros (TODO du prof). On constate que la plus grande somme possible remboursable  avec ces pièces est  
+    
+    $$2 × 2 + 5 + 2 × 20 + 50 + 100 = 199$$
 
-Ainsi, la solution optimale ne pourra JAMAIS rembourser plus  de 199 e avec des pièces de moins de 200 e. Dit autrement,  la solution optimale doit rembourser toute somme S > 200e  avec le maximum possible de pièces de 200e (qui est en fait  $k = S/200$).  Or, notre algorithme calcule exactement k.  
+    Ainsi, la solution optimale ne pourra JAMAIS rembourser plus  de 199 e avec des pièces de moins de 200 e. Dit autrement,  la solution optimale doit rembourser toute somme S > 200e  avec le maximum possible de pièces de 200e (qui est en fait  $k = S/200$).  Or, notre algorithme calcule exactement k.  
 
-Pour une somme inférieure à 199 euros reprenons notre petit  programme et faison le tourner pour trouver le nombre  maximum de pièces de moins de 100 euros.  
-On trouve alors que la solution optimale ne peut rembourser  qu’une somme de 99 euros avec ces pièces. Pour rembourser  une somme entre entre 100 et 199e, il faut un billet de 100.
+    Pour une somme inférieure à 199 euros reprenons notre petit  programme et faison le tourner pour trouver le nombre  maximum de pièces de moins de 100 euros.  
+    On trouve alors que la solution optimale ne peut rembourser  qu’une somme de 99 euros avec ces pièces. Pour rembourser  une somme entre entre 100 et 199e, il faut un billet de 100.
 
-C’est exactement la quantité que trouve notre programme  dans ce cas là !
+    C’est exactement la quantité que trouve notre programme  dans ce cas là !

@@ -92,23 +92,23 @@ Pour mettre en valeur un preuve, on utilise la syntaxe suivante :
     Lorem impsum 
 ```
 
-### Remarques 
+### Remarques / Crédits
 
-Pour mettre en valeur une remarque, on utilise la syntaxe suivante :
+Pour mettre en valeur une remarque ou les crédits, on utilise la syntaxe suivante :
 
 !!!tip inline ""
-    **Remarque**
+    **Remarque/Credit**
 
     Lorem impsum
 
 ```markdown
 !!!tip ""
-    **Remarque**
+    **Remarque/Credit**
 
     Lorem impsum
 ```
 
-### Exemples
+### Exemples / Exercices
 
 Pour mettre en valeur un exemple, on utilise la syntaxe suivante :
 
@@ -124,16 +124,30 @@ Pour mettre en valeur un exemple, on utilise la syntaxe suivante :
     Lorem impsum
 ```
 
+
 Ou si l'exemple est trop long ou qu'il n'est pas forcément primordiale :
 
-???example inline "Example"
+???example inline "Exemple / Exercice"
     Lorem impsum t
 
 ```markdown
-???example "Example"
+???example "Exemple / Exercice"
     Lorem 
     impsum
     t
+```
+
+Si c'est un exercice, sa potentielle correction se fait comme ceci :
+
+!!!tip inline "Correction"
+    Bla
+    bla bla
+
+```markdown
+!!!tip "Correction
+    Bla
+    bla
+    bla
 ```
 
 ### Attention

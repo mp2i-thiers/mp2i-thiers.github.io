@@ -6,17 +6,6 @@
     site à pour seul but d’être plus compréhensible pendant les périodes de
     révision que des diaporamas.
 
-???+ abstract "Sommaire"
-    - Arbre binaire de recherche
-        * ABR
-        * Suppression
-    - Dictionnaire
-    - Tas
-        * Supprimer un élément
-        * Création
-    - Files de priorités (une application des tas)
-    - Arbre binaire de recherche
-
 !!! tip "Crédits"
     - "Option informatique MPSI, MP/MP*", Roger Mansuy, paru chez Vuibert.
     - Wikipédia : Tas, Tas binaires, Tri par tas

@@ -6,15 +6,14 @@
     site à pour seul but d’être plus compréhensible pendant les périodes de
     révision que des diaporamas.
 
-## Crédits
+!!! tip "Crédits"
+    - Wikipedia (Analyse amortie)
 
-- Wikipedia (Analyse amortie)
+    - "Option informatique MPSI - MP/MP*" Roger MANSUY (Vuibert)
 
-- "Option informatique MPSI - MP/MP*" Roger MANSUY (Vuibert)
+    - "Algorithmique - 3ème édition Cours avec 957 exercices et 158 problèmes" Thomas H. Cormen, Charles Leiserson, Ronald Rivest, Cliﬀord Stein (Dunod)
 
-- "Algorithmique - 3ème édition Cours avec 957 exercices et 158 problèmes" Thomas H. Cormen, Charles Leiserson, Ronald Rivest, Cliﬀord Stein (Dunod)
-
-- "Informatique - MP2I/MPI - CPGE 1re et 2e années" Balabonski Thibaut, Conchon Sylvain, Filliâtre Jean-Christophe, Nguyen Kim, Sartre Laurent (ellipse)
+    - "Informatique - MP2I/MPI - CPGE 1re et 2e années" Balabonski Thibaut, Conchon Sylvain, Filliâtre Jean-Christophe, Nguyen Kim, Sartre Laurent (ellipse)
 
 ## Tri rapide
 
@@ -80,21 +79,22 @@ Variant |l|.
 
 - Terminaison OK.
 
-#### Correction :
+#### Correction
 
-Cas de base : OK.
+!!!note ""
+    Cas de base : OK.
 
-Supposons que les deux appels internes retournent une version triée de
-l1 et de l2 .
+    Supposons que les deux appels internes retournent une version triée de
+    l1 et de l2 .
 
-- Par correction de partition : l1 contient les éléments de q plus petits ou égaux au pivot et l2 les éléments strictement plus grands.
+    - Par correction de partition : l1 contient les éléments de q plus petits ou égaux au pivot et l2 les éléments strictement plus grands.
 
-- La concaténation retournée
-  - est triée : d'abords les éléments plus petits que le pivot     rangés dans l'ordre, puis le pivot, puis les éléments plus     grands que le pivot rangés dans l'ordre.
-  - contient exactement tous les éléments de q (puisque la réunion     de l1 et l2 les contient) plus l'élément manquant t .
-  - La concaténation est la version triée de l .
+    - La concaténation retournée
+    - est triée : d'abords les éléments plus petits que le pivot     rangés dans l'ordre, puis le pivot, puis les éléments plus     grands que le pivot rangés dans l'ordre.
+    - contient exactement tous les éléments de q (puisque la réunion     de l1 et l2 les contient) plus l'élément manquant t .
+    - La concaténation est la version triée de l .
 
-Hérédité OK
+    Hérédité OK
 
 ### Tri rapide : complexité en nombre de comparaisons
 
@@ -118,11 +118,20 @@ Hypothèse de récurrence selon n (= HR(n) ):$\forall q \leq n$ :\
 
 - Si HR(n) est vérifiée. Soit $k \in \{ 1,\ldots,n + 1\}$
   
-  $$ T_{k - 1} + \textcolor{red}{T_{n + 1–k}} + n\underset{\text{def. de T}}{=}T_{k - 1} + \textcolor{red}{T_{n - k} + (n - k)} + n–1 + 1\underset{\text{HR(n)}}{\leq}T_{n} + (n–k + 1) \leq T_{n} + n = T_{n + 1} $$
+    $$\begin{align}
+    T_{k - 1} + \textcolor{red}{T_{n + 1–k}} + n &\underset{\text{def. de T}}{=}T_{k - 1} + \textcolor{red}{T_{n - k} + (n - k)} + n–1 + 1\\
+    &\underset{\text{HR(n)}}{\leq}T_{n} + (n–k + 1) \leq T_{n} + n \\
+    & = T_{n + 1} 
+    \end{align}
+    $$
   
-  ce qu'on veut.
+    ce qu'on veut.
 
-- Si $C_{n + 1}$ désigne la pire complexité (la PIIIIIIIRE), soit k la position réalisant le pire. On a $C_{n + 1} = C_{k - 1} + C_{n + 1 - k} + n\underset{HR(n)}{\leq}T_{k - 1} + T_{n + 1 - k} + n \leq T_{n + 1}$ Donc $T_{n + 1}$ est pire que le PIIIIIIIREEEEEE
+- Si $C_{n + 1}$ désigne la pire complexité (la PIIIIIIIRE), soit k la position réalisant le pire. On a 
+
+$$C_{n + 1} = C_{k - 1} + C_{n + 1 - k} + n\underset{HR(n)}{\leq}T_{k - 1} + T_{n + 1 - k} + n \leq T_{n + 1}$$
+
+Donc $T_{n + 1}$ est pire que le PIIIIIIIREEEEEE
 
 ### Complexité moyenne du tri rapide
 
@@ -130,7 +139,10 @@ La complexité moyenne C (n) du tri rapide pour une liste de taille n est la moy
 
 Elle vériﬁe (si la position ﬁnale du pivot est équiprobable) :
 
-$$C(n) = \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)=n-1+\frac{1}{n}\sum_{k=0}^{n-1}(C(k) + C(n-k-1))$$
+$$\begin{align}C(n) &= \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)\\
+    &=n-1+\frac{1}{n}\sum_{k=0}^{n-1}(C(k) + C(n-k-1))
+\end{align}    
+$$
 
 On constate que chaque terme apparaît deux fois.
 
@@ -281,7 +293,7 @@ Dans l'exemple du compteur binaire, le potentiel est le nombre de 1 dans le tabl
 
 ### Coût amorti d'une opération
 
-!!!quote "Coût amorti"
+!!!quote "Définition : Coût amorti"
     Soit une opération op dont l'exécution produit une sortie $x_{s}$ à partir d'une entrée $x_{e}$. Le coût réel C de op est la complexité temporelle de son exécution. Son coût amorti A et la somme du coût réel et de la variation de potentiel : $A = C + \varphi(x_s) - \varphi(x_e)$.
 
 Dans cette déﬁnition, les entrées et sorties représentent au sens large ce qui est donné à l'algorithme (paramètres, état de la mémoire au début de l'appel) et ce qu'il produit (résultats renvoyés, état de la mémoire en sortie).
@@ -307,7 +319,7 @@ On montre que le coût réel est toujours inférieur au coût amorti.
 
 ### Corollaire au th. d'amortissement
 
-!!!warning ""
+!!!quote ""
     **Corollaire**
 
     Avec les notations du th. d'amortissement, si le coût amorti est borné par une constante k, alors la complexité moyenne au sein d'une séquence arbitraire de n opérations est bornée par k.
@@ -351,12 +363,14 @@ On en déduit que la complexité amortie est bornée par 4. D'après le corollai
 
 ## Complexité moyen vs complexité amortie
 
-La complexité moyenne est une moyenne (donc calculée avec des probabilités) :
+La complexité moyenne est une moyenne (donc calculée avec des probabilités)
 
-- Elle donne :
-  - Une complexité supposée représentative du plus grand nombre     d'entrée ;
-  - Sans apporter aucune garantie sur la complexité d'une opération     particulière ni même sur une séquence particulière d'opérations.
+Elle donne :
 
-- La complexité amortie apporte une borne garantie à toute séquence d'opération.
-  - Son calcul n'utilise pas de probabilité ;
-  - Elle ne dit rien de la complexité d'une opération particulière     mais assure un équilibre à toute séquence d'opérations.
+- Une complexité supposée représentative du plus grand nombre     d'entrée ;
+- Sans apporter aucune garantie sur la complexité d'une opération     particulière ni même sur une séquence particulière d'opérations.
+
+La complexité amortie apporte une borne garantie à toute séquence d'opération.
+
+- Son calcul n'utilise pas de probabilité ;
+- Elle ne dit rien de la complexité d'une opération particulière     mais assure un équilibre à toute séquence d'opérations.

@@ -17,7 +17,7 @@ La résolution d’un problème peut parfois se faire en le décomposant en  sou
 
 ### Historique
 
-!!!definition "Programmation dynamique"
+!!!quote "Définition : Programmation dynamique"
     Processus de résolution de problèmes où on trouve les meilleures décisions les unes après les autres.  Le terme était utilisé par le mathématicien Richard Bellman dès les années 40.  
 
 En 1953, Bellman en donne la définition moderne, où les décisions à  prendre sont ordonnées par sous-problèmes. Le domaine a alors été reconnu par l’Institute of Electrical and  Electronics Engineers (IEEE) comme un sujet d’analyse de systèmes et  d’ingénierie.  
@@ -27,7 +27,9 @@ En 1953, Bellman en donne la définition moderne, où les décisions à  prendre
 La méthode Diviser pour régner est un cas particulier de  programmation dynamique.  
 On décompose encore un problème principal en sous-problèmes.  Cependant, les sous-problèmes sont ici indépendants les uns des autres  ce qui facilite la tâche du programmeur.  
 
-!!!note "Principe"
+!!!note ""
+    **Principe**
+
     On **divise** en réduisant un problème en sous-problèmes du même type et  qui ne se chevauchent pas.  Puis on **règne** en résolvant ces sous-problèmes. Il reste à **rassembler** les solutions des sous-problèmes pour obtenir une  soution au problème initial.  
 
 ### Cadre d’application
@@ -37,10 +39,10 @@ sous-problèmes doivent être gérés.
 
 #### Vocabulaire
 
-!!!definition "Sous-structure optimale"
+!!!quote "Définition: Sous-structure optimale"
     Se dit d’un problème qu’on peut résoudre en le décomposant en sous-problèmes du même type,  eux-mêmes résolubles récursivement. 
 
-!!!definition "Chevauchement de sous-problèmes"
+!!!quote "Définition: Chevauchement de sous-problèmes"
     Se dit si des sous-problèmes ne sont pas indépendants et doivent être résolus plusieurs  fois.
 
 En général on envisage tous les sous-problèmes comme dans une  recherche exhaustive mais on prend ses précautions pour ne pas avoir à  les résoudre tous :  

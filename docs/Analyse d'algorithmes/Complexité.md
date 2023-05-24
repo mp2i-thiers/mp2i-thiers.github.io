@@ -80,7 +80,9 @@ Dans ce cas, la notation en O(f(n)) (si n est l'entrée) nous suffit.
 Parfois, on s'intéresse à une opération spécifique, et dans ce cas un
 décompte précis est favorisé.
 
-!!!example "Exemple"
+!!!example ""
+    **Exemple**
+
     - Le nombre d'échanges d'éléments dans un tri de tableau
     - Le nombre de produits de flottants dans un produit matriciel « optimisé »
 
@@ -105,7 +107,9 @@ selon la machine mais que le nombre d'opérations ne changera pas.
 La complexité temporelle d'un programme au pire : nombre max. d'op.
 elem. à effectuer (en fonction de la taille du ou des arguments).
 
-!!!example "Exemple introductif"
+!!!example ""
+    **Exemple introductif**
+
     ```c linenums="1"
     void diviseurs1(int n){
         for(int i=2; i<n; i++){
@@ -127,7 +131,9 @@ elem. à effectuer (en fonction de la taille du ou des arguments).
 
 Déterminer le temps d'exécution en fonction de la taille du problème
 
-!!!example "Exemple"
+!!!example ""
+    **Exemples**
+
     - Recherche de diviseur de n. La taille est n, le temps d'exécution est proportionnel à n
     - Manipulation d'une liste. Taille du problème : nombre d'éléments.
     - Traitement d'un fichier texte. Taille du problème : nombre de caractères.
@@ -275,25 +281,28 @@ $u_{n} = f(n) + u_{\left\lfloor \frac{n}{2} \right\rfloor} + u_{\left\lceil \fra
 avec f croissante. On pose aussi u₀ = u₁ = 1 parce que ça nous arrange
 et qu'on étudie un comportement asymptotique.
 
-On montre que $u_{n - 1} \leq u_{n}$ pour n ≥ 1
+!!!note ""
+    **Preuve**
 
--   *Initialisation*
-    1 = u₀ ≤ u₁ = 1
+    On montre que $u_{n - 1} \leq u_{n}$ pour n ≥ 1
 
--   *Hérédité*
-    Si $u_{k} \geq u_{q}$ pour tout n \> k ≥ q.
-    $u_{n} = f(n) + u_{\left\lfloor \frac{n}{2} \right\rfloor} + u_{\left\lceil \frac{n}{2} \right\rceil}\text{ et }u_{n - 1} = f(n - 1) + u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} + u_{\left\lceil \frac{n - 1}{2} \right\rceil}$
-    
-    Or les fonctions parties entières sont croissantes donc
-    $u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} \leq u_{\left\lfloor \frac{n}{2} \right\rfloor}etu_{\left\lceil \frac{n - 1}{2} \right\rceil} \leq u_{\left\lceil \frac{n}{2} \right\rceil}$
-    par HR et f(n-1) ≤ f(n) par hypothèse.
-    Donc $u_{n} \geq u_{n - 1}$
+    -   *Initialisation*
+        1 = u₀ ≤ u₁ = 1
 
--   *Conclusion*
-    $\forall n \in {\mathbb{N}},\left( u_{n} \right)$.
+    -   *Hérédité*
+        Si $u_{k} \geq u_{q}$ pour tout n \> k ≥ q.
+        $u_{n} = f(n) + u_{\left\lfloor \frac{n}{2} \right\rfloor} + u_{\left\lceil \frac{n}{2} \right\rceil}\text{ et }u_{n - 1} = f(n - 1) + u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} + u_{\left\lceil \frac{n - 1}{2} \right\rceil}$
+        
+        Or les fonctions parties entières sont croissantes donc
+        $u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} \leq u_{\left\lfloor \frac{n}{2} \right\rfloor}etu_{\left\lceil \frac{n - 1}{2} \right\rceil} \leq u_{\left\lceil \frac{n}{2} \right\rceil}$
+        par HR et f(n-1) ≤ f(n) par hypothèse.
+        Donc $u_{n} \geq u_{n - 1}$
 
-En pratique, on refait pas cette preuve, et on admet que la complexité
-est croissante avec la taille des données.
+    -   *Conclusion*
+        $\forall n \in {\mathbb{N}},\left( u_{n} \right)$.
+
+    En pratique, on refait pas cette preuve, et on admet que la complexité
+    est croissante avec la taille des données.
 
 ### Dichotomie <3
 
@@ -445,7 +454,7 @@ comme la complexité est croissante :
 
 $$C_n \leq C_{2^{\left\lfloor \log_2 n \right\rfloor + 1}} = O((\lfloor \log_2 n \rfloor + 1)2^{\lfloor \log_2 n \rfloor + 1}) = O(n\log_2 n)$$
 
-Idem pour une minoration : $C_n = Θ(n log₂ n)$
+Idem pour une minoration : $C_n = Θ(n \log_2 n)$
 
 ## Suppléments à graille
 
