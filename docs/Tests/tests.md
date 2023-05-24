@@ -1,4 +1,4 @@
-# tests
+# Tests
 
 !!! warning
     Ce cours a été automatiquement traduit des transparents de M.Noyer par
@@ -225,7 +225,6 @@ void triangle (int j, int k, int l) {
     if (j+k<=l || k+l <= j || l+j <= k) {
         printf("pas un triangle");
     } else {
-        n = 1; // c'est un triangle
         if (j==k) n = n+1;
         if (j==l) n = n+1;
         if (l==k) n = n+1;
@@ -281,7 +280,7 @@ Cette formule est une _antilogie_ : le chemin rouge est infaisable.
 
 ```C linenums="1"
 void syracuse(int x) {
-    // on ne considère qye des entiers > 0
+    // on ne considère que des entiers > 0
     while (x!=1){
         if (x%2==0)
             x=x/2;
@@ -333,324 +332,221 @@ Critère atteint lorsque tous les sommets du graphe de contrôle sont  parcourus
 
 On définit le **taux de couverture des sommets** par  
 
-$$ \tau_s = \frac{nombre de sommets parcourus}{nombre de sommets}$$
+$$ \tau_s = \frac{\text{nombre de sommets parcourus}}{\text{nombre de sommets}}$$
 
 Exigence minimale pour la certification en aéronautique (norme  EUROCAE ED-12B) : $\tau_s = 1$.  
 
 Qualification niveau C : Un défaut peut provoquer un problème  majeur entraînant un dysfonctionnement des équipements vitaux de  l’appareil.  
 
-!!!danger "Je me suis arrêté ici, page 36/49"
-
-```linenums="1"
-i n t y
-i n t
-somme ( i n t x ,
-) i n t
-i f
-s = 0 ;
-( x==0)
-s=x ;
-e l s e
-s= x+y ;
-r e t u r n s ;
+```C linenums="1"
+int somme (int x, int y){
+    int s = 0;
+    if (x==0) s=x;
+    else s=x+y;
+    return s;
+}
 ```
 
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-{  
-
-
-
-
-}  
 Il y a deux chemins. L’un  d’eux permet de détecter  le défaut.  
-E  
-int s=0 ;  
-x ==0  
-s=x  
-  
-return s  
- (cid:40)  
-s=x+y  
-S  Le chemin E;int s=0;x  ==0;s=x;return s; S est  associée à la condition x = 0  satisfaite par les entrées  x = 0, y = 6. Cela permet de  détecter le défaut.  
+
+<p align='center'><img src='/images/tests8.png'/></p>
+
+Le chemin E;int s=0;x  ==0;s=x;return s; S est  associée à la condition x = 0  satisfaite par les entrées  x = 0, y = 6. Cela permet de  détecter le défaut.  
 
 ### Limite du critère "tous les sommets"
 
-
-```linenums="1"
-f l o a t d i v ( f l o a t x ) r ;
-( x ! = 0 . )
-f l o a t
-i f
-r = 1 . ;
-r = 1/ x ;
-r e t u r n r ;
+```C linenums="1"
+float div(float x){
+    float r;
+    if (x!=0) 
+        r=1.;
+    r = 1/x;
+    return r;
+}
 ```
 
-{  
+<p align='center'><img src='/images/tests9.png'/></p>
 
-
-}  
-  
-  
-  
-  
-  
-  
-  
-  
-E  
-ﬂoat r ;  
-x != 0  
-r=1.  
-  
-  
-r=1/x  
-return s  
-S  
 Le chemin E;int  r;x!=0;r=1;return r; S  (associé à x = 2) couvre bien  tous les sommets mais la  division par zéro n’est pas  détectée.  
 
 ### Critère "Tous les arcs"
 
-
 Dit aussi critère "toutes les décisions".  
+
 Pour chaque décision, un test rend la décision vraie, un autre la rend  fausse.  
-Taux de courverture des arcs :  
-τa =  
-nombre d’arcs parcourus  nombre d’arcs  
+
+Taux de courverture des arcs :
+
+$$\tau_a = \frac{\text{nombre d’arcs parcourus}}{\text{nombre d’arcs}}$$  
+
 Norme DO 178B, qualification des systèmes embarqués au niveau B :  un défaut peut provoquer un problème dangereux  
+
 Critère "Tous-les-arcs" entraîne critère "Tous-les-sommets".  
 
 ### Limite du critère tous les arcs
 
 
-```linenums="1"
-f l o a t F ( i n t a ,
-r ;
-i n t
-i f
-( a != 0 a==b )
-r =1/a ;
-r =0;
-e l s e
-r e t u r n r ;
-i n t b ) ```
+```C linenums="1"
+float F(int a, int b){
+    int r;
+    if (a!=0 || a==b) 
+        r=1/a;
+    else 
+        r=0;
+    return r;
+}
 
-
-
-| | 
-  
-  
-  
-  
-  
-  
-}  
-E  
-int r ;  
-a != 0 ou a==b      
-{  
-r=1/a  
-r=0  
-return r  
-S  Critère Toutes-les-Décisions  satisfait avec  {a = 0,b = 1} et  {a = 2,b = 1}.  Pourtant, division par zéro  non détectée avec  {a = 0,b = 0}.  
-
-
-```linenums="1"
-Toutes les conditions multiples
 ```
 
-Décomposer les conditionnelles  
+<p align='center'><img src='/images/tests10.png'/></p>
+
+Critère Toutes-les-Décisions  satisfait avec `{a = 0,b = 1} et  {a = 2, b = 1}`.  
+
+Pourtant, division par zéro non détectée avec `{a = 0,b = 0}`.  
+
+### Décomposer les conditionnelles: Toutes les conditions multiples
+
 On a vu que le critère "tous les arcs" pouvait passer à côté  d’erreurs.  
+
 C’est parce que ce critère est satisfait pour un sommet de décision  avec seulement deux jeux d’entrées : un jeu d’entrées rendant la  décision vraie et un autre la rendant fausse.  
+
 Plutôt que la considérer la décision comme un seul sommet du graphe  de contrôle, on introduit les sous-decisions comme nouveaux sommets.  
-Ce critère est appelé "toutes les conditions multiples"  
 
-### Critère toutes les conditions multiples : exemple
+Ce critère est appelé "**toutes les conditions multiples**"  
 
+!!!example ""
 
-Le critère  Toutes-les-Décisions  n’est plus satisfait  avec seulement  {a = 0,b = 1} et  {a = 2,b = 1}.  Le critère  Toutes-les-décisions  est satisfait avec  {a = 0,b = 1} et  {a = 2,b = 2} et  enfin  {a = 0,b = 0}.  Division par zéro  détectée.  
-E  
-int r ;  
-a != 0  
-(cid:120)  
- (cid:38)  
-a==b  
- ~=  
-(cid:119)  
-r=1/a  
-  
-return r  
-a==b  (cid:15)  r=0  
-S  
-Le graphe simple devient un  multigraphe (deux arcs sortant  du a==b de gauche vers 1/a ).  
+    Le critère  Toutes-les-décisions  n’est plus satisfait  avec seulement  `{a = 0,b = 1}` et `{a = 2,b = 1}`.  
+    
+    Le critère  Toutes-les-décisions  est satisfait avec  `{a = 0,b = 1}` et  `{a = 2,b = 2}` et  enfin  `{a = 0,b = 0}`. Division par zéro  détectée.  
 
+    <p align='center'><img src='/images/tests11.png'/></p>
 
-```linenums="1"
-Explosion combinatoire
-```
+    Le graphe simple devient un  multigraphe (deux arcs sortant  du a==b de gauche vers 1/a ).  
 
-Critère "Toutes les décisions multiples"  
-Exemple if (A && (B || C))  
-Toutes-les-conditions-multiples  
-Toutes-les-conditions  
-A B C décision  1  0  1  1  
-0  1  
-1  1  
-1  1  1  0  0  0  0  0  
-A B C décision  1  1  0  1  1  1  0  1  1  0  0  0  1  0  0  0  
-1  1  0  0  1  1  0  0  2  .  Comment limiter la  combinatoire ?  
+### Critère "Toutes les décisions multiples" : Explosion combinatoire
 
+!!!example ""
+    **Exemple if (A && (B || C))**  
 
-```linenums="1"
-MC/DC
-```
+    Toutes-les-conditions  
 
-Critère Toutes-les-Conditions/Décisions-modifié  
-Objectif : améliorer les critères de couverture basés sur les décisions  tout en contrôlant la combinatoire  
-Critère MC/DC : Modified Condition/Decision Coverage  
+    $$\begin{array}{|c c c | c |}
+    A & B & C & \text{Décision} \\
+    \hline
+    0 & 1 & 1 & 0 \\
+    1 & 1 & 1 & 1 \\
+    \end{array}$$
+    
+    Toutes-les-conditions-multiples
+
+    $$\begin{array}{|c c c | c |}
+    A & B & C & \text{Décision} \\
+    \hline
+    1 & 1 & 1 & 1 \\
+    1 & 1 & 0 & 1 \\
+    1 & 0 & 1 & 1 \\
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 \\
+    \end{array}$$
+
+    $2^{\text{nb de variables }}$: comment limiter la  combinatoire ?  
+
+### Critère Toutes-les-Conditions/Décisions-modifié : MC/DC
+
+!!!note ""
+    Objectif : améliorer les critères de couverture basés sur les décisions  tout en contrôlant la combinatoire  
+
+!!!quote "Définition: Critère MC/DC"
+    MC/DC : Modified Condition/Decision Coverage  
+
 On ne s’intéresse à un jeu de test faisant varier une condition que s’il  inﬂue sur la décision.  
 
 ### Critère MC/DC
 
-
-Exemple if (A && (B || C))  
-Principe : pour chaque test atomique, trouver deux cas de tests qui  changent la décision lorsque les autres conditions sont fixées.  Pour A :  
-A = 0, B = 1, C = 1. Décision : 0  A = 1, B = 1, C = 1. Décision : 1  
-Pour B :  
-A = 1, B = 0, C = 0. Décision : 0  A = 1, B = 1, C = 0. Décision : 1  
-Pour C :  
-A = 1, B = 0, C = 1. Décision : 1  A = 1, B = 0, C = 0. Décision : 0. Déjà couvert.  
-Si n conditions : critère MC/DC entraîne au plus 2 × n tests contre  2n pour le critère Toutes-les-décisions-multiple.  
+!!!example ""
+    **Exemple if (A && (B || C))**
+ 
+    Principe : pour chaque test atomique, trouver deux cas de tests qui  changent la décision lorsque les autres conditions sont fixées.  
+    
+    - Pour A :  
+        - A = 0, B = 1, C = 1. Décision : 0  
+        - A = 1, B = 1, C = 1. Décision : 1  
+    - Pour B :  
+        - A = 1, B = 0, C = 0. Décision : 0  
+        - A = 1, B = 1, C = 0. Décision : 1  
+    - Pour C :  
+        - A = 1, B = 0, C = 1. Décision : 1  
+        - A = 1, B = 0, C = 0. Décision : 0. **Déjà couvert**.  
+  
+    Si n conditions : critère MC/DC entraîne au plus 2 × n tests contre  $2^n$ pour le critère Toutes-les-décisions-multiple.  
 
 ### Limite du critère Toutes-les-décisions-multiples
 
-
-```linenums="1"
-f l o a t
-i n v s u m ( i n t n ,
-f l o a t a [ ] ) i = 0 ;
-s = 0 ;
-i n t
-f l o a t
-w h i l e ( i n ) s=s+a [ i ] ;
-i=i +1;
-r e t u r n 1/ s ;
+```C linenums="1"
+float invsum(int n, float a[]){
+    int i = 0;
+    float s = 0;
+    while(i<n){
+        s = s+a[i];
+        i++;
+    }
+    return 1/s;
+}
 ```
 
+<p align='center'><img src='/images/tests12.png'/></p>
 
-
-{  
-
-<{  
-}  
-}  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-E(cid:15)  Bloc B1  int i = 0 ;  ﬂoat s = 0 ;  
-  
-Condition C1  i<n  
-ret. 1/s  
-(cid:47) S  
-  
-Bloc B2  s = s+a[i] ;  i=i+1 ;  
 E,B1,C1,B2,C1,ret. 1/s, S  couvre toutes les décisions.  Satisfait par n = 1,  a = {2., 3., 5.}. Défaut non  détecté si le tableau est vide.  
 
 ### Critère "tous les chemins"
 
-
 Critère Tous-les-chemins : parcourir tous les arcs dans chaque  configuration possible (et non pas au moins une fois comme dans le  critère toutes-les-décisions)  
+
 Impraticable dès qu’il y a des boucles car existence de chemins infinis.  
-Aﬀaiblissement possible : "tous les chemins de longueur au plus k"  
+
+Aﬀaiblissement possible : "tous les chemins de longueur au plus k" 
+
 En pratique on se limite souvent aux cas k = 1 ou k = 2. Cela permet  au moins de détecter les erreurs produites quand on ne rentre pas  dans la boucle.  
+
 Dans l’exemple précédent, n = 1, a = {} satisfait le chemin  E,B1,C1,ret . 1/s,S et détecte la division par zéro.  
 
 ### Hiérarchie des critères
 
-
-toutes les conditions  multiples  
-MC/DC  
-tous les chemins  
-tous les chemins de  longueur au plus k  
-  
-      
-        
-    
- (cid:15)  
-toutes les décisions  
-tous les sommets  
+<p align='center'><img src='/images/tests13.png'/></p>
 
 ### Convention de notation algébrique
 
-
-ε pour "chemin vide"  
-A · B ou AB pour "A suivi de B"  (CB) pour "CBCBCB"  A + B pour "A ou B"  A pour "A + A + A + · · · + An + . . ."  A∗ pour "ε + A + A + A + · · · + An + . . ."  A pour ε + A + A + A + A  
+!!!note ""
+    - ε pour "chemin vide"  
+    - A · B ou AB pour "A suivi de B"  
+    - $(CB)^3$ pour "CBCBCB"  
+    - A + B pour "A ou B"  
+    - $A^{+}$ pour "$A + A^2 + A^3 + · · · + A^n + . . .$"  
+    - $A^{∗}$ pour "$ε + A + A^2 + A^3 + · · · + A^n + . . .$"  
+    - $A-^{4}$ pour $ε + A + A^2 + A^3 + A^4$
 
 ### Expression des chemins sous forme algébrique
 
-
-```linenums="1"
-v o i d F ( i n t x ) i f
-( x=0)
-x=x ;
-e l s e
-i f
-x=1x ;
-( x==1)
-x=1+x ;
-e l s e
-x =1;
-r e t u r n x ;
+```C linenums="1"
+void F(int x){
+    if (x <= 0)
+        x = -x;
+    else
+        x = 1 + x;
+    
+    if (x==1)
+        x=1-x;
+    else
+        x=1;
+    return x;
+}
 ```
 
-{  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-}  
+<p align='center'><img src='/images/tests14.png'/></p>
 
-<−
-
-
-−
-
-
-B | x=-x  
-I | In(cid:15)  A | x≤0  
-D | r=1/a  
-(cid:118)  
-(cid:118)  
- (cid:40)  
- (cid:40)  
-C | x=1-x  
-E | x=1  
-F | x=1+x  
-G | ret. x  
-O | Out  
-         
-IAB  C DE  F GO  
-          ·  ·    ·  ·    ·     
+- Les chemins de contrôle possibles sont décrits par $IA(B+C)D(E+F)GO$
+- Le nombre de chemins de contrôle possible est $1 \centerdot 1 \centerdot (1+1)\centerdot 1 \centerdot(1+1)\centerdot 1 = 4$
