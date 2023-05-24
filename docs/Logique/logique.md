@@ -519,7 +519,7 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
     - Si p = $f_1 \vee f_2$ alors, par HR, p est équivalent à une formule de la
     forme $(p_1 \wedge \dotsb \wedge p_{n_1} ) \vee (q_1 \wedge \dotsb \wedge q_{n_2} )$ où les $p_i ,q_j$ sont des clauses.
     Et par distributivité :
-    $p \equiv \underset{(k_1,k_2)\in [\![1,n_1]\!] \times [\![1, n_2]\!] }{\bigvee} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}$
+    $p \equiv \underset{(k_1,k_2)\in [\![1,n_1]\!] \times [\![1, n_2]\!] }{\bigwedge} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}$
 
 #### Forme normale disjonctive
 
@@ -573,9 +573,9 @@ $$
 !!! tip ""
     **Remarque**
 
-    Mettre une proposition sous FNCM, c’est donner une expression en  FNCM sémantiquement équivalente à cette proposition.
+    Mettre une proposition sous FNCC, c’est donner une expression en  FNCC sémantiquement équivalente à cette proposition.
 
-    $(v_1 \vee  \neg v_2 \vee  v_3) \wedge  (v_1 \vee  v_2 \vee  \neg v_3)$ est une FNCM sur les variables  $v_1, v_2, v_3$ mais pas $(v_1\vee  \neg v_2 \vee  v_3) \wedge  \neg (v_1 \vee  v_2 \vee  \neg v_3)$ car la négation  n’est pas au contact des variables. $(v_1 \vee v_2 \vee \neg v_3 ) \wedge (v_1 \vee v_3 )$ non plus car il manque une variable. 
+    $(v_1 \vee  \neg v_2 \vee  v_3) \wedge  (v_1 \vee  v_2 \vee  \neg v_3)$ est une FNCC sur les variables  $v_1, v_2, v_3$ mais pas $(v_1\vee  \neg v_2 \vee  v_3) \wedge  \neg (v_1 \vee  v_2 \vee  \neg v_3)$ car la négation  n’est pas au contact des variables. $(v_1 \vee v_2 \vee \neg v_3 ) \wedge (v_1 \vee v_3 )$ non plus car il manque une variable. 
 
     Utilisation : démonstration automatique de théorèmes ou PB SAT.      
 
@@ -584,23 +584,23 @@ $$
 !!! warning ""
     **Proposition**
 
-    Toute proposition est sémantiquement équivalente à une FNCM (resp.  FNDM) unique à l’ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
+    Toute proposition est sémantiquement équivalente à une FNCC (resp.  FNDC) unique à l’ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
 
 !!! tip ""
     **Remarque**
 
-    Dans ce qui suit on dit que deux FNDM sont égales si elles ont les mêmes mintermes (les mintermes sont donnés à l’ordre des littéraux près).
+    Dans ce qui suit on dit que deux FNDC sont égales si elles ont les mêmes mintermes (les mintermes sont donnés à l’ordre des littéraux près).
 
 #### Existence de la FNDC
 
 !!! note ""
-    Démonstration.
+    **Démonstration**
 
     - On construit la table de vérité de la proposition : il y a $2^n$ lignes  correspondants aux valeurs de vérité des n variables de p.  
     - Chaque ligne satisfaisant l’expression (1 dans la dernière colonne)  donne un minterme. Toutes les variables sont présentes et une variable v y apparaît positivement (v) si sa valeur de vérité dans la  ligne est 1, négativement ($\neg$v ) sinon.  
-    - On considère la disjonction de tous les mintermes ainsi obtenus. C’est  une expression q en FND.  
+    - On considère la disjonction de tous les mintermes ainsi obtenus. C’est  une expression q en FNDC.  
     - Soit $\mu$ un contexte. Si $\varepsilon_\mu(p) = 1$, alors le minterme associé à $\mu$ est  vrai pour $\mu$ donc $\varepsilon_\mu(q) = 1$.  
-    - Si $\varepsilon_\mu(p) = 0$, alors q ne contient pas le minterme associé à $\mu$. -Ainsi,  pour tout minterme m de q, on a $\varepsilon_\mu(m)=0$ et donc $\varepsilon_\mu(q) = 0$. 
+    - Si $\varepsilon_\mu(p) = 0$, alors q ne contient pas le minterme associé à $\mu$. Ainsi,  pour tout minterme m de q, on a $\varepsilon_\mu(m)=0$ et donc $\varepsilon_\mu(q) = 0$. 
     - $\color{red}{\textsf{Donc p et q prennent bien la même valeur pour tout contexte.}}$  
 
 #### Unicité de la FNDC à l’ordre près

@@ -19,14 +19,14 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
+      primary: blue grey
       accent: blue
       toggle:
           icon: material/lightbulb
           name: Passer au mode nuit
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
+      primary: blue grey
       accent: blue
       toggle:
           icon: material/lightbulb-outline
