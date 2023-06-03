@@ -65,22 +65,22 @@ L’algorithme LZW exploite et modifie à la volée le dictionnaire des  facteur
 /∗L’alphabet Σ est supposé connu ∗/
 fonction lzw_compress (t : texte):
     initialiser d avec Σ /∗ dictionnaire(facteur, code) ∗/
-    w $\leftarrow$ ε ; /∗ le facteur courant ∗/
-    t' $\leftarrow$ ε ; /∗ le texte compressé ∗/
-    n $\leftarrow$ |Σ| ; /∗ nombre de facteurs déjà compressés ∗/
+    w ← ε ; /∗ le facteur courant ∗/
+    t' ← ε ; /∗ le texte compressé ∗/
+    n ← |Σ| ; /∗ nombre de facteurs déjà compressés ∗/
     tant que t n’est pas vide faire:
-        c $\leftarrow$ t[0] ; /∗ 1ere lettre de t ∗/
-        t $\leftarrow$ t[1:]/∗ supprimer la 1ere lettre de t ∗/
-        p $\leftarrow$ w + c ; /∗ ajouter une lettre à w ∗/
+        c ← t[0] ; /∗ 1ere lettre de t ∗/
+        t ← t[1:]/∗ supprimer la 1ere lettre de t ∗/
+        p ← w + c ; /∗ ajouter une lettre à w ∗/
         si p est une clé de d :
-            w $\leftarrow$ p;
+            w ← p;
         sinon :
-            d[p] $\leftarrow$ n ; /∗ ajouter l’association (p, n)∗/
+            d[p] ← n ; /∗ ajouter l’association (p, n)∗/
             n++;/∗ incrémenter le nb de code enregistrés ∗/
             /∗ rqe : n = |d| : nb de clés dans le dico ∗/
-            t' $\leftarrow$ t' + d[w] ; /∗ ajouter le code de w à t 0 ∗/
-            w $\leftarrow$c;
-t 0 $\leftarrow$ t 0 + d[w];
+            t' ← t' + d[w] ; /∗ ajouter le code de w à t 0 ∗/
+            w ← c;
+t 0 ← t 0 + d[w];
 renvoyer t'
 ```
 
