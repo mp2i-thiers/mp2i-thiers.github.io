@@ -61,7 +61,7 @@ L’algorithme LZW exploite et modifie à la volée le dictionnaire des  facteur
 
 #### Algorithme
 
-```ocaml linenums="1"
+```linenums="1"
 /∗L’alphabet Σ est supposé connu ∗/
 fonction lzw_compress (t : texte):
     initialiser d avec Σ /∗ dictionnaire(facteur, code) ∗/
@@ -152,7 +152,7 @@ Le code n lu est tel que n = |d|, donc on lit un code non encore présent  dans 
 
 On initialise le dictionnaire avec l’alphabet (par exemple alphabet ASCII  des caractères codés sur 8 bits).  
   
-```ocaml linenums="1" 
+```linenums="1" 
 fonction lzw_decompress (T' : texte compressé,
                             d : dictionnaire ( code , facteur )):
     c ← Lire(T'); /∗ 1er code lu∗/
