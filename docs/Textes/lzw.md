@@ -84,7 +84,7 @@ t 0 ← t 0 + d[w];
 renvoyer t'
 ```
 
-???example Exemple (Wikipedia)
+???example "Exemple (Wikipedia)"
     On veut compresser ”TOBEORNOTTOBEORTOBEORNOT”. 
 
     - Initialisation de d : (A :65) ... (T :84), (O :79), (B :66), (E :69),  (R :82), (N :78) ... (Z :90) ... (\255,255) et t' $\leftarrow \varepsilon$ (texte compressé)
