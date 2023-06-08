@@ -5,26 +5,28 @@
     Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de
     révision que des diaporamas.
 
-#### Crédits
+### Crédits
 
 Un cours de Marc de Falco.  
 [Wikipedia](https://fr.wikipedia.org/wiki/Lempel-Ziv-Welch)  
 Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  
 
-#### Présentation
+## Compression
+
+### Présentation
 
 L’algorithme de Lempel-Ziv-Welch (LZW)est un algorithme de  compression de données sans perte.  
 Ses inventeurs sont Abraham Lempel, Jakob Ziv qui l’ont proposé en  1977 et Terry Welch qui l’a finalisé en 1984.  
 LZW a été utilisé dans des modems aujourd’hui obsolètes mais on le  trouve encore dans la compression des images "GIFF" ou  "TIFF" et les fichiers audio "MOD". Il est à la base de la  compression "ZIP".  
 Facile à coder (c’est son principal avantage) il n’est souvent pas  optimal car il n’eﬀectue qu’une analyse sommaire des données à  compresser.  
 
-#### Principe
+### Principe
 
 Recherche dans le texte à compresser des répétitions de sous-chaînes  identiques et leur donner une forme compacte dans le texte  compressé.
 L’algorithme LZW procède en une seule passe, en maintenant, au fur  et à mesure de la compression, l’ensemble des factiers qu’il a déjà  rencontrés.  
 Cette caractéristique est adaptée à la compression d’un texte qu’on  découvre à la volée comme lorsque le texte est transmis via un canal  de communication.  
 
-#### Préfixe, suﬃxe
+### Préfixe, suﬃxe
 
 !!!quote "Définition : Préfixe / Suffixe"    
     - Le mot x est appelé un préfixe du mot m si il existe un mot y tel que  m = x · y .  
@@ -37,7 +39,7 @@ Cette caractéristique est adaptée à la compression d’un texte qu’on  déc
     - $\varepsilon$, langage et gage sont des suﬃxes de langage,  
     - Si xu = m et xv = m alors, par régularité, u = v .  
 
-#### Facteurs
+### Facteurs
 
 !!!quote "Définition : facteur"   
     On dit qu’un mot x est facteur d’un mot m s’il existe u, v , deux mots tels
@@ -51,7 +53,7 @@ Cette caractéristique est adaptée à la compression d’un texte qu’on  déc
 
 Pour plus d’informations sur la théorie des mots, voir par exemple ce [cours](https://nussbaumcpge.be/public_html/Spe/MP/mots.pdf).  
 
-#### Table des correspondances facteurs/encodage
+### Table des correspondances facteurs/encodage
 
 L’algorithme de compression construit une table de traduction des  facteurs du texte en parcourant le texte à compresser. 
 Cette table relie des codes de taille (le plus souvent) fixée  (généralement à 12 bits) aux chaînes de caractères. Certaines  implémentations avec taille d’encodage variable existent aussi.  
@@ -59,7 +61,7 @@ La table est initialisée avec tous les caractères (256 entrées dans le  cas d
 Il est malin d’utiliser un dictionnaire (facteur, encodage). Les seules  clés du dictionnaires qui ne sont pas des facteurs du texte sont les  caractères de l’alphabet non utilisés par le texte.
 L’algorithme LZW exploite et modifie à la volée le dictionnaire des  facteurs. Il renvoie une liste de clés de ce dictionnaire (c’est à dire une  liste d’entiers), chacune codant un facteur du texte.  
 
-#### Algorithme
+### Algorithme
 
 ```linenums="1"
 /∗L’alphabet Σ est supposé connu ∗/
@@ -78,9 +80,9 @@ fonction lzw_compress (t : texte):
             d[p] ← n ; /∗ ajouter l’association (p, n)∗/
             n++;/∗ incrémenter le nb de code enregistrés ∗/
             /∗ rqe : n = |d| : nb de clés dans le dico ∗/
-            t' ← t' + d[w] ; /∗ ajouter le code de w à t 0 ∗/
+            t' ← t' + d[w] ; /∗ ajouter le code de w à t' ∗/
             w ← c;
-t 0 ← t 0 + d[w];
+t' ← t' + d[w];
 renvoyer t'
 ```
 
@@ -107,7 +109,9 @@ renvoyer t'
     - Position 20 : R,RN sont des clés mais pas RNO. d[RNO] $\leftarrow$ 270,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261  
     - Position 22 à fin : O,OT sont des clés.  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261, 263  
 
-#### Initialisation
+## Décompression
+
+### Initialisation
 
 On note d le dictionnaire (code,facteur) qui est l’inverse de celui de la  partie précédente (en fait, puisque l’ensemble des codes forme un  intervalle de nombres, un simple tableau redimensionnable suﬃt).
 
@@ -117,9 +121,9 @@ La notation |d| désigne le nombre d’associations déjà entrées. Avec le  co
 
 Le premier code c lu est nécessairement celui d’un unique caractère.  On écrit donc d[c] dans le fichier de sortie et on garde c en mémoire.  
 
-#### Déroulement  
+### Déroulement  
 
-##### Cas général
+#### Cas général
 
 On garde en mémoire le précédent code lu c.  
 
@@ -127,7 +131,7 @@ On garde en mémoire le précédent code lu c.
 - On écrit xm' dans le fichier de sortie  
 - On rajoute ensuite un nouvel élément mx dans le dictionnaire où  m = d[c]. On pose donc d[|d|] = mx.  
 
-##### Cas général : Pourquoi cela marche-t-il ?
+#### Cas général : Pourquoi cela marche-t-il ?
 
 On reproduit en fait le processus de compression mais en remplissant  le dictionnaire avec un temps de retard.  
 Selon le principe de compression :  
@@ -136,7 +140,7 @@ Selon le principe de compression :
 - Le code c de m (qui est connu, sinon on ne serait pas arrivé à x) est  ajouté au texte codé.  
 - On repart alors avec x comme motif lu  
 
-##### Cas problématique : n = |d|
+#### Cas problématique : n = |d|
   
 Le code n lu est tel que n = |d|, donc on lit un code non encore présent  dans la table de décompression.
 
@@ -146,7 +150,7 @@ Le code n lu est tel que n = |d|, donc on lit un code non encore présent  dans 
 - Dans la compression, après avoir lu mx, on repart de x et on lit wy ,  c.a.d. mxy . Ainsi, la 1ere lettre de m est x ! (dans le texte originel, on  a donc . . . mxmxy . . . ).  
 - On ajoute mx au texte décompressé et on réalise l’association  d[y ] = mx.  
 
-#### Algorithme
+### Algorithme
 
 
 On initialise le dictionnaire avec l’alphabet (par exemple alphabet ASCII  des caractères codés sur 8 bits).  
@@ -167,8 +171,9 @@ fonction lzw_decompress (T' : texte compressé,
         d[|d|] ← d[c] · e[0]; /∗ ajouter une association ∗/
     fin faire
 ```
+## taille des entiers de codage
 
-#### Taille des entiers en OCaml
+### Taille des entiers en OCaml
 
 En OCaml, les entiers sont deux bits plus courts que les entiers machines.  Sur la plupart des machines, les entiers sont de taille 32 ou 64 bits. En  OCaml, les entiers sont donc de taille 30 ou 62 bits  
 
