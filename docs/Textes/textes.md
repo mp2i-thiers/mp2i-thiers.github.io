@@ -41,7 +41,7 @@ Pour Rabin-Karp : Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellips
 
 ### Conventions
 
-- Soit s le texte et m le motif, |s| et |m| leurs longueurs. Soient k, r  dans $\llbracket 0,\left |\textsf s  \right | \rrbracket$. Les lettres sont numérotées à partir de 0.
+- Soit s le texte et m le motif, |s| et |m| leurs longueurs. Soient k, r  dans $[\![ 0,\left |\textsf s  \right | ]\!]$. Les lettres sont numérotées à partir de 0.
 - On applique les notation de slicing Python :  
   - s[i] est la lettre en position i
   - s[−1] : dernière lettre de s (comprendre s[|s| − 1]).
