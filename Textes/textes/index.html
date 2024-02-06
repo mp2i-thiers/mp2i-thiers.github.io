@@ -1,0 +1,2408 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lzw/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>Recherche dans un texte - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#recherche-dans-un-texte" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Recherche dans un texte
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/ABR/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/Nombres%20flottants/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/bdd1/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lzw/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/pcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/Nombres%20flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/bdd1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bdd1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lzw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principe-de-la-recherche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe de la recherche
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#difference-avec-la-recherche-de-sous-tableau-dans-un-tableau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diﬀérence avec la recherche de sous-tableau dans un  tableau
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rappel-de-lalgorithme-naif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rappel de l'algorithme naïf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rappel de l'algorithme naïf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-au-pire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité au pire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-boyer-moore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Boyer-Moore
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Boyer-Moore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regle-du-mauvais-caractere-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Règle du mauvais caractère : exemple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-des-sautsoccurences-a-droite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table des sauts/occurences à droite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s-texte-m-motif-dm-tableau-des-occurrences-les-plus-a-droite" class="md-nav__link">
+    <span class="md-ellipsis">
+      s : texte, m : motif, dm tableau des occurrences les plus à droite.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figure-1-dmsi-j-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      Figure 1 : dm(s[i + j]) ≥ j
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figure-2-0-dmsi-j-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      Figure 2 : 0 ≤ dm(s[i + j]) &lt; j
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison Informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction Informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme ♥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-recherche-de-toutes-les-positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la recherche de toutes les positions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-motifs-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de motifs multiples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principe-de-la-recherche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe de la recherche
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#difference-avec-la-recherche-de-sous-tableau-dans-un-tableau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diﬀérence avec la recherche de sous-tableau dans un  tableau
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rappel-de-lalgorithme-naif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rappel de l'algorithme naïf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rappel de l'algorithme naïf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-au-pire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité au pire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-boyer-moore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Boyer-Moore
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Boyer-Moore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regle-du-mauvais-caractere-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Règle du mauvais caractère : exemple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-des-sautsoccurences-a-droite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table des sauts/occurences à droite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s-texte-m-motif-dm-tableau-des-occurrences-les-plus-a-droite" class="md-nav__link">
+    <span class="md-ellipsis">
+      s : texte, m : motif, dm tableau des occurrences les plus à droite.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figure-1-dmsi-j-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      Figure 1 : dm(s[i + j]) ≥ j
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figure-2-0-dmsi-j-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      Figure 2 : 0 ≤ dm(s[i + j]) &lt; j
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison Informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction Informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité informelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme ♥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-recherche-de-toutes-les-positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la recherche de toutes les positions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-motifs-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de motifs multiples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="recherche-dans-un-texte">Recherche dans un texte<a class="headerlink" href="#recherche-dans-un-texte" title="Permanent link">&para;</a></h1>
+<p>======</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Ce cours n'a pas été entièrement reverifié après le passage du programme. Pensez à supprimer ce message si vous avez reverifié ce cours</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
+site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<p>Rappel de l’algorithme na¨ıf<br />
+ Algorithme de Boyer-Moore<br />
+Boyer-Moore-Horspool<br />
+ Algorithme de Rabin-Karp  </p>
+<h3 id="credits">Crédits<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h3>
+<p>Pour Boyer-Moore : </p>
+<ul>
+<li><a href="https://fr.wikipedia.org/wiki/Algorithme_de_Boyer-Moore">Wikipedia</a></li>
+<li>Un cours de Marc de Falco</li>
+<li>Cette <a href="https://www.youtube.com/watch?v=4Xyhb72LCX4">vidéo</a> de Ben Langmead  </li>
+</ul>
+<p>Pour Rabin-Karp : Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  </p>
+<h3 id="principe-de-la-recherche">Principe de la recherche<a class="headerlink" href="#principe-de-la-recherche" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Soit un texte écrit dans l’alphabet Σ  </li>
+<li>Soit un autre texte (plus court) écrit dans le même alphabet : le motif  </li>
+<li>On cherche le motif dans le texte et, en cas de présence constatée, on  retourne la position de la première lettre de la première occurence du  motif dans le texte.  </li>
+<li>Nous dirons que le motif est présent à la position i si la lettre i du  texte est égale à la lettre 0 du motif, la lettre i+1 du texte est égale à  la lettre 1 du motif et ainsi de suite jusquà la dernière lettre du motif.  </li>
+</ul>
+<h3 id="difference-avec-la-recherche-de-sous-tableau-dans-un-tableau">Diﬀérence avec la recherche de sous-tableau dans un  tableau<a class="headerlink" href="#difference-avec-la-recherche-de-sous-tableau-dans-un-tableau" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Le nombre de caractères dans l’alphabet est en général négligeable  devant celle du texte exploré  </li>
+<li>Cette propriété amène des optimisations inapplicables dans un  contexte de tableau contenant un grand nombre de symboles  diﬀérents.  </li>
+</ul>
+<h2 id="rappel-de-lalgorithme-naif">Rappel de l'algorithme naïf<a class="headerlink" href="#rappel-de-lalgorithme-naif" title="Permanent link">&para;</a></h2>
+<h3 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Soit s le texte et m le motif, |s| et |m| leurs longueurs. Soient k, r  dans <span class="arithmatex">\([\![ 0,\left |\textsf s  \right | ]\!]\)</span>. Les lettres sont numérotées à partir de 0.</li>
+<li>On applique les notation de slicing Python :  </li>
+<li>s[i] est la lettre en position i</li>
+<li>s[−1] : dernière lettre de s (comprendre s[|s| − 1]).</li>
+<li>s[−k] : k-ième lettre de s en partant de la fin (comprendre s[|s| − k]).</li>
+<li>s[k : r ] est la sous-chaîne de s qui contient les lettres de la position k à  r − 1. C’est la chaîne vide si r ≤ k</li>
+<li>s[: r ] est le préfixe de longueur r de s (lettres 0 à r − 1).</li>
+<li>s[: −k] est la sous-chaîne qui ne contient pas les k dernières lettres.
+ Longueur |s| − k.</li>
+<li>s[k :] est le suﬃxe de s qui commence à la position k (toutes les lettres  de s[k] incluse à la fin). C’est un mot de longueur |s| − k.  </li>
+</ul>
+<h4 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On parcourt toutes les positions de s[: −(|m| −1)] et on fait glisser le  motif de une case à chaque étape (on s’arrête dès que le motif  "dépasse" du texte).</li>
+<li>Pour la position i, on regarde si le motif est présent à partir de cette  position :  </li>
+<li>Pour une position k dans le motif</li>
+<li>La lettre s[i + k] dans le texte doit être égale à la lettre m[k] dans le  motif</li>
+<li>Si c’est le cas on passe à la position suivante dans le motif et le texte.</li>
+<li>Sinon, le motif n’est pas présent en position i, on recommence la  recherche à la position i+1.  </li>
+</ul>
+<h4 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h4>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">recherche_naive</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">){</span><span class="w">  </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="p">])</span><span class="w"> </span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">         </span><span class="k">break</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// pas la peine de continuer  </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="c1">// for j  </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span><span class="w">  </span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// motif en pos . i  </span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c1">// for i  </span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="c1">// motif absent  </span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="complexite-au-pire">Complexité au pire<a class="headerlink" href="#complexite-au-pire" title="Permanent link">&para;</a></h4>
+<p>La complexité au pire est obtenue lorsqu’on entre systématiquement dans  la seconde boucle et qu’on explore les lettres du motif presque jusqu’au  bout.</p>
+<ul>
+<li>s = an (n lettres) et <span class="arithmatex">\(m = a^{p-1}b ~~\)</span>(p lettres)</li>
+<li>On explore les p lettres du motif pour chacune des n − p + 1  premières lettres du texte.  </li>
+<li>Complexité au pire en <span class="arithmatex">\(\Theta-(n+1 -p)p)~\)</span> Et <span class="arithmatex">\(\Theta(np)\)</span> (si <span class="arithmatex">\(p &lt; \frac{n}{2}\)</span> par exemple).  </li>
+</ul>
+<h4 id="complexite">Complexité<a class="headerlink" href="#complexite" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Souvent, au bout d’une ou deux comparaisons, on peut invalider la  position et passer à la suivante.  </li>
+<li>Si le motif est présent à la fin du texte, on a une complexité en  <span class="arithmatex">\(O(n+p)\)</span> (où <span class="arithmatex">\(p\)</span> comparaisons sont nécessaires pour vérifier une à une  les lettres du motif).  </li>
+<li><span class="arithmatex">\(O(n+p) = O(n)\)</span> si p ≤ n.  </li>
+</ul>
+<h2 id="algorithme-de-boyer-moore">Algorithme de Boyer-Moore<a class="headerlink" href="#algorithme-de-boyer-moore" title="Permanent link">&para;</a></h2>
+<h4 id="principe_1">Principe<a class="headerlink" href="#principe_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On parcourt le texte s du début à la fin mais on eﬀectue parfois un  décalage dépendant de la première comparaison négative (ce qui fait  gagner du temps).  </li>
+<li>Le motif m est recherché en commençant par la fin : on teste la  présence de suﬃxes du motif de plus en plus gros.  C’est le contraire de la méthode na¨ıve ou le motif est recherché en  faisant grossir ses préfixes.  </li>
+<li>
+<p>L’algorithme utilise un pré-traitement du motif afin de calculer le saut  maximum à eﬀectuer après avoir trouvé une non-concordance.  </p>
+</li>
+<li>
+<p>Exploration de la lettre i de s : on se demande si ce n’est pas la  première lettre de m.</p>
+</li>
+<li>On se place donc en position i + |m| − 1 de s (donc à droite de i). On  explore les positions i + |m| − 1, i + |m| − 2 . . . dans le texte en  comparant avec les positions −1, −2 etc.. du motif. On espère arriver  sans encombre à la lettre i.</li>
+<li>Si on arrive sans erreur à la position i : on a trouvé le motif.</li>
+<li>Sinon, on a trouvé un suﬃxe xm' de s[: i+ |m|] (s tronqué à  i + |m| − 1) tel que m'est un suﬃxe propre de m et pas xm'<ul>
+<li>Si x n’est pas présent dans m, on reprend la recherche juste après x (pas la peine de perdre son temps à placer le motif avant le x du texte)</li>
+<li>si x est présent, on aligne le x de m le plus à droite et le x de s</li>
+</ul>
+</li>
+</ul>
+<h4 id="regle-du-mauvais-caractere-exemple">Règle du mauvais caractère : exemple<a class="headerlink" href="#regle-du-mauvais-caractere-exemple" title="Permanent link">&para;</a></h4>
+<p>On cherche string (m) dans le texte stupid spring string (s).  </p>
+<ul>
+<li>Démarrage en position 0 de s.<br />
+<img alt="texte_1" src="../../images/Textes/texte_1.png" />
+   d et g ne correspondent pas en position 5 et il n’y a aucun d dans le  motif. On passe à la position suivante 0 + |m| de s.  </li>
+<li>
+<p>Poursuite en position 6 de s :<br />
+<img alt="texte_2" src="../../images/Textes/texte_2.png" />
+   Le n et le g ne correspondent pas. Mais 1 cran à gauche de g, il y a  un n dans le motif. On aligne donc le n du motif avec celui du texte.  </p>
+</li>
+<li>
+<p>Poursuite en position 6 + 1 de s :
+   <img alt="texte_3" src="../../images/Textes/texte_3.png" />
+   Correspondance de 4 lettres. Mais p ne figure pas dans le motif. On  décale le motif APRES ce p, donc de 2 positions. etc..  </p>
+</li>
+</ul>
+<h4 id="table-des-sautsoccurences-a-droite">Table des sauts/occurences à droite<a class="headerlink" href="#table-des-sautsoccurences-a-droite" title="Permanent link">&para;</a></h4>
+<p>On veut chercher le motif abaa. Voici sa table des occurrences à  droite :<br />
+occurrence la plus à droite  2 (on ne tient pas compte du dernier a)  1  ∅<br />
+Lettre  a  b  Autres lettres  On note dm(x) l’occurrence la plus à droite de x dans m.  On veut chercher le motif abc. Voici sa table des occurrences à  droite :<br />
+saut max  3-2  3-1  |m| = 4<br />
+Lettre  a  b  Autres lettres dont c<br />
+occurrence la plus à droite  0  1  ∅<br />
+saut max  2-0  2-1  |m| = 3  </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Remarques
+</span></code></pre></div></td></tr></table></div>
+<p>Table des sauts<br />
+Lorsque la dernière lettre du motif (m[−1]) n’est pas présente ailleurs  dans m (comme dans abcd mais pas abcb), le saut pour m[−1] est  de |m|.<br />
+Il y a autant de lignes que dans l’alphabet. On peut préférer utiliser  un dictionnaire, ce qui est économe en espace si le motif contient  beaucoup moins de lettres que l’alphabet (songer à l’UTF16 !)  </p>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+</div>
+<p>Jme suis arreter la</p>
+<h4 id="s-texte-m-motif-dm-tableau-des-occurrences-les-plus-a-droite">s : texte, m : motif, dm tableau des occurrences les plus à droite.<a class="headerlink" href="#s-texte-m-motif-dm-tableau-des-occurrences-les-plus-a-droite" title="Permanent link">&para;</a></h4>
+<p>i est la position courante dans le texte (position à laquelle on espère  trouver le premier caractère du motif). i ↑<br />
+j est la position de la lettre courante du motif. j ↓.  On compare s[i + j] et m[j] comme dans l’algo na¨ıf.  Supposons que s[i + j] (cid:54)= m[j] (sinon j est décrémenté) :<br />
+si dm(s[i + j]) = ∅, la recherche du motif ne sera pas satisfaite tant que  ce caractère s[i + j] sera présent. On reprend la recherche en i + j + 1  si s[i + j] est dans le motif et dm(s[i + j]) ≥ j, cela signifie que s[i + j]  est présent plus à droite que j dans le motif. Aligner cette occurrence  ne permettrait pas d’avancer la recherche (cf figure 1). On reprend en  i + 1.  Si dm(s[i + j]) &lt; j, le caractère s[i + j] est présent dans le motif à  gauche de la position courante j. On "aligne" ce caractère du motif  avec celui du texte.  On reprend donc la recherche dans le texte en i' tel que  i' + dm(s[i + j]) = i + j. Ainsi, la nouvelle position dans le texte est  i' = i + (j − dm(s[i + j]).  </p>
+<h4 id="figure-1-dmsi-j-j">Figure 1 : dm(s[i + j]) ≥ j<a class="headerlink" href="#figure-1-dmsi-j-j" title="Permanent link">&para;</a></h4>
+<p>s[i + j] est dans le motif et dm(s[i + j]) ≥ j (dm(s[i + j]) est noté d) :<br />
+. . . . . i . . . (i+j) . . .<br />
+a  ?<br />
+y  z  j<br />
+y  d<br />
+pos. txt  texte  motif  pos. motif<br />
+Décaler le motif de −(d − j) n’a pas d’intérêt car le point de départ dans  le texte serait alors en i − d qui a déjà été inspecté et invalidé ! On se  place donc en i + 1 : aucun gain par rapport à l’algorithme na¨ıf.  </p>
+<h4 id="figure-2-0-dmsi-j-j">Figure 2 : 0 ≤ dm(s[i + j]) &lt; j<a class="headerlink" href="#figure-2-0-dmsi-j-j" title="Permanent link">&para;</a></h4>
+<p>dm : table des occurrences à droite. Posons d = dm(s[i + j]).<br />
+. . . . i . . . . . . . (i+j) . . . : pos. dans txt<br />
+a  ?<br />
+0<br />
+: texte  y  x : motif m  &lt;------&gt; Aucun y dans m[d+1:] : remarques<br />
+y  z<br />
+j-d<br />
+d<br />
+j<br />
+(|m|-1)<br />
+: pos. dans motif<br />
+Nouveau point de départ en i + j − d (pour aligner les y ) :<br />
+. . . . i . . (i+j-d) . . . . (i+j) . . . . .<br />
+dec. =j-d  dec. &lt;j-d<br />
+b  ?<br />
+?<br />
+y  y  y u<br />
+z<br />
+z<br />
+x<br />
+x<br />
+pos. dans txt<br />
+:  : texte  : motif (good)  : motif (bad)<br />
+Prendre un décalage plus petit amène une lettre u (cid:54)= y sous y .  </p>
+<h4 id="terminaison-informelle">Terminaison Informelle<a class="headerlink" href="#terminaison-informelle" title="Permanent link">&para;</a></h4>
+<p>Dans la boucle externe, |s| − i est strictement décroissant et dans la  boucle interne, c’est j qui est strictement décroissant.<br />
+On en déduit la terminaison  </p>
+<h4 id="correction-informelle">Correction Informelle<a class="headerlink" href="#correction-informelle" title="Permanent link">&para;</a></h4>
+<p>Par rapport à l’algo na¨ıf, on fait des sauts.  Il suﬃt donc de s’assurer que les positions non explorées du fait des  sauts ne conduisent pas à une solution.  Un saut de 1 case n’est pas intéressant à étudier car il correspond à  l’algo na¨ıf.  On s’intéresse au cas i = 0 (pour simplifier) et à un saut de 2 cases  au moins.<br />
+Il existe 3 caractères x, y , z (avec y (cid:54)= z) et des mots m, m, m, s, s  (avec |m| ≥ 1) tels que m = m<br />
+mx et<br />
+m z<br />
+y     dmy  &lt; j<br />
+   j<br />
+s = s<br />
+y       j<br />
+ms et y /∈ mzm.<br />
+Un décalage trop faible (donc inférieur à j − dm(y ) − 1) amène une  lettre de m au niveau du y de yms. Or cette lettre de m est  diﬀérente de y (voir transparent figure 2).  D’où l’inutilité de décaler moins que j − dm(y ).  </p>
+<h4 id="complexite-informelle">Complexité informelle<a class="headerlink" href="#complexite-informelle" title="Permanent link">&para;</a></h4>
+<p>s texte, m motif<br />
+Si l’alphabet contient beaucoup de caractères (par exemple UTF8),  on peut espérer que les motifs auront peu de répétitions.  Chaque décalage sera donc en gros de |m|. En cas de recherche<br />
+infructueuse, on eﬀectue environ<br />
+|s|  |m|<br />
+comparaisons.<br />
+Exemple le pire m = bap− et s = an. Il faut, avant de faire un  décalage, atteindre le b, soit p comparaisons. Et le décalage, obtenu  en comparant a et b, est alors de 1 (car j = 0 &lt; p − 1 = da).  Comme pour l’algo na¨ıf, on a un nombre de comparaisons en<br />
+(n − p + 1)p = Θ(np) = Θ(|m| × |s|)  </p>
+<h4 id="algorithme">Algorithme ♥<a class="headerlink" href="#algorithme" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>f o n c t i o n                  
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>p o u r
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>p o u r     r e n v o y e r 
+</span></code></pre></div></td></tr></table></div>
+<p>Listing 2 – Table des sauts  </p>
+<div class="language-text highlight"><pre><span></span><code>     ∗
+
+
+
+
+
+          ∗
+</code></pre></div>
+<p>− ∗     </p>
+<div class="language-text highlight"><pre><span></span><code>   ∗
+</code></pre></div>
+<p>|| −  ∗ || −      ∗  </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-3-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-3-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-3-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-3-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-3-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-3-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-3-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-3-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-3-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-3-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-3-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-3-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-3-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-3-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-3-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-3-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-3-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-3-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-3-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-3-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-3-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-3-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-3-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-3-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-3-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-3-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-3-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-3-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-3-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-3-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-3-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-3-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-3-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-3-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-3-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-3-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-3-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-3-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-3-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-3-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-3-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-3-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-3-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-3-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-3-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-3-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-3-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-3-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-3-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-3-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-3-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-3-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-3-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-3-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-3-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-3-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-3-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-3-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-3-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-3-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-3-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-3-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-3-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-3-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-3-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-3-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-3-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-3-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-3-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-3-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-3-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-3-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-3-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-3-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-3-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-3-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-3-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-3-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-3-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-3-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-3-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-3-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-3-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-3-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-3-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-3-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-3-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-3-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-3-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-3-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-3-100">100</a></span>
+<span class="normal"><a href="#__codelineno-3-101">101</a></span>
+<span class="normal"><a href="#__codelineno-3-102">102</a></span>
+<span class="normal"><a href="#__codelineno-3-103">103</a></span>
+<span class="normal"><a href="#__codelineno-3-104">104</a></span>
+<span class="normal"><a href="#__codelineno-3-105">105</a></span>
+<span class="normal"><a href="#__codelineno-3-106">106</a></span>
+<span class="normal"><a href="#__codelineno-3-107">107</a></span>
+<span class="normal"><a href="#__codelineno-3-108">108</a></span>
+<span class="normal"><a href="#__codelineno-3-109">109</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>f o n c t i o n              
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>t a n t que  t a n t q u e            
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>s i
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>a l o r s
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>r e n v o y e r
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>s i  a l o r s
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>s i n o n s i  a l o r s
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>s i n o n 
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>r e n v o y e r ```
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24"></a>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27"></a>Listing 3 – Fonction principale  
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30"></a>                       || − &lt; |      |  
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31"></a>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32"></a> || −  
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33"></a>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34"></a> &gt;  
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35"></a>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36"></a>  −  
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37"></a>   &lt;   
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38"></a>             ∗      &lt;  ∗               
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39"></a>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40"></a>             ∗           − ∗  
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41"></a>  &gt;     
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42"></a>   ∗                
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43"></a>        ∗  
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44"></a>   ∗         ∗      −  ∗      ∗  
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45"></a>− ∗     
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46"></a>     ∗  
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47"></a>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48"></a>#### Boyer-Moore complet
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49"></a>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50"></a>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51"></a>L’algorithme de Boyer-Moore complet, plus délicat que  Boyer-Moore-Horspool, introduit une seconde table de sauts en plus de la  table des dernières occurrences. Conformément au programme, on peut  s’abstenir de l’étudier.  
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52"></a>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53"></a>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54"></a> Rappel de l’algorithme na¨ıf  
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55"></a> Algorithme de Boyer-Moore  
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56"></a>Boyer-Moore-Horspool  
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57"></a> Algorithme de Rabin-Karp  
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58"></a>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59"></a>#### Présentation
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60"></a>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61"></a>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62"></a>L’algorithme de Rabin-Karp ou Karp-Rabin est un algorithme de  recherche de sous-chaîne créé par Richard M. Karp et Michael O.  Rabin (1987).  
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63"></a>Cette méthode recherche un ensemble de motifs donnés (c’est-à-dire  des sous-chaînes) dans un texte grâce à une fonction de hachage. On  ne compare donc pas directement le motif à des sous-chaînes du texte  mais seulement leurs empreintes (le hache).  
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64"></a>L’algorithme n’est pas beaucoup employé pour les recherches d’une  unique sous-chaîne mais a une importance théorique et s’avère très  eﬃcace pour des recherches de multiples sous-chaînes. (Wikipedia)  Dans toute la suite on prend s : texte ; m motif. Pour un mot u, uk  désigne la lettre k de u.  
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65"></a>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66"></a>#### Utilisation d’une fonction de hachage
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67"></a>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68"></a>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69"></a>On se donne une fonction de hachage h sur les chaînes de caractères  et on calcule une fois pour toute h(m).  
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70"></a>Pour chaque position 0 ≤ i ≤ |s| − |m| on calcule h(s[i : i + |m|]).  
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71"></a>Si h(m) (cid:54)= h(s[i : i + |m|]), on est certain que m n’est pas en position  i dans le texte.  
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72"></a>Si h(m) = h(s[i : i + |m|]), comme h n’est pas injectif en général, il  est possible que m soit en position i dans le texte. Il faut alors  comparer m et s[i : i + |m|] en force brute.  
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73"></a>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74"></a>#### Choix de h
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75"></a>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76"></a>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77"></a>Le calcul de h(s[i : i + |m|]) se fait à priori en Θ(|m|). La séquence  des calculs des haches des sous-chaînes de s a alors la même  complexité que la recherche na¨ıve, soit en Θ((|s| − |m| + 1) × |m|) (il  y a |s| − |m| + 1 sous-chaînes de s de taille |m|).  D’où l’idée de choisir h de façon à ce que h(s[i + 1 : i + 1 + |m|])  s’obtienne à partir de h(s[i : i + |m|]) en temps constant.  Choisissons un entier B arbitraire et posons pour le mot  u = uu . . . u|m| que  
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78"></a>h(u) =  
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79"></a>{sum symbol}  
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80"></a>B |m|−−j × uj  
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81"></a>≤j&lt;|m|  
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82"></a>Une telle fonction, polynômiale, se calcule en O(|m|) par la méthode  de Horner. En C, un caractère n’est rien d’autre qu’un nombre codé  sur un octet d’où la validité du produit.  Selon Wikipedia, cette fonction de hachage est appelée empreinte de  Rabin.  
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83"></a>
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84"></a>#### Choix de h (suite)
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85"></a>
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86"></a>
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87"></a>Appliquée au texte s, et posant |m| = M, on obtient :  
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88"></a>h(sisi . . . siM ) =  
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89"></a>M−  {sum symbol}  
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90"></a>j  
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91"></a>B M−−j sij  
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92"></a>= siM B M−−M − si B M + B ×  
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93"></a>M−  {sum symbol}  
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94"></a>j  
+</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95"></a>B M−−j sij  
+</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96"></a>= siM + B(h(si si . . . siM−) − si B M−)  
+</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97"></a>On peut donc calculer h(s[i + 1 : i + 1 + M]) à partir de h(s[i : i + M])  en temps constant : avec un précalcul (une fois pour toute) de B M−,  il faut faire une addition une soustraction et 2 produits.  Il peut y avoir un overﬂow. D’où la nécessité de travailler modulo (il  est malin de prendre un grand nombre premier pour ce modulo).  
+</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98"></a>
+</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99"></a>#### Cas d’un motif unique
+</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100"></a>
+</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101"></a>
+</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102"></a>```linenums=&quot;1&quot;
+</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103"></a>f o n c t i o n            
+</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104"></a>p o u r
+</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105"></a>f a i r e
+</span><span id="__span-3-106"><a id="__codelineno-3-106" name="__codelineno-3-106"></a>s i   
+</span><span id="__span-3-107"><a id="__codelineno-3-107" name="__codelineno-3-107"></a>s i   
+</span><span id="__span-3-108"><a id="__codelineno-3-108" name="__codelineno-3-108"></a>r e n v o y e r
+</span><span id="__span-3-109"><a id="__codelineno-3-109" name="__codelineno-3-109"></a>r e n v o y e r 
+</span></code></pre></div></td></tr></table></div>
+<p>Listing 4 – Rabin-Karp : recherche d’un motif  </p>
+<div class="language-text highlight"><pre><span></span><code>                   ∗
+</code></pre></div>
+<p>∗                                      <br />
+∗         ∗<br />
+||   ∗              ∗  ∗            ∗<br />
+      − </p>
+<p>||     </p>
+<div class="language-text highlight"><pre><span></span><code>||
+</code></pre></div>
+<p>Si on veut toutes les occurrences du motif, on crée une liste initialement  vide positions puis :<br />
+On remplace la ligne 10 par : ajouter i à positions ;  La dernière ligne devient : renvoyer positions  </p>
+<h4 id="complexite-de-la-recherche-de-toutes-les-positions">Complexité de la recherche de toutes les positions<a class="headerlink" href="#complexite-de-la-recherche-de-toutes-les-positions" title="Permanent link">&para;</a></h4>
+<p>On pose N = |s| (texte) ; M = |m| (motif)<br />
+Dans le meilleur cas, les comparaisons des hachés sont toujours  négatives et on n’appelle jamais la fonction de comparaison de  chaînes de caractères. Complexité au mieux en O(N + M) (O(M)  pour les deux hachés initiaux -souvent M ≤ N−). Boyer-Moore  complet (non vu cette année) peut faire encore mieux.<br />
+Le pire cas arrive quand le motif est présent à toutes les positions.  Avec s = aN et m = aM , on doit faire une comparaisons de chaînes  de caractères à chaque position dans le texte. Complexité en  O(N(N − M + 1)) comme pour l’algorithme na¨ıf.  </p>
+<h4 id="cas-de-motifs-multiples">Cas de motifs multiples<a class="headerlink" href="#cas-de-motifs-multiples" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>f o n c t i o n                     
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>p o u r
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>f a i r e
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>s i  r e n v o y e r         
+</span></code></pre></div></td></tr></table></div>
+<p>On cherche un ensemble de motifs, tous de même longueur m<br />
+Listing 5 – Rabin-Karp : recherche de plusieurs motifs  </p>
+<p>∗                           ∗                           ∗              ∗    { |  ∈ M} ∗          <br />
+       −  <br />
+∗         ∗<br />
+        ∗<br />
+        ∗<br />
+          ∗<br />
+∈        </p>
+<p>∈   </p>
+<p>Pas si eﬃcace pour la recherche d’un motif unique, il faut privilégier  Rabin-Karp pour la recherche de plusieurs motifs.  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

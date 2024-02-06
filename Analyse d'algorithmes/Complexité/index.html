@@ -1,0 +1,2294 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Complexit%C3%A9%20moyenne%20et%20amortie/">
+      
+      
+        <link rel="next" href="../../Arbres/ABR/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>Complexité - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#complexite" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Complexité
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/ABR/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/Nombres%20flottants/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/bdd1/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/lzw/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Définitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Définitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordres-de-grandeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordres de grandeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quoi-compter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quoi compter ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-elementaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations élémentaires
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations élémentaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-probleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille du problème
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucles-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucles For
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucles-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucles While
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilleur-des-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilleur des cas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-espace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en espace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-memoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en mémoire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diviser-pour-regner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diviser pour régner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diviser pour régner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#croissance-de-la-complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Croissance de la complexité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dichotomie-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dichotomie &lt;3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-fusion-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri fusion &lt;3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supplements-a-graille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppléments à graille
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/pcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/Nombres%20flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/bdd1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bdd1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/lzw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Définitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Définitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordres-de-grandeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordres de grandeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quoi-compter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quoi compter ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-elementaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations élémentaires
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations élémentaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-probleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille du problème
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucles-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucles For
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucles-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucles While
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilleur-des-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilleur des cas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-espace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en espace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-memoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en mémoire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diviser-pour-regner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diviser pour régner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diviser pour régner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#croissance-de-la-complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Croissance de la complexité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dichotomie-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dichotomie &lt;3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-fusion-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri fusion &lt;3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supplements-a-graille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppléments à graille
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="complexite">Complexité<a class="headerlink" href="#complexite" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
+site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<h2 id="definitions">Définitions<a class="headerlink" href="#definitions" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Analyse de la complexité</p>
+<p>Étude formelle de la quantité de ressources (de temps, d'espace mémoire, ...) nécessaire à l'exécution de cet algorithme</p>
+<ul>
+<li>En temps il s'agit de savoir si une fonction termine dans un temps raisonnable</li>
+<li>En mémoire il s'agit de déterminer si la fonction dispose bien toutes les ressources physiques pour s'exécuter.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition utiles</p>
+<p>On note <span class="arithmatex">\(D_{n}\)</span> l'ensemble des données de taille n et C(d) la complexité d'un certain programme pour une donnée d.</p>
+<ul>
+<li><span class="arithmatex">\(C_{\max}(n) = \max_{d \in D_{n}}C(d)\)</span> Est la complexité dans le pire
+cas</li>
+<li><span class="arithmatex">\(C_{\min}(n) = \min_{d \in D_{n}}C(d)\)</span> Est la complexité dans le
+meilleur des cas</li>
+<li><span class="arithmatex">\(C_{moy}(n) = \sum_{d \in D_{n}}^{}P(d)C(d)\)</span> Est la complexité en
+moyenne avec P la loi de proba associée à l'apparition des données de
+taille n</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Domination / Ordre de grandeur</p>
+<p><strong>U est dominée par </strong>V s'il existe
+<span class="arithmatex">\(\lambda \in {\mathbb{R}} + etN \in {\mathbb{N}}\)</span> tels que pour tout
+<span class="arithmatex">\(n \in {\mathbb{N}}\)</span>, si n ≥ N alors <span class="arithmatex">\(u_{n} \leq \lambda v_{n}\)</span>. On le
+note <span class="arithmatex">\(u_{n} = O\left( v_{n} \right)\)</span>. 
+On dit aussi que V domine U.</p>
+<p><strong>U et V sont de même ordre de grandeur</strong> si U domine V et V domine U (i.e. <span class="arithmatex">\(u_{n} = O\left( v_{n} \right)etv_{n} = O\left( u_{n} \right)\)</span>). On le
+note <span class="arithmatex">\(u_{n} = \Theta\left( v_{n} \right)\)</span> (« <span class="arithmatex">\(u_{n}\)</span> est en grand thêta
+de <span class="arithmatex">\(v_{n}\)</span>»)</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Équivalence / Grand Oméga</p>
+<p>On écrit <span class="arithmatex">\(u_{n} = \Omega\left( v_{n} \right)\)</span> (« <span class="arithmatex">\(u_{n}\)</span>est en grand
+Oméga de <span class="arithmatex">\(v_{n}\)</span> ») s'il existe<span class="arithmatex">\(\lambda \in {\mathbb{R}} +\)</span> et
+<span class="arithmatex">\(N \in {\mathbb{N}}\)</span> tels que pour tout <span class="arithmatex">\(n \in {\mathbb{N}}\)</span>, si n ≥ N
+alors <span class="arithmatex">\(u_{n} \geq \lambda v_{n}\)</span>.</p>
+<p>Observons que dans ce cas <span class="arithmatex">\(\frac{1}{\lambda}u_{n} \geq v_{n}\)</span> et donc
+<span class="arithmatex">\(u_{n} = \Omega\left( v_{n} \right) \Leftrightarrow v_{n} = O\left( u_{n} \right)\)</span>.</p>
+<p><strong>U et V sont dites équivalentes</strong> si et seulement si <span class="arithmatex">\(v_{n} \neq 0\)</span> à
+partir d'un certain rang et <span class="arithmatex">\(\frac{u_{n}}{v_{n}}\)</span> tend vers 1 en
+<span class="arithmatex">\(n \rightarrow + \infty\)</span>. Cette définition (qui nous suffit) est plus
+restrictive que celle du cours du maths.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Si <span class="arithmatex">\(u_{n} \sim v_{n}\)</span> alors <span class="arithmatex">\(u_{n} = \Theta\left( v_{n} \right)\)</span>.</p>
+</div>
+<h3 id="ordres-de-grandeur">Ordres de grandeur<a class="headerlink" href="#ordres-de-grandeur" title="Permanent link">&para;</a></h3>
+<p>Pour une donnée de taille n</p>
+<table>
+<thead>
+<tr>
+<th>Dénomination</th>
+<th>Définition</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logarithmique</td>
+<td><span class="arithmatex">\(O(\log n)\)</span></td>
+<td>Recherche dans une liste triée (pire cas)</td>
+</tr>
+<tr>
+<td>Linéaire</td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+<td>Inversion d'une liste</td>
+</tr>
+<tr>
+<td>Quasi-linéaire</td>
+<td><span class="arithmatex">\(O(n\log n)\)</span></td>
+<td>Tri fusion</td>
+</tr>
+<tr>
+<td>Polynomiale</td>
+<td><span class="arithmatex">\(O(n²)\)</span></td>
+<td>Tri par insertion (pire cas)</td>
+</tr>
+<tr>
+<td>Polynomiale</td>
+<td><span class="arithmatex">\(O(n^k)\)</span> pour k&gt;1</td>
+<td>Produit matriciel naïf en <span class="arithmatex">\(O\left( n^{3} \right)\)</span></td>
+</tr>
+<tr>
+<td>Exponentielle</td>
+<td><span class="arithmatex">\(O(\alpha^n)\)</span> pour <span class="arithmatex">\(\alpha &gt;1\)</span></td>
+<td>Satisfiabilité d'une formule (pire cas)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quoi-compter">Quoi compter ?<a class="headerlink" href="#quoi-compter" title="Permanent link">&para;</a></h3>
+<p>La plupart du temps, on se contente de donner une majoration « à
+constante multiplicative près » du temps de calcul. On ne compte pas
+précisément le nombre d'opérations élémentaires (est-ce bien malin de
+mettre dans le même sac un accès à un élément de tableau et une addition
+binaire ?).</p>
+<p>Dans ce cas, la notation en O(f(n)) (si n est l'entrée) nous suffit.
+Parfois, on s'intéresse à une opération spécifique, et dans ce cas un
+décompte précis est favorisé.</p>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<ul>
+<li>Le nombre d'échanges d'éléments dans un tri de tableau</li>
+<li>Le nombre de produits de flottants dans un produit matriciel « optimisé »</li>
+</ul>
+</div>
+<h2 id="operations-elementaires">Opérations élémentaires<a class="headerlink" href="#operations-elementaires" title="Permanent link">&para;</a></h2>
+<p>Pour mesurer le temps d'exécution d'un programme, on utilise le nombre
+d'opérations élémentaires à effectuer plutôt qu'une durée en seconde.
+En général on en cherche une majoration, plus rarement une minoration.</p>
+<p>La raison est que le même programme s'exécutera plus ou moins vite
+selon la machine mais que le nombre d'opérations ne changera pas.</p>
+<div class="admonition quote">
+<p class="admonition-title">Définitions: Opérations élémentaires</p>
+<p>Les opérations suivantes sont dites élémentaires (non exhaustif)</p>
+<ul>
+<li>Opérations sur les nombres : + - * / %</li>
+<li>Affectation, Afficher, Retourner : a = ... ; return ...</li>
+<li>Accès : t[i]</li>
+<li>Libération : free(t)</li>
+<li>Comparaisons de nombres : ... &lt; ... ; ... == ...</li>
+</ul>
+</div>
+<p>La complexité temporelle d'un programme au pire : nombre max. d'op.
+elem. à effectuer (en fonction de la taille du ou des arguments).</p>
+<div class="admonition example">
+<p><strong>Exemple introductif</strong></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">diviseurs1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Ce programme effectue exactement n - 2 calculs de restes de divisions
+euclidiennes, n - 2 comparaisons et un nombre d'affichages inférieur ou
+égal à n - 2. Au maximum, il y a donc 5(n - 2) + 1 opérations
+élémentaires plus les n - 2 incrémentations de i + comparaisons.
+L'ordre de grandeur est donc donné par une application affine : On dit
+que « la complexité temporelle est en O(n)</p>
+</div>
+<h3 id="taille-du-probleme">Taille du problème<a class="headerlink" href="#taille-du-probleme" title="Permanent link">&para;</a></h3>
+<p>Déterminer le temps d'exécution en fonction de la taille du problème</p>
+<div class="admonition example">
+<p><strong>Exemples</strong></p>
+<ul>
+<li>Recherche de diviseur de n. La taille est n, le temps d'exécution est proportionnel à n</li>
+<li>Manipulation d'une liste. Taille du problème : nombre d'éléments.</li>
+<li>Traitement d'un fichier texte. Taille du problème : nombre de caractères.</li>
+<li>Addition de matrices <span class="arithmatex">\(n\times m\)</span>. Taille du problème le couple (n, m) ou nm</li>
+</ul>
+</div>
+<p>Souvent la taille du problème est indiquée dans l'énoncé.</p>
+<h3 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h3>
+<p>Si on a une condition if ... else ... on prend le nombre d'opérations
+élémentaires maximum entre les deux + celui du test effectué dans la
+condition</p>
+<h3 id="boucles-for">Boucles For<a class="headerlink" href="#boucles-for" title="Permanent link">&para;</a></h3>
+<p>Pour la boucle <code>for(i = 0 ; i &lt; m ; i++) p();</code> son coût est m fois le
+coût de l'instruction p si ce coût ne dépend pas de i (condition sur la
+parité de i par exemple) :</p>
+<div class="arithmatex">\[1 + m \times \left( C(p) + 2 \right) = O\left( m \times C(p) \right)\]</div>
+<p>avec +2 pour l'incrémentation et la comparaison à chaque tour de
+boucle.</p>
+<p>Si le coût dépend de i, on a comme coût total de la boucle une somme des
+coûts du corps de la boucle pour chaque valeur de i +
+l'incrémentation :</p>
+<div class="arithmatex">\[\sum_{i = 0}^{m - 1}\left( C\left( p_{i} \right) + 2 \right) = O\left( \sum_{i = 0}^{m - 1}C\left( p_{i} \right) \right)\]</div>
+<p>Ainsi le coût d'une boucle for ne peut pas être inférieur à <span class="arithmatex">\(O(m)\)</span> car il
+y a toujours l'incrémentation du compteur sauf si dans le corps de la
+boucle se trouver une instruction d'arrêt ou de retour.</p>
+<h3 id="boucles-while">Boucles While<a class="headerlink" href="#boucles-while" title="Permanent link">&para;</a></h3>
+<p>Le nombre d'itération n'est pas connu à l'avance à priori. On évalue
+donc le nombre d'itération et on procède comme pour la boucle for en y
+ajoutant la complexité du test.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple de complexité temporelle (Ocaml)</p>
+<p>On essaye d'établir une relation de récurrence entre C(n) (la
+complexité pour une donnée de taille n) et la complexité des appels
+internes plus la complexité hors appel récursif.
+Complexité C (n) en nombre de multiplications pour :</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">fact</span> <span class="n">n</span> <span class="o">=</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="k">if</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>C(0) = C(1) = 0</li>
+<li>C(n) = C(n - 1) + 3 : une multiplication seulement dans le cas n≥2 avec
+la comparaison n&lt;2 et le n-1.</li>
+</ul>
+<p>Alors on a :</p>
+<div class="arithmatex">\[C(n) = C(n - 1) + 3 = \left( C(n - 2) + 3 \right) + 3 = \ldots = C(1) + 3(n–1) = O(n)\]</div>
+<p>En général, on ne s'encombre pas avec une trop grande précision. On
+fixe C(0) = C(1) = 1 et, si les opérations hors appels récursifs sont en
+O(f(n)), on prend le représentant le plus simple (ex : n pour O(n))</p>
+</div>
+<h3 id="meilleur-des-cas">Meilleur des cas<a class="headerlink" href="#meilleur-des-cas" title="Permanent link">&para;</a></h3>
+<p>La complexité au pire est la plus significative, mais il peut être utile
+de connaître aussi la complexité dans le meilleur des cas, pour avoir
+une borne inférieure du temps d'exécution d'un algorithme. En
+particulier, si la complexité dans le meilleur et dans le pire des cas
+sont du même ordre, cela signifie que le temps d'exécution de
+l'algorithme est relativement indépendant des données et ne dépend que
+de la taille du problème.</p>
+<h3 id="complexite-en-moyenne">Complexité en moyenne<a class="headerlink" href="#complexite-en-moyenne" title="Permanent link">&para;</a></h3>
+<p>Parler de moyenne des temps d'exécution n'a de sens que si l'on a une
+idée de la fréquence des différentes données possibles pour un même
+problème de taille n. Les calculs de complexité moyenne recourent aux
+notions définies en mathématiques dans le cadre de la théorie des
+probabilités et des statistiques. La complexité en moyenne n'est, en
+général, pas attendue dans les sujets mais on en verra quelques
+exemples.</p>
+<h3 id="complexite-en-espace">Complexité en espace<a class="headerlink" href="#complexite-en-espace" title="Permanent link">&para;</a></h3>
+<p>On appelle complexité en espace d'un algorithme la place nécessaire en
+mémoire pour faire fonctionner cet algorithme en dehors des paramètres
+du programme. Elle s'exprime également sous la forme d'un <span class="arithmatex">\(O(f(n))\)</span> où n
+est la taille du problème.</p>
+<h3 id="complexite-en-memoire">Complexité en mémoire<a class="headerlink" href="#complexite-en-memoire" title="Permanent link">&para;</a></h3>
+<p>En général, il suffit de faire le total des tailles en mémoire des
+différentes variables utilisées. La seule vraie exception à la règle est
+le cas des fonctions récursives, qui cachent souvent une complexité en
+espace élevée du fait de l'empilement des stack frames. La récursion
+terminale est une bonne solution à ce problème. La complexité spatiale
+est nécessairement toujours inférieure (ou égale) à la complexité
+temporelle d'un algorithme : on suppose qu'une opération d'écriture
+en mémoire prend un temps <span class="arithmatex">\(O(1)\)</span>, donc écrire une mémoire de taille M
+prend un temps <span class="arithmatex">\(O(M)\)</span>.</p>
+<h2 id="diviser-pour-regner">Diviser pour régner<a class="headerlink" href="#diviser-pour-regner" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p><strong>Méthode</strong></p>
+<p>On découpe la donnée que l'on doit traiter en deux parties de tailles
+proches (ou + que 2 parts).
+On résout le problème sur les parties plus petites
+On combine les résultats obtenus pour construire le résultat
+correspondant à la donnée initiale</p>
+</div>
+<p>Une donnée de taille n est découpée en deux autres données de tailles
+<span class="arithmatex">\(\left\lfloor \frac{n}{2} \right\rfloor et\left\lceil \frac{n}{2} \right\rceil\)</span>.
+La complexité obéit alors à une relation de la forme :</p>
+<div class="arithmatex">\[C_{n} = {aC}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bC}_{\left\lceil \frac{n}{2} \right\rceil} + f(n)\]</div>
+<p>Avec <span class="arithmatex">\((a,b) \neq (0,0)\)</span> sont des constantes associées au problème et
+f(n) correspond au coût total du partage et de la recombinaison.
+Cette récurrence est dite de type «<strong> diviser pour régner</strong> »</p>
+<div class="admonition warning">
+<p><strong>Proposition</strong></p>
+<p>Soient a,b deux entiers tels que <span class="arithmatex">\(ab \neq 0\)</span> et f, g deux fonctions
+croissantes de même ordre de grandeur. Alors les suites (<span class="arithmatex">\(u_{n}\)</span>) et
+(<span class="arithmatex">\(v_{n}\)</span>) telles que <span class="arithmatex">\(u_{0} = v_{0}\)</span> et pour tout
+<span class="arithmatex">\(n \in {\mathbb{N}} \ast\)</span> :</p>
+<p><span class="arithmatex">\(\begin{matrix}
+u_{n} = {au}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bu}_{\left\lceil \frac{n}{2} \right\rceil} + f(n) \\
+v_{n} = {av}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bv}_{\left\lceil \frac{n}{1} \right\rceil} + g(n) \\
+\end{matrix}\)</span>sont du même ordre de grandeur.</p>
+<p>Cette proposition (admise) justifie qu'on remplace le dernier terme par
+un terme plus simple de même ordre de grandeur (donc 1 pour O(1), n²
+pour O(n²) etc.)</p>
+</div>
+<h3 id="croissance-de-la-complexite">Croissance de la complexité<a class="headerlink" href="#croissance-de-la-complexite" title="Permanent link">&para;</a></h3>
+<p>On considère
+<span class="arithmatex">\(u_{n} = f(n) + u_{\left\lfloor \frac{n}{2} \right\rfloor} + u_{\left\lceil \frac{n}{2} \right\rceil}\)</span>
+avec f croissante. On pose aussi u₀ = u₁ = 1 parce que ça nous arrange
+et qu'on étudie un comportement asymptotique.</p>
+<div class="admonition note">
+<p><strong>Preuve</strong></p>
+<p>On montre que <span class="arithmatex">\(u_{n - 1} \leq u_{n}\)</span> pour n ≥ 1</p>
+<ul>
+<li>
+<p><em>Initialisation</em>
+    1 = u₀ ≤ u₁ = 1</p>
+</li>
+<li>
+<p><em>Hérédité</em>
+    Si <span class="arithmatex">\(u_{k} \geq u_{q}\)</span> pour tout n &gt; k ≥ q.
+    <span class="arithmatex">\(u_{n} = f(n) + u_{\left\lfloor \frac{n}{2} \right\rfloor} + u_{\left\lceil \frac{n}{2} \right\rceil}\text{ et }u_{n - 1} = f(n - 1) + u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} + u_{\left\lceil \frac{n - 1}{2} \right\rceil}\)</span></p>
+<p>Or les fonctions parties entières sont croissantes donc
+<span class="arithmatex">\(u_{\left\lfloor \frac{n - 1}{2} \right\rfloor} \leq u_{\left\lfloor \frac{n}{2} \right\rfloor}etu_{\left\lceil \frac{n - 1}{2} \right\rceil} \leq u_{\left\lceil \frac{n}{2} \right\rceil}\)</span>
+par HR et f(n-1) ≤ f(n) par hypothèse.
+Donc <span class="arithmatex">\(u_{n} \geq u_{n - 1}\)</span></p>
+</li>
+<li>
+<p><em>Conclusion</em>
+    <span class="arithmatex">\(\forall n \in {\mathbb{N}},\left( u_{n} \right)\)</span>.</p>
+</li>
+</ul>
+<p>En pratique, on refait pas cette preuve, et on admet que la complexité
+est croissante avec la taille des données.</p>
+</div>
+<h3 id="dichotomie-3">Dichotomie &lt;3<a class="headerlink" href="#dichotomie-3" title="Permanent link">&para;</a></h3>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">let</span> <span class="n">dicho</span> <span class="n">v</span> <span class="n">x</span> <span class="o">=</span> <span class="c">(*Chercher x dans le tableau trié v*)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="k">let</span> <span class="k">rec</span> <span class="n">cherche_entre</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>        <span class="k">if</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="k">then</span> <span class="o">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="o">.(</span><span class="n">a</span><span class="o">))</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="k">else</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>            <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">)/</span><span class="mi">2</span> <span class="k">in</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="k">if</span> <span class="n">v</span><span class="o">.(</span><span class="n">m</span><span class="o">)</span> <span class="o">=</span> <span class="n">x</span> <span class="k">then</span> <span class="bp">true</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>            <span class="k">else</span> <span class="k">if</span> <span class="n">v</span><span class="o">.(</span><span class="n">m</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="k">then</span> <span class="n">cherche_entre</span> <span class="n">a</span> <span class="o">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>            <span class="k">else</span> <span class="n">cherche_entre</span> <span class="o">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="n">b</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="k">in</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="n">cherche_entre</span> <span class="mi">0</span> <span class="o">(</span><span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">v</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>A chaque étape, la zone de recherche est divisée par 2 (au moins) (on
+note n//2 la division euclidienne par 2)</p>
+<div class="admonition example">
+<p>[x ; x ; x ; x ; x] : Tableau de taille <strong>impaire</strong> n</p>
+<p>Les deux sous-tableaux sont donc de taille n//2 (du début jusque
+l'élément m exclus et de l'élément m exclus jusque la fin du tableau)</p>
+<p>[x ; x ; x ; x] : Tableau de taille <strong>paire</strong> n</p>
+<p>Au moins un sous tableau est de taille n//2</p>
+</div>
+<p>Hors les appels récursifs, il y a un nombre borné d'autres opérations,
+toutes en O(1). Le coût total à chaque tour hors appels récursifs est
+donc O(1).
+Pour un tableau de taille n, la complexité au pire est du type
+<span class="arithmatex">\(C_{n} = C_{\left\lfloor \frac{n}{2} \right\rfloor} + O(1);\)</span> simplifié
+en <span class="arithmatex">\(C_{n} = C_{\left\lfloor \frac{n}{2} \right\rfloor} + 1\)</span> (On cherche
+dans le plus grand sous tableau pour que ça soit dans le pire cas)</p>
+<p>Si <span class="arithmatex">\(n = 2^{p}\)</span>alors
+<span class="arithmatex">\(C_{2^{p}} = C_{2^{p - 1}} + 1 = C_{2^{p - 2}} + 1 + 1 = \ldots = C_{2⁰} + p = \Theta\left( \log ₂n \right)\)</span></p>
+<p>Sinon pour un n quelconque,
+<span class="arithmatex">\(2^{\left\lfloor \log ₂n \right\rfloor} \leq n &lt; 2^{\left\lfloor \log ₂n \right\rfloor + 1}\)</span>
+et comme la complexité est croissante avec la taille du tableau, il
+vient
+<span class="arithmatex">\(C_{n} \leq C_{2^{\left\lfloor \log ₂n \right\rfloor + 1}} = O\left( \left\lfloor \log ₂n \right\rfloor + 1 \right)\)</span>ainsi
+on a <span class="arithmatex">\(C_{n} = O\left( \log ₂n \right)\)</span>.
+Idem pour la minoration :
+<span class="arithmatex">\(C_{n} \geq C_{2^{\left\lfloor \log ₂n \right\rfloor}} = \Omega\left( \left\lfloor \log ₂n \right\rfloor + 1 \right)\)</span></p>
+<p>Conclusion, <span class="arithmatex">\(C_{n} = \Theta\left( \log ₂n \right)\)</span></p>
+<h3 id="tri-fusion-3">Tri fusion &lt;3<a class="headerlink" href="#tri-fusion-3" title="Permanent link">&para;</a></h3>
+<p>Pour raison de commodité, on étudie la complexité d'une version non
+récursive terminale du tri fusion. On donne néanmoins une version
+récursive terminale après cette étude.</p>
+<p>On veut trier une liste. On sépare l'entrée en deux listes/deux
+tableaux (approximativement) de même longueur, qu'on trie séparément,
+puis on fusionne les deux résultats en comparant à chaque fois les plus
+petits éléments.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">divise</span> <span class="n">l</span> <span class="o">=</span> <span class="c">(*Sépare l en deux listes de même taille*)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="o">|</span> <span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">-&gt;</span> <span class="o">([</span><span class="n">x</span><span class="o">],</span> <span class="bp">[]</span><span class="o">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="o">|</span> <span class="n">x</span><span class="o">::</span><span class="n">y</span><span class="o">::</span><span class="n">q</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="o">=</span> <span class="n">divise</span> <span class="n">q</span> <span class="k">in</span> <span class="o">(</span><span class="n">x</span><span class="o">::</span><span class="n">l1</span><span class="o">,</span> <span class="n">y</span><span class="o">::</span><span class="n">l2</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Complexité temporelle est de la forme <span class="arithmatex">\(C_{n} = C_{n - 2} + 1\)</span>. Ainsi
+pour n = 2k :</p>
+<p>On trouve de même avec <span class="arithmatex">\(C_{2k + 1} = C₁ + k\)</span> pour n = 2k+1.</p>
+<p>Comme dans les 2 hypothèses de parité,
+<span class="arithmatex">\(k = \left\lfloor \frac{n}{2} \right\rfloor\)</span>, on obtient
+<span class="arithmatex">\(C_{n} = \Theta(n)\)</span></p>
+<p>On fusionne maintenant deux listes triées (par ordre croissant) en
+ajoutant prioritairement le plus petit élément des deux listes.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">fusion</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">=</span> <span class="c">(*Fusionne deux listes triées*)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="k">match</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="k">with</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="o">|</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="n">l</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="o">|</span> <span class="o">(</span><span class="n">l</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="o">|</span> <span class="o">(</span><span class="n">x</span><span class="o">::</span><span class="n">q</span><span class="o">,</span> <span class="n">y</span><span class="o">::</span><span class="n">r</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">then</span> <span class="n">x</span><span class="o">::(</span><span class="n">fusion</span> <span class="n">q</span> <span class="n">l1</span><span class="o">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>        <span class="k">else</span> <span class="n">y</span><span class="o">::(</span><span class="n">fusion</span> <span class="o">(</span><span class="n">l2</span><span class="o">)</span> <span class="n">r</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>En dehors des appels récursifs, les opérations sont en O(1) et en nombre
+borné.
+La complexité dépend donc de la façon dont sont réparties les données
+dans les listes. Meilleur cas en
+<span class="arithmatex">\(O\left( \text{min(|l1|,\ |l2|)} \right)\)</span> : lorsque tous les éléments de
+la liste la plus courte sont plus petits que ceux de la plus longue.</p>
+<p>Pour éviter un raisonnement qui tiendrait compte de la répartition des
+données, on peut étudier la complexité d'une fonction manifestement plus
+coûteuse mais plus simple à étudier :</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">fusion_couteuse</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">=</span> <span class="c">(*Fusionne deux listes triées*)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="k">match</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="k">with</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="o">|</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="o">|</span> <span class="o">(</span><span class="n">x</span><span class="o">::</span><span class="n">q</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="n">x</span><span class="o">::</span><span class="n">q</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">::(</span><span class="n">fusion_couteuse</span> <span class="n">q</span> <span class="bp">[]</span><span class="o">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="o">|</span> <span class="o">(</span><span class="n">x</span><span class="o">::</span><span class="n">q</span><span class="o">,</span> <span class="n">y</span><span class="o">::</span><span class="n">r</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">then</span> <span class="n">x</span><span class="o">::(</span><span class="n">fusion_couteuse</span> <span class="n">q</span> <span class="n">l2</span><span class="o">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>        <span class="k">else</span> <span class="n">y</span><span class="o">::(</span><span class="n">fusion_couteuse</span> <span class="n">l1</span> <span class="n">r</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>La complexité dépend seulement de la somme des tailles des listes. En
+notant n, m les tailles de l1, l2 on obtient la relation suivante :
+C(n+m) = C(n+m-1) + O(1) et C(0 + 0) = 1</p>
+<p>On étudie donc C(n+m) = C(n+m-1)+1. Il s'agit d'une suite arithmétique.
+On a donc C(n+m) = O(n+m)
+Ainsi la complexité de fusion est aussi en O(n+m)</p>
+<p>Et donc pour finir le tri fusion :</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">tri_fusion</span> <span class="n">l</span> <span class="o">=</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="bp">[]</span> 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="o">|</span> <span class="o">[</span><span class="n">e</span><span class="o">]</span> <span class="o">-&gt;</span> <span class="o">[</span><span class="n">e</span><span class="o">]</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>        <span class="k">let</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="o">=</span> <span class="n">divise</span> <span class="n">l</span> <span class="k">in</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>        <span class="n">fusion</span> <span class="o">(</span><span class="n">tri_fusion</span> <span class="n">l1</span><span class="o">)</span> <span class="o">(</span><span class="n">tri_fusion</span> <span class="n">l2</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On note n la longueur de l, La division est en Θ(n). La fusion
+s'applique aux deux moitiés triées ; elle a ici un coût en Θ(n) (même au
+meilleur cas). La complexité obéit à une relation diviser-pour-régner de
+la forme</p>
+<div class="arithmatex">\[C_n = C_{\lfloor\frac{n}{2}\rfloor} + C_{\lceil\frac{n}{2}\rceil} + \Theta(n) \text{ simplifié en } C_n = C_{\lfloor\frac{n}{2}\rfloor} + C_{\lceil\frac{n}{2}\rceil} + n\]</div>
+<p>Si
+<span class="arithmatex">\(n = 2^{k}\)</span> alors <span class="arithmatex">\(\left\lfloor \frac{n}{2} \right\rfloor = \left\lceil \frac{n}{2} \right\rceil\)</span>(et k = log₂ n) :</p>
+<div class="arithmatex">\[C_{2^k} = 2^k + C_{2^{k-1}} = 2\times 2^k + 2\times 2C_{2^{k-2}} = \ldots = k2^k + 2^kC_1 = \Theta(n\log_2 n)\]</div>
+<p>En général,
+<span class="arithmatex">\(2^{\left\lfloor \log ₂n \right\rfloor} \leq n &lt; 2^{\left\lfloor \log ₂n \right\rfloor + 1}\)</span>
+comme la complexité est croissante :</p>
+<div class="arithmatex">\[C_n \leq C_{2^{\left\lfloor \log_2 n \right\rfloor + 1}} = O((\lfloor \log_2 n \rfloor + 1)2^{\lfloor \log_2 n \rfloor + 1}) = O(n\log_2 n)\]</div>
+<p>Idem pour une minoration : <span class="arithmatex">\(C_n = Θ(n \log_2 n)\)</span></p>
+<h2 id="supplements-a-graille">Suppléments à graille<a class="headerlink" href="#supplements-a-graille" title="Permanent link">&para;</a></h2>
+<p>Le tri d'un tableau est dit <strong>en place</strong> si l'algorithme travaille
+directement sur le tableau en entrée et n'utilise pas de tableau
+auxiliaire. Un tri est stable s'il conserve les positions relatives des
+éléments de même valeur.</p>
+<p>Il existe une version du tri fusion pour les tableaux. Une version
+délicate (mais possible) existe pour un maintien en place mais non
+stable.</p>
+<p>Le tri fusion est en O(n log n) au pire, au meilleur et en moyenne.
+On ne peut pas faire mieux en moyenne (voir cours sur les arbres) pour
+un tri par comparaison (algorithmes de tri procédant par comparaisons
+successives entre éléments).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

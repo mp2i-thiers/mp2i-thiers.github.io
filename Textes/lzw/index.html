@@ -1,0 +1,2041 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Tests/tests/">
+      
+      
+        <link rel="next" href="../textes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>lzw - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lzw" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              lzw
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/ABR/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/Nombres%20flottants/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/bdd1/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/pcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/Nombres%20flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/bdd1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bdd1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefixe-suffixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Préfixe, suﬃxe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facteurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facteurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-des-correspondances-facteursencodage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table des correspondances facteurs/encodage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decompression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Décompression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décompression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deroulement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Déroulement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Déroulement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas général
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-general-pourquoi-cela-marche-t-il" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas général : Pourquoi cela marche-t-il ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-problematique-n-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas problématique : n = |d|
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taille-des-entiers-de-codage" class="md-nav__link">
+    <span class="md-ellipsis">
+      taille des entiers de codage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="taille des entiers de codage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-des-entiers-en-ocaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille des entiers en OCaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefixe-suffixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Préfixe, suﬃxe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facteurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facteurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-des-correspondances-facteursencodage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table des correspondances facteurs/encodage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decompression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Décompression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décompression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deroulement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Déroulement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Déroulement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas général
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-general-pourquoi-cela-marche-t-il" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas général : Pourquoi cela marche-t-il ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-problematique-n-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas problématique : n = |d|
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taille-des-entiers-de-codage" class="md-nav__link">
+    <span class="md-ellipsis">
+      taille des entiers de codage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="taille des entiers de codage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-des-entiers-en-ocaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille des entiers en OCaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="lzw">lzw<a class="headerlink" href="#lzw" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<h3 id="credits">Crédits<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h3>
+<p>Un cours de Marc de Falco.<br />
+<a href="https://fr.wikipedia.org/wiki/Lempel-Ziv-Welch">Wikipedia</a><br />
+Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  </p>
+<h2 id="compression">Compression<a class="headerlink" href="#compression" title="Permanent link">&para;</a></h2>
+<h3 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<p>L’algorithme de Lempel-Ziv-Welch (LZW)est un algorithme de  compression de données sans perte.<br />
+Ses inventeurs sont Abraham Lempel, Jakob Ziv qui l’ont proposé en  1977 et Terry Welch qui l’a finalisé en 1984.<br />
+LZW a été utilisé dans des modems aujourd’hui obsolètes mais on le  trouve encore dans la compression des images "GIFF" ou  "TIFF" et les fichiers audio "MOD". Il est à la base de la  compression "ZIP".<br />
+Facile à coder (c’est son principal avantage) il n’est souvent pas  optimal car il n’eﬀectue qu’une analyse sommaire des données à  compresser.  </p>
+<h3 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h3>
+<p>Recherche dans le texte à compresser des répétitions de sous-chaînes  identiques et leur donner une forme compacte dans le texte  compressé.
+L’algorithme LZW procède en une seule passe, en maintenant, au fur  et à mesure de la compression, l’ensemble des factiers qu’il a déjà  rencontrés.<br />
+Cette caractéristique est adaptée à la compression d’un texte qu’on  découvre à la volée comme lorsque le texte est transmis via un canal  de communication.  </p>
+<h3 id="prefixe-suffixe">Préfixe, suﬃxe<a class="headerlink" href="#prefixe-suffixe" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Préfixe / Suffixe</p>
+<ul>
+<li>Le mot x est appelé un préfixe du mot m si il existe un mot y tel que  m = x · y .  </li>
+<li>Le mot x est appelé un suﬃxe du mot m si il existe un mot y tel que  m = y · x.  </li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<ul>
+<li><span class="arithmatex">\(\varepsilon\)</span>, langage et lang sont des préfixes de langage,  </li>
+<li><span class="arithmatex">\(\varepsilon\)</span>, langage et gage sont des suﬃxes de langage,  </li>
+<li>Si xu = m et xv = m alors, par régularité, u = v .  </li>
+</ul>
+</div>
+<h3 id="facteurs">Facteurs<a class="headerlink" href="#facteurs" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : facteur</p>
+<p>On dit qu’un mot x est facteur d’un mot m s’il existe u, v , deux mots tels
+que m = uxv .</p>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p>Le mot sol est facteur de insolent. La chaîne vide <span class="arithmatex">\(\varepsilon\)</span> est un préfixe de tout
+mot.</p>
+</div>
+<p>Pour plus d’informations sur la théorie des mots, voir par exemple ce <a href="https://nussbaumcpge.be/public_html/Spe/MP/mots.pdf">cours</a>.  </p>
+<h3 id="table-des-correspondances-facteursencodage">Table des correspondances facteurs/encodage<a class="headerlink" href="#table-des-correspondances-facteursencodage" title="Permanent link">&para;</a></h3>
+<p>L’algorithme de compression construit une table de traduction des  facteurs du texte en parcourant le texte à compresser. 
+Cette table relie des codes de taille (le plus souvent) fixée  (généralement à 12 bits) aux chaînes de caractères. Certaines  implémentations avec taille d’encodage variable existent aussi.<br />
+La table est initialisée avec tous les caractères (256 entrées dans le  cas de caractères codés sur 8 bits). C’est une injection qui associe une  valeur numérique à tout caractère de l’alphabet.<br />
+Il est malin d’utiliser un dictionnaire (facteur, encodage). Les seules  clés du dictionnaires qui ne sont pas des facteurs du texte sont les  caractères de l’alphabet non utilisés par le texte.
+L’algorithme LZW exploite et modifie à la volée le dictionnaire des  facteurs. Il renvoie une liste de clés de ce dictionnaire (c’est à dire une  liste d’entiers), chacune codant un facteur du texte.  </p>
+<h3 id="algorithme">Algorithme<a class="headerlink" href="#algorithme" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>/∗L’alphabet Σ est supposé connu ∗/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>fonction lzw_compress (t : texte):
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    initialiser d avec Σ /∗ dictionnaire(facteur, code) ∗/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>    w ← ε ; /∗ le facteur courant ∗/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    t&#39; ← ε ; /∗ le texte compressé ∗/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>    n ← |Σ| ; /∗ nombre de facteurs déjà compressés ∗/
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>    tant que t n’est pas vide faire:
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>        c ← t[0] ; /∗ 1ere lettre de t ∗/
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>        t ← t[1:]/∗ supprimer la 1ere lettre de t ∗/
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>        p ← w + c ; /∗ ajouter une lettre à w ∗/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>        si p est une clé de d :
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>            w ← p;
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>        sinon :
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>            d[p] ← n ; /∗ ajouter l’association (p, n)∗/
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>            n++;/∗ incrémenter le nb de code enregistrés ∗/
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>            /∗ rqe : n = |d| : nb de clés dans le dico ∗/
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>            t&#39; ← t&#39; + d[w] ; /∗ ajouter le code de w à t&#39; ∗/
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>            w ← c;
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>t&#39; ← t&#39; + d[w];
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>renvoyer t&#39;
+</span></code></pre></div></td></tr></table></div>
+<details class="example">
+<summary>Exemple (Wikipedia)</summary>
+<p>On veut compresser ”TOBEORNOTTOBEORTOBEORNOT”. </p>
+<ul>
+<li>Initialisation de d : (A :65) ... (T :84), (O :79), (B :66), (E :69),  (R :82), (N :78) ... (Z :90) ... (\255,255) et t' <span class="arithmatex">\(\leftarrow \varepsilon\)</span> (texte compressé)</li>
+<li>Position 0 : T est une clé mais pas TO. d[TO] <span class="arithmatex">\(\leftarrow\)</span> 255 + 1 = 256,  t' <span class="arithmatex">\(\leftarrow\)</span> 84  </li>
+<li>Position 1 : O est une clé mais pas OB. d[OB] <span class="arithmatex">\(\leftarrow\)</span> 257, t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79</li>
+<li>Position 2 : B est une clé mais pas BE. d[BE] <span class="arithmatex">\(\leftarrow\)</span> 258, t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66  </li>
+<li>Position 3 : E est une clé mais pas EO. d[EO] <span class="arithmatex">\(\leftarrow\)</span> 259,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69  </li>
+<li>Position 4 : O est une clé mais pas OR. d[OR] <span class="arithmatex">\(\leftarrow\)</span> 260,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82</li>
+<li>Position 5 : R est une clé mais pas RN. d[RN] <span class="arithmatex">\(\leftarrow\)</span> 261,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78  </li>
+<li>
+<p>La dernière lettre du dernier facteur ajouté est la première du nouveau  facteur parcouru.  </p>
+</li>
+<li>
+<p>Position 6 : N est une clé mais pas NO. d[NO] <span class="arithmatex">\(\leftarrow\)</span> 262,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79</p>
+</li>
+<li>Position 7 : O est une clé mais pas OT. d[OT] <span class="arithmatex">\(\leftarrow\)</span> 263,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84</li>
+<li>Position 8 : T est une clé mais pas TT. d[TT] <span class="arithmatex">\(\leftarrow\)</span> 264,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84</li>
+<li>Position 9 : T, TO sont des clés mais pas TOB. d[TOB] <span class="arithmatex">\(\leftarrow\)</span> 265,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256  </li>
+<li>Position 11 : B, BE sont des clés mais pas BEO. d[BEO] <span class="arithmatex">\(\leftarrow\)</span> 266,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258  </li>
+<li>Position 13 : O, OR sont des clés mais pas ORT. d[ORT] <span class="arithmatex">\(\leftarrow\)</span> 267,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260  </li>
+<li>Position 15 : T,TO,TOB sont des clés mais pas TOBE. d[TOBE] <span class="arithmatex">\(\leftarrow\)</span> 268,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265  </li>
+<li>Position 18 : E,EO sont des clés mais pas EOR. d[EOR] <span class="arithmatex">\(\leftarrow\)</span> 269,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259  </li>
+<li>Position 20 : R,RN sont des clés mais pas RNO. d[RNO] <span class="arithmatex">\(\leftarrow\)</span> 270,  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261  </li>
+<li>Position 22 à fin : O,OT sont des clés.  t' <span class="arithmatex">\(\leftarrow\)</span> 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261, 263  </li>
+</ul>
+</details>
+<h2 id="decompression">Décompression<a class="headerlink" href="#decompression" title="Permanent link">&para;</a></h2>
+<h3 id="initialisation">Initialisation<a class="headerlink" href="#initialisation" title="Permanent link">&para;</a></h3>
+<p>On note d le dictionnaire (code,facteur) qui est l’inverse de celui de la  partie précédente (en fait, puisque l’ensemble des codes forme un  intervalle de nombres, un simple tableau redimensionnable suﬃt).</p>
+<p>Ce dictionnaire est initialisé ainsi : à tous les codes entre (par exemple  0 et 256) on associe la lettre correspondante de l’alphabet.</p>
+<p>La notation |d| désigne le nombre d’associations déjà entrées. Avec le  code ASCII, |d| = 256 au départ.</p>
+<p>Le premier code c lu est nécessairement celui d’un unique caractère.  On écrit donc d[c] dans le fichier de sortie et on garde c en mémoire.  </p>
+<h3 id="deroulement">Déroulement<a class="headerlink" href="#deroulement" title="Permanent link">&para;</a></h3>
+<h4 id="cas-general">Cas général<a class="headerlink" href="#cas-general" title="Permanent link">&para;</a></h4>
+<p>On garde en mémoire le précédent code lu c.  </p>
+<ul>
+<li>On lit un code n où n &lt; |d| (ce qui signifie qu’on sait ce que code n).  Posons d[n] = xm' ; x est un caractère et m' un mot.</li>
+<li>On écrit xm' dans le fichier de sortie  </li>
+<li>On rajoute ensuite un nouvel élément mx dans le dictionnaire où  m = d[c]. On pose donc d[|d|] = mx.  </li>
+</ul>
+<h4 id="cas-general-pourquoi-cela-marche-t-il">Cas général : Pourquoi cela marche-t-il ?<a class="headerlink" href="#cas-general-pourquoi-cela-marche-t-il" title="Permanent link">&para;</a></h4>
+<p>On reproduit en fait le processus de compression mais en remplissant  le dictionnaire avec un temps de retard.<br />
+Selon le principe de compression :  </p>
+<ul>
+<li>On ajoute une entrée au dictionnaire pour mx quand on lit x et que le  précédent motif lu est m.  </li>
+<li>Le code c de m (qui est connu, sinon on ne serait pas arrivé à x) est  ajouté au texte codé.  </li>
+<li>On repart alors avec x comme motif lu  </li>
+</ul>
+<h4 id="cas-problematique-n-d">Cas problématique : n = |d|<a class="headerlink" href="#cas-problematique-n-d" title="Permanent link">&para;</a></h4>
+<p>Le code n lu est tel que n = |d|, donc on lit un code non encore présent  dans la table de décompression.</p>
+<ul>
+<li>On lit le code n : il a été placé à cet endroit au moment de la  compression après avoir lu un wy . Ainsi, n est le code de w .  </li>
+<li>n est maximal parmi les codes déjà rencontrés. Revenant au moment  de la compression, cela signifie que w est le dernier facteur qui a  produit un code avant d’écrire n.  </li>
+<li>Or, juste avant n dans le texte compressé, il y a c (lequel code m).  Ainsi w est de la forme mx.  </li>
+<li>Dans la compression, après avoir lu mx, on repart de x et on lit wy ,  c.a.d. mxy . Ainsi, la 1ere lettre de m est x ! (dans le texte originel, on  a donc . . . mxmxy . . . ).  </li>
+<li>On ajoute mx au texte décompressé et on réalise l’association  d[y ] = mx.  </li>
+</ul>
+<h3 id="algorithme_1">Algorithme<a class="headerlink" href="#algorithme_1" title="Permanent link">&para;</a></h3>
+<p>On initialise le dictionnaire avec l’alphabet (par exemple alphabet ASCII  des caractères codés sur 8 bits).  </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>fonction lzw_decompress (T&#39; : texte compressé,
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>                            d : dictionnaire ( code , facteur )):
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    c ← Lire(T&#39;); /∗ 1er code lu∗/
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    /∗ le 1er code correspond toujours à une lettre ∗/
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>    Ecrire d[c]; /∗ ajouter le texte codé parc ∗/
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>    tant que il reste un codes de T&#39; non lu faire
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>        n ← lire(T&#39;); /∗ code courant ∗/
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>        si n est une clef de d /∗ code n déjà rencontré ∗/
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>            alors e ← d[n]; /∗ décompression ∗/
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>        sinon e ← d[c] · d[c][0]; /∗ décompression , cas n = |d|∗/
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>        Ecrire e;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>        c ← n;
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>        d[|d|] ← d[c] · e[0]; /∗ ajouter une association ∗/
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>    fin faire
+</span></code></pre></div></td></tr></table></div>
+<h2 id="taille-des-entiers-de-codage">taille des entiers de codage<a class="headerlink" href="#taille-des-entiers-de-codage" title="Permanent link">&para;</a></h2>
+<h3 id="taille-des-entiers-en-ocaml">Taille des entiers en OCaml<a class="headerlink" href="#taille-des-entiers-en-ocaml" title="Permanent link">&para;</a></h3>
+<p>En OCaml, les entiers sont deux bits plus courts que les entiers machines.  Sur la plupart des machines, les entiers sont de taille 32 ou 64 bits. En  OCaml, les entiers sont donc de taille 30 ou 62 bits  </p>
+<p>La représentation du résultat de la compression par une liste d’entiers  OCAML n’est pas très réaliste : il faudrait a priori 30 bits (ou 62) pour  stocker chaque entier. Cependant, on remarque que la taille des entiers  produits par l’algorithme de compression croît progressivement au fur et à  mesure que l’on avance dans la liste (et que le dictionnaire se remplit).  Dans la pratique, on peut donc utiliser la technique suivante pour coder la  liste :  </p>
+<ul>
+<li>Tant que tous les entiers sont strictement inférieurs à 255, coder ces  entiers sur 8 bits.  </li>
+<li>Lorsque l’on rencontre le premier entier supérieur ou égal à 255,  émettre la séquence 11111111 (huit fois le bit 1) et continuer, tant  que les entiers sont strictement inférieurs à 511, en codant les entiers  sur 9 bits.  </li>
+<li>Lorsque l’on rencontre le premier entier supérieur ou égal à 511,  émettre la séquence 111111111 (neuf fois le bit 1) et continuer, tant  que les entiers sont strictement inférieurs à 1023, en codant les  entiers sur 10 bits.  </li>
+<li>De manière générale, tant que les entiers considérés sont strictement  inférieurs à n = 2k − 1, on peut les représenter sur k bits.  </li>
+<li>Lorsque le premier entier supérieur ou égal à 2k − 1 est rencontré, on  émet la séquence 1 . . . 1 (k fois le bit 1) et on continue en codant les  entiers sur k + 1 bits.  </li>
+<li>Donc si le code 10 se trouve au début de la liste des codages, il prend  8 bits d’espace mais après le premier nombre plus grand que 255, il  prend 9 bits etc.  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

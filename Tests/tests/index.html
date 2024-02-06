@@ -1,0 +1,2854 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../SQL/bdd1/">
+      
+      
+        <link rel="next" href="../../Textes/lzw/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>Tests - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tests" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tests
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/ABR/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/Nombres%20flottants/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/bdd1/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/lzw/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/pcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/Nombres%20flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/bdd1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bdd1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminologie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminologie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaut-vs-defaillance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Défaut VS Défaillance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-en-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests en général
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cout-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coût des tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vvt" class="md-nav__link">
+    <span class="md-ellipsis">
+      VVT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cycle-en-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cycle en V
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selon-le-niveau-au-cycle-de-developpement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon le niveau au cycle de développement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selon-la-caracteristique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon la caractéristique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selon-le-niveau-daccessibilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon le niveau d’accessibilité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-cpge" class="md-nav__link">
+    <span class="md-ellipsis">
+      En CPGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partitionnement-limite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitionnement, limite
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitionnement, limite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partitionnement-du-domaine-dentree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitionnement du domaine d’entrée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-aux-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests aux limites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests aux limites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-dune-zone-de-saisie-attendant-des-nombres-de-1-a-1000" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test d’une zone de saisie attendant des nombres de 1 à 1000
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphe-de-flots-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe de flots de contrôle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphe de flots de contrôle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tests-structurels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests structurels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-structurel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test structurel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphe-de-flot-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe de ﬂot de contrôle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-calcul-de-x_n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple : calcul de \(X_n\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-des-triangles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple des triangles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chemin-faisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chemin faisable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-dun-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condition d’un chemin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indecidabilite-de-la-recherche-de-chemins-infaisables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indécidabilité de la recherche de chemins infaisables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syracuse-la-discipline-de-test-dt-x2-sensibilise-le-chemin-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syracuse : La discipline de test (DT) x=2 sensibilise le  chemin C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-de-couverture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère de couverture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-sommets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "tous les sommets"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-tous-les-sommets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère "tous les sommets"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "Tous les arcs"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-tous-les-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère tous les arcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposer-les-conditionnelles-toutes-les-conditions-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Décomposer les conditionnelles: Toutes les conditions multiples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-toutes-les-decisions-multiples-explosion-combinatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "Toutes les décisions multiples" : Explosion combinatoire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-toutes-les-conditionsdecisions-modifie-mcdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère Toutes-les-Conditions/Décisions-modifié : MC/DC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-mcdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère MC/DC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-toutes-les-decisions-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère Toutes-les-décisions-multiples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "tous les chemins"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hierarchie-des-criteres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hiérarchie des critères
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convention-de-notation-algebrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convention de notation algébrique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression-des-chemins-sous-forme-algebrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expression des chemins sous forme algébrique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/lzw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crédits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminologie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminologie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaut-vs-defaillance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Défaut VS Défaillance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-en-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests en général
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cout-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coût des tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vvt" class="md-nav__link">
+    <span class="md-ellipsis">
+      VVT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cycle-en-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cycle en V
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selon-le-niveau-au-cycle-de-developpement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon le niveau au cycle de développement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selon-la-caracteristique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon la caractéristique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selon-le-niveau-daccessibilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selon le niveau d’accessibilité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-cpge" class="md-nav__link">
+    <span class="md-ellipsis">
+      En CPGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partitionnement-limite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitionnement, limite
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitionnement, limite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partitionnement-du-domaine-dentree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitionnement du domaine d’entrée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-aux-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests aux limites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests aux limites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-dune-zone-de-saisie-attendant-des-nombres-de-1-a-1000" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test d’une zone de saisie attendant des nombres de 1 à 1000
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphe-de-flots-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe de flots de contrôle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphe de flots de contrôle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tests-structurels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests structurels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-structurel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test structurel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphe-de-flot-de-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe de ﬂot de contrôle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-calcul-de-x_n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple : calcul de \(X_n\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-des-triangles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple des triangles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chemin-faisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chemin faisable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-dun-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condition d’un chemin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indecidabilite-de-la-recherche-de-chemins-infaisables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indécidabilité de la recherche de chemins infaisables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syracuse-la-discipline-de-test-dt-x2-sensibilise-le-chemin-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syracuse : La discipline de test (DT) x=2 sensibilise le  chemin C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-de-couverture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère de couverture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-sommets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "tous les sommets"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-tous-les-sommets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère "tous les sommets"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "Tous les arcs"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-tous-les-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère tous les arcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposer-les-conditionnelles-toutes-les-conditions-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Décomposer les conditionnelles: Toutes les conditions multiples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-toutes-les-decisions-multiples-explosion-combinatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "Toutes les décisions multiples" : Explosion combinatoire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-toutes-les-conditionsdecisions-modifie-mcdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère Toutes-les-Conditions/Décisions-modifié : MC/DC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-mcdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère MC/DC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limite-du-critere-toutes-les-decisions-multiples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limite du critère Toutes-les-décisions-multiples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critere-tous-les-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critère "tous les chemins"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hierarchie-des-criteres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hiérarchie des critères
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convention-de-notation-algebrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convention de notation algébrique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression-des-chemins-sous-forme-algebrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expression des chemins sous forme algébrique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
+site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<h2 id="credits">Crédits<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h2>
+<p>Sur la nuance entre erreur et défaut, cet article de Cynthia Lefevre.<br />
+Ce cours du Labri<br />
+Cet article de Wikipedia.<br />
+Ce cours du LRI de Paris-Saclay<br />
+Un cours du CNAM avec des exemples de normes réclamant les  critères étudiés.  </p>
+<h2 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
+<h3 id="terminologie">Terminologie<a class="headerlink" href="#terminologie" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Erreur</p>
+<p>Action humaine produisant un résultat incorrect "l’erreur est humaine"</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Défaut</p>
+<p>Une imperfection dans un composant (ou un système) qui peut conduire à ce que ce composant (ou système) n’exécute pas les fonctions requises. <span class="arithmatex">\(\color{red}\text{On cherche les défauts sans manipuler le système}\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Défaillance ou Panne</p>
+<p>IEEE 729 : La fin de la capacité d’un système ou d'un de ses composants d'effectuer la fonction requise, ou de l'effectuer à l'intérieur de limites spécifiées. On cherche une défaillance en manipulant le système.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Anolamie</p>
+<p>Un écart entre le résultat attendu et celui obtenu.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Ce n’est pas parce qu’il y a anomalie qu’il y a défaut. Peut-être le testeur a-t-il compris la spécification d’une façon et le développeur d’une autre.</p>
+</div>
+<h3 id="defaut-vs-defaillance">Défaut VS Défaillance<a class="headerlink" href="#defaut-vs-defaillance" title="Permanent link">&para;</a></h3>
+<p>Il y a un rapport de causalité.  </p>
+<ul>
+<li><strong>A retenir</strong> : Un défaut (dans le code) ou une erreur (de l’utilisateur du  programme) peut causer (un jour) une défaillance.  </li>
+<li>On peut trouver un défaut sans manipuler le système (analyse du  code).  </li>
+<li>Mais on trouve une défaillance en manipulant le système.  </li>
+</ul>
+<h3 id="test">Test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h3>
+<p>Définition (norme IEEE 729) : Le test est un processus manuel ou  automatique, qui vise à établir qu’un système vérifie les propriétés  exigées par sa spécification, ou à détecter des diﬀérences entre les  résultats engendrés par le système et ceux qui sont attendus par la  spécification.  </p>
+<p>Le test ne se préoccupe pas des erreurs. Ce n’est pas au testeur de  pointer les imperfections humaines.<br />
+Le test met en évidence les défauts afin de prévenir les défaillances.  </p>
+<h3 id="tests-en-general">Tests en général<a class="headerlink" href="#tests-en-general" title="Permanent link">&para;</a></h3>
+<p>Toute fabrication de produit suit les étapes suivantes  </p>
+<ol>
+<li>Conception</li>
+<li>Réalisation</li>
+<li>Tests  </li>
+</ol>
+<p>Test : On s’assure que le produit final correspond à ce qui a été  demandé selon divers critères :  </p>
+<ul>
+<li>esthétique</li>
+<li>performance</li>
+<li>ergonomie</li>
+<li>fonctionnalité</li>
+<li>robustesse etc.  </li>
+</ul>
+<div class="admonition example">
+<p><strong>Des Bogues aux conséquences désastreuses</strong></p>
+<ul>
+<li>
+<p><strong>Suède - 1980</strong> : 
+776 millions d'euros (275 millions de dollars de 1980).
+104 camions semi-remorques de 35 tonnes, c'est la cargaison
+que le Zenobia emporta par le fond lors de son naufrage, 1
+mois seulement après son lancement inaugural.
+Pourquoi ? Un bug dans le logiciel de contrôle des ballasts
+surremplissait les réservoirs par rapport aux indications qui
+lui étaient envoyées.</p>
+</li>
+<li>
+<p><strong>EADS - 1996</strong> :
+266 millions d'euros (200 millions d'euros de 1996)
+Le 4 juin 1996 (1er vol), la fusée Ariane 5 s'est élevée
+jusqu'à la moitié du ciel, avant que son logiciel ne coupe les
+moteurs et que le lanceur explose en plein vol.
+Pourquoi ? L'accélération maximale de la fusée a dépassé la
+valeur admissible par le logiciel, générant une erreur générale
+et donc l'autodestruction. Valeurs recopiées du programme
+Ariane 4 (moins puissante). La simulation avait été annulée
+afin d'économiser 800.000 francs (11900Œeuros).</p>
+</li>
+</ul>
+</div>
+<h3 id="cout-des-tests">Coût des tests<a class="headerlink" href="#cout-des-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Budget IT : Budget alloué aux technologies de l'information (ou IT pour Information Technology).</li>
+<li>Dans les entreprises, la part du budget IT consacrée aux tests et à l'assurance qualité augmente de 9 points d'une année sur l'autre selon Capgemini.</li>
+<li>De 26% en 2014, elle passe à 35 % en 2015.</li>
+<li>Il était prévu qu'en 2018, la part des tests et de la qualité passe à 40 % du total. (Source Silicon)</li>
+</ul>
+<h3 id="vvt">VVT<a class="headerlink" href="#vvt" title="Permanent link">&para;</a></h3>
+<p><strong>Validation, Vérification et Test logiciel.</strong></p>
+<p>Démonstration automatique (Hum !) : exhaustive mais considérée  comme trop coûteuse.  </p>
+<p>Model Checking : vérifier si le modèle d’un système satisfait une  propriété. Par exemple, on souhaite vérifier qu’un programme ne se  bloque pas, qu’une variable n’est jamais nulle, etc. Généralement, la  propriété est écrite dans un langage, souvent en logique temporelle.  La vérification est généralement faite de manière automatique.  </p>
+<p>Test : non exhaustif mais facile à mettre en œuvre (bon rapport  qualité/temps).  </p>
+<h3 id="cycle-en-v">Cycle en V<a class="headerlink" href="#cycle-en-v" title="Permanent link">&para;</a></h3>
+<p>Le test commence dès le début !  </p>
+<p align='center'><img src='/images/a1696852da3de0356121d3245c0da149.bmp'/></p>
+
+<p><em>Figure – Le cycle en V du Génie Logiciel (d’après Irif)</em></p>
+<h3 id="classification">Classification<a class="headerlink" href="#classification" title="Permanent link">&para;</a></h3>
+<h4 id="selon-le-niveau-au-cycle-de-developpement">Selon le niveau au cycle de développement<a class="headerlink" href="#selon-le-niveau-au-cycle-de-developpement" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Tests de recette : test de réception du logiciel chez le client final  </li>
+<li>Tests intégration système : test de l’intégration du logiciel avec  d’autres logiciels  </li>
+<li>Tests systeme : test d’acception du logiciel avant livraison (nouvelle  version par exemple). Généralement eﬀectué par le client dans ses  locaux après installation du système ou d’une unité fonctionnelle, avec  la participation du fournisseur.  </li>
+<li>Tests Integration : test de l’intégration des diﬀérents composants  (avec ou sans hardware)  </li>
+<li><span class="arithmatex">\(\color{red}\text{Tests Unitaires : tests élémentaires des composants logiciels (une  fonction, un module, ...)  }\)</span></li>
+</ul>
+<h4 id="selon-la-caracteristique">Selon la caractéristique<a class="headerlink" href="#selon-la-caracteristique" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Tests fonctionnels : destinés à s’assurer que, dans le contexte  d’utilisation réelle, le comportement fonctionnel obtenu est bien  conforme avec celui attendu.  </li>
+<li>Tests de performance (rapidité, consommation mémoire etc.)  </li>
+<li>Tests de robustesse (mon serveur va-t-il bien réagir à un aﬄux de  connexion ?)  </li>
+<li>Tests de vulnérabilité : suis-je bien protégé face aux risques  d’intrusions ?  </li>
+</ul>
+<h4 id="selon-le-niveau-daccessibilite">Selon le niveau d’accessibilité<a class="headerlink" href="#selon-le-niveau-daccessibilite" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Tests de type boîte noire : technique de conception de test,  fonctionnel ou non, qui n’est pas fondée sur l’analyse de la structure  interne du composant ou du système mais sur la définition du  composant ou du système.  </li>
+<li>Tests de type boîte blanche : technique de conception de test, en  général fonctionnel, fondée sur l’analyse de la structure interne du  composant ou du système.  </li>
+</ul>
+<h3 id="divers">Divers<a class="headerlink" href="#divers" title="Permanent link">&para;</a></h3>
+<p>Tests de non-régression : à la suite de la modification d’un logiciel (ou  d’un de ses constituants), un test de régression a pour but de montrer que  les autres parties du logiciel n’ont pas été aﬀectées par cette modification.  </p>
+<h3 id="en-cpge">En CPGE<a class="headerlink" href="#en-cpge" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tests unitaires en général boîte blanche et fonctionnels.  </li>
+<li>Moyen : pour tout exercice, créer un fichier ou une fonction de tests.  </li>
+<li>Rendu de projets : les tests sont impératifs.  </li>
+</ul>
+<h2 id="partitionnement-limite">Partitionnement, limite<a class="headerlink" href="#partitionnement-limite" title="Permanent link">&para;</a></h2>
+<h3 id="partitionnement-du-domaine-dentree">Partitionnement du domaine d’entrée<a class="headerlink" href="#partitionnement-du-domaine-dentree" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Il s’agit de répartir les données en un nombre fini de classes  d’équivalence, sans restreindre le degré d’exigence. Cette méthode est  généralement utilisée pour réduire le nombre total de cas de test à un  ensemble fini.  </li>
+<li>Exemple : test d’une zone de saisie attendant des nombres de 1 à 1000.  <ul>
+<li>Classe des données valides d’entrée : sélectionner un (ou quelques)  nombre.s dans <span class="arithmatex">\([\![ 2, 99]\!]\)</span> (exemple : 50 et 800).  </li>
+<li>Classe des données inférieure à 0 : sélectionner un ou plusieurs nombres  négatifs (-1 et -100 par exemple).  </li>
+<li>Classe des données supérieures à 1001 : choisir 1050 et 2300 par  exemple.  </li>
+</ul>
+</li>
+</ul>
+<h3 id="tests-aux-limites">Tests aux limites<a class="headerlink" href="#tests-aux-limites" title="Permanent link">&para;</a></h3>
+<h4 id="test-dune-zone-de-saisie-attendant-des-nombres-de-1-a-1000">Test d’une zone de saisie attendant des nombres de 1 à 1000<a class="headerlink" href="#test-dune-zone-de-saisie-attendant-des-nombres-de-1-a-1000" title="Permanent link">&para;</a></h4>
+<p>En complément du partitionnement du domaine d’entrée, on ajoute les  <em>tests aux limites</em></p>
+<ul>
+<li>Ce sont les données encore valides mais au delà desquelles les entrées  ne le sont plus.  </li>
+<li>Il faut impérativement tester 1 et 1000.  On peut y ajouter les valeurs  </li>
+<li>juste en dessous des bornes : 0 et 999  </li>
+<li>juste au-dessus des bornes : 2 et 1001  </li>
+<li>Si un des tests ne donne pas le résutat attendu, le programme n’est  pas correct. En revanche, le programme peut être incorrect même si  tous les tests du scénario donnent satisfaction.  </li>
+</ul>
+<h2 id="graphe-de-flots-de-controle">Graphe de flots de contrôle<a class="headerlink" href="#graphe-de-flots-de-controle" title="Permanent link">&para;</a></h2>
+<h3 id="tests-structurels">Tests structurels<a class="headerlink" href="#tests-structurels" title="Permanent link">&para;</a></h3>
+<p><em>dits aussi tests boîte blanche</em></p>
+<ul>
+<li>Sélection de tests à partir de l’analyse du code source du système  </li>
+<li>Constructions des tests uniquement pour du code déjà écrit.  </li>
+</ul>
+<p align='center'><img src='/images/tests1.png'/></p>
+
+<h3 id="test-structurel">Test structurel<a class="headerlink" href="#test-structurel" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utiliser la structure du code pour dériver des cas de tests.  </li>
+<li>Complémentaire des tests fonctionnels car on étudie la réalisation et  pas seulement la spécification.  </li>
+<li>Il y a deux méthodes :  <ul>
+<li>À partir du <em>graphe de ﬂot de contrôle</em> : couverture de toutes les  instructions, tous les branchements... (CPGE)  </li>
+<li>À partir du <em>graphe de ﬂot de données</em> : couverture de toutes les  utilisations d’une variable, de tous les couples définition-utilisation...  </li>
+</ul>
+</li>
+</ul>
+<h3 id="graphe-de-flot-de-controle">Graphe de ﬂot de contrôle<a class="headerlink" href="#graphe-de-flot-de-controle" title="Permanent link">&para;</a></h3>
+<p>Graphe simple orienté connexe avec un sommet initial (ou d’entrée)  E et un sommet de sortie S accessible depuis E.</p>
+<ul>
+<li>Un sommet interne est  <ul>
+<li>Soit un bloc d’instructions élémentaires (on regroupe les séquences).  </li>
+<li>Soit un sommet de décision étiqueté par un test.  </li>
+</ul>
+</li>
+<li>Il y a deux sortes d’arcs :  <ul>
+<li>Les arcs de sortie de blocs d’instructions : ils représentent le passage  d’un bloc d’instructions à une instruction conditionnelle ou à un autre  bloc d’instruction. Il ne sont pas étiquetés.  </li>
+<li>Les arcs de décision : ce sont les arcs de sortie des sommets de décision.  Ils sont étiquetés par les réponses aux tests des expressions  conditionnelles.  </li>
+</ul>
+</li>
+</ul>
+<p>Il y a un seul arc de sortie d’un sommet bloc d’instructions. Et, le plus  souvent, deux arcs de sortie (dits <em>arcs de décision</em>) des sommets de  décision correspondant aux valeurs positives ou négatives des  conditions.  </p>
+<h3 id="exemple-calcul-de-x_n">Exemple : calcul de <span class="arithmatex">\(X_n\)</span><a class="headerlink" href="#exemple-calcul-de-x_n" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">power</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&gt;=</span><span class="n">l</span><span class="p">){</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">        </span><span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="mi">-1</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests2.png'/></p>
+
+<h3 id="exemple-des-triangles">Exemple des triangles<a class="headerlink" href="#exemple-des-triangles" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">triangle</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="c1">// j, k, l : les 3 côtés d&#39;un triangle</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="c1">// indique si le triangle est quelconque,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="c1">// isocèle ou équilatéral</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// n pour &#39;nature du triangle</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">l</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">k</span><span class="o">+</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">l</span><span class="o">+</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;pas un triangle&quot;</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;quelconque&quot;</span><span class="p">);</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;isocèle&quot;</span><span class="p">);</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="k">else</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;équilatéral&quot;</span><span class="p">);</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests3.png'/></p>
+
+<p><em>Avec T pour <em>True</em> et F pour <em>False</em></em></p>
+<h3 id="chemin-faisable">Chemin faisable<a class="headerlink" href="#chemin-faisable" title="Permanent link">&para;</a></h3>
+<p>Un <em>chemin de contrôle</em> est une suite <span class="arithmatex">\(x_0, x_1, . . . , x_n\)</span> de sommets tels  que <span class="arithmatex">\(x_0 = E\)</span> , <span class="arithmatex">\(x_n = S\)</span> et <span class="arithmatex">\((x_i , x_{i+1})\)</span> est un arc pour tout i &lt; n.  </p>
+<p>Un <em>chemin est dit faisable</em> si il existe un ensemble de conditions sur  les variables d’entrées permettant de passer par tous les sommets de  ce chemin.</p>
+<p>Si un chemin n’est pas faisable, il est dit <em>infaisable</em>.  </p>
+<details class="example">
+<summary>Exemple des triangles</summary>
+<p><p align='center'><img src='/images/tests4.png'/></p>
+<p align='center'><img src='/images/tests5.png'/></p></p>
+</details>
+<h3 id="condition-dun-chemin">Condition d’un chemin<a class="headerlink" href="#condition-dun-chemin" title="Permanent link">&para;</a></h3>
+<p>La <em>condition d’un chemin</em> est la conjonction de tous les sommets de décision portant sur les entrées que traverse ce chemin.  </p>
+<p>Exemple : avec j = 3, k = 5, l = 3, la condition du chemin vert  parcouru est  </p>
+<div class="arithmatex">\[¬(j +k ≤ l ∨k +l ≤ j ∨j +l ≤ k)∧j \neq k ∧j = l ∧l \neq k ∧n \neq 0∧n = 1\]</div>
+<p>La condition du chemin rouge est  </p>
+<div class="arithmatex">\[¬(j +k ≤ l ∨k +l ≤ j ∨j +l ≤ k)∧j \neq k ∧j \neq l ∧l \neq k ∧n \neq 0∧n \neq 1\]</div>
+<p>Or  </p>
+<div class="arithmatex">\[¬(j + k ≤ l ∨ k + l ≤ j ∨ j + l ≤ k) ∧ j \neq k ∧ j \neq l ∧ l \neq k \Rightarrow n = 0\]</div>
+<p>Et donc la condition du chemin rouge est  </p>
+<div class="arithmatex">\[¬(j +k ≤ l ∨k +l ≤ j ∨j +l ≤ k)∧j \neq k ∧j \neq l ∧l \neq k ∧0 \neq 0∧0 \neq 1\]</div>
+<p>Cette formule est une <em>antilogie</em> : le chemin rouge est infaisable.  </p>
+<h3 id="indecidabilite-de-la-recherche-de-chemins-infaisables">Indécidabilité de la recherche de chemins infaisables<a class="headerlink" href="#indecidabilite-de-la-recherche-de-chemins-infaisables" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">syracuse</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="c1">// on ne considère que des entiers &gt; 0</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">            </span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">        </span><span class="k">else</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">            </span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; fini</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>La conjecture veut que au  bout d’un moment x = 1.  </p>
+<p align='center'><img src='/images/tests6.png'/></p>
+
+<p>On ne sait pas s’il existe des  chemins infaisables de E à S.  </p>
+<h3 id="syracuse-la-discipline-de-test-dt-x2-sensibilise-le-chemin-c">Syracuse : La discipline de test (DT) x=2 sensibilise le  chemin C<a class="headerlink" href="#syracuse-la-discipline-de-test-dt-x2-sensibilise-le-chemin-c" title="Permanent link">&para;</a></h3>
+<p>Etant donné un chemin faisable, on sait trouver les conditions pour le  parcourir.</p>
+<p align='center'><img src='/images/tests7.png'/></p>
+
+<ul>
+<li>soit le chemin C : E,<br />
+  x!=1,<br />
+  x%2==0,x=x/2,
+  x!=1,S.  </li>
+</ul>
+<p>Quelle condition le  vérifie ?  </p>
+<ul>
+<li><span class="arithmatex">\(x \neq 1\)</span>
+  x mod 2 = 0 : x est pair<br />
+  x/2 = 1  </li>
+</ul>
+<p>On trouve x = 2.  </p>
+<h3 id="critere-de-couverture">Critère de couverture<a class="headerlink" href="#critere-de-couverture" title="Permanent link">&para;</a></h3>
+<p>On appelle <em>critère de couverture</em> une condition définissant un  ensemble de chemins du graphe de ﬂot de contrôle.  </p>
+<p>Génération de tests grâce à un critère de couverture :  </p>
+<ul>
+<li>Sélectionner un ensemble minimal de chemins satisfaisant le critère.  </li>
+<li>Eliminer les chemins infaisables  </li>
+<li>Pour chaque chemin faisable, on définit un ensemble de conditions  associées sur les entrées (c’est à dire un objectif de test).  </li>
+<li>Pour chaque objectif de test (donc pour chaque chemin faisable)  choisir un cas de test (donc des valeurs d’entrées satisfaisant la  condition associée au chemin).  </li>
+</ul>
+<h3 id="critere-tous-les-sommets">Critère "tous les sommets"<a class="headerlink" href="#critere-tous-les-sommets" title="Permanent link">&para;</a></h3>
+<p>Critère atteint lorsque tous les sommets du graphe de contrôle sont  parcourus.  </p>
+<p>On définit le <strong>taux de couverture des sommets</strong> par  </p>
+<div class="arithmatex">\[ \tau_s = \frac{\text{nombre de sommets parcourus}}{\text{nombre de sommets}}\]</div>
+<p>Exigence minimale pour la certification en aéronautique (norme  EUROCAE ED-12B) : <span class="arithmatex">\(\tau_s = 1\)</span>.  </p>
+<p>Qualification niveau C : Un défaut peut provoquer un problème  majeur entraînant un dysfonctionnement des équipements vitaux de  l’appareil.  </p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">somme</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">){</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Il y a deux chemins. L’un  d’eux permet de détecter  le défaut.  </p>
+<p align='center'><img src='/images/tests8.png'/></p>
+
+<p>Le chemin E;int s=0;x  ==0;s=x;return s; S est  associée à la condition x = 0  satisfaite par les entrées  x = 0, y = 6. Cela permet de  détecter le défaut.  </p>
+<h3 id="limite-du-critere-tous-les-sommets">Limite du critère "tous les sommets"<a class="headerlink" href="#limite-du-critere-tous-les-sommets" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">div</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">        </span><span class="n">r</span><span class="o">=</span><span class="mf">1.</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests9.png'/></p>
+
+<p>Le chemin E;int  r;x!=0;r=1;return r; S  (associé à x = 2) couvre bien  tous les sommets mais la  division par zéro n’est pas  détectée.  </p>
+<h3 id="critere-tous-les-arcs">Critère "Tous les arcs"<a class="headerlink" href="#critere-tous-les-arcs" title="Permanent link">&para;</a></h3>
+<p>Dit aussi critère "toutes les décisions".  </p>
+<p>Pour chaque décision, un test rend la décision vraie, un autre la rend  fausse.  </p>
+<p>Taux de courverture des arcs :</p>
+<div class="arithmatex">\[\tau_a = \frac{\text{nombre d’arcs parcourus}}{\text{nombre d’arcs}}\]</div>
+<p>Norme DO 178B, qualification des systèmes embarqués au niveau B :  un défaut peut provoquer un problème dangereux  </p>
+<p>Critère "Tous-les-arcs" entraîne critère "Tous-les-sommets".  </p>
+<h3 id="limite-du-critere-tous-les-arcs">Limite du critère tous les arcs<a class="headerlink" href="#limite-du-critere-tous-les-arcs" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">F</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">!=</span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">        </span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">        </span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests10.png'/></p>
+
+<p>Critère Toutes-les-Décisions  satisfait avec <code>{a = 0,b = 1} et  {a = 2, b = 1}</code>.  </p>
+<p>Pourtant, division par zéro non détectée avec <code>{a = 0,b = 0}</code>.  </p>
+<h3 id="decomposer-les-conditionnelles-toutes-les-conditions-multiples">Décomposer les conditionnelles: Toutes les conditions multiples<a class="headerlink" href="#decomposer-les-conditionnelles-toutes-les-conditions-multiples" title="Permanent link">&para;</a></h3>
+<p>On a vu que le critère "tous les arcs" pouvait passer à côté  d’erreurs.  </p>
+<p>C’est parce que ce critère est satisfait pour un sommet de décision  avec seulement deux jeux d’entrées : un jeu d’entrées rendant la  décision vraie et un autre la rendant fausse.  </p>
+<p>Plutôt que la considérer la décision comme un seul sommet du graphe  de contrôle, on introduit les sous-decisions comme nouveaux sommets.  </p>
+<p>Ce critère est appelé "<strong>toutes les conditions multiples</strong>"  </p>
+<div class="admonition example">
+<p>Le critère  Toutes-les-décisions  n’est plus satisfait  avec seulement  <code>{a = 0,b = 1}</code> et <code>{a = 2,b = 1}</code>.  </p>
+<p>Le critère  Toutes-les-décisions  est satisfait avec  <code>{a = 0,b = 1}</code> et  <code>{a = 2,b = 2}</code> et  enfin  <code>{a = 0,b = 0}</code>. Division par zéro  détectée.  </p>
+<p><p align='center'><img src='/images/tests11.png'/></p></p>
+<p>Le graphe simple devient un  multigraphe (deux arcs sortant  du a==b de gauche vers 1/a ).  </p>
+</div>
+<h3 id="critere-toutes-les-decisions-multiples-explosion-combinatoire">Critère "Toutes les décisions multiples" : Explosion combinatoire<a class="headerlink" href="#critere-toutes-les-decisions-multiples-explosion-combinatoire" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p><strong>Exemple if (A &amp;&amp; (B || C))</strong>  </p>
+<p>Toutes-les-conditions  </p>
+<div class="arithmatex">\[\begin{array}{|c c c | c |}
+A &amp; B &amp; C &amp; \text{Décision} \\
+\hline
+0 &amp; 1 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}\]</div>
+<p>Toutes-les-conditions-multiples</p>
+<div class="arithmatex">\[\begin{array}{|c c c | c |}
+A &amp; B &amp; C &amp; \text{Décision} \\
+\hline
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}\]</div>
+<p><span class="arithmatex">\(2^{\text{nb de variables }}\)</span>: comment limiter la  combinatoire ?  </p>
+</div>
+<h3 id="critere-toutes-les-conditionsdecisions-modifie-mcdc">Critère Toutes-les-Conditions/Décisions-modifié : MC/DC<a class="headerlink" href="#critere-toutes-les-conditionsdecisions-modifie-mcdc" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p>Objectif : améliorer les critères de couverture basés sur les décisions  tout en contrôlant la combinatoire  </p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Critère MC/DC</p>
+<p>MC/DC : Modified Condition/Decision Coverage  </p>
+</div>
+<p>On ne s’intéresse à un jeu de test faisant varier une condition que s’il  inﬂue sur la décision.  </p>
+<h3 id="critere-mcdc">Critère MC/DC<a class="headerlink" href="#critere-mcdc" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p><strong>Exemple if (A &amp;&amp; (B || C))</strong></p>
+<p>Principe : pour chaque test atomique, trouver deux cas de tests qui  changent la décision lorsque les autres conditions sont fixées.  </p>
+<ul>
+<li>Pour A :  <ul>
+<li>A = 0, B = 1, C = 1. Décision : 0  </li>
+<li>A = 1, B = 1, C = 1. Décision : 1  </li>
+</ul>
+</li>
+<li>Pour B :  <ul>
+<li>A = 1, B = 0, C = 0. Décision : 0  </li>
+<li>A = 1, B = 1, C = 0. Décision : 1  </li>
+</ul>
+</li>
+<li>Pour C :  <ul>
+<li>A = 1, B = 0, C = 1. Décision : 1  </li>
+<li>A = 1, B = 0, C = 0. Décision : 0. <strong>Déjà couvert</strong>.  </li>
+</ul>
+</li>
+</ul>
+<p>Si n conditions : critère MC/DC entraîne au plus 2 × n tests contre  <span class="arithmatex">\(2^n\)</span> pour le critère Toutes-les-décisions-multiple.  </p>
+</div>
+<h3 id="limite-du-critere-toutes-les-decisions-multiples">Limite du critère Toutes-les-décisions-multiples<a class="headerlink" href="#limite-du-critere-toutes-les-decisions-multiples" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">invsum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="p">[]){</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">        </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests12.png'/></p>
+
+<p>E,B1,C1,B2,C1,ret. 1/s, S  couvre toutes les décisions.  Satisfait par n = 1,  a = {2., 3., 5.}. Défaut non  détecté si le tableau est vide.  </p>
+<h3 id="critere-tous-les-chemins">Critère "tous les chemins"<a class="headerlink" href="#critere-tous-les-chemins" title="Permanent link">&para;</a></h3>
+<p>Critère Tous-les-chemins : parcourir tous les arcs dans chaque  configuration possible (et non pas au moins une fois comme dans le  critère toutes-les-décisions)  </p>
+<p>Impraticable dès qu’il y a des boucles car existence de chemins infinis.  </p>
+<p>Aﬀaiblissement possible : "tous les chemins de longueur au plus k" </p>
+<p>En pratique on se limite souvent aux cas k = 1 ou k = 2. Cela permet  au moins de détecter les erreurs produites quand on ne rentre pas  dans la boucle.  </p>
+<p>Dans l’exemple précédent, n = 1, a = {} satisfait le chemin  E,B1,C1,ret . 1/s,S et détecte la division par zéro.  </p>
+<h3 id="hierarchie-des-criteres">Hiérarchie des critères<a class="headerlink" href="#hierarchie-des-criteres" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/tests13.png'/></p>
+
+<h3 id="convention-de-notation-algebrique">Convention de notation algébrique<a class="headerlink" href="#convention-de-notation-algebrique" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<ul>
+<li>ε pour "chemin vide"  </li>
+<li>A · B ou AB pour "A suivi de B"  </li>
+<li><span class="arithmatex">\((CB)^3\)</span> pour "CBCBCB"  </li>
+<li>A + B pour "A ou B"  </li>
+<li><span class="arithmatex">\(A^{+}\)</span> pour "<span class="arithmatex">\(A + A^2 + A^3 + · · · + A^n + . . .\)</span>"  </li>
+<li><span class="arithmatex">\(A^{∗}\)</span> pour "<span class="arithmatex">\(ε + A + A^2 + A^3 + · · · + A^n + . . .\)</span>"  </li>
+<li><span class="arithmatex">\(A-^{4}\)</span> pour <span class="arithmatex">\(ε + A + A^2 + A^3 + A^4\)</span></li>
+</ul>
+</div>
+<h3 id="expression-des-chemins-sous-forme-algebrique">Expression des chemins sous forme algébrique<a class="headerlink" href="#expression-des-chemins-sous-forme-algebrique" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">F</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">        </span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p align='center'><img src='/images/tests14.png'/></p>
+
+<ul>
+<li>Les chemins de contrôle possibles sont décrits par <span class="arithmatex">\(IA(B+C)D(E+F)GO\)</span></li>
+<li>Le nombre de chemins de contrôle possible est <span class="arithmatex">\(1 \centerdot 1 \centerdot (1+1)\centerdot 1 \centerdot(1+1)\centerdot 1 = 4\)</span></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

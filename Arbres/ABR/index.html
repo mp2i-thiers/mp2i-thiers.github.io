@@ -1,0 +1,3559 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Analyse%20d%27algorithmes/Complexit%C3%A9/">
+      
+      
+        <link rel="next" href="../induction_structurelle/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>Arbre Binaire de Recherche - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arbre-binaire-de-recherche" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arbre Binaire de Recherche
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/Nombres%20flottants/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/bdd1/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/lzw/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arbre-binaire-de-recherche_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre binaire de recherche
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arbre binaire de recherche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsf" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-de-donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type de données
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-linsertion-sous-une-feuille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de l’insertion sous une feuille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liste-triee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liste triée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilite-de-lequilibrage-des-arbres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilité de l’équilibrage des arbres
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-dun-arbre-equilibre-a-partir-dune-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création d’un arbre équilibré à partir d’une liste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rechercher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rechercher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suppression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operation-de-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opération de fusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction de la fusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la fusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dictionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionnaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-liste-de-paires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par liste de paires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-avl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par AVL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-table-de-hachage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par table de hachage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#precisions-et-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions et conséquences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hauteur-dun-arbre-complet-gauche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hauteur d’un arbre complet gauche
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tas-et-tableaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tas et tableaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tas et tableaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-caml" class="md-nav__link">
+    <span class="md-ellipsis">
+      En CAML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-probleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un problème
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-sur-les-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations sur les tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations sur les tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-auxiliaire-dechange" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction auxiliaire d’échange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-auxiliaire-de-percolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction auxiliaire de percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-percolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-dinsertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction d’insertion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La fonction d’insertion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supprimer-un-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supprimer un élément
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supprimer un élément">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-du-plus-grand-fils" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche du plus grand fils
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percolate-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percolate-down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-percolation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supprimer-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supprimer la racine
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Création">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#par-remontee-percolation-haute-du-nud-courant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par remontée : percolation haute du nœud courant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-descente-percolation-basse-du-nud-courant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par descente : percolation basse du nœud courant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-croissant-par-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri (croissant) par tas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-par-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri par tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri par tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complexite_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-de-priorites-une-application-des-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files de priorités (une application des tas)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Files de priorités (une application des tas)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-de-donnees_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type de données
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitives_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajouter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retirer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retirer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#augmenter-la-priorite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Augmenter la priorité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/pcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/Nombres%20flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/bdd1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bdd1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/lzw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lzw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arbre-binaire-de-recherche_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre binaire de recherche
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arbre binaire de recherche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsf" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-de-donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type de données
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-linsertion-sous-une-feuille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de l’insertion sous une feuille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liste-triee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liste triée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilite-de-lequilibrage-des-arbres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilité de l’équilibrage des arbres
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-dun-arbre-equilibre-a-partir-dune-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création d’un arbre équilibré à partir d’une liste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rechercher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rechercher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suppression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operation-de-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opération de fusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction de la fusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la fusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dictionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionnaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-liste-de-paires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par liste de paires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-avl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par AVL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-table-de-hachage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par table de hachage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#precisions-et-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions et conséquences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hauteur-dun-arbre-complet-gauche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hauteur d’un arbre complet gauche
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tas-et-tableaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tas et tableaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tas et tableaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-caml" class="md-nav__link">
+    <span class="md-ellipsis">
+      En CAML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-probleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un problème
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-sur-les-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations sur les tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations sur les tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-auxiliaire-dechange" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction auxiliaire d’échange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-auxiliaire-de-percolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction auxiliaire de percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-percolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-dinsertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction d’insertion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La fonction d’insertion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supprimer-un-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supprimer un élément
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supprimer un élément">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-du-plus-grand-fils" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche du plus grand fils
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percolate-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percolate-down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-de-la-percolation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité de la percolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supprimer-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supprimer la racine
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Création">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#par-remontee-percolation-haute-du-nud-courant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par remontée : percolation haute du nœud courant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-descente-percolation-basse-du-nud-courant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par descente : percolation basse du nœud courant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-croissant-par-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri (croissant) par tas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-par-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri par tas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri par tas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complexite_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-de-priorites-une-application-des-tas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files de priorités (une application des tas)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Files de priorités (une application des tas)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-de-donnees_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type de données
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitives_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajouter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retirer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retirer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#augmenter-la-priorite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Augmenter la priorité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="arbre-binaire-de-recherche">Arbre Binaire de Recherche<a class="headerlink" href="#arbre-binaire-de-recherche" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
+site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>"Option informatique MPSI, MP/MP*", Roger Mansuy, paru chez Vuibert.</li>
+<li>Wikipédia : Tas, Tas binaires, Tri par tas</li>
+<li>OpenClassRoom Arbres binaires de recherche</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Arbre binaire de recherche</p>
+<p>Binary search trees (BST)</p>
+<p>Un arbre binaire de recherche (ABR) sur un type totalement ordonné est
+un arbre binaire tel que pour tout nœud interne, les étiquettes
+apparaissant dans le sous-arbre gauche (resp.droit) sont strictement¹
+inférieures (resp. supérieures) à celle la racine.
+1. Selon la mise en œuvre de l’ABR, on pourra interdire ou non des clés de valeur égale.</p>
+</div>
+<p><em>Figure – Un ABR</em></p>
+<pre class="mermaid"><code>graph TB; 
+    A((8))--&gt;B((3))
+    A--&gt;C((10))
+    B--&gt;D((1))
+    B--&gt;E((6))
+    C--&gt;H(( ))
+    C--&gt;G((14))
+    E--&gt;J((4))
+    E--&gt;K((7))
+    G--&gt;O((13))
+    G--&gt;F(( ))
+    style H display:none
+    style F display:none</code></pre>
+<p>Les étiquettes de gauche ont des valeurs plus petites que
+celle de la racine, celle de droite sont plus grandes</p>
+<h2 id="arbre-binaire-de-recherche_1">Arbre binaire de recherche<a class="headerlink" href="#arbre-binaire-de-recherche_1" title="Permanent link">&para;</a></h2>
+<h3 id="dsf">DSF<a class="headerlink" href="#dsf" title="Permanent link">&para;</a></h3>
+<p>On peut facilement récupérer les clés d’un arbre binaire de recherche dans
+l’ordre croissant en réalisant un parcours en profondeur infixe. Contre exemple:</p>
+<p><em>Figure – Un arbre binaire qui n’est pas un ABR</em>
+<pre class="mermaid"><code>graph TB; 
+    A((6))--&gt;B((4))
+    A--&gt;C((5))</code></pre></p>
+<p><em>Figure – Un ABR pour représenter</em> <code>[4,5,6]</code>
+<pre class="mermaid"><code>graph TB; 
+    A((6))--&gt;B((5))
+    A --&gt;Z(( ))
+    B--&gt;C((4))
+    B--&gt;W(( ))
+    style Z display:none
+    style W display:none</code></pre>
+<em>Figure – Un ABR équilibré pour représenter</em> <code>[4,5,6]</code>
+<pre class="mermaid"><code>graph TB; 
+    A((5))--&gt;B((6))
+    A--&gt;C((4))</code></pre>
+<em>Figure – Un ABR pour représenter</em> <code>[4,5,6]</code></p>
+<pre class="mermaid"><code>graph TB; 
+    A --&gt;Z(( ))
+    A((4))--&gt;B((5))
+    B--&gt;W(( ))
+    B--&gt;C((6))
+    style Z display:none
+    style W display:none</code></pre>
+<p>Passage liste ordonnée/ABR
+A une liste ordonnée correspondent plusieurs ABR.</p>
+<h3 id="type-de-donnees">Type de données<a class="headerlink" href="#type-de-donnees" title="Permanent link">&para;</a></h3>
+<p>Nous utiliserons le type suivant:</p>
+<div class="language-Ocaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Type Arbre</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">=</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="o">|</span><span class="nc">Nil</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="o">|</span><span class="nc">N</span> <span class="k">of</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<ul>
+<li>Une feuille est implémentée par <code>N(x, Nil, Nil)</code>,</li>
+<li>une nœud d’arité 1 par <code>N(x, t, Nil)</code> ou <code>N(x, Nil, t)</code> avec x et t de type
+convenable.</li>
+<li>Une telle structure modélise les arbres binaires, pas seulement les ABR.
+C’est lors de la création d’un arbre que nous ferons attention à ce qu’il
+respecte la contrainte d’ordre.</li>
+</ul>
+</div>
+<h3 id="primitives">Primitives<a class="headerlink" href="#primitives" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<ul>
+<li>Une fonction de création d’un ABR à partir d’une liste.</li>
+<li>Une fonction d’insertion d’une valeur dans un ABR.</li>
+<li>Une fonction de recherche d’une valeur dans un arbre.</li>
+<li>Une fonction de suppression d’une valeur dans un arbre.</li>
+</ul>
+</div>
+<div class="language-Ocaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Insérer sous une feuille</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">insert</span> <span class="n">x</span> <span class="n">t</span> <span class="o">=</span> <span class="k">match</span> <span class="n">t</span> <span class="k">with</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="nc">N</span> <span class="o">(</span><span class="n">x</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span><span class="n">g</span> <span class="o">,</span> <span class="n">d</span> <span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span> <span class="n">insert</span> <span class="n">x</span> <span class="n">g</span> <span class="o">,</span> <span class="n">d</span> <span class="o">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span> <span class="n">g</span> <span class="o">,</span> <span class="n">d</span> <span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&gt;</span><span class="n">y</span> <span class="o">-&gt;</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span><span class="n">g</span> <span class="o">,</span> <span class="n">insert</span> <span class="n">x</span> <span class="n">d</span> <span class="o">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">t</span> <span class="c">(* pas de doublon *)</span> <span class="o">;;</span> <span class="c">(* le laisser sinon Warning 8. *)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<ul>
+<li>Le choix qui est fait ici est celui d’un ABR sans étiquettes de mêmes valeurs (pas de doublon).</li>
+<li>On insère la nouvelle valeur sous une feuille.</li>
+<li>On pourrait aussi insérer x à la racine:<ul>
+<li>"Couper" l’arbre en deux sous-ABR g , d contenant respectivement les éléments plus petits et plus grands que x.</li>
+<li>construire l’arbre <code>N(x, g, d)</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="complexite-de-linsertion-sous-une-feuille">Complexité de l’insertion sous une feuille<a class="headerlink" href="#complexite-de-linsertion-sous-une-feuille" title="Permanent link">&para;</a></h3>
+<p>Description informelle pour un arbre de hauteur <span class="arithmatex">\(h\)</span> à <span class="arithmatex">\(n\)</span> nœuds.</p>
+<div class="admonition note">
+<ul>
+<li>On descend le long d’une branche jusqu’à la feuille.</li>
+<li>Il y a <span class="arithmatex">\(O(h)\)</span> pour cette descente. Pour chaque nœud interne, les opérations hors appel récursif sont à coût constant.</li>
+<li>Dans le cas d’arrêt, le coût est également constant.</li>
+<li>Donc complexité en <span class="arithmatex">\(O(h)\)</span>.</li>
+<li>On comprend l’intérêt de "contrôler" <span class="arithmatex">\(h\)</span>. En pratique, on essaye de conserver <span class="arithmatex">\(h \leq C \log(n)\)</span> pour une certaine constante. Si on arrive à maintenir cette contrainte au fil des insertions, on obtient un arbre équilibré.</li>
+</ul>
+</div>
+<h3 id="creation">Création<a class="headerlink" href="#creation" title="Permanent link">&para;</a></h3>
+<div class="language-Ocaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Créer un ABR à partir d’une liste</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">create</span> <span class="n">l</span> <span class="o">=</span> <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="nc">Nil</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="o">|</span> <span class="n">e</span> <span class="o">::</span> <span class="n">q</span> <span class="o">-&gt;</span> <span class="n">insert</span> <span class="n">e</span> <span class="o">(</span> <span class="n">create</span> <span class="n">q</span> <span class="o">)</span> <span class="o">;;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c">(*test*)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">create</span> <span class="o">([</span><span class="mi">1</span><span class="o">;</span><span class="mi">4</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">])</span> <span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Figure – ABR obtenu par <code>create([1;4;2;3]);;</code></p>
+<pre class="mermaid"><code>graph TB; 
+    A((3))--&gt;B((2))
+    A--&gt;C((4))
+    B--&gt;D((1))
+    B--&gt;E(( ))
+    style E display:none</code></pre>
+<h3 id="liste-triee">Liste triée<a class="headerlink" href="#liste-triee" title="Permanent link">&para;</a></h3>
+<p>Si la liste est déjà triée, on obtient une liste chaînée.</p>
+<p>Figure – ABR obtenu par <code>create([1;4;2;3]);;</code></p>
+<pre class="mermaid"><code>graph TB; 
+    A((4))--&gt;B((3))
+    A --&gt;Z(( ))
+    B--&gt;C((2))
+    B--&gt;W(( ))
+    C--&gt;D((1))
+    C--&gt;R(( ))
+    style Z display:none
+    style W display:none
+    style R display:none</code></pre>
+<h3 id="complexite-de-la-creation">Complexité de la création<a class="headerlink" href="#complexite-de-la-creation" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<ul>
+<li>Si la liste est déjà triée, l’ABR n’a qu’une branche.</li>
+<li>Pour une liste triée de longueur <span class="arithmatex">\(n\)</span>, la complexité vérifie une relation de la forme</li>
+</ul>
+<div class="arithmatex">\[ \begin{align}
+c_n &amp;= c_{n−1} + \underbrace{n}_{\text{cpx insertion}} + \underbrace{c}_{\text{autres opération}}  \\
+&amp;= c_{n−2} + 2c + n +  \underbrace{n-1}_{\text{cpx insertion}} \\ 
+&amp;= \text{ ...} \\
+&amp;= c_0 + nc + \sum\limits_{k=1}^{n}k \\
+&amp;= \theta(n²)
+\end{align}\]</div>
+<ul>
+<li>On voit l’intérêt de maintenir un certain équilibre dans l’arbre au moment
+des insertions.</li>
+</ul>
+</div>
+<h3 id="utilite-de-lequilibrage-des-arbres">Utilité de l’équilibrage des arbres<a class="headerlink" href="#utilite-de-lequilibrage-des-arbres" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<ul>
+<li>A priori, cela ne semble pas si grave d’avoir une liste chaînée et non un
+bel arbre binaire "équilibré".</li>
+<li>Mais les opérations sur les ABR (insertion, suppression, recherche) ont
+une complexité au pire qui dépend de la hauteur...</li>
+<li>... d’où l’idée qu’il faut limiter la hauteur des arbres lors de l’insertion.</li>
+<li>C’est le principe du rééquilibrage des ABR.</li>
+</ul>
+</div>
+<h3 id="creation-dun-arbre-equilibre-a-partir-dune-liste">Création d’un arbre équilibré à partir d’une liste<a class="headerlink" href="#creation-dun-arbre-equilibre-a-partir-dune-liste" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<ul>
+<li>Un arbre A est dit équilibré lorsque <span class="arithmatex">\(h(A) = O(\log_{}(|A|))\)</span></li>
+<li>Exemple arbres AVL: pour chaque nœud, la différence entre les hauteurs de ses fils (l’un éventuellement vide) est <span class="arithmatex">\(0\)</span>, <span class="arithmatex">\(1\)</span> ou <span class="arithmatex">\(−1\)</span>.</li>
+<li>On peut établir que, dans un AVL de taille <span class="arithmatex">\({|A| = n} \implies {\frac{3}{2}\log_{2}(n+ 1) \geq h(A)}\)</span>
+(cf TD).</li>
+<li>Autre exemple : arbres Rouge-Noir (cf TD).</li>
+<li>Dans un arbre équilibré, insérer x se fait en <span class="arithmatex">\(O(\log_{2}(n))\)</span> appels internes au
+pire plus un nombre borné d’autres opérations en <span class="arithmatex">\(\Theta(1)\)</span> .</li>
+<li>Si on maintient le caractère équilibré (le rééquilibrage a un coût
+logarithmique -admis-), le coût de la création à partir d’une liste est donc
+de l’ordre de <span class="arithmatex">\(\Theta(\sum\limits_{k=1}^{n}\log_{2}(k)) = \Theta(\log_{2}(n!)) = \Theta(n\log_{2}(n))\)</span></li>
+</ul>
+</div>
+<h3 id="rechercher">Rechercher<a class="headerlink" href="#rechercher" title="Permanent link">&para;</a></h3>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">search</span> <span class="n">x</span> <span class="n">t</span> <span class="o">=</span> <span class="k">match</span> <span class="n">t</span> <span class="k">with</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c">(* cherche x dans t *)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,_</span> <span class="o">,</span> <span class="o">_</span> <span class="o">)</span> <span class="k">when</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="bp">true</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span><span class="n">g</span> <span class="o">,</span> <span class="o">_</span> <span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="n">search</span> <span class="n">x</span> <span class="n">g</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,_</span> <span class="o">,</span> <span class="n">d</span> <span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="n">search</span> <span class="n">x</span> <span class="n">d</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="bp">false</span> <span class="o">;;</span> <span class="c">(* le laisser sinon ’ this pattern - matching is not</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c">exhaustive . ’ *)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<ul>
+<li>Si x est égal à la racine de t, c’est bon. Sinon on cherche récursivementdans le sous arbre gauche lorsque x es plus petit que la racine, et à droite sinon.</li>
+<li>Si x est à la profondeur k, il y a k appels internes pour le trouver.</li>
+<li>Si x n’est pas dans l’arbre, il y a au pire <span class="arithmatex">\(h(t)\)</span> appels internes.</li>
+</ul>
+</div>
+<h3 id="suppression">Suppression<a class="headerlink" href="#suppression" title="Permanent link">&para;</a></h3>
+<h4 id="operation-de-fusion">Opération de fusion<a class="headerlink" href="#operation-de-fusion" title="Permanent link">&para;</a></h4>
+<p>On veut "fusionner" deux ABR G et D tels que les étiquettes de G sont toutes
+plus petites que celles de D. Ceci afin d’obtenir un ABR unique construit à partir
+des nœuds des deux arbres.</p>
+<p><div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">merge</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span> <span class="k">match</span> <span class="n">a</span> <span class="o">,</span> <span class="n">b</span> <span class="k">with</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="c">(* fusion qui privilégie l ’arbre gauche *)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">|</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="n">t</span> <span class="o">|</span> <span class="n">t</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="n">t</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">x</span> <span class="o">,</span> <span class="n">ga</span> <span class="o">,</span> <span class="n">da</span> <span class="o">)</span> <span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span> <span class="n">gb</span> <span class="o">,</span> <span class="n">db</span> <span class="o">)</span> <span class="o">-&gt;</span> <span class="c">(* on a max a &lt;= min b *)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="nc">N</span> <span class="o">(</span><span class="n">x</span> <span class="o">,</span> <span class="n">ga</span> <span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span> <span class="o">,</span> <span class="n">merge</span> <span class="n">da</span> <span class="n">gb</span> <span class="o">,</span> <span class="n">db</span> <span class="o">)</span> <span class="o">)</span> <span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+Dans cette fusion, la racine de l’arbre gauche devient systématiquement la
+racine de l’arbre retourné. On aurait pu privilégier l’arbre droit.
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">3</span> <span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">2</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">)</span> <span class="o">,</span><span class="nc">N</span> <span class="o">(</span><span class="mi">4</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">)</span> <span class="o">)</span> <span class="k">in</span> 
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">let</span> <span class="n">a2</span> <span class="o">=</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">30</span> <span class="o">,</span> <span class="nc">N</span><span class="o">(</span><span class="mi">20</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">)</span> <span class="o">,</span><span class="nc">N</span> <span class="o">(</span><span class="mi">40</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">,</span> <span class="nc">Nil</span> <span class="o">)</span> <span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">merge</span> <span class="n">a1</span> <span class="n">a2</span> <span class="o">;;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c">(* Et on obtient : *)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="nc">N</span> <span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">),</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="nc">N</span> <span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">4</span> <span class="o">,</span> <span class="nc">Nil</span><span class="o">,</span> <span class="nc">N</span> <span class="o">(</span><span class="mi">20</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)),</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>        <span class="nc">N</span> <span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)))</span>
+</span></code></pre></div></td></tr></table></div></p>
+<p align="center"><img src="/images/abr1.png"></p>
+<p><em>Figure – En rouge, la fusion des deux arbres bleus</em></p>
+<h4 id="correction-de-la-fusion">Correction de la fusion<a class="headerlink" href="#correction-de-la-fusion" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Preuve par induction</p>
+<p>On montre que si on fusionne deux ABR a, b tels que max
+a ≤ min b, alors le nouvel arbre formé est un ABR contenant toutes les
+étiquettes de a, b.</p>
+<ul>
+<li><strong>Cas de base :</strong> si un des deux arbres est vide, on renvoie l’autre. C’est un
+ABR par hyp. et il contient bien toutes les étiquettes des deux arbres.</li>
+<li><strong>Hérédité.</strong> Soient <code>a = N(x, ga, da)</code> et <code>b = N(y , gb, db)</code> non vides avec <span class="arithmatex">\(\max a \leq \min b\)</span>.<ul>
+<li>Notre hypothèse d’induction (HI) est que la fusion d’un sous-terme
+immédiats de a avec un sous-terme immédiat de b est un ABR
+contenant toutes les étiquettes de ses deux sous-termes.</li>
+<li>La racine du nouvel arbre est x et elle est plus grande que toutes les
+étiquettes de son fils gauche ga (puisque a est un ABR).</li>
+<li>Le fils droit est <code>d = N(y , merge(da, gb), db)</code>. Par (HI) la fusion
+<code>merge(da, gb)</code> est un ABR avec toutes les étiquettes de da, gb.</li>
+<li>Comme y est supérieur aux étiquettes de gb, elles-mêmes plus
+grandes que celles de da, il vient que y est supérieur aux étiquettes
+de l’ABR résultant de la fusion.</li>
+<li>Or y est inférieur aux étiquettes de db puisque b est un ABR. Donc <code>d =
+N(y , merge(da, gb), db)</code> est un ABR dont toutes les étiquettes sont aumoins plus grandes que celles de la plus petite de da. De plus il contient y et toutes les étiquettes de da, gb, db.</li>
+</ul>
+</li>
+<li>Donc x est plus petit que les étiquettes de d (qui est un ABR) et plus
+grand que celles de ga (qui est un ABR) donc <code>N(x, ga, d)</code> est un ABR avec
+toutes les étiquettes de a, b.</li>
+</ul>
+</div>
+<h4 id="complexite-de-la-fusion">Complexité de la fusion<a class="headerlink" href="#complexite-de-la-fusion" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Soient deux ABR g , d :
+Il y a au plus autant d’appels internes que le minimum de hauteur des sous arbres.</li>
+<li>La complexité est en <span class="arithmatex">\(\Theta(\min(h(g), h(d)))\)</span> </li>
+</ul>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">remove</span> <span class="n">x</span> <span class="n">t</span> <span class="o">=</span> <span class="k">match</span> <span class="n">t</span> <span class="k">with</span> <span class="c">(* on commence par chercher x dans t *)</span> 
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot; x not found &quot;</span> <span class="c">(* on n’a pas trouvé x *)</span> 
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span><span class="n">g</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">remove</span> <span class="n">x</span> <span class="n">g</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span><span class="n">g</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="k">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">g</span><span class="o">,</span> <span class="n">remove</span> <span class="n">x</span> <span class="n">d</span><span class="o">)</span> <span class="c">(* A partir d&#39;ici, on a trouvéx *)</span> 
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="o">|</span> <span class="nc">N</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span><span class="n">g</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="k">when</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">merge</span> <span class="n">g</span> <span class="n">d</span> <span class="c">(* fusion des deux sous - arbres *)</span> 
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot; ne devrait pas arriver &quot;</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Remarques</p>
+<p>Lorsque le nœud A d’étiquette x n’a qu’un fils, celui-ci prend la place de son
+père (on le "remonte").
+Si A est une feuille, on se contente de la supprimer (la fusion met Empty à la
+place de A).</p>
+</div>
+<h2 id="dictionnaire">Dictionnaire<a class="headerlink" href="#dictionnaire" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Tableau associatif</p>
+<p>Tableau associatif (aussi appelé dictionnaire ou table d’association) : type
+de données associant à un ensemble de clefs un ensemble correspondant
+de valeurs. Chaque clef est associée à une valeur unique : un dictionnaire
+correspond donc à une application en mathématiques. Il peut être vu
+comme une généralisation du tableau dont les indices ne serait pas
+nécessairement des entiers.</p>
+</div>
+<p><strong>Opérations usuellement fournies:</strong></p>
+<div class="admonition note">
+<ul>
+<li>ajout : association d’une nouvelle valeur à une nouvelle clef ;</li>
+<li>modification : association d’une nouvelle valeur à une ancienne clef ;</li>
+<li>suppression : suppression d’une clef ;</li>
+<li>recherche : détermination de la valeur associée à une clef, si elle existe.</li>
+</ul>
+<p>Les dictionnaires peuvent être implémentés concrètement par des ABR. Ce
+sont alors des données persistantes. L’ensemble des clés doit être totalement
+ordonné. Les étiquettes des nœuds de l’ABR sont des couples (clés, valeurs) et
+le placement d’un nœud dans l’arbre est fait selon sa clé et non sur sa valeur.
+En OCAML, explorons 3 façons de définir les dictionnaires.</p>
+</div>
+<h4 id="dictionnaires-par-liste-de-paires">Dictionnaires par liste de paires<a class="headerlink" href="#dictionnaires-par-liste-de-paires" title="Permanent link">&para;</a></h4>
+<p>Méthode la plus simple. Persistante.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c">(* dictionnaires par liste de paires *)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot; Sally Smart &quot;</span><span class="o">,</span> <span class="s2">&quot; 555 -9999 &quot;</span> <span class="o">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>     <span class="s2">&quot; John Doe &quot;</span><span class="o">,</span> <span class="s2">&quot; 555 -1212 &quot;</span> <span class="o">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>     <span class="s2">&quot; J.Random Hacker &quot;</span><span class="o">,</span> <span class="s2">&quot; 553 -1337 &quot;</span> <span class="o">];;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nn">List</span><span class="p">.</span><span class="n">assoc</span> <span class="s2">&quot; John Doe &quot;</span> <span class="n">m</span><span class="o">;;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="c">(* # - : string = &quot; 555 -1212 &quot; *)</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="dictionnaires-par-avl">Dictionnaires par AVL<a class="headerlink" href="#dictionnaires-par-avl" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<ul>
+<li>Les arbres AVL ont été historiquement les premiers arbres binaires de
+recherche automatiquement équilibrés.</li>
+<li>Dans un arbre AVL, les hauteurs des deux sous-arbres d’un même nœud
+diffèrent au plus de un.</li>
+<li>La recherche, l’insertion et la suppression sont toutes en <span class="arithmatex">\(O(\log_{2}(n))\)</span> dans
+le pire des cas.</li>
+<li>L’insertion et la suppression nécessitent d’effectuer des rotations
+(opérations de rééquilibrage).</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p>Le nom AVL vient des deux inventeurs Georgii Adelson-Velsky et Evguenii Landis (1962).</p>
+</div>
+<p><div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span>
+<span class="normal"><a href="#__codelineno-8-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c">(* dictionnaire applicatif réalisé par arbres équilibrés *)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a> <span class="c">(* dictionnaire applicatif réalisé par arbres équilibrés *)</span> 
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="k">include</span> <span class="o">(</span><span class="nn">Map</span><span class="p">.</span><span class="nc">Make</span> <span class="o">(</span><span class="nc">String</span><span class="o">));;</span> 
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">empty</span> 
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="o">|&gt;</span> <span class="n">add</span> <span class="s2">&quot; Sally Smart &quot;</span> <span class="s2">&quot; 555 -9999 &quot;</span> 
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>    <span class="o">|&gt;</span> <span class="n">add</span> <span class="s2">&quot; John Doe &quot;</span> <span class="s2">&quot; 555 -1212 &quot;</span> 
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>    <span class="o">|&gt;</span> <span class="n">add</span> <span class="s2">&quot; J.Random Hacker &quot;</span> <span class="s2">&quot; 553 -1337 &quot;</span><span class="o">;;</span> 
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="n">find</span> <span class="s2">&quot; John Doe &quot;</span> <span class="n">m</span><span class="o">;;</span> 
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c">(* # - : string = &quot;555 -1212&quot; *)</span> 
+</span></code></pre></div></td></tr></table></div>
+Structure persistante basée sur les arbres équilibrés.
+Ajout/Suppression/Recherche en temps logarithmique.</p>
+<h4 id="dictionnaires-par-table-de-hachage">Dictionnaires par table de hachage<a class="headerlink" href="#dictionnaires-par-table-de-hachage" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c">(* dictionnaires par table de hachage polymorphe *)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">create</span> <span class="mi">3</span><span class="o">;;</span> <span class="c">(* taille attendue 3 , ç a peut changer *)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nn">Hashtbl</span><span class="p">.</span><span class="n">add</span> <span class="n">m</span> <span class="s2">&quot; Sally Smart &quot;</span> <span class="s2">&quot; 555 -9999 &quot;</span> <span class="o">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nn">Hashtbl</span><span class="p">.</span><span class="n">add</span> <span class="n">m</span> <span class="s2">&quot; John Doe &quot;</span> <span class="s2">&quot; 555 -1212 &quot;</span> <span class="o">;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="nn">Hashtbl</span><span class="p">.</span><span class="n">add</span> <span class="n">m</span> <span class="s2">&quot; J . Random Hacker &quot;</span> <span class="s2">&quot; 553 -1337 &quot;</span> <span class="o">;;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find</span> <span class="n">m</span> <span class="s2">&quot; John Doe &quot;</span> <span class="o">;;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="c">(* # - : string = &quot;555 -1212&quot; *)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Structure impérative. Modifications en place. Ajout/Suppression/Recherche en
+temps constant (en moyenne pour ajout, et pour la recherche, ça dépend en
+fait de la fonction de hash).</p>
+<h2 id="tas">Tas<a class="headerlink" href="#tas" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Tas</p>
+<p>Un tas de hauteur h est un arbre binaire vérifiant :</p>
+<ul>
+<li><strong>Condition d’ordre :</strong> les fils d’un nœud ont une étiquette inférieure ou
+égale à celle du père.</li>
+<li><strong>Condition de structure:</strong> Un tas est complet gauche :<ul>
+<li>Tous les niveaux sont remplis sauf éventuellement le dernier.</li>
+<li>Le dernier niveau (éventuellement incomplet) est rempli sans trou enpartant de la gauche.</li>
+</ul>
+</li>
+</ul>
+</div>
+<h4 id="precisions-et-consequences">Précisions et conséquences<a class="headerlink" href="#precisions-et-consequences" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<ul>
+<li>Un arbre du type précédent est dit de type tas-max (racine=max).</li>
+<li>tas-min : l’étiquette du père est plus petite que celle des fils.</li>
+</ul>
+<p>Les branches sont toutes de longueur h ou h − 1, enlever les feuilles de
+profondeur h donne un arbre parfait, les nœuds internes de profondeur h − 1
+d’arité ≥ 1 sont à gauche des feuilles de profondeur h − 1, si il y a un nœud
+interne de profondeur h − 1 avec un seul fils, son fils est une feuille et c’est le
+dernier nœud dans le parcours en largeur.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p><p align="center"><img src="/images/abr2.png"></p>
+Figure – Un tas. Si on enlève les feuilles de profondeur 2, l’arbre est parfait</p>
+</div>
+<p>Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche. </p>
+<div class="admonition example">
+<p class="admonition-title">Contre-exemples</p>
+<p>Les arbres suivants ne sont pas des tas :
+<p align="center"><img src="/images/abr3.png"></p>
+Figure – Un nœud de hauteur h − 1 et d’arité 1 est à gauche d’un nœud de hauteur h − 1 d’arité 2 
+<p align="center"><img src="/images/abr4.png"></p>
+Figure – Un père a un fils d’étiquette plus grande que la sienne </p>
+</div>
+<h4 id="hauteur-dun-arbre-complet-gauche">Hauteur d’un arbre complet gauche<a class="headerlink" href="#hauteur-dun-arbre-complet-gauche" title="Permanent link">&para;</a></h4>
+<p>Soit A un arbre complet gauche à n nœuds et de hauteur p </p>
+<ul>
+<li>L’avant dernier niveau (qui correspond à un arbre parfait) est rempli. Et le dernier niveau contient au moins une feuille. </li>
+</ul>
+<div class="arithmatex">\[\begin{align}
+&amp;2p − 1 &lt; n ≤ \underbrace {2^{p+1} − 1}_\text{taille min. d’un arbre parfait plus gros que A} \\
+&amp;\Rightarrow 2p ≤ n &lt; 2^{p+1} &amp;\\
+&amp;\Rightarrow p ≤ log_2(n) &lt; p + 1 &amp;\\
+&amp;\lfloor \log_2(n) \rfloor  = p\\
+\end{align}\]</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p><p align="center"><img src="/images/abr5.png"></p>
+Figure – Un tableau représentant un tas </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Contrexemples</p>
+<p>Les arbres suivants ne sont pas des tas : 
+<p align="center"><img src="/images/abr6.png"></p>
+Figure – Un nœud de hauteur h − 1 et d’arité 1 est à gauche d’un nœud de hauteur h − 1 d’arité 2 
+<p align="center"><img src="/images/abr7.png"></p>
+Figure – Un père a un fils d’étiquette plus grande que la sienne </p>
+</div>
+<h3 id="tas-et-tableaux">Tas et tableaux<a class="headerlink" href="#tas-et-tableaux" title="Permanent link">&para;</a></h3>
+<p>On peut stocker un tas dans un tableau dont on n’utilise pas (pour le moment) le premier élément.</p>
+<ul>
+<li>La racine occupe l’élément d’indice 1, </li>
+<li>Les fils du nœud d’indice k (avec k &gt; 0) sont aux indices 2k et 2k + 1 (si ceux-ci ne dépassent pas la longueur du tableau).</li>
+<li>Le père du nœud d’indice k est à l’indice <span class="arithmatex">\(\lfloor k/2 \rfloor\)</span>.</li>
+</ul>
+<p align="center"><img src="/images/abr8.png"></p>
+<p>Figure – Relations père/fils dans un tableau représentant un tas</p>
+<h4 id="en-caml">En CAML<a class="headerlink" href="#en-caml" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c">(* correspond au schéma précédent en OCAML *)</span> 
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="o">[|</span><span class="mi">6</span><span class="o">;</span> <span class="mi">12</span><span class="o">;</span> <span class="mi">9</span><span class="o">;</span> <span class="mi">6</span><span class="o">;</span> <span class="mi">2</span><span class="o">;</span> <span class="mi">7</span><span class="o">;</span> <span class="mi">5</span><span class="o">;</span> <span class="mi">0</span><span class="o">;</span> <span class="mi">67</span><span class="o">;</span> <span class="mi">33</span><span class="o">|];;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Lorsqu’on crée un tableau représentant un tas :</p>
+<ul>
+<li>Il faut prévoir la taille du tableau à l’instant initial (6 ici) et les éventuels ajouts à eﬀectuer (en clair prévoir plus de place que la simple taille du tableau à l’instant 0). </li>
+<li>Le premier élément du tableau désigne la taille du tas (qui est diﬀérente de celle du tableau).</li>
+<li>Les éléments 0, 67, 33 en fin de tableau ne sont pas considérés comme appartenant au tas. Ils seront remplacés par les valeurs éventuellement ajoutées au tas.</li>
+</ul>
+<h4 id="un-probleme">Un problème<a class="headerlink" href="#un-probleme" title="Permanent link">&para;</a></h4>
+<p>Le type de la taille du tas (int) fige le type du tableau avec l’implémentation précédente. Toutes les valeurs du tas doivent être des entiers... </p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c">(* pour dissocier le type de la taille du tas de celui de ses éléments,  on peut utiliser un type enregistrement *)</span> 
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">type</span> <span class="err">’</span><span class="n">a</span> <span class="n">myHeap</span> <span class="o">=</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>    <span class="o">{</span> <span class="k">mutable</span> <span class="n">length</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">;</span> <span class="n">heap</span> <span class="o">:</span> <span class="err">’</span><span class="n">a</span> <span class="kt">array</span> <span class="o">};;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="operations-sur-les-tas">Opérations sur les tas<a class="headerlink" href="#operations-sur-les-tas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ajouter : ajout d’un élément dans le tas binaire en préservant la structure de tas. </li>
+<li>Retirer : retirer un élément d’indice donné et rectifier le tableau pour qu’il corresponde de nouveau à un tas. </li>
+<li>Construire : construction du tas binaire à partir d’un ensemble d’éléments. </li>
+</ul>
+<p>Considérons que l’on veuille ajouter le nœud x à notre tas binaire :
+On insère x à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau), puis on eﬀectue l’opération suivante (que l’on appelle percolation vers le haut ou percolate-up) pour rétablir si nécessaire la propriété d’ordre du tas binaire : </p>
+<ul>
+<li>Tant que x n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père. </li>
+</ul>
+<details class="example">
+<summary>Exemple</summary>
+<p>On veut ajouter 50 dans un tas-max :
+<p align="center"><img src="/images/abr9.png"></p>
+Figure – On cherche le seul emplacement possible pour préserver la structure d’arbre complet gauche</p>
+<p><p align="center"><img src="/images/abr10.png"></p>
+Figure – le nœud d’étiquette 50 est placé provisoirement. On le compare à son père (28) </p>
+<p><p align="center"><img src="/images/abr11.png"></p>
+Figure – Comme 50 &gt; 28, on échange les positions de 50 et 28. Et on compare 50 avec son nouveau père (41)... </p>
+<p><p align="center"><img src="/images/abr12.png"></p>
+Figure – Comme 50 &gt; 41, on échange les positions de 50 et 41. Et on compare 50 avec son nouveau père (53)... </p>
+<p><p align="center"><img src="/images/abr13.png"></p>
+Figure – Comme 50 ≤ 53, il n’y a rien à faire : 50 a trouvé sa bonne place </p>
+</details>
+<h4 id="la-fonction-auxiliaire-dechange">La fonction auxiliaire d’échange<a class="headerlink" href="#la-fonction-auxiliaire-dechange" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">let</span> <span class="n">swap</span> <span class="n">i</span> <span class="n">j</span> <span class="n">t</span> <span class="o">=</span> <span class="c">(*échange deux éléments d’un tableau*)</span> 
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>    <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">t</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="k">in</span> <span class="n">t</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;-</span><span class="n">t</span><span class="o">.(</span><span class="n">j</span><span class="o">)</span> <span class="o">;</span> <span class="n">t</span><span class="o">.(</span><span class="n">j</span><span class="o">)</span> <span class="o">&lt;-</span><span class="n">c</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<p>Complexité en <span class="arithmatex">\(\Theta(1)\)</span>.</p>
+<h4 id="la-fonction-auxiliaire-de-percolation">La fonction auxiliaire de percolation<a class="headerlink" href="#la-fonction-auxiliaire-de-percolation" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">percolate_up</span> <span class="n">n</span> <span class="n">t</span> <span class="o">=</span> 
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>    <span class="c">(* n est l’indice de l’élément à percoler *)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">then</span> 
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>        <span class="k">begin</span> <span class="c">(* t .(n) n&#39;est pas la racine *)</span> 
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>        <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span><span class="mi">2</span> <span class="c">(* indice du père *)</span> 
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>        <span class="k">in</span> <span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="n">m</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">.(</span><span class="n">n</span><span class="o">)</span> <span class="k">then</span> 
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>            <span class="k">begin</span> 
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a>                <span class="n">swap</span> <span class="n">m</span> <span class="n">n</span> <span class="n">t</span> <span class="o">;</span> <span class="c">(*échange père / fils *)</span> 
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a>                <span class="n">percolate_up</span> <span class="n">m</span> <span class="n">t</span> <span class="o">;</span> <span class="c">(* percolate_up avec m *)</span> 
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a>            <span class="k">end</span> <span class="o">;</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a>    <span class="k">end</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="complexite-de-la-percolation">Complexité de la percolation<a class="headerlink" href="#complexite-de-la-percolation" title="Permanent link">&para;</a></h4>
+<p>On applique cette fonction à un tas d’entiers de n nœuds (représenté par un tableau) : Dans le pire des cas, l’élément remonte la branche la plus longue du tas : <span class="arithmatex">\(\log_2(n)\)</span> étapes puisque le tas est un arbre binaire presque parfait. A chaque étape, il y a un nombre borné c d’opérations élémentaires. Au total, entre <span class="arithmatex">\(\log_2(n)\)</span> opérations et <span class="arithmatex">\(c\log_2(n)\)</span>. Complexité en <span class="arithmatex">\(\Theta(\log_2(n))\)</span>.</p>
+<h4 id="la-fonction-dinsertion">La fonction d’insertion<a class="headerlink" href="#la-fonction-dinsertion" title="Permanent link">&para;</a></h4>
+<h5 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h5>
+<p>On insère l’élément après le dernier élément du tableau (<span class="arithmatex">\(\Theta(1)\)</span>) et on percole (au pire <span class="arithmatex">\(\Theta(\log_2(n))\)</span>) si n est le nombre de nœud). Donc complexité au pire <span class="arithmatex">\(\Theta(\log_2(n))\)</span>:</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">let</span> <span class="n">insert</span> <span class="n">v</span> <span class="n">t</span> <span class="o">=</span> 
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>    <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="c">(* maj lg du tas *)</span> 
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>    <span class="n">t</span><span class="o">.(</span><span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">))</span> <span class="o">&lt;-</span> <span class="n">v</span> <span class="o">;</span> <span class="c">(* placer v à la derni è re place *)</span> 
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>    <span class="n">percolate_up</span> <span class="o">(</span><span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">))</span> <span class="n">t</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p align="center"><img src="/images/abr14.png"></p>
+<p>Figure – Le tas-max de référence</p>
+<h3 id="supprimer-un-element">Supprimer un élément<a class="headerlink" href="#supprimer-un-element" title="Permanent link">&para;</a></h3>
+<details class="example">
+<summary>Schema</summary>
+<p>On souhaite supprimer la racine du tas-max suivant : 
+<p align="center"><img src="/images/abr15.png"></p>
+Figure – On remplace la racine par le dernier nœud 
+<p align="center"><img src="/images/abr16.png"></p>
+Figure – On compare 20 et son fils max (41). Comme 41 &gt; 20, on échange 41 et 20 </p>
+<p><p align="center"><img src="/images/abr17.png"></p>
+Figure – On compare 20 et son fils max (36). Comme 36 &gt; 20, on échange 36 et 20 
+<p align="center"><img src="/images/abr18.png"></p>
+Figure – On compare 20 et son fils max (31). Comme 31 &gt; 20, on échange 31 et 20. On est alors dans un des deux cas d’arrêt : plus de fils ou pas de fils plus grand. Ici, 20 n’a plus de fils. On a fini. </p>
+</details>
+<h4 id="principe_1">Principe<a class="headerlink" href="#principe_1" title="Permanent link">&para;</a></h4>
+<p>On veut supprimer la racine. Lorsqu’on supprime le dernier nœud d’un tas, celui-ci reste un tas. On supprime le dernier nœud et on le met à la place du nœud racine (la propriété d’ordre est perdue). On percole vers le bas (percolate-down) pour retrouver la propriété d’ordre. </p>
+<h4 id="recherche-du-plus-grand-fils">Recherche du plus grand fils<a class="headerlink" href="#recherche-du-plus-grand-fils" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">let</span> <span class="n">aux_max</span> <span class="n">n</span> <span class="n">t</span> <span class="o">=</span> <span class="c">(* cette fonction retourne l’indice du fils le plus grand de t .(n) ; -1 si pas de fils *)</span> 
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>    <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="k">then</span> 
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>        <span class="k">begin</span> <span class="c">(* t .(n) a deux fils *)</span> 
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>            <span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="mi">2</span><span class="o">*</span> <span class="n">n</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">2</span><span class="o">*</span> <span class="n">n</span> <span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="k">then</span> <span class="mi">2</span><span class="o">*</span> <span class="n">n</span> <span class="o">+</span><span class="mi">1</span> 
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>            <span class="k">else</span> <span class="mi">2</span><span class="o">*</span> <span class="n">n</span> 
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>        <span class="k">end</span> 
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>    <span class="k">else</span> <span class="c">(* moins de deux fils *)</span> 
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a>        <span class="k">begin</span> 
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a>            <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">=</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="k">then</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="c">(* un seul fils *)</span> 
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a>            <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="c">(* pas de fils *)</span> 
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a>        <span class="k">end</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<p>Complexité en <span class="arithmatex">\(O(1)\)</span>.</p>
+<h4 id="percolate-down">Percolate-down<a class="headerlink" href="#percolate-down" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span>
+<span class="normal"><a href="#__codelineno-16-7">7</a></span>
+<span class="normal"><a href="#__codelineno-16-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">percolate_down</span> <span class="n">k</span> <span class="n">t</span> <span class="o">=</span> 
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>    <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">aux_max</span> <span class="n">k</span> <span class="n">t</span> <span class="c">(* m vaut -1,2 k ou 2 k +1 *)</span> <span class="k">in</span> 
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>        <span class="k">if</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="o">.(</span><span class="n">m</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">t</span><span class="o">.(</span><span class="n">k</span><span class="o">)</span> <span class="k">then</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a>            <span class="c">(* rqe : si m = -1 ou t .(m) &lt;= t .(k) on ne fait rien *)</span> 
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>            <span class="k">begin</span> 
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>                <span class="n">swap</span> <span class="n">k</span> <span class="n">m</span> <span class="n">t</span> <span class="o">;</span> 
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>                <span class="n">percolate_down</span> <span class="n">m</span> <span class="n">t</span> <span class="o">;</span> <span class="mi">10</span> 
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a>            <span class="k">end</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="complexite-de-la-percolation_1">Complexité de la percolation<a class="headerlink" href="#complexite-de-la-percolation_1" title="Permanent link">&para;</a></h4>
+<p>A chaque appel interne on descend d’un étage dans l’arbre. Le nombre d’appel est majoré par la hauteur ( <span class="arithmatex">\(\log_2(n)\)</span> pour n nœuds dans cet arbre complet gauche). A chaque appel interne, il y a moins de c opérations élémentaires. Coût total entre <span class="arithmatex">\(\log_2(n)\)</span> et <span class="arithmatex">\(c\log_2(n)\)</span>. ODG <span class="arithmatex">\(\Theta(\log_2(n))\)</span></p>
+<h4 id="supprimer-la-racine">Supprimer la racine<a class="headerlink" href="#supprimer-la-racine" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">let</span> <span class="n">remove</span> <span class="n">t</span> <span class="o">=</span> 
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>    <span class="c">(* mettre dernier elt dans t .(1) : *)</span> 
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>    <span class="n">t</span><span class="o">.(</span><span class="mi">1</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="o">.(</span><span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">))</span> <span class="o">;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>     <span class="c">(* chger taille du tas : *)</span> 
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a>    <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> 
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>    <span class="n">percolate_down</span> <span class="mi">1</span> <span class="n">t</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<p>Complexité : la même que la percolation. </p>
+<h3 id="creation_1">Création<a class="headerlink" href="#creation_1" title="Permanent link">&para;</a></h3>
+<h4 id="par-remontee-percolation-haute-du-nud-courant">Par remontée : percolation haute du nœud courant<a class="headerlink" href="#par-remontee-percolation-haute-du-nud-courant" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Pour t, tableau de taille n, on fait une copie de taille assez grande, disons n+1 :
+$$
+\begin{array}{|c|c|c|}
+6 &amp; 12 &amp; 8 &amp; 7 &amp; 15 &amp; → &amp; \color{red}{5} &amp; 6 &amp; 12 &amp; 8 &amp; 7 &amp; 15 \
+\end{array}
+$$
+Et on maintient "t[1:k+1] est un tas" (notation slicing Python). </p>
+</li>
+<li>
+<p>k = 1 :
+$$
+\begin{array}{|c|c|c|}
+5
+&amp; \color{red}6
+&amp; 12
+&amp; 8
+&amp; 7
+&amp; 15
+\end{array}
+$$
+t[1:2] est un tas</p>
+</li>
+<li>
+<p>k = 2 :<br />
+\begin{array}{|c|c|c|}
+5
+&amp; \color{red}6
+&amp; \color{red}12
+&amp; 8
+&amp; 7
+&amp; 15
+\end{array}
+On percole up 12.
+\begin{array}{|c|c|c|}
+5
+&amp; \color{red}12
+&amp; 6
+&amp; \color{red}8
+&amp; 7
+&amp; 15
+\end{array}
+t[1:3] est un tas. </p>
+</li>
+<li>
+<p>k = 3 : 8 est à sa place. t[1:4] est un tas.</p>
+</li>
+<li>
+<p>k = 4 :
+\begin{array}{|c|c|c|}
+5
+&amp; 12
+&amp; \color{red}6
+&amp; 8
+&amp; \color{red}7
+&amp; 15
+\end{array}
+On percole up 7 :
+\begin{array}{|c|c|c|}
+5
+&amp; 12
+&amp; \color{red}7
+&amp; 8
+&amp; \color{red}6
+&amp; 15
+\end{array}
+t[1:5] est un tas.</p>
+</li>
+<li>
+<p>k = 5 :
+\begin{array}{|c|c|c|}
+5
+&amp; 12
+&amp; \color{red}7
+&amp; 8
+&amp; 6
+&amp; \color{red}15
+\end{array}
+On percole up 15 deux fois
+\begin{array}{|c|c|c|}
+5
+&amp;12
+&amp;\color{red}15
+&amp;8
+&amp;6
+&amp;\color{red}7
+\end{array}
+\begin{array}{|c|c|c|}
+5
+&amp;\color{red}12
+&amp;\color{red}15
+&amp;8
+&amp;6
+&amp;7
+\end{array}
+\begin{array}{|c|c|c|}
+5
+&amp; \color{red}15
+&amp; \color{red}12
+&amp; 8
+&amp; 6
+&amp; 7
+\end{array}
+t[1:6] est un tas.</p>
+</li>
+</ul>
+<h4 id="complexite">Complexité<a class="headerlink" href="#complexite" title="Permanent link">&para;</a></h4>
+<p>Il y a n nœud, donc une hauteur de <span class="arithmatex">\(p=\lfloor \log_2(n) \rfloor\)</span>.</p>
+<p>Pire des cas : chaque remontée aboutit à la racine.</p>
+<p>Niveau k : 2k nœuds remontent à la racine en k étapes.</p>
+<div class="arithmatex">\[
+\begin{align}
+C(n) &amp;≤ \sum_{k = 1}^{p} k2^k = 2 \sum_{k = 1}^p k2^{k-1}&amp; \\ 
+&amp;= 2 \frac{d}{dx}( \frac{x^{p+1} -1 }{x-1})&amp; \\
+&amp;\leq (x \rightarrow \frac{−px^p + px^{p+1} − x^p + 1}{ x^2 − 2x + 1} ) \\
+&amp;\leq p2^p - 2^p +1 \leq p2^p = \underbrace{2^{\lfloor \log_2(n) \rfloor}\lfloor \log_2(n) \rfloor}_{ O(n \log_2(n))} 
+\end{align}
+\]</div>
+<h4 id="par-descente-percolation-basse-du-nud-courant">Par descente : percolation basse du nœud courant<a class="headerlink" href="#par-descente-percolation-basse-du-nud-courant" title="Permanent link">&para;</a></h4>
+<p>A partir d’un tableau de nombre </p>
+<p>On le considère comme un arbre complet gauche en décalant ses éléments d’un cran à droite et en insérant sa longueur. 
+On parcourt les sommets niveau par niveau en partant de l’avant dernier niveau (profondeur h − 1) et dans chaque niveau on parcourt les sommets de la droite vers la gauche. Lors de ce parcours on eﬀectue un percolate-down à partir de chaque sommet.</p>
+<p>Parcours du tableau : on maintient l’invariant <em>Tous les sous-arbres dont la racine est à droite du sommet courant sont des tas binaires.</em></p>
+<p>Donc après avoir traité la racine, comme elle vérifie l’invariant, notre arbre est un tas binaire.</p>
+<ul>
+<li>Pour t, tableau de taille n, on fait une copie de taille disons n+1
+\begin{array}{|c|c|c|}
+6
+&amp; 12
+&amp; 8
+&amp; 7
+&amp; 15
+&amp; 9
+&amp; →
+&amp; \color{red}6
+&amp; 6
+&amp; 12
+&amp; 8
+&amp; 7
+&amp; 15
+&amp; 9
+\end{array}</li>
+</ul>
+<p>7,15, 9 aux indices &gt; <span class="arithmatex">\(\lfloor \frac{n}{2}\rfloor\)</span> sont des feuilles donc des tas. 
+* <span class="arithmatex">\(k=\lfloor \frac{n}{2}\rfloor = 3\)</span> (Profondeur 1). 8 est le père de 9.
+\begin{array}{|c|c|c|}
+6
+&amp; 6
+&amp; 12
+&amp; \color{red}8
+&amp; 7
+&amp; 15
+&amp; \color{red}9
+&amp; →
+&amp; 6
+&amp; 6
+&amp; 12
+&amp; \color{red}9
+&amp; 7
+&amp; 15
+&amp; \color{red}8
+\end{array}
+* k = 2 (Profondeur 1). 12 est père de 7 et 15
+\begin{array}{|c|c|c|}
+6
+&amp; 6
+&amp; \color{red}12
+&amp; 9
+&amp; 7
+&amp; \color{red}15
+&amp; 8
+&amp; →
+&amp; 6
+&amp; 6
+&amp; \color{red}15
+&amp; 9
+&amp; 7
+&amp; \color{red}12
+&amp; 8
+\end{array}</p>
+<ul>
+<li>k = 1 (Profondeur 0). 6 est père de 15 et 9. 2 percos. 
+\begin{array}{|c|c|c|}
+6
+&amp; \color{red}6
+&amp; \color{red}15
+&amp; 9
+&amp; 7
+&amp; \color{red}12
+&amp; 8
+&amp; →
+&amp; 6
+&amp; \color{red}15
+&amp; \color{red}6
+&amp; 9
+&amp; 7
+&amp; \color{red}12
+&amp; 8 
+\end{array}
+\begin{array}{c|c|c|}
+→ 6
+&amp; \color{red}15
+&amp; \color{red}12
+&amp; 9
+&amp; 7
+&amp; \color{red}6
+&amp; 8
+\end{array}</li>
+</ul>
+<h4 id="complexite_1">Complexité<a class="headerlink" href="#complexite_1" title="Permanent link">&para;</a></h4>
+<p>Hauteur <span class="arithmatex">\(p=\lfloor \log_2(n) \rfloor\)</span> pour n nœuds. </p>
+<p>Dans le pire des cas, chaque descente d’un nœud de hauteur k aboutit aux feuilles : p − k échanges. </p>
+<p>Il y a au plus <span class="arithmatex">\(\lceil \frac{n}{2^{p-k}} \rceil\)</span> nœuds de profondeur k (cf. TD). </p>
+<p>Complexité C (n) au pire :</p>
+<div class="arithmatex">\[
+\begin{align}
+C(n) &amp;≤ \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}}^\text{nb échanges au pire...}_\text{...pour chaque node}}&amp;\\
+&amp;≤ \sum_{k=0}^p (\frac{n}{2^{p-k}} + 1)(p-k)\overbrace{\leq}^\text{ cgt. var. k = p-k } \sum_{k=0}^p ( \frac{n}{2^k} + 1 )k&amp;\\
+&amp;&lt;= \overbrace{ \frac{p(p+1)}{2} }^{O(log_2(n)^2) } \underbrace{\sum_{k=0}^p {\frac{k}{2^k}}}_\text{série CV donc majorée} = O( n )&amp;
+\end{align}
+\]</div>
+<p>Donc création par descente moins coûteuse (<span class="arithmatex">\(O(n)\)</span>) que par remontée (<span class="arithmatex">\(O(n \log_2(n))\)</span>).</p>
+<h3 id="tri-croissant-par-tas">Tri (croissant) par tas<a class="headerlink" href="#tri-croissant-par-tas" title="Permanent link">&para;</a></h3>
+<p>A partir d’un tableau de n nombres t, on crée un tas-max. </p>
+<ul>
+<li>Étape 1 : la racine t[1] est le maximum du tas, on l’échange avec t[n] (notation Python). 
+Le max se retrouve à la fin du tas en position t[n]. <span class="arithmatex">\(\color{red}\text{t[n:] est trié et contient le max.}\)</span></li>
+<li>On met à jour la longueur du tas (qui représente le nombre d’éléments qu’il reste à trier) en la décrémentant (puisque l’ancienne racine a trouvé sa place). t[:n] est un tas.</li>
+<li>On percole bas la nouvelle racine. <span class="arithmatex">\(\color{red}\text{Alors t[1:n] est de nouveau un tas}\)</span>. Et on itère(swap puis percolation)...</li>
+<li>L’invariant qui assure la correction est "A la fin de l’étape k, <span class="arithmatex">\(\color{red}\text{t[:n-k+1] est un tas et t[n-k+1 :] est un tableau trié}\)</span> par ordre croissant dont les éléments sont plus grands que ceux de t[:n-k+1]". Il y a n étapes. </li>
+</ul>
+<h3 id="tri-par-tas">Tri par tas<a class="headerlink" href="#tri-par-tas" title="Permanent link">&para;</a></h3>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span>
+<span class="normal"><a href="#__codelineno-18-7">7</a></span>
+<span class="normal"><a href="#__codelineno-18-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="k">let</span> <span class="n">tri_tas</span> <span class="n">l</span> <span class="o">=</span> 
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>    <span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="n">create_down</span> <span class="n">l</span> <span class="k">in</span> <span class="c">(* O (n) *)</span>  
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>    <span class="k">while</span> <span class="n">t</span> <span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">do</span> 
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>        <span class="c">(* mettre le max à la fin du tab : *)</span> 
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>        <span class="n">swap</span> <span class="mi">1</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="n">t</span> <span class="o">;</span> 
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a>        <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)</span> <span class="o">&lt;</span> <span class="o">-(</span><span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)-</span><span class="mi">1</span><span class="o">)</span> <span class="o">;</span> <span class="c">(* le tas àétudier a un elt de moins *)</span> 
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a>        <span class="n">percolate_down</span> <span class="mi">1</span> <span class="n">t</span> <span class="c">(* O (log (n)) *)</span> 
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a>    <span class="k">done</span> <span class="o">;</span> <span class="n">t</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="complexite_2">Complexité<a class="headerlink" href="#complexite_2" title="Permanent link">&para;</a></h4>
+<p>O(n) pour la création d’un tas (rappel : hauteur <span class="arithmatex">\(O(\log_2(n))\)</span>). Chaque échange d’éléments et chaque décrémentation de t.(0) en O(1) Chaque appel à percolate down en <span class="arithmatex">\(O(\log_2(n))\)</span> (au max car la longueur du tas décroît). n passages dans la boucle. Complexité au pire en <span class="arithmatex">\(O(n\log_2(n))\)</span> à la louche. On ne peut pas faire mieux.</p>
+<h2 id="files-de-priorites-une-application-des-tas">Files de priorités (une application des tas)<a class="headerlink" href="#files-de-priorites-une-application-des-tas" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Une file de priorité</p>
+<p>Une file de priorité est une structure de données permettant de stocker des éléments et de retrouver eﬃcacement celui qui a la plus haute priorité.</p>
+</div>
+<p>Il y a trois primitives : insérer un élément ; extraire l’élément ayant la plus grande clé ; tester si la file de priorité est vide ou pas. On ajoute parfois à cette liste l’opération "augmenter/diminuer" la clé d’un élément", utilisée par exemple dans l’algorithme de Dijkstra.</p>
+<p>Les priorités sont d’un type totalement ordonné. Une file de priorité permet d’implémenter efficacement des planificateurs de tâches, où un accès rapide aux tâches d’importance maximale est souhaité. On trouve une file de priorité, par exemple, dans les ordonnanceurs des systèmes d’exploitation, notamment le noyau Linux.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Les urgences d’un hôpital : chaque nouveau patient est ajouté à la file, chaque fois qu’un médecin est libre, il s’occupe du patient avec l’état le plus critique. Le tri des patients se fait sur des critères quantifiables et ordonnés comme l’état de conscience :</p>
+<ul>
+<li>Échelle de Glasgow <span class="arithmatex">\([\![1,4]\!]\times[\![1,5]\!]\times[\![1,6]\!]\)</span> (priorité aux scores bas, ce qui entraîne d’utiliser un tas-min) </li>
+<li>s’ils respirent (1 ou 0), ou s’ils saignent (volume de la perte de sang)... on peut aussi vouloir mettre en avant les personnes plus jeunes, les femmes enceintes (combien de fœtus ?), etc... </li>
+</ul>
+</div>
+<h3 id="type-de-donnees_1">Type de données<a class="headerlink" href="#type-de-donnees_1" title="Permanent link">&para;</a></h3>
+<p>Comme le tas est un tableau de données (type data), on ne peut plus réserver le premier élément à l’indication de sa longueur(type int). </p>
+<p>Toutefois, on a pris l’habitude de stocker les données à partir de l’élément 1 et non 0. Donc nos tableaux auront une première case qui ne servira à rien. 
+La longueur du tas est toujours susceptible d’évoluer. Il faut la définir comme mutable.</p>
+<p>f.n+1 désigne la première case libre du tas f.tbl.
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">type</span> <span class="o">(</span><span class="err">’</span><span class="n">a</span><span class="o">,</span> <span class="err">’</span><span class="n">b</span><span class="o">)</span> <span class="n">data</span> <span class="o">=</span> <span class="o">{</span> <span class="n">priority</span> <span class="o">:</span> <span class="err">’</span><span class="n">a</span> <span class="o">;</span> <span class="n">value</span> <span class="o">:</span> <span class="err">’</span><span class="n">b</span> <span class="o">};;</span> 
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="k">type</span> <span class="o">(</span><span class="err">’</span><span class="n">a</span><span class="o">,</span> <span class="err">’</span><span class="n">b</span><span class="o">)</span> <span class="n">priority_file</span> <span class="o">=</span> <span class="o">{</span> <span class="k">mutable</span> <span class="n">n</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">;</span> <span class="n">tbl</span> <span class="o">:</span> <span class="o">(</span><span class="err">’</span> <span class="n">a</span><span class="o">,</span> <span class="err">’</span><span class="n">b</span><span class="o">)</span> <span class="n">data</span> <span class="kt">array</span> <span class="o">};;</span> 
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="primitives_1">Primitives<a class="headerlink" href="#primitives_1" title="Permanent link">&para;</a></h3>
+<h4 id="creation_2">Création<a class="headerlink" href="#creation_2" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">let</span> <span class="n">creer_file</span> <span class="n">n</span> <span class="o">(</span><span class="n">p</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">=</span> <span class="o">{</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">tbl</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="o">(</span><span class="n">n</span> <span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="n">priority</span> <span class="o">=</span> <span class="n">p</span> <span class="o">;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">v</span> <span class="o">}};;</span> 
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="k">let</span> <span class="n">empty_queue</span> <span class="o">=</span> <span class="n">creer_file</span> <span class="mi">5</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h4>
+<p>On peut ajouter des éléments dans la file tant qu’elle n’est pas pleine. Si elle est pleine, on soulève une exception Full. On peut retirer des éléments de la file tant qu’elle n’est pas vide. Si elle est vide, on soulève une exception Empty. Création des exceptions : </p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">exception</span> <span class="nc">Empty</span><span class="o">;;</span> 
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="k">exception</span> <span class="nc">Full</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="ajouter">Ajouter<a class="headerlink" href="#ajouter" title="Permanent link">&para;</a></h4>
+<p>Il faut adapter la fonction de percolation haute à nos priorités. En exo.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">let</span> <span class="n">ajouter</span> <span class="n">d</span> <span class="n">f</span> <span class="o">=</span> 
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">f</span><span class="o">.</span><span class="n">tbl</span> <span class="k">then</span> <span class="k">raise</span> <span class="nc">Full</span> <span class="o">;</span> 
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a>    <span class="n">f</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;-</span> <span class="n">f</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span><span class="mi">1</span><span class="o">;</span> 
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a>    <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="n">f</span><span class="o">.</span><span class="n">n</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">d</span> <span class="o">;</span> 
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a>    <span class="n">percolate_up</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="n">n</span><span class="o">)</span> <span class="n">f</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="retirer">Retirer<a class="headerlink" href="#retirer" title="Permanent link">&para;</a></h4>
+<p>Il faut adapter la fonction de percolation basse à nos priorités. En exo.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">let</span> <span class="n">retirer</span> <span class="n">f</span> <span class="o">=</span> 
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">raise</span> <span class="nc">Empty</span> <span class="o">;</span> 
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>    <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="mi">1</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="n">f</span><span class="o">.</span><span class="n">n</span><span class="o">);</span> 
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>    <span class="n">f</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;-(</span><span class="n">f</span><span class="o">.</span><span class="n">n</span><span class="o">)</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> 
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>    <span class="n">percolate_down</span> <span class="mi">1</span> <span class="n">f</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+<h4 id="augmenter-la-priorite">Augmenter la priorité<a class="headerlink" href="#augmenter-la-priorite" title="Permanent link">&para;</a></h4>
+<p>Quand on augmente l’urgence, donc qu’on diminue la valeur de priorité d’un élément, on le fait remonter par percolation haute.</p>
+<p><div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">let</span> <span class="n">plus_prioritaire</span> <span class="n">k</span> <span class="n">p</span> <span class="n">f</span> <span class="o">=</span> 
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>    <span class="c">(* augmente la prioritéde l&#39;élé ment k *)</span> 
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a>    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="n">k</span><span class="o">).</span><span class="n">priority</span> <span class="o">&lt;=</span> <span class="n">p</span> <span class="k">then</span> <span class="n">failwith</span> <span class="s2">&quot; la nouvelle priorité doit être plus petite&quot;</span> <span class="o">;</span> 
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a>    <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="n">k</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="o">{</span><span class="n">priority</span> <span class="o">=</span> <span class="n">p</span> <span class="o">;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">tbl</span><span class="o">.(</span><span class="n">k</span><span class="o">).</span><span class="n">value</span> <span class="o">};</span> 
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a>    <span class="n">percolate_up</span> <span class="n">k</span> <span class="n">f</span><span class="o">;;</span> 
+</span></code></pre></div></td></tr></table></div>
+Et quand on diminue l’urgence, on fait descendre l’élément par percolation basse </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
