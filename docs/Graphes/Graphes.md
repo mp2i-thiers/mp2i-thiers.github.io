@@ -131,7 +131,7 @@ Dans un graphe général orienté, on distingue le degré sortant ou  extérieur
 ### Liste d’adjacence
 
 !!! quote "Définition: Liste d'adjacence"
-    Soit $G = (V, Z)$ un graphe fini simple.
+    Soit $G = (V, E)$ un graphe fini simple.
 
     On appelle liste d’adjacence de $G$ toute liste de couples $(s, l)$ où $s$ parcourt $V$ et $l$ est une liste de ses voisins.
 
@@ -235,18 +235,21 @@ _Figure – Un tableau de liste chaînée de successeurs. (F. Pesseaux)_
 ```C linenums="1"
 typedef int edge_val ;// étiquette sur les arcs
 typedef int vertex_name_t ;//nom des sommet
+
 struct edge_list_t {// liste de voisins = extrémités d’ arcs
-int dest ;
-edge_val data ;// étiquette sur l' arc
-struct edge_list_t ∗ next;
+    int dest ;
+    edge_val data ;// étiquette sur l' arc
+    struct edge_list_t ∗ next;
 };
+
 struct vertex_t {
-vertex_name_t name ;// nom du sommet
-struct edge_list_t ∗ edges;// liste de voisins
+    vertex_name_t name ;// nom du sommet
+    struct edge_list_t ∗ edges;// liste de voisins
 };
+
 struct graph_t {
-int nb_vertices ;
-structvertex_t ∗ vertices [ MAX VERTICES ];
+    int nb_vertices ;
+    struct vertex_t ∗ vertices [ MAX VERTICES ];
 };
 
 ```
