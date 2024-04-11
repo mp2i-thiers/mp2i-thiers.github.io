@@ -170,7 +170,7 @@ On place les éléments suivants dans $E$ un à un jusqu’à ce que $S(E_2) > S
             | x::q -> aux q [x] [] x 0
     ;;
     ```
-    $C(n) = 2\times C(n-1) + ... \text{ donc }  C(n)\text{ est en }O(2^n) $
+    $C(n) = 2\times C(n-1) + ... \text{ donc }  C(n)\text{ est en }O(2^n)$
 #### Algorithme basé sur la demi-somme
 
 On dispose d’un ensemble d’entiers positifs $E$ .  
@@ -239,7 +239,7 @@ Prendre $e ∈ E$ et calculer la distance $|S(E_1) − S|$ dans $2$ cas :
 $E = \{e_0, . . . , e_{n−1}\}$, multi-ensemble de nombres entiers positifs, $S = \sum_{e \in E} e$ et $|E| = n$.  
 
 - On construit une matrice de bouléens $T$ de taille $(n + 1) × (S + 1)$  
-- On fait en sorte que le coefficient $T_{i,j}$, $(i ≥ 0, j ≥ 0) $ soit vrai si et  seulement si il existe un sous-ensemble de $\{e_k | k ≤ i − 1\}$ dont la somme des éléments vaut $j$.  
+- On fait en sorte que le coefficient $T_{i,j}, (i ≥ 0, j ≥ 0)$ soit vrai si et seulement si il existe un sous-ensemble de $\{e_k | k ≤ i − 1\}$ dont la somme des éléments vaut $j$.  
 - On cherche **une relation de récurrence qui construit $T_{i,j}$** connaissant les $T_{i',j'}$ pour $(i', j') < (i, j)$ au sens lexicographique.  
 
 !!!note ""
