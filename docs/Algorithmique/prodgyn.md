@@ -9,7 +9,7 @@
 
 La résolution d’un problème peut parfois se faire en le décomposant en  sous-problèmes. Dans cette approche, les solutions aux sous-problèmes sont  ensuite combinées pour construire la solution au problème initial.  
 
-- si les sous-problèmes sont _indépendants_ les uns des autres (exemple :  décomposition en sous-ensembles disjoints comme pour le tri fusion),  on parle de méthode _diviser pour régner_ ;
+- si les sous-problèmes sont _indépendants_ les uns des autres (exemple :  décomposition en sous-ensembles disjoints comme pour le tri fusion),  on parle de méthode _diviser pour régner_
 - si les sous-problèmes sont _dépendants_ (exemple : si un même calcul -avec les mêmes paramètres- est fait par chaque sous-problème), on parle de _programmation dynamique_.  
 
 ### Historique
@@ -66,9 +66,9 @@ Cette suite de décisions correspond à un découpage du problème en  sous-prob
 
 !!!note ""
     $\newline$
-    - Un **théorème général** énonce que tout algorithme de programmation dynamique peut se ramener à la recherche du plus court chemin dans un graphe.  
-    - Or, les techniques de recherche heuristique basées sur l’algorithme $A^*$ permettent d’exploiter les propriétés spécifiques d’un problème pour gagner en temps de calcul.  
-    - Autrement dit, il est souvent plus avantageux d’exploiter un algorithme $A^*$ que d’utiliser la programmation dynamique.  
+    * Un **théorème général** énonce que tout algorithme de programmation dynamique peut se ramener à la recherche du plus court chemin dans un graphe.  
+    * Or, les techniques de recherche heuristique basées sur l’algorithme $A^*$ permettent d’exploiter les propriétés spécifiques d’un problème pour gagner en temps de calcul.  
+    * Autrement dit, il est souvent plus avantageux d’exploiter un algorithme $A^*$ que d’utiliser la programmation dynamique.  
 
 ## Exemples
 
@@ -171,7 +171,7 @@ On place les éléments suivants dans $E$ un à un jusqu’à ce que $S(E_2) > S
             | x::q -> aux q [x] [] x 0
     ;;
     ```
-    $C(n) = 2\times C(n-1) + ...$ $ donc $  $C(n)\text{ est en }O(2^n) $
+    $C(n) = 2\times C(n-1) + ... \text{ donc }  C(n)\text{ est en }O(2^n) $
 #### Algorithme basé sur la demi-somme
 
 On dispose d’un ensemble d’entiers positifs $E$ .  
@@ -191,7 +191,7 @@ Puisque $A$ réalise la meilleure distance à $S/2$ :
 $$S(F ) ≤ S(A) \text{ et } S(E \setminus A) ≤ S(G) $$
 Et donc $|S(E \backslash A) − S(A)| ≤ |S(G ) − S(F )|$
 
-De même si $S(A) ≥ S/2$. On en déduit que $$\color{red}(A, E \backslash A) \text{ réalise une  partition équilibrée de } E.$$  
+De même si $S(A) ≥ S/2$. On en déduit que $\color{red}(A, E \backslash A) \text{ réalise une  partition équilibrée de } E.$ 
 
 #### Solution par programmation dynamique  
 
@@ -240,17 +240,17 @@ Prendre $e ∈ E$ et calculer la distance $|S(E_1) − S|$ dans $2$ cas :
 $E = \{e_0, . . . , e_{n−1}\}$, multi-ensemble de nombres entiers positifs, $S = \sum_{e \in E} e$ et $|E| = n$.  
 
 - On construit une matrice de bouléens $T$ de taille $(n + 1) × (S + 1)$  
-- On fait en sorte que le coefficient $T_{i,j}$ $(i ≥ 0, j ≥ 0) $ soit vrai si et  seulement si il existe un sous-ensemble de $\{e_k | k ≤ i − 1\}$ dont la somme des éléments vaut $j$.  
+- On fait en sorte que le coefficient $T_{i,j}$, $(i ≥ 0, j ≥ 0) $ soit vrai si et  seulement si il existe un sous-ensemble de $\{e_k | k ≤ i − 1\}$ dont la somme des éléments vaut $j$.  
 - On cherche **une relation de récurrence qui construit $T_{i,j}$** connaissant les $T_{i',j'}$ pour $(i', j') < (i, j)$ au sens lexicographique.  
 
 !!!note ""
     $E = \{e_0 , . . . , e_{n−1} \}$, multi-ensemble de nombres entiers positifs $(|E | = n)$.
     - Ligne $0$ : Pour $k ≥ 0$, $T_{0,k}$ désigne la possibilité pour que la somme  des éléments de l’ensemble $\{e_k | k ≤ 0 − 1\} = ∅$ vale $k$. **Ainsi $T_{0,k}$ est faux sauf si $k = 0$.**
     - Pour $i ≥ 0$, $T_{i+1, j}$ est vrai si et seulement si il existe un sous-ensemble  de $\{e, . . . , e_i \}$ dont la somme des éléments vaut $j$. Ceci se décompose en :  
-        - Ou bien il existe un sous-ensemble de $\{e, . . . , e_{i-1} \}$ dont la somme des  éléments vaut j. Ceci est équivalent à $"T_{i,j}\text{ est vrai }"$.  
-        - Ou bien, il existe un sous-ensemble de$\{e, . . . , e_{i-1} \}$ dont la somme des  éléments vaut j − $e_i$ (chose impossible si j < $e_i$ ). 
-        Ceci est équivalent à  $"T_{i,j−e_i}\text{ est vrai }"$ lorsque $j ≥ e_i$ .  
-    - **Relation de récurrence :** pour $i ≥ 1, j ≥ 0$, $T_{i+1,j}$ est équivalent à :  $$\color{red}{T_{i,j}\text{ ou } (j ≥ e_i\text{ et }T_{i,j−e_i})}$$
+        - Ou bien il existe un sous-ensemble de $\{e, . . . , e_{i-1} \}$ dont la somme des  éléments vaut j. Ceci est équivalent à "$T_{i,j}\text{ est vrai }$".  
+        - Ou bien, il existe un sous-ensemble de$\{e, . . . , e_{i-1} \}$ dont la somme des  éléments vaut j − $e_i$ (chose impossible si $j < e_i$ ). 
+        Ceci est équivalent à  "$T_{i,j−e_i}\text{ est vrai }$" lorsque $j ≥ e_i$ .  
+    - **Relation de récurrence :** pour $i ≥ 1, j ≥ 0$, $T_{i+1,j}$ est équivalent à :  $\color{red}{T_{i,j}\text{ ou } (j ≥ e_i\text{ et }T_{i,j−e_i})}$
 
 #### Code : construction du tableau de bouléens
 
@@ -285,7 +285,7 @@ On part de $T_{n,m}$ (qui est Vrai) et $E_1 = ∅$.
 On parcourt une suite $(T_{i,m_i})_{i=n,n-1,...1}$ de coeﬃcients avec $m_i$ $↓$ et $m_n = m$.  
 **C’est donc une suite dont les indices sont positifs et décroissants  strictement au sens lexicographique, ce qui assure la terminaison de la récursion.**  
 
-Invariant $"$$T_{i,m_i}$ est vrai$"$. Critère de déplacement dans la matrice :  
+Invariant "$T_{i,m_i} \text{ est vrai}$". Critère de déplacement dans la matrice :  
 
 - Si $T_{i−1,m_i}$ est vrai, alors on peut trouver un sous-ensemble de  $\{e, . . . , e_{i−2}\}$ qui a pour somme $m_i$ . Donc $E_1$ peut ne pas contenir  $e_{i−1}$ : il reste inchangé.  
 - Sinon c’est que $T_{i−1,m_i−e_i−1}$ est vrai. On peut trouver un sous-ensemble  de $\{e, . . . , e_{i−2}\}$ qui a pour somme $m − e_{i−1}$. On ajoute donc $e_{i−1}$ à $E_1$.  
