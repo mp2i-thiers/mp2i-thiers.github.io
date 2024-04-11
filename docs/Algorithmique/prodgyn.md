@@ -7,7 +7,7 @@
 
 ### Introduction
 
-La résolution d’un problème peut parfois se faire en le décomposant en  sous-problèmes. Dans cette approche, les solutions aux sous-problèmes sont  ensuite combinées pour construire la solution au problème initial.  
+La résolution d’un problème peut parfois se faire en le décomposant en  sous-problèmes. Dans cette approche, les solutions aux sous-problèmes sont ensuite combinées pour construire la solution au problème initial.  
 
 - si les sous-problèmes sont _indépendants_ les uns des autres (exemple :  décomposition en sous-ensembles disjoints comme pour le tri fusion),  on parle de méthode _diviser pour régner_
 - si les sous-problèmes sont _dépendants_ (exemple : si un même calcul -avec les mêmes paramètres- est fait par chaque sous-problème), on parle de _programmation dynamique_.  
