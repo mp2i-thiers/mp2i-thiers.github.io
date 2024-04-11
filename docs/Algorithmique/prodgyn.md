@@ -65,10 +65,9 @@ Cette suite de décisions correspond à un découpage du problème en  sous-prob
 ### Programmation dynamique et graphes
 
 !!!note ""
-    $\newline$
-    * Un **théorème général** énonce que tout algorithme de programmation dynamique peut se ramener à la recherche du plus court chemin dans un graphe.  
-    * Or, les techniques de recherche heuristique basées sur l’algorithme $A^*$ permettent d’exploiter les propriétés spécifiques d’un problème pour gagner en temps de calcul.  
-    * Autrement dit, il est souvent plus avantageux d’exploiter un algorithme $A^*$ que d’utiliser la programmation dynamique.  
+    - Un **théorème général** énonce que tout algorithme de programmation dynamique peut se ramener à la recherche du plus court chemin dans un graphe.  
+    - Or, les techniques de recherche heuristique basées sur l’algorithme $A^*$ permettent d’exploiter les propriétés spécifiques d’un problème pour gagner en temps de calcul.  
+    - Autrement dit, il est souvent plus avantageux d’exploiter un algorithme $A^*$ que d’utiliser la programmation dynamique.  
 
 ## Exemples
 
