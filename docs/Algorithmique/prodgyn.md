@@ -232,7 +232,7 @@ Prendre $e ∈ E$ et calculer la distance $|S(E_1) − S|$ dans $2$ cas :
         _part e (s/2);;
     
     ```
-    $C(n) >= 2\times C(n-1) + (n-1) >= 2\times C(n-1)$
+    $C(n) >= 2\times C(n-1) + n-1 >= 2\times(n-1)\newline \text{ Donc la complexité est exponentielle !}$
 
 ##### Méthode ascendante avec tableau de bouléen
 
@@ -258,23 +258,24 @@ $E = \{e_0, . . . , e_{n−1}\}$, multi-ensemble de nombres entiers positifs, $S
 
 !!! tip "Correction (à priori ça fonctionnne)"
     ```ocaml linenums="1"
-    let tableau (arr:int array) =
-        let s = sum arr in
-        let l = Array.length arr in
-        let matrice = Array.make_matrix (l+1) (s+1) false in
-        matrice.(0).(0) <- true;
-        for i=1 to l do
-            for j=0 to s do
-                matrice.(i).(j) <- 
-                    matrice.(i-1).(j) || 
-                        (j >= arr.(i-1) && matrice.(i-1).(j-arr.(i-1)))
-            done
+    let sum = Array.fold_left (+) 0;;
+    let tableau e =
+    let n = Array.length e in
+    let s = sum e in
+    let t = Array.make_matrix (n+1) (s/2+1) false in
+    t.(0).(0) <- true;
+    for i = 1 to n do
+        for j =0 to s/2 do
+        t.(i).(j) <-
+            t.(i-1).(j) ||
+            (j >= e.(i-1) && t.(i-1).(j-e.(i-1)));  
         done;
-        let rec aux' m j = match m with
-            | true -> j
-            | false -> (aux' matrice.(l).(j-1) (j-1))
-        in matrice, aux' matrice.(l).(s) (s+1)
-    ;;
+    done;
+    let m = ref (s/2) in
+    while not t.(n).(!m) do
+        decr m;
+    done;
+    t, !m;;
     ```
 
 #### Construction de la partition équilibrée
@@ -290,27 +291,20 @@ Invariant "$T_{i,m_i} \text{ est vrai}$". Critère de déplacement dans la matri
 - Sinon c’est que $T_{i−1,m_i−e_i−1}$ est vrai. On peut trouver un sous-ensemble  de $\{e, . . . , e_{i−2}\}$ qui a pour somme $m − e_{i−1}$. On ajoute donc $e_{i−1}$ à $E_1$.  
 
 !!! example "Exercice"
-    Ecrire la fonction `partitition : int array -> int array` telle que `partitition e` renvoie sous forme de tableau l’ensemble E. Donner sa complexité.
+    Ecrire la fonction `partitition : int array -> int array` telle que `partitition e` renvoie sous forme de tableau l’ensemble $E_1$. Donner sa complexité.
 
 !!! tip "Correction donné par Matéo"
     ```ocaml linenums="1"
     let partitition e =
-        let n = Array.length e in
-        let t,m = tableau e in
-        let e1 = Array.make n 0 in
-        let rec _part i s =
-            match i with
-                |0 -> ()
-                | _ -> if t.(i-1).(s) then _part (i-1) s
-                else (*c'est que t. (i-1).(s-e.(i0-1)) = true *)
-                (e1.(i-1)<-1; _part (i-1) (s - e.(i-1)))
-        in
-        _part n m;
-        let size = sum e1 in
-        let res = Array.make size (-1) and cpt = ref 0 in
-        for i = 0 to (n-1) do
-            if e1. (i) = 1 then (res. (!cpt) <- e.(i); incr cpt)
-        done;
-        res
+    let n = Array.length e in
+    let t,m = tableau e in
+    let rec _part i s acc=
+        match i with
+        0 -> acc
+        | _ -> if t.(i-1).(s) then _part (i-1) s acc
+        else
+            (*c'est que t.(i-1).(s - e.(i-1)) = true *)
+            _part (i-1) (s - e.(i-1)) (e.(i-1) :: acc)
+    in _part n m [];;
     ;;
     ```
