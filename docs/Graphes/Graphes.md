@@ -354,7 +354,7 @@ Preuve en TD.
 
 #### Distance et diamètre
 
-La distance entre deux sommets $x$ et $y$ d’un graphe $G = (S, A)$  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la longueur d’un plus court chemin (resp. chaîne) allant de $x$ à $y$ s’il en  existe un ou bien $+\infty$ sinon.
+La distance entre deux sommets $x$ et $y$ d’un graphe $G = (V, E)$  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la longueur d’un plus court chemin (resp. chaîne) allant de $x$ à $y$ s’il en  existe un ou bien $+\infty$ sinon.
 
 Il s’agit bien d’une distance au sens mathématiques. En particulier,  elle vérifie l’inégalité triangulaire  
 
@@ -1007,14 +1007,14 @@ L’algorithme pour la détection de circuit dans un graphe est une variante  du
 
 Exemple de problème : étant donné un ensemble de tâche à effectuer avec des contraintes d'antérioroté, on veut construire une liste de ces tâches respectant les contraintes
 
-Représentation : à l'aide d'un graphe orienté où chque sommet représente une tâche et où chaque arc $x \rightarrow y$ signifie que la tâche $x$ doit être effectuée avant la tâche $y$. on dit que $x$ est un _prédecesseur_ de $y$, $y$ est un _successeur_ de $x$.
+Représentation : à l'aide d'un graphe orienté où chaque sommet représente une tâche et où chaque arc $x \rightarrow y$ signifie que la tâche $x$ doit être effectuée avant la tâche $y$. on dit que $x$ est un _prédecesseur_ de $y$, $y$ est un _successeur_ de $x$.
 
 La résolution de ce problème consiste à effectuer un _tri topologique_ des sommets du graphes, c'est à dire à construire une liste ordonéee des sommets telle qu'aucun sommet du graphes n'apparaît dans la liste avant l'un de ses prédécesseurs.
 
 On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc n'aille de droite à gauche
 
 !!!quote "Définition: Tri topologique"
-    On appelle `tri topologique` d'un graphe orienté $G = (S, A)$ toute injection $r: S\rightarrow \mathbb{N}$ telle que $\forall x \rightarrow y \in A: r(x) \le r(y)$. On appelle $r(x)$ le _rang_ du sommet $x$.
+    On appelle `tri topologique` d'un graphe orienté $G = (V, E)$ toute injection $r: S\rightarrow \mathbb{N}$ telle que $\forall x \rightarrow y \in A: r(x) \le r(y)$. On appelle $r(x)$ le _rang_ du sommet $x$.
 
 <p align='center'><img src='/images/graphes18.png'/></p>
 
