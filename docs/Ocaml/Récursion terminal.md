@@ -89,7 +89,7 @@ $ulimit -s
 unlimited
 ```
 
-Cela permer d'augmenter la taille de la pile à la taille maximale du système d'exploitation. Sous $\textsc{Linux}$, cette taille est illimité (mais l'administrateur peut imposer une limite). Sous $\textsc{MacOs}$, la limite est de $65$ Mo.
+Cela permer d'augmenter la taille de la pile à la taille maximale du système d'exploitation. Sous $Linux$, cette taille est illimité (mais l'administrateur peut imposer une limite). Sous $MacOs$, la limite est de $65$ Mo.
 
 Il est maintenant possible d'exécuter le programme `./somme`. Mais
 l'exécution est lente du fait des empilements/dépilements successifs de stack frame.
