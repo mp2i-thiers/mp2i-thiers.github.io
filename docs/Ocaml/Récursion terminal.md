@@ -128,7 +128,7 @@ Appels à g non terminaux :
     **Définition**
     Une fonction est dite _récursive terminale_ si tous les appels récursifs dans sa définition sont en position terminale.
 
-!!!tip inline ""
+!!!tip ""
     **Intérêt**
     Il n'est plus nécessaire d'empiler les stack frame lors des appels récursifs. La stack frame de départ suffit.
 
