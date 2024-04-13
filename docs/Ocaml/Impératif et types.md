@@ -17,7 +17,7 @@
     - Astuce : le type option 
 
 !!!tip "Crédits"
-    Dveloppez.com  
+    Develooppez.com  
     λ OCaml Programming  
     FAQ Caml  
 

@@ -36,7 +36,7 @@ Elle ouvre un canal de communication (un flot) avec le fichier s’il existe et 
 Notre fichier est ouvert avec l’instruction
 
 ```Ocaml linenums="1"
-let ic = open_in "essai.txt " ;; 
+let ic = open_in "essai.txt" ;; 
 (* création d'un canal de com. vers essais.txt *)
 ```
 
@@ -80,9 +80,9 @@ En résumé, pour lire et afficher toutes les lignes d’un fichier et le fermer
 qui finira par arriver. On ferme alors le canal.
 
 ```Ocaml linenums="1"
-let ic = open_in " test1.txt " in
+let ic = open_in " test1.txt" in
 let rec lire () =
-let s = input_line ic in Printf . printf " % s \ n " s ;
+let s = input_line ic in Printf . printf "%s\n" s ;
     lire () ;
 in
 try
@@ -100,7 +100,7 @@ La fonction `open_out` permet d’ouvrir le fichier en mode écriture "avec écr
 La fonction `close_out` referme le canal.
 
 ```Ocaml linenums="1"
-let oc = open_out " sortie . txt " in close_out oc ;;
+let oc = open_out "sortie.txt" in close_out oc ;;
 ```
 
 Nous avons juste ouvert puis refermé le fichier mais il a bien été créé. 
@@ -114,10 +114,10 @@ sortie.txt
 La fonction `output_string` permet d’écrire une chaı̂ne de caractère dans le fichier :
 
 ```Ocaml linenums="1"
-# let oc = open_out " sortie.txt " in
-output_string oc " un " ;
-output_string oc " deux " ;
-output_string oc " trois " ;
+# let oc = open_out "sortie.txt" in
+output_string oc "un" ;
+output_string oc "deux" ;
+output_string oc "trois" ;
 close_out oc ;;
 - : unit = ()
 ```
@@ -135,7 +135,7 @@ Plus proche de ce que nous connaissons est la fonction `Printf.fprintf` qui reco
 spécifieurs de format :
 
 ```Ocaml linenums="1"
-let oc = open_out "sortie.txt " in
+let oc = open_out "sortie.txt" in
 Printf.fprintf oc "%f\n" 3.45;
 Printf.fprintf oc "%d\n" 26;
 Printf.fprintf oc "%s\n" "fini" ;
