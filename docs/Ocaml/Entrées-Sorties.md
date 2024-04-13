@@ -21,7 +21,7 @@ Deux types prédéfinis `in_channel` et `out_channel` décrivent les canaux de c
 
 ## Ouverture en lecture
 
-Dans un fichier essai.tex du répertoire courant, écrivons trois lignes :
+Dans un fichier essai.txt du répertoire courant, écrivons trois lignes :
 ```
     un
     deux
@@ -58,10 +58,10 @@ un
 Lisons donc les deux autres lignes :
 
 ```Ocaml linenums="1"
-# let s = input_line ic in Printf . printf " % s \ n " s ;;
+# let s = input_line ic in Printf . printf " %s\n" s ;;
 deux
 - : unit = ()
-# let s = input_line ic in Printf . printf " % s \ n " s ;;
+# let s = input_line ic in Printf . printf " %s\n" s ;;
 trois et quatre
 - : unit = ()
 ```
@@ -80,7 +80,7 @@ En résumé, pour lire et afficher toutes les lignes d’un fichier et le fermer
 qui finira par arriver. On ferme alors le canal.
 
 ```Ocaml linenums="1"
-let ic = open_in " test1 . tex " in
+let ic = open_in " test1.txt " in
 let rec lire () =
 let s = input_line ic in Printf . printf " % s \ n " s ;
     lire () ;
@@ -90,7 +90,7 @@ try
 with End_of_file -> close_in ic ;;
 ```
 
-Après compilation et exécution, le contenu du fichier test1.tex s’affiche (s’il existe).
+Après compilation et exécution, le contenu du fichier test1.txt s’affiche (s’il existe).
 
 ## Ouverture en écriture
 
