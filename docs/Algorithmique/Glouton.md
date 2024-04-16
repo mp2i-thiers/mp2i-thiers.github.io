@@ -35,21 +35,21 @@ Un algorithme glouton fournit le plus souvent une solution au  problème. Dans l
 
 Soit un ensemble $C$ (pour "coins") de $n$ valeurs entières de billets et pièces de monnaies $v_1 < v_2 < ··· < v_n$. Par exemple  $C = \{1€, 2€, 5€, 10€, 20€, 100€, 200€\}$
 
-Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de billets et de pièces pour rendre une somme donnée. Par exemple, la somme de $49€$ peut être rendue en utilisant $49$ pièces de $1€$, ou $2$ billets de $20€$, $1$ billet de $5€$ et $2$ pièces de $2€$. Donc $5$ billets/pièces rendues **VS** $49$. Ce nombre $5$ est  d’ailleurs le plus petit qu’on puisse trouver pour le système de pièces $C$.  
+Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de billets et de pièces pour rendre une somme donnée. Par exemple, la somme de $49$€ peut être rendue en utilisant $49$ pièces de $1$€, ou $2$ billets de $20$€, $1$ billet de $5$€ et $2$ pièces de $2$€. Donc $5$ billets/pièces rendues **VS** $49$. Ce nombre $5$ est  d’ailleurs le plus petit qu’on puisse trouver pour le système de pièces $C$.  
 
 ### Précisions
 
 Pour raison de concision, nous emploierons dans toute la suite  le terme "pièce" au lieu de "pièce ou billet". 
 
-De plus nous supposons que le stock de chaque valeur de pièce est illimité, ce qui ne reﬂète que partiellement la réalité (dans un $DAB$, il y a un nombre fini de billets de $10$,$20$,$50$ et $100€$). 
+De plus nous supposons que le stock de chaque valeur de pièce est illimité, ce qui ne reﬂète que partiellement la réalité (dans un $DAB$, il y a un nombre fini de billets de $10$,$20$,$50$ et $100$€). 
 
 La solution calculée par l’algorithme que nous présentons et  donc une solution théorique qui ne tient pas compte de la réalité du stock.  
 
 ### Stratégie
 
-On choisit d’abord les pièces qui permettent de rendre la plus  grande valeur possible sur la somme à rendre. Dans l’exemple des $49€$, il s’agit de deux billets de $20€$.
+On choisit d’abord les pièces qui permettent de rendre la plus  grande valeur possible sur la somme à rendre. Dans l’exemple des $49$€, il s’agit de deux billets de $20$€.
 
-Il reste alors à rendre $9€$. On choisit la plus grande valeur de  pièce plus petite que $9$, soit $5€$. On rend donc un billet de 5 (et pas $2$ car $2 × 5 > 9$). Enfin la plus grande valeur de pièce plus petite que les $4€$ à rendre est $2€$. On peut en rendre deux, ce qui ramène la somme à rendre à $0€$. On s’arrête donc là.  
+Il reste alors à rendre $9$€. On choisit la plus grande valeur de  pièce plus petite que $9$, soit $5$€. On rend donc un billet de 5 (et pas $2$ car $2 × 5 > 9$). Enfin la plus grande valeur de pièce plus petite que les $4$€ à rendre est $2$€. On peut en rendre deux, ce qui ramène la somme à rendre à $0$€. On s’arrête donc là.  
 
 ### Code
 
@@ -87,7 +87,7 @@ let greedy_change (coins:int array) (v:int): int array =
 
 Un variant de boucle est `!cur + !i`. Terminaison OK.  
 
-La condition $t_0 = 1$ assure la correction (principe : apcr, on  peut rendre autant de pièces de $1€$ que la somme restante).
+La condition $t_0 = 1$ assure la correction (principe : apcr, on  peut rendre autant de pièces de $1$€ que la somme restante).
 Le fait que $t_0 = 1$, assure que `!i ≥ 0` et donc l’accès valide  au tableau `coins`.  
 
 ### Optimalité
@@ -116,7 +116,7 @@ Le fait que $t_0 = 1$, assure que `!i ≥ 0` et donc l’accès valide  au table
 !!!example ""
     **Exercice**
 
-    Ecrivons un petit programme qui prend en compte les  contraintes précédentes et faisons le tourner pour explorer  exhaustivement toutes les combinaisons possibles de pièces de  moins de $200€$. 
+    Ecrivons un petit programme qui prend en compte les  contraintes précédentes et faisons le tourner pour explorer  exhaustivement toutes les combinaisons possibles de pièces de  moins de $200$€. 
 
 !!!tip "Correction"
     La correction ci-dessous est longue, mais est intéressante à lire car c'est un alogrithme de backtracking assez simple à comprendre.
@@ -229,12 +229,12 @@ Le fait que $t_0 = 1$, assure que `!i ≥ 0` et donc l’accès valide  au table
 
     $$2 × 2 + 5 + 2 × 20 + 50 + 100 = 199$$
     
-    Ainsi, la solution optimale ne pourra JAMAIS rembourser plus  de $199€$ avec des pièces de moins de $200€$. Dit autrement,  la solution optimale doit rembourser toute somme $S > 200€$ avec le maximum possible de pièces de $200€$ (qui est en fait  $k = S/200$).  
+    Ainsi, la solution optimale ne pourra JAMAIS rembourser plus  de $199$€ avec des pièces de moins de $200$€. Dit autrement,  la solution optimale doit rembourser toute somme $S > 200$€ avec le maximum possible de pièces de $200$€ (qui est en fait  $k = S/200$).  
     Or, notre algorithme calcule exactement $k$.  
     
-    Pour une somme inférieure à $199€$ reprenons notre petit  programme et faison le tourner pour trouver le nombre  maximum de pièces de moins de $100$ euros.  
+    Pour une somme inférieure à $199$€ reprenons notre petit  programme et faison le tourner pour trouver le nombre  maximum de pièces de moins de $100$ euros.  
     
-    On trouve alors que la solution optimale ne peut rembourser  qu’une somme de $99€$ avec ces pièces. Pour rembourser  une somme entre entre $100€$ et $199€$, il faut un billet de $100€$.
+    On trouve alors que la solution optimale ne peut rembourser  qu’une somme de $99$€ avec ces pièces. Pour rembourser  une somme entre entre $100$€ et $199$€, il faut un billet de $100$€.
     
     C’est exactement la quantité que trouve notre programme dans ce cas là!
 
