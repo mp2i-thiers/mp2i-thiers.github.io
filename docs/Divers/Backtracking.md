@@ -15,7 +15,7 @@
     algorithmique $P$ donné par une relation binaire
     $R⊂E ×(S \sqcup  \{None\})$ telle qu’il existe deux sous-ensembles
     notés $E^+$, $E^−$ de $E$ formant une partition de $E$ et vérifiant :
-    $$R⊂(E^+ \times S )\sqcup (E^− \times \{None\})$$
+    $R⊂(E^+ \times S )\sqcup (E^− \times \{None\})$
 
 !!!tip ""
     **Remarque**
@@ -27,7 +27,7 @@
 
 Avec les notations de la définition précédente :
 
-- si $(e, s ) ∈E ×S$ , on dit que $s$ est une _solution de l’entrée_ $e $;
+- si $(e, s ) ∈E ×S$ , on dit que $s$ est une _solution de l’entrée_ $e$;
 - si $(e, Node) ∈R$, on dit que l’entrée $e$ _n’a pas de solution_.
 
 
@@ -102,4 +102,4 @@ Il faut alors explorer tout l’arbre de décision.
     
     Bref, il existe $f$, tel que pour tout candidat $c$, la détection précoce et le test de validité ont une complexité en $O (f (|e|))$ où $f = max(g ◦k , l ◦k )$.
 
-    Ainsi, le backtracking a une complexité majorée par un $$O (p^h \times f(|e|))$$
+    Ainsi, le backtracking a une complexité majorée par un $O (p^h \times f(|e|))$
