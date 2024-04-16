@@ -17,10 +17,9 @@
     notés $E^+$, $E^−$ de $E$ formant une partition de $E$ et vérifiant :
     $R⊂(E^+ \times S )\sqcup (E^− \times \{None\})$
 
-!!!tip ""
-    **Remarque**
-    - Les éléments de $E$ sont appelés des entrées et ceux de $S$ des solutions ;
-    - Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s ) ∈R$ et $(e, None) ∈R$.
+!!!tip "Remarque"
+    Les éléments de $E$ sont appelés des entrées et ceux de $S$ des solutions ;
+    Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s ) ∈R$ et $(e, None) ∈R$.
 
 
 ## Vocabulaire : solution
