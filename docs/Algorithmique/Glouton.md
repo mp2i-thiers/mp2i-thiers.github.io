@@ -33,7 +33,7 @@ Un algorithme glouton fournit le plus souvent une solution au  problème. Dans l
 
 ### Présentation
 
-Soit un ensemble $C$ (pour "coins") de $n$ valeurs entières de billets et pièces de monnaies $v_1 < v_2 < ··· < v_n$. Par exemple  $C = \{1€, 2€, 5€, 10€, 20€, 100€, 200€\}$
+Soit un ensemble $C$ (pour "coins") de $n$ valeurs entières de billets et pièces de monnaies $v_1 < v_2 < ··· < v_n$. Par exemple  $C =\text{ {1€, 2€, 5€, 10€, 20€, 100€, 200€}}$
 
 Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de billets et de pièces pour rendre une somme donnée. Par exemple, la somme de $49$€ peut être rendue en utilisant $49$ pièces de $1$€, ou $2$ billets de $20$€, $1$ billet de $5$€ et $2$ pièces de $2$€. Donc $5$ billets/pièces rendues **VS** $49$. Ce nombre $5$ est  d’ailleurs le plus petit qu’on puisse trouver pour le système de pièces $C$.  
 
