@@ -217,7 +217,7 @@ Le fait que $t_0 = 1$, assure que `!i ≥ 0` et donc l’accès valide  au table
             let t = Array.of_list newacc in
             let v = value t in
             if contraint3 t then t,v
-            else [||], 0
+            else (Array.make 7 0), 0
     in aux 0 [];;
 
     check();;
