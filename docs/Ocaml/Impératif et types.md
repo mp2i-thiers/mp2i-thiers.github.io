@@ -1,10 +1,7 @@
 # Impératif et types
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d’être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 ???+ abstract "Sommaire"
     - Tableaux, références, boucles
@@ -85,6 +82,36 @@ val n : int ref = {contents = 0}
 - : unit = ()
 ```
 
+### Egalités 
+
+`==` : égalité physique.
+```Ocaml linenums="1"
+# [1] == [1];;
+- : bool = false 
+```
+
+Les deux listes ne sont pas au même endroit de la mémoire.
+
+`=` : égalité physique.
+```Ocaml linenums="1"
+# [1] = [1];;
+- : bool = true 
+```
+
+Les deux listes "s'érivent pareillement".
+
+`!=` : différence physique.
+```Ocaml linenums="1"
+# [1] != [1];;
+- : bool = true 
+```
+
+`<>` : différence syntaxique.
+```Ocaml linenums="1"
+# [1] <> [1];;
+- : bool = false 
+```
+
 ### Boucle while
 
 ```Ocaml linenums="1"
@@ -98,13 +125,16 @@ Printf.printf "!s = %d\n" !s ;;
 - : unit = ()
 ```
 
+Noter le `incr i` qui incrémente de 1 la valeur pointée par i . 
+Il existe aussi un `decr i`.
+
 ## Exceptions
 
 ### Présentation
 
 !!! note ""
     - En programmation fonctionnelle, les fonctions sont totales,  c’est-à-dire qu’elles sont applicables à tout argument qui appartient à  leur type de départ.  
-    - Il faut donc être capable de traiter les cas, appelés exceptions , où cet  argument n’est pas acceptable. Par exemple : une division par zéro ou  bien la recherche de la tête d’une liste vide.  
+    - Il faut donc être capable de traiter les cas, appelés _exceptions_, où cet argument n’est pas acceptable. Par exemple : une division par zéro ou  bien la recherche de la tête d’une liste vide.  
     - Ceci peut être fait par des tests préventifs placés dans le corps des  fonctions, mais ce mécanisme est très lourd, car il implique un travail  important pour le programmeur et il altère la lisibilité d’un  programme en masquant son fonctionnement normal.  
     - C’est pourquoi les langages de programmation modernes comportent  un mécanisme spécifique pour le traitement des exceptions.  
 
@@ -139,7 +169,7 @@ Exception : Division_by_zero.
 
 C’est l’évaluateur de OCaml qui déclenche cette exception.  
 
-- Une autre qui rappelle le C  
+- Une autre qui rappelle le C ou encore Python.
 
 ```Ocaml linenums="1"
 # let l = [3] in assert (List.mem 2 l);;
@@ -181,8 +211,7 @@ La récupération d’une exception déclenchée lors de l’évaluation d’une
 try expr with
 | p1 -> e1 (* si le type d'exception est p1 , renvoyer e1 *)
 |...
-| pn -> en
-(* si le type d’exception est p1 , renvoyer e1 *)
+| pn -> en (* si le type d’exception est pn , renvoyer en *)
 ```
 
 Dans l’exemple suivant, on met la tête de la liste `l2` dans `l1` et, si une  exception de type `Failure` est soulevée, on renvoie la liste vide :  
@@ -239,16 +268,20 @@ val i : complex = {x = 1.; y = 1.}
 - : unit = ()
 # i.y<-1.;;
 Characters 0-7:
-i.y<-1.;;
-^^^^^^^
+    i.y<-1.;;
+    ^^^^^^^
 Error : The record field y is not mutable
 ```
 
 #### Polymorphisme
 
+Dnas l'exemple ci-dessous, on déclare une structure à deux champs `x,y` dont les types ne sont pas connus au départ. Le premier est dun certain type `'a` qui sera connu à l'initialisation, de même le second est d'un type `'b`.
+
 ```Ocaml linenums="1"
-type (’a , ’b) fourre_tout = {x : ’a ; y : ’b};;
-let z = {x=2; y = "toto"};;
+# type (’a , ’b) fourre_tout = {x : ’a ; y : ’b};;
+type (’a , ’b) fourre_tout = { x : ’a ; y : ’b }
+# let z = {x=2; y = "toto"};;
+val z : (int, string) fourre_tout = {x = 2; y = "toto"}
 ```
 
 ### Type somme
@@ -256,8 +289,8 @@ let z = {x=2; y = "toto"};;
 #### Présentation
 
 !!! note ""
-    - Un type somme est formé d’une liste de cas possibles pour une valeur  de ce type, chaque cas comporte un nom de cas, le "constructeur",  et une (éventuelle) valeur associée (l’argument du constructeur).
-    - Un cas dégénéré consiste à définir un type dont les constructeurs  n’ont pas d’argument (constructeurs constants). On parle alors de  type énuméré (le symbole | se lit "ou")  
+    - Un _type somme_ est formé d’une liste de cas possibles pour une valeur  de ce type, chaque cas comporte un nom de cas, le "constructeur",  et une (éventuelle) valeur associé (l’argument du constructeur).
+    - Un cas dégénéré consiste à définir un type dont les constructeurs  n’ont pas d’argument (constructeurs constants). On parle alors de _type énuméré_ (le symbole `|` se lit "ou")  
 
 ```Ocaml linenums="1"
 # type couleur = Bleu | Blanc | Rouge ;;
@@ -275,7 +308,8 @@ in fleur Rouge ;;
 #### Type somme
 
 On peut passer des paramètres aux constructeurs.  
-Ci-dessous on définit un type pour les piles d’entiers. Une pile non  vide posséde deux éléments : une étiquette entière et une pile (vide  éventuellement). On écrit une fonction qui fait la somme du contenu  de la liste :  
+
+- Ci-dessous on définit un type pour les piles d’entiers. Une pile non  vide posséde deux éléments : une étiquette entière et une pile (vide  éventuellement). On écrit une fonction qui fait la somme du contenu  de la liste :  
 
 ```Ocaml linenums="1"
 # type stack_of_int = Vide | P of int * stack_of_int;;
@@ -286,7 +320,7 @@ type stack_of_int = Vide | P of int * stack_of_int
         val somme : stack_of_int -> int = <fun>
 ```
 
-On crée ensuite une pile dont le sommet est 3, l’élément intermédiaire  2 et la base 1. On lui applique la fonction `somme` :  
+- On crée ensuite une pile dont le sommet est 3, l’élément intermédiaire  2 et la base 1. On lui applique la fonction `somme` :  
 
 ```Ocaml linenums="1"
 # let p = P (3 , P (2 , P (1 , Vide))) ;;
@@ -324,6 +358,7 @@ val p : float stack = P (0.3 , P (0.2 , P (0.1 , Vide)))
 ### Utilité du type option
 
 Nous voulons écrire une fonction qui retourne en général une valeur  mais, parfois, ne retourne rien.  
+
 Par exemple, la fonction `list_max` renvoie le maximum d’une liste si  elle n’est pas vide. Mais on ne sait trop quoi faire avec la liste vide :
 
 ```ocaml linenums="1"
@@ -344,7 +379,8 @@ let rec list_max = function
 ### Le type option
 
 Le type `’a option` possède deux constructeurs `Some` et `None`.
-un élément du type `option` peut être vu comme une boîte qui est soit vide, soit contenant un objet d’un certain type.  
+
+Un élément du type `option` peut être vu comme une boîte qui est soit vide, soit contenant un objet d’un certain type.  
 
 ```Ocaml linenums="1"
 # None ;;
@@ -373,7 +409,7 @@ On accède au contenu de la boîte par filtrage. Ci-dessous on écrit une foncti
 
 #### Maximum d’une liste
 
-On revient au programme de recherche du maximum. On ne renvoie rien  (donc `None`) dans le cas où la liste est vide.
+On revient au programme de recherche du maximum. On ne renvoie rien (donc `None`) dans le cas où la liste est vide.
 
 ```ocaml linenums="1"
 # let rec list_max = function
