@@ -523,7 +523,9 @@ Toutes-les-décisions $=$ toutes-les-décisions-multiples Puisque test atomique
 
 <p align='center'><img src='/images/tests12.png'/></p>
 
-$\color{red}\textbf{E,B1,C1,B2,C1,ret. }\frac 1 s\textbf{ , S}\text{ couvre toutes les décisions.} \newline \text{Satisfait par } n = 1,  a = \{2., 3., 5.\}. \newline \text{Défaut non  détecté si le tableau est vide.}$
+$\color{red}\textbf{E,B1,C1,B2,C1,ret. }\frac 1 s\textbf{ , S}\text{ couvre toutes les décisions.}$
+$\color{red}\text{Satisfait par } n = 1,  a = \{2., 3., 5.\}.$
+$\color{red}\text{Défaut non  détecté si le tableau est vide.}$
 
 ### Critère "tous les chemins"
 
