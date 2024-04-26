@@ -49,7 +49,7 @@ sous-problèmes doivent être gérés.
 En général on envisage tous les sous-problèmes comme dans une  recherche exhaustive mais on prend ses précautions pour ne pas avoir à  les résoudre tous :  
 
 - soit parce que certains sont inutiles (ex : recherche dichotomique)  
-- soit parce qu’ils ont déjà été rencontrés et résolus (ex : mémoïsation  dans le calcul des suites de Fibonacci)  
+- soit parce qu’ils ont déjà été rencontrés et résolus (ex : mémorisation  dans le calcul des suites de Fibonacci)  
 
 ### Principe d’optimalité
 
@@ -109,11 +109,11 @@ $C (n) ≥ 2^{\frac{n}{2}} \times max(C (0), C (1)) ≥ 2^{\frac{n}{2} -1} ≥ \
 Complexité au moins exponentielle.
 De la même façon, on peut majorer $C (n)$ par $2^n$. La complexité n’est pas $"$plus$"$ qu’exponentielle.
 
-#### Fibonnaci : mémoïsation
+#### Fibonnaci : mémorisation
 
 ##### Approche descendante
 
-Mémoı̈sation :
+Mémorisation :
 
 - On mémorise une valeur de la suite si c’est la première fois qu’on la rencontre.
 - Si on a déjà rencontré le calcul courant, on récupère sa valeur par un accès à la structure de stockage en O(1)
