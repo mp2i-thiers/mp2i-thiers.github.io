@@ -97,7 +97,8 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 #### Principe
 
 - On parcourt le texte $s$ du début à la fin mais on eﬀectue parfois un  décalage dépendant de la première comparaison négative (ce qui fait  gagner du temps).  
-- Le motif $m$ est recherché en commençant par la fin : on teste la  présence de suffixes du motif de plus en plus gros. $\color{red}\text{C'est le contraire de la méthode naïve ou le motif}\\ \text{ est recherché en faisant grossir ses préfixes.}$
+- Le motif $m$ est recherché en commençant par la fin : on teste la  présence de suffixes du motif de plus en plus gros. $\color{red}\text{C'est le contraire de la méthode naïve ou le motif}$
+  $\color{red}text{ est recherché en faisant grossir ses préfixes.}$
 - L'algorithme utilise un _pré-traitement_ du motif afin de calculer le _saut maximum_ à eﬀectuer après avoir trouvé une non-concordance.  
 
 - Exploration de la lettre $i$ de $s$ : on se demande si ce n'est pas la  première lettre de $m$.
@@ -130,10 +131,10 @@ occurrence la plus à droite :
 !!!example "Table des occurences à droite"
     $\begin{matrix}
     \text{Lettre} & \text{occurence la plus à droite} & \text{saut max}\\
-    \text{\_\_\_\_\_\_\_\_\_\_} &\text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}  &\text{\_\_\_\_\_\_\_\_\_\_\_} \\
+     & & \\
     a& 2 \text{ (on ne tient pas compte du dernier a)} & 3-2\\
     b& 1 & 3-1\\
-    \text{\_\_\_\_\_\_\_\_\_\_}&\text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}    & \text{\_\_\_\_\_\_\_\_\_\_\_} \\
+    & &  \\
     \text{Autres lettres}& \varnothing  & |m|= 4\\
     \end{matrix}$
 
@@ -142,10 +143,10 @@ On note $d_m(x)$ l'occurrence la plus à droite de $x$ dans $m$.  On veut cherch
 !!!example "Table des occurences à droite"
     $\begin{matrix}
     \text{Lettre} & \text{occurence la plus à droite} & \text{saut max}\\
-    \text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} &\text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}  &\text{\_\_\_\_\_\_\_\_\_\_\_} \\
+     &  & \\
     a& 0 & 2-0\\
     b& 1 & 2-1\\
-    \text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}&\text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}    & \text{\_\_\_\_\_\_\_\_\_\_\_} \\
+     & &  \\
     \text{Autres lettres dont c}& \varnothing  & |m|= 3\\
     \end{matrix}$
 
@@ -167,7 +168,7 @@ On compare $s[i + j]$ et $m[j]$ comme dans l'algo naïf.
 Ce déplacement peut s'effectuer en décalant le motif vers la gauche
 (aucun intérêt) ou vers la droite (très intéressant).
 
-#### Comparaison de s [i + j ] avec m[j ]
+#### Comparaison de $s [i + j ]$ avec $m[j ]$
 
 $s$ : texte, $m$ : motif, $d_m$ tableau des occurrences les plus à droite.
 Le motif a été placé sous la position $i$ du texte. Les lettres $j + 1,j + 2,...,|m|−1$ du motif corespondent bien à leurs homologues du texte.
@@ -195,25 +196,8 @@ Décaler le motif de $−(d − j)$ n'a pas d'intérêt car le point de départ 
 
 $d_m$ : table des occurrences à droite. Posons $d = dm(s[i + j])$.  
 
-!!!example "Figure 2"
-    $
-    \text{. \; . \;  . \;  . \; i\; . \;  . \;  . \;  . \;  . \;  . \;  . \;  (i+j)\; . \;  . \;  . \;  : pos. dans txt}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:a\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;y\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,\,: texte}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:?\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,y\;\;\;\;\;\;\;\;\;\;\;\;\,z\;\;\;\;\;\;\;\;\;\;\;\,\,x\;\, : motif m}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;<------> \;\:\,Aucun y dans m[d+1:]}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:\,j-d}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:0\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,d\;\;\;\;\;\;\;\;\;\;\;\;\,j\;\;\;\;\;\;\;\,\,(|m|-1)\;\, : pos. dans motif}
-    $
-
 Nouveau point de départ en $i + j − d$ (pour aligner les $y$ ) :  
 
-!!!example "Figure 2 avec un nouveau point de départ"
-    $
-    \text{. \; . \;  . \;  . \; i\; . \;  . \;  (i+j-d) \;  . \;  . \;  . \;  . \;  (i+j)\; . \;  . \;  . \;  . \; . \; : pos. dans txt}\\
-    \text{\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;b\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:\,y\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:\,\,: texte}\\
-    \text{dec. = j-d\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:?\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:\:\;y\;\;\;u\;\;\;\;\;\;z\;\;\;\;\;\;\:\,x\:\, : motif (good)}\\
-    \text{dec. < j-d\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:?\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:\:\;y\;\;\;u\;\;\;\;\;\;z\;\;\;\;\;\;\:\,x\;\;\;\;\;\:\, : motif (bad)}
-    $
 Prendre un décalage $<j-d$ est inutile amène une lettre $u ≠ v$  sous $y$ .  
 
 #### Terminaison Informelle
