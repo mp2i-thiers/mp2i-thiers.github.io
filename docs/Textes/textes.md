@@ -98,7 +98,7 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 
 - On parcourt le texte $s$ du début à la fin mais on eﬀectue parfois un  décalage dépendant de la première comparaison négative (ce qui fait  gagner du temps).  
 - Le motif $m$ est recherché en commençant par la fin : on teste la  présence de suffixes du motif de plus en plus gros. $\color{red}\text{C'est le contraire de la méthode naïve ou le motif}$
-  $\color{red}text{ est recherché en faisant grossir ses préfixes.}$
+  $\color{red}\text{est recherché en faisant grossir ses préfixes.}$
 - L'algorithme utilise un _pré-traitement_ du motif afin de calculer le _saut maximum_ à eﬀectuer après avoir trouvé une non-concordance.  
 
 - Exploration de la lettre $i$ de $s$ : on se demande si ce n'est pas la  première lettre de $m$.
