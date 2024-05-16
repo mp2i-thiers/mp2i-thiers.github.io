@@ -144,7 +144,7 @@ Si c'est un exercice, sa potentielle correction se fait comme ceci :
     bla bla
 
 ```markdown
-!!!tip "Correction
+!!!tip "Correction"
     Bla
     bla
     bla
