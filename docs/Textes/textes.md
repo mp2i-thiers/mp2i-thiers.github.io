@@ -7,7 +7,8 @@
 ???+ abstract "Sommaire"
     Rappel de l'algorithme naïf  
     Algorithme de Boyer-Moore  
-    - Boyer-Moore-Horspool
+
+    * Boyer-Moore-Horspool
     Algorithme de Rabin-Karp  
 
 !!!tip "Crédits"
@@ -94,7 +95,7 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 
 ### Boyer-Moore-Horspool
 
-#### Principe
+#### Principe de l'algorithme
 
 - On parcourt le texte $s$ du début à la fin mais on eﬀectue parfois un  décalage dépendant de la première comparaison négative (ce qui fait  gagner du temps).  
 - Le motif $m$ est recherché en commençant par la fin : on teste la  présence de suffixes du motif de plus en plus gros. $\color{red}\text{C'est le contraire de la méthode naïve ou le motif}$
@@ -196,7 +197,25 @@ Décaler le motif de $−(d − j)$ n'a pas d'intérêt car le point de départ 
 
 $d_m$ : table des occurrences à droite. Posons $d = dm(s[i + j])$.  
 
+!!!example "Figure 2"
+    $\begin{matrix}
+    \text{. . . .}& i & .& . & . & . & . & . & . &(i+j) & . & . & . &: & \text{ pos. dans txt}\\
+    &a& & & & & & & & y & & & &  : & \text{texte} \\
+    &?& & & & & y & & & z & & & x &  : & \text{motif m} \\
+    &&&&&&<-&-&-&->&&&&&\text{(Aucun y dans m[d+1:])} \\
+    &&&&&&&&\text{j - d}& \\
+    &0&&&&&d&&&j&&&(|m|-1)& : & \text{pos. dans motif} \\
+    \end{matrix}$
+
 Nouveau point de départ en $i + j − d$ (pour aligner les $y$ ) :  
+
+!!!example "Figure 2"
+    $\begin{matrix}
+    \text{. . . .}& i & . & . & (i+j-d) & . & . & . & . &(i+j) & . & . & . & . & . &: & \text{ pos. dans txt}\\
+    & & & & b & & & & & y & & & & & &  : & \text{texte} \\
+    \text{dec. = j-d}& & & & ? & & & & & y & u & & z & & x & : & \text{motif good} \\
+    \text{dec. < j-d}& & & ? & & & & & y & u & & z & & x & & : & \text{motif bad} \\
+    \end{matrix}$
 
 Prendre un décalage $<j-d$ est inutile amène une lettre $u ≠ v$  sous $y$ .  
 
