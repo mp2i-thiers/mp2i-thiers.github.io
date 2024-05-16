@@ -335,10 +335,9 @@ On note $c_i , p_i$ les contenus des variables `c` et `p` après l'itération $i
 
 ### Vocabulaire
 
-Il y a correction _totale_ lorsque le programme termine toujours et
-vérifie la spécification.
-Il y a correction _partielle_ lorsque le programme vérifie la spécification
-dans tous les cas où il termine.
+Il y a correction _totale_ lorsque le programme termine toujours et vérifie la spécification.
+
+Il y a correction _partielle_ lorsque le programme vérifie la spécification dans tous les cas où il termine.
 
 ## Étude de cas : tri fusion
 
@@ -380,14 +379,14 @@ let rec fusion l1 l2 =
 ```
 
 - Terminaison : déjà établie
-- Correction : on veut montrer que <p style='color:red'>$\text{pour deux listes triées par ordre croissant }$<code style='color:red'>$\text{l1, l2} $</code> , $\color{red}\text{la liste obtenue par appel de}$ <code style='color:red'>$\text{fusion l1 l2}$</code> $\color{red}\text{est une version triée de }$<code style='color:red'>$\text{l1@l2}$</code>.</p>
+- Correction : on veut montrer que <p style='color:red'>$\text{pour deux listes triées par ordre croissant }$<code style='color:red'>l1, l2</code> , $\color{red}\text{la liste obtenue par appel de}$ <code style='color:red'>fusion l1 l2</code> $\color{red}\text{est une version triée de }$<code style='color:red'>$\text{l1@l2}$</code>.</p>
 
 ### Correction de la fusion
 
 Préconditions : `l1` et `l2` sont des listes triées d'entiers.
 
 - On note $n_1 = |l_1|$ et $n_2 = |l_2|$ les longueurs des listes opérandes.
-- On montre par récurrence sur $n_1 + n_2 = n$ la propriété $P(n)$ "$\color{red}\text{la liste résultat de}$ <code style='color:red'>$\text{fusion l1 l2}$</code> $\color{red}\text{est une version triée de}$ <code style='color:red'>$\text{l1@l2}$</code> ".
+- On montre par récurrence sur $n_1 + n_2 = n$ la propriété $P(n)$ "$\color{red}\text{la liste résultat de}$ <code style='color:red'>fusion l1 l2</code> $\color{red}\text{est une version triée de}$ <code style='color:red'>$l1@l2$</code> ".
 Remarque : sa taille est donc $n_1 + n_2$
 - Cas de base. Lorsque $n_1 + n_2 = 0$, alors les deux listes sont vides. On
 retourne la liste vide qui est triée et contient les éléments de `l1,l2`.
@@ -403,7 +402,8 @@ inférieur au premier de `l2` ; l'autre cas est laissé au lecteur).
   - L'hypothèse de récurrence s'applique puisque
   $|q_1|+ |l_2|= n_1 −1 + n_2 = n$ et `q1,l2` sont triés
   - Donc `fusion q1 l2` est une version triée de `q1@l2` .
-  - Comme `q1,l2` ne contiennent que des éléments plus grands que $x_1$ , `x1::fusion q1 l2` est triée et contient les bons éléments. IZP$^1$ !!
+  - Comme `q1,l2` ne contiennent que des éléments plus grands que $x_1$ , `x1::fusion q1 l2` est triée et contient les bons éléments. **IZP**$^1$ !!
+
 $\overline{\text{1. In Ze Pocket}}$
 
 ### Fonction de séparation
@@ -412,8 +412,6 @@ $\overline{\text{1. In Ze Pocket}}$
 
     * Écrire une fonction `div : int -> 'a list -> 'a list *'a list` qui prend en paramètres un indice $i$ et une liste $t$ et un retourne les deux listes `t[:i]` et `t[i:]` (en notation de slicing Python).
     Par exemple `div 3 [0;1;2;3;4]` renvoie `([0; 1; 2], [3; 4])`.
-
-    $\\$
 
     * Écrire une fonction `separer : 'a list -> 'a list * 'a list` qui sépare une liste en deux listes de tailles égales à $1$ près : la première moitié et la seconde. 
     Par exemple `separer [0;1;2;3;4]` renvoie `([0; 1; 2], [3; 4])` 
@@ -475,6 +473,6 @@ L'appel à `separer` termine (admis) et retourne la première et seconde moitié
 
 Ces deux listes sont passées chacune en argument de `tri` et, par **HR**, on obtient une version triée de chacune. On les note `l1',l2'`.
 
-Enfin, `fusion` appliquée à ces $2$ listes retourne une version triée de l1'@l2' .
+Enfin, `fusion` appliquée à ces $2$ listes retourne une version triée de `l1'@l2'` .
 
-Cette liste est une version triée de `l1@l2` donc de `l` . IZP
+Cette liste est une version triée de `l1@l2` donc de `l` . **IZP**
