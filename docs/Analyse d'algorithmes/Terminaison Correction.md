@@ -177,7 +177,7 @@ $n < 0$ est pris en compte par les cas de base. Or, ce n'est pas traité.
 
 ### La factorielle
 
-```OCaml lienums="1"
+```OCaml linenums="1"
 let factorielle n =
 let rec facto acc n = match n with
 | 0 -> acc
