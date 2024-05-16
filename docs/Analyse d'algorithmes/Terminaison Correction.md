@@ -386,7 +386,7 @@ let rec fusion l1 l2 =
 Préconditions : `l1` et `l2` sont des listes triées d'entiers.
 
 - On note $n_1 = |l_1|$ et $n_2 = |l_2|$ les longueurs des listes opérandes.
-- On montre par récurrence sur $n_1 + n_2 = n$ la propriété $P(n)$ "$\color{red}\text{la liste résultat de}$ <code style='color:red'>fusion l1 l2</code> $\color{red}\text{est une version triée de}$ <code style='color:red'>$l1@l2$</code> ".
+- On montre par récurrence sur $n_1 + n_2 = n$ la propriété $P(n)$ "$\color{red}\text{la liste résultat de}$ <code style='color:red'>fusion l1 l2</code> $\color{red}\text{est une version triée de}$ <code style='color:red'>l1@l2</code> ".
 Remarque : sa taille est donc $n_1 + n_2$
 - Cas de base. Lorsque $n_1 + n_2 = 0$, alors les deux listes sont vides. On
 retourne la liste vide qui est triée et contient les éléments de `l1,l2`.
