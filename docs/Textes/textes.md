@@ -2,22 +2,20 @@
 # Recherche dans un texte
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d'être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 ???+ abstract "Sommaire"
     Rappel de l'algorithme naïf  
     Algorithme de Boyer-Moore  
-    Boyer-Moore-Horspool  
+    - Boyer-Moore-Horspool
     Algorithme de Rabin-Karp  
 
 !!!tip "Crédits"
     Pour Boyer-Moore :
-    - [Wikipedia](https://fr.wikipedia.org/wiki/Algorithme_de_Boyer-Moore)
-    - Un cours de Marc de Falco
-    - Cette [vidéo](https://www.youtube.com/watch?v=4Xyhb72LCX4) de Ben Langmead
+
+    * [Wikipedia](https://fr.wikipedia.org/wiki/Algorithme_de_Boyer-Moore)
+    * Un cours de Marc de Falco
+    * Cette [vidéo](https://www.youtube.com/watch?v=4Xyhb72LCX4) de Ben Langmead
 
     Pour Rabin-Karp : Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  
 
@@ -50,7 +48,7 @@
  Longueur $|s| − k$.
   - $s[k :]$ est le suffixe de $s$ qui commence à la position $k$ (toutes les lettres  de $s[k]$ incluse à la fin). C'est un mot de longueur $|s| − k$.  
 
-#### Principe
+### Principe
 
 - On parcourt toutes les positions de $s[: −(|m| −1)]$ et on fait glisser le  motif de une case à chaque étape (on s'arrête dès que le motif  "dépasse" du texte).
 - Pour la position $i$, on regarde si le motif est présent à _partir_ de cette  position :  
@@ -59,7 +57,7 @@
   - Si c'est le cas on passe à la position suivante dans le motif et le texte.
   - Sinon, le motif n'est pas présent en position $i$, on recommence la  recherche à la position $i+1$.  
 
-#### Code
+### Code
 
 ``` c linenums="1"
 int recherche_naive ( const char *m , const char * s ){  
@@ -78,7 +76,7 @@ int recherche_naive ( const char *m , const char * s ){
 }
 ```
 
-#### Complexité au pire
+### Complexité au pire
 
 La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la seconde boucle et qu'on explore les lettres du motif presque jusqu'au  bout.
 
@@ -86,13 +84,15 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 - On explore les $p$ lettres du motif pour chacune des $n − p + 1$ premières lettres du texte.  
 - Complexité au pire en $\Theta((n+1 -p)p)~$ Et $\Theta(np)$ (si $p < \frac{n}{2}$ par exemple).  
 
-#### Complexité
+### Complexité
 
 - Souvent, au bout d'une ou deux comparaisons, on peut invalider la  position et passer à la suivante.  
 - Si le motif est présent à la fin du texte, on a une complexité en  $O(n+p)$ (où $p$ comparaisons sont nécessaires pour vérifier une à une  les lettres du motif).  
 - $O(n+p) = O(n)$ si p ≤ n.  
 
 ## Algorithme de Boyer-Moore
+
+### Boyer-Moore-Horspool
 
 #### Principe
 
@@ -168,11 +168,11 @@ On compare $s[i + j]$ et $m[j]$ comme dans l'algo naïf.
 Ce déplacement peut s'effectuer en décalant le motif vers la gauche
 (aucun intérêt) ou vers la droite (très intéressant).
 
-#### Comparaison de $s [i + j ]$ avec $m[j ]$
+#### Comparaison de $s [i + j]$ avec $m[j]$
 
 $s$ : texte, $m$ : motif, $d_m$ tableau des occurrences les plus à droite.
 Le motif a été placé sous la position $i$ du texte. Les lettres $j + 1,j + 2,...,|m|−1$ du motif corespondent bien à leurs homologues du texte.
-Supposons que $s[i + j] ≠ m[j]$ (sinon $j$ est décrémenté) : 
+Supposons que $s[i + j] ≠ m[j]$ (sinon $j$ est décrémenté) :
 
 - Si $d_m(s[i + j]) = ∅$, la recherche du motif ne sera pas satisfaite tant que ce caractère $s[i + j]$ sera présent. On reprend la recherche en $i + j + 1$  
 - si $s[i + j]$ est dans le motif et $d_m(s[i + j]) ≥ j$, cela signifie que $s[i + j]$ est présent plus à droite que $j$ dans le motif. Aligner cette occurrence ne permettrait pas d'avancer la recherche (cf figure 1). On reprend en $i + 1$.  
@@ -209,253 +209,164 @@ On en déduit la terminaison
 
 Par rapport à l'algo naïf, on fait des sauts.  
 Il suffit donc de s'assurer que les positions non explorées du fait des  sauts ne conduisent pas à une solution.  
-Un saut de $$1 case n'est pas intéressant à étudier car il correspond à  l'algo naïf.  
+Un saut de $1$ case n'est pas intéressant à étudier car il correspond à  l'algo naïf.  
 On s'intéresse au cas $i = $ (pour simplifier) et à un saut de $2$ cases  au moins.  
 
-- Il existe $3$ caractères $x, y , z$ (avec $y  z$) et des mots m, m, m, s, s  (avec |m| ≥ 1) tels que m = m  
-mx et  
-m z  
-y     dmy  < j  
-   j  
-s = s  
-y       j  
-ms et y /∈ mzm.  
-Un décalage trop faible (donc inférieur à j − dm(y ) − 1) amène une  lettre de m au niveau du y de yms. Or cette lettre de m est  diﬀérente de y (voir transparent figure 2).  D'où l'inutilité de décaler moins que j − dm(y ).  
+- Il existe $3$ caractères $x, y , z$ (avec $y  z$) et des mots $m_1, m_2, m_3, s_1, s_2 $ (avec $|m| ≥ 1$) tels que $m = m_1  \underbrace{y}_{pos. d_m(y) <y} m_2 \underbrace{z}_{pos. j} m_3x $
+et $s = s_1 \underbrace{y}_{pos. 0 +j} m_3 s_2$ et $y ∉ m_2 z m_3$
+  
+- Un décalage trop faible (donc inférieur à $j − d_m(y ) − 1$) amène une  lettre de $m_2$ au niveau du $y$ de $ym_3s_2$. Or cette lettre de $m_2$ est différente de $y$ (voir transparent figure 2). D'où l'inutilité de décaler moins que $j − d_m(y )$.  
 
 #### Complexité informelle
 
+$s$ texte, $m$ motif  
+Si l'alphabet contient beaucoup de caractères (par exemple UTF8),  on peut espérer que les motifs auront peu de répétitions. Chaque décalage sera donc en gros de $|m|$. En cas de recherche infructueuse, on eﬀectue environ $\frac{|s|}{|m|}$ comparaisons.  
 
-s texte, m motif  
-Si l'alphabet contient beaucoup de caractères (par exemple UTF8),  on peut espérer que les motifs auront peu de répétitions.  Chaque décalage sera donc en gros de |m|. En cas de recherche  
-infructueuse, on eﬀectue environ  
-|s|  |m|  
-comparaisons.  
-Exemple le pire m = bap− et s = an. Il faut, avant de faire un  décalage, atteindre le b, soit p comparaisons. Et le décalage, obtenu  en comparant a et b, est alors de 1 (car j = 0 < p − 1 = da).  Comme pour l'algo naïf, on a un nombre de comparaisons en  
-(n − p + 1)p = Θ(np) = Θ(|m| × |s|)  
+Exemple le pire $m = ba^{p−1}$ et $s = a^n$. Il faut, avant de faire un décalage, atteindre le $b$, soit $p$ comparaisons. Et le décalage, obtenu en comparant $a$ et $b$, est alors de $1$ (car $j = 0 < p − 1 = d_a$).  Comme pour l'algo naïf, on a un nombre de comparaisons en  
+$Θ((n − p + 1)p) = Θ(|m| × (|s|_ |m|)) = O(|m|×|s|)$  
 
 #### Algorithme ♥
 
+_Listing 2 - Table des sauts_
 
-```linenums="1"
-f o n c t i o n                  
-p o u r
-p o u r     r e n v o y e r 
+```C linenums="1"
+fonction derniereOccurence (m)
+    T := une table indexée par les lettres
+    /∗prendre plutôt un dictionnaire si gros alphabet ∗/
+    pour toute lettre a
+        T[a] := −1 /∗ les char sont des entiers ∗/
+    pour k = 0 à |m| − 2 /∗ |m| − 2, Si! ∗/
+        T[m[k]] := k
+    renvoyer  T
 ```
 
-Listing 2 – Table des sauts  
-  
-  
-  
-  
-  
-  
-  
-  
-         ∗                            
-           
-        
-      
-    
-        
-              ∗  
- − ∗     
-        
-       ∗  
-|| −  ∗ || −      ∗  
-      
-   
+_Listing 3 - Fonction principale_
 
-     
-     
-
-
-```linenums="1"
-f o n c t i o n              
-t a n t que  t a n t q u e            
-s i
-a l o r s
-r e n v o y e r
-s i  a l o r s
-s i n o n s i  a l o r s
-s i n o n 
-r e n v o y e r ```
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-Listing 3 – Fonction principale  
-
-       
-                       || − < |      |  
-   
- || −  
-  
- >  
-
-  −  
-   <   
-             ∗      <  ∗               
-  
-             ∗           − ∗  
-  >     
-   ∗                
-        ∗  
-   ∗         ∗      −  ∗      ∗  
-− ∗     
-     ∗  
-
-#### Boyer-Moore complet
-
-
-L'algorithme de Boyer-Moore complet, plus délicat que  Boyer-Moore-Horspool, introduit une seconde table de sauts en plus de la  table des dernières occurrences. Conformément au programme, on peut  s'abstenir de l'étudier.  
-
-
- Rappel de l'algorithme naïf  
- Algorithme de Boyer-Moore  
-Boyer-Moore-Horspool  
- Algorithme de Rabin-Karp  
-
-#### Présentation
-
-
-L'algorithme de Rabin-Karp ou Karp-Rabin est un algorithme de  recherche de sous-chaîne créé par Richard M. Karp et Michael O.  Rabin (1987).  
-Cette méthode recherche un ensemble de motifs donnés (c'est-à-dire  des sous-chaînes) dans un texte grâce à une fonction de hachage. On  ne compare donc pas directement le motif à des sous-chaînes du texte  mais seulement leurs empreintes (le hache).  
-L'algorithme n'est pas beaucoup employé pour les recherches d'une  unique sous-chaîne mais a une importance théorique et s'avère très  efficace pour des recherches de multiples sous-chaînes. (Wikipedia)  Dans toute la suite on prend s : texte ; m motif. Pour un mot u, uk  désigne la lettre k de u.  
-
-#### Utilisation d'une fonction de hachage
-
-
-On se donne une fonction de hachage h sur les chaînes de caractères  et on calcule une fois pour toute h(m).  
-Pour chaque position 0 ≤ i ≤ |s| − |m| on calcule h(s[i : i + |m|]).  
-Si h(m) (cid:54)= h(s[i : i + |m|]), on est certain que m n'est pas en position  i dans le texte.  
-Si h(m) = h(s[i : i + |m|]), comme h n'est pas injectif en général, il  est possible que m soit en position i dans le texte. Il faut alors  comparer m et s[i : i + |m|] en force brute.  
-
-#### Choix de h
-
-
-Le calcul de h(s[i : i + |m|]) se fait à priori en Θ(|m|). La séquence  des calculs des haches des sous-chaînes de s a alors la même  complexité que la recherche naïve, soit en Θ((|s| − |m| + 1) × |m|) (il  y a |s| − |m| + 1 sous-chaînes de s de taille |m|).  D'où l'idée de choisir h de façon à ce que h(s[i + 1 : i + 1 + |m|])  s'obtienne à partir de h(s[i : i + |m|]) en temps constant.  Choisissons un entier B arbitraire et posons pour le mot  u = uu . . . u|m| que  
-h(u) =  
-{sum symbol}  
-B |m|−−j × uj  
-≤j<|m|  
-Une telle fonction, polynômiale, se calcule en O(|m|) par la méthode  de Horner. En C, un caractère n'est rien d'autre qu'un nombre codé  sur un octet d'où la validité du produit.  Selon Wikipedia, cette fonction de hachage est appelée empreinte de  Rabin.  
-
-#### Choix de h (suite)
-
-
-Appliquée au texte s, et posant |m| = M, on obtient :  
-h(sisi . . . siM ) =  
-M−  {sum symbol}  
-j  
-B M−−j sij  
-= siM B M−−M − si B M + B ×  
-M−  {sum symbol}  
-j  
-B M−−j sij  
-= siM + B(h(si si . . . siM−) − si B M−)  
-On peut donc calculer h(s[i + 1 : i + 1 + M]) à partir de h(s[i : i + M])  en temps constant : avec un précalcul (une fois pour toute) de B M−,  il faut faire une addition une soustraction et 2 produits.  Il peut y avoir un overﬂow. D'où la nécessité de travailler modulo (il  est malin de prendre un grand nombre premier pour ce modulo).  
-
-#### Cas d'un motif unique
-
-
-```linenums="1"
-f o n c t i o n            
-p o u r
-f a i r e
-s i   
-s i   
-r e n v o y e r
-r e n v o y e r 
+```C linenums="1"
+fonction rechercher_bmh (m, texte)
+    T := derniereOccurence(m)
+    i := 0 /∗position dans le texte : ∗/
+           /∗on souhaite y trouver le motif ∗/
+    tant que i + |m| − 1 < |texte|
+        j := |m| − 1 /∗j : position dans le motif ∗/
+                     /∗i + j : position courante dans le texte ∗/
+        tant que texte [i + j] = m[j] et j >= 0
+            j := j −1
+        si j < 0
+            alors renvoyer i
+        d := T[texte[i + j]] /∗pos. la plus à droite dans m ∗/
+        si d < 0 /∗texte[i + j] n'est pas dans motif [:−1] ∗/
+            alors i := i + j + 1 /∗un cran apres pos. courante ∗/
+        sinon 
+            si d >= j
+                alors i := i + 1 /∗pas mieux que naïf ∗/
+            sinon i := i + (j − d) /∗mieux que naïf ∗/ 
+    renvoyer −1 /∗not found ∗/
 ```
 
-Listing 4 – Rabin-Karp : recherche d'un motif  
+### Boyer-Moore complet
 
-            
-                       ∗  
-      
-∗                                        
-∗         ∗  
-||   ∗              ∗  ∗            ∗  
-      − 
+L'algorithme de Boyer-Moore complet, plus délicat que Boyer-Moore-Horspool, introduit une seconde table de sauts en plus de la table des dernières occurrences. Conformément au programme, on peut s'abstenir de l'étudier.  
 
+## Algorithme de Rabin-Karp
 
-  
-  
- ||     
-         
-    ||    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-Si on veut toutes les occurrences du motif, on crée une liste initialement  vide positions puis :  
-On remplace la ligne 10 par : ajouter i à positions ;  La dernière ligne devient : renvoyer positions  
+### Présentation
 
-#### Complexité de la recherche de toutes les positions
+L'algorithme de Rabin-Karp ou Karp-Rabin est un algorithme de  recherche de sous-chaîne créé par Richard M. Karp et Michael O.Rabin (1987).
 
+Cette méthode recherche un ensemble de motifs donnés (c'est-à-dire des sous-chaînes) dans un texte grâce à une fonction de hachage. On  ne compare donc pas directement le motif à des sous-chaînes du texte  mais seulement leurs empreintes (le hache).
 
-On pose N = |s| (texte) ; M = |m| (motif)  
-Dans le meilleur cas, les comparaisons des hachés sont toujours  négatives et on n'appelle jamais la fonction de comparaison de  chaînes de caractères. Complexité au mieux en O(N + M) (O(M)  pour les deux hachés initiaux -souvent M ≤ N−). Boyer-Moore  complet (non vu cette année) peut faire encore mieux.  
-Le pire cas arrive quand le motif est présent à toutes les positions.  Avec s = aN et m = aM , on doit faire une comparaisons de chaînes  de caractères à chaque position dans le texte. Complexité en  O(N(N − M + 1)) comme pour l'algorithme naïf.  
+L'algorithme n'est pas beaucoup employé pour les recherches d'une  unique sous-chaîne mais a une importance théorique et s'avère très  efficace pour des recherches de multiples sous-chaînes. (Wikipedia)  
 
-#### Cas de motifs multiples
+Dans toute la suite on prend $s$ : texte ; $m$ motif. Pour un mot $u$, $u_k$  désigne la lettre $k$ de $u$.  
 
+### Utilisation d'une fonction de hachage
 
-```linenums="1"
-f o n c t i o n                     
-p o u r
-f a i r e
-s i  r e n v o y e r         
+Rappel : $s[i: i+ |m|]$ désigne le _facteur_ de $s$ qui a la même longueur que $m$ et qui commence en position $i$ de $s$.
+
+- On se donne une _fonction de hachage_ $h$ sur les chaînes de caractères  et on calcule une fois pour toute $h(m)$.  
+
+- Pour chaque position 0 ≤ i ≤ |s| − |m| on calcule h(s[i : i + |m|]).  
+- Si $h(m) ≠ h(s[i : i + |m|])$, on est certain que $m$ n'est pas en position $i$ dans le texte.  
+- Si $h(m) = h(s[i : i + |m|])$, comme $h$ n'est pas injectif en général, il est possible que $m$ soit en position $i$ dans le texte. Il faut alors comparer $m$ et $s[i : i + |m|]$ en force brute.  
+
+### Choix de h
+
+Le calcul de $h(s[i : i + |m|])$ se fait à priori en $Θ(|m|)$. La séquence  des calculs des haches des sous-chaînes de $s$ a alors la même complexité que la recherche naïve, soit en $Θ((|s| − |m| + 1) × |m|)$ (il  y a $|s| − |m| + 1$ sous-chaînes de $s$ de taille $|m|$).  
+
+D'où l'idée de choisir $h$ de façon à ce que $h(s[i + 1 : i + 1 + |m|])$  s'obtienne à partir de $h(s[i : i + |m|])$ en temps constant.  
+
+Choisissons un entier $B$ arbitraire et posons pour le mot  $u = u_0u_1 ... u_{|m|-1}$ que  
+
+$$h(u) = \sum_{0≤j<|m|}{B^{|m|−1−j} × u_j } $$  
+Une telle fonction, polynômiale, se calcule en $O(|m|)$ par la méthode de Horner.
+En **C**, un caractère n'est rien d'autre qu'un nombre codé sur un octet d'où la validité du produit.
+
+Selon Wikipedia, cette fonction de hachage est appelée _empreinte de Rabin_.  
+
+Appliquée au texte $s$, et posant $|m| = M$, on obtient :  
+
+$\begin{matrix}
+ h(s_is_{i+1} ... s_{i+M})& = & \sum_{j=0}^{M-1}{B^{M−1−j} s_{i+j+1}} \\
+ & & & \\
+ & = & s_{i+M}B^{M−1−M+1} −s_i B^M +B × \sum_{j=0}^{M-1}{B^{M-1-j}s_{i+j}} \\
+ & & & \\
+ & = & s_{i+M} + B(h(s_i s_{i+1} ... s_{i+M−1}) − s_i B^{M−1})
+\end{matrix}$
+
+On peut donc calculer $h(s[i + 1 : i + 1 + M])$ à partir de $h(s[i : i + M])$  en temps constant : avec un précalcul (une fois pour toute) de $B^{M−1}$, il faut faire une addition une soustraction et $2$ produits.
+
+Il peut y avoir un overﬂow. D'où la nécessité de travailler modulo (il  est malin de prendre un grand nombre premier pour ce modulo).  
+
+### Cas d'un motif unique
+
+_Listing 4 – Rabin-Karp : recherche d'un motif_
+
+```C linenums="1"
+fonction rabin_karp(T, M)
+    /* T : texte; M : motif; h : fonction de hachage roulant */
+    n : = longueur(T) /* strlen en C */
+    m := longueur(M)
+    hn := h(T[0 : |M|]) /* hache du debut de mot */
+    hm := h(M) /* hache du motif */
+    pour i = 0 ... n-m faire
+        si hn = hm 
+            si T[i : i + |M|] = M
+                renvoyer i
+        hn := h(T[i + 1 : i + 1 + |M|]) /* O(1) si on ce débrouille bien */
+    renvoyer TROP2LALOOSE
+```
+  
+Si on veut toutes les occurrences du motif, on crée une liste initialement vide **positions** puis :  
+
+- On remplace la ligne 10 par : **ajouter i à positions** ;  
+- La dernière ligne devient :  **renvoyer positions**  
+
+### Complexité de la recherche de toutes les positions
+
+On pose $N = |s|$ (texte) ; $M = |m|$ (motif)  
+
+- Dans le meilleur cas, les comparaisons des hachés sont toujours négatives et on n'appelle jamais la fonction de comparaison de  chaînes de caractères. Complexité au mieux en $O(N + M)$ ($O(M)$  pour les deux hachés initiaux -souvent $M ≤ N−$). Boyer-Moore  complet (non vu cette année) peut faire encore mieux.  
+- Le pire cas arrive quand le motif est présent à toutes les positions.
+Avec $s = a^N$ et $m = a^M$ , on doit faire une comparaisons de chaînes  de caractères à chaque position dans le texte.
+Complexité en  $O(N(N − M + 1))$ comme pour l'algorithme naïf.
+
+### Cas de motifs multiples
+
+On cherche un ensemble de motifs, tous de longueur **m**
+
+_Listing 5 – Rabin-Karp : recherche de plusieurs motifs_
+```C linenums="1"
+fontction rabin_karp_ensemble(T, M, m)
+    /* T : texte ; M : ensemble de motif; m : lg d'un motif */
+    n := longueur(T) /* strlen en C */
+    Position := [] /* liste des position trouvees */
+    hn := hachhe(T[0 : m]) /* hache du debut du mot */
+    pour i = 0 ... n-m faire
+        si hn ∈ hm et T[i : i+ 1 + m] ∈ M
+            ajouter i a Positions
+        hn := hache(T[i : i+ 1 + m])
+    renvoyer Positions
 ```
 
-On cherche un ensemble de motifs, tous de même longueur m  
-Listing 5 – Rabin-Karp : recherche de plusieurs motifs  
-
-      
-                     
-∗                           ∗                           ∗              ∗    { |  ∈ M} ∗            
-       −    
-∗         ∗  
-        ∗  
-        ∗  
-          ∗  
-∈        
-  
-   ∈   
-                 
-            
-       
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-Pas si efficace pour la recherche d'un motif unique, il faut privilégier  Rabin-Karp pour la recherche de plusieurs motifs.  
+Pas si efficace pour la recherche d'un motif unique, il faut privilégier Rabin-Karp pour la recherche de plusieurs motifs.  
