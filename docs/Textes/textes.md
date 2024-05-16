@@ -9,7 +9,8 @@
     Algorithme de Boyer-Moore  
 
     * Boyer-Moore-Horspool
-    Algorithme de Rabin-Karp  
+    
+    Algorithme de Rabin-Karp
 
 !!!tip "Crédits"
     Pour Boyer-Moore :
