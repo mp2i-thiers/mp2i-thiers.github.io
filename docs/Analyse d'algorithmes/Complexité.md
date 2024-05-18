@@ -49,7 +49,8 @@ opérations élémentaires effectuées lors de l'appel $f (d )$ et faire la somm
 
     1. _$U$ est dominée par_ $V$ s'il existe $\lambda \in {\mathbb{R}} + etN \in {\mathbb{N}}$ tels que pour tout $n \in {\mathbb{N}}$, si $n ≥ N$ alors $u_{n} \leq \lambda v_{n}$. On le note $u_{n} = O\left( v_{n} \right)$. 
     On dit aussi que V domine U.
-    2. _$U$ et $V$ sont de même ordre (de grandeur)_ si $U$ domine $V$ et $V$ domine $U$ (i.e. $u_{n} = O\left( v_{n} \right)$ et $v_{n} = O\left( u_{n} \right)$). On le note $u_{n} = \Theta\left( v_{n} \right)$ (« $u_{n}$ est en grand thêta de $v_{n}$»)
+    2. _$U$ et $V$ sont de même ordre (de grandeur)_ si $U$ domine $V$ et $V$ domine $U$ (i.e. $u_{n} = O\left( v_{n} \right)$ et $v_{n} = O\left( u_{n} \right)$). 
+    On le note $u_{n} = \Theta\left( v_{n} \right)$ (« $u_{n}$ est en grand thêta de $v_{n}$»)
 
 !!!quote "Définition : Équivalence / Grand Oméga"
     Soient $U = (u_n)$ et $V = (v_n)$ deux suites réelles positives. On dit que :
@@ -67,6 +68,7 @@ opérations élémentaires effectuées lors de l'appel $f (d )$ et faire la somm
 ### Que compter ?
 
 La plupart du temps, on se contente de donner une majoration" à constante multiplicative près" du temps de calcul.
+
 On ne compte pas précisément le nombre d'opérations élémentaires (est-ce bien malin de mettre dans le même sac un accès à un élément de tableau et une addition binaire ?).
 
 Dans ce cas, la notation en $O (f (n))$ (si $n$ est l'entrée) nous suffit.
