@@ -3,17 +3,6 @@
 !!! warning
     Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.
 
-???+ abstract "Sommaire"
-
-    1. Introduction
-    2. Opérations élémentaires
-      * Présentation
-      * Un mot sur la racine carrée
-    3. Étude de cas : tri fusion
-      * Récurrences $C_n = C_{n-1} + 1$ et $C_n = C_{n-1} + n$
-      * Stratégie "diviser pour régner"
-      * Tri fusion
-
 !!! tip "Crédits"
     - " Option informatique MPSI, MP/MP* ", Roger Mansuy, paru chez Vuibert.
 
