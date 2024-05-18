@@ -7,12 +7,12 @@
 
     1. Introduction
     2. Opérations élémentaires
-      - Présentation
-      - Un mot sur la racine carrée
+      * Présentation
+      * Un mot sur la racine carrée
     3. Étude de cas : tri fusion
-      - Récurrences $C_n = C_{n-1} + 1$ et $C_n = C_{n-1} + n$
-      - Stratégie "diviser pour régner"
-      - Tri fusion
+      * Récurrences $C_n = C_{n-1} + 1$ et $C_n = C_{n-1} + n$
+      * Stratégie "diviser pour régner"
+      * Tri fusion
 
 !!! tip "Crédits"
     - " Option informatique MPSI, MP/MP* ", Roger Mansuy, paru chez Vuibert.
