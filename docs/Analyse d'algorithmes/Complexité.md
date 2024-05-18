@@ -269,7 +269,8 @@ Le nombre d'itération n'est pas connu à l'avance à priori. On évalue donc le
     
     On obtient:
 
-    $$C(n) = C(n - 1) + 3 = \left( C(n - 2) + 3 \right) + 3 = \ldots = \underbrace{C(1)}_{\text{cte}} + 3(n–1) = O(n)$$ $\color{red}{\text{Il est plus simple de prendre } C(n) = C(n-1) + 1 \text{ (même ODG)}}$
+    $C(n) = C(n - 1) + 3 = \left( C(n - 2) + 3 \right) + 3 = \ldots = \underbrace{C(1)}_{\text{cte}} + 3(n–1) = O(n)$ 
+    $\color{red}{\text{Il est plus simple de prendre } C(n) = C(n-1) + 1 \text{ (même ODG)}}$
 
 #### Calculs simplifiés
 
@@ -410,6 +411,7 @@ let rec tri l =
 $C_n - \underbrace{C_0}_{\text{cte}} = \sum_{i=1}^n{C_i -C_{i-1}} = \sum_{i=1}^n{i} = O(n²)$
 
 Donc $C_n = O(n²)$
+
 - Complexité au mieux $C_n = C_{n-1} +1$ Donc $C_n = O(n)$.
 
 ### Stratégie "diviser pour régner"
@@ -471,11 +473,11 @@ On considère $U_{n} = f(n) + U_{\left\lfloor \frac{n}{2} \right\rfloor} + U_{\l
 
 Dans ce qui suit toutes les fonctions sont positives et $n ∈ ℕ$
 
-- Pour $a > 0$, $ln(n) = Θ(log_a)$ car $log_a(x) = \frac{ln(x)}{ln(a)} $
+- Pour $a > 0$, $ln(n) = Θ(log_a)$ car $log_a(x) = \frac{ln(x)}{ln(a)}$
 - $n = Θ(\left \lfloor n\right \rfloor)$ car pour $n > 2$,
 $\frac{n}{2} < n-1 < \left \lfloor n\right \rfloor ≤ n$ (de même $n=Θ(⌈n⌉)$)
 
-#### Dichotomie <3
+#### Dichotomie
 
 ```OCaml linenums="1"
 let dicho v x = (*Chercher x dans le tableau trié v*)
@@ -495,9 +497,11 @@ A chaque étape, la zone de recherche est divisée par $2$ (au moins) (on note $
 !!!example ""
     $x_m$ désigne l'élément où on sépare en 2 la liste.
     $[x ; x ; x_m ; x ; x]$ : Tableau de taille **impaire** $n$
+
     Les deux sous-tableaux sont donc de taille $n//2$ ou $n//2 +1$
 
     $[x ; x_m ; x ; x]$ : Tableau de taille **paire** $n$
+
     Au moins un sous tableau est de taille $n//2$
 
 Hors les appels récursifs, il y a un nombre borné d'autres opérations, toutes en $O(1)$. Le coût total à chaque tour hors appels récursifs est donc $O(1)$.
@@ -534,9 +538,9 @@ let rec puissance_rapide x n =
   
 - Donc récurrence de la forme $C_n = C_{\left \lfloor\frac{n}{2}\right \rfloor} +O(1)$. On étudie toujours la forme la plus simple $C_n = C_{\left \lfloor\frac{n}{2}\right \rfloor} +1$. On a vu que $C_n = O(log_2(n))$
 
-- Il est pertinent ici d'exprimer la complexité du nombre de bits de $n$ : il faut $\left \lfloor log_2(n)\right \rfloor + 1 = Θ(log_2(n)) $ Donc complexité linéaire en le nombre de bits de l'exposant.
+- Il est pertinent ici d'exprimer la complexité du nombre de bits de $n$ : il faut $\left \lfloor log_2(n)\right \rfloor + 1 = Θ(log_2(n))$ Donc complexité linéaire en le nombre de bits de l'exposant.
 
-### Tri fusion <3
+### Tri fusion
 
 Pour raison de commodité, on étudie la complexité d'une version non récursive terminale du tri fusion. On donne néanmoins une version récursive terminale après cette étude.
 
@@ -553,7 +557,7 @@ let rec divise l = (*Sépare l en deux listes de même taille*)
 ```
 
 - Complexité temporelle est de la forme $C_{n} = C_{n - 2} + 1$. Ainsi pour $n = 2k$ :
-$C_{2k} = C_{2k-2} + 1 = C_{2k-4} +1 +1 = ... = C_0 +k$ 
+$C_{2k} = C_{2k-2} + 1 = C_{2k-4} +1 +1 = ... = C_0 +k$
 On trouve de même avec $C_{2k + 1} = C₁ + k$ pour $n = 2k+1$.
 
 Comme dans les 2 hypothèses de parité et d'imparité, $k = \left\lfloor \frac{n}{2} \right\rfloor$, on obtient $C_{n} = \Theta(n)$
@@ -591,7 +595,7 @@ let rec fusion_couteuse l1 l2 = (*Fusionne deux listes triées*)
         else b::(fusion_couteuse l1 s);;
 ```
 
-La complexité dépend seulement de la somme des tailles des listes. En notant $n, m$ les tailles de `l1, l2` on obtient la relation suivante : $C(n+m) = C(n+m-1) + O(1)$ et C(0, 0) = 1$
+La complexité dépend seulement de la somme des tailles des listes. En notant $n, m$ les tailles de `l1, l2` on obtient la relation suivante : $C(n+m) = C(n+m-1) + O(1)$ et $C(0, 0) = 1$
 
 On étudie donc $C(n+m) = C(n+m-1)+1$. Il s'agit d'une suite arithmétique. On a donc $C(n+m) = O(n+m)$.
 
