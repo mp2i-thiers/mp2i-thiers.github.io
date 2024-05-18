@@ -49,7 +49,7 @@ opérations élémentaires effectuées lors de l'appel $f (d )$ et faire la somm
 
     1. _$U$ est dominée par_ $V$ s'il existe $\lambda \in {\mathbb{R}} + etN \in {\mathbb{N}}$ tels que pour tout $n \in {\mathbb{N}}$, si $n ≥ N$ alors $u_{n} \leq \lambda v_{n}$. On le note $u_{n} = O\left( v_{n} \right)$. 
     On dit aussi que V domine U.
-    2. _$U$ et $V$ sont de même ordre (de grandeur)_ si $U$ domine $V$ et $V$ domine $U$ (i.e. $u_{n} = O\left( v_{n} \right)etv_{n} = O\left( u_{n} \right)$). On le note $u_{n} = \Theta\left( v_{n} \right)$ (« $u_{n}$ est en grand thêta de $v_{n}$»)
+    2. _$U$ et $V$ sont de même ordre (de grandeur)_ si $U$ domine $V$ et $V$ domine $U$ (i.e. $u_{n} = O\left( v_{n} \right)$ et $v_{n} = O\left( u_{n} \right)$). On le note $u_{n} = \Theta\left( v_{n} \right)$ (« $u_{n}$ est en grand thêta de $v_{n}$»)
 
 !!!quote "Définition : Équivalence / Grand Oméga"
     Soient $U = (u_n)$ et $V = (v_n)$ deux suites réelles positives. On dit que :
@@ -66,11 +66,12 @@ opérations élémentaires effectuées lors de l'appel $f (d )$ et faire la somm
 
 ### Que compter ?
 
-La plupart du temps, on se contente de donner une majoration" à constante multiplicative près" du temps de calcul. On ne compte pas précisément le nombre d'opérations élémentaires (est-ce bien malin de mettre dans le même sac un accès à un élément de tableau et une addition binaire ?).
+La plupart du temps, on se contente de donner une majoration" à constante multiplicative près" du temps de calcul.
+On ne compte pas précisément le nombre d'opérations élémentaires (est-ce bien malin de mettre dans le même sac un accès à un élément de tableau et une addition binaire ?).
 
 Dans ce cas, la notation en $O (f (n))$ (si $n$ est l'entrée) nous suffit.
 
-Parfois, on s'intéresse à une opération spécifique, et dans ce cas un décompte précis est favorisé. 
+Parfois, on s'intéresse à une opération spécifique, et dans ce cas un décompte précis est favorisé.
 
 !!!example ""
     **Exemple :**
@@ -89,7 +90,7 @@ Pour une donnée de taille n
   | Quasi-linéaire          |      $O(n\log n)$       | Tri fusion d'un tableau
   | Polynomiale             |               $O(n²)$   | Tri par insertion (pire cas)
   | Polynomiale             |       $O(n^k)$ pour un  $k>1$ | Produit matriciel naïf en $O\left( n^{3} \right)$
-  | Exponentielle           |$O(2^{P(n)})\\ P∈ℝ[X] \\ deg(P) ≥ 1 $| Satisfiabilité d'une formule (pire cas)
+  | Exponentielle           |$O(2^{P(n)})$ $P∈ℝ[X]$ $deg(P) ≥ 1$| Satisfiabilité d'une formule (pire cas)
 
 ## Opérations élémentaires
 
@@ -117,7 +118,7 @@ Il reste à définir ce qu'est une opération élémentaire. C'est affaire de co
 
     - Opérations sur les nombres : `+ - \* / %`
     - Opértaions bitwise : `& << >> ^ | `
-    - Affectation, Afficher, Retourner : à = ... ; return ...`
+    - Affectation, Afficher, Retourner : `a = ... ; return ...`
     - Accès en lecture écriture: `t[i]`
     - Comparaisons de nombres déjà calculés : `... < ... ; ... == ...`
     - Libération : `free(t)`
@@ -160,13 +161,13 @@ Les opérations d'affichage et de saisie `printf, scanf`peuvent prendre du temps
     Au maximum, il y a donc $5(n - 2) + 1$ _opérations élémentaires_ plus les $n - 2$ incrémentations de $i$ + comparaisons.
     
     L'ordre de grandeur est donc donné par une application affine : On dit
-    que « la complexité temporelle est en O(n)
+    que « la complexité temporelle est en $O(n)$.
 
 !!!example ""
     **Exemple introductif 2**
 
     Si $n = pq$ avec $p ≥ \sqrt{n}$ alors $q ≤ \sqrt{n}$
-    Nouveau principe : on cherche tous les diviseurs $q$ qui sont plus petits que $\sqrt{n}$; les autres valent $\frac{n}{q} $
+    Nouveau principe : on cherche tous les diviseurs $q$ qui sont plus petits que $\sqrt{n}$; les autres valent $\frac{n}{q}$
 
     ```c linenums="1"
     void diviseurs2 (int n){
@@ -184,8 +185,8 @@ Les opérations d'affichage et de saisie `printf, scanf`peuvent prendre du temps
     }
     ```
 
-    - $\sqrt{n}$; itérations au plus, moins de $20$ opérations élémentaires par passage
-    - En tout pas plus de $3 + 20\sqrt{n}$; opérations "élémentaires". $O(\sqrt{n})$
+    - $\sqrt{n}$ itérations au plus, moins de $20$ opérations élémentaires par passage
+    - En tout pas plus de $3 + 20\sqrt{n}$ opérations "élémentaires". $O(\sqrt{n})$
 
 #### Taille du problème
 
@@ -210,13 +211,15 @@ La complexité d'un alogrithme est une fonction $C$ définie inductivement.
 - On ne mesure pas le temps d'exécution d'un programme en secondes mais le _nombre d'opérations élémentaires_.
 - Opération "de base". On considère qu'elles ont toures le même coût.
 - Séquences : Le coût des instructions `p; q` en séquence est la somme des coûts de l'instruction `p` et de l'instruction `q` : $C(p) + C(q)$
-- Tests : Le coûts d'une expression conditionnelle `if (b) {p;} else {q;}` est inférieur ou égal au maximum des coûts des instructions `p` et `q`, plus un test plus ou moins compliqué (temps d'évaluation de l'expression `b`). $max(C(p),C(q)) + C(b)$. 
+- Tests : Le coûts d'une expression conditionnelle `if (b) {p;} else {q;}` est inférieur ou égal au maximum des coûts des instructions `p` et `q`, plus un test plus ou moins compliqué (temps d'évaluation de l'expression `b`). $max \left(C(p),C(q) \right ) + C(b)$.
 En général on a $C(b) = O(1)$ et on le néglige. Mais ce n'est pas toujours vrai.
 
 #### Coût d'une boucle `for`
 
 Le coût d'un boucle `for(i = 0 ; i < m ; i++) p();` son coût est `m` fois le coût de l'instruction `p` si ce coût ne dépend pas de la valeur de `i` :
-$$1 + m \times \left( C(p) + 2 \right) = O\left( m \times C(p) \right)$$
+
+$1 + m \times \left( C(p) + 2 \right) = O\left( m \times C(p) \right)$
+
 ("$+2$" pour l'incrémentation et la comparaison à chaque tour de boucle, $1$ : initialisation).
 
 - Quand le coût du corps de la boucle dépend de la valeur du compteur `i`, le coût total de la boucle est la somme des coûts du corps de la boucle pour chaque valeur de `i` + l'incrémentation :
@@ -266,9 +269,7 @@ Le nombre d'itération n'est pas connu à l'avance à priori. On évalue donc le
     
     On obtient:
 
-    $$C(n) = C(n - 1) + 3 = \left( C(n - 2) + 3 \right) + 3 = \ldots = \underbrace{C(1)}_{\text{cte}} + 3(n–1) = O(n)$$
-
-    $\color{red}{\text{Il est plus simple de prendre } C(n) = C(n-1) + 1 \text{ (même ODG)}}$
+    $$C(n) = C(n - 1) + 3 = \left( C(n - 2) + 3 \right) + 3 = \ldots = \underbrace{C(1)}_{\text{cte}} + 3(n–1) = O(n)$$ $\color{red}{\text{Il est plus simple de prendre } C(n) = C(n-1) + 1 \text{ (même ODG)}}$
 
 #### Calculs simplifiés
 
@@ -355,10 +356,10 @@ vidéos, dont Wolfenstein 3D, Doom et Quake.
 
 - Les cartes graphiques 3D avec processeur 32 bits (la majorité des
 cartes du marché en 2020) utilisent l'astuce de John Carmack et son
-nombre magique pour calculer, non pas $\sqrt{A}$ mais $\frac{1}{\sqrt{A}} $.
+nombre magique pour calculer, non pas $\sqrt{A}$ mais $\frac{1}{\sqrt{A}}$.
 - Le flottant $A$ codé sur 32 bits en $A$ = $(−1)^0 2^{e_1} (1 + m_1)$ est considéré comme l'entier $I_1 = 2^{23}(127 + e_1 + m_1)$ : `int i1 = *(int*) &a;`.
-- Carmack utilise son nombre magique, l'entier codé en hexadécimal 0x5f3759df (on a trouvé mieux depuis) et lui soustrait $⌊\frac{I_1}{2}⌋$. Il convertit ensuite cet entier en flottant.
-- Quelle que soit la valeur de $A$, on peut montrer que le flottant retourné est proche de $\frac{1}{\sqrt{A}} $ avec une erreur au pire de $\frac{2}{\sqrt{1000}} $!!
+- Carmack utilise son nombre magique, l'entier codé en hexadécimal 0x5f3759df (on a trouvé mieux depuis) et lui soustrait $\left \lfloor\frac{I_1}{2}\right \rfloor$. Il convertit ensuite cet entier en flottant.
+- Quelle que soit la valeur de $A$, on peut montrer que le flottant retourné est proche de $\frac{1}{\sqrt{A}}$ avec une erreur au pire de $\frac{2}{\sqrt{1000}}$!!
 
 Complexité temporelle en $O (1)$.
 
@@ -406,7 +407,8 @@ let rec tri l =
 
 - Insertion dans `tri q`au pire en $O(n)$ où $n = |l|$. Complextié au pire $C_n = C_{n-1} + n$ ($n$ pour l'insertion au pire).
 - On a donc $C_n - C_{n-1} = n$ Il vient par télescopage
-$$C_n - \underbrace{C_0}_{\text{cte}} = \sum_{i=1}^n{C_i -C_{i-1}} = \sum_{i=1}^n{i} = O(n²)$$
+$C_n - \underbrace{C_0}_{\text{cte}} = \sum_{i=1}^n{C_i -C_{i-1}} = \sum_{i=1}^n{i} = O(n²)$
+
 Donc $C_n = O(n²)$
 - Complexité au mieux $C_n = C_{n-1} +1$ Donc $C_n = O(n)$.
 
@@ -424,7 +426,7 @@ Donc $C_n = O(n²)$
 - Une donnée de taille $n$ est découpée en deux autres données de tailles
 $\left\lfloor \frac{n}{2} \right\rfloor et\left\lceil \frac{n}{2} \right\rceil$.
 - La complexité obéit alors à une relation de la forme :
-$$C_{n} = {aC}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bC}_{\left\lceil \frac{n}{2} \right\rceil} + f(n)$$
+$C_{n} = {aC}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bC}_{\left\lceil \frac{n}{2} \right\rceil} + f(n)$
 où $(a,b) \neq (0,0)$ sont des constantes associées au problème et $f(n)$ correspond au coût total du partage et de la recombinaison.
 - Cette récurrence est dite de type «**diviser pour régner** »
 
@@ -435,10 +437,10 @@ où $(a,b) \neq (0,0)$ sont des constantes associées au problème et $f(n)$ cor
 
     Soient $a,b$ deux entiers tels que $ab \neq 0$ et $f, g$ deux fonctions croissantes de même ordre de grandeur. Alors les suites ($U_{n}$) et ($V_{n}$) telles que $U_{0} = V_{0}$ et pour tout $n \in {\mathbb{N}} ^\ast$ :
 
-    $$\begin{matrix}
+    $\begin{matrix}
     U_{n} = {aU}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bU}_{\left\lceil \frac{n}{2} \right\rceil} + f(n) \\
     V_{n} = {aV}_{\left\lfloor \frac{n}{2} \right\rfloor} + {bV}_{\left\lceil \frac{n}{1} \right\rceil} + g(n) \\
-    \end{matrix}$$ sont du même ordre de grandeur.
+    \end{matrix}$ sont du même ordre de grandeur.
 
 Cette proposition (admise) justifie qu'on remplace le dernier terme par un terme plus simple de même ordre de grandeur (donc $1$ pour $O(1)$, $n²$ pour $O(n²)$ etc.)
 
@@ -462,15 +464,16 @@ On considère $U_{n} = f(n) + U_{\left\lfloor \frac{n}{2} \right\rfloor} + U_{\l
       - Donc $U_{n} \geq U_{n - 1}$
 
     - **Conclusion**
-    Donc $\left( U_{n} \right)↑$. $\color{red}\text{En pratique, on ne refait pas cette preuve et on admet} \\ \color{red}\text{que la complexité est croissante avec la taille des données.}$
+    Donc $\left( U_{n} \right)↑$. $\color{red}\text{En pratique, on ne refait pas cette preuve et on admet}$ 
+    $\color{red}\text{que la complexité est croissante avec la taille des données.}$
 
 #### Quelques observations
 
 Dans ce qui suit toutes les fonctions sont positives et $n ∈ ℕ$
 
 - Pour $a > 0$, $ln(n) = Θ(log_a)$ car $log_a(x) = \frac{ln(x)}{ln(a)} $
-- $n = Θ(⌊n⌋)$ car pour $n > 2$
-$$\frac{n}{2} < n-1 < ⌊n⌋ ≤ n$$(de même $n=Θ(⌈n⌉)$)
+- $n = Θ(\left \lfloor n\right \rfloor)$ car pour $n > 2$,
+$\frac{n}{2} < n-1 < \left \lfloor n\right \rfloor ≤ n$ (de même $n=Θ(⌈n⌉)$)
 
 #### Dichotomie <3
 
@@ -490,12 +493,11 @@ let dicho v x = (*Chercher x dans le tableau trié v*)
 A chaque étape, la zone de recherche est divisée par $2$ (au moins) (on note $n//2$ la division euclidienne par $2$)
 
 !!!example ""
-    $[x ; x ; x ; x ; x]$ : Tableau de taille **impaire** $n$
-    $\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }m$
+    $x_m$ désigne l'élément où on sépare en 2 la liste.
+    $[x ; x ; x_m ; x ; x]$ : Tableau de taille **impaire** $n$
     Les deux sous-tableaux sont donc de taille $n//2$ ou $n//2 +1$
 
-    $[x ; x ; x ; x]$ : Tableau de taille **paire** $n$
-    $\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }m$
+    $[x ; x_m ; x ; x]$ : Tableau de taille **paire** $n$
     Au moins un sous tableau est de taille $n//2$
 
 Hors les appels récursifs, il y a un nombre borné d'autres opérations, toutes en $O(1)$. Le coût total à chaque tour hors appels récursifs est donc $O(1)$.
@@ -505,15 +507,15 @@ $C_{n} = C_{\left\lfloor \frac{n}{2} \right\rfloor} + O(1);$ simplifié
 en $C_{n} = C_{\left\lfloor \frac{n}{2} \right\rfloor} + 1$ (On cherche
 dans le plus grand sous-tableau pour que ça soit dans le pire cas)
 
-Si $n = 2^{p}$alors
-$C_{2^{p}} = C_{2^{p - 1}} + 1 = C_{2^{p - \color{red}{2}}} + \underbrace{1 + 1}_{\color{red}{2}} = \ldots = C_{2⁰} + p = \Theta\left( \log ₂n \right)$
+Si $n = 2^{p}$ alors
+$C_{2^{p}} = C_{2^{p - 1}} + 1 = C_{2^{p - \color{red}{2}}} + \underbrace{1 + 1}_{\color{red}{2}} = \ldots = C_{2⁰} + p = \Theta\left( \log ₂(n) \right)$
 
-Pour un $n$ quelconque, $2^{\left\lfloor \log ₂n \right\rfloor} \leq n < 2^{\left\lfloor \log ₂n \right\rfloor + 1}$. Comme la complexité est croissante avec la taille du tableau, $C_{n} \leq C_{2^{\left\lfloor \log ₂n \right\rfloor + 1}} = O\left( \left\lfloor \log ₂n \right\rfloor + 1 \right)$. Il vient $C_{n} = O\left( \log ₂n \right)$.
+Pour un $n$ quelconque, $2^{\left\lfloor \log ₂n \right\rfloor} \leq n < 2^{\left\lfloor \log ₂(n) \right\rfloor + 1}$. Comme la complexité est croissante avec la taille du tableau, $C_{n} \leq C_{2^{\left\lfloor \log ₂(n) \right\rfloor + 1}} = O\left( \left\lfloor \log ₂(n) \right\rfloor + 1 \right)$. Il vient $C_{n} = O\left( \log ₂(n) \right)$.
 
 Idem pour la minoration :
-$C_{n} \geq C_{2^{\left\lfloor \log ₂n \right\rfloor}} = \Omega\left( \left\lfloor \log ₂n \right\rfloor + 1 \right)$
+$C_{n} \geq C_{2^{\left\lfloor \log ₂(n) \right\rfloor}} = \Omega\left( \left\lfloor \log ₂(n) \right\rfloor + 1 \right)$
 
-Conclusion, $C_{n} = \Theta\left( \log ₂n \right)$
+Conclusion, $C_{n} = \Theta\left( \log ₂(n) \right)$
 
 #### Exponentation rapide
 
@@ -527,12 +529,12 @@ let rec puissance_rapide x n =
 
 - Principe $x^{2k} = (x²)^k$ et $x^{2k+1} = x \times x^{2k}$
 - Complexité en nombre de multiplications
-  - Lorsque $n$ est paire $C_n = C_{\frac{n}{2}} +1 = C_{⌊\frac{n}{2}⌋} +1$.
-  - Si $n$ est impaire (et $> 1$) 
+  - Lorsque $n$ est paire $C_n = C_{\frac{n}{2}} +1 = C_{\left \lfloor\frac{n}{2}\right \rfloor} +1$.
+  - Si $n$ est impaire (et $> 1$)
   
-- Donc récurrence de la forme $C_n = C_{⌊\frac{n}{2}⌋} +O(1)$. On étudie toujours la forme la plus simple $C_n = C_{⌊\frac{n}{2}⌋} +1$. On a vu que $C_n = O(log_2(n))$ 
+- Donc récurrence de la forme $C_n = C_{\left \lfloor\frac{n}{2}\right \rfloor} +O(1)$. On étudie toujours la forme la plus simple $C_n = C_{\left \lfloor\frac{n}{2}\right \rfloor} +1$. On a vu que $C_n = O(log_2(n))$
 
-- Il est pertinent ici d'exprimer la complexité du nombre de bits de $n$ : il faut $⌊log_2(n)⌋ + 1 = Θ(log_2(n)) $ Donc complexité linéaire en le nombre de bits de l'exposant.
+- Il est pertinent ici d'exprimer la complexité du nombre de bits de $n$ : il faut $\left \lfloor log_2(n)\right \rfloor + 1 = Θ(log_2(n)) $ Donc complexité linéaire en le nombre de bits de l'exposant.
 
 ### Tri fusion <3
 
@@ -551,7 +553,8 @@ let rec divise l = (*Sépare l en deux listes de même taille*)
 ```
 
 - Complexité temporelle est de la forme $C_{n} = C_{n - 2} + 1$. Ainsi pour $n = 2k$ :
-$$C_{2k} = C_{2k-2} + 1 = C_{2k-4} +1 +1 = ... = C_0 +k$$ On trouve de même avec $C_{2k + 1} = C₁ + k$ pour $n = 2k+1$.
+$C_{2k} = C_{2k-2} + 1 = C_{2k-4} +1 +1 = ... = C_0 +k$ 
+On trouve de même avec $C_{2k + 1} = C₁ + k$ pour $n = 2k+1$.
 
 Comme dans les 2 hypothèses de parité et d'imparité, $k = \left\lfloor \frac{n}{2} \right\rfloor$, on obtient $C_{n} = \Theta(n)$
 
@@ -590,7 +593,8 @@ let rec fusion_couteuse l1 l2 = (*Fusionne deux listes triées*)
 
 La complexité dépend seulement de la somme des tailles des listes. En notant $n, m$ les tailles de `l1, l2` on obtient la relation suivante : $C(n+m) = C(n+m-1) + O(1)$ et C(0, 0) = 1$
 
-On étudie donc $C(n+m) = C(n+m-1)+1$. Il s'agit d'une suite arithmétique. On a donc $C(n+m) = O(n+m)$
+On étudie donc $C(n+m) = C(n+m-1)+1$. Il s'agit d'une suite arithmétique. On a donc $C(n+m) = O(n+m)$.
+
 Donc la complexité de `fusion`, toujours meilleure est aussi en $O(n+m)$
 
 #### Tri fusion
