@@ -29,7 +29,7 @@ Le résultat de la compression des $N$ caractères est une suite de $C$ bits.
 
 En pratique, il faut regrouper ces bits par paquets de huit pour former des octets (taille du byte en **C**), avec éventuellement quelques bits de remplissage pour le dernier octet. Le résultat est écrit dans un fichier.
 
-Le _taux de compression_ est le rapport $τ = \frac{N}{\frac{C}{8}} = \frac{8N}{C} $.
+Le _taux de compression_ est le rapport $τ = \frac{N}{\frac{C}{8}} = \frac{8N}{C}$.
 L'_économie d'espace_ est la différence $E = 1 − \frac{8N}{C}$
 
 Pour éviter la manipulation bit-à-bit, on triche un peu dans les codes proposés : on considère des chaînes de caractères **'$0$'** et **'$1$'**. Le code obtenu est alors $8$ fois plus long qu'une séquence de bits.
@@ -73,7 +73,7 @@ $0$ désigne une descente à gauche et $1$, à droite.
 
 !!!example ""
 
-    Code de **'n'**$ = 001 $ ($2$ virages à gauche, $1$ à droite). Chaque lettre du texte n'apparaît qu'une fois dans l'arbre (même si **'a'** est présent $3$ fois dans le texte).
+    Code de **'n'** $= 001$ ($2$ virages à gauche, $1$ à droite). Chaque lettre du texte n'apparaît qu'une fois dans l'arbre (même si **'a'** est présent $3$ fois dans le texte).
 
 !!!quote "Défintion"
     Un _Arbre de Huffman_ est un arbre binaire entier étiqueté par des tuples (caractère, fréquence).
@@ -205,7 +205,7 @@ fonction decode (T; H)
 
 #### Convention et proposition
 
-Convention : $N$ nombre de caractères du texte ; $c_i$ caractère en position $i$ du texte ; $n_i$ nombre d'occurrences du caractère $c_i$ ; $f_i$ fréquence du caractère $c_i$ : $f_i = \frac{n_i}{N} $.
+Convention : $N$ nombre de caractères du texte ; $c_i$ caractère en position $i$ du texte ; $n_i$ nombre d'occurrences du caractère $c_i$ ; $f_i$ fréquence du caractère $c_i$ : $f_i = \frac{n_i}{N}$.
 
 On va montrer la propriété :
 
@@ -239,7 +239,7 @@ Par récurrence sur le nombre de caractères.
 
     - S'il n'y a que deux caractères, il n'y a que deux arbres entiers possibles à deux feuilles et ces deux arbres ont la même somme $S$.
     L'algorithme de Huffman produit l'un de ces deux arbres : il a donc une somme minimale.
-    - Hérédité : On suppose que si le nombre de caractères est $n ≥2$, alors l'arbre de Huffamn$ H$ est optimal.
+    - Hérédité : On suppose que si le nombre de caractères est $n ≥2$, alors l'arbre de Huffamn $H$ est optimal.
     - Considérons un texte à $n + 1$ caractères, $H$ l'arbre construit par l'algorithme de _Huffman_ et $T_0$ un arbre de Huffman construit avec les mêmes caractères tel que $S_H > S_{T_0}$ .
     - Soient $x ,y$ les $2$ premiers caractères du texte "assemblés" par l'algorithme. Alors $x$ et $y$ sont fils d'un même nœud $((x ,f_x ),f_x + f_y ,(y ,f_y ))$ dans l'arbre $H$. Et $x ,y$ ont les deux plus petites fréquences parmi les caractères du texte : la somme $f_x + f_y$ est minimale parmi les sommes de fréquences de deux caractères
     - Dans l'arbre $T_0$, si $x$ (resp. $y$) n'est pas à la profondeur maximale, on peut l'échanger avec une feuille $z$ de profondeur maximale. On a $d_z > d_x$ et $f_z ≥f_x$ . Le delta des contributions de $x$ et $z$ à la somme totale est
@@ -276,7 +276,7 @@ Construction de l'arbre de Huffman : on construit une file de priorité d'arbres
 
 #### Calcul de la complexité
 
-Construction du dictionnaire (caractère,code) : L'arbre (entier) construit contient M feuilles et M −1 nœuds internes.
+Construction du dictionnaire (caractère,code) : L'arbre (entier) construit contient $M$ feuilles et $M −1$ nœuds internes.
 
 - La méthode naïve consiste à gérer un accumulateur (un **string** ou mieux un **Buffer**) en lui ajoutant un $0$ (resp. $1$) à chaque virage à gauche (resp. droite) lors d'un DFS : chaque arrivée à une feuille est l'occasion d'insérer une nouvelle association dans le dictionnaire.
 - Il y a $2M −1$ (c.a.d. nombre de nœuds) écritures dans le buffer, chacune en $O(1)$ amorti : coût en $O(M)$. L'ajout de chaque code au dictionnaire se fait avec un coût amorti constant. Au total : $O(M)$ pour le dictionnaire.
