@@ -2,9 +2,7 @@
 ## Objectif
 
 !!! warning "Attention"
-    Ce cours a été automatiquement traduit des transparents de __M.Noyer__ par
-    _Lorentzo_ et _Elowan_, mis en forme par _Mehdi_ et propulsé avec le soutien de _Nolan_.
-    Nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible et esthetique pendant les périodes de révision que des diaporamas
+    Ce cours a été automatiquement traduit des transparents de __M.Noyer__ par _Lorentzo_ et _Elowan_, mis en forme par _Mehdi_ et propulsé avec le soutien de _Nolan_. Nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible et esthetique pendant les périodes de révision que des diaporamas.
 
 ## Crédits
 
