@@ -91,7 +91,7 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 
 - Souvent, au bout d'une ou deux comparaisons, on peut invalider la  position et passer à la suivante.  
 - Si le motif est présent à la fin du texte, on a une complexité en  $O(n+p)$ (où $p$ comparaisons sont nécessaires pour vérifier une à une  les lettres du motif).  
-- $O(n+p) = O(n)$ si p ≤ n.  
+- $O(n+p) = O(n)$ si $p ≤ n$.  
 
 ## Algorithme de Boyer-Moore
 
@@ -195,9 +195,9 @@ $s[i + j]$ est dans le motif et $d_m(s[i + j]) ≥ j$ ($dm(s[i + j])$ est noté 
   
 Décaler le motif de $−(d − j)$ n'a pas d'intérêt car le point de départ dans le texte serait alors en $i − d$ qui a déjà été inspecté et invalidé ! On se  place donc en $i + 1$ : aucun gain par rapport à l'algorithme naïf.  
 
-#### Figure 2 : $0 ≤ dm(s[i + j]) < j$
+#### Figure 2 : $0 ≤ d_m(s[i + j]) < j$
 
-$d_m$ : table des occurrences à droite. Posons $d = dm(s[i + j])$.  
+$d_m$ : table des occurrences à droite. Posons $d = d_m(s[i + j])$.  
 
 !!!example "Figure 2"
     $\begin{matrix}
@@ -231,9 +231,9 @@ On en déduit la terminaison
 Par rapport à l'algo naïf, on fait des sauts.  
 Il suffit donc de s'assurer que les positions non explorées du fait des  sauts ne conduisent pas à une solution.  
 Un saut de $1$ case n'est pas intéressant à étudier car il correspond à  l'algo naïf.  
-On s'intéresse au cas $i = $ (pour simplifier) et à un saut de $2$ cases  au moins.  
+On s'intéresse au cas $i = 0$ (pour simplifier) et à un saut de $2$ cases  au moins.  
 
-- Il existe $3$ caractères $x, y , z$ (avec $y  z$) et des mots $m_1, m_2, m_3, s_1, s_2 $ (avec $|m| ≥ 1$) tels que $m = m_1  \underbrace{y}_{pos. d_m(y) <y} m_2 \underbrace{z}_{pos. j} m_3x $
+- Il existe $3$ caractères $x, y , z$ (avec $y ≠ z$) et des mots $m_1, m_2, m_3, s_1, s_2$ (avec $|m| ≥ 1$) tels que $m = m_1  \underbrace{y}_{pos. d_m(y) <y} m_2 \underbrace{z}_{pos. j} m_3x$
 et $s = s_1 \underbrace{y}_{pos. 0 +j} m_3 s_2$ et $y ∉ m_2 z m_3$
   
 - Un décalage trop faible (donc inférieur à $j − d_m(y ) − 1$) amène une  lettre de $m_2$ au niveau du $y$ de $ym_3s_2$. Or cette lettre de $m_2$ est différente de $y$ (voir transparent figure 2). D'où l'inutilité de décaler moins que $j − d_m(y )$.  
@@ -244,7 +244,7 @@ $s$ texte, $m$ motif
 Si l'alphabet contient beaucoup de caractères (par exemple UTF8),  on peut espérer que les motifs auront peu de répétitions. Chaque décalage sera donc en gros de $|m|$. En cas de recherche infructueuse, on eﬀectue environ $\frac{|s|}{|m|}$ comparaisons.  
 
 Exemple le pire $m = ba^{p−1}$ et $s = a^n$. Il faut, avant de faire un décalage, atteindre le $b$, soit $p$ comparaisons. Et le décalage, obtenu en comparant $a$ et $b$, est alors de $1$ (car $j = 0 < p − 1 = d_a$).  Comme pour l'algo naïf, on a un nombre de comparaisons en  
-$Θ((n − p + 1)p) = Θ(|m| × (|s|_ |m|)) = O(|m|×|s|)$  
+$Θ((n − p + 1)p) = Θ(|m| × (|s| - |m|)) = O(|m|×|s|)$  
 
 #### Algorithme ♥
 
@@ -307,7 +307,7 @@ Rappel : $s[i: i+ |m|]$ désigne le _facteur_ de $s$ qui a la même longueur que
 
 - On se donne une _fonction de hachage_ $h$ sur les chaînes de caractères  et on calcule une fois pour toute $h(m)$.  
 
-- Pour chaque position 0 ≤ i ≤ |s| − |m| on calcule h(s[i : i + |m|]).  
+- Pour chaque position $0 ≤ i ≤ |s| − |m|$ on calcule $h(s[i : i + |m|])$.  
 - Si $h(m) ≠ h(s[i : i + |m|])$, on est certain que $m$ n'est pas en position $i$ dans le texte.  
 - Si $h(m) = h(s[i : i + |m|])$, comme $h$ n'est pas injectif en général, il est possible que $m$ soit en position $i$ dans le texte. Il faut alors comparer $m$ et $s[i : i + |m|]$ en force brute.  
 
@@ -360,7 +360,7 @@ fonction rabin_karp(T, M)
   
 Si on veut toutes les occurrences du motif, on crée une liste initialement vide **positions** puis :  
 
-- On remplace la ligne 10 par : **ajouter i à positions** ;  
+- On remplace la ligne 10 par : **ajouter $i$ à positions** ;  
 - La dernière ligne devient :  **renvoyer positions**  
 
 ### Complexité de la recherche de toutes les positions
