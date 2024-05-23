@@ -198,7 +198,7 @@ fonction lzw_decompress (T' : texte compressé,
     Notre dictionnaire de départ $d$ est  $d$ : $(0 :A)$, $(1 :B)$
     Décoder (selon l'algorithme ci-dessus) la suite $t'$ suivante $t' ⟵ 0, 0, 1, 3, 2, 0$
 
-!!tip "Correction"
+!!!tip "Correction"
     - Position $0$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A$
     - Position $1$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A, A$. On lit la lettre précédente, $AA$ n'est pas une clé du dictionnaire donc on l'ajoute $d[2] ⟵ AA$.
     - Position $2$ : $1$ est une clé connue donc $t ⟵ d[1]$ donc $t ⟵ A, A, B$ On lit la lettre précédente, $AB$ n'est pas une clé du dictionnaire donc on l'ajoute $d[3] ⟵ AB$
