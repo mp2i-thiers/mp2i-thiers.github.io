@@ -165,12 +165,12 @@ Le code $n$ lu est tel que $n = |d|$, donc on lit un code non encore présent da
 - On lit le code $n$ : il a été placé à cet endroit au moment de la  compression après avoir lu un $wy$ . Ainsi, $n$ est le code de $w$ .  
 - $n$ est maximal parmi les codes déjà rencontrés. Revenant au moment de la compression, cela signifie que $w$ est le dernier facteur qui a  produit un code avant d’écrire $n$.  
 - Or, juste avant $n$ dans le texte compressé, il y a $c$ (lequel code $m$).  Ainsi $w$ est de la forme $mx$.  
-- Dans la compression, après avoir lu $w = mx$, on repart de $x$ et on lit $wy$,  c.a.d. $mxy$ . Ainsi, la 1ere lettre de $m$ est $x$ ! (dans le texte originel, on  a donc $. . . mmxy . . . $).  
+- Dans la compression, après avoir lu $w = mx$, on repart de $x$ et on lit $wy$,  c.a.d. $mxy$ . Ainsi, la 1ere lettre de $m$ est $x$ ! (dans le texte originel, on  a donc $\text{... } mmxy \text{ ...}$).  
 - On ajoute $mx$ au texte décompressé et on réalise l’association  $d[n] = mx$.  
 
 $n$ code un $wy$ tel que le code de $w$ est le dernuer lu.
 
-<p align="center"><img src="/images/izw1.png"></p> 
+<p align="center"><img src="/images/izw1.png"></p>
 
 ### Algorithme de décompression
 
@@ -206,7 +206,7 @@ fonction lzw_decompress (T' : texte compressé,
     - Position $4$ : $2$ est une clé connue donc $t ⟵ d[2]$ donc $t ⟵ A, A, B, AB, AA$ On lit la lettre précédente, $ABA$ n'est pas une clé du dictionnaire donc on l'ajoute $d[5] ⟵ ABA$
     - Position $5$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A, A, B, AB, AA, A$ On lit la lettre précédente, $AAA$ n'est pas une clé connue donc on l'ajoute $d[6] ⟵ AAA$
 
-    t ⟵ AABABAAA
+    $t ⟵ AABABAAA$
 
 !!!example "Meilleur Exercice"
 
