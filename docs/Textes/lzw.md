@@ -1,70 +1,75 @@
 # lzw
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
-### Crédits
+!!!tip "Crédits"
 
-Un cours de Marc de Falco.  
-[Wikipedia](https://fr.wikipedia.org/wiki/Lempel-Ziv-Welch)  
-Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  
+    * Un cours de Marc de Falco.  
+    * [Wikipedia](https://fr.wikipedia.org/wiki/Lempel-Ziv-Welch)  
+    * Informatique -Cours et exercices corrigés- (MP2I-MPI) (ellipse)  
 
 ## Compression
 
 ### Présentation
 
-L’algorithme de Lempel-Ziv-Welch (LZW)est un algorithme de  compression de données sans perte.  
-Ses inventeurs sont Abraham Lempel, Jakob Ziv qui l’ont proposé en  1977 et Terry Welch qui l’a finalisé en 1984.  
-LZW a été utilisé dans des modems aujourd’hui obsolètes mais on le  trouve encore dans la compression des images "GIFF" ou  "TIFF" et les fichiers audio "MOD". Il est à la base de la  compression "ZIP".  
+L’algorithme de _Lempel-Ziv-Welch_ (LZW) est un algorithme de  compression de données sans perte.  
+
+Ses inventeurs sont Abraham Lempel, Jakob Ziv qui l’ont proposé en $1977$ et Terry Welch qui l’a finalisé en $1984$.  
+
+LZW a été utilisé dans des modems aujourd’hui obsolètes mais on le  trouve encore dans la compression des images "$GIFF$" ou  "$TIFF$" et les fichiers audio "$MOD$". Il est à la base de la compression "$ZIP$".  
+
 Facile à coder (c’est son principal avantage) il n’est souvent pas  optimal car il n’eﬀectue qu’une analyse sommaire des données à  compresser.  
 
 ### Principe
 
-Recherche dans le texte à compresser des répétitions de sous-chaînes  identiques et leur donner une forme compacte dans le texte  compressé.
-L’algorithme LZW procède en une seule passe, en maintenant, au fur  et à mesure de la compression, l’ensemble des factiers qu’il a déjà  rencontrés.  
-Cette caractéristique est adaptée à la compression d’un texte qu’on  découvre à la volée comme lorsque le texte est transmis via un canal  de communication.  
+Recherche dans le texte à compresser des répétitions de sous-chaînes  identiques et leur donner une forme compacte dans le texte compressé.
+
+L’algorithme LZW procède en une seule passe, en maintenant, au fur  et à mesure de la compression, l’ensemble des factiers qu’il a déjà  rencontrés.
+
+Cette caractéristique est adaptée à la compression d’un texte qu’on  découvre à la volée comme lorsque le texte est transmis via un canal  de communication.
 
 ### Préfixe, suﬃxe
 
-!!!quote "Définition : Préfixe / Suffixe"    
-    - Le mot x est appelé un préfixe du mot m si il existe un mot y tel que  m = x · y .  
-    - Le mot x est appelé un suﬃxe du mot m si il existe un mot y tel que  m = y · x.  
+!!!quote "Définition : Préfixe / Suffixe"
+    - Le mot $x$ est appelé un _préfixe_ du mot $m$ si il existe un mot $y$ tel que  $m = x · y$ .  
+    - Le mot $x$ est appelé un _suﬃxe_ du mot $m$ si il existe un mot $y$ tel que  $m = y · x$.  
 
 !!!example ""
     **Exemple**
     
     - $\varepsilon$, langage et lang sont des préfixes de langage,  
     - $\varepsilon$, langage et gage sont des suﬃxes de langage,  
-    - Si xu = m et xv = m alors, par régularité, u = v .  
+    - Si $xu = m$ et $xv = m$ alors, par régularité, $u = v$ .  
 
 ### Facteurs
 
-!!!quote "Définition : facteur"   
-    On dit qu’un mot x est facteur d’un mot m s’il existe u, v , deux mots tels
-    que m = uxv .
+!!!quote "Définition : facteur"
+    On dit qu’un mot $x$ est facteur d’un mot $m$ s’il existe $u$, $v$ , deux mots tels que $m = uxv$.
 
 !!! example ""
     **Exemple**
-    
-    Le mot sol est facteur de insolent. La chaîne vide $\varepsilon$ est un préfixe de tout
-    mot.
+
+    Le mot sol est facteur de insolent. La chaîne vide $\varepsilon$ est un préfixe de tout mot.
 
 Pour plus d’informations sur la théorie des mots, voir par exemple ce [cours](https://nussbaumcpge.be/public_html/Spe/MP/mots.pdf).  
 
 ### Table des correspondances facteurs/encodage
 
-L’algorithme de compression construit une table de traduction des  facteurs du texte en parcourant le texte à compresser. 
-Cette table relie des codes de taille (le plus souvent) fixée  (généralement à 12 bits) aux chaînes de caractères. Certaines  implémentations avec taille d’encodage variable existent aussi.  
-La table est initialisée avec tous les caractères (256 entrées dans le  cas de caractères codés sur 8 bits). C’est une injection qui associe une  valeur numérique à tout caractère de l’alphabet.  
+L’algorithme de compression construit une table de traduction des  facteurs du texte en parcourant le texte à compresser.
+
+Cette table relie des codes de taille (le plus souvent) fixée  (généralement à $12$ bits) aux chaînes de caractères. Certaines  implémentations avec taille d’encodage variable existent aussi.
+
+La table est initialisée avec tous les caractères ($256$ entrées dans le  cas de caractères codés sur $8$ bits). C’est une injection qui associe une  valeur numérique à tout caractère de l’alphabet.
+
 Il est malin d’utiliser un dictionnaire (facteur, encodage). Les seules  clés du dictionnaires qui ne sont pas des facteurs du texte sont les  caractères de l’alphabet non utilisés par le texte.
-L’algorithme LZW exploite et modifie à la volée le dictionnaire des  facteurs. Il renvoie une liste de clés de ce dictionnaire (c’est à dire une  liste d’entiers), chacune codant un facteur du texte.  
+
+L’algorithme LZW exploite et modifie à la volée le dictionnaire des facteurs. Il renvoie une liste de clés de ce dictionnaire (c’est à dire une  liste d’entiers), chacune codant un facteur du texte.
 
 ### Algorithme
 
-```linenums="1"
-/∗L’alphabet Σ est supposé connu ∗/
+```OCaml linenums="1"
+/∗ L’alphabet Σ est supposé connu ∗/
 fonction lzw_compress (t : texte):
     initialiser d avec Σ /∗ dictionnaire(facteur, code) ∗/
     w ← ε ; /∗ le facteur courant ∗/
@@ -72,7 +77,7 @@ fonction lzw_compress (t : texte):
     n ← |Σ| ; /∗ nombre de facteurs déjà compressés ∗/
     tant que t n’est pas vide faire:
         c ← t[0] ; /∗ 1ere lettre de t ∗/
-        t ← t[1:]/∗ supprimer la 1ere lettre de t ∗/
+        t ← t[1:] /∗ supprimer la 1ere lettre de t ∗/
         p ← w + c ; /∗ ajouter une lettre à w ∗/
         si p est une clé de d :
             w ← p;
@@ -82,32 +87,32 @@ fonction lzw_compress (t : texte):
             /∗ rqe : n = |d| : nb de clés dans le dico ∗/
             t' ← t' + d[w] ; /∗ ajouter le code de w à t' ∗/
             w ← c;
-t' ← t' + d[w];
-renvoyer t'
+    t' ← t' + d[w];
+    renvoyer t'
 ```
 
 ???example "Exemple (Wikipedia)"
-    On veut compresser ”TOBEORNOTTOBEORTOBEORNOT”. 
+    On veut compresser ”TOBEORNOTTOBEORTOBEORNOT”.
 
-    - Initialisation de d : (A :65) ... (T :84), (O :79), (B :66), (E :69),  (R :82), (N :78) ... (Z :90) ... (\255,255) et t' $\leftarrow \varepsilon$ (texte compressé)
-    - Position 0 : T est une clé mais pas TO. d[TO] $\leftarrow$ 255 + 1 = 256,  t' $\leftarrow$ 84  
-    - Position 1 : O est une clé mais pas OB. d[OB] $\leftarrow$ 257, t' $\leftarrow$ 84, 79
-    - Position 2 : B est une clé mais pas BE. d[BE] $\leftarrow$ 258, t' $\leftarrow$ 84, 79, 66  
-    - Position 3 : E est une clé mais pas EO. d[EO] $\leftarrow$ 259,  t' $\leftarrow$ 84, 79, 66, 69  
-    - Position 4 : O est une clé mais pas OR. d[OR] $\leftarrow$ 260,  t' $\leftarrow$ 84, 79, 66, 69, 82
-    - Position 5 : R est une clé mais pas RN. d[RN] $\leftarrow$ 261,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78  
+    - Initialisation de $d$ : $(A :65)$ ... $(T :84)$, $(O :79)$, $(B :66)$, $(E :69)$,  $(R :82)$, $(N :78)$ ... $(Z :90)$ ... $(\255,255)$ et $t'\leftarrow \varepsilon$ (texte compressé)
+    - Position $0$ : $T$ est une clé mais pas $TO$. $d[TO] \leftarrow 255 + 1 = 256$,  $t' \leftarrow 84$  
+    - Position $1$ :$O$ est une clé mais pas $OB$. $d[OB] \leftarrow 257$, $t' \leftarrow 84, 79$
+    - Position $2$ : $B$ est une clé mais pas $BE$. $d[BE] \leftarrow 258$, $t' \leftarrow 84, 79, 66$  
+    - Position $3$ : E est une clé mais pas EO. d[EO] $\leftarrow$ 259,  t' $\leftarrow$ 84, 79, 66, 69  
+    - Position $4$ : O est une clé mais pas OR. d[OR] $\leftarrow$ 260,  t' $\leftarrow$ 84, 79, 66, 69, 82
+    - Position $5$ : R est une clé mais pas RN. d[RN] $\leftarrow$ 261,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78  
     - La dernière lettre du dernier facteur ajouté est la première du nouveau  facteur parcouru.  
 
-    - Position 6 : N est une clé mais pas NO. d[NO] $\leftarrow$ 262,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79
-    - Position 7 : O est une clé mais pas OT. d[OT] $\leftarrow$ 263,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84
-    - Position 8 : T est une clé mais pas TT. d[TT] $\leftarrow$ 264,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84
-    - Position 9 : T, TO sont des clés mais pas TOB. d[TOB] $\leftarrow$ 265,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256  
-    - Position 11 : B, BE sont des clés mais pas BEO. d[BEO] $\leftarrow$ 266,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258  
-    - Position 13 : O, OR sont des clés mais pas ORT. d[ORT] $\leftarrow$ 267,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260  
-    - Position 15 : T,TO,TOB sont des clés mais pas TOBE. d[TOBE] $\leftarrow$ 268,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265  
-    - Position 18 : E,EO sont des clés mais pas EOR. d[EOR] $\leftarrow$ 269,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259  
-    - Position 20 : R,RN sont des clés mais pas RNO. d[RNO] $\leftarrow$ 270,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261  
-    - Position 22 à fin : O,OT sont des clés.  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261, 263  
+    - Position $6$ : N est une clé mais pas NO. d[NO] $\leftarrow$ 262,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79
+    - Position $7$ : O est une clé mais pas OT. d[OT] $\leftarrow$ 263,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84
+    - Position $8$ : T est une clé mais pas TT. d[TT] $\leftarrow$ 264,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84
+    - Position $9$ : T, TO sont des clés mais pas TOB. d[TOB] $\leftarrow$ 265,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256  
+    - Position $11$ : B, BE sont des clés mais pas BEO. d[BEO] $\leftarrow$ 266,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258  
+    - Position $13$ : O, OR sont des clés mais pas ORT. d[ORT] $\leftarrow$ 267,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260  
+    - Position $15$ : T,TO,TOB sont des clés mais pas TOBE. d[TOBE] $\leftarrow$ 268,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265  
+    - Position $18$ : E,EO sont des clés mais pas EOR. d[EOR] $\leftarrow$ 269,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259  
+    - Position $20$ : R,RN sont des clés mais pas RNO. d[RNO] $\leftarrow$ 270,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261  
+    - Position $22$ à fin : O,OT sont des clés.  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261, 263  
 
 ## Décompression
 
@@ -171,7 +176,8 @@ fonction lzw_decompress (T' : texte compressé,
         d[|d|] ← d[c] · e[0]; /∗ ajouter une association ∗/
     fin faire
 ```
-## taille des entiers de codage
+
+## Taille des entiers de codage
 
 ### Taille des entiers en OCaml
 
