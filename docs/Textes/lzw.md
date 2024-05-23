@@ -37,7 +37,7 @@ Cette caractéristique est adaptée à la compression d’un texte qu’on  déc
 
 !!!example ""
     **Exemple**
-    
+
     - $\varepsilon$, langage et lang sont des préfixes de langage,  
     - $\varepsilon$, langage et gage sont des suﬃxes de langage,  
     - Si $xu = m$ et $xv = m$ alors, par régularité, $u = v$ .  
@@ -66,7 +66,7 @@ Il est malin d’utiliser un dictionnaire (facteur, encodage). Les seules  clés
 
 L’algorithme LZW exploite et modifie à la volée le dictionnaire des facteurs. Il renvoie une liste de clés de ce dictionnaire (c’est à dire une  liste d’entiers), chacune codant un facteur du texte.
 
-### Algorithme
+### Algorithme de compression
 
 ```OCaml linenums="1"
 /∗ L’alphabet Σ est supposé connu ∗/
@@ -114,59 +114,75 @@ fonction lzw_compress (t : texte):
     - Position $20$ : $R,RN$ sont des clés mais pas $RNO$. $d[RNO] \leftarrow 270$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$, $259$, $261$  
     - Position $22$ à fin : $O,OT$ sont des clés.  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$, $259$, $261$, $263$  
 
+!!!example "Exercice"
+
+    Faire la compression du mot suivant "AABABAAA" avec le dictionnaire $d$ suivant : $d$ : $(A :0)$, $(B :1)$
+
+!!!tip "Correction"
+
+    - Position $0$ : $A$ est une clé mais pas $AA$ donc $d[AA] ⟵ 2$, $t' ⟵ 0$
+    - Position $1$ : $A$ est une clé mais pas $AB$ donc $d[AB] ⟵ 3$, $t' ⟵ 0, 0$
+    - Position $2$ : $B$ est une clé mais pas $BA$ donc $d[BA] ⟵ 4$, $t' ⟵ 0, 0, 1$
+    - Position $3$ : $A, AB$ sont des clés mais pas $ABA$ donc $d[ABA] ⟵ 5$, $t' ⟵ 0, 0, 1, 3$
+    - Position $5$ : $A, AA$ sont des clés mais pas $AAA$ donc $d[AAA] ⟵ 6$, $t' ⟵ 0, 0, 1, 3, 2, 0$ 
+
 ## Décompression
 
 ### Initialisation
 
-On note d le dictionnaire (code,facteur) qui est l’inverse de celui de la  partie précédente (en fait, puisque l’ensemble des codes forme un  intervalle de nombres, un simple tableau redimensionnable suﬃt).
+On note $d$ le dictionnaire (code,facteur) qui est l’inverse de celui de la partie précédente (en fait, puisque l’ensemble des codes forme un  intervalle de nombres, un simple tableau redimensionnable suffit).
 
-Ce dictionnaire est initialisé ainsi : à tous les codes entre (par exemple  0 et 256) on associe la lettre correspondante de l’alphabet.
+Ce dictionnaire est initialisé ainsi : à tous les codes entre (par exemple $0$ et $256$) on associe la lettre correspondante de l’alphabet.
 
-La notation |d| désigne le nombre d’associations déjà entrées. Avec le  code ASCII, |d| = 256 au départ.
+La notation $|d|$ désigne le nombre d’associations déjà entrées. Avec le  code **ASCII**, $|d| = 256$ au départ.
 
-Le premier code c lu est nécessairement celui d’un unique caractère.  On écrit donc d[c] dans le fichier de sortie et on garde c en mémoire.  
+Le premier code $c$ lu est nécessairement celui d’un unique caractère.  On écrit donc $d[c]$ dans le fichier de sortie et on _garde_ $c$ en mémoire.  
 
 ### Déroulement  
 
-#### Cas général
+#### Cas facile : on lit un code connu
 
-On garde en mémoire le précédent code lu c.  
+On garde en mémoire le précédent code lu $c$. On lit un code $n$ où $n < |d|$ (ce qui signifie qu’on sait ce que code $n$).  
 
-- On lit un code n où n < |d| (ce qui signifie qu’on sait ce que code n).  Posons d[n] = xm' ; x est un caractère et m' un mot.
-- On écrit xm' dans le fichier de sortie  
-- On rajoute ensuite un nouvel élément mx dans le dictionnaire où  m = d[c]. On pose donc d[|d|] = mx.  
+- Posons $d[n] = xm'$ ; $x$ est un caractère et $m'$ un mot.
+- On écrit $xm'$ dans le fichier de sortie  
+- On rajoute ensuite un nouvel élément $mx$ dans le dictionnaire où $m = d[c]$. On pose donc $d[|d|] = mx$.  
 
-#### Cas général : Pourquoi cela marche-t-il ?
+#### Cas facile : Pourquoi cela marche-t-il ?
 
-On reproduit en fait le processus de compression mais en remplissant  le dictionnaire avec un temps de retard.  
+On reproduit en fait le processus de compression mais en remplissant le dictionnaire avec un temps de retard.  
+
 Selon le principe de compression :  
 
-- On ajoute une entrée au dictionnaire pour mx quand on lit x et que le  précédent motif lu est m.  
-- Le code c de m (qui est connu, sinon on ne serait pas arrivé à x) est  ajouté au texte codé.  
-- On repart alors avec x comme motif lu  
+- On ajoute une entrée au dictionnaire pour $mx$ quand on lit $x$ et que le précédent motif lu est $m$.  
+- Le code $c$ de $m$ (qui est connu, sinon on ne serait pas arrivé à $x$) est ajouté au texte codé. $\color{red}\text{Dans la décompression, quand on lit } c \text{, on ajoute } m$
+- On repart alors avec $x$ comme motif lu  
 
 #### Cas problématique : n = |d|
   
-Le code n lu est tel que n = |d|, donc on lit un code non encore présent  dans la table de décompression.
+Le code $n$ lu est tel que $n = |d|$, donc on lit un code non encore présent dans la table de décompression.
 
-- On lit le code n : il a été placé à cet endroit au moment de la  compression après avoir lu un wy . Ainsi, n est le code de w .  
-- n est maximal parmi les codes déjà rencontrés. Revenant au moment  de la compression, cela signifie que w est le dernier facteur qui a  produit un code avant d’écrire n.  
-- Or, juste avant n dans le texte compressé, il y a c (lequel code m).  Ainsi w est de la forme mx.  
-- Dans la compression, après avoir lu mx, on repart de x et on lit wy ,  c.a.d. mxy . Ainsi, la 1ere lettre de m est x ! (dans le texte originel, on  a donc . . . mxmxy . . . ).  
-- On ajoute mx au texte décompressé et on réalise l’association  d[y ] = mx.  
+- On lit le code $n$ : il a été placé à cet endroit au moment de la  compression après avoir lu un $wy$ . Ainsi, $n$ est le code de $w$ .  
+- $n$ est maximal parmi les codes déjà rencontrés. Revenant au moment de la compression, cela signifie que $w$ est le dernier facteur qui a  produit un code avant d’écrire $n$.  
+- Or, juste avant $n$ dans le texte compressé, il y a $c$ (lequel code $m$).  Ainsi $w$ est de la forme $mx$.  
+- Dans la compression, après avoir lu $w = mx$, on repart de $x$ et on lit $wy$,  c.a.d. $mxy$ . Ainsi, la 1ere lettre de $m$ est $x$ ! (dans le texte originel, on  a donc $. . . mmxy . . . $).  
+- On ajoute $mx$ au texte décompressé et on réalise l’association  $d[n] = mx$.  
 
-### Algorithme
+$n$ code un $wy$ tel que le code de $w$ est le dernuer lu.
 
+<p align="center"><img src="/images/izw1.png"></p> 
 
-On initialise le dictionnaire avec l’alphabet (par exemple alphabet ASCII  des caractères codés sur 8 bits).  
+### Algorithme de décompression
+
+On initialise le dictionnaire avec l’alphabet (par exemple alphabet **ASCII** des caractères codés sur $8$ bits).  La fonction `Lire` lit le code courant de $T'$ et positionne le curseur sur le code suivant.
   
-```linenums="1" 
+```OCaml linenums="1"
 fonction lzw_decompress (T' : texte compressé,
-                            d : dictionnaire ( code , facteur )):
-    c ← Lire(T'); /∗ 1er code lu∗/
+                          d : dictionnaire (code, facteur)):
+    c ← Lire(T'); /∗ 1er code lu ∗/
     /∗ le 1er code correspond toujours à une lettre ∗/
-    Ecrire d[c]; /∗ ajouter le texte codé parc ∗/
-    tant que il reste un codes de T' non lu faire
+    Ecrire (d[c]); /∗ ajouter le texte codé parc ∗/
+    tant_que il reste un codes de T' non lu faire
         n ← lire(T'); /∗ code courant ∗/
         si n est une clef de d /∗ code n déjà rencontré ∗/
             alors e ← d[n]; /∗ décompression ∗/
@@ -177,17 +193,57 @@ fonction lzw_decompress (T' : texte compressé,
     fin faire
 ```
 
+!!!example "Exercice"
+
+    Notre dictionnaire de départ $d$ est  $d$ : $(0 :A)$, $(1 :B)$
+    Décoder (selon l'algorithme ci-dessus) la suite $t'$ suivante $t' ⟵ 0, 0, 1, 3, 2, 0$
+
+!!tip "Correction"
+    - Position $0$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A$
+    - Position $1$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A, A$. On lit la lettre précédente, $AA$ n'est pas une clé du dictionnaire donc on l'ajoute $d[2] ⟵ AA$.
+    - Position $2$ : $1$ est une clé connue donc $t ⟵ d[1]$ donc $t ⟵ A, A, B$ On lit la lettre précédente, $AB$ n'est pas une clé du dictionnaire donc on l'ajoute $d[3] ⟵ AB$
+    - Position $3$ : $3$ est une clé connue donc $t ⟵ d[3]$ donc $t ⟵ A, A, B, AB$ On lit la lettre précédente, $BA$ n'est pas une clé du dictionnaire donc on l'ajoute $d[4] ⟵ BA$
+    - Position $4$ : $2$ est une clé connue donc $t ⟵ d[2]$ donc $t ⟵ A, A, B, AB, AA$ On lit la lettre précédente, $ABA$ n'est pas une clé du dictionnaire donc on l'ajoute $d[5] ⟵ ABA$
+    - Position $5$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A, A, B, AB, AA, A$ On lit la lettre précédente, $AAA$ n'est pas une clé connue donc on l'ajoute $d[6] ⟵ AAA$
+
+    t ⟵ AABABAAA
+
+!!!example "Meilleur Exercice"
+
+    Faire la compression puis décompression du tete suivant "AAABAA" avec le dictionnaire $d$ suivant : $d$ : $(A :0)$, $(B :1)$
+
+!!!tip "Correction"
+    Compression : $d$ : $(A :0)$, $(B :1)$
+
+    - Position $0$ : $A$ est une clé connue mais pas $AA$ donc $d[AA] ⟵ 2$, $t' ⟵ 0$
+    - Position $1$ : $A$, $AA$ sont des clés connues mais pas $AAB$ donc $d[AAB] ⟵ 3$, $t' ⟵ 0, 2$
+    - Position $3$ : $B$ est une clé connue mais pas $BA$ donc $d[BA] ⟵ 4$, $t' ⟵ 0, 2, 1$
+    - Position $4$ : $AA$ est une clé connue $t' ⟵ 0, 2, 1, 2$ 
+
+    Décompression : $d$ : $(0 :A)$, $(1 :B)$
+
+    - Position $0$ : $0$ est une clé connue donc $t ⟵ d[0]$ donc $t ⟵ A$
+    - Position $1$ : $2$ n'est pas une clé connue donc on lit la lettre précédente $A$ qui est connue et on l'ajoute $d[2] ⟵ AA$ donc $t ⟵ d[2]$ donc $t ⟵ A, AA$.
+    - Position $3$ : $1$ est une clé connue donc $t ⟵ d[1]$ donc $t ⟵ A, AA, B$ On lit la lettre précédente, $AAB$ n'est pas une clé connue du dictionnaire donc on l'ajoute $d[3] ⟵ AAB$
+    - Position $4$ : $2$ est une clé connue donc $t ⟵ d[2]$ donc $t ⟵ A, AA, B, AA$ On lit la lettre précédente, $BA$ n'est pas une clé connue du dictionnaire donc on l'ajoute $d[4] ⟵ BA$
+
 ## Taille des entiers de codage
 
 ### Taille des entiers en OCaml
 
-En OCaml, les entiers sont deux bits plus courts que les entiers machines.  Sur la plupart des machines, les entiers sont de taille 32 ou 64 bits. En  OCaml, les entiers sont donc de taille 30 ou 62 bits  
+En OCaml, les entiers sont deux bits plus courts que les entiers machines.  Sur la plupart des machines, les entiers sont de taille $32$ ou $64$ bits. $\color{red}\text{En OCaml, les entiers sont donc de taille 31 ou 63 bits}$.
 
-La représentation du résultat de la compression par une liste d’entiers  OCAML n’est pas très réaliste : il faudrait a priori 30 bits (ou 62) pour  stocker chaque entier. Cependant, on remarque que la taille des entiers  produits par l’algorithme de compression croît progressivement au fur et à  mesure que l’on avance dans la liste (et que le dictionnaire se remplit).  Dans la pratique, on peut donc utiliser la technique suivante pour coder la  liste :  
+Or, le premier bit est un bit de signe, les entiers positifs sont donc codés entre $0$ et $2^{30} - 1$ (ou $2^{62} -1$)
 
-- Tant que tous les entiers sont strictement inférieurs à 255, coder ces  entiers sur 8 bits.  
-- Lorsque l’on rencontre le premier entier supérieur ou égal à 255,  émettre la séquence 11111111 (huit fois le bit 1) et continuer, tant  que les entiers sont strictement inférieurs à 511, en codant les entiers  sur 9 bits.  
-- Lorsque l’on rencontre le premier entier supérieur ou égal à 511,  émettre la séquence 111111111 (neuf fois le bit 1) et continuer, tant  que les entiers sont strictement inférieurs à 1023, en codant les  entiers sur 10 bits.  
-- De manière générale, tant que les entiers considérés sont strictement  inférieurs à n = 2k − 1, on peut les représenter sur k bits.  
-- Lorsque le premier entier supérieur ou égal à 2k − 1 est rencontré, on  émet la séquence 1 . . . 1 (k fois le bit 1) et on continue en codant les  entiers sur k + 1 bits.  
-- Donc si le code 10 se trouve au début de la liste des codages, il prend  8 bits d’espace mais après le premier nombre plus grand que 255, il  prend 9 bits etc.  
+La représentation du résultat de la compression par une liste d’entiers  OCAML n’est pas très réaliste : il faudrait a _priori_ $30$ bits (ou $62$) pour  stocker chaque entier.
+
+<p style="color: red">Cependant, on remarque que la taille des entiers produits par l’algorithme de compression croît progressivement au fur et à mesure que l’on avance dans la liste (et que le dictionnaire se remplit). </p>
+
+Dans la pratique, on peut donc utiliser la technique suivante pour coder la liste :  
+
+- Tant que tous les entiers sont strictement inférieurs à $255$, coder ces  entiers sur $8$ bits.  
+- Lorsque l’on rencontre le premier entier supérieur ou égal à $255$,  émettre la séquence $11111111$ (_huit_ fois le bit $1$) et continuer, tant  que les entiers sont strictement inférieurs à 511, en codant les entiers  sur 9 bits.  
+- Lorsque l’on rencontre le premier entier supérieur ou égal à $511$,  émettre la séquence $111111111$ (_neuf_ fois le bit $1$) et continuer, tant que les entiers sont strictement inférieurs à $1023$, en codant les  entiers sur $10$ bits.  
+- De manière générale, tant que les entiers considérés sont strictement  inférieurs à $n = 2k − 1$, on peut les représenter sur $k$ bits.  
+- Lorsque le premier entier supérieur ou égal à $2k − 1$ est rencontré, on  émet la séquence $1 . . . 1$ (_$k$_ fois le bit $1$) et on continue en codant les entiers sur $k + 1$ bits.  
+- Donc si le code $10$ se trouve au début de la liste des codages, il prend $8$ bits d’espace mais après le premier nombre plus grand que $255$, il  prend $9$ bits etc.  
