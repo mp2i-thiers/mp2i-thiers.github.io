@@ -94,25 +94,25 @@ fonction lzw_compress (t : texte):
 ???example "Exemple (Wikipedia)"
     On veut compresser ”TOBEORNOTTOBEORTOBEORNOT”.
 
-    - Initialisation de $d$ : $(A :65)$ ... $(T :84)$, $(O :79)$, $(B :66)$, $(E :69)$,  $(R :82)$, $(N :78)$ ... $(Z :90)$ ... $(\255,255)$ et $t'\leftarrow \varepsilon$ (texte compressé)
+    - Initialisation de $d$ : $(A :65)$ ... $(T :84)$, $(O :79)$, $(B :66)$, $(E :69)$,  $(R :82)$, $(N :78)$ ... $(Z :90)$ ... $(\backslash 255,255)$ et $t'\leftarrow \varepsilon$ (texte compressé)
     - Position $0$ : $T$ est une clé mais pas $TO$. $d[TO] \leftarrow 255 + 1 = 256$,  $t' \leftarrow 84$  
     - Position $1$ :$O$ est une clé mais pas $OB$. $d[OB] \leftarrow 257$, $t' \leftarrow 84, 79$
     - Position $2$ : $B$ est une clé mais pas $BE$. $d[BE] \leftarrow 258$, $t' \leftarrow 84, 79, 66$  
-    - Position $3$ : E est une clé mais pas EO. d[EO] $\leftarrow$ 259,  t' $\leftarrow$ 84, 79, 66, 69  
-    - Position $4$ : O est une clé mais pas OR. d[OR] $\leftarrow$ 260,  t' $\leftarrow$ 84, 79, 66, 69, 82
-    - Position $5$ : R est une clé mais pas RN. d[RN] $\leftarrow$ 261,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78  
-    - La dernière lettre du dernier facteur ajouté est la première du nouveau  facteur parcouru.  
+    - Position $3$ : $E$ est une clé mais pas $EO$. $d[EO] \leftarrow 259$, $t' \leftarrow 84$, $79$, $66$, $69$  
+    - Position $4$ : $O$ est une clé mais pas $OR$. $d[OR] \leftarrow 260$,  $t' \leftarrow 84$, $79$, $66$, $69$, $82$
+    - Position $5$ : $R$ est une clé mais pas $RN$. $d[RN] \leftarrow 261$, $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$  
+    - La dernière lettre du dernier facteur ajouté est la première du nouveau facteur parcouru.  
 
-    - Position $6$ : N est une clé mais pas NO. d[NO] $\leftarrow$ 262,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79
-    - Position $7$ : O est une clé mais pas OT. d[OT] $\leftarrow$ 263,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84
-    - Position $8$ : T est une clé mais pas TT. d[TT] $\leftarrow$ 264,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84
-    - Position $9$ : T, TO sont des clés mais pas TOB. d[TOB] $\leftarrow$ 265,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256  
-    - Position $11$ : B, BE sont des clés mais pas BEO. d[BEO] $\leftarrow$ 266,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258  
-    - Position $13$ : O, OR sont des clés mais pas ORT. d[ORT] $\leftarrow$ 267,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260  
-    - Position $15$ : T,TO,TOB sont des clés mais pas TOBE. d[TOBE] $\leftarrow$ 268,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265  
-    - Position $18$ : E,EO sont des clés mais pas EOR. d[EOR] $\leftarrow$ 269,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259  
-    - Position $20$ : R,RN sont des clés mais pas RNO. d[RNO] $\leftarrow$ 270,  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261  
-    - Position $22$ à fin : O,OT sont des clés.  t' $\leftarrow$ 84, 79, 66, 69, 82, 78, 79, 84, 84, 256, 258, 260, 265, 259, 261, 263  
+    - Position $6$ : $N$ est une clé mais pas $NO$. $d[NO] \leftarrow 262$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$
+    - Position $7$ : $O$ est une clé mais pas $OT$. $d[OT] \leftarrow 263$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$
+    - Position $8$ : $T$ est une clé mais pas $TT$. $d[TT] \leftarrow 264$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$
+    - Position $9$ : $T, TO$ sont des clés mais pas $TOB$. $d[TOB] \leftarrow 265$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$
+    - Position $11$ : $B, BE$ sont des clés mais pas $BEO$. $d[BEO] \leftarrow 266$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$
+    - Position $13$ : $O$, $OR$ sont des clés mais pas $ORT$. $d[ORT] \leftarrow 267$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$ 
+    - Position $15$ : $T,TO,TOB$ sont des clés mais pas $TOBE$. $d[TOBE] \leftarrow 268$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$
+    - Position $18$ : $E,EO$ sont des clés mais pas $EOR$. $d[EOR]\leftarrow 269$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$, $259$    
+    - Position $20$ : $R,RN$ sont des clés mais pas $RNO$. $d[RNO] \leftarrow 270$,  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$, $259$, $261$  
+    - Position $22$ à fin : $O,OT$ sont des clés.  $t' \leftarrow$ $84$, $79$, $66$, $69$, $82$, $78$, $79$, $84$, $84$, $256$, $258$, $260$, $265$, $259$, $261$, $263$  
 
 ## Décompression
 
