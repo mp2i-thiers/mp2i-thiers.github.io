@@ -600,10 +600,9 @@ $$
 !!!example "Exemple"
 
     Soit $p$ une proposition à $3$ variables dont la table est :
+    $\text{Table de } p$
     
-    \text{Table de } p
     $$\begin{array}{c|c|c|c}
-    \hline
      a & b & c & p \\
      \hline
      1 & 1 & 1 & 0 \\
