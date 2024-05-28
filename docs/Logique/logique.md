@@ -600,26 +600,28 @@ $$
 !!!example "Exemple"
 
     Soit $p$ une proposition à $3$ variables dont la table est :
-    $\text{Table de } p$
     
-    $$\begin{matrix}
-     a & b & c & p //
-     1 & 1 & 1 & 0 //
-     1 & 1 & 0 & '1' //
-     1 & 0 & 1 & '1' //
-     1 & 0 & 0 & 0 //
-     0 & 1 & 1 & '1' //
-     0 & 1 & 0 & 0 //
-     0 & 0 & 1 & 0 //
+    \text{Table de } p
+    $$\begin{array}{c|c|c|c}
+    \hline
+     a & b & c & p \\
+     \hline
+     1 & 1 & 1 & 0 \\
+     1 & 1 & 0 & '1' \\
+     1 & 0 & 1 & '1' \\
+     1 & 0 & 0 & 0 \\
+     0 & 1 & 1 & '1' \\
+     0 & 1 & 0 & 0 \\
+     0 & 0 & 1 & 0 \\
      0 & 0 & 0 & 1
-     \end{matrix}$$
+     \end{array}$$
 
-    - Lire positivement les variables des lignes à 1 pour la FND
-    - Lire négativement les variables des lignes à 0 pour la FNC
+    - Lire positivement les variables des lignes à $1$ pour la FND
+    - Lire négativement les variables des lignes à $0$ pour la FNC
 !!! warning ""
     **Proposition**
 
-    Toute proposition est sémantiquement équivalente à une FNCC (resp.  FNDC) unique à l'ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
+    Toute proposition est sémantiquement équivalente à une FNCC (resp. FNDC) unique à l'ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  
 
 !!! tip ""
     **Remarque**
