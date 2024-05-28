@@ -102,9 +102,9 @@ La logique du 1er ordre (telle qu'enseignée en MP2I/MPI) est $\color{red}\text{
 
 Le calcul des prédicats est $\color{red}\text{complet : ce qui est vrai est prouvable et  réciproquement}$.  
 
-Aucun système logique cohérent (comme la déduction naturelle ou le  calcul des séquents) ne peut démontrer tous les résultats de  l'arithmétique. $\color{red}\text{Quel que soit le système, s'il est assez riche pour exprimer l'arithmétique, on peut trouver un énoncé valide qui ne sera  pas démontrable dans ce système}$.  
+Aucun système logique cohérent (comme la déduction naturelle ou le  calcul des séquents) ne peut démontrer tous les résultats de  l'arithmétique. $\color{red}\text{Quel que soit le système, s'il est assez riche pour exprimer l'arithmétique, on peut}$ $\color{red}\text{trouver un énoncé valide qui ne sera  pas démontrable dans ce système}$.  
 
-Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne peut démontrer sa propre cohérence. Par exemple,  les mathématiques enséeignées en CPGE ne peuvent pas établir la  preuve qu'elles sont sans contradiction.  
+$\color{red}\text{Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne peut démontrer}$ $\color{red}\text{sa propre cohérence}$. Par exemple,  les mathématiques enséeignées en CPGE ne peuvent pas établir la  preuve qu'elles sont sans contradiction.  
 
 ## Syntaxe
 
@@ -113,32 +113,33 @@ Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne p
 !!! quote "Définition"
     On considère un alphabet $\Sigma$ constitué :
 
-    - de symboles Vrai et Faux notés V et F,  
-    - de variables propositionnelles en nombre dénombrable notées dans ce cours en lettres romaines a, b, $\dotsb$ , $a_1$, $\dotsb$ , $z_{32}$, $\dotsb$
-    - de deux symboles de parenthèses "(,)" (ouvrante et fermante).  
+    - de symboles **Vrai** et **Faux** notés **V** et **F**,  
+    - de _variables propositionnelles_ en nombre dénombrable notées dans ce cours en lettres romaines $a, b$, $\dotsb$ , $a_1$, $\dotsb$ , $z_{32}$, $\dotsb$
+    - de deux symboles de parenthèses "($,$)" (ouvrante et fermante).  
     - d'un connecteur unaire $\neg$  dit de négation  
-    - de trois connecteurs binaires notés $\vee , \wedge , \rightarrow$ et appelés connecteurs  logiques de disjonction, conjonction et d'implication.  
+    - de trois connecteurs binaires notés $\vee , \wedge , \rightarrow$ et appelés connecteurs logiques de _disjonction_, _conjonction_ et d'_implication_.  
   
 !!! tip ""
     **Remarque**
 
-    - On dit aussi opérateur pour "connecteur"  
+    - On dit aussi _opérateur_ pour "connecteur"  
     - Dans certains cours, on ajoute aussi l'opérateur $\Leftrightarrow$ et le XOR.
     Dans certains autres, seulement $\neg , \vee , \wedge$ , voire même $\neg , \wedge$ .
-    - Le NAND (A NAND B vaut $\neg (A \wedge  B)$) est universel.  
+    - Le **NAND** (A NAND B vaut $\neg (A \wedge  B)$) est _universel_.  
 
 ### Ensemble des propositions
 
 !!! quote "Définition"
-    On appelle langage des propositions le langage défini inductivement par :
+    On appelle _langage des propositions_ le langage défini inductivement par :
+
     - les constantes et les variables propositionnelles sont dans le langage,
-    - si A est dans le langage, alors (A) aussi,
-    - si A est dans le langage $(\neg A)$ aussi, 
-    - si A, B sont dans le langage alors $(A \vee  B)$, $(A \wedge  B)$ et $(A \rightarrow B)$ aussi.  
+    - si $A$ est dans le langage, alors $(A)$ aussi,
+    - si $A$ est dans le langage $(\neg A)$ aussi, 
+    - si $A, B$ sont dans le langage alors $(A \vee  B)$, $(A \wedge  B)$ et $(A \rightarrow B)$ aussi.  
 
 ### Représentation arborescente
 
-$(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d'un arbre binaire (dit  arbre syntaxique) :
+$(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d'un arbre binaire (dit _arbre syntaxique_) :
 
 <p align="center"><img src="/images/logique/logique1.png"></p>
 
@@ -151,7 +152,7 @@ $(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d'un arbre 
 
 On ne note pas les parenthèses autour de la racine.  
 
-On convient (souvent, mais je ne trouve pas ça si commode) que  l'opérateur de négation $\neg$  a priorité sur les autres, que la conjonction  et la disjonction ont priorité sur l'implication, et enfin que la  conjonction a priorité sur la disjonction.  C'est très classique !  
+On convient (souvent, mais je ne trouve pas ça si commode) que  l'opérateur de négation $\neg$  a priorité sur les autres, que la conjonction et la disjonction ont priorité sur l'implication, et enfin que la  conjonction a priorité sur la disjonction. C'est très classique !  
 
 !!!tip ""
     **Remarque**
@@ -182,31 +183,31 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
 ### Contexte
 
 !!! quote "Définition: Un contexte"
-    Un contexte (ou une distribution de vérité) sur un ensemble de variables propositionnelles V est une application de V dans l'ensemble des bouléens B.
+    Un _contexte_ (ou une _distribution de vérité_) sur un ensemble de variables propositionnelles $ν$ est une application de $ν$ dans l'ensemble des bouléens B.
 
 !!! tip ""
     **Remarque**
 
-    - Si |V| = n, alors il y a 2n distributions de vérité.
+    - Si $|ν| = n$ alors il y a $2^n$ distributions de vérité.
     - L'ensemble des bouléens peut être représenté de différentes façons.
-    - Dans ce cours, on pose B = {0, 1}, et on identifie B avec l'anneau $\mathbb{Z}/2\mathbb{Z}$ (donc 1 + 1 = 0 en particulier.)
-    - La multiplication est l'interprétation de la conjonction, 0 celle de F, 1  celle de V, l'addition celle du XOR.  
+    - Dans ce cours, on pose $β = {0, 1}$, et on identifie $β$ avec l'anneau $\mathbb{Z}/2\mathbb{Z}$ (donc $1 + 1 = 0$ en particulier.)
+    - La multiplication est l'interprétation de la conjonction, 0 celle de **F**, $1$ celle de **V**, l'addition celle du XOR.  
 
 ### Interprétation
 
 !!! quote "Définition: Une évaluation / interprétation"
-    Soit µ un contexte sur un ensemble de variables V à valeur dans B = Z/2Z. On appelle évaluation (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur  l'ensemble des propositions par :
+    Soit $µ$ un contexte sur un ensemble de variables $ν$ à valeur dans $β = ℤ/2ℤ$. On appelle _évaluation_ (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur l'ensemble des propositions par :
 
     - $\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0$
     - pour toute variable $v \in V, \varepsilon_\mu(v ) = \mu(v )$
     - pour toute expression $p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p)$
     - pour toutes expressions $p1$ et $p2$ : 
   
-    $$\begin{align}
-        \varepsilon_\mu(p_1 \wedge p_2) &= \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
-        \varepsilon_\mu(p_1 \vee p_2) &= \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
-         \varepsilon_\mu(p_1 \rightarrow p_2) &= 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1).
-    \end{align}$$
+    $$\begin{matrix}
+        \varepsilon_\mu(p_1 \wedge p_2) &=& \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
+        \varepsilon_\mu(p_1 \vee p_2) &=& \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
+         \varepsilon_\mu(p_1 \rightarrow p_2) &=& 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1).
+    \end{matrix}$$
 
 !!! tip ""
     **Remarque**
@@ -215,18 +216,18 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
 
 ### Implication
 
-- Comme on va le voir a $\rightarrow$ b est sémantiquement équivalent à  $\neg$a $\vee$ b, c'est à dire que les deux propositions ont la même valeur de  vérité pour toute interprétation.
+- Comme on va le voir $a \rightarrow b$ est _sémantiquement_ équivalent à  $\neg a \vee b$, c'est à dire que les deux propositions ont la même valeur de  vérité pour toute interprétation.
 - L'interprétation de l'implication donnée au transparent précédent  s'obtient par calcul :  
 
 $$
-\begin{align}
+\begin{matrix}
 \varepsilon_\mu((\neg p_1) \vee  p_2)
-    &=  \varepsilon_\mu(\neg p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(\neg p_1)\varepsilon_\mu(p_2)  \\
-    &= (1 − \varepsilon_\mu(p_1)) + \varepsilon_\mu(p_2) − (1 − \varepsilon_\mu(p_1))\varepsilon_\mu(p_2)  \\
-    &= 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_2) + \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)  \\
-    &= 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1)  \\
-    &=\varepsilon_\mu(p_1 \rightarrow  p_2)
-\end{align}
+    &=&  \varepsilon_\mu(\neg p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(\neg p_1)\varepsilon_\mu(p_2)  \\
+    &=& (1 − \varepsilon_\mu(p_1)) + \varepsilon_\mu(p_2) − (1 − \varepsilon_\mu(p_1))\varepsilon_\mu(p_2)  \\
+    &=& 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_2) + \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)  \\
+    &=& 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1)  \\
+    &=&\varepsilon_\mu(p_1 \rightarrow  p_2)
+\end{matrix}
 $$
 
 ### Tables de vérité
@@ -236,17 +237,17 @@ $$
 ### Equivalence sémantique
 
 !!! quote "Définition: Sémantiquement équivalent"
-    Deux propositions p, q sont dites sémantiquement équivalentes si elles ont même table de vérité. Ceci revient à dire que pour tout contexte $\mu$, si $\varepsilon_\mu$ de l'une vaut 1, alors pour l'autre aussi.On note p $\equiv$ q.
+    Deux propositions $p, q$ sont dites _sémantiquement équivalentes_ si elles ont même table de vérité. Ceci revient à dire que pour tout contexte $\mu$, si $\varepsilon_\mu$ de l'une vaut $1$, alors pour l'autre aussi.On note $p$ $\equiv$ $q$.
 
 !!! quote "Définition: Tautologie"
-    On dit qu'une proposition p est une tautologie lorsque p $\equiv$ V (c'est à dire que la dernière colonne de sa table de vérité ne contient que des 1).
+    On dit qu'une proposition p est une _tautologie_ lorsque $p$ $\equiv$ $V$ (c'est à dire que la dernière colonne de sa table de vérité ne contient que des $1$).
 
 !!! tip ""
     **Remarque**
 
     - Par exemple $a \wedge V$ est sémantiquement équivalente à $a$.  
     - Montrer que le tiers exclu $a \vee \neg a$ est une tautologie.  
-    - Certains auteurs parlent d'équivalence logique.  
+    - Certains auteurs parlent d'_équivalence logique_.  
 
 ### XOR
 
@@ -264,21 +265,24 @@ $$
     0 & 0 & 0
     \end{array}$$
 
+!!!tip "Correction"
+
+    $(¬ A ∧ ¬ B) ∧ (A ∨ B)$
+
 ### Priorités
 
-- Les opérateurs $\wedge$  et $\vee$  sont associatifs : en conséquence on peut écrire  ((a $\vee$  b) $\vee$  (c $\vee$  d)) comme a $\vee$  b $\vee$  c $\vee$  d
-- $\rightarrow$  n'est pas associatif : a $\rightarrow$  (b $\rightarrow$  c) n'est pas sémantiquement  équivalent à (a $\rightarrow$  b) $\rightarrow$  c
+- Les opérateurs $\wedge$  et $\vee$  sont associatifs : en conséquence on peut écrire  (($a \vee b$) $\vee$  ($c$ $\vee$  $d$)) comme $a \vee  b \vee  c \vee  d$
+- $\rightarrow$  n'est pas associatif : $a$ $\rightarrow$  ($b$ $\rightarrow$  $c$) n'est pas sémantiquement  équivalent à ($a$ $\rightarrow$  $b$) $\rightarrow$  c
 - Exercice : montrer ces assertions par des tables de vérité.  
-- L'implication n'est pas associative mais par convention  A $\rightarrow$  B $\rightarrow$  C $\rightarrow$  D se lit A $\rightarrow$  (B $\rightarrow$  (C $\rightarrow$  D)).
+- L'implication n'est pas associative mais par convention  $A$ $\rightarrow$  $B$ $\rightarrow$  $C$ $\rightarrow$  $D$ se lit $A$ $\rightarrow$  ($B$ $\rightarrow$  ($C$ $\rightarrow$  $D$)).
 
-Observer l'analogie avec une fonction f de type `a->b->c->d` en  Ocaml : f x est de type `b->c->d`.  
+Observer l'analogie avec une fonction f de type `a->b->c->d` en  **OCaml** : `f x` est de type `b->c->d`.  
 
 ### D'autres opérateurs
 
 !!!example "Exercice"
+
     - Montrer qu'on peut se passer de l'opérateur d'implication.  
-    -  On définit l'opérateur binaire NOR ainsi : NOR(a, b) a la table de  $\neg (a \vee  b)$. Montrer que NOR(a, b) est sémantiquement équivalent à  $\neg a \wedge\neg$ b (seconde loi de De Morgan).  
-    - L'opérateur binaire NAND est défini ainsi : NAND(a, b) a la table de $\neg (a \wedge  b)$. Montrer que NAND(a, b) est sémantiquement équivalent à  $\neg a \vee  \neg b$ (première loi de De Morgan).
     - L'opérateur binaire $\Leftrightarrow$ est défini ainsi : $a \Leftrightarrow  b$ a la table de  $(a \rightarrow b) \wedge  (b \rightarrow   a)$. Montrer que $a$ XOR $b$ est sémantquement  équivalent à $\neg (a \Leftrightarrow  b)$.  
 
 ???example "Calcul à partir de l'arbre syntaxique"
@@ -297,14 +301,14 @@ Observer l'analogie avec une fonction f de type `a->b->c->d` en  Ocaml : f x est
 
 ## Satisfiabilité  
 
-### Tautologie
+### Tautologies
 
 #### Tautologie, proposition satisfiable
 
 !!! quote "Définition: Tautologie, modèle et antilogie"
-    - On appelle tautologie toute expression évaluée à 1 dans tout contexte.
-    - Une proposition p est dite satisfiable si il existe un contexte $\mu$ tel que  $\varepsilon_\mu(p) = 1$. On dit que $\mu$ est un modèle de p et on note $\mu \models p$.  
-    - Une proposition qui n'est pas satisfiable est apellée une antilogie. On  dit aussi que l'expression est insatisfiable.  
+    - On appelle _tautologie_ toute expression évaluée à $1$ dans tout contexte.
+    - Une proposition $p$ est dite _satisfiable_ ou _satisfaisable_ si il existe un contexte $\mu$ tel que  $\varepsilon_\mu(p) = 1$. On dit que $\mu$ est un modèle de $p$ et on note $\mu \models p$.  
+    - Une proposition qui n'est pas satisfiable est apellée une _antilogie_. On  dit aussi que l'expression est _insatisfiable_.  
 
 !!! example ""
     **Exemples**
@@ -317,12 +321,12 @@ Observer l'analogie avec une fonction f de type `a->b->c->d` en  Ocaml : f x est
 #### Notation
 
 !!!note ""
-    - Pour indiquer qu'une proposition a est sémantiquement équivalente à  une proposition b, il n'est pas suﬃsant d'écrire $a \Leftrightarrow b$.
+    - Pour indiquer qu'une proposition $a$ _est sémantiquement équivalente_ à  une proposition $b$, il n'est pas suﬃsant d'écrire $a \Leftrightarrow b$.
     - En effet $a \Leftrightarrow b$ est juste une proposition. Celle-ci peut être  satisfiable ou non (peut-être même pas, comme $V \Leftrightarrow F$ ).  
-    - La bonne fa_on d'indiquer cette équivalence est de déclarer  "$a \Leftrightarrow b$ est une tautologie".
-    - Les mathématiciens sont parfois paresseux : il leur arrive d'écrire  "$a \Leftrightarrow b$" au lieu de "$a \Leftrightarrow b$ est vraie (ce qui signifie vraie  pour tout contexte)".  
+    - La bonne façon d'indiquer cette équivalence est de déclarer  "$a \Leftrightarrow b$ est une tautologie".
+    - Les mathématiciens sont parfois paresseux : il leur arrive d'écrire  "$a \Leftrightarrow b$" au lieu de "$a \Leftrightarrow b$ est _vraie_ (ce qui signifie vraie  pour tout contexte)".  
     - On écrit $a \equiv b$ pour indiquer que $a \Leftrightarrow b$ est une tautologie.  
-    - Attention, "$\equiv$" n'est pas un opérateur (il n'appartient pas au  langage) mais un méta-opérateur.  
+    - Attention, "$\equiv$" n'est pas un opérateur (il n'appartient pas au  langage) mais un _méta-opérateur_.  
 
 A ce propos, un principe empirique est que, pour exprimer des idées  sur un langage, il faut souvent "sortir" du langage.  
 
