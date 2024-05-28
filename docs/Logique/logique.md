@@ -79,10 +79,10 @@ Une preuve de mathématiques constructives est bien adaptée à  l'informatique 
 
 Dans les théories de la logique mathématique, on considère deux  points de vue dits _syntaxique_ et _sémantique_, c'est le cas en calcul des  propositions.  
 
-- La forme : Aspect syntaxique. Il s'agit de définir le langage du calcul des propositions par les règles d'écriture des propositions. On décrit donc ce qu'EST une proposition.  
-- Le fond : Aspect sémantique. Il s'agit de donner un _sens_ aux symboles représentant les connecteurs logiques. Il y a deux façons de donner un tel sens :
-  - Soit par _sémantique_ : en munissant d' une _interprétation_ (un sens) les connecteurs logique. On peut alors définir inductivement une interprétation pour toute proposition complexe. Ex: table de vérité.
-  - Soit par _déduction_ : On se donne des règles purement syntaxiques qui permettent de déduire une proposition d'un ensemble d'autres : les _règles d'inférence_ (Par exemple : _calcul des séquents_ ou _déduction naturelle_).
+- La _forme_ : Aspect syntaxique. Il s'agit de définir le langage du calcul des propositions par les règles d'écriture des propositions. On décrit donc ce qu'EST une proposition.  
+- Le _fond_ : Aspect sémantique. Il s'agit de donner un _sens_ aux symboles représentant les connecteurs logiques. Il y a deux façons de donner un tel sens :
+    - Soit par _sémantique_ : en munissant d' une _interprétation_ (un sens) les connecteurs logique. On peut alors définir inductivement une interprétation pour toute proposition complexe. Ex: table de vérité.
+    - Soit par _déduction_ : On se donne des règles purement syntaxiques qui permettent de déduire une proposition d'un ensemble d'autres : les _règles d'inférence_ (Par exemple : _calcul des séquents_ ou _déduction naturelle_).
   On ne se préoccupe donc pas du sens, juste de la déductibilité.
 
 ### Sémantique VS déduction
@@ -104,7 +104,7 @@ Le calcul des prédicats est $\color{red}\text{complet : ce qui est vrai est pro
 
 Aucun système logique cohérent (comme la déduction naturelle ou le  calcul des séquents) ne peut démontrer tous les résultats de  l'arithmétique. $\color{red}\text{Quel que soit le système, s'il est assez riche pour exprimer l'arithmétique, on peut}$ $\color{red}\text{trouver un énoncé valide qui ne sera  pas démontrable dans ce système}$.  
 
-$\color{red}\text{Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne peut démontrer}$ $\color{red}\text{sa propre cohérence}$. Par exemple,  les mathématiques enséeignées en CPGE ne peuvent pas établir la  preuve qu'elles sont sans contradiction.  
+$\color{red}\text{Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne peut}$ $\color{red}\text{démontrer sa propre cohérence}$. Par exemple,  les mathématiques enséeignées en CPGE ne peuvent pas établir la  preuve qu'elles sont sans contradiction.  
 
 ## Syntaxe
 
@@ -333,70 +333,76 @@ A ce propos, un principe empirique est que, pour exprimer des idées  sur un lan
 #### Notion de conséquence
 
 !!! quote "Définition: Conséquence"
-    On considère une expression logique p et $\chi$ un ensemble d'expressions logiques. On dit que p est une conséquence de $\chi$ si toute interprétation qui satisfait toutes les formules de l'ensemble $\chi$ satisfait p. Si c'est le cas, on note : $\chi \models p$.
+    On considère une expression logique $p$ et $\chi$ un ensemble d'expressions logiques. On dit que $p$ est une _conséquence_ de $\chi$ si toute interprétation qui satisfait toutes les formules de l'ensemble $\chi$ satisfait $p$. Si c'est le cas, on note : $\chi \models p$.
 
 !!!note "Notation"
-    Si $\chi = \left \{  h_1, \dotsb , h_n \right \}$, on écrit aussi $h_1, \dotsb , h_n \models p$.  Si $\chi = \left \{h \right \}$, on écrit $h \models p$  Par convention, $\models p$ indique que p est une tautologie.  
+    Si $\chi = \left \{  h_1, \dotsb , h_n \right \}$, on écrit aussi $h_1, \dotsb , h_n \models p$.  Si $\chi = \left \{h \right \}$, on écrit $h \models p$  Par convention, $\models p$ indique que $p$ est une tautologie.  
 
 #### Propriétés de $\Leftrightarrow$
 
-Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des  tautologies :
+Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
 !!!note "Proporiété de $\Leftrightarrow$"
-    - Réflexivité $p_1 \Leftrightarrow p_1$
-    - Symétrie $(p_1 \Leftrightarrow p_2) \Leftrightarrow (p_2 \Leftrightarrow p_1)$
-    - Transitivité $((p_1 \Leftrightarrow p_2) \wedge  (p_2 \Leftrightarrow p_3)) \Leftrightarrow (p_1 \Leftrightarrow p_3)$
+
+    - **Réflexivité** $p_1 \Leftrightarrow p_1$
+    - **Symétrie** $(p_1 \Leftrightarrow p_2) \Leftrightarrow (p_2 \Leftrightarrow p_1)$
+    - **Transitivité** $((p_1 \Leftrightarrow p_2) \wedge  (p_2 \Leftrightarrow p_3)) \Leftrightarrow (p_1 \Leftrightarrow p_3)$
 
 #### Propriétés de $\wedge$
 
 Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
 !!!note "Proporiété de $\wedge$"
-    - Elément neutre $(p_1 \wedge  V ) \Leftrightarrow p_1$
-    - Elément absorbant $(p_1 \wedge  F )\Leftrightarrow F$
-    - Commutativité $(p_1 \wedge  p_2) \Leftrightarrow (p_2 \wedge  p_1)$
-    - Associativité $(p_1 \wedge  (p_2 \wedge  p_3))\Leftrightarrow ((p_1 \wedge  p_2) \wedge  p_3)$
-    - Idempotence $(p_1 \wedge  p_1) \Leftrightarrow p_1$
+
+    - **Élément neutre** $(p_1 \wedge  V ) \Leftrightarrow p_1$
+    - **Élément absorbant** $(p_1 \wedge  F )\Leftrightarrow F$
+    - **Commutativité** $(p_1 \wedge  p_2) \Leftrightarrow (p_2 \wedge  p_1)$
+    - **Associativité** $(p_1 \wedge  (p_2 \wedge  p_3))\Leftrightarrow ((p_1 \wedge  p_2) \wedge  p_3)$
+    - **Idempotence** $(p_1 \wedge  p_1) \Leftrightarrow p_1$
 
 #### Propriétés de $\vee$
 
 Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
 !!!note "Propriétés de $\vee$"
-    - Elément neutre $(p_1 \vee  F ) \Leftrightarrow p_1$
-    - Elément absorbant $(p_1 \vee  V ) \Leftrightarrow V$
-    - Commutativité $(p_1 \vee  p_2) \Leftrightarrow (p_2 \vee  p_1)$
-    - Associativité $(p_1 \vee  (p_2 \vee  p_3)) \Leftrightarrow ((p_1 \vee  p_2) \vee  p_3)$
-    - Idempotence $(p_1 \vee  p_1) \Leftrightarrow p_1$
+
+    - **Élément neutre** $(p_1 \vee  F ) \Leftrightarrow p_1$
+    - **Élément absorbant** $(p_1 \vee  V ) \Leftrightarrow V$
+    - **Commutativité** $(p_1 \vee  p_2) \Leftrightarrow (p_2 \vee  p_1)$
+    - **Associativité** $(p_1 \vee  (p_2 \vee  p_3)) \Leftrightarrow ((p_1 \vee  p_2) \vee  p_3)$
+    - **Idempotence** $(p_1 \vee  p_1) \Leftrightarrow p_1$
 
 #### Relations entre $\vee$  et $\wedge$
 
 Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
 !!!example ""
-    - Subsomption $(p_1 \vee  (p_1 \wedge  p_2)) \Leftrightarrow p_1$
-    - Subsomption $(p_1 \wedge  (p_1 \vee  p_2)) \Leftrightarrow p_1$
-    - Distributivité $(p_1 \wedge  (p_2 \vee  p_3)) \Leftrightarrow (p_1 \wedge  p_2) \vee  (p_1 \wedge  p_3)$
-    - Distributivité $(p_1 \vee  (p_2 \wedge  p_3)) \Leftrightarrow (p_1 \vee  p_2) \wedge  (p_1 \vee  p_3)$
-    - Première loi de De Morgan $\neg (p_1 \wedge  p)_2 \Leftrightarrow (\neg p_1) \vee  (\neg p_2)$
-    - Seconde loi de De Morgan $\neg (p_1 \vee  p_2) \Leftrightarrow (\neg p_1) \wedge  (\neg p_2)$
+
+    - **Subsomption** $(p_1 \vee  (p_1 \wedge  p_2)) \Leftrightarrow p_1$
+    - **Subsomption** $(p_1 \wedge  (p_1 \vee  p_2)) \Leftrightarrow p_1$
+    - **Distributivité** $(p_1 \wedge  (p_2 \vee  p_3)) \Leftrightarrow (p_1 \wedge  p_2) \vee  (p_1 \wedge  p_3)$
+    - **Distributivité** $(p_1 \vee  (p_2 \wedge  p_3)) \Leftrightarrow (p_1 \vee  p_2) \wedge  (p_1 \vee  p_3)$
+    - **Première loi de De Morgan** $\neg (p_1 \wedge  p)_2 \Leftrightarrow (\neg p_1) \vee  (\neg p_2)$
+    - **Seconde loi de De Morgan** $\neg (p_1 \vee  p_2) \Leftrightarrow (\neg p_1) \wedge  (\neg p_2)$
 
 #### Propriétés de $\rightarrow$
 
 Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des tautologies :
 
 !!!note "Propriétés de $\rightarrow$"
-    - Modus ponens $(p_1 \wedge  (p _1\rightarrow  p_2)) \rightarrow  p_2$
-    - Double implication $((p_1 \rightarrow  p_2) \wedge  (p_2 \rightarrow  p_1)) \Leftrightarrow (p_1 \Leftrightarrow p_2)$
+
+    - **Modus ponens** $(p_1 \wedge  (p _1\rightarrow  p_2)) \rightarrow  p_2$
+    - **Double implication** $((p_1 \rightarrow  p_2) \wedge  (p_2 \rightarrow  p_1)) \Leftrightarrow (p_1 \Leftrightarrow p_2)$
 
 #### Raisonnement en mathématiques
 
 Pour toutes propositions $p_1, p_2$, les propositions suivantes sont des tautologies :
 
 !!!note ""
-    - Disjonction de cas $((p_1 \rightarrow  p_2) \wedge  (\neg p_1 \rightarrow  p_2)) \Leftrightarrow p_2$
-    - Contraposition $(p_1 \rightarrow  p_2) \Leftrightarrow (\neg p_2 \rightarrow  \neg p_1)$
-    - Raisonnement par l'absurde $(\neg p_1 \rightarrow  F ) \Leftrightarrow p_1$
+
+    - **Disjonction de cas** $((p_1 \rightarrow  p_2) \wedge  (\neg p_1 \rightarrow  p_2)) \Leftrightarrow p_2$
+    - **Contraposition** $(p_1 \rightarrow  p_2) \Leftrightarrow (\neg p_2 \rightarrow  \neg p_1)$
+    - **Raisonnement par l'absurde** $(\neg p_1 \rightarrow  F ) \Leftrightarrow p_1$
 
 !!!example "Exercice"
     Montrer qu'on a bien des tautologies en consruisant des tables de vérité.
@@ -405,18 +411,18 @@ Pour toutes propositions $p_1, p_2$, les propositions suivantes sont des tautolo
 
 #### Ecriture simplifiée
 
-Pour travailler avec une proposition p, il est souvent utile de  considérer une expression sémantiquement équivalente à p mais plus  simple :  
+Pour travailler avec une proposition $p$, il est souvent utile de considérer une expression sémantiquement équivalente à $p$ mais plus simple :  
 
-- Ce peut être une version standardisée, dite normale (Analogie :  $\frac{6}{4}$ a pour forme normale $\frac{3}{2}$ )
-- ou encore une version avec moins de connecteurs : F pour $a \wedge  (\neg a)$ (Analogie : 6 pour 1 + 2 + 3).  
+- Ce peut être une version standardisée, dite _normale_ (Analogie :  $\frac{6}{4}$ a pour forme normale $\frac{3}{2}$ )
+- ou encore une version avec moins de connecteurs : $F$ pour $a \wedge  (\neg a)$ (Analogie : $6$ pour $1 + 2 + 3$).  
 
 #### Littéraux
 
 !!! quote "Définition: Littéral"
-    On appelle littéral toute proposition de la forme v ou $\neg$v où v est une variable propositionnelle.
+    On appelle _littéral_ toute proposition de la forme $v$ ou $\neg$v où v est une variable propositionnelle.
 
 !!! quote "Définition: Conjonction et disjonction"
-    On appelle conjonction (resp. disjonction) des propositions $p_1, \dotsb , p_n$ (n $\geq$ 1), la proposition
+    On appelle _conjonction_ (resp. disjonction) des propositions $p_1, \dotsb , p_n$ (n $\geq$ 1), la proposition
     $p_1 \wedge  p_2 \dotsb \wedge  p_n$ (resp. $p_1 \vee  p_2 \dotsb \vee  p_n$)
 
 !!! tip ""
@@ -424,40 +430,40 @@ Pour travailler avec une proposition p, il est souvent utile de  considérer une
 
     Par convention :
 
-    - Une conjonction de 0 proposition est V  
-    - Une disjonction de 0 proposition est F  
+    - Une conjonction de $0$ proposition est $V$  
+    - Une disjonction de $0$ proposition est $F$  
     - Tout littéral est à la fois une conjonction et une disjonction.  
 
 #### Clauses, Monômes
 
 !!! quote "Définition: Clause"
-    On appelle clause toute disjonction de littéraux. F , disjonction de zéro littéral, est appelé la clause vide. (Moyen mnémotechnique : claUse $\leftrightarrow \cup  \leftrightarrow \vee$ )
+    On appelle _clause_ toute disjonction de littéraux. $F$ , disjonction de zéro littéral, est appelé la _clause vide_. (Moyen mnémotechnique : cla**U**se $\leftrightarrow \cup  \leftrightarrow \vee$ )
 
 !!! quote "Définition: Monôme"
-    On appelle monôme toute conjonction de littéraux. V , conjonction de zéro littéral, est appelé le monôme vide. (Moyen mnémotechnique : mon**ô**me $\leftrightarrow \wedge$)
+    On appelle _monôme_ toute conjonction de littéraux. V , conjonction de zéro littéral, est appelé le _monôme vide_. (Moyen mnémotechnique : mon**ô**me $\leftrightarrow \wedge$)
 
 !!! quote "Définition: Forme normale conjonctive"
-    On appelle forme normale conjonctive (FNC) toute conjonction de clauses et forme normale disjonctive (FND) toute disjonction de monômes.
+    On appelle _forme normale conjonctive_ (FNC) toute conjonction de clauses et _forme normale disjonctive_ (FND) toute disjonction de monômes.
 
 #### forme normale conjonctive/disjonctive
 
 !!! warning ""
     **Proposition**
 
-    Toute proposition est sémantiquement équivalente à une forme normale conjonctive (resp. forme normale disjonctive).
+    Toute proposition est _sémantiquement équivalente_ à une _forme normale conjonctive_ (resp. _forme normale disjonctive_).
 
 !!! tip ""
     **Remarque**
 
-    - Fait : On n'a besoin que des 3 opérateurs $\neg , \vee , \wedge$
+    - Fait : On n'a besoin que des $3$ opérateurs $\neg , \vee , \wedge$
     - Convertir une proposition en forme normale conjonctive requiert  l'utilisation de règles de transformation logiques, comme l'élimination de double négations, les lois de De Morgan, et la loi de distributivité.
     - Principe : ramener la négation "au contact" des variables (de Morgan), "remonter" les $\wedge$ (distibutivité) et supprimer les $\neg \neg$. Par exemple, si $v_1, v_2, v_3, v_4$ sont des variables :
     
-    $$\begin{align}
-    \underset{\textsf{F. ni conjonctive ni disjonctive}}{\underbrace{\neg(v_1\wedge (v_2\vee \neg v_3)) \vee v_4}} &\equiv \neg v_1 \vee \neg(v_2 \vee \neg v_3) \vee v_4 \\ 
-    &\equiv \neg v_1 \vee (\neg v_2 \wedge \neg \neg v_3) \vee v_4 \\
-    &\equiv (\neg v_1 \vee \neg v_2 \vee v_4) \wedge (\neg v_1 \vee v_3 \vee v_4)
-    \end{align}$$
+    $$\begin{matrix}
+    \underset{\textsf{F. ni conjonctive ni disjonctive}}{\underbrace{\neg(v_1\wedge (v_2\vee \neg v_3)) \vee v_4}} &\equiv& \neg v_1 \vee \neg(v_2 \vee \neg v_3) \vee v_4 \\ 
+    &\equiv& \neg v_1 \vee (\neg v_2 \wedge \neg \neg v_3) \vee v_4 \\
+    &\equiv& (\neg v_1 \vee \neg v_2 \vee v_4) \wedge (\neg v_1 \vee v_3 \vee v_4)
+    \end{matrix}$$
 
     - Les formes normales conjonctives ou disjonctives de littéraux ne sont  en général pas uniques !  
 
