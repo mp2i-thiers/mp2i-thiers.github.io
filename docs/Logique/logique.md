@@ -445,6 +445,11 @@ Pour travailler avec une proposition $p$, il est souvent utile de considérer un
 !!! quote "Définition: Forme normale conjonctive"
     On appelle _forme normale conjonctive_ (FNC) toute conjonction de clauses et _forme normale disjonctive_ (FND) toute disjonction de monômes.
 
+!!! tip ""
+    **Remarque**
+
+    On considère implicitement qu'il n'y a pas $2$ fois la même variable dans une clause ou monôme.
+
 #### forme normale conjonctive/disjonctive
 
 !!! warning ""
@@ -488,9 +493,9 @@ Pour travailler avec une proposition $p$, il est souvent utile de considérer un
 
 #### Réécriture
 
-Pour obtenir une FNC à partir d'une propositioon p :
+Pour obtenir une FNC à partir d'une proposition $p$ :
 
-- Supprimer les constantes : V est remplacé par $v \vee \neg v$ ; F par $v \wedge \neg v$ où $v$ est une variable.
+- Supprimer les constantes : $V$ est remplacé par $v \vee \neg v$ ; $F$ par $v \wedge \neg v$ où $v$ est une variable.
 - Supprimer les implications : on exprime la proposition uniquement avec des $\neg, \vee, \wedge$
 - On descend $\neg$ par les lois de De Morgan au contact des variables.
 -On applique la distributivité pour faire descendre les $\vee$ et remonter les $\wedge$.
@@ -510,10 +515,10 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
 
     Récurrence sur la taille de la proposition p. 
     
-    HR : p est équivalente à FNC.
+    **HR** : $p$ est équivalente à FNC.
 
-    - Si p est un littéral : ok.
-    - Si p = $\neg$q, on applique l'hypothèse de récurrence à q qui s'écrit donc  $c_1 \wedge  \dotsb \wedge  c_n$ où les $c_i$ sont des clauses.
+    - Si $p$ est un littéral : ok.
+    - Si $p = \neg q$, on applique l'hypothèse de récurrence à $q$ qui s'écrit donc  $c_1 \wedge  \dotsb \wedge  c_n$ où les $c_i$ sont des clauses.
     
         - Par les lois de De Morgan, chaque clause $c_i$ s'écrit comme un $\neg m_i$ où  $m_1$ est un monôme mi =  $\bigwedge_{k_i=1}^{n_i} l_{i,k_i}$(les $l_{i,k_i}$ sont des littéraux).
         - Alors par De Morgan (encore) :
@@ -523,13 +528,13 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
         p \equiv \bigvee_{i=1}^n (\bigwedge_{k_i=1}^{n_i} l_{i,k_i})  \underset{\textsf{distributivité}}{\underbrace{\equiv}}~~\overbrace{\underset {\underset {k_n \in [\![1~,~n_n]\!]}{\vdots}}{\bigwedge_{k_1 \in [\![1~;~ n_1]\!]}}\underset{\textsf{clause}}{l_{1,k_1 \vee \dotsb \vee l_{n,k_n}}}}^{\textsf{conjonction de clauses}}
         $$
 
-    - Si $p = f_1 \wedge  f_2,$ par HR $f_1 \equiv p_1 \wedge  \dotsb \wedge  p_n$ et $f_2 \equiv q_1 \wedge  \dotsb \wedge  q_n$ où les  $p_k , q_r$ sont des clauses.  
+    - Si $p = f_1 \wedge  f_2,$ par **HR** $f_1 \equiv p_1 \wedge  \dotsb \wedge  p_n$ et $f_2 \equiv q_1 \wedge  \dotsb \wedge  q_n$ où les  $p_k , q_r$ sont des clauses.  
     $$
     p \underset{\textsf{assoc. de}~\wedge}{\underbrace{\equiv}}  \underset{\textsf{conjonction de clauses}}{\underbrace{p_1 \wedge  \dotsb \wedge  p_{n_1} \wedge  q_1 \wedge  \dotsb \wedge  q_{n_2}}}
     $$
     Ce qu'on veut.  
 
-    - Si p = $f_1 \vee f_2$ alors, par HR, p est équivalent à une formule de la
+    - Si $p = f_1 \vee f_2$ alors, par **HR**, $p$ est équivalent à une formule de la
     forme $(p_1 \wedge \dotsb \wedge p_{n_1} ) \vee (q_1 \wedge \dotsb \wedge q_{n_2} )$ où les $p_i ,q_j$ sont des clauses.
     Et par distributivité :
     $p \equiv \underset{(k_1,k_2)\in [\![1,n_1]\!] \times [\![1, n_2]\!] }{\bigwedge} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}$
@@ -539,10 +544,10 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
 - On sait que toute proposition peut s'exprimer comme conjonction de  clause.
 
 !!!note ""
-    - Soit p une proposition, alors $\neg$p s'écrit sous la forme
+    - Soit $p$ une proposition, alors $\neg$p s'écrit sous la forme
     $\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n$ avec $c_i = l_{i,1} \vee  \dotsb \vee  l_{i,n_i}$ .  
     - Donc $p \equiv \neg \neg p \equiv \neg c_1 \vee  \dotsb \vee  \neg c_n$ par De Morgan.  
-    - Or chaque $\neg c_i$ est équivalent sémantiquement à une conjonction de  littéraux (par De Morgan) : $\neg c_i \equiv \neg l_{i,1} \wedge  \dotsb \wedge  \neg l_{i,n_i}$.
+    - Or chaque $\neg c_i$ est équivalent sémantiquement à une conjonction de littéraux (par De Morgan) : $\neg c_i \equiv \neg l_{i,1} \wedge  \dotsb \wedge  \neg l_{i,n_i}$.
 
 - Donc toute proposition peut s'écrire comme disjonction de monômes.  
 - PB : ces réécritures ne sont pas uniques.  
@@ -551,7 +556,7 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
 
 Considérons la proposition en forme disjonctive :  $(\textsf{x}_1 \wedge  \textsf{y}_1) \vee  (\textsf{x}_2 \wedge  \textsf{y}_2) \vee  \dotsb \vee  (\textsf{x}_n \wedge  \textsf{y}_n)$ de taille linéaire  
 
-Par distributivité, sa FNC, de taille 2n, est de la forme :  
+Par distributivité, sa FNC, de taille $2^n$, est de la forme :  
 
 $$
 \begin{align}
@@ -566,22 +571,22 @@ $$
 !!! quote "Définition: Minterme / Maxterme"
     Soient $v_1, \dotsb , v_n$ des variables distinctes.
 
-    - On appelle minterme de $v_1, \dotsb , v_n$, tout monôme où chaque variable  $v_i$ apparaît exactement une fois (et il n'y a pas d'autre variable).  
-    - On appelle m**A**xterme de $v_1, \dotsb , v_n$, une cl**A**use où chaque variable $v_i$  apparaît exactement une fois (et il n'y a pas d'autre variable).  
+    - On appelle _minterme_ de $v_1, \dotsb , v_n$, tout monôme où chaque variable  $v_i$ apparaît exactement une fois (et il n'y a pas d'autre variable).  
+    - On appelle _m**A**xterme_ de $v_1, \dotsb , v_n$, une cl**A**use où chaque variable $v_i$  apparaît exactement une fois (et il n'y a pas d'autre variable).  
 
 !!! tip ""
     **Remarque**
 
-    Les 4 (à l'ordre près) maxtermes de $v_1$ et $v_2$ sont
+    Les $4$ (à l'ordre près) maxtermes de $v_1$ et $v_2$ sont
     $v_1 \vee  v_2, v_1 \vee  \neg v_2, \neg v_1 \vee  v_2, \neg v_1 \vee  \neg v_2$.  
     On confond les maxtermes $v_1 \vee  v_2$ et $v_2 \vee  v_1$.  
 
 #### Forme normale conjonctive
 
 !!! quote "Définition: Forme normale conjonctive/disjonctive complète"
-    On dit qu'une proposition est en forme normale conjonctive complète (i.e. avec maxtermes) (FNCC), si elle s'écrit comme une conjonction de maxtermes tous distincts.
+    On dit qu'une proposition est en _forme normale conjonctive complète_ (i.e. avec maxtermes) (FNCC), si elle s'écrit comme une conjonction de maxtermes tous distincts.
 
-    On dit qu'une proposition est en forme normale disjonctive complète (i.e. avec mintremes) (FNDC), si elle s'écrit comme une disjonction de mintermes tous distincts.
+    On dit qu'une proposition est en _forme normale disjonctive complète_ (i.e. avec mintremes) (FNDC), si elle s'écrit comme une disjonction de mintermes tous distincts.
 
 !!! tip ""
     **Remarque**
@@ -592,8 +597,25 @@ $$
 
     Utilisation : démonstration automatique de théorèmes ou PB SAT.      
 
-#### Forme normale conjonctive
+!!!example "Exemple"
 
+    Soit $p$ une proposition à $3$ variables dont la table est :
+    $\text{Table de } p$
+    
+    $$\begin{matrix}
+     a & b & c & p //
+     1 & 1 & 1 & 0 //
+     1 & 1 & 0 & '1' //
+     1 & 0 & 1 & '1' //
+     1 & 0 & 0 & 0 //
+     0 & 1 & 1 & '1' //
+     0 & 1 & 0 & 0 //
+     0 & 0 & 1 & 0 //
+     0 & 0 & 0 & 1
+     \end{matrix}$$
+
+    - Lire positivement les variables des lignes à 1 pour la FND
+    - Lire négativement les variables des lignes à 0 pour la FNC
 !!! warning ""
     **Proposition**
 
