@@ -1,25 +1,26 @@
 # Arbre Binaire de Recherche
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d’être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 !!! tip "Crédits"
     - "Option informatique MPSI, MP/MP*", Roger Mansuy, paru chez Vuibert.
-    - Wikipédia : Tas, Tas binaires, Tri par tas
-    - OpenClassRoom Arbres binaires de recherche
+    - Wikipédia : [Tas](https://fr.wikipedia.org/wiki/Tas_(informatique)), [Tas binaires](https://fr.wikipedia.org/wiki/Tas_binaire), [Tri par tas](https://fr.wikipedia.org/wiki/Tri_par_tas)
+    - OpenClassRoom [Arbres binaires de recherche](https://openclassrooms.com/fr/courses/1191906-les-arbres-binaires-de-recherche)
+
+## Arbres binaires de recherche
+
+### ABR
+
+#### BST
 
 !!! quote "Définition: Arbre binaire de recherche"
     Binary search trees (BST)
 
-    Un arbre binaire de recherche (ABR) sur un type totalement ordonné est
-    un arbre binaire tel que pour tout nœud interne, les étiquettes
-    apparaissant dans le sous-arbre gauche (resp.droit) sont strictement$^{1.}$
-    inférieures (resp. supérieures) à celle la racine.
+    Un _arbre binaire de recherche_ (ABR) sur un type totalement ordonné est un arbre binaire tel que pour tout nœud interne, les étiquettes
+    apparaissant dans le sous-arbre gauche (resp.droit) sont strictement$^{a.}$ inférieures (resp. supérieures) à celle la racine.
     
-    $1.$ Selon la mise en œuvre de l’ABR, on pourra interdire ou non des clés de valeur égale.
+    $a.$ Selon la mise en œuvre de l’ABR, on pourra interdire ou non des clés de valeur égale.
 
 _Figure – Un ABR_
 
@@ -39,82 +40,78 @@ graph TB;
     style F display:none
 ```
 
-Les étiquettes de gauche ont des valeurs plus petites que
-celle de la racine, celle de droite sont plus grandes
+Les étiquettes de gauche ont des valeurs plus petites que celle de la racine, celle de droite sont plus grandes
 
-## Arbre binaire de recherche
+#### DSF
 
-### DSF
+On peut facilement récupérer les clés d’un arbre binaire de recherche dans l’ordre croissant en réalisant un parcours en profondeur infixe.
 
-On peut facilement récupérer les clés d’un arbre binaire de recherche dans
-l’ordre croissant en réalisant un parcours en profondeur infixe. Contre exemple:
+!!!example "Contre-exemple"
+_Figure – Un arbre binaire qui n’est pas un ABR_=
 
-_Figure – Un arbre binaire qui n’est pas un ABR_
+    ``` mermaid
+    graph TB;
+        A((6))-->B((4))
+        A-->C((5))
+    ```
 
-``` mermaid
-graph TB; 
-    A((6))-->B((4))
-    A-->C((5))
-```
-
-_Figure – Un ABR pour représenter_ ```[4,5,6]```
-
-``` mermaid
-graph TB; 
-    A((6))-->B((5))
-    A -->Z(( ))
-    B-->C((4))
-    B-->W(( ))
-    style Z display:none
-    style W display:none
-```
-
-_Figure – Un ABR équilibré pour représenter_ ```[4,5,6]```
-
-``` mermaid
-graph TB; 
-    A((5))-->B((6))
-    A-->C((4))
-```
-
-_Figure – Un ABR pour représenter_ ```[4,5,6]```
-
-``` mermaid
-graph TB; 
-    A -->Z(( ))
-    A((4))-->B((5))
-    B-->W(( ))
-    B-->C((6))
-    style Z display:none
-    style W display:none
-```
-
-Passage liste ordonnée/ABR
+#### Passage liste ordonnée / ABR
 
 À une liste ordonnée correspondent plusieurs ABR.
 
-### Type de données pour l'ABR
+???example ""
+    _Figure – Un ABR pour représenter_ ```[4,5,6]```
+
+    ``` mermaid
+    graph TB; 
+        A((6))-->B((5))
+        A -->Z(( ))
+        B-->C((4))
+        B-->W(( ))
+        style Z display:none
+        style W display:none
+    ```
+
+    _Figure – Un ABR équilibré pour représenter_ ```[4,5,6]```
+
+    ``` mermaid
+    graph TB; 
+        A((5))-->B((6))
+        A-->C((4))
+    ```
+
+    _Figure – Un ABR pour représenter_ ```[4,5,6]```
+
+    ``` mermaid
+    graph TB; 
+        A -->Z(( ))
+        A((4))-->B((5))
+        B-->W(( ))
+        B-->C((6))
+        style Z display:none
+        style W display:none
+    ```
+
+### Inmplémentation
+
+#### Type de données pour l'ABR
 
 Nous utiliserons le type suivant:
 
 ``` Ocaml linenums="1" title="Type Arbre"
---8<-- "Type Arbre"
-
 type 'a tree =
-    |Nil
-    |N of 'a * 'a tree * 'a tree;;
+    | Nil
+    | N of 'a * 'a tree * 'a tree;;
 ```
 
 !!! note ""
 
     * Une feuille est implémentée par ```N(x, Nil, Nil)```,
-    * une nœud d’arité 1 par ```N(x, t, Nil)``` ou ```N(x, Nil, t)``` avec x et t de type
+    * une nœud d’arité 1 par ```N(x, t, Nil)``` ou ```N(x, Nil, t)``` avec `x` et `t` de type
     convenable.
-    * Une telle structure modélise les arbres binaires, pas seulement les ABR.
-    C’est lors de la création d’un arbre que nous ferons attention à ce qu’il
-    respecte la contrainte d’ordre.
+    * Une telle structure modélise les arbres binaires, pas seulement les ABR. C’est lors de la _création_ d’un arbre que nous ferons attention à ce qu’il respecte la contrainte d’ordre.
 
-### Primitives pour l'ABR
+#### Primitives pour l'ABR
 
 !!! note ""
 
@@ -123,8 +120,9 @@ type 'a tree =
     * Une fonction de recherche d’une valeur dans un arbre.
     * Une fonction de suppression d’une valeur dans un arbre.
 
+#### Insérer sous une feuille
+
 ``` Ocaml linenums="1" title="Insérer sous une feuille"
---8<-- "Insérer sous une feuille"
 
 let rec insert x t = match t with
     | Nil -> N (x , Nil , Nil )
@@ -141,7 +139,7 @@ let rec insert x t = match t with
         * "Couper" l’arbre en deux sous-ABR $g$ , $d$ contenant respectivement les éléments plus petits et plus grands que $x$.
         * construire l’arbre ```N(x, g, d)```
 
-### Complexité de l’insertion sous une feuille
+#### Complexité de l’insertion sous une feuille
 
 Description informelle pour un arbre de hauteur $h$ à $n$ nœuds.
 
@@ -153,11 +151,9 @@ Description informelle pour un arbre de hauteur $h$ à $n$ nœuds.
     * Donc complexité en $O(h)$.
     * On comprend l’intérêt de "contrôler" $h$. En pratique, on essaye de conserver $h \leq C \log(n)$ pour une certaine constante. Si on arrive à maintenir cette contrainte au fil des insertions, on obtient un arbre équilibré.
 
-### Création d'ABR
+#### Création d'ABR
 
 ``` Ocaml linenums="1" title="Créer un ABR à partir d’une liste "
---8<-- "Créer un ABR à partir d’une liste "
-
 let rec create l = match l with
     | [] -> Nil
     | e :: q -> insert e ( create q ) ;;
@@ -177,7 +173,7 @@ graph TB;
     style E display:none
 ```
 
-### Liste triée
+##### Liste triée
 
 Si la liste est déjà triée, on obtient une liste chaînée.
 
@@ -196,25 +192,25 @@ graph TB;
     style R display:none
 ```
 
-### Complexité de la création
+#### Complexité de la création d'ABR
 
 !!! note ""
 
     * Si la liste est déjà triée, l’ABR n’a qu’une branche.
     * Pour une liste triée de longueur $n$, la complexité vérifie une relation de la forme
 
-    $$ \begin{align}
-    c_n &= c_{n−1} + \underbrace{n}_{\text{cpx insertion}} + \underbrace{c}_{\text{autres opération}}  \\
-    &= c_{n−2} + 2c + n +  \underbrace{n-1}_{\text{cpx insertion}} \\ 
-    &= \text{ ...} \\
-    &= c_0 + nc + \sum\limits_{k=1}^{n}k \\
-    &= \theta(n²)
-    \end{align}$$
+    $$ \begin{matrix}
+    c_n &=& c_{n−1} + \underbrace{n}_{\text{cpx insertion}} + \underbrace{c}_{\text{autres opération}}  \\
+    && \\
+    &=& c_{n−2} + 2c + n +  \underbrace{n-1}_{\text{cpx insertion}} \\ 
+    &=& \text{ ...} \\
+    &=& c_0 + nc + \sum\limits_{k=1}^{n}k \\
+    &=& \theta(n²)
+    \end{matrix}$$
 
-    * On voit l’intérêt de maintenir un certain équilibre dans l’arbre au moment
-    des insertions.
+    * On voit l’intérêt de maintenir un certain équilibre dans l’arbre au moment des insertions.
 
-### Utilité de l’équilibrage des arbres
+#### Utilité de l’équilibrage des arbres
 
 !!! note ""
 
@@ -223,34 +219,34 @@ graph TB;
     * Mais les opérations sur les ABR (insertion, suppression, recherche) ont
     une complexité au pire qui dépend de la hauteur...
     * ... d’où l’idée qu’il faut limiter la hauteur des arbres lors de l’insertion.
-    * C’est le principe du rééquilibrage des ABR.
+    * C’est le principe du _rééquilibrage_ des ABR.
 
-### Création d’un arbre équilibré à partir d’une liste
+#### Création d’un arbre équilibré à partir d’une liste
 
 !!! note ""
 
-    * Un arbre $A$ est dit équilibré lorsque $h(A) = O(\log_{}(|A|))$
+    * Un arbre $A$ est dit _équilibré_ lorsque $h(A) = O(\log_{}(|A|))$
     * Exemple arbres AVL: pour chaque nœud, la différence entre les hauteurs de ses fils (l’un éventuellement vide) est $0$, $1$ ou $−1$.
     * On peut établir que, dans un AVL de taille ${|A| = n} \implies {\frac{3}{2}\log_{2}(n+ 1) \geq h(A)}$
     (cf TD).
+    
     * Autre exemple : arbres Rouge-Noir (cf TD).
     * Dans un arbre équilibré, insérer $x$ se fait en $O(\log_{2}(n))$ appels internes au
     pire plus un nombre borné d’autres opérations en $\Theta(1)$ .
     * Si on maintient le caractère équilibré (le rééquilibrage a un coût
     logarithmique -admis-), le coût de la création à partir d’une liste est donc
-    de l’ordre de $\Theta(\sum\limits_{k=1}^{n}\log_{2}(k)) = \Theta(\log_{2}(n!)) = \Theta(n\log_{2}(n))$
+    de l’ordre de $\Theta \left(\sum\limits_{k=1}^{n}\log_{2}(k)\right) = \Theta\left(\log_{2}(n!)\right) = \Theta\left(n\log_{2}(n)\right)$
 
-### Rechercher
+#### Rechercher
 
 ```OCaml linenums="1"
 let rec search x t = match t with
-(* cherche x dans t *)
-| Nil -> false
-| N (y ,_ , _ ) when y = x - > true
-| N (y ,g , _ ) when x < y -> search x g
-| N (y ,_ , d ) when x > y -> search x d
-| _ -> false ;; (* le laisser sinon ’ this pattern - matching is not
-exhaustive . ’ *)
+    (* cherche x dans t *)
+    | Nil -> false
+    | N (y ,_ , _ ) when y = x - > true
+    | N (y ,g , _ ) when x < y -> search x g
+    | N (y ,_ , d ) when x > y -> search x d
+    | _ -> false ;; (* le laisser sinon ’ this pattern - matching is not exhaustive . ’ *)
 ```
 
 !!! note ""
@@ -259,9 +255,9 @@ exhaustive . ’ *)
     * Si $x$ est à la profondeur $k$, il y a $k$ appels internes pour le trouver.
     * Si $x$ n’est pas dans l’arbre, il y a au pire $h(t)$ appels internes.
 
-### Suppression
+#### Suppression
 
-#### Opération de fusion
+##### Opération de fusion
 
 On veut "fusionner" deux ABR $G$ et $D$ tels que les étiquettes de $G$ sont toutes plus petites que celles de $D$. Ceci afin d’obtenir un ABR unique construit à partir des nœuds des deux arbres.
 
@@ -273,65 +269,113 @@ let rec merge a b = match a , b with
     N (x , ga , N (y , merge da gb , db ) ) ;; 
 ```
 
-Dans cette fusion, la racine de l’arbre gauche devient systématiquement la
-racine de l’arbre retourné. On aurait pu privilégier l’arbre droit.
+Dans cette fusion, la racine de l’arbre gauche devient systématiquement la racine de l’arbre retourné. On aurait pu privilégier l’arbre droit.
 
-```ocaml linenums="1"
-let a1 = N (3 , N (2 , Nil , Nil ) ,N (4 , Nil , Nil ) ) in 
-let a2 = N (30 , N(20 , Nil , Nil ) ,N (40 , Nil , Nil ) ) in
-merge a1 a2 ;;
+!!!example ""
+    ```OCaml linenums="1"
+    let a1 = N (3 , N (2 , Nil , Nil ) ,N (4 , Nil , Nil ) ) in 
+    let a2 = N (30 , N(20 , Nil , Nil ) ,N (40 , Nil , Nil ) ) in
+    merge a1 a2 ;;
 
-(* Et on obtient : *)
-N (3, N (2, Nil, Nil),
-    N (30, N (4 , Nil, N (20, Nil, Nil)),
-        N (40, Nil, Nil)))
-```
+    (* Et on obtient : *)
+    N (3, N (2, Nil, Nil),
+        N (30, N (4 , Nil, N (20, Nil, Nil)),
+            N (40, Nil, Nil)))
+    ```
 
-<p align="center"><img src="/images/abr1.png"></p>
-_Figure – En rouge, la fusion des deux arbres bleus_
+    <p align="center"><img src="/images/abr1.png"></p>
 
-#### Correction de la fusion
+    _Figure – En rouge, la fusion des deux arbres bleus_
+
+##### Correction de la fusion
 
 !!! note "Preuve par induction"
-    On montre que si on fusionne deux ABR $a, b$ tels que max
-    $a ≤ min b$, alors le nouvel arbre formé est un ABR contenant toutes les
-    étiquettes de $a, b$.
 
-    * __Cas de base :__ si un des deux arbres est vide, on renvoie l’autre. C’est un
-    ABR par hyp. et il contient bien toutes les étiquettes des deux arbres.
-    * __Hérédité.__ Soient `a = N(x, ga, da)` et `b = N(y , gb, db)` non vides avec $\max a \leq \min b$.
+    On montre que si on fusionne deux ABR $a, b$ tels que $max a ≤ min b$, alors le nouvel arbre formé est un ABR contenant toutes les étiquettes de $a, b$.
+
+    * __Cas de base :__ si un des deux arbres est vide, on renvoie l’autre. C’est un ABR par hyp. et il contient bien toutes les étiquettes des deux arbres.
+    * __Hérédité.__ Soient $a = N(x, g_a, d_a)$ et $b = N(y , g_b, d_b)$ non vides avec $\max a \leq \min b$.
         * Notre hypothèse d’induction (**HI**) est que la fusion d’un sous-terme immédiats de $a$ avec un sous-terme immédiat de $b$ est un ABR contenant toutes les étiquettes de ses deux sous-termes.
         * La racine du nouvel arbre est $x$ et elle est plus grande que toutes les étiquettes de son fils gauche $g_a$ (puisque $a$ est un ABR).
-        * Le fils droit est `d = N(y , merge(da, gb), db)`. Par (HI) la fusion `merge(da, gb)` est un ABR avec toutes les étiquettes de $d_a, g_b$.
+        * Le fils droit est $d = N(y , merge(d_a, g_b), d_b)$. Par (HI) la fusion `merge(da, gb)` est un ABR avec toutes les étiquettes de $d_a, g_b$.
         * Comme $y$ est supérieur aux étiquettes de $g_b$, elles-mêmes plus grandes que celles de $d_a$, il vient que y est supérieur aux étiquettes de l’ABR résultant de la fusion.
-        * Or $y$ est inférieur aux étiquettes de $d_b$ puisque $b$ est un ABR. Donc `d = N(y , merge(da, gb), db)` est un ABR dont toutes les étiquettes sont aumoins plus grandes que celles de la plus petite de $d_a$. De plus il contient $y$ et toutes les étiquettes de $d_a, g_b, d_b$.
-    * Donc $x$ est plus petit que les étiquettes de $d$ (qui est un ABR) et plus grand que celles de $g_a$ (qui est un ABR) donc `N(x, ga, d)` est un ABR avec toutes les étiquettes de $a, b$.
+        * Or $y$ est inférieur aux étiquettes de $d_b$ puisque $b$ est un ABR. Donc $d = N(y , merge(d_a, g_b), d_b)$ est un ABR dont toutes les étiquettes sont aumoins plus grandes que celles de la plus petite de $d_a$. De plus il contient $y$ et toutes les étiquettes de $d_a, g_b, d_b$.
+    * Donc $x$ est plus petit que les étiquettes de $d$ (qui est un ABR) et plus grand que celles de $g_a$ (qui est un ABR) donc $N(x, g_a, d)$ est un ABR avec toutes les étiquettes de $a, b$.
 
-#### Complexité de la fusion
+##### Complexité de la fusion
 
-* Soient deux ABR $g , d$ :
-Il y a au plus autant d’appels internes que le minimum de hauteur des sous arbres.
-* La complexité est en $\Theta(\min(h(g), h(d)))$
+Soient deux ABR $g , d$ :
 
-```OCaml linenums="1"
+- Il y a au plus autant d’appels internes que le minimum de hauteur des sous arbres.
+- La complexité est en $\Theta(\min(h(g), h(d)))$ où $h(g)$ et $h(d)$ sont les hauteurs respectives de $a, b$.
+- La fusion est une fonction auxiliaire utilisée dans le cadre de la supression d'un noeud d'étiquette donnée. Dans ce cas, les deux arbres à fusionner sont des sous-arbres de l'ABR initial. En notant $h$ la hauteur de l'ABR initial, on a $h(g) = O(h)$ et $h(d) = O(h)$. Il vient donc que la fusion a une complexité temporelle en $\Theta(h)$
+
+##### Code
+
+```OCaml linenums="1" title="Code de la suppression"
 let rec remove x t = match t with (* on commence par chercher x dans t *) 
     | Nil -> failwith " x not found " (* on n’a pas trouvé x *) 
     | N (y,g, d) when x < y -> N (y, remove x g, d) 
-    | N (y,g, d) when x > y -> N (y, g, remove x d) (* A partir d'ici, on a trouvéx *) 
+    | N (y,g, d) when x > y -> N (y, g, remove x d) (* A partir d'ici, on a trouvé x *) 
     | N (y,g, d) when y = x -> merge g d (* fusion des deux sous - arbres *) 
     | _ -> failwith " ne devrait pas arriver ";;
 ```
 
 !!! tip "Remarques"
+
     Lorsque le nœud $A$ d’étiquette $x$ n’a qu’un fils, celui-ci prend la place de son père (on le "remonte").
+
     Si $A$ est une feuille, on se contente de la supprimer (la fusion met `Empty` à la place de $A$).
 
-## Dictionnaire
+### Rotations
+
+#### Rotation droite
+
+Soit un ABR avec $2$ noeuds contenant les valeurs $u,v$ et $3$ sous-arbres $t_1, t_2, t_3$
+
+<p align="center"><img src="/images/abr19.png"></p>
+
+On a (en notant de façon abusive) $t_1 < u < t_2 < v < t_3$
+
+On peut réorganiser l'arbre en conservant la propriété d'ABR :
+
+<p align="center"><img src="/images/abr20.png"></p>
+
+L'inégalité $t_1 < u < t_2 < v < t_3$ assure qu'il s'agit bien d'un ABR; Cette transformation s'appelle _rotation droite_ (car les 2 noeuds $u, v$ ont été déplacés vers la droite).
+
+#### Rotations droite et gauche
+
+L'opération inverse est également possible
+
+<p align="center"><img src="/images/abr21.png"></p>
+
+#### Rééquilibrage
+
+```OCaml linenums="1"
+let rotate_right = function
+    | N(N(t1, u, t2), v, t3) -> N(t1, u, N(t2, v, t3))
+    | t -> t (*Si opération impossible, renvoyer t*)
+
+let rotate_left = function
+    | N(t1, u, N(t2, v, t3)) -> N(N(t1, u, t2), v, t3)
+    | t -> t (*Si opération impossible, renvoyer t*)
+```
+
+- Ces deux rotation constituent l'outil principal de rééquilibrage des ABR.
+- Lorsqu'un arbre se retrouve déséquilibré parce qu'il commence à "trop pencher d'un côté", on utilise une ou plusieurs rotations pour le ramener à un arbre plus équilibré.
+
+## Dictionnaires
+
+### Dictionnaire
 
 !!! quote "Définition: Tableau associatif"
-    Tableau associatif (aussi appelé dictionnaire ou table d’association) : type de données associant à un ensemble de clefs un ensemble correspondant de valeurs. Chaque clef est associée à une valeur unique : un dictionnaire correspond donc à une application en mathématiques. Il peut être vu comme une généralisation du tableau dont les indices ne serait pas nécessairement des entiers.
+    _Tableau associatif_ (aussi appelé _dictionnaire_ ou _table d’association_) : type de données associant à un ensemble de _clefs_ un ensemble correspondant de _valeurs_.
 
-__Opérations usuellement fournies:__
+    Chaque clef est associée à une valeur unique : un dictionnaire correspond donc à une application en mathématiques.
+    
+    Il peut être vu comme une généralisation du tableau dont les indices ne serait pas nécessairement des entiers.
+
+#### Opérations usuellement fournies
 
 !!! note ""
 
@@ -342,6 +386,16 @@ __Opérations usuellement fournies:__
 
     Les dictionnaires peuvent être implémentés concrètement par des ABR. Ce sont alors des données persistantes. L’ensemble des clés doit être totalement ordonné. Les étiquettes des nœuds de l’ABR sont des couples (clés, valeurs) et le placement d’un nœud dans l’arbre est fait selon sa clé et non sur sa valeur. En OCAML, explorons $3$ façons de définir les dictionnaires.
 
+### Implémentation de dictionnaire
+
+Les dictionnnaires peuvent être implémentés concrètement par des ABR. Ce sont alors des données persistantes.
+
+L'ensemble des clés doit totalement être ordonné.
+
+Les étiquettes des noeuds de l'ABR sont des couples (clés, valeurs) et le placement d'un noeud dans l'arbre est fait selon sa clé et non sa valeur.
+
+En **OCaml**, explorons 3 façons de définir les dictionnaires.
+
 ### Dictionnaires par liste de paires
 
 Méthode la plus simple. Persistante.
@@ -351,6 +405,7 @@ Méthode la plus simple. Persistante.
 let m = [ " Sally Smart ", " 555 -9999 " ;
     " John Doe ", " 555 -1212 " ;
     " J.Random Hacker ", " 553 -1337 " ];;
+
 List.assoc " John Doe " m;;
 (* # - : string = " 555 -1212 " *)
 ```
@@ -359,26 +414,22 @@ List.assoc " John Doe " m;;
 
 !!! note ""
 
-    * Les arbres AVL ont été historiquement les premiers arbres binaires de
-    recherche automatiquement équilibrés.
-    * Dans un arbre AVL, les hauteurs des deux sous-arbres d’un même nœud
-    diffèrent au plus de un.
-    * La recherche, l’insertion et la suppression sont toutes en $O(\log_{2}(n))$ dans
-    le pire des cas.
-    * L’insertion et la suppression nécessitent d’effectuer des rotations
-    (opérations de rééquilibrage).
+    * Les arbres AVL ont été historiquement les premiers arbres binaires de recherche automatiquement équilibrés.
+    * Dans un arbre AVL, les hauteurs des deux sous-arbres d’un même nœud diffèrent au plus de un.
+    * La recherche, l’insertion et la suppression sont toutes en $O(\log_{2}(n))$ dans le pire des cas.
+    * L’insertion et la suppression nécessitent d’effectuer des _rotations_ (opérations de rééquilibrage).
 
 !!!tip ""
     Le nom AVL vient des deux inventeurs Georgii Adelson-Velsky et Evguenii Landis (1962).
 
 ```OCaml linenums="1"
 (* dictionnaire applicatif réalisé par arbres équilibrés *)
- (* dictionnaire applicatif réalisé par arbres équilibrés *) 
 include (Map.Make (String));; 
 let m = empty 
     |> add " Sally Smart " " 555 -9999 " 
     |> add " John Doe " " 555 -1212 " 
     |> add " J.Random Hacker " " 553 -1337 ";; 
+
 find " John Doe " m;; 
 (* # - : string = "555 -1212" *) 
 ```
@@ -394,6 +445,7 @@ Hashtbl.add m " Sally Smart " " 555 -9999 " ;
 Hashtbl.add m " John Doe " " 555 -1212 " ;
 Hashtbl.add m " J . Random Hacker " " 553 -1337 " ;;
 Hashtbl.find m " John Doe " ;;
+
 (* # - : string = "555 -1212" *)
 ```
 
@@ -401,32 +453,31 @@ Structure impérative. Modifications en place. Ajout/Suppression/Recherche en te
 
 ## Tas
 
+### Généralités
+
 !!! quote "Définition: Tas"
     Un tas de hauteur h est un arbre binaire vérifiant :
 
-    * __Condition d’ordre :__ les fils d’un nœud ont une étiquette inférieure ou
-    égale à celle du père.
-    * __Condition de structure:__ Un tas est complet gauche :
+    * __Condition d’ordre :__ les fils d’un nœud ont une étiquette inférieure ou égale à celle du père.
+    * __Condition de structure:__ Un tas est _complet gauche_ :
         * Tous les niveaux sont remplis sauf éventuellement le dernier.
         * Le dernier niveau (éventuellement incomplet) est rempli sans trou enpartant de la gauche.
 
-### Précisions et conséquences
+#### Précisions et conséquences
 
 !!! note ""
 
-    * Un arbre du type précédent est dit de type tas-max (racine=max).
-    * tas-min : l’étiquette du père est plus petite que celle des fils.
+    - Un arbre du type précédent est dit de type _tas-max_ (racine=max).
+    - _tas-min_ : l’étiquette du père est plus petite que celle des fils.
+    - Les branches sont toutes de longueur $h$ ou $h − 1$, 
+    - enlever les feuilles de profondeur $h$ donne un arbre parfait,
+    - les nœuds internes de profondeur $h − 1$ d’arité $≥ 1$ sont à gauche des feuilles de profondeur $h − 1$,
+    - si il y a un nœud interne de profondeur $h − 1$ avec un seul fils, son fils est une feuille et c’est le dernier nœud dans le parcours en largeur.
 
-    Les branches sont toutes de longueur $h$ ou $h − 1$, enlever les feuilles de
-    profondeur $h$ donne un arbre parfait, les nœuds internes de profondeur $h − 1$
-    d’arité $≥ 1$ sont à gauche des feuilles de profondeur $h − 1$, si il y a un nœud
-    interne de profondeur $h − 1$ avec un seul fils, son fils est une feuille et c’est le
-    dernier nœud dans le parcours en largeur.
-
-!!!example "Exemple"
+!!!example "Figure – Un tas. Si on enlève les feuilles de profondeur $2$, l’arbre est parfait"
     <p align="center"><img src="/images/abr2.png"></p>
 
-    Figure – Un tas. Si on enlève les feuilles de profondeur $2$, l’arbre est parfait
+    
 
 Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche.
 !!!example "Contre-exemples"
@@ -554,7 +605,7 @@ let rec percolate_up n t =
 ```
 
 #### Complexité de la percolation haute
-On applique cette fonction à un tas d’entiers de n nœuds (représenté par un tableau) : Dans le pire des cas, l’élément remonte la branche la plus longue du tas : $\log_2(n)$ étapes puisque le tas est un arbre binaire presque parfait. À chaque étape, il y a un nombre borné c d’opérations élémentaires. Au total, entre $\log_2(n)$ opérations et $c\log_2(n)$. Complexité en $\Theta(\log_2(n))$.
+On applique cette fonction à un tas d’entiers de $n$ nœuds (représenté par un tableau) : Dans le pire des cas, l’élément remonte la branche la plus longue du tas : $\log_2(n)$ étapes puisque le tas est un arbre binaire presque parfait. À chaque étape, il y a un nombre borné $c$ d’opérations élémentaires. Au total, entre $\log_2(n)$ opérations et $c\log_2(n)$. Complexité en $\Theta(\log_2(n))$.
 
 #### La fonction d’insertion
 
@@ -656,9 +707,9 @@ $$
 6 & 12 & 8 & 7 & 15 & → & \color{red}{5} & 6 & 12 & 8 & 7 & 15 \\
 \end{array}
 $$
-Et on maintient "t[1:k+1] est un tas" (notation slicing Python). 
+Et on maintient "$t[1:k+1]$ est un tas" (notation slicing Python).
 
-* k = 1 :
+* $k = 1$ :
 $$
 \begin{array}{|c|c|c|}
 5
@@ -669,9 +720,9 @@ $$
 & 15
 \end{array}
 $$
-t[1:2] est un tas
+$t[1:2]$ est un tas
 
-* k = 2 :  
+* $k = 2$ :  
 \begin{array}{|c|c|c|}
 5
 & \color{red}6
@@ -680,7 +731,7 @@ t[1:2] est un tas
 & 7
 & 15
 \end{array}
-On percole up 12.
+On percole up $12$.
 \begin{array}{|c|c|c|}
 5
 & \color{red}12
@@ -689,11 +740,11 @@ On percole up 12.
 & 7
 & 15
 \end{array}
-t[1:3] est un tas. 
+t[1:3] est un tas.
 
-* k = 3 : 8 est à sa place. t[1:4] est un tas.
+* $k = 3$ : $8$ est à sa place. $t[1:4]$ est un tas.
 
-* k = 4 :
+* $k = 4$ :
 \begin{array}{|c|c|c|}
 5
 & 12
@@ -702,7 +753,7 @@ t[1:3] est un tas.
 & \color{red}7
 & 15
 \end{array}
-On percole up 7 :
+On percole up $7$ :
 \begin{array}{|c|c|c|}
 5
 & 12
@@ -711,9 +762,9 @@ On percole up 7 :
 & \color{red}6
 & 15
 \end{array}
-t[1:5] est un tas.
+$t[1:5]$ est un tas.
 
-* k = 5 :
+* $k = 5$ :
 \begin{array}{|c|c|c|}
 5
 & 12
@@ -722,7 +773,7 @@ t[1:5] est un tas.
 & 6
 & \color{red}15
 \end{array}
-On percole up 15 deux fois
+On percole up $15$ deux fois
 \begin{array}{|c|c|c|}
 5
 &12
@@ -747,15 +798,15 @@ On percole up 15 deux fois
 & 6
 & 7
 \end{array}
-t[1:6] est un tas.
+$t[1:6]$ est un tas.
 
-#### Complexité
+#### Complexité de la création du tas par remontée
 
-Il y a n nœud, donc une hauteur de $p=\lfloor \log_2(n) \rfloor$.
+Il y a $n$ nœud, donc une hauteur de $p=\lfloor \log_2(n) \rfloor$.
 
 Pire des cas : chaque remontée aboutit à la racine.
 
-Niveau k : 2k nœuds remontent à la racine en k étapes.
+Niveau $k : 2k$ nœuds remontent à la racine en $k$ étapes.
 
 $$
 \begin{matrix}
@@ -774,13 +825,14 @@ $$
 A partir d’un tableau de nombre
 
 On le considère comme un arbre complet gauche en décalant ses éléments d’un cran à droite et en insérant sa longueur.
-On parcourt les sommets niveau par niveau en partant de l’avant dernier niveau (profondeur h − 1) et dans chaque niveau on parcourt les sommets de la droite vers la gauche. Lors de ce parcours on eﬀectue un percolate-down à partir de chaque sommet.
+
+On parcourt les sommets niveau par niveau en partant de l’avant dernier niveau (profondeur $h − 1$) et dans chaque niveau on parcourt les sommets de la droite vers la gauche. Lors de ce parcours on eﬀectue un percolate-down à partir de chaque sommet.
 
 Parcours du tableau : on maintient l’invariant _Tous les sous-arbres dont la racine est à droite du sommet courant sont des tas binaires._
 
 Donc après avoir traité la racine, comme elle vérifie l’invariant, notre arbre est un tas binaire.
 
-* Pour t, tableau de taille n, on fait une copie de taille disons n+1
+* Pour $t$, tableau de taille $n$, on fait une copie de taille disons $n+1$
 \begin{array}{|c|c|c|}
 6
 & 12
@@ -798,8 +850,8 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 9
 \end{array}
 
-7,15, 9 aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des tas. 
-* $k=\lfloor \frac{n}{2}\rfloor = 3$ (Profondeur 1). 8 est le père de 9.
+$7,15, 9$ aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des tas.
+* $k=\lfloor \frac{n}{2}\rfloor = 3$ (Profondeur $1$). $8$ est le père de $9$.
 \begin{array}{|c|c|c|}
 6
 & 6
@@ -817,7 +869,7 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 15
 & \color{red}8
 \end{array}
-* k = 2 (Profondeur 1). 12 est père de 7 et 15
+* $k = 2$ (Profondeur $1$). $12$ est père de $7$ et $15$
 \begin{array}{|c|c|c|}
 6
 & 6
@@ -836,7 +888,7 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 8
 \end{array}
 
-* k = 1 (Profondeur 0). 6 est père de 15 et 9. 2 percos. 
+* $k = 1$ (Profondeur $0$). $6$ est père de $15$ et $9$. $2$ percos.
 \begin{array}{|c|c|c|}
 6
 & \color{red}6
@@ -852,7 +904,7 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 9
 & 7
 & \color{red}12
-& 8 
+& 8
 \end{array}
 \begin{array}{c|c|c|}
 → 6
@@ -864,54 +916,56 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 8
 \end{array}
 
-#### Complexité
+#### Complexité de la création du tas par descente
 
-Hauteur $p=\lfloor \log_2(n) \rfloor$ pour n nœuds. 
+Hauteur $p=\lfloor \log_2(n) \rfloor$ pour $n$ nœuds.
 
-Dans le pire des cas, chaque descente d’un nœud de hauteur k aboutit aux feuilles : p − k échanges. 
+Dans le pire des cas, chaque descente d’un nœud de hauteur $k$ aboutit aux feuilles : $p − k$ échanges.
 
-Il y a au plus $\lceil \frac{n}{2^{p-k}} \rceil$ nœuds de profondeur k (cf. TD). 
+Il y a au plus $\lceil \frac{n}{2^{p-k}} \rceil$ nœuds de profondeur k (cf. TD).
 
-Complexité C (n) au pire :
+Complexité $C (n)$ au pire :
 
 $$
-\begin{align}
-C(n) &≤ \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}}^\text{nb échanges au pire...}_\text{...pour chaque node}}&\\
-&≤ \sum_{k=0}^p (\frac{n}{2^{p-k}} + 1)(p-k)\overbrace{\leq}^\text{ cgt. var. k = p-k } \sum_{k=0}^p ( \frac{n}{2^k} + 1 )k&\\
-&<= \overbrace{ \frac{p(p+1)}{2} }^{O(log_2(n)^2) } \underbrace{\sum_{k=0}^p {\frac{k}{2^k}}}_\text{série CV donc majorée} = O( n )&
-\end{align}
+\begin{matrix}
+C(n) &≤& \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}}^\text{nb échanges au pire...}_\text{...pour chaque node}}&\\
+&&\\
+&≤& \sum_{k=0}^p (\frac{n}{2^{p-k}} + 1)(p-k)\overbrace{\leq}^\text{ cgt. var. k = p-k } \sum_{k=0}^p ( \frac{n}{2^k} + 1 )k&\\
+&&\\
+&≤& \overbrace{ \frac{p(p+1)}{2} }^{O(log_2(n)^2) } \underbrace{\sum_{k=0}^p {\frac{k}{2^k}}}_\text{série CV donc majorée} = O( n )&
+\end{matrix}
 $$
 
 Donc création par descente moins coûteuse ($O(n)$) que par remontée ($O(n \log_2(n))$).
 
 ### Tri (croissant) par tas
 
-A partir d’un tableau de n nombres t, on crée un tas-max. 
+A partir d’un tableau de $n$ nombres $t$, on crée un tas-max.
 
-* Étape 1 : la racine t[1] est le maximum du tas, on l’échange avec t[n] (notation Python). 
-Le max se retrouve à la fin du tas en position t[n]. $\color{red}\text{t[n:] est trié et contient le max.}$
-* On met à jour la longueur du tas (qui représente le nombre d’éléments qu’il reste à trier) en la décrémentant (puisque l’ancienne racine a trouvé sa place). t[:n] est un tas.
+* Étape $1$ : la racine $t[1]$ est le maximum du tas, on l’échange avec $t[n]$ (notation Python).
+Le max se retrouve à la fin du tas en position $t[n]$. $\color{red}t[n:] \text{ est trié et contient le max.}$
+* On met à jour la longueur du tas (qui représente le nombre d’éléments qu’il reste à trier) en la décrémentant (puisque l’ancienne racine a trouvé sa place). $t[:n]$ est un tas.
 * On percole bas la nouvelle racine. $\color{red}\text{Alors t[1:n] est de nouveau un tas}$. Et on itère(swap puis percolation)...
-* L’invariant qui assure la correction est "A la fin de l’étape k, $\color{red}\text{t[:n-k+1] est un tas et t[n-k+1 :] est un tableau trié}$ par ordre croissant dont les éléments sont plus grands que ceux de t[:n-k+1]". Il y a n étapes. 
+* L’invariant qui assure la correction est "À la fin de l’étape $k$, $\color{red}\text{t[:n-k+1] est un tas et t[n-k+1 :] est un tableau trié}$ par ordre croissant dont les éléments sont plus grands que ceux de $t[:n-k+1]$". Il y $a$ n étapes.
 
-### Tri par tas 
+### Tri par tas
 
 ```ocaml linenums="1"
 let tri_tas l = 
-	let t = create_down l in (* O (n) *)  
-	while t .(0) > 1 do 
-		(* mettre le max à la fin du tab : *) 
-		swap 1 t.(0) t ; 
-		t.(0) < -(t.(0)-1) ; (* le tas àétudier a un elt de moins *) 
-		percolate_down 1 t (* O (log (n)) *) 
-	done ; t;; 
+    let t = create_down l in (* O (n) *)  
+    while t .(0) > 1 do 
+        (* mettre le max à la fin du tab : *) 
+        swap 1 t.(0) t ; 
+        t.(0) < -(t.(0)-1) ; (* le tas àétudier a un elt de moins *) 
+        percolate_down 1 t (* O (log (n)) *) 
+    done ; t;; 
 ```
 
 #### Complexité
 
-O(n) pour la création d’un tas (rappel : hauteur $O(\log_2(n))$). Chaque échange d’éléments et chaque décrémentation de t.(0) en O(1) Chaque appel à percolate down en $O(\log_2(n))$ (au max car la longueur du tas décroît). n passages dans la boucle. Complexité au pire en $O(n\log_2(n))$ à la louche. On ne peut pas faire mieux.
+$O(n)$ pour la création d’un tas (rappel : hauteur $O(\log_2(n))$). Chaque échange d’éléments et chaque décrémentation de $t.(0)$ en $O(1)$ Chaque appel à percolate down en $O(\log_2(n))$ (au max car la longueur du tas décroît). $n$ passages dans la boucle. Complexité au pire en $O(n\log_2(n))$ à la louche. On ne peut pas faire mieux.
 
-## Files de priorités (une application des tas) 
+## Files de priorités (une application des tas)
 
 !!!quote "Définition : Une file de priorité"
     Une file de priorité est une structure de données permettant de stocker des éléments et de retrouver eﬃcacement celui qui a la plus haute priorité.
@@ -924,16 +978,16 @@ Les priorités sont d’un type totalement ordonné. Une file de priorité perme
     Les urgences d’un hôpital : chaque nouveau patient est ajouté à la file, chaque fois qu’un médecin est libre, il s’occupe du patient avec l’état le plus critique. Le tri des patients se fait sur des critères quantifiables et ordonnés comme l’état de conscience :
 
     * Échelle de Glasgow $[\![1,4]\!]\times[\![1,5]\!]\times[\![1,6]\!]$ (priorité aux scores bas, ce qui entraîne d’utiliser un tas-min) 
-    * s’ils respirent (1 ou 0), ou s’ils saignent (volume de la perte de sang)... on peut aussi vouloir mettre en avant les personnes plus jeunes, les femmes enceintes (combien de fœtus ?), etc... 
+    * s’ils respirent ($1$ ou $0$), ou s’ils saignent (volume de la perte de sang)... on peut aussi vouloir mettre en avant les personnes plus jeunes, les femmes enceintes (combien de fœtus ?), etc... 
   
 ### Type de données pour la file de priorité
 
 Comme le tas est un tableau de données (type data), on ne peut plus réserver le premier élément à l’indication de sa longueur(type int).
 
-Toutefois, on a pris l’habitude de stocker les données à partir de l’élément 1 et non 0. Donc nos tableaux auront une première case qui ne servira à rien.
+Toutefois, on a pris l’habitude de stocker les données à partir de l’élément $1$ et non $0$. Donc nos tableaux auront une première case qui ne servira à rien.
 La longueur du tas est toujours susceptible d’évoluer. Il faut la définir comme mutable.
 
-f.n+1 désigne la première case libre du tas f.tbl.
+`f.n+1` désigne la première case libre du tas `f.tbl`.
 
 ```OCaml linenums="1"
 type (’a, ’b) data = { priority : ’a ; value : ’b };; 
@@ -950,7 +1004,7 @@ let empty_queue = creer_file 5 (1, 2);;
 ```
 
 #### Exceptions
-On peut ajouter des éléments dans la file tant qu’elle n’est pas pleine. Si elle est pleine, on soulève une exception Full. On peut retirer des éléments de la file tant qu’elle n’est pas vide. Si elle est vide, on soulève une exception Empty. Création des exceptions :
+On peut ajouter des éléments dans la file tant qu’elle n’est pas pleine. Si elle est pleine, on soulève une exception `Full`. On peut retirer des éléments de la file tant qu’elle n’est pas vide. Si elle est vide, on soulève une exception `Empty`. Création des exceptions :
 
 ```ocaml linenums="1"
 exception Empty;; 
@@ -975,10 +1029,10 @@ Il faut adapter la fonction de percolation basse à nos priorités. En exo.
 
 ```ocaml linenums="1"
 let retirer f = 
-	if f.n = 0 then raise Empty ; 
-	f.tbl.(1) <- f.tbl.(f.n); 
-	f.n <-(f.n) -1; 
-	percolate_down 1 f;; 
+    if f.n = 0 then raise Empty ; 
+    f.tbl.(1) <- f.tbl.(f.n); 
+    f.n <-(f.n) -1; 
+    percolate_down 1 f;; 
 ```
 
 #### Augmenter la priorité
@@ -987,9 +1041,10 @@ Quand on augmente l’urgence, donc qu’on diminue la valeur de priorité d’u
 
 ```ocaml linenums="1"
 let plus_prioritaire k p f = 
-	(* augmente la prioritéde l'élé ment k *) 
-	if f.tbl.(k).priority <= p then failwith " la nouvelle priorité doit être plus petite" ; 
-	f.tbl.(k) <- {priority = p ; value = f.tbl.(k).value }; 
-	percolate_up k f;; 
+    (* augmente la prioritéde l'élé ment k *) 
+    if f.tbl.(k).priority <= p then failwith " la nouvelle priorité doit être plus petite" ; 
+    f.tbl.(k) <- {priority = p ; value = f.tbl.(k).value }; 
+    percolate_up k f;; 
 ```
-Et quand on diminue l’urgence, on fait descendre l’élément par percolation basse 
+
+Et quand on diminue l’urgence, on fait descendre l’élément par percolation basse.

@@ -1,10 +1,7 @@
 # Récursion terminale et gestion de la mémoire en OCaml
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par
-    Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d'être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 !!!tip "Crédits"
     Developpez.com
