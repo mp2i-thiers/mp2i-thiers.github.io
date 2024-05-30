@@ -47,7 +47,8 @@ Les étiquettes de gauche ont des valeurs plus petites que celle de la racine, c
 On peut facilement récupérer les clés d’un arbre binaire de recherche dans l’ordre croissant en réalisant un parcours en profondeur infixe.
 
 !!!example "Contre-exemple"
-_Figure – Un arbre binaire qui n’est pas un ABR_=
+    
+    _Figure – Un arbre binaire qui n’est pas un ABR_=
 
     ``` mermaid
     graph TB;
@@ -59,7 +60,8 @@ _Figure – Un arbre binaire qui n’est pas un ABR_=
 
 À une liste ordonnée correspondent plusieurs ABR.
 
-???example ""
+???example "Exemple"
+
     _Figure – Un ABR pour représenter_ ```[4,5,6]```
 
     ``` mermaid
@@ -476,8 +478,6 @@ Structure impérative. Modifications en place. Ajout/Suppression/Recherche en te
 
 !!!example "Figure – Un tas. Si on enlève les feuilles de profondeur $2$, l’arbre est parfait"
     <p align="center"><img src="/images/abr2.png"></p>
-
-    
 
 Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche.
 !!!example "Contre-exemples"
