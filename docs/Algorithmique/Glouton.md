@@ -39,9 +39,9 @@ Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de b
 
 ### Précisions
 
-Pour raison de concision, nous emploierons dans toute la suite  le terme "pièce" au lieu de "pièce ou billet". 
+Pour raison de concision, nous emploierons dans toute la suite  le terme "pièce" au lieu de "pièce ou billet".
 
-De plus nous supposons que le stock de chaque valeur de pièce est illimité, ce qui ne reﬂète que partiellement la réalité (dans un $DAB$, il y a un nombre fini de billets de $10$,$20$,$50$ et $100$€). 
+De plus nous supposons que le stock de chaque valeur de pièce est illimité, ce qui ne reﬂète que partiellement la réalité (dans un $DAB$, il y a un nombre fini de billets de $10$,$20$,$50$ et $100$€).
 
 La solution calculée par l’algorithme que nous présentons et  donc une solution théorique qui ne tient pas compte de la réalité du stock.  
 
@@ -49,7 +49,7 @@ La solution calculée par l’algorithme que nous présentons et  donc une solut
 
 On choisit d’abord les pièces qui permettent de rendre la plus  grande valeur possible sur la somme à rendre. Dans l’exemple des $49$€, il s’agit de deux billets de $20$€.
 
-Il reste alors à rendre $9$€. On choisit la plus grande valeur de  pièce plus petite que $9$, soit $5$€. On rend donc un billet de 5 (et pas $2$ car $2 × 5 > 9$). Enfin la plus grande valeur de pièce plus petite que les $4$€ à rendre est $2$€. On peut en rendre deux, ce qui ramène la somme à rendre à $0$€. On s’arrête donc là.  
+Il reste alors à rendre $9$€. On choisit la plus grande valeur de  pièce plus petite que $9$, soit $5$€. On rend donc un billet de $5$ (et pas $2$ car $2 × 5 > 9$). Enfin la plus grande valeur de pièce plus petite que les $4$€ à rendre est $2$€. On peut en rendre deux, ce qui ramène la somme à rendre à $0$€. On s’arrête donc là.  
 
 ### Code
 
