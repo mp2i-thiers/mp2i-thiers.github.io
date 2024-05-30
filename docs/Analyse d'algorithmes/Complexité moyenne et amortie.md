@@ -111,9 +111,11 @@ On désigne par $T_n$ la complexité temporelle en nombre de compraisons pour un
 - Complexité en somme des premiers entiers soit $O(n^2)$.
 - On montre dans la suite que ce cas est bien le pire, c'est à dire que la complexité $C_n$ en nombre de comparaisons est la pire si le pivot est à une extrémité et donc que $C_n = T_n$.
 
-Hypothèse de récurrence selon n (= HR(n) ):$\forall q \leq n$ :\
-→ $T_{q}$ est la pire complexité\
-→ $\forall k \in \{ 1,\ldots,n\},T_{k - 1} + T_{n - k} + n–1 \leq T_{n}$ (avec égalité si $k=1$)
+Hypothèse de récurrence selon $n$ ($= HR(n)$):
+$\forall q \leq n$ :
+
+ 1. $T_{q}$ est la pire complexité
+ 2. $\forall k \in \{ 1,\ldots,n\},T_{k - 1} + T_{n - k} + n–1 \leq T_{n}$ (avec égalité si $k=1$)
 
 - _Cas de base_ :  $n = 1$, $T_0 = 0 = T_1,k \in \{ 1\}.$ Alors $T_{1 - 1} + T_{1 - 1} + 1–1 = 0 \leq T_1$ et $T_1$ est la pire complexité. **OK**
 
