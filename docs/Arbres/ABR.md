@@ -48,7 +48,7 @@ On peut facilement récupérer les clés d’un arbre binaire de recherche dans 
 
 !!!example "Contre-exemple"
     
-    _Figure – Un arbre binaire qui n’est pas un ABR_=
+    _Figure – Un arbre binaire qui n’est pas un ABR_
 
     ``` mermaid
     graph TB;
@@ -109,7 +109,7 @@ type 'a tree =
 !!! note ""
 
     * Une feuille est implémentée par ```N(x, Nil, Nil)```,
-    * une nœud d’arité 1 par ```N(x, t, Nil)``` ou ```N(x, Nil, t)``` avec `x` et `t` de type
+    * Un nœud d’arité $1$ par ```N(x, t, Nil)``` ou ```N(x, Nil, t)``` avec `x` et `t` de type
     convenable.
     * Une telle structure modélise les arbres binaires, pas seulement les ABR. C’est lors de la _création_ d’un arbre que nous ferons attention à ce qu’il respecte la contrainte d’ordre.
 
@@ -386,7 +386,7 @@ let rotate_left = function
     * **suppression** : suppression d’une clef ;
     * **recherche** : détermination de la valeur associée à une clef, si elle existe.
 
-    Les dictionnaires peuvent être implémentés concrètement par des ABR. Ce sont alors des données persistantes. L’ensemble des clés doit être totalement ordonné. Les étiquettes des nœuds de l’ABR sont des couples (clés, valeurs) et le placement d’un nœud dans l’arbre est fait selon sa clé et non sur sa valeur. En OCAML, explorons $3$ façons de définir les dictionnaires.
+    Les dictionnaires peuvent être implémentés concrètement par des ABR. Ce sont alors des données persistantes. L’ensemble des clés doit être totalement ordonné. Les étiquettes des nœuds de l’ABR sont des couples (clés, valeurs) et le placement d’un nœud dans l’arbre est fait selon sa clé et non sur sa valeur. En **OCaml**, explorons $3$ façons de définir les dictionnaires.
 
 ### Implémentation de dictionnaire
 
@@ -396,7 +396,7 @@ L'ensemble des clés doit totalement être ordonné.
 
 Les étiquettes des noeuds de l'ABR sont des couples (clés, valeurs) et le placement d'un noeud dans l'arbre est fait selon sa clé et non sa valeur.
 
-En **OCaml**, explorons 3 façons de définir les dictionnaires.
+En **OCaml**, explorons $3$ façons de définir les dictionnaires.
 
 ### Dictionnaires par liste de paires
 
@@ -569,6 +569,7 @@ Lorsqu’on crée un tableau représentant un tas :
 ##### Principe
 
 Considérons que l’on veuille ajouter le nœud $x$ à notre tas binaire :
+
 - On insère $x$ à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau),
 - puis on eﬀectue l’opération suivante (que l’on appelle _percolation_ vers le haut ou _percolate-up_) pour rétablir si nécessaire la propriété d’ordre du tas binaire :
 - Tant que $x$ n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père.
@@ -623,6 +624,7 @@ let rec percolate_up n t =
 
 ##### Complexité de la percolation haute
 On applique cette fonction à un tas d’entiers de $n$ nœuds (représenté par un tableau) :
+
 - Dans le pire des cas, l’élément remonte la branche la plus longue du tas : $\log_2(n)$ étapes puisque le tas est un arbre binaire presque parfait.
 - À chaque étape, il y a un nombre borné $c$ d’opérations élémentaires.
 - Au total, entre $\log_2(n)$ opérations et $c\log_2(n)$. Complexité en $\Theta(\log_2(n))$.
