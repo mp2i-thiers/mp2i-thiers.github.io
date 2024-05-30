@@ -349,14 +349,14 @@ Le delta de potentiel est :
 $$\phi(c_{i+1}) - \phi(c_i) = \left \{ \begin{matrix}
  2(k’ + 1) - 2(k + k’) =  2 - 2k &  \text{ si k différent de n} \\
  -2k &   \text{ si } k = n \text{ car alors } c_{i+1} = 00...0
-\end{matrix}\right$$
+\end{matrix}\right.$$
 
 Complexité en nombre d'accès aux cases du tableau :
 
 $$A_{i+1} = C_{i+1} + \phi(c_{i+1}) - \phi(c_i) =\left \{ \begin{matrix}
  (2k + 1) +2 -2k = 3 &  \text{ si } k ≠ n \\
  2k -2k = 0 &   \text{ si } k = n
-\end{matrix}\right$$
+\end{matrix}\right.$$
 
 On en déduit que la complexité amortie est bornée par $3$. D'après le corollaire du th. d'amortissement, toute séquence d'incrémentation commençant en $00 . . . 0$ réalise moins de $3$ opérations d'accès au tableau par appel à `incr`.
 
