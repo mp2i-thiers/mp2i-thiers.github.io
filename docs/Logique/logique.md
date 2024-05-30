@@ -56,7 +56,7 @@ $\color{red} \text {En logique classique "je suis ici ou ailleurs" (= tiers excl
 
 ### Tiers exclu
 
-Le principe du tiers exclu a été introduit par Aristote comme  conséquence du _principe de non-contradiction_. Le principe de  non-contradiction stipule que pour toute proposition $P$ on ne peut pas avoir P et $\neg P$ (non P) en même temps.  
+Le principe du tiers exclu a été introduit par Aristote comme  conséquence du _principe de non-contradiction_. Le principe de  non-contradiction stipule que pour toute proposition $P$ on ne peut pas avoir $P$ et $\neg P$ (non $P$) en même temps.  
 
 La proposition $\neg (P \wedge  \neg P)$ (toujours vraie dans toute les logiques)  équivaut sémantiquement (par utilisation de règle de De Morgan) à  $\neg P \vee  \neg \neg P$.  
 On retrouve le tiers exclu SI ON ACCEPTE que $\neg \neg P$ et $P$ sont  sémantiquement équivalents.  
@@ -65,7 +65,7 @@ On retrouve le tiers exclu SI ON ACCEPTE que $\neg \neg P$ et $P$ sont  sémanti
 
 La _logique intuitionniste_ qui engendre les _mathématiques constructives_, admet le principe de non-contradiction mais réfute celui  du tiers exclu.  
 
-Pour un _constructiviste_, le raisonnement "si $a \in A$ alors bla sinon  bli" n'a de sens que s'il existe un test pour déterminer l'appartenance  à $A$.  
+Pour un _constructiviste_, le raisonnement "si $a \in A$ alors _bla_ sinon  _bli_" n'a de sens que s'il existe un test pour déterminer l'appartenance  à $A$.  
 
 Les constructivistes réfutent aussi l'axiome du choix qui dit en  substance que "dans un ensemble infini, je peux choisir un élément", au motif que "je ne peux pas choisir si je ne sais pas comment choisir".
 
@@ -125,7 +125,7 @@ $\color{red}\text{Aucun système logique cohérent assez riche pour exprimer  l'
     - On dit aussi _opérateur_ pour "connecteur"  
     - Dans certains cours, on ajoute aussi l'opérateur $\Leftrightarrow$ et le XOR.
     Dans certains autres, seulement $\neg , \vee , \wedge$ , voire même $\neg , \wedge$ .
-    - Le **NAND** (A NAND B vaut $\neg (A \wedge  B)$) est _universel_.  
+    - Le **NAND** ($A$ NAND $B$ vaut $\neg (A \wedge  B)$) est _universel_.  
 
 ### Ensemble des propositions
 
@@ -183,23 +183,23 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
 ### Contexte
 
 !!! quote "Définition: Un contexte"
-    Un _contexte_ (ou une _distribution de vérité_) sur un ensemble de variables propositionnelles $ν$ est une application de $ν$ dans l'ensemble des bouléens B.
+    Un _contexte_ (ou une _distribution de vérité_) sur un ensemble de variables propositionnelles ${\displaystyle {\mathcal {V}}}$ est une application de ${\displaystyle {\mathcal {V}}}$ dans l'ensemble des bouléens ${\displaystyle {\mathcal {B}}}$.
 
 !!! tip ""
     **Remarque**
 
-    - Si $|ν| = n$ alors il y a $2^n$ distributions de vérité.
+    - Si $|{\displaystyle {\mathcal {V}}}| = n$ alors il y a $2^n$ distributions de vérité.
     - L'ensemble des bouléens peut être représenté de différentes façons.
-    - Dans ce cours, on pose $β = {0, 1}$, et on identifie $β$ avec l'anneau $\mathbb{Z}/2\mathbb{Z}$ (donc $1 + 1 = 0$ en particulier.)
+    - Dans ce cours, on pose ${\displaystyle {\mathcal {B}}} = {0, 1}$, et on identifie ${\displaystyle {\mathcal {B}}}$ avec l'anneau $\mathbb{Z}/2\mathbb{Z}$ (donc $1 + 1 = 0$ en particulier.)
     - La multiplication est l'interprétation de la conjonction, 0 celle de **F**, $1$ celle de **V**, l'addition celle du XOR.  
 
 ### Interprétation
 
 !!! quote "Définition: Une évaluation / interprétation"
-    Soit $µ$ un contexte sur un ensemble de variables $ν$ à valeur dans $β = ℤ/2ℤ$. On appelle _évaluation_ (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur l'ensemble des propositions par :
+    Soit $µ$ un contexte sur un ensemble de variables ${\displaystyle {\mathcal {V}}}$ à valeur dans ${\displaystyle {\mathcal {B}}} = ℤ/2ℤ$. On appelle _évaluation_ (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur l'ensemble des propositions par :
 
     - $\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0$
-    - pour toute variable $v \in V, \varepsilon_\mu(v ) = \mu(v )$
+    - pour toute variable $v \in {\displaystyle {\mathcal {V}}}, \varepsilon_\mu(v ) = \mu(v )$
     - pour toute expression $p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p)$
     - pour toutes expressions $p1$ et $p2$ : 
   
