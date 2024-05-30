@@ -138,7 +138,8 @@ $$\begin{matrix} C^l_{n+1} & = & C^{l_1}_{k} + C^{l_1}_{n-k} +n \\ & & \\
 & \underbrace{≤}_{HR(n)} & T_k + T_{n-k} + n \\ && \\
 & \underbrace{=}_{\begin{matrix}k'= k+1  \\ k' \in ⟦2,n ⟧\end{matrix}} & T_{k'-1} + T_{n+1-k'} + n \\ & & \\
 & ≤ & T_{n+1}
-\end{matrix}$$ (d'après la preuve du transparent précédent)
+\end{matrix}$$
+(d'après la preuve du transparent précédent)
 
 - Ainsi, $\color{red}l \text{ étant quelconque}$, $T_{n+1}$ est la pire complexité possible. **IZP** !
 
