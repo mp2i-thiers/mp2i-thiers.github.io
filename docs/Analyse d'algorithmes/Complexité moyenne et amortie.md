@@ -134,12 +134,11 @@ Hypothèse de récurrence selon n (= HR(n) ):$\forall q \leq n$ :\
 - Si $l_i$ est vide $C^l_{n+1} = C^{l_j}_{n} + n \leq T_n + n$ par **HR** donc $C^l_{n+1} = T_{n+1}$.
 - Si $|l_1|\times|l_2| ≠ 0$ alors $1 ≤ k ≤ n-1$ et :
 
-$$ \begin{matrix}
-C^l_{n+1} & = & C^{l_1}_{k} + C^{l_1}_{n-k} +n \\ && \\
-&\underbrace{≤}_{HR(n)} & T_k + T_{n-k} + n \\ && \\
-&\underbrace{=}_{\begin{matrix}k'= k+1  \\ k' \in ⟦2,n ⟧\end{matrix}} & T_{k'-1} + T_{n+1-k'} + n \\ && \\
+$$\begin{matrix} C^l_{n+1} & = & C^{l_1}_{k} + C^{l_1}_{n-k} +n \\ & & \\
+& \underbrace{≤}_{HR(n)} & T_k + T_{n-k} + n \\ && \\
+& \underbrace{=}_{\begin{matrix}k'= k+1  \\ k' \in ⟦2,n ⟧\end{matrix}} & T_{k'-1} + T_{n+1-k'} + n \\ & & \\
 & ≤ & T_{n+1}
-\end{matrix} $$ (d'après la preuve du transparent précédent)
+\end{matrix}$$ (d'après la preuve du transparent précédent)
 
 - Ainsi, $\color{red}l \text{ étant quelconque}$, $T_{n+1}$ est la pire complexité possible. **IZP** !
 
@@ -149,7 +148,7 @@ La complexité moyenne $C(n)$ du tri rapide pour une liste de taille $n$ est la 
 
 Elle vériﬁe (si la position ﬁnale du pivot est équiprobable) :
 
-$$\begin{matrix}C(n) &=& \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)\\ && \\
+$$\begin{matrix}C(n) &=& \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)\\ & & \\
     &=& n-1+\frac{1}{n}\sum_{k=0}^{n-1}(C(k) + C(n-k-1))
 \end{matrix}
 $$
@@ -176,10 +175,10 @@ $\frac{C(n)}{n + 1}–\frac{C(n - 1)}{n} = \frac{2(n - 1)}{n(n + 1)} = \frac{4}{
 Par télescopage, et puisque $C(0) = 0$ :
 
 $\begin{matrix}
-\frac{C(n)}{n + 1}–\frac{C(0)}{1} &=& \frac{C(n)}{n + 1} \\ &&\\
- &=&4\sum_{k = 1}^{n}{\frac{1}{k + 1}}–2\sum_{k = 1}^{n}{\frac{1}{k}} \\ &&\\
- &=& 4\sum_{k = 2}^{n + 1}{\frac{1}{k}} - 2\sum_{k = 1}^{n}{\frac{1}{k}} \\ &&\\
- &=& 2\sum_{k = 2}^{n}\frac{1}{k} + \frac{4}{n + 1} - 2 \\ &&\\
+\frac{C(n)}{n + 1}–\frac{C(0)}{1} &=& \frac{C(n)}{n + 1} \\ & &\\
+ &=&4\sum_{k = 1}^{n}{\frac{1}{k + 1}}–2\sum_{k = 1}^{n}{\frac{1}{k}} \\ & &\\
+ &=& 4\sum_{k = 2}^{n + 1}{\frac{1}{k}} - 2\sum_{k = 1}^{n}{\frac{1}{k}} \\ & &\\
+ &=& 2\sum_{k = 2}^{n}\frac{1}{k} + \frac{4}{n + 1} - 2 \\ & &\\
  &=& 2\sum_{k = 1}^{n}{\frac{1}{k}} + {\frac{4}{n + 1}–4} \leq 2\underset{\color{red}\sim \ln(n)}{\underbrace{\sum_{k = 1}^{n}{\frac{1}{k}}}} + \underset{\color{red}O\left( \frac{1}{n} \right)}{\underbrace{\frac{4}{n + 1}}} \\
 \end{matrix}$
 
@@ -259,7 +258,7 @@ exceptionnellement.
 
     Total : $14$ passages dans while
 
-    Sur $16$ appels consécutifs à incr :
+    Sur $16$ appels consécutifs à `incr` :
 
     - Un appel sur $2$ : $0$ tour de boucle ;
 
@@ -344,19 +343,19 @@ $$\Phi(c) = 2 \times \underbrace{(\textsf{nombre de 1 dans c})}_{|c|_{1}} $$
 
 Si $c_{i}$ possède $k$ bits $1$ consécutifs depuis la position $0$, alors soit $k'$ tel que $|c|_{1} = k + k’$. Une application de `incr`, transforme $c_{i}$ en $c_{i + 1}$.
 
-Le delta de potentiel est
+Le delta de potentiel est :
 
-$ \phi(c_{i+1}) - \phi(c_i) = \left \{ \begin{matrix}
+$$\phi(c_{i+1}) - \phi(c_i) = \left \{ \begin{matrix}
  2(k’ + 1) - 2(k + k’) =  2 - 2k &  \text{ si k différent de n} \\
  -2k &   \text{ si } k = n \text{ car alors } c_{i+1} = 00...0
-\end{matrix}\right. $
+\end{matrix}\right$$
 
 Complexité en nombre d'accès aux cases du tableau :
 
-$$ A_{i+1} = C_{i+1} + \phi(c_{i+1}) - \phi(c_i) =\left \{ \begin{matrix}
+$$A_{i+1} = C_{i+1} + \phi(c_{i+1}) - \phi(c_i) =\left \{ \begin{matrix}
  (2k + 1) +2 -2k = 3 &  \text{ si } k ≠ n \\
  2k -2k = 0 &   \text{ si } k = n
-\end{matrix}\right. $$
+\end{matrix}\right$$
 
 On en déduit que la complexité amortie est bornée par $3$. D'après le corollaire du th. d'amortissement, toute séquence d'incrémentation commençant en $00 . . . 0$ réalise moins de $3$ opérations d'accès au tableau par appel à `incr`.
 
