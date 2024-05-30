@@ -196,7 +196,7 @@ fonction FloydWarshall(G)
     42 & \\
     \end{pmatrix}$$
 
-    Pas de circuit de poids négatif. On ne fera pas mieux que 0 pour aller de x à x.
+    Pas de circuit de poids négatif. On ne fera pas mieux que $0$ pour aller de $x$ à $x$.
 
     **Sommets intermédiaires dans $\{1\}$:**
 
@@ -270,7 +270,7 @@ fonction FloydWarshall(G)
     42 & 421 & 4213 \\
     \end{pmatrix}$$
 
-    k=4 : On s'arrête là
+    $k = 4$ : On s'arrête là
 
 ### Floyd-Warshall : Fermeture transitive
 
@@ -287,13 +287,13 @@ On ne cherche pas la longueur d'un chemin mais seulement s'il en existe un.
 !!!note ""
     **Correction de Floyd-Warshall lorsque G ne contient pas de cycle de poids strictement négatif**
 
-    Invariant : $W^k_{i,j}$ est égal au poids d'un chemin minimal reliant $v_i$ à $v_j$ et ne passant que par des sommets intermédiaires de la liste $v_1, \dots, v_k$. 
+    Invariant : $W^k_{i,j}$ est égal au poids d'un chemin minimal reliant $v_i$ à $v_j$ et ne passant que par des sommets intermédiaires de la liste $v_1, \dots, v_k$.
 
     Cas de base : Vrai si $k = 0$ car $W^k_{i,j}$ est le poids du chemin minimal qui relie $v_i$ à $v_j$ sans passer par aucun sommet intermédiaire. **OK**
 
     Si $k < n$, on suppose l’invariant réalisé et on considère $C = v_i \rightsquigarrow v_j$  un $PCC$ ne passant que par les sommets intermédiaire $v_1, \dots, v_{k+1}$. 
     
-    - Si $C$ ne passe pas par $v_{k+1}$, alors, par HR, son poids est $W^{k+1}_{i,j} = W^k_{i,j}$. 
+    - Si $C$ ne passe pas par $v_{k+1}$, alors, par **HR**, son poids est $W^{k+1}_{i,j} = W^k_{i,j}$. 
     - S’il passe par $v_{k+1}$, alors il n’y passe qu’une fois (pas de circuit de poids négatif). Il se décompose en $C_1 = v_i \rightsquigarrow v_{k+1}$ et $C_2 = v_{k+1} \rightsquigarrow v_j$ qui sont des chemins ne passant que par des sommets dans $v_1, \dots, v_{k}$ . Par principe d’optimalité, ces chemins sont les meilleurs ne passant que par $v_1, \dots, v_{k}, v_{k+1}$. Donc, par **HR**, leurs poids sont $W^k_{i,k+1}$ et $W^k_{k+1,j}$. Le poids de $C$ est donc $W^k_{i,k+1} + W^k_{k+1,j}$.
     - Finalement, $min(w^k_{i,j}, W^k_{i,k+1} + W^k_{j+1,j})$ est le poids minimal d'un chemin reliant $v_i$ à $v_j$ et ne passant que par les sommets intermédiaire $v_1, \dots, v_{k+1}$. 
 
@@ -315,7 +315,7 @@ On serait tenté, si un graphe possède des valuations positives,
 d’ajouter une même constante à chaque valuation pour les rendre
 toutes positives afin d’appliquer l’algorithme de Dijkstra.
 
-Malheureusement cette approche permet certes de trouver les PCC
+Malheureusement cette approche permet certes de trouver les $PCC$
 dans le nouveau graphe mais le chemin suivi peut très bien ne pas
 être le meilleur dans l’ancien.
 
@@ -463,7 +463,7 @@ Soit $u$ un sommet rouge à la fin de l'étape $k+1(k \geq 1)$.
 - Comme $u$ est rouge, il est accessible, donc $d_u^{k+1}$ est fini, donc le chemin qui le document n'emprunte que des sommets verts ou rouges.
 - Si $u \notin E^{k+1}\setminus E^k$, c'est à dire si $u$ n'est pas le sommet qu'on vient de rendre rouge, alors $u in E^k$ et par HR $d_u^k = \delta(e, u)$ **(Point 1 OK)**.
 - Si $u$ entre dans $E^{k+1}$ alors au début du passage $k+1$, $u$ est vert ($u \in F^k$) et $d_u^k \leq d_s^k$ pour tout sommet vert $s$ (car $u$ est choisi).
-    - Soit $\color{red}{e \rightsquigarrow \textit{u} \text{ un PCC et } \textit{v} \text{ son premier sommet non rouge}}$ ($u=v$ possible). Les sous chemins $e \rightsquigarrow v$ et $v \rightsquigarrow u$ sont des PCC par principe d'optimalité. Comme les poids des arcs sont positifs (condition Dijkstra), il vient que $\color{red}{\delta(e, u) \geq \delta(e, v)}$.
+    - Soit $\color{red}{e \rightsquigarrow \textit{u} \text{ un } PCC \text{ et } \textit{v} \text{ son premier sommet non rouge}}$ ($u=v$ possible). Les sous chemins $e \rightsquigarrow v$ et $v \rightsquigarrow u$ sont des $PCC$ par principe d'optimalité. Comme les poids des arcs sont positifs (condition Dijkstra), il vient que $\color{red}{\delta(e, u) \geq \delta(e, v)}$.
     - $\color{red}{\text{Le prédécesseur } \textit{r} \text{ de } \textit{v} \text{ dans } e \rightsquigarrow v \text{ est rouge et différent de u}}$
     $\color{red}{\text{ donc } d_r^k = \delta(e, r) \text{par HR.}}$
     - $\color{red}{\text{Comme } \textit{v} \text{ n'est pas rouge, il vérifie le point 2}}$ donc 

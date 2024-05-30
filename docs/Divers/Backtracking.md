@@ -19,9 +19,8 @@
 
 !!!tip "Remarque"
     Les éléments de $E$ sont appelés des entrées et ceux de $S$ des solutions;
-    
-    Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s ) ∈R$ et $(e, None) ∈R$.
 
+    Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s ) ∈R$ et $(e, None) ∈R$.
 
 ## Vocabulaire : solution
 
@@ -29,7 +28,6 @@ Avec les notations de la définition précédente :
 
 - si $(e, s ) ∈E ×S$ , on dit que $s$ est une _solution de l’entrée_ $e$;
 - si $(e, Node) ∈R$, on dit que l’entrée $e$ _n’a pas de solution_.
-
 
 ## Backtracking : présentation informelle
 
@@ -51,7 +49,7 @@ Les feuilles sont les candidats-solutions qui ne peuvent pas être développés 
 ## Backtracking : arbre de décision
 
 L’algorithme de backtracking parcourt l’arbre de recherche potentiel par un **DFS**.
-A chaque nœud $c$ (donc, un candidat-solution), l’algorithme cherche si $c$ peut être complété en une solution valide.
+À chaque nœud $c$ (donc, un candidat-solution), l’algorithme cherche si $c$ peut être complété en une solution valide.
 
 - Si ce n’est pas possible, le sous-arbre de racine $c$ dans l’arbre solution est supprimé.
 - Par ailleurs, si $c$ est une feuille, l’algorithme cherche si $c$ lui-même peut être considéré comme une solution valide (exemple une grille complètement remplie constitue-t-elle une solution au problème de Sudoku ?).

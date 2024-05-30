@@ -98,7 +98,7 @@ $(A,(\backslash 0,f_A + f_B ),B )$
 
 !!!example
 
-    <p>L'assemblage de a(3) et <img src="/images/huffman2.png"> est</p>
+    <p>L'assemblage de <img src="/images/huffman2bis.png"> et <img src="/images/huffman2.png"> est</p>
     <p align="center"><img src="/images/huffman3.png"></p>
 
 ### Algorithme
@@ -276,7 +276,7 @@ Construction de l'arbre de Huffman : on construit une file de priorité d'arbres
 Construction du dictionnaire (caractère,code) : L'arbre (entier) construit contient $M$ feuilles et $M −1$ nœuds internes.
 
 - On gère un accumulateur en lui ajoutant un $0$ (resp. $1$) à chaque virage à gauche (resp. droite) lors d'un DFS : chaque arrivé à une feuille est l'occasion d'insérer une nouvelle association dans le dictionnaire.
-- Il y a $2M −1$ (c.a.d. nombre de nœuds) écritures dans l'accumulateur. La transformation des valeurs de l'accumulateur en **String** a le côut de la somme des longueurs des branches, donc au minimum  $Ω(M\times log_2(M))$ qu'on peut majorer en $O(M^2)$ (il y a M branches, chacun occasionnant un coût en $O(M)$). L'ajout de chaque code au dictionnaire se faite avec un coût amorti constant. Au total : $O(M^2)$ pour le dictionnaire.
+- Il y a $2M −1$ (c.a.d. nombre de nœuds) écritures dans l'accumulateur. La transformation des valeurs de l'accumulateur en **String** a le côut de la somme des longueurs des branches, donc au minimum  $Ω(M\times log_2(M))$ qu'on peut majorer en $O(M^2)$ (il y a $M$ branches, chacun occasionnant un coût en $O(M)$). L'ajout de chaque code au dictionnaire se faite avec un coût amorti constant. Au total : $O(M^2)$ pour le dictionnaire.
 
 Coût de cette étape $O(M^2)$
 

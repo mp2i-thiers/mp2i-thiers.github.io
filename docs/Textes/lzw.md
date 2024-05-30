@@ -170,7 +170,7 @@ Le code $n$ lu est tel que $n = |d|$, donc on lit un code non encore présent da
 
 $n$ code un $wy$ tel que le code de $w$ est le dernuer lu.
 
-<p align="center"><img src="/images/izw1.png"></p>
+<p align="center"><img src="/images/lzw1.png"></p>
 
 ### Algorithme de décompression
 

@@ -41,7 +41,7 @@ $ulimit -s
 8192
 ```
 
-On obtient donc que la taille de la pile d'appel est de 8 octets.
+On obtient donc que la taille de la pile d'appel est de $8$ octets.
 
 Avec `somme 1 000 000` on empile donc $1 000 000 + 1$ stack frame
 d'au moins $4$ bytes. On comprend que la taille allouée à la pile soit dépassée.
@@ -51,7 +51,7 @@ d'au moins $4$ bytes. On comprend que la taille allouée à la pile soit dépass
 La zone de données statiques contient les constantes présentes dans le code source du programme comme les
 chaînes de caractères.
 
-Toutes les valeurs en OCaml sont des pointeurs sur des données dans le tas. Les var. locales de la pile ne peuvent être que d'une des 4 catégories
+Toutes les valeurs en OCaml sont des pointeurs sur des données dans le tas. Les var. locales de la pile ne peuvent être que d'une des $4$ catégories
 suivantes :
 
 - les entiers `int` , les caractères `char`

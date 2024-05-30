@@ -124,7 +124,7 @@ On cherche `string` $(m)$ dans le texte `stupid_spring_string` $(s)$.
 
 - Poursuite en position $6 + 1$ de $s$ :
    ![texte_3](../images/Textes/texte_3.png)
-   Correspondance de $4$ lettres. Mais **p** ne figure pas dans le motif. On décale le motif APRES ce **p**, donc de $2$ positions. etc..  
+   Correspondance de $4$ lettres. Mais **p** ne figure pas dans le motif. On décale le motif APRÈS ce **p**, donc de $2$ positions. etc..  
 
 #### Table des sauts/occurences à droite
 

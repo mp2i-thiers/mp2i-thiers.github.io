@@ -27,7 +27,7 @@ _Figure – Abstraction du problème des 7 ponts de Königsberg_
     **Théorème**
 
     Un graphe connexe admet un circuit eulérien _si et  seulement si_ tous ses sommets sont de degré pair.
-    Ici un des sommets a 3 _voisins_: pas de circuit eulérien.  
+    Ici un des sommets a $3$ _voisins_: pas de circuit eulérien.  
 
 ## Graphes, représentation, sous-graphes
 
@@ -59,7 +59,7 @@ La définition suivante ne s’applique pas aux graphes avec arêtes multiples.
 !!! quote "Définition: Graphe simple non orienté"
     Un graphe (simple) non orienté $G$ est un couple $(V, E)$ où $E ⊆ P(V)$ est un ensemble de paires ou de singleton d’éléments de $V$. On appelle sommets les éléments de $V$ et arcs ceux de $E$.
 
-La lettre E est utilisée pour les arcs car en anglais, _arcs_ se dit _edge_.  
+La lettre $E$ est utilisée pour les arcs car en anglais, _arcs_ se dit _edge_.  
 
 Certains auteurs utilisent un vocabulaire spécial pour les graphes non  orientés. Par exemple, une arête (undirected edge) désigne un arc.  
 
@@ -191,7 +191,7 @@ ou
 
 En **Ocaml** ou **C**, les matrices d’adjacence sont simplement  représentées par des _matrices carrées_ **c.a.d.** des tableaux à deux  dimensions avec même nombre de lignes que de colonnes.  
 
-A la place de _0_ et de _1_, on peut utiliser des bouléens.  
+A la place de $0$ et de $1$, on peut utiliser des bouléens.  
 
 Implicitement on considère que les sommets sont des nombres. Ou  alors on dispose d’un tableau de correspondance entre les sommets et  leurs numéros (utile si les sommets contiennent des informations).  
 
@@ -299,14 +299,12 @@ sur le mailllon suivant.
 Convention : $V$ pour vertice, $E$ pour edge.  
 
 - Un sous-graphe est un graphe contenu dans un autre graphe :  "$H = (V_H, E_H)$ est un sous-graphe de $G = (V_G, E_G)$ si $V_H ⊂ V_G$,  $E_H ⊂ E_G$ et pour tout arc (resp. arête) de $E_H$, les extrémités sont  dans $V_H$".  
-On supprime des arcs et des sommets avec la contrainte qu’**il ne faut pas conserver d’arc dont une extrémité a été supprimée de
-l’ensemble des sommets.**
+On supprime des arcs et des sommets avec la contrainte qu’**il ne faut pas conserver d’arc dont une extrémité a été supprimée de l’ensemble des sommets.**
 
 - Un sous-graphe couvrant (ou graphe partiel) est un sous-graphe ayant  le même ensemble de sommets que le graphe qui le contient.  "$H$ est un sous-graphe couvrant de $G$ (ou $H$ couvre $G$) si $V_H = V_G$  et $E_H ⊂ E_G$."  **On garde tous les sommets, on enlève certains arcs.**
 
-- Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "H est un sous-graphe induit de $G$ si, pour tout $(x, y) \in V_H^2$, l’existence d’un lien entre $x$ et $y$ dans $H$ est équivalente à l’existence  d’un lien entre $x$ et $y$ dans $G$."  
-**On enlève des sommets, toutes les arêtes correspondant à ces
-sommets et uniquement celles-là.**
+- Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "$H$ est un sous-graphe induit de $G$ si, pour tout $(x, y) \in V_H^2$, l’existence d’un lien entre $x$ et $y$ dans $H$ est équivalente à l’existence  d’un lien entre $x$ et $y$ dans $G$."  
+**On enlève des sommets, toutes les arêtes correspondant à ces sommets et uniquement celles-là.**
 
 !!!example ""
     **Exemples**
@@ -340,10 +338,7 @@ sommets et uniquement celles-là.**
 - Un cycle est dit _élémentaire_ si, lorsqu’on enlève un arc quelconque et une extrémité de cet arc, le chemin restant est élémentaire.  
 - Un graphe est _acyclique_ s’il ne possède aucun cycle.  
 - Certains auteurs distinguent la notion de _circuit_ (pour les graphes
-orientés) de celle de _cycle_ (pour les graphes non orientés).
-Dans un graphe non orienté, la plupart du temps, on considère qu’un
-cycle est simple et possède au moins 3 arêtes (les boucles ne sont
-alors pas considérées comme des cycles).
+orientés) de celle de _cycle_ (pour les graphes non orientés). Dans un graphe non orienté, la plupart du temps, on considère qu’un cycle est simple et possède au moins $3$ arêtes (les boucles ne sont alors pas considérées comme des cycles).
 
 #### Existence de chemin élémentaire (Propriété de  König)
 
@@ -474,13 +469,13 @@ _Deux composantes connexes après suppression de $\{S_4, S_5\}$._
 
     - Vrai si $n = 1$. Alors $p ≥ 0$. Le graphe est connexe et $p ≥ n − 1$ 
     - Si $n = 2$, il faut qu’il y ait une arête entre les deux sommets pour que  le graphe soit connexe. Alors $p ≥ 1 = n − 1$.  
-    - Cas de base : **OK.** (_Remarque_ : on pourrait ajouter des boucles ça ne  changerait rien).  
+    - Cas de base : **OK**. (_Remarque_ : on pourrait ajouter des boucles ça ne  changerait rien).  
     - Si $P(k)$ pour $n ≥ 2$ et tout $k ≤ n$. Soit $G$ connexe à $n + 1$ sommets. Tout sommet possède au moins une arête incidente car $G$ est connexe.  
   
-        - Si $G$ possède un sommet $x$ de degré $d(x) = 1$, $x$ n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime $x$ et son  unique arrête adjacente, le sous-graphe $G'$ obtenu est connexe à $n$  sommets. Par HR le nombre d’arêtes de $G'$ est $p' ≥ n − 1$. En  remettant l’arête de $x$, on a au moins $(n + 1) − 1$ arêtes dans $G$.  
+        - Si $G$ possède un sommet $x$ de degré $d(x) = 1$, $x$ n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime $x$ et son  unique arrête adjacente, le sous-graphe $G'$ obtenu est connexe à $n$  sommets. Par **HR** le nombre d’arêtes de $G'$ est $p' ≥ n − 1$. En  remettant l’arête de $x$, on a au moins $(n + 1) − 1$ arêtes dans $G$.  
         - Sinon, tous les degrés sont $≥ 2$. La somme des degrés dans un graphe est $\sum_{x \in V}d(x) = 2p$ car toutes les arêtes sont comptées deux fois. On  a donc 
         $$2p = \sum_{x \in V} \underbrace{d(x)}_{\geq 2} \geq 2|V| = 2n+2 $$ 
-        Donc $p \geq n+1 \geq (n+1) - 1$. OK
+        Donc $p \geq n+1 \geq (n+1) - 1$. **OK**
 
 
     ##### Si $G$ est non orienté sans boucle a au moins $n$ arêtes, il n’est pas acyclique
@@ -490,22 +485,22 @@ _Deux composantes connexes après suppression de $\{S_4, S_5\}$._
     - Précisons : pas de cycle simple : $x_0 , x_1 , x_0$ n’est pas un cycle car la même arête est emprunté deux fois
     - Si le graphe (qui est sans boucle) a au plus deux sommets, il ne
     possède pas de cycle simple puisqu’il y a au plus une arête qu’on ne peut pas emprunter deux fois (en CPGE, il n’y a pas de multigraphe : il existe au plus une arête entre deux sommets).
-    - Pour $n = 3$. S’il y a 3 arêtes, le graphe tout entier est un cycle.
+    - Pour $n = 3$. S’il y a $3$ arêtes, le graphe tout entier est un cycle.
 
-    On considère des graphes non orientés à au moins 3 sommets. On raisonne par récurrence forte sur $|G| = n$.  
+    On considère des graphes non orientés à au moins $3$ sommets. On raisonne par récurrence forte sur $|G| = n$.  
     
-    - Cas de base $n = 3$. S’il y a 3 arêtes, le graphe tout entier est un cycle.  
+    - Cas de base $n = 3$. S’il y a $3$ arêtes, le graphe tout entier est un cycle.  
     - Supposons $P(k)$ pour $k ≥ 3$ et tout $k ≤ n$. Soit $G$ à $n + 1$ sommets et  $p = n + 1$ arêtes. On montre qu’il possède un cycle. 
     Considérons un  sommet quelconque $x$.  
 
-        - S’il n’y a pas d’arête incidente à $x$, le graphe privé de $x$ a $n$ sommets  et $n + 1$ arêtes. Il y a un cycle par HR.  
-        - Si il existe une arête incidente à $x$ qui n’est pas un isthme elle est  alors sur un cycle et $G$ possède donc un cycle : OK.  
+        - S’il n’y a pas d’arête incidente à $x$, le graphe privé de $x$ a $n$ sommets  et $n + 1$ arêtes. Il y a un cycle par **HR**.  
+        - Si il existe une arête incidente à $x$ qui n’est pas un isthme elle est  alors sur un cycle et $G$ possède donc un cycle : **OK**.  
 
         - Si toutes arête $x$-incidente est un isthme, soit $u = \{x, y\} \in E$.  Retirons $u$. Alors $x$ se retrouve dans une composante connexe  diﬀérente de celle de $y$.  
         Séparons la composante connexe de $x$ et ses arêtes (formant un sous graphe $G_1$) du reste du graphe (notons $G_2$ ce reste).  
             - $G_1$ possède, disons $k$ sommets $(1 ≤ k < n + 1)$, l’autre $n + 1 − k$. $G_1$ possède $q_1$ arêtes et $G_2$ en a $q_2$ avec $q_1 + q_2 = n$.  
-            - Si $q_1 ≥ k$, il y a un cycle dans $G_1$ par HR donc dans $G$ puisque $G_1$ est  un sous-graphe de $G$ : Prouvé.  
-            - Sinon, $q_2 = n − q_1 > n − k$ donc $q_2 ≥ (n − k) + 1$ et le sous-graphe $G$ par HR a un cycle donc $G$ aussi. **CQFD** 
+            - Si $q_1 ≥ k$, il y a un cycle dans $G_1$ par **HR** donc dans $G$ puisque $G_1$ est  un sous-graphe de $G$ : Prouvé.  
+            - Sinon, $q_2 = n − q_1 > n − k$ donc $q_2 ≥ (n − k) + 1$ et le sous-graphe $G$ par **HR** a un cycle donc $G$ aussi. **CQFD** 
 
 #### Caractérisation des arbres non enracinés
 
@@ -543,7 +538,7 @@ On a déjà vu les sens directs.
     Alors il y a un autre chemin de $x$ à $y$ que cette arête. Donc on peut  enlever l’arête $\{x, y \}$ en conservant le caractère connexe.  
     Mais alors le nouveau graphe $G'$ est encore connexe et possède $n$  sommets et $n − 2$ arêtes. **ABSURDE** 
     Alors $G$ est aussi acyclique.
-    Et comme graphe connexe acyclique N.O., $G$ est un arbre.
+    Et comme graphe connexe acyclique N.O. , $G$ est un arbre.
 
 ## Graphes particuliers
 
@@ -570,8 +565,8 @@ Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  
 
 !!! quote "Définition: Racine et Arborescence"
     Un sommet $r$ d’un graphe orienté $G = (V , E)$ est une racine de $G$ si  pour tout sommet $x$ de $G$ il existe un chemin de $r$ à $x$.  
-    
-    On dit qu’un graphe orienté $G = (V , E)$ est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant 1 et si il existe un chemin de $x_0$ à tous les  autres sommets.  
+
+    On dit qu’un graphe orienté $G = (V , E)$ est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant $1$ et si il existe un chemin de $x_0$ à tous les  autres sommets.  
 
 !!!example ""
     **Exemple**
@@ -601,7 +596,7 @@ _Peigne_ : Bon j'ai vraiment besoin de décrire ça ?
 
 Un graphe est _planaire_  si on peut le dessiner sans  qu’aucune arête n’en coupe  une autre.  
 
-_4-coloriabilité_ :  les sommets d’un graphe planaire  peuvent être coloriés  avec 4 couleurs sans  que deux sommets adjacents  ne soient de la même couleur.  
+_4-coloriabilité_ :  les sommets d’un graphe planaire  peuvent être coloriés  avec $4$ couleurs sans  que deux sommets adjacents  ne soient de la même couleur.  
 
 <p align='center'><img src='/images/598390c394c9d54c0b8f1bed3302516a.bmp'/></p>
 
@@ -735,7 +730,7 @@ Le graphe de liaison induit par une exploration complète de $G$ est un **ensemb
 
 - Lors d’un parcours, chaque sommet entre au plus une fois dans  l’accumulateur `Verts` , et n’en sort qu’au plus une fois (quand il  devient rouge).
 
-- On s’arrange pour que _ces opérations d’entrée et de sortie  dans/de l’accumulateur sont de coût constant_. Pour réaliser cette  condition, la solution que nous adoptons consiste à utiliser un tableau  de couleurs R,V,B.  
+- On s’arrange pour que _ces opérations d’entrée et de sortie  dans/de l’accumulateur sont de coût constant_. Pour réaliser cette  condition, la solution que nous adoptons consiste à utiliser un tableau  de couleurs $R,V,B$.  
 
 ### Parcours en largeur d'abord
 
@@ -743,7 +738,7 @@ Le graphe de liaison induit par une exploration complète de $G$ est un **ensemb
 
 L’ensemble des sommets Verts est représenté par une file  (bibliothèque OCAML queue par exemple)
 
-$\color{red}Principe$ : on explore le graphe à partir d’un sommet en visitant  d’abord tous les sommets voisins (à une distance 1), puis tous les  sommets voisins de ses voisins (à une distance 2)....  
+$\color{red}Principe$ : on explore le graphe à partir d’un sommet en visitant  d’abord tous les sommets voisins (à une distance $1$), puis tous les  sommets voisins de ses voisins (à une distance $2$)....  
 
 $F$ : file des sommets verts.  
 
@@ -797,7 +792,7 @@ Pour un graphe $G = (V , E)$ avec $|E| = p$ et $|V| = n$
 
 #### Propriétés du parcours en largeur d’abord
 
-Considérons un parcours en largeur depuis un sommet s :
+Considérons un parcours en largeur depuis un sommet $s$ :
 
 - $s$ est le premier sommet rouge. Un sommet devient rouge avant ses  sucesseurs dans l’ordre de parcours.
 - Un sommet rouge n’a que des sommets adjacents verts ou rouges (en  exo).  
@@ -815,7 +810,7 @@ Conséquence : à la fin de l’appel de <code>Largeur</code> les sommets rouges
     - Au tour 1, $s_0$ sort de la file et devient rouge. Alors il y a un chemin  rouge de $s_0$ à $s_0$. Et tous les voisins de $s$ deviennent verts : donc il y a  un chemin rouge/vert vers eux.
     - Supposons la propriété vraie au tour $k$. Soit $s$ le sommet défilé au  tour $k + 1$. Il faut vérifier la propriété pour le nouveau sommet rouge  et les nouveaux verts.  
 
-        - $s$ devient rouge. Puisque $s$ était dans la file, il y a été placé par un  sommet $x$ qui est devenu rouge. Par HR, il y a un chemin rouge de $s$ à  $x$ et donc (en ajoutant l’arc $(x, s)$) de $s_0$ à $s$.
+        - $s$ devient rouge. Puisque $s$ était dans la file, il y a été placé par un  sommet $x$ qui est devenu rouge. Par **HR**, il y a un chemin rouge de $s$ à  $x$ et donc (en ajoutant l’arc $(x, s)$) de $s_0$ à $s$.
         - Tout sommet $y$ qui devient vert est un voisin de $s$. Comme il y a un  chemin rouge de $s_0$ à $s$, il y a un chemin rouge/vert de $s_0$ à $y$ .  
 
     - Si un sommet $x$ est rouge, il y a un chemin (rouge) depuis $s$ vers $x$  donc $x$ est accessible.
@@ -827,7 +822,7 @@ Conséquence : à la fin de l’appel de <code>Largeur</code> les sommets rouges
         
         - Si la propriété est vraie pour tout sommet accesible à la distance k de  $s_0$, soit $x$ à la distance $k + 1$ (s’il n’existe pas de sommet à la distance  $k + 1$, il n’en existe pas non plus à une distance supérieure et la propriété est prouvée).
 
-        - Alors le prédécesseur $y$ de $x$ dans un PCC de $s_0$ à $x$ est à la distance $k$  de $s_0$ (un sous-chemin de PCC est un PCC). Par HR, il devient rouge à  un moment.
+        - Alors le prédécesseur $y$ de $x$ dans un PCC de $s_0$ à $x$ est à la distance $k$  de $s_0$ (un sous-chemin de PCC est un PCC). Par **HR**, il devient rouge à  un moment.
 
         - Donc si $x$ est bleu au moment où $y$ devient rouge, alors $y$ le marque en vert et $x$ finit par devenir rouge.
         Et si $x$ est déjà marqué quand $y$ devient rouge, alors $x$ devient rouge. (Tout sommet qui entre dans la file en sort et devient rouge)         
@@ -838,7 +833,7 @@ Conséquence : à la fin de l’appel de <code>Largeur</code> les sommets rouges
 
 Principe : on explore le graphe à partir d’un sommet $x$ en visitant l’un  de ses sommets successeurs $y$ et en poursuivant l’exploration d’abord  par les successeurs de ce dernier avant les autres successeurs de $x$.  
 
-Ainsi l’exploration s’eﬀectue en suivant le plus loin possible une  chaîne issue de $x$. Lorsque tous les successeurs d’un sommet ont été  visités, on continu l’exploration en remontant dans la chaîne au  premier sommet ayant encore des successeurs non visités.  
+Ainsi l’exploration s’eﬀectue en suivant le plus loin possible une  chaîne issue de $x$. Lorsque tous les successeurs d’un sommet ont été visités, on continu l’exploration en remontant dans la chaîne au  premier sommet ayant encore des successeurs non visités.  
 
 On gère une pile des sommets verts (bibliothèque OCAML listes ou  **stack**, **python** : listes ou classe **deque**)  
 
@@ -846,7 +841,7 @@ On gère une pile des sommets verts (bibliothèque OCAML listes ou  **stack**, *
 
 On utilise une pile pour gérer les sommets verts.
 
-```ocaml linenums="1"
+```Ocaml linenums="1"
 procedure Profondeur(G: graphe, P: pile)
     Si P non vide
         x := Peek P /*Récupère le sommet de la pile sans dépiler */ 
@@ -867,9 +862,9 @@ tant que des sommets bleus sont présents faire
 
 #### En pratique
 
-Un même nœud s apparaît plusieurs fois au sommet de la pile. Il faut  donc gérer un marqueur de progression dans sa liste de voisins pour  éviter de reprendre cette liste depuis le début à chaque passage de $s$  au sommet de la pile.  
+Un même nœud $s$ apparaît plusieurs fois au sommet de la pile. Il faut  donc gérer un marqueur de progression dans sa liste de voisins pour  éviter de reprendre cette liste depuis le début à chaque passage de $s$  au sommet de la pile.  
 
-Solution : considérer les listes de voisins comme des piles. On dépile  jusqu’à trouver un sommet bleu. Les voisins dépilés ne reviennent  jamais dans la pile de voisins. Cela impose de faire une copie du graphe ($O(n)$ si le graphe est un tableau de listes de voisins.)  
+_Solution_ : considérer les listes de voisins comme des piles. On dépile  jusqu’à trouver un sommet bleu. Les voisins dépilés ne reviennent  jamais dans la pile de voisins. Cela impose de faire une copie du graphe ($O(n)$ si le graphe est un tableau de listes de voisins.)  
 
 #### Nombre d’opérations due à un sommet
 
@@ -1030,9 +1025,9 @@ On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc 
 
     ##### Graphe acyclique $\Rightarrow$ tri topologique
     
-    Pour trier topologiquement un graphe acyclique orienté contenant n sommets, on effectue un parcours en profondeur et on numérote de manière décroissante les sommets à partir de $n$ au fur et à mesure qu’ils deviennent rouges : $r(s) = n$ si $s$ est le premier rouge, $r(s) = 1$ si $s$ est le dernier. On montre que la méthode est correcte.
+    Pour trier topologiquement un graphe acyclique orienté contenant $n$ sommets, on effectue un parcours en profondeur et on numérote de manière décroissante les sommets à partir de $n$ au fur et à mesure qu’ils deviennent rouges : $r(s) = n$ si $s$ est le premier rouge, $r(s) = 1$ si $s$ est le dernier. On montre que la méthode est correcte.
 
-    - Supposons $G$ acyclique. Si $r (x) < r (y)$, c’est que y devient rouge avant x. On raisonne par l’absurde en supposant qu’il existe un arc (y , x).
+    - Supposons $G$ acyclique. Si $r (x) < r (y)$, c’est que y devient rouge avant $x$. On raisonne par l’absurde en supposant qu’il existe un arc $(y , x)$.
     - Au moment de l’empilement de $y$ (donc quand $y$ devient vert), si $x$ est bleu, alors $x$ est empilé après $y$ donc devient rouge avant, ce qui contredit $r (x) < r (y)$.
     - Si au moment de l’empilement de $y$ , $x$ est déjà rouge, alors $r (x) > r (y)$, ce qui est **absurde**.
     - Donc au moment de l’empilement de $y$ , $x$ est vert. Et comme il y a un arc $(y , x)$, cela révèle un circuit : **absurde**.

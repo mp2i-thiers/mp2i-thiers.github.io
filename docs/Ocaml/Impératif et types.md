@@ -92,7 +92,7 @@ val n : int ref = {contents = 0}
 
 Les deux listes ne sont pas au même endroit de la mémoire.
 
-`=` : égalité physique.
+`=` : égalité syntaxique.
 ```Ocaml linenums="1"
 # [1] = [1];;
 - : bool = true 
@@ -167,9 +167,9 @@ Observons que l’invocation de `failwith` déclenche le `raise`.
 Exception : Division_by_zero.
 ```
 
-C’est l’évaluateur de OCaml qui déclenche cette exception.  
+C’est l’évaluateur de **OCaml** qui déclenche cette exception.  
 
-- Une autre qui rappelle le C ou encore Python.
+- Une autre qui rappelle le **C** ou encore **Python**.
 
 ```Ocaml linenums="1"
 # let l = [3] in assert (List.mem 2 l);;
@@ -233,7 +233,7 @@ Dans l’exemple suivant, on met la tête de la liste `l2` dans `l1` et, si une 
 #### Présentation
 
 !!! note ""
-    L’idée est celle des `struct` de C. On accède aux champs avec la notation  pointée; on les modifie avec la notation ﬂéchée des tableaux.
+    L’idée est celle des `struct` de **C**. On accède aux champs avec la notation  pointée; on les modifie avec la notation ﬂéchée des tableaux.
 
 ```Ocaml linenums="1"
 # type complex = {x : float ; y : float};;
@@ -320,7 +320,7 @@ type stack_of_int = Vide | P of int * stack_of_int
         val somme : stack_of_int -> int = <fun>
 ```
 
-- On crée ensuite une pile dont le sommet est 3, l’élément intermédiaire  2 et la base 1. On lui applique la fonction `somme` :  
+- On crée ensuite une pile dont le sommet est $3$, l’élément intermédiaire $2$ et la base $1$. On lui applique la fonction `somme` :  
 
 ```Ocaml linenums="1"
 # let p = P (3 , P (2 , P (1 , Vide))) ;;
@@ -372,7 +372,7 @@ let rec list_max = function
 
     * renvoyer une `min_int` ? mais le code ne fonctionnerait qu’avec une  liste d’entiers
     * Soulever une exception ? mais il faudra que l’utilisateur se souvienne  d’encapsuler ses appels dans un `try..with`  
-    * Renvoyer `NULL` ? mais cette notion existe en C pas en OCaml  
+    * Renvoyer `NULL` ? mais cette notion existe en **C** pas en **OCaml**  
 
     **La meilleure solution est d’employer le type `option`.**
 

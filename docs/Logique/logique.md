@@ -39,7 +39,7 @@ Par exemple $2 + 2 = 4$ a pour valeur **Vrai**, la seconde phrase est  vérifiab
 !!!example ""
     **Contre-exemple**
 
-    "À quelle heure finit le cours ?" ou "Travaille  davantage !". Ces phrases n'apportent pas d'information.  Il est diﬃcile de leur attribuer une valeur.
+    "À quelle heure finit le cours ?" ou "Travaille  davantage !". Ces phrases n'apportent pas d'information.  Il est difficile de leur attribuer une valeur.
 
 Les valeurs attribuées aux propositions sont en général $0$ ou $1$, **True**  ou **False**, **Vrai** ou **Faux**.  
 
@@ -321,7 +321,7 @@ Observer l'analogie avec une fonction f de type `a->b->c->d` en  **OCaml** : `f 
 #### Notation
 
 !!!note ""
-    - Pour indiquer qu'une proposition $a$ _est sémantiquement équivalente_ à  une proposition $b$, il n'est pas suﬃsant d'écrire $a \Leftrightarrow b$.
+    - Pour indiquer qu'une proposition $a$ _est sémantiquement équivalente_ à  une proposition $b$, il n'est pas suffisant d'écrire $a \Leftrightarrow b$.
     - En effet $a \Leftrightarrow b$ est juste une proposition. Celle-ci peut être  satisfiable ou non (peut-être même pas, comme $V \Leftrightarrow F$ ).  
     - La bonne façon d'indiquer cette équivalence est de déclarer  "$a \Leftrightarrow b$ est une tautologie".
     - Les mathématiciens sont parfois paresseux : il leur arrive d'écrire  "$a \Leftrightarrow b$" au lieu de "$a \Leftrightarrow b$ est _vraie_ (ce qui signifie vraie  pour tout contexte)".  
@@ -544,13 +544,14 @@ En appliquant ces règles, on obtient que toute proposition est  sémantiquement
 - On sait que toute proposition peut s'exprimer comme conjonction de  clause.
 
 !!!note ""
-    - Soit $p$ une proposition, alors $\neg$p s'écrit sous la forme
+
+    - Soit $p$ une proposition, alors $\neg p$ s'écrit sous la forme
     $\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n$ avec $c_i = l_{i,1} \vee  \dotsb \vee  l_{i,n_i}$ .  
     - Donc $p \equiv \neg \neg p \equiv \neg c_1 \vee  \dotsb \vee  \neg c_n$ par De Morgan.  
     - Or chaque $\neg c_i$ est équivalent sémantiquement à une conjonction de littéraux (par De Morgan) : $\neg c_i \equiv \neg l_{i,1} \wedge  \dotsb \wedge  \neg l_{i,n_i}$.
 
 - Donc toute proposition peut s'écrire comme disjonction de monômes.  
-- PB : ces réécritures ne sont pas uniques.  
+- **PB** : ces réécritures ne sont pas uniques.  
 
 #### Explosion combinatoire
 
@@ -595,7 +596,7 @@ $$
 
     $(v_1 \vee  \neg v_2 \vee  v_3) \wedge  (v_1 \vee  v_2 \vee  \neg v_3)$ est une FNCC sur les variables  $v_1, v_2, v_3$ mais pas $(v_1\vee  \neg v_2 \vee  v_3) \wedge  \neg (v_1 \vee  v_2 \vee  \neg v_3)$ car la négation  n'est pas au contact des variables. $(v_1 \vee v_2 \vee \neg v_3 ) \wedge (v_1 \vee v_3 )$ non plus car il manque une variable. 
 
-    Utilisation : démonstration automatique de théorèmes ou PB SAT.      
+    _Utilisation_ : démonstration automatique de théorèmes ou **PB SAT**.      
 
 !!!example "Exemple"
 
@@ -615,8 +616,17 @@ $$
      0 & 0 & 0 & 1
      \end{array}$$
 
+    - $p$ est sépantiquement équivalent à la disjonction de mintermes $q$ suivante : $(a ∧ b ∧ ¬c) ∨ (a ∧ ¬b ∧ c) ∨ (¬a ∧ b ∧ ¬c) ∨ (¬a ∧ ¬b ∧ ¬c)$
+
+    - En effet, $p$ prend la valeur $1$ pour les mêmes cpntextes exactement que la FNDC $q$ (une disjonction vaut $1$ si et seulement si un terme vaut $1$).
+
+    - $¬p$ est sémantiquement équivalente à la disjonction de mintermes $q'$ suivante : $(a ∧ b ∧ c) ∨ (a ∧ ¬b ∧ ¬c) ∨ (¬a ∧ b ∧ ¬c) ∨ (¬a ∧ ¬b ∧ c)$
+
+    - Donc $¬¬p$ est sémantiquement équivalente à : $(¬a ∨ ¬b ∨ ¬c) ∧ (¬a ∨ b ∨ c) ∧ (a ∨ ¬b ∨ c) ∧ (a ∨ b ∨ ¬c)$
+
     - Lire positivement les variables des lignes à $1$ pour la FND
     - Lire négativement les variables des lignes à $0$ pour la FNC
+
 !!! warning ""
     **Proposition**
 
@@ -625,6 +635,12 @@ $$
 !!! tip ""
     **Remarque**
 
+    Soit $P$ une antilogie : ladisjonction à zéro minterme est $F$ par convention. Or $F ≡ P$, donc $P$ est bien une disjonction de minterme.
+
+    Soit $P$ une tautologie : la conjonction à zéro maxterme est $V$ par convention. Or $V ≡ P$^, donc P est une conjonction de maxterme.
+
+    Un minterme est satisfait par un seul contexte ; un maxterme par tous les contextes sauf $1$.
+
     Dans ce qui suit on dit que deux FNDC sont égales si elles ont les mêmes mintermes (les mintermes sont donnés à l'ordre des littéraux près).
 
 #### Existence de la FNDC
@@ -632,31 +648,28 @@ $$
 !!! note ""
     **Démonstration**
 
-    - On construit la table de vérité de la proposition : il y a $2^n$ lignes  correspondants aux valeurs de vérité des n variables de p.  
-    - Chaque ligne satisfaisant l'expression (1 dans la dernière colonne)  donne un minterme. Toutes les variables sont présentes et une variable v y apparaît positivement (v) si sa valeur de vérité dans la  ligne est 1, négativement ($\neg$v ) sinon.  
-    - On considère la disjonction de tous les mintermes ainsi obtenus. C'est  une expression q en FNDC.  
+    - On construit la table de vérité de la proposition : il y a $2^n$ lignes  correspondants aux valeurs de vérité des $n$ variables de $p$.  
+    - Chaque ligne satisfaisant l'expression ($1$ dans la dernière colonne)  donne un minterme. Toutes les variables sont présentes et une variable $v$ $y$ apparaît positivement ($v$) si sa valeur de vérité dans la ligne est $1$, négativement ($\neg v$) sinon.  
+    - On considère la disjonction de tous les mintermes ainsi obtenus. C'est une expression $q$ en FNDC. Possiblement $q$ est vide.  
     - Soit $\mu$ un contexte. Si $\varepsilon_\mu(p) = 1$, alors le minterme associé à $\mu$ est  vrai pour $\mu$ donc $\varepsilon_\mu(q) = 1$.  
-    - Si $\varepsilon_\mu(p) = 0$, alors q ne contient pas le minterme associé à $\mu$. Ainsi,  pour tout minterme m de q, on a $\varepsilon_\mu(m)=0$ et donc $\varepsilon_\mu(q) = 0$. 
-    - $\color{red}{\textsf{Donc p et q prennent bien la même valeur pour tout contexte.}}$  
+    - Si $\varepsilon_\mu(p) = 0$, alors $q$ ne contient pas le minterme associé à $\mu$. Ainsi, pour tout minterme $m$ de $q$, on a $\varepsilon_\mu(m)=0$ et donc $\varepsilon_\mu(q) = 0$. 
+    - $\color{red}{\textsf{Donc } p \textsf{ et } q \textsf{ prennent bien la même valeur pour tout contexte.}}$  
 
 #### Unicité de la FNDC à l'ordre près
 
-Soient $p \equiv q$ deux FNDC. Elles ont donc même table.  
-Si $p \neq q$ et $p, q$ ne possèdent qu'un minterme :  
+Soient $p \equiv q$ deux FNDC. Elles ont donc même table.
 
-- Si p, q ont deux littéraux $l, l'$ de la même variable v distincts, l'un des  littéraux vaut $\neg$v l'autre v . Autrement dit $l \equiv \neg l'$
-- Comme p est une conjonction, il n'y a qu'un seul contexte c (i.e. une  seule ligne) dans lequel p vaut 1.
-- Alors $l$ vaut aussi 1 dans ce contexte (p étant une conjonction).
-- Donc $l'$ vaut 0 dans c. Et donc q vaut 0 dans c. p et q ne peuvent avoir même table.
-- De ce qui précède, on déduit aussi que des mintermes (ayant les mêmes  variables) distincts ne valent jamais 1 en même temps.  
-
-On a vu que si $p \neq q$ et p, q ne possèdent qu'un minterme, leurs tables sont différentes. On en déduit que des mintermes distincts ne valent jamais 1 en même temps.
-
-Si p et q sont des disjonctions de mintermes, et si un minterme m de p ne se retrouve pas dans q :  
-
-- Lorsque m vaut 1, p aussi (comme disjonction). Tous les autres  mintermes valent 0 (puisque un seul minterme vaut 1 pour un contexte  donné), ceux de p comme ceux de q.  
-- Alors dans ce contexte, comme disjonction de 0, q vaut 0.  
-- Et donc p et q ne peuvent avoir même table.  
+- Si $p \neq q$ et $p, q$ ne possèdent qu'un minterme :  
+  - Si $p, q$ ont deux littéraux $l, l'$ de la même variable $v$ distincts, l'un des  littéraux vaut $\neg v$ l'autre $v$ . Autrement dit $l \equiv \neg l'$
+  - Comme $p$ est une conjonction, il n'y a qu'un seul contexte $c$ (i.e. une  seule ligne) dans lequel $p$ vaut $1$.
+  - Alors $l$ vaut aussi $1$ dans ce contexte ($p$ étant une conjonction).
+  - Donc $l'$ vaut $0$ dans $c$. Et donc $q$ vaut $0$ dans $c$. $p$ et $q$ ne peuvent avoir même table.
+  - De ce qui précède, on déduit aussi que des mintermes (ayant les mêmes  variables) distincts ne valent jamais $1$ en même temps.  
+- On a vu que si $p \neq q$ et $p, q$ ne possèdent qu'un minterme, leurs tables sont différentes. On en déduit que des mintermes distincts ne valent jamais $1$ en même temps.
+- Si $p$ et $q$ sont des disjonctions de mintermes, et si un minterme m de p ne se retrouve pas dans $q$ :  
+  - Lorsque $m$ vaut $1$, $p$ aussi (comme disjonction). Tous les autres  mintermes valent $0$ (puisque un seul minterme vaut $1$ pour un contexte donné), ceux de $p$ comme ceux de $q$.  
+  - Alors dans ce contexte, comme disjonction de $0$, $q$ vaut $0$.  
+  - Et donc $p$ et $q$ ne peuvent avoir même table.  
 
 #### FNCC
 
@@ -664,29 +677,29 @@ Soit une expression p à n variables,
 
 !!!note "Existence"
     - $\neg p$ a une FNDC $c_1 \vee \dotsb \vee  c_n$ où les $c_i$ sont des mintermes.
-    - Donc p se réécrit comme $(\neg c_1) \wedge  \dotsb \wedge (\neg c_n)$. Or les négations de mintermes se réécrivent en maxtermes (par De Morgan).
-    - Et donc p se réécrit en une FNCC. Voilà pour  l'existence.
+    - Donc $p$ se réécrit comme $(\neg c_1) \wedge  \dotsb \wedge (\neg c_n)$. Or les négations de mintermes se réécrivent en maxtermes (par De Morgan).
+    - Et donc $p$ se réécrit en une FNCC. Voilà pour l'existence.
 
 !!!note "Unicité"
-    Si p avait deux FNCC distinctes, par De Morgan $\neg p$ aurait deux FNDC distinctes. Or il y a une seule FNDC possible pour une formule.
+    Si $p$ avait deux FNCC distinctes, par De Morgan $\neg p$ aurait deux FNDC distinctes. Or il y a une seule FNDC possible pour une formule.
 
 ## Problème SAT
 
-### Problème SAT et n-SAT
+### Problème SAT et $n$-SAT
 
-#### Présentation du problème 2-SAT
+#### Présentation du problème $2$-SAT
 
 - Le problème SAT qui consiste à déterminer si une proposition est  satisfiable ou non est en général de complexité exponentielle en le  nombre de variables.  
 - Le problème CNF-SAT est la restriction du problème SAT aux formes  normales conjonctives.  
-- Le problème n-SAT est la restriction du problème SAT aux formes  normales conjonctives avec au plus n littéraux par clause.  
-- Le problème 2-SAT consiste à déterminer si une forme conjonctive  dont les clauses ont seulement deux littéraux est satisfiable.  Il admet des solutions polynômiales.  
+- Le problème $n$-SAT est la restriction du problème SAT aux formes  normales conjonctives avec au plus $n$ littéraux par clause. Nous verrons l'_alogrithme de Quin_ qui résoud le porblème CNF-STAT : il est souvent méilleur que la recherche exhaustive en force brute.
+- Le problème $2$-SAT consiste à déterminer si une forme conjonctive  dont les clauses ont seulement deux littéraux est satisfiable. Il admet des solutions polynômiales.  
 
-#### Problème SAT
+#### Le problème SAT
 
 - Comment tester qu'une proposition est satisfiable ? Il s'agit du  problème dit SAT.  
-- Comment tester qu'une proposition p est une tautologie ? Si on sait  résoudre le problème SAT, il suﬃt de montrer que $\neg$ p est insatisfiable.  
-- Pour le problème SAT, on peut simplement calculer sa table. Mais on  a alors une complexité en O(2n), si n est le nombre de variables.  
-- Des algorithmes plus eﬃcaces (en pratique, c'est à dire sauf cas  pathologiques) existent (DPLL) et passent par une mise sous FNC.  Mais dans le pire des cas ce passage à la FNC est lui-même de  complexité exponentielle.  
+- Comment tester qu'une proposition $p$ est une tautologie ? Si on sait  résoudre le problème SAT, il suffit de montrer que $\neg$ p est insatisfiable.  
+- Pour le problème SAT, on peut simplement calculer sa table. Mais on  a alors une complexité en $O(2^n)$, si $n$ est le nombre de variables.  
+- Des algorithmes plus efficaces (en pratique, c'est à dire sauf cas  pathologiques) existent (DPLL) et passent par une mise sous FNC.  Mais dans le pire des cas ce passage à la FNC est lui-même de  complexité exponentielle.  
 
 ### Problème 2-SAT
 
@@ -696,32 +709,32 @@ Cette section est laissée pour info mais sera traitée en seconde année.
 
 #### Problème 2-SAT (Aspvall-Plass-Tarjan)
 
-Soit p une proposition mise sous forme conjonctive avec des 2-clauses
+Soit p une proposition mise sous forme conjonctive avec des $2$-clauses
 
 - On construit un graphe orienté :  
   - Ses sommets sont tous les littéraux formés avec les variables  apparaissant dans la proposition.
   - Les arcs sont des couples de littéraux de la forme $(a, \neg b)$ ou $(\neg a, b)$  mais pas tous ...
   - Pour deux littéraux $a, b$, l'arc $(\neg a, b)$ est présent si et seulement si la  disjonction $a \vee b$ est dans p. Et dans ce cas $(a, \neg b)$ est présent aussi.
   - Ceci correspond à $a \vee  b \equiv (\neg a \rightarrow  b) \wedge  (\neg b \rightarrow  a)$  
-- Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable v de p. Si $\neg$v est dedans, il y a un chemin  d'implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v$.  
-- Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si  p est satisfiable, $v \Leftrightarrow \neg v$ aussi : ABSURDE.  
-- Donc si $v$ et $\neg v$ sont dans la même composante connexe, p n'est pas  satisfiable (Aspvall-Plass-Tarjan).  
+- Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable $v$ de $p$. Si $\neg v$ est dedans, il y a un chemin d'implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v$.  
+- Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si $p$ est satisfiable, $v \Leftrigtarrow \neg v$ aussi : **ABSURDE**.  
+- Donc si $v$ et $\neg v$ sont dans la même composante connexe, $p$ n'est pas satisfiable (Aspvall-Plass-Tarjan).  
 
 !!!example "Exemple (Mansuy)"
-    p = $(v_1 \vee  v_2) \wedge  (\neg v_1 \vee  v_3) \wedge  (v_1 \vee  \neg v_2) \wedge  (\neg v_2 \vee  v_3) \wedge  (\neg v_1 \vee  \neg v_3)$ donne le graphe  
+    $p = (v_1 \vee  v_2) \wedge  (\neg v_1 \vee  v_3) \wedge  (v_1 \vee  \neg v_2) \wedge  (\neg v_2 \vee  v_3) \wedge  (\neg v_1 \vee  \neg v_3)$ donne le graphe  
 
     <p align="center"><img src="/images/logique/logique8.png"></p>
 
     - $\neg v_1$ accède à $v_1$ via $v_2$ et
     - $v_1$ accède à $\neg v_1$ via $\neg v_3$  
     - Donc $v_1$ et $\neg v_1$ sont dans la même composante connexe.
-    - Par suite p n'est pas satisfiable.  
+    - Par suite $p$ n'est pas satisfiable.  
 
-#### Problème SAT
+#### Conclusion pour le problème SAT
 
 - Le problème SAT est le problème algorithmique qui consiste, étant  donnée une formule à décider en FNC si elle valide ou non.  
-- Le problème est NP-complet, même pour le cas particulier 3-SAT où on n'autorise que les clauses d'au plus trois littéraux.
-- Un problème P NP-complet vérifie :  
-  - Il est possible de vérifier une solution de P eﬃcacement (en temps  polynomial) : on me donne un candidat solution, et je peux vérifier en  temps polynomial ce qu'il en est. La classe des problèmes vérifiant  cette propriété est notée NP.
-  - tous les problèmes de la classe NP se ramènent à P via une réduction  polynomiale. Cela signifie que le problème est au moins aussi diﬃcile  que tous les autres problèmes de la classe NP (aspect "complet").  Appliqué à la satisfiabilité, cela signifie que si on me donne un  problème de la classe NP, je peux le transformer en temps polynomial  en un problème de satisfiabilité.
+- Le problème est NP-_complet_, même pour le cas particulier $3$-SAT où on n'autorise que les clauses d'au plus trois littéraux.
+- Un problème ${\displaystyle {\mathcal {P}}}$ NP-complet vérifie :  
+  - Il est possible de vérifier une solution de ${\displaystyle {\mathcal {P}}}$ efficacement (en temps  polynomial) : on me donne un candidat solution, et je peux vérifier en temps polynomial ce qu'il en est. La classe des problèmes vérifiant cette propriété est notée NP.
+  - tous les problèmes de la classe NP se ramènent à ${\displaystyle {\mathcal {P}}}$ via une réduction polynomiale. Cela signifie que le problème est au moins aussi difficile que tous les autres problèmes de la classe NP (aspect "complet"). Appliqué à la satisfiabilité, cela signifie que si on me donne un problème de la classe NP, je peux le transformer en temps polynomial en un problème de satisfiabilité.
 - Bien sûr, un problème de la classe P (polynomial) vérifie la première  condition. On a donc P $\subset$ NP, mais a-t-on NP $\subset$ P ?  

@@ -108,7 +108,7 @@ Heureusement, OCaml emprunte au C quelques habitudes comme la fonction `printf` 
 
 !!!example ""
     ```OCaml linenums="1"
-    # Printf.printf "une cha^ıne : %s, un entier : %d, un flottant %f\n" "toto" 45 32.3;;
+    # Printf.printf "une chaîne : %s, un entier : %d, un flottant %f\n" "toto" 45 32.3;;
      une chaîne : toto , un entier : 45, un flottant 32.300000
     - : unit = ()
     ```
@@ -123,7 +123,7 @@ Nous nous contenterons d'utiliser une _boucle interractive_. Il en existe plusie
 
 #### Dans un terminal
 
-OCaml est un langage compilé. Cependa[]
+OCaml est un langage compilé. Cependant
 !!!example ""
     ```OCaml linenums="1"
     print_string "hello\n";;(*un commentaire*)
@@ -152,9 +152,9 @@ Si on n'a pas encore installé OCaml sur sa machine, on peut utiliser un interpr
 
 Raccourcis :
 
-  - Ctrl+Enter Exécute le code sélectionné
-  - Ctrl+Shif+Enter Exécute le code entier.
-  - Ctrl+Space montre le menu d'autocomplétion
+  - `Ctrl+Enter` Exécute le code sélectionné
+  - `Ctrl+Shif+Enter` Exécute le code entier.
+  - `Ctrl+Space` montre le menu d'autocomplétion
 
 #### Tuareg
 
@@ -188,7 +188,7 @@ Une variable est nécessairement initialisée.
 Le type de la variable n'a pas besoin d'être déclaré, il est _inféré_ par le compilateur.
 
 Le contenu de la variable n'est pas modifiable. Dans le code
-précédent, x contient 3 pour toute la durée du programme. La
+précédent, $x$ contient $3$ pour toute la durée du programme. La
 variable est _immuable_ ou _persistante_ (on est en paradigme
 _fonctionnel_).
 
@@ -334,7 +334,7 @@ let a::b = [1;2;3];; (*séparer la tête de la queue *)
 
 ### Plus sur les tuples
 
-Cas d'un tuple de taille 2 :
+Cas d'un tuple de taille $2$ :
 
 ```OCaml linenums="1"
 let y = 1 ,6.2;;
@@ -376,7 +376,7 @@ Isomorphisme de types :
 premier élément est un entier et le second un couple d'entiers.
 - Un élément de type `(int * int) * int` est un couple dont le
 premier élément est un couple d'entiers et le second un entier
-- Les 3 ensembles des éléments appartenant à chacun de ces 3 types sont en bijection canonique. C'est un exemple d'isomorphisme de types. Malheureusement, pour OCaml, ces types sont bien distincts !
+- Les $3$ ensembles des éléments appartenant à chacun de ces $3$ types sont en bijection canonique. C'est un exemple d'isomorphisme de types. Malheureusement, pour OCaml, ces types sont bien distincts !
 
 ## Expressions conditionnelles
 
@@ -448,7 +448,7 @@ OCaml permet de déclarer une fonction de façon plus concise que `let f = fun .
 
 On peut indiquer le type du paramètre et celui de retour :
 
-```Ocaml linenums="1"
+```OCaml linenums="1"
 let f (x:int) : int = x+x;;
 ```
 
@@ -518,7 +518,7 @@ découvrira bientôt comment créer des variables mutables.
 On a vu qu'on peut passer une fonction en argument. On peut aussi renvoyer une fonction.
 
 !!!example ""
-    renvoie de l'homothétie de rapport x :
+    renvoie de l'homothétie de rapport $x$ :
     ```OCaml linenums="1"
     let homothetie x = fun a -> a * x;;
      val homothetie : int -> int -> int = <fun>
@@ -544,7 +544,7 @@ Si on ne le fait pas le résultat de cette application partielle est lui même u
 identificateur et être appliqué par la suite.
 
 !!!example ""
-    ```Ocaml linenums="1"
+    ```OCaml linenums="1"
     let g = milieu 2.;;
     val g : float -> float = <fun>
     g 3.;;
@@ -679,7 +679,7 @@ Elle permet soit de gérer différents cas en fonction des valeurs d'une express
 Plus lisible que `if then else` en cascades `match with` effectue en outre une _analyse d'exhaustivité_. Il vérifie que tous les cas possibles ont bien été couverts ce qui est très utile pour le débugage.
 
 !!!example "Calcul de longueur avec filtrage"
-    ```Ocaml linenums="1"
+    ```OCaml linenums="1"
     let rec longueur l = match l with
     | [] -> 0
     | _::t -> 1+ longueur t;;
