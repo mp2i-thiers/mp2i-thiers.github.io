@@ -479,7 +479,10 @@ Structure impérative. Modifications en place. Ajout/Suppression/Recherche en te
 !!!example "Figure – Un tas. Si on enlève les feuilles de profondeur $2$, l’arbre est parfait"
     <p align="center"><img src="/images/abr2.png"></p>
 
-Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche.
+    (cf figure dans la section **Tas et Tableaux** pour la représentation en array)
+
+    Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli en commençant par la gauche.
+
 !!!example "Contre-exemples"
     Les arbres suivants ne sont pas des tas :
     <p align="center"><img src="/images/abr3.png"></p>
@@ -487,11 +490,11 @@ Tous les niveaux sont remplies, sauf le dernier, lequel est partiellement rempli
     <p align="center"><img src="/images/abr4.png"></p>
     Figure – Un père a un fils d’étiquette plus grande que la sienne
 
-### Hauteur d’un arbre complet gauche
+#### Hauteur d’un arbre complet gauche
 
 Soit $A$ un arbre complet gauche à $n$ nœuds et de hauteur $p$
 
-* L’avant dernier niveau (qui correspond à un arbre parfait) est rempli. Et le dernier niveau contient au moins une feuille.
+- L’avant dernier niveau (qui correspond à un arbre parfait) est rempli. Et le dernier niveau contient au moins une feuille.
 
 $$\begin{matrix}
 &2p − 1 < n ≤ & \underbrace {2^{p+1} − 1}_\text{taille min. d’un arbre parfait plus gros que A} \\
@@ -500,10 +503,14 @@ $$\begin{matrix}
 &\Rightarrow &\lfloor \log_2(n) \rfloor  = p\\
 \end{matrix}$$
 
+### Représentation par tableaux
+
 !!!example "Exemple"
 
     <p align="center"><img src="/images/abr5.png"></p>
     Figure – Un tableau représentant un tas
+
+    Observer le lien entre le parcours en largeur et la représentation en tableau.
 
 !!!example "Contrexemples"
 
@@ -516,17 +523,17 @@ $$\begin{matrix}
     
     Figure – Un père a un fils d’étiquette plus grande que la sienne
 
-### Tas et tableaux
+#### Tas et tableaux
 On peut stocker un tas dans un tableau dont on n’utilise pas (pour le moment) le premier élément.
 
-* La racine occupe l’élément d’indice $1$,
-* Les fils du nœud d’indice $k$ (avec $k > 0$) sont aux indices $2k$ et $2k + 1$ (si ceux-ci ne dépassent pas la longueur du tableau).
-* Le père du nœud d’indice $k$ est à l’indice $\lfloor k/2 \rfloor$.
+- La racine occupe l’élément d’indice $1$,
+- Les fils du nœud d’indice $k$ (avec $k > 0$) sont aux indices $2k$ et $2k + 1$ (si ceux-ci ne dépassent pas la longueur du tableau).
+- Le père du nœud d’indice $k$ est à l’indice $\lfloor k/2 \rfloor$.
 
 <p align="center"><img src="/images/abr8.png"></p>
 Figure – Relations père/fils dans un tableau représentant un tas
 
-#### En OCaml
+##### En OCaml
 ```OCaml linenums="1"
 (* correspond au schéma précédent en OCAML *) 
 let t = [|6; 12; 9; 6; 2; 7; 5; 0; 67; 33|];;
@@ -534,29 +541,39 @@ let t = [|6; 12; 9; 6; 2; 7; 5; 0; 67; 33|];;
 
 Lorsqu’on crée un tableau représentant un tas :
 
-* Il faut prévoir la taille du tableau à l’instant initial ($6$ ici) et les éventuels ajouts à eﬀectuer (en clair prévoir plus de place que la simple taille du tableau à l’instant $0$).
-* Le premier élément du tableau désigne la taille du tas (qui est diﬀérente de celle du tableau).
-* Les éléments $0$, $67$, $33$ en fin de tableau ne sont pas considérés comme appartenant au tas. Ils seront remplacés par les valeurs éventuellement ajoutées au tas.
+- Il faut prévoir la taille du tableau à l’instant initial ($6$ ici) et les éventuels ajouts à eﬀectuer (en clair prévoir plus de place que la simple taille du tableau à l’instant $0$).
+- Le premier élément du tableau désigne la taille du tas (qui est diﬀérente de celle du tableau).
+- Les éléments $0$, $67$, $33$ en fin de tableau ne sont pas considérés comme appartenant au tas. Ils seront remplacés par les valeurs éventuellement ajoutées au tas.
 
-#### Un problème
-Le type de la taille du tas (int) fige le type du tableau avec l’implémentation précédente. Toutes les valeurs du tas doivent être des entiers...
+!!!danger "Un problème"
+    Le type de la taille du tas (**int**) fige le type du tableau avec l’implémentation précédente. Toutes les valeurs du tas doivent être des entiers...
 
-```ocaml linenums="1"
-(* pour dissocier le type de la taille du tas de celui de ses éléments,  on peut utiliser un type enregistrement *) 
-type ’a myHeap =
-    { mutable length : int ; heap : ’a array };;
-```
+!!!tip "Une solution"
 
-### Opérations sur les tas
+    ```OCaml linenums="1"
+    (* pour dissocier le type de la taille du tas de celui de ses éléments,  on peut utiliser un type enregistrement *) 
+    type ’a myHeap =
+        { mutable length : int ; heap : ’a array };;
+    ```
 
-* **Ajouter** : ajout d’un élément dans le tas binaire en préservant la structure de tas.
-* **Retirer** : retirer un élément d’indice donné et rectifier le tableau pour qu’il corresponde de nouveau à un tas.
-* **Construire** : construction du tas binaire à partir d’un ensemble d’éléments.
+### Opérations
+
+#### Opérations sur les tas
+
+- **Ajouter** : ajout d’un élément dans le tas binaire en préservant la structure de tas.
+- **Retirer** : retirer un élément d’indice donné et rectifier le tableau pour qu’il corresponde de nouveau à un tas.
+- **Construire** : construction du tas binaire à partir d’un ensemble d’éléments.
+
+#### Ajouter un élément
+
+##### Principe
 
 Considérons que l’on veuille ajouter le nœud $x$ à notre tas binaire :
-On insère $x$ à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau), puis on eﬀectue l’opération suivante (que l’on appelle percolation vers le haut ou percolate-up) pour rétablir si nécessaire la propriété d’ordre du tas binaire :
+- On insère $x$ à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau),
+- puis on eﬀectue l’opération suivante (que l’on appelle _percolation_ vers le haut ou _percolate-up_) pour rétablir si nécessaire la propriété d’ordre du tas binaire :
+- Tant que $x$ n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père.
 
-* Tant que $x$ n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père.
+##### Shéma de l'ajout
 
 ???example "Exemple"
     On veut ajouter $50$ dans un tas-max :
@@ -579,7 +596,7 @@ On insère $x$ à la prochaine position libre (la position libre la plus à gauc
     
     Figure – Comme $50 ≤ 53$, il n’y a rien à faire : $50$ a trouvé sa bonne place 
 
-#### La fonction auxiliaire d’échange
+##### La fonction auxiliaire d’échange
 
 ```OCcaml linenums="1"
 let swap i j t = (*échange deux éléments d’un tableau*) 
@@ -588,7 +605,7 @@ let swap i j t = (*échange deux éléments d’un tableau*)
 
 Complexité en $\Theta(1)$.
 
-#### La fonction auxiliaire de percolation 
+##### La fonction auxiliaire de percolation
 
 ```OCaml linenums="1"
 let rec percolate_up n t = 
@@ -604,28 +621,34 @@ let rec percolate_up n t =
     end;; 
 ```
 
-#### Complexité de la percolation haute
-On applique cette fonction à un tas d’entiers de $n$ nœuds (représenté par un tableau) : Dans le pire des cas, l’élément remonte la branche la plus longue du tas : $\log_2(n)$ étapes puisque le tas est un arbre binaire presque parfait. À chaque étape, il y a un nombre borné $c$ d’opérations élémentaires. Au total, entre $\log_2(n)$ opérations et $c\log_2(n)$. Complexité en $\Theta(\log_2(n))$.
+##### Complexité de la percolation haute
+On applique cette fonction à un tas d’entiers de $n$ nœuds (représenté par un tableau) :
+- Dans le pire des cas, l’élément remonte la branche la plus longue du tas : $\log_2(n)$ étapes puisque le tas est un arbre binaire presque parfait.
+- À chaque étape, il y a un nombre borné $c$ d’opérations élémentaires.
+- Au total, entre $\log_2(n)$ opérations et $c\log_2(n)$. Complexité en $\Theta(\log_2(n))$.
 
-#### La fonction d’insertion
+##### La fonction d’insertion
 
-##### Principe d'insertion
+!!!warning "Principe"
 
-On insère l’élément après le dernier élément du tableau ($\Theta(1)$) et on percole (au pire $\Theta(\log_2(n))$) si $n$ est le nombre de nœud). Donc complexité au pire $\Theta(\log_2(n))$:
+    On insère l’élément après le dernier élément du tableau ($\Theta(1)$) et on percole (au pire $\Theta(\log_2(n))$) si $n$ est le nombre de nœud). Donc complexité au pire $\Theta(\log_2(n))$:
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let insert v t = 
     t.(0) <- t.(0) +1; (* maj lg du tas *) 
     t.(t.(0)) <- v ; (* placer v à la derni è re place *) 
     percolate_up (t.(0)) t;;
 ```
 
-<p align="center"><img src="/images/abr14.png"></p>
-Figure – Le tas-max de référence
+#### Supprimer un élément
 
-### Supprimer un élément
+##### Shéma de la suppression
 
 ???example "Schema"
+
+    <p align="center"><img src="/images/abr14.png"></p>
+    
+    Figure – Le tas-max de référence
 
     On souhaite supprimer la racine du tas-max suivant :
     
@@ -645,13 +668,17 @@ Figure – Le tas-max de référence
     
     Figure – On compare $20$ et son fils max $(31)$. Comme $31 > 20$, on échange $31$ et $20$. On est alors dans un des deux cas d’arrêt : plus de fils ou pas de fils plus grand. Ici, $20$ n’a plus de fils. On a fini. 
 
-#### Principe de suppression
+##### Principe de suppression
 
-On veut supprimer la racine. Lorsqu’on supprime le dernier nœud d’un tas, celui-ci reste un tas. On supprime le dernier nœud et on le met à la place du nœud racine (la propriété d’ordre est perdue). On percole vers le bas (percolate-down) pour retrouver la propriété d’ordre.
+On veut supprimer la racine :
 
-#### Recherche du plus grand fils
+- Lorsqu’on supprime le dernier nœud d’un tas, celui-ci reste un tas.
+- On supprime le dernier nœud et on le met à la place du nœud racine (la propriété d’ordre est perdue).
+- On percole vers le bas (_percolate-down_) pour retrouver la propriété d’ordre.
 
-```ocaml linenums="1"
+##### Recherche du plus grand fils
+
+```OCaml linenums="1"
 let aux_max n t = (* cette fonction retourne l’indice du fils le plus grand de t .(n) ; -1 si pas de fils *) 
     if 2 * n < t.(0) then 
         begin (* t .(n) a deux fils *) 
@@ -667,9 +694,9 @@ let aux_max n t = (* cette fonction retourne l’indice du fils le plus grand de
 
 Complexité en $O(1)$.
 
-#### Percolate-down
+##### Percolate-down
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let rec percolate_down k t = 
     let m = aux_max k t (* m vaut -1,2 k ou 2 k +1 *) in 
         if m > -1 && t.(m) > t.(k) then
@@ -680,11 +707,14 @@ let rec percolate_down k t =
             end;; 
 ```
 
-#### Complexité de la percolation basse
+##### Complexité de la percolation basse
 
-A chaque appel interne on descend d’un étage dans l’arbre. Le nombre d’appel est majoré par la hauteur ( $\log_2(n)$ pour $n$ nœuds dans cet arbre complet gauche). A chaque appel interne, il y a moins de $c$ opérations élémentaires. Coût total entre $\log_2(n)$ et $c\log_2(n)$. ODG $\Theta(\log_2(n))$
+- À chaque appel interne on descend d’un étage dans l’arbre.
+- Le nombre d’appel est majoré par la hauteur ( $\log_2(n)$ pour $n$ nœuds dans cet arbre complet gauche).
+- A chaque appel interne, il y a moins de $c$ opérations élémentaires.
+- Coût total entre $\log_2(n)$ et $c\log_2(n)$. ODG $\Theta(\log_2(n))$
 
-#### Supprimer la racine
+##### Supprimer la racine
 
 ```ocaml linenums="1"
 let remove t = 
@@ -697,11 +727,11 @@ let remove t =
 
 Complexité : la même que la percolation.
 
-### Création
+#### Création
 
-#### Par remontée : percolation haute du nœud courant
+##### Par remontée : percolation haute du nœud courant
 
-* Pour $t$, tableau de taille $n$, on fait une copie de taille assez grande, disons n+1 :
+- Pour $t$, tableau de taille $n$, on fait une copie de taille assez grande, disons n+1 :
 $$
 \begin{array}{|c|c|c|}
 6 & 12 & 8 & 7 & 15 & → & \color{red}{5} & 6 & 12 & 8 & 7 & 15 \\
@@ -709,7 +739,7 @@ $$
 $$
 Et on maintient "$t[1:k+1]$ est un tas" (notation slicing Python).
 
-* $k = 1$ :
+- $k = 1$ :
 $$
 \begin{array}{|c|c|c|}
 5
@@ -722,7 +752,7 @@ $$
 $$
 $t[1:2]$ est un tas
 
-* $k = 2$ :  
+- $k = 2$ :  
 \begin{array}{|c|c|c|}
 5
 & \color{red}6
@@ -742,9 +772,9 @@ On percole up $12$.
 \end{array}
 t[1:3] est un tas.
 
-* $k = 3$ : $8$ est à sa place. $t[1:4]$ est un tas.
+- $k = 3$ : $8$ est à sa place. $t[1:4]$ est un tas.
 
-* $k = 4$ :
+- $k = 4$ :
 \begin{array}{|c|c|c|}
 5
 & 12
@@ -764,7 +794,7 @@ On percole up $7$ :
 \end{array}
 $t[1:5]$ est un tas.
 
-* $k = 5$ :
+- $k = 5$ :
 \begin{array}{|c|c|c|}
 5
 & 12
@@ -800,39 +830,36 @@ On percole up $15$ deux fois
 \end{array}
 $t[1:6]$ est un tas.
 
-#### Complexité de la création du tas par remontée
+##### Complexité de la création du tas par remontée
 
 Il y a $n$ nœud, donc une hauteur de $p=\lfloor \log_2(n) \rfloor$.
 
 Pire des cas : chaque remontée aboutit à la racine.
 
-Niveau $k : 2k$ nœuds remontent à la racine en $k$ étapes.
+Niveau $k$ : au plus $2^k$ nœuds remontent à la racine en $k$ étapes.
 
 $$
 \begin{matrix}
 C(n) &≤& \sum_{k = 1}^{p} k2^k = 2 \sum_{k = 1}^p k2^{k-1}& \\
 && \\
-&=& 2 \frac{d}{dx}( \frac{x^{p+1} -1 }{x-1})& \\
+&=& 2 \frac{d}{dx}( \frac{x^{p+1} -1 }{x-1}) [2] & \\
 && \\
-&\leq& (x \rightarrow \frac{−px^p + px^{p+1} − x^p + 1}{ x^2 − 2x + 1} )\\
+&\leq& (x \rightarrow \frac{−px^p + px^{p+1} − x^p + 1}{ x^2 − 2x + 1} )[2]\\
 && \\
 &\leq& p2^p - 2^p +1 \leq p2^p = \underbrace{2^{\lfloor \log_2(n) \rfloor}\lfloor \log_2(n) \rfloor}_{ O(n \log_2(n))} 
 \end{matrix}
 $$
 
-#### Par descente : percolation basse du nœud courant
+##### Par descente : percolation basse du nœud courant
 
-A partir d’un tableau de nombre
+A partir d’un tableau d'entiers :
 
-On le considère comme un arbre complet gauche en décalant ses éléments d’un cran à droite et en insérant sa longueur.
+- On le considère comme un arbre complet gauche en décalant ses éléments d’un cran à droite et en insérant sa longueur.
+- Parcours du tableau : on maintient l’invariant _Tous les sous-arbres dont la racine est à droite du sommet courant sont des tas binaires._
+- On parcourt les sommets par indices décroissants à partir du premier noeud interne (position $\lfloor \frac{n}{2} \rfloor$)
+- Donc après avoir traité la racine, comme elle vérifie l’invariant, notre arbre est un tas binaire.
 
-On parcourt les sommets niveau par niveau en partant de l’avant dernier niveau (profondeur $h − 1$) et dans chaque niveau on parcourt les sommets de la droite vers la gauche. Lors de ce parcours on eﬀectue un percolate-down à partir de chaque sommet.
-
-Parcours du tableau : on maintient l’invariant _Tous les sous-arbres dont la racine est à droite du sommet courant sont des tas binaires._
-
-Donc après avoir traité la racine, comme elle vérifie l’invariant, notre arbre est un tas binaire.
-
-* Pour $t$, tableau de taille $n$, on fait une copie de taille disons $n+1$
+- Pour $t$, tableau de taille $n$, on fait une copie de taille disons $n+1$
 \begin{array}{|c|c|c|}
 6
 & 12
@@ -849,9 +876,8 @@ Donc après avoir traité la racine, comme elle vérifie l’invariant, notre ar
 & 15
 & 9
 \end{array}
-
 $7,15, 9$ aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des tas.
-* $k=\lfloor \frac{n}{2}\rfloor = 3$ (Profondeur $1$). $8$ est le père de $9$.
+- $k=\lfloor \frac{n}{2}\rfloor = 3$ (Profondeur $1$). $8$ est le père de $9$.
 \begin{array}{|c|c|c|}
 6
 & 6
@@ -869,7 +895,7 @@ $7,15, 9$ aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des 
 & 15
 & \color{red}8
 \end{array}
-* $k = 2$ (Profondeur $1$). $12$ est père de $7$ et $15$
+- $k = 2$ (Profondeur $1$). $12$ est père de $7$ et $15$
 \begin{array}{|c|c|c|}
 6
 & 6
@@ -887,8 +913,7 @@ $7,15, 9$ aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des 
 & \color{red}12
 & 8
 \end{array}
-
-* $k = 1$ (Profondeur $0$). $6$ est père de $15$ et $9$. $2$ percos.
+- $k = 1$ (Profondeur $0$). $6$ est père de $15$ et $9$. $2$ percos.
 \begin{array}{|c|c|c|}
 6
 & \color{red}6
@@ -916,19 +941,19 @@ $7,15, 9$ aux indices > $\lfloor \frac{n}{2}\rfloor$ sont des feuilles donc des 
 & 8
 \end{array}
 
-#### Complexité de la création du tas par descente
+##### Complexité de la création du tas par descente
 
 Hauteur $p=\lfloor \log_2(n) \rfloor$ pour $n$ nœuds.
 
-Dans le pire des cas, chaque descente d’un nœud de hauteur $k$ aboutit aux feuilles : $p − k$ échanges.
+- Dans le pire des cas, chaque descente d’un nœud de hauteur $k$ aboutit aux feuilles : $p − k$ échanges AU PLUS.
 
-Il y a au plus $\lceil \frac{n}{2^{p-k}} \rceil$ nœuds de profondeur k (cf. TD).
+- Il y a au plus $\lfloor \frac{n}{2^{p-k}} \rfloor$ nœuds de profondeur $k$ (cf. TD).
 
-Complexité $C (n)$ au pire :
+- Complexité $C(n)$ au pire :
 
 $$
 \begin{matrix}
-C(n) &≤& \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}}^\text{nb échanges au pire...}_\text{...pour chaque node}}&\\
+C(n) &≤& \underbrace{\sum_{k = 0}^p {\lfloor \frac{n}{2^{p-k}} \rfloor}}_\text{nb node de hauteur k} {\underbrace{\overbrace{(p – k)}^\text{nb échanges au pire...}}_\text{...pour chaque node}}&\\
 &&\\
 &≤& \sum_{k=0}^p (\frac{n}{2^{p-k}} + 1)(p-k)\overbrace{\leq}^\text{ cgt. var. k = p-k } \sum_{k=0}^p ( \frac{n}{2^k} + 1 )k&\\
 &&\\
@@ -938,54 +963,74 @@ $$
 
 Donc création par descente moins coûteuse ($O(n)$) que par remontée ($O(n \log_2(n))$).
 
-### Tri (croissant) par tas
+#### Tri (croissant) par tas
 
 A partir d’un tableau de $n$ nombres $t$, on crée un tas-max.
 
-* Étape $1$ : la racine $t[1]$ est le maximum du tas, on l’échange avec $t[n]$ (notation Python).
+- Étape $1$ : la racine $t[1]$ est le maximum du tas, on l’échange avec $t[n]$ (notation Python).
 Le max se retrouve à la fin du tas en position $t[n]$. $\color{red}t[n:] \text{ est trié et contient le max.}$
-* On met à jour la longueur du tas (qui représente le nombre d’éléments qu’il reste à trier) en la décrémentant (puisque l’ancienne racine a trouvé sa place). $t[:n]$ est un tas.
-* On percole bas la nouvelle racine. $\color{red}\text{Alors t[1:n] est de nouveau un tas}$. Et on itère(swap puis percolation)...
-* L’invariant qui assure la correction est "À la fin de l’étape $k$, $\color{red}\text{t[:n-k+1] est un tas et t[n-k+1 :] est un tableau trié}$ par ordre croissant dont les éléments sont plus grands que ceux de $t[:n-k+1]$". Il y $a$ n étapes.
+- On met à jour la longueur du tas (qui représente le nombre d’éléments qu’il reste à trier) en la décrémentant (puisque l’ancienne racine a trouvé sa place). $t[:n]$ est un tas.
+- On percole bas la nouvelle racine. $\color{red}\text{Alors t[1:n] est de nouveau un tas}$. Et on itère(swap puis percolation)...
+- L’invariant qui assure la correction est "À la fin de l’étape $k$, $\color{red}\text{t[:n-k+1] est un tas et t[n-k+1 :] est un tableau trié}$ par ordre croissant dont les éléments sont plus grands que ceux de $t[:n-k+1]$". Il y a $n$ étapes.
 
-### Tri par tas
+#### Tri par tas
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let tri_tas l = 
     let t = create_down l in (* O (n) *)  
     while t .(0) > 1 do 
         (* mettre le max à la fin du tab : *) 
         swap 1 t.(0) t ; 
-        t.(0) < -(t.(0)-1) ; (* le tas àétudier a un elt de moins *) 
+        t.(0) < -(t.(0)-1) ; (* le tas à étudier a un élément de moins *) 
         percolate_down 1 t (* O (log (n)) *) 
     done ; t;; 
 ```
 
-#### Complexité
+##### Complexité
 
-$O(n)$ pour la création d’un tas (rappel : hauteur $O(\log_2(n))$). Chaque échange d’éléments et chaque décrémentation de $t.(0)$ en $O(1)$ Chaque appel à percolate down en $O(\log_2(n))$ (au max car la longueur du tas décroît). $n$ passages dans la boucle. Complexité au pire en $O(n\log_2(n))$ à la louche. On ne peut pas faire mieux.
+- $O(n)$ pour la création d’un tas (rappel : hauteur $O(\log_2(n))$).
+- Chaque échange d’éléments et chaque décrémentation de $t.(0)$ en $O(1)$
+- Chaque appel à `percolate down` en $O(\log_2(n))$ (majoration grossière car la longueur du tas décroît).
+- $n$ passages dans la boucle.
+- Complexité au pire en $O(n\log_2(n))$ à la louche.
+- On ne peut pas faire mieux pour un tri par comparaison. Donc complexité en $\Theta(n\log_2(n))$
 
 ## Files de priorités (une application des tas)
 
 !!!quote "Définition : Une file de priorité"
-    Une file de priorité est une structure de données permettant de stocker des éléments et de retrouver eﬃcacement celui qui a la plus haute priorité.
+    Une _file de priorité_ est une structure de données permettant de stocker des éléments et de retrouver eﬃcacement celui qui a la plus haute priorité.
 
-Il y a trois primitives : insérer un élément ; extraire l’élément ayant la plus grande clé ; tester si la file de priorité est vide ou pas. On ajoute parfois à cette liste l’opération "augmenter/diminuer" la clé d’un élément", utilisée par exemple dans l’algorithme de Dijkstra.
+Il y a trois primitives :
 
-Les priorités sont d’un type totalement ordonné. Une file de priorité permet d’implémenter efficacement des planificateurs de tâches, où un accès rapide aux tâches d’importance maximale est souhaité. On trouve une file de priorité, par exemple, dans les ordonnanceurs des systèmes d’exploitation, notamment le noyau Linux.
+- insérer un élément ;
+- extraire l’élément ayant la plus grande clé ;
+- tester si la file de priorité est vide ou pas.
+- On ajoute parfois à cette liste l’opération "augmenter/diminuer" la clé d’un élément", utilisée par exemple dans l’algorithme de Dijkstra.
 
-!!!example "Exemple"
-    Les urgences d’un hôpital : chaque nouveau patient est ajouté à la file, chaque fois qu’un médecin est libre, il s’occupe du patient avec l’état le plus critique. Le tri des patients se fait sur des critères quantifiables et ordonnés comme l’état de conscience :
+Les _priorités_ sont d’un type totalement ordonné.
 
-    * Échelle de Glasgow $[\![1,4]\!]\times[\![1,5]\!]\times[\![1,6]\!]$ (priorité aux scores bas, ce qui entraîne d’utiliser un tas-min) 
-    * s’ils respirent ($1$ ou $0$), ou s’ils saignent (volume de la perte de sang)... on peut aussi vouloir mettre en avant les personnes plus jeunes, les femmes enceintes (combien de fœtus ?), etc... 
+Une file de priorité permet d’implémenter efficacement des planificateurs de tâches, où un accès rapide aux tâches d’importance maximale est souhaité.
+
+On trouve une file de priorité, par exemple, dans les ordonnanceurs des systèmes d’exploitation, notamment le noyau $Linux$.
+
+!!!example "Les urgences d’un hôpital "
+    - Chaque nouveau patient est ajouté à la file,
+    - chaque fois qu’un médecin est libre, il s’occupe du patient avec l’état le plus critique.
+    - Le tri des patients se fait sur des critères quantifiables et ordonnés comme
+        - comme l’état de conscience : Échelle de Glasgow $[\![1,4]\!]\times[\![1,5]\!]\times[\![1,6]\!]$ (priorité aux scores bas, ce qui entraîne d’utiliser un tas-min)
+
+    <p align="center"><img src="/images/abr22.png"></p>
+    Figure - Score de Glasgow : somme de trois critères
+
+    - s’ils respirent ($1$ ou $0$), ou s’ils saignent (volume de la perte de sang)...
   
 ### Type de données pour la file de priorité
 
-Comme le tas est un tableau de données (type data), on ne peut plus réserver le premier élément à l’indication de sa longueur(type int).
+Comme le tas est un tableau de données (type **data**), on ne peut plus réserver le premier élément à l’indication de sa longueur(type **int**).
 
 Toutefois, on a pris l’habitude de stocker les données à partir de l’élément $1$ et non $0$. Donc nos tableaux auront une première case qui ne servira à rien.
-La longueur du tas est toujours susceptible d’évoluer. Il faut la définir comme mutable.
+
+La longueur du tas est toujours susceptible d’évoluer. Il faut la définir comme _mutable_.
 
 `f.n+1` désigne la première case libre du tas `f.tbl`.
 
@@ -998,17 +1043,21 @@ type (’a, ’b) priority_file = { mutable n : int ; tbl : (’ a, ’b) data a
 
 #### Création d'une file de priorité
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let creer_file n (p, v) = { n = 0; tbl = Array.make (n +1) { priority = p ; value = v }};; 
 let empty_queue = creer_file 5 (1, 2);; 
 ```
 
 #### Exceptions
-On peut ajouter des éléments dans la file tant qu’elle n’est pas pleine. Si elle est pleine, on soulève une exception `Full`. On peut retirer des éléments de la file tant qu’elle n’est pas vide. Si elle est vide, on soulève une exception `Empty`. Création des exceptions :
+On peut ajouter des éléments dans la file tant qu’elle n’est pas pleine. Si elle est pleine, on soulève une exception `Full`.
 
-```ocaml linenums="1"
-exception Empty;; 
-exception Full;; 
+On peut retirer des éléments de la file tant qu’elle n’est pas vide. Si elle est vide, on soulève une exception `Empty`.
+
+Création des exceptions :
+
+```OCaml linenums="1"
+exception Empty  ;; 
+exception Full  ;; 
 ```
 
 #### Ajouter
@@ -1027,7 +1076,7 @@ let ajouter d f =
 
 Il faut adapter la fonction de percolation basse à nos priorités. En exo.
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let retirer f = 
     if f.n = 0 then raise Empty ; 
     f.tbl.(1) <- f.tbl.(f.n); 
@@ -1039,7 +1088,7 @@ let retirer f =
 
 Quand on augmente l’urgence, donc qu’on diminue la valeur de priorité d’un élément, on le fait remonter par percolation haute.
 
-```ocaml linenums="1"
+```OCaml linenums="1"
 let plus_prioritaire k p f = 
     (* augmente la prioritéde l'élé ment k *) 
     if f.tbl.(k).priority <= p then failwith " la nouvelle priorité doit être plus petite" ; 
@@ -1047,4 +1096,4 @@ let plus_prioritaire k p f =
     percolate_up k f;; 
 ```
 
-Et quand on diminue l’urgence, on fait descendre l’élément par percolation basse.
+Et quand on diminue l’urgence, on fait descendre l’élément par percolation basse. Il peut être utile de maintenir dans la structure un dictionnaire qui indique, pour chaque valeur, à quelle position on peut la trouver.
