@@ -83,7 +83,8 @@
 !!!example "Example"
 
     - Si la table $\text{classe}$ est finie on peut la représenter par un tableau :
-    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) = $
+    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) =$
+
     | $\texttt{Filière}$ | $\texttt{Numéro}$ |
     |---------|--------|
     |$\texttt{MPSI}$|$1$|
@@ -92,7 +93,8 @@
     |$\texttt{PCSI}$|$1$|
 
     - L'ordre des attributs et des tuples n'a pas d'importance. On a aussi :
-    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) = $
+    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) =$
+
     | $\texttt{Numéro}$ | $\texttt{Filière}$ |
     |---------|--------|
     |$1$|$\texttt{MPSI}$|
