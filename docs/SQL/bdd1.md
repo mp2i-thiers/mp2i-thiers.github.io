@@ -8,7 +8,8 @@
 
 ### E. F. Codd (Wikipedié)
 
-<p align='center'><img src='/images/c495dc3d7ad9d79fad04cbe7c178d6b3.bmp'/></p><p align='center'><img src='/images/35e48b901d58d5d8bfec88d8f2af083b.bmp'/></p>
+<p align='center'><img src='/images/bdd1-1.png'/></p>
+<p align='center'><img src='/images/bdd1-2.png'/></p>
 
 ### Résumé
 
@@ -41,7 +42,7 @@
     **Exemple**
     Soit le lycée $\texttt{Pierre Dupont}$ contenant des CPGE. Les classes sont des couples $\texttt{(filière,numéro)}$ comme $\texttt{(MPSI,1)}$ ; $\texttt{(MPSI,2)}$ ou $\texttt{(PCSI,1)}$.
 
-    - $\textsf{filière}$ est un attribut dont le domaine est l'ensemble fini de chaînes de caractères $\textsf{ \{MPSI,PCSI,PC,PSI,MP,BCPST,HK \}  }$. 
+    - $\textsf{filière}$ est un attribut dont le domaine est l'ensemble fini de chaînes de caractères $\textsf{ \{MPSI,PCSI,PC,PSI,MP,BCPST,HK\} }$. 
     - $\texttt{numéro}$ est un attribut dont le domaine est l'ensemble $\mathbb{N}^∗$ ou mieux : un intervalle $[\![0,m]\!]$ où $m$ est le nombre maximum de classes de même niveau dans le lycée.
 
 ### Schéma relationnel
@@ -85,29 +86,29 @@
 
     | $\texttt{Filière}$ | $\texttt{Numéro}$ |
     |:---------:|:--------:|
-    |$\texttt{MPSI}$|$1$|
-    |$\texttt{PC}$|$3$|
-    |$\texttt{PCSI}$|$2$|
-    |$\texttt{PCSI}$|$1$|
+    |$\text{MPSI}$|$1$|
+    |$\text{PC}$|$3$|
+    |$\text{PCSI}$|$2$|
+    |$\text{PCSI}$|$1$|
 
     - L'ordre des attributs et des tuples n'a pas d'importance. On a aussi :
     $\text{classe}\left(\texttt{filière}, \texttt{ numéro}\right) =$
 
     | $\texttt{Numéro}$ | $\texttt{Filière}$ |
     |:---------:|:--------:|
-    |$1$|$\texttt{MPSI}$|
-    |$3$|$\texttt{PC}$|
-    |$2$|$\texttt{PCSI}$|
-    |$1$|$\texttt{PCSI}$|
+    |$1$|$\text{MPSI}$|
+    |$3$|$\text{PC}$|
+    |$2$|$\text{PCSI}$|
+    |$1$|$\text{PCSI}$|
 
 ### Représentation des schémas relationnels
 
 !!! quote "Définition"
 
     | $\text{Nom du schéma}$||
-    |--------:|:---------|
-    |$\texttt{Attribut 1}$|$\texttt{type 1}$|
-    |$\texttt{Attribut 2}$|$\texttt{type 2}$|
+    |:--------|:---------:|
+    |$\text{Attribut 1}$|$\texttt{type 1}$|
+    |$\text{Attribut 2}$|$\texttt{type 2}$|
 
 !!!tip "Remarque"
     Deux relations distinctes peuvent avoir le même schéma.
@@ -117,21 +118,21 @@
 
     | $\text{élève}$||
     |:--------:|:---------:|
-    |$\texttt{Nom}$|$\texttt{string}$|
-    |$\texttt{Année de naissance}$|$\texttt{int}$|
+    |$\text{Nom}$|$\texttt{string}$|
+    |$\text{Année de naissance}$|$\texttt{int}$|
 
     Possède les instances :
 
-    | $\text{Nom}$|$\text{Année de naissance}$|
+    | $\texttt{Nom}$|$\texttt{Année de naissance}$|
     |:--------:|:---------:|
-    |$\texttt{Hoareau}$|$\texttt{1996}$|
-    |$\texttt{Grondin}$|$\texttt{1995}$|
+    |$\text{Hoareau}$|$1996$|
+    |$\text{Grondin}$|$1995$|
 
-    | $\text{Nom}$|$\text{Année de naissance}$|
+    | $\texttt{Nom}$|$\texttt{Année de naissance}$|
     |:--------:|:---------:|
-    |$\texttt{Nativel}$|$\texttt{1998}$|
-    |$\texttt{Horeau}$|$\texttt{1996}$|
-    |$\texttt{Grondin}$|$\texttt{1997}$|
+    |$\text{Nativel}$|$1998$|
+    |$\text{Horeau}$|$1996$|
+    |$\text{Grondin}$|$1997$|
 
 ### Multi-ensemble
 
@@ -202,227 +203,227 @@ Exemple : dans la table $\text{Etudiant}(\texttt{id},\texttt{ nom},\texttt{ pré
 - Une clé unique peut porter sur plusieurs attributs : il peut très bien ne pas y avoir de clé à un seul élément.  
 - Et d'ailleurs, il est possible qu'il n'y ait pas de clé unique (si la table  possède des doublons de lignes). Mais on décourage d'utiliser de telles  tables.  
 
-#### Clé primaire
+### Clé primaire
 
-MySQL fait la distinction entre les notions de clé unique et clé primaire.  
+**MySQL** fait la distinction entre les notions de _clé unique_ et _clé primaire_.  
 
 !!! quote "Définition: clé primaire"
-    Une clé primaire est une clé unique particulière associée à un index.
+    Une _clé primaire_ est une clé unique particulière associée à un _index_.
 
 !!!tip ""
     **Remarque**
     - On peut voir l'index comme une table des matières facilitant un accès  rapide aux enregistrement d'une table ayant une clé primaire.  
     - En particulier, la complexité des jointures est grandement diminuée  par l'usage d'une clé primaire ; les valeurs possibles étant triées dans  l'index.
     - Il peut y avoir plusieurs clés unique par table mais une seule clé  primaire.
-    - Une clé unique peut prendre la valeur NULL (case vide, équivalent  Python de None) pas la clé primaire.  
+    - Une clé unique peut prendre la valeur `NULL` (case vide, équivalent  **Python** de `None`) pas la clé primaire.  
 
 #### Clé unique VS clé primaire
 
-- Conformément au programme nous ferons désormais la confusion :  nous n'emploirons plus que l'expression "clé primaire" sans nous  soucier de la présence d'un index ou non.
-- Une conséquence est que nous avons au plus une clé primaire par  table.  
-- Une autre est que les cases des colonnes définissant la clé primaire ne sont jamais vide (pas de valeur NULL).  
+<p style="color : red">Conformément au programme nous ferons désormais la confusion :  nous n'emploirons plus que l'expression "clé primaire" sans nous  soucier de la présence d'un index ou non.</p>
 
-#### Clé primaire
+Une conséquence est que nous avons au plus une clé primaire par  table.  
+
+Une autre est que les cases des colonnes définissant la clé primaire ne sont jamais vide (pas de valeur `NULL`).  
+
+### Détails sur la clé primaire
 
 - On indique par un symbole dans le schéma qu'une clé est  unique/primaire.  
-- Nous signalons les clés uniques en les soulignant. Sous  PHPMYADMIN, les clés primaires sont représentées par des clés  jaunes, les clés uniques par une clé grise.
+- Nous signalons les clés uniques en les soulignant. Sous  **PHPMYADMIN**, les clés primaires sont représentées par des clés  jaunes, les clés uniques par une clé grise.
 
-!!!warning "j'arrive pas avec les tableaux"
+|élève ||
+|:---|:---:|
+|$\text{Nom}$ |$\texttt{string}$|
+|$\underline{\text{Numéro SS}}$ |$\texttt{int}$|
 
-élève  
-Nom  Numéro SS  
-string  int  
+- Un mot clé $\texttt{PRIMARY}$ indique, au moment de la création de la table  dans la plupart des SGBD, qu'une clé est primaire.  
+- Si un tuple déjà défini possède une valeur $v$ pour la clé primaire de la table $T$, alors le SGBD devrait empêcher l'ajout de tout nouveau tuple  à $T$ possédant la valeur $v$ pour la clé.  
 
-- Un mot clé PRIMARY indique, au moment de la création de la table  dans la plupart des SGBD, qu'une clé est primaire.  
-- Si un tuple déjà défini possède une valeur v pour la clé primaire de la  table T, alors le SGBD devrait empêcher l'ajout de tout nouveau tuple  à T possédant la valeur v pour la clé.  
+## Relation entre deux tables
 
-!!!warning "jme suis arrêté là"
+### Deux schémas
 
+Soit une BDD modélisant une bibliothèque simplifiée avec deux tables dont les schémas sont :  
 
-### Relation entre deux tables
+|livre||
+|:--|:--:|
+|$\underline{\text{titre}}$ |$\texttt{string}$|
+|$\text{auteur}$ |$\texttt{string}$|
+|$\text{année de publication}$ |$\texttt{int}$|
 
-#### Deux schémas
+|emprunteur||
+|:--|:--:|
+|$\text{Nom}$|$\texttt{string}$|
+|$\text{Livre emprunté}$|$\texttt{string}$|
 
+### Deux tables
 
-Soit une BDD modélisant une bibliothèque simplifiée avec deux tables  
-dont les schémas sont :  
-livre  
-titre  auteur  année de publication  
-string  string  int  
-emprunteur  
-et  
-Nom  Livre emprunté  
-string  string  
+Une table $\text{bibliothèque}$ instanciant $\text{livre}$ :  
 
-#### Deux tables
+| $\texttt{titre}$ | $\texttt{auteur}$ | $\texttt{Publication}$|
+|:---------:|:--------:|:----:|
+|$\text{Harry Potter}$|$\text{J.K Rowling}$|$1997$|
+|$\text{Pensées}$|$\text{Pascal}$|$1670$|
+|$\text{Marseille coquin}$|$\text{Anonyme}$|$2016$|
 
+Une table $\text{Clients}$ instanciant $\text{emprunteur}$
 
-Une table bibliothèque instanciant livre :  
-titre  Harry Potter  Pensées  Marseille coquin  
-auteur  J.K. Rowling  Pascal  Anonyme  
-Publication  1997  1670  2016  
-Une table Clients instanciant emprunteur  
-Livre emprunté  Nom  Hoareau  Harry Potter  Grondin Marseille coquin  Dupont  
-Maths MP  
-On en conclut que Hoareau a emprunté "Harry Potter" et que  Grondin est un petit coquin !  
-Dupont emprunte un ouvrage qui n'existe pas dans la bibliothèque,  ce qui concerne davantage l'administrateur de BDD que la vie privée  de Grondin.  
+| $\texttt{Nom}$ | $\texttt{Livre emprunté}$|
+|:---------:|:--------:|
+|$\text{Hoareau}$|$\text{Harry Potter}$|
+|$\text{Grondin}$|$\text{Pensées}$|
+|$\text{Dupont}$|$\text{Maths MP}$|
 
-#### Clé étrangère
+On en conclut que Hoareau a emprunté "Harry Potter" et que Grondin est un petit coquin !  
 
+Dupont emprunte un ouvrage qui n'existe pas dans la $\text{bibliothèque}$,  ce qui concerne davantage l'administrateur de BDD que la vie privée  de Grondin.  
 
-!!! quote "Définition"
-    Définition
-Une clé étrangère (représentée dans ce cours par un #) est un attribut qui
-est la clé primaire d'une autre relation. Elle permet d'établir le lien entre
-plusieurs relations. Elle met en évidence les dépendances fonctionnelles
-entre 2 tables.
-
+### Clé étrangère
 
 !!! quote "Définition"
-    Remarque
-En SQL, on déclare une clé étrangère avec les mots clés FOREIGN KEY.
+    Une clé étrangère (représentée dans ce cours par un `#`) est un attribut qui est la clé primaire d'une autre relation. Elle permet d'établir le lien entre plusieurs relations. Elle met en évidence les dépendances fonctionnelles entre $2$ tables.
 
+!!! tip "Remarque"
+    En **SQL**, on déclare une clé étrangère avec les mots clés $\texttt{FOREIGN KEY}$.
 
-On peut représenter les liens entre deux relations dans un diagramme  par une ﬂèche depuis l'attribut vers la clé primaire.  Si on impose que le domaine de livre emprunté est constitué  exactement des livres apparaissant dans la relation bibliothèque, le  schéma de emprunteur devient  Shéma référençant  
-emprunteur  
-Nom  Livre emprunté# titre  
-string  
-→  
-Schéma référencé  livre  
-titre  auteur  année de publication  
-string  string  int  
-Le tuple (Dupont,Maths MP) ne peut plus être un enregistrement de  Client car Maths MP n'est pas dans la colonne "titre" de  Bibliothèque.  
+On peut représenter les liens entre deux relations dans un diagramme  par une ﬂèche depuis l'attribut vers la clé primaire.
 
+Si on impose que le domaine de livre $\texttt{emprunté}$ est constitué  exactement des livres apparaissant dans la relation $\texttt{bibliothèque}$, le schéma de $\texttt{emprunteur}$ devient
 
-La contrainte de clé étrangère est gérée par la plupart des SGBD :  Oracle, Microsoft SQL Server, PostgreSQL, SQLite, etc.  
+Shéma référençant :
+|emprunteur||
+|:---|:---:|
+|$\text{Nom}$|$\texttt{string}$|
+|$\text{Livre emprunté \#}$|$\texttt{titre}$|
 
-###     
+$$↓$$
 
+Shéma référencé :
+|livre||
+|:--|:--:|
+|$\underline{\text{titre}}$ |$\texttt{string}$|
+|$\text{auteur}$ |$\texttt{string}$|
+|$\text{année de publication}$ |$\texttt{int}$|
 
-   
-  
-Introduction  
- Le modèle relationnel  
- Clés uniques  
- Relations entre deux tables  
- Modèle client-serveur  
-Architecture client-serveur  Architecture trois-tiers  
+Le tuple $(\texttt{Dupont}, \texttt{Maths MP})$ ne peut plus être un enregistrement de $\texttt{Clients}$ (vu plus haut) car $\texttt{Maths MP}$ n'est pas dans la colonne "titre" de  $\texttt{Bibliothèque}$.  
+
+La contrainte de clé étrangère est gérée par la plupart des SGBD :  $\texttt{Oracle, Microsoft SQL Server, PostgreSQL, SQLite, etc.}$  
+
+## Modèle client-serveur
+
+### Architecture client-serveur
 
 #### Mode de communication
 
+- Environnement _client-serveur_ : mode de communication à travers un  réseau entre plusieurs programmes ou logiciels :
+   - le premier, le _client_, envoie des requêtes ;
+   - l'autre ou les autres,les _serveurs_, attendent les requêtes des clients et y répondent.  
 
-   
-Environnement client-serveur : mode de communication à travers un  réseau entre plusieurs programmes ou logiciels  le premier, le client, envoie des requêtes ;  l'autre ou les autres, les serveurs, attendent les requêtes des clients et y  répondent.  
-  
-  
-Par extension, le client désigne également l'ordinateur sur lequel est  exécuté le logiciel client, et le serveur, l'ordinateur sur lequel est  exécuté le logiciel serveur.  
+**Par extension**, le client désigne également l'ordinateur sur lequel est exécuté le logiciel client, et le serveur, l'ordinateur sur lequel est exécuté le logiciel serveur.  
 
 #### Vocabulaire
 
+!!!note "Serveurs"
+    Souvent des ordinateurs dédiés au logiciel serveur qu'ils  abritent (ex : serveur Web, serveur de bases de données, d'impression  ...). Ils sont dotés de capacités supérieures à celles des ordinateurs  personnels en termes de puissance de calcul, d'entrées-sorties et de  connexions réseau.
 
-   
-Serveurs : souvent des ordinateurs dédiés au logiciel serveur qu'ils  abritent (ex : serveur Web, serveur de bases de données, d'impression  ...). Ils sont dotés de capacités supérieures à celles des ordinateurs  personnels en termes de puissance de calcul, d'entrées-sorties et de  connexions réseau.  
-Clients : souvent des ordinateurs personnels ou des appareils  individuels (téléphone, tablette), mais pas systématiquement.  
-Nombre de clients. Un serveur peut répondre aux requêtes d'un grand  nombre de clients.  
+!!!note "Clients"
+    Souvent des ordinateurs personnels ou des appareils  individuels (téléphone, tablette), mais pas systématiquement.  
 
-#### Exemples
+!!!note "Nombre de clients"
+    Un serveur peut répondre aux requêtes d'un grand  nombre de clients.  
 
+!!!example "Exemples"
 
-   
-Grande variété de logiciels serveurs et de logiciels clients en fonction des  besoins à servir :  
-un serveur web publie des pages web demandées par des navigateurs  web ;  
-un serveur de messagerie électronique envoie des mails à des clients  de messagerie ;  
-un serveur de fichiers permet de stocker et consulter des fichiers sur le  réseau ;  
-un serveur de données à communiquer des données stockées dans une  base de données, etc...  
+    Grande variété de logiciels serveurs et de logiciels clients en fonction des  besoins à servir :
+
+    - un serveur web publie des pages web demandées par des navigateurs  web ;  
+    - un serveur de messagerie électronique envoie des mails à des clients  de messagerie ;  
+    - un serveur de fichiers permet de stocker et consulter des fichiers sur le  réseau ;  
+    - un serveur de données à communiquer des données stockées dans une  base de données, etc...  
 
 #### Notion de port
 
+La notion de _port logiciel_ permet, sur un ordinateur donné, de  distinguer diﬀérents interlocuteurs. Ces interlocuteurs sont des  programmes informatiques qui, selon les cas, écoutent ou émettent  des informations sur ces ports. Un port est distingué par son numéro.  
 
-   
-La notion de port logiciel permet, sur un ordinateur donné, de  distinguer diﬀérents interlocuteurs. Ces interlocuteurs sont des  programmes informatiques qui, selon les cas, écoutent ou émettent  des informations sur ces ports. Un port est distingué par son numéro.  Image : port = porte donnant accès au système d'exploitation.  Pour fonctionner, un programme ouvre des portes pour accéder aux  services de l'OS. Quand on ferme le programme, la porte n'a plus  besoin d'être ouverte.  
-Lorsqu'un logiciel client veut dialoguer avec un logiciel serveur (le  service), il a besoin de connaître le port écouté par ce dernier. Par  exemple port 80 pour un serveur web HTTP ; port 3306 serveur de  bases de données MySQL ; port 8888 pour jupyter...  cat /etc/services pour avoir la liste des services bien connus. Ou  sudo netstat -antup | grep LISTEN pour la liste des ports en  écoute.  
+Image : $\texttt{PORT} = \texttt{PORTE}$ donnant accès au système d'exploitation. Pour fonctionner, un programme ouvre des portes pour accéder aux  services de l'OS. Quand on ferme le programme, la porte n'a plus  besoin d'être ouverte.
+
+Lorsqu'un logiciel client veut dialoguer avec un logiciel serveur (le  _service_), il a besoin de connaître le port écouté par ce dernier. Par  exemple port $80$ pour un serveur web HTTP ; port $3306$ serveur de bases de données MySQL ; port $8888$ pour jupyter...  
+
+`cat /etc/services` pour avoir la liste des services bien connus. Ou  `sudo netstat -antup | grep LISTEN` pour la liste des ports en écoute.  
 
 #### Caractéristiques d'un processus serveur
 
+Attend une connexion entrante sur un ou plusieurs _ports_ réseaux.  
 
-   
-Attend une connexion entrante sur un ou plusieurs ports réseaux.  
-à la connexion d'un client sur le port en écoute, ouvre un socket local  (interface de comunication) avec le système d'exploitation ;  
-suite à la connexion, le processus serveur communique avec le client  suivant le protocole prévu par la couche application du modèle OSI.  
+À la connexion d'un client sur le port en écoute, ouvre un _socket local_  (interface de comunication) avec le système d'exploitation;
+
+Suite à la connexion, le processus serveur communique avec le client  suivant le protocole prévu par la couche $\texttt{application}$ du modèle OSI.  
 
 #### Caractéristiques d'un processus client
-<p align='center'><img src='/images/1410dc90d91424781d736f097e62bcc8.bmp'/></p>
+
+Établit la connexion au serveur grâce à son adresse IP et le port, qui  désigne un service particulier du serveur. Un socket est créé côté client.
+
+Lorsque la connexion est acceptée par le serveur, les deux côtés  communiquent via les sockets comme le prévoit la couche $\texttt{application}$ du modèle OSI.
+
+<p align='center'><img src='/images/bdd1-3.png'/></p>
 
 _Figure – Architecture client-serveur_
 
-   
-établit la connexion au serveur grâce à son adresse IP et le port, qui  désigne un service particulier du serveur. Un socket est créé côté  client.  
-lorsque la connexion est acceptée par le serveur, les deux côtés  communiquent via les sockets comme le prévoit la couche  application du modèle OSI.  
+!!!example "La machine à café"
 
-#### La machine à café
+    Dans une cafétéria, les cafés sont délivrés par un automate.
 
+    Le client insère des pièces dans l'automate, sélectionne sa boisson et  attend que la machine remplisse son gobelet.
 
-   
-Dans une cafétéria, les cafés sont délivrés par un automate.  
-Le client insère des pièces dans l'automate, sélectionne sa boisson et  attend que la machine remplisse son gobelet.  
-Le serveur est la machine à café. Le couple (client, automate) est une  architecture client-serveur.  Le client accède directement à la ressource.  
-Si le serveur est en panne, c'est au client d'en trouver un autre (pb de  maintenance)  Si le client est malhonnête, il peut tenter d'insérer de fausses pièces (il  ne court aucun risque).  
+    Le serveur est la machine à café. Le couple (client, automate) est une  architecture client-serveur.
 
+    Le client accède directement à la ressource.
 
-   
-  
-Introduction  
- Le modèle relationnel  
- Clés uniques  
- Relations entre deux tables  
- Modèle client-serveur  
-Architecture client-serveur  Architecture trois-tiers  
+    - Si le serveur est en panne, c'est au client d'en trouver un autre (pb de  maintenance)
+    - Si le client est malhonnête, il peut tenter d'insérer de fausses pièces (il  ne court aucun risque).  
 
-#### Une brasserie
+### Architecture trois-tiers  
 
+!!!example "Une brasserie"
 
-   
-Dans une brasserie, les garçons de café ont accès directement au  percolateur.  
-Le client (couche présentation) s'assied à une table, attend que le  garçon (couche métier) vienne prendre sa commande.  
-Une fois que le garçon a pris la commande, il accède au percolateur  (couche accès aux données) derrière le comptoir, prépare l'expresso et  le ramène au client.  
-Le triplet (client,garçon,percolateur) est une architecture trois-tiers  (ou trois couches)  
+    Dans une brasserie, les garçons de café ont accès directement au  percolateur.
 
+    Le client (couche présentation) s'assied à une table, attend que le  garçon (couche métier) vienne prendre sa commande.
 
-   
-Le client accède n'accède plus directement à la ressource.  
-Si le percolateur est en panne, c'est au garçon et pas au client d'en  trouver un autre (maintenance facilitée, on peut imaginer un  percolateur d'appoint en attendant la réparation du principal)  
-Si le client est malhonnête, il lui est plus diﬃcile d'accéder au  percolateur pour se servir gratuitement (sécurité renforcée).  
-Bien sûr, le client pourrait attendre que le garçon prenne la  commande d'une autre personne pour accéder en cachette au  percolateur. Il suﬃrait alors de mettre quelqu'un en permanence  derrière le bar (le patron) et ce problème serait résolu (mais on  passerait en architecture 4 couches).  
+    Une fois que le garçon a pris la commande, il accède au percolateur  (couche accès aux données) derrière le comptoir, prépare l'expresso et  le ramène au client.
 
-#### Architecture trois-tiers
+    Le triplet (client,garçon,percolateur) est une architecture trois-tiers  (ou trois couches)  
 
+    Le client accède n'accède plus directement à la ressource.  
+    - Si le percolateur est en panne, c'est au garçon et pas au client d'en  trouver un autre (maintenance facilitée, on peut imaginer un  percolateur d'appoint en attendant la réparation du principal)  
+    - Si le client est malhonnête, il lui est plus diﬃcile d'accéder au  percolateur pour se servir gratuitement (sécurité renforcée).  
+    - Bien sûr, le client pourrait attendre que le garçon prenne la  commande d'une autre personne pour accéder en cachette au  percolateur. Il suﬃrait alors de mettre quelqu'un en permanence  derrière le bar (le patron) et ce problème serait résolu (mais on  passerait en architecture 4 couches).  
 
-!!! quote "Définition"
-    Définition
-Le mot tier signifie étage ou niveau en anglais. On dit aussi couche.
+#### Principe
 
+!!!quote "Définition"
 
-   
-Une application est composée de 3 couches indépendantes :  
- couche présentation,   couche traitements (on dit aussi métier ou application)   couche d'accès aux données.  
-Ces 3 couches communiqueront entre elles à l'aide de fonctions  spécifiques (des API : Application Programming Interface ou  Interfaces de programmation).  
+    Le mot _tier_ signifie étage ou niveau en anglais. On dit aussi _couche_.
+
+Une _application_ est composée de $3$ couches indépendantes :
+
+- couche présentation,
+- couche traitements (on dit aussi métier ou application)
+- couche d'accès aux données.
+
+Ces $3$ couches communiqueront entre elles à l'aide de fonctions  spécifiques (des _API_ : $A$pplication $P$rogramming $I$nterface ou Interfaces de programmation).  
 
 #### SGBD et architecture trois-tiers
 
+On répartit les rôles entre :
 
-   
-On répartit les rôles entre  
-Un serveur contenant la base données (non accessible par les clients)  Un système de gestion de base données : une interface souvent  graphique entre les clients et la base.  
-Elle transmet la demande (requête) du client au serveur de données.  Elle récupère la réponse du serveur de données et la transmet au client.  
-Le point important : le client ne communique jamais directement avec  le serveur de données.  
+- Un serveur contenant la base données (non accessible par les clients)  
+- Un système de gestion de base données : une interface souvent graphique entre les clients et la base.  
+    - Elle transmet la demande (requête) du client au serveur de données.
+    - Elle récupère la réponse du serveur de données et la transmet au client.  
+- $\color{red}\text{Le point important : le client ne communique}$ $\color{red}\text{\underline{jamais} directement avec  le serveur de données}$.  
 
+<p align='center'><img src='/images/bdd1-4'/></p>
 
-   
-Base de données  
-Client 1  
-SGBD  
-Client 2  
-Client 3  
-Seul le SGBD peut accéder aux données et les modifier.  
-Le client n'a pas besoin de connaître le SQL : souvent une interface  graphique avec des cases à cliquer lui évite de le faire.  
-Le client n'a pas besoin d'installer de logiciel : un navigateur Web lui  suﬃt  
+- Seul le SGBD peut accéder aux données et les modifier.  
+- Le client n'a pas besoin de connaître le SQL : souvent une interface  graphique avec des cases à cliquer lui évite de le faire.  
+- Le client n'a pas besoin d'installer de logiciel : un navigateur Web lui suffit.  
