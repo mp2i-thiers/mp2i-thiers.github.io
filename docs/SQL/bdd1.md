@@ -445,7 +445,7 @@ On répartit les rôles entre :
 - Un système de gestion de base données : une interface souvent graphique entre les clients et la base.  
     - Elle transmet la demande (requête) du client au serveur de données.
     - Elle récupère la réponse du serveur de données et la transmet au client.  
-- $\color{red}\text{Le point important : le client ne communique}$ $\color{red}\text{\underline{jamais} directement avec  le serveur de données}$.  
+- $\color{red}\text{Le point important : le client ne communique}$ $\color{red}\underline{\text{jamais}}\text{ directement avec  le serveur de données}$.  
 
 <p align='center'><img src='/images/bdd1-4.png'/></p>
 
