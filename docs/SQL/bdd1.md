@@ -80,7 +80,7 @@
 
 !!! warning "j'arrive pas avec les tableaux"
 
-??? example "Example"
+!!!example "Example"
 
     - Si la table $\text{classe}$ est finie on peut la représenter par un tableau :
     $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) = $
@@ -92,14 +92,13 @@
     |$\texttt{PCSI}$|$1$|
 
     - L'ordre des attributs et des tuples n'a pas d'importance. On a aussi :
-
-        classe(filière,numéro)=   
-        |Numéro|Filière|
-        |---|---|
-        |3|PC|
-        |1|PCSI|
-        |1|MPSI|
-        |2|PCSI|
+    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) = $
+    | $\texttt{Numéro}$ | $\texttt{Filière}$ |
+    |---------|--------|
+    |$1$|$\texttt{MPSI}$|
+    |$3$|$\texttt{PC}$|
+    |$2$|$\texttt{PCSI}$|
+    |$1$|$\texttt{PCSI}$|
 
 #### Représentation des schémas relationnels
 
