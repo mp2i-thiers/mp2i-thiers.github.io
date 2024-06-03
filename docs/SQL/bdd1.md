@@ -309,6 +309,7 @@ On peut représenter les liens entre deux relations dans un diagramme  par une �
 Si on impose que le domaine de livre $\texttt{emprunté}$ est constitué  exactement des livres apparaissant dans la relation $\texttt{bibliothèque}$, le schéma de $\texttt{emprunteur}$ devient
 
 Shéma référençant :
+
 |emprunteur||
 |:---|:---:|
 |$\text{Nom}$|$\texttt{string}$|
@@ -317,6 +318,7 @@ Shéma référençant :
 $$↓$$
 
 Shéma référencé :
+
 |livre||
 |:--|:--:|
 |$\underline{\text{titre}}$ |$\texttt{string}$|
@@ -415,10 +417,11 @@ _Figure – Architecture client-serveur_
 
     Le triplet (client,garçon,percolateur) est une architecture trois-tiers  (ou trois couches)  
 
-    Le client accède n'accède plus directement à la ressource.  
+    Le client accède n'accède plus directement à la ressource. 
+
     - Si le percolateur est en panne, c'est au garçon et pas au client d'en  trouver un autre (maintenance facilitée, on peut imaginer un  percolateur d'appoint en attendant la réparation du principal)  
     - Si le client est malhonnête, il lui est plus diﬃcile d'accéder au  percolateur pour se servir gratuitement (sécurité renforcée).  
-    - Bien sûr, le client pourrait attendre que le garçon prenne la  commande d'une autre personne pour accéder en cachette au  percolateur. Il suﬃrait alors de mettre quelqu'un en permanence  derrière le bar (le patron) et ce problème serait résolu (mais on  passerait en architecture 4 couches).  
+    - Bien sûr, le client pourrait attendre que le garçon prenne la  commande d'une autre personne pour accéder en cachette au  percolateur. Il suﬃrait alors de mettre quelqu'un en permanence  derrière le bar (le patron) et ce problème serait résolu (mais on  passerait en architecture $4$ couches).  
 
 #### Principe
 
@@ -444,7 +447,7 @@ On répartit les rôles entre :
     - Elle récupère la réponse du serveur de données et la transmet au client.  
 - $\color{red}\text{Le point important : le client ne communique}$ $\color{red}\text{\underline{jamais} directement avec  le serveur de données}$.  
 
-<p align='center'><img src='/images/bdd1-4'/></p>
+<p align='center'><img src='/images/bdd1-4.png'/></p>
 
 - Seul le SGBD peut accéder aux données et les modifier.  
 - Le client n'a pas besoin de connaître le SQL : souvent une interface  graphique avec des cases à cliquer lui évite de le faire.  
