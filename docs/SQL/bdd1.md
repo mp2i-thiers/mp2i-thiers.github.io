@@ -13,7 +13,7 @@
 
 ### Résumé
 
-- Le _Modèle relationnel_ pour la gestion des **Bases De Données** (BDD)  est un modèle de BDD basé sur la logique du premier ordre proposé  et formulé pour la $1^{ère}$ fois par Edgar F. Codd ($1969$).  
+- Le _Modèle relationnel_ pour la gestion des **Bases De Données** (BDD)  est un modèle de BDD basé sur la logique du premier ordre proposé  et formulé pour la $1^{ère}$ fois par Edgar F. Codd $(1969)$.  
 - Dans une BDD _relationnelle_ l'information est organisée dans des  tableaux à deux dimensions appelées _relations_ ou _tables_.  
 - Une BDD est donc un ensemble de tables. Les lignes sont appelées  _tuples_, _nuplets_ ou encore _enregistrements_.  
 - Le _modèle relationnel_ fournit une méthode déclarative pour spécifier  _données_ (l'ensemble étudié) et _requêtes_ (questions permises sur cet  ensemble).  
@@ -30,16 +30,19 @@
 ### Attributs
 
 !!! quote "Définition: Attribut"
+
     On considère donné un ensemble infini ${\displaystyle {\mathcal {A}}}$, dont les éléments sont appelés des _attributs_, un ensemble $D$ (ensemble des _domaine_), et une application $\text{dom}$ de ${\displaystyle {\mathcal {A}}}$ dans $D$.
 
 !!! tip ""
     **Remarque**
+
     Si $A \in {\displaystyle {\mathcal {A}}}$, l'élément $\text{dom}(A)$ de $D$ est appelé _domaine_ de $A$.
     La domaine de $A$ est lui-même un ensemble, par exemple ensemble des
     entiers, des flottants, des chaı̂nes de caractères...
 
 !!! example ""
     **Exemple**
+
     Soit le lycée $\texttt{Pierre Dupont}$ contenant des CPGE. Les classes sont des couples $\texttt{(filière,numéro)}$ comme $\texttt{(MPSI,1)}$ ; $\texttt{(MPSI,2)}$ ou $\texttt{(PCSI,1)}$.
 
     - $\textsf{filière}$ est un attribut dont le domaine est l'ensemble fini de chaînes de caractères $\textsf{ \{MPSI,PCSI,PC,PSI,MP,BCPST,HK\} }$. 
@@ -48,21 +51,25 @@
 ### Schéma relationnel
 
 !!! quote "Définition : Schéma relationnel"
+
     Soit ${\displaystyle {\mathcal {A}}}$ un ensemble d'attributs et $\text{dom}$ une application qui associe un domaine à chaque attribut.
     Un _Schéma relationnel_ est un tuple $S = (A_1, A_2, ..., A_n) \in {\displaystyle {\mathcal {A}}}^n$ où les $A_i$ sont distincts deux à deux (mais peuvent avoir les mêmes domaines).
 
 !!! tip ""
     **Remarque**
+
     - Généralement, on écrit le schéma relationnel sous forme de tuples de couples ($\textsf{attribut, domaine}$) comme $S = ((A_1, \text{dom}(A_1)), ...  , (A_n , \text{dom}(A_n)))$
     - Le plus souvent, on ajoute au schéma des symboles indiquant les _clés primaires_ et _clés étrangères_ (voir sections dédiées).
 
 !!! example ""
     **Exemple**
+
     Schéma des classes du lycée :
     $$S = \left( (\texttt{filiere, \{MPSI,PCSI,...\}}), (\texttt{numéro,} \mathbb{N}^∗ )\right)$$
 
 !!! tip ""
     **Notation**
+
     - On écrit $B \in S$ si $B \in {A_1, ... , A_n}$.
     - Si $X = \{B_1, ... , B_m\}$ est un ensemble d'attributs (distincts), on écrit  $X \subset S$ si tous les $B_i$ sont dans ${A_1, ... , A_n}$.  
     - On s'autorise aussi des notations de la forme :  
@@ -71,10 +78,12 @@
 ### Table
 
 !!! quote "Définition: Relation ou table associée à un schéma relationnel"
+
     On appelle _relation_ ou _table associée_ à un schéma relationnel $(A_1, A_2, ... , A_n)$ tout ensemble fini de tuples de $\text{dom}(A_1) × \text{dom}(A_2) × . . . \text{dom}(A_n)$.
 
 !!!tip ""
     **Notation**
+
     - Les relations sont souvent notées sous la forme $R(S)$ (pour indiquer
     que $R$ est associé au schéma $S$).
     - Explication : dans la colonne $i$ d'une table de schéma $S$, les valeurs sont obligatoirement dans le domaine $\text{dom}(A_i)$. C'est ce qu'on appelle une _contrainte d'intégrité_ (ici, on parle d'_intégrité de domaine_).
@@ -111,9 +120,11 @@
     |$\text{Attribut 2}$|$\texttt{type 2}$|
 
 !!!tip "Remarque"
+
     Deux relations distinctes peuvent avoir le même schéma.
 
 !!!example "Exemple"
+
     Le schéma :
 
     | $\text{élève}$||
@@ -138,6 +149,7 @@
 
 !!!tip ""
     **Remarque**
+
     Un _multi-ensemble_ est une sorte d'ensemble dans lequel un même élément  peut apparaître plusieurs fois comme dans $\{1, 2, 3, 2\}$.  
     - Notion à mi-chemin des ensembles et des listes.  
     - On peut voir les multi-ensembles comme des listes quotientées par les  permutations, _i.e._ des listes commutatives.  
@@ -150,6 +162,7 @@
 
 !!! quote ""
     **Notation**
+
     Soit $R(S)$ une relation, $e \in R(S)$ un enregistrement et $A \in S$. On note $e.A$ la composante du tuple $e$ associée à l'attribut $A$. Si $K \subset S$, on note $e.K$ le sous-tuple de $e$ constitué des composantes associées aux éléments de $K$. Il s'agit de la projection de $e$ sur les attributs de $K$.
 
 !!!example ""
@@ -168,11 +181,13 @@
 ### Clé unique
 
 !!! quote "Définition : clé unique"
+
     Soit $R(S)$ une relation de schéma $S$. On dit que $K ⊂ S$ est une _clé unique_ pour $R$ si et seulement si
     $$∀(t_1, t_2) \in R^2 , t_1.K = t_2.K ⟺ t_1 = t_2$$
 
 !!! tip ""
     **Remarque**
+
     - La connaissance des attributs dans $K$ suffit à distinguer deux éléments.
     - $K$ est une clé unique si et seulement si la projection sur $K$ est injective.
     - Lorsqu'il y a une clé unique, la table ne contient pas de doublon de lignes.
@@ -208,10 +223,12 @@ Exemple : dans la table $\text{Etudiant}(\texttt{id},\texttt{ nom},\texttt{ pré
 **MySQL** fait la distinction entre les notions de _clé unique_ et _clé primaire_.  
 
 !!! quote "Définition: clé primaire"
+
     Une _clé primaire_ est une clé unique particulière associée à un _index_.
 
 !!!tip ""
     **Remarque**
+
     - On peut voir l'index comme une table des matières facilitant un accès  rapide aux enregistrement d'une table ayant une clé primaire.  
     - En particulier, la complexité des jointures est grandement diminuée  par l'usage d'une clé primaire ; les valeurs possibles étant triées dans  l'index.
     - Il peut y avoir plusieurs clés unique par table mais une seule clé  primaire.
@@ -280,9 +297,11 @@ Dupont emprunte un ouvrage qui n'existe pas dans la $\text{bibliothèque}$,  ce 
 ### Clé étrangère
 
 !!! quote "Définition"
+
     Une clé étrangère (représentée dans ce cours par un `#`) est un attribut qui est la clé primaire d'une autre relation. Elle permet d'établir le lien entre plusieurs relations. Elle met en évidence les dépendances fonctionnelles entre $2$ tables.
 
 !!! tip "Remarque"
+
     En **SQL**, on déclare une clé étrangère avec les mots clés $\texttt{FOREIGN KEY}$.
 
 On peut représenter les liens entre deux relations dans un diagramme  par une ﬂèche depuis l'attribut vers la clé primaire.
@@ -323,12 +342,15 @@ La contrainte de clé étrangère est gérée par la plupart des SGBD :  $\textt
 #### Vocabulaire
 
 !!!note "Serveurs"
+
     Souvent des ordinateurs dédiés au logiciel serveur qu'ils  abritent (ex : serveur Web, serveur de bases de données, d'impression  ...). Ils sont dotés de capacités supérieures à celles des ordinateurs  personnels en termes de puissance de calcul, d'entrées-sorties et de  connexions réseau.
 
 !!!note "Clients"
+
     Souvent des ordinateurs personnels ou des appareils  individuels (téléphone, tablette), mais pas systématiquement.  
 
 !!!note "Nombre de clients"
+
     Un serveur peut répondre aux requêtes d'un grand  nombre de clients.  
 
 !!!example "Exemples"
