@@ -65,6 +65,7 @@
     **Exemple**
 
     Schéma des classes du lycée :
+
     $$S = \left( (\texttt{filiere, \{MPSI,PCSI,...\}}), (\texttt{numéro,} \mathbb{N}^∗ )\right)$$
 
 !!! tip ""
@@ -73,6 +74,7 @@
     - On écrit $B \in S$ si $B \in {A_1, ... , A_n}$.
     - Si $X = \{B_1, ... , B_m\}$ est un ensemble d'attributs (distincts), on écrit  $X \subset S$ si tous les $B_i$ sont dans ${A_1, ... , A_n}$.  
     - On s'autorise aussi des notations de la forme :  
+
     $$(\texttt{nom,ville}) \subset (\texttt{téléphone,nom,ville,classe})$$
 
 ### Table
@@ -183,6 +185,7 @@
 !!! quote "Définition : clé unique"
 
     Soit $R(S)$ une relation de schéma $S$. On dit que $K ⊂ S$ est une _clé unique_ pour $R$ si et seulement si
+    
     $$∀(t_1, t_2) \in R^2 , t_1.K = t_2.K ⟺ t_1 = t_2$$
 
 !!! tip ""
