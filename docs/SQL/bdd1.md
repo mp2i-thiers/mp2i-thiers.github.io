@@ -78,120 +78,129 @@
     que $R$ est associé au schéma $S$).
     - Explication : dans la colonne $i$ d'une table de schéma $S$, les valeurs sont obligatoirement dans le domaine $\text{dom}(A_i)$. C'est ce qu'on appelle une _contrainte d'intégrité_ (ici, on parle d'_intégrité de domaine_).
 
-!!! warning "j'arrive pas avec les tableaux"
-
 !!!example "Example"
 
     - Si la table $\text{classe}$ est finie on peut la représenter par un tableau :
-    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) =$
+    $\text{classe}\left(\texttt{filière}, \texttt{ numéro}\right) =$
 
     | $\texttt{Filière}$ | $\texttt{Numéro}$ |
-    |---------|--------|
+    |:---------:|:--------:|
     |$\texttt{MPSI}$|$1$|
     |$\texttt{PC}$|$3$|
     |$\texttt{PCSI}$|$2$|
     |$\texttt{PCSI}$|$1$|
 
     - L'ordre des attributs et des tuples n'a pas d'importance. On a aussi :
-    $\text{classe}\left(\texttt{filière}, \texttt{numéro}\right) =$
+    $\text{classe}\left(\texttt{filière}, \texttt{ numéro}\right) =$
 
     | $\texttt{Numéro}$ | $\texttt{Filière}$ |
-    |---------|--------|
+    |:---------:|:--------:|
     |$1$|$\texttt{MPSI}$|
     |$3$|$\texttt{PC}$|
     |$2$|$\texttt{PCSI}$|
     |$1$|$\texttt{PCSI}$|
 
-#### Représentation des schémas relationnels
-
-!!!warning "j'arrive pas avec les tableaux"
+### Représentation des schémas relationnels
 
 !!! quote "Définition"
-    Notation
 
+    | $\text{Nom du schéma}$||
+    |--------:|:---------|
+    |$\texttt{Attribut 1}$|$\texttt{type 1}$|
+    |$\texttt{Attribut 2}$|$\texttt{type 2}$|
 
-!!! quote "Définition"
-    Exemple
+!!!tip "Remarque"
+    Deux relations distinctes peuvent avoir le même schéma.
 
+!!!example "Exemple"
+    Le schéma :
 
-Nom du schéma  
-Attribut 1  Attribut 2  
-type 1  type 2  
-élève  
-Le shéma  
-Nom  Année de naissance  
-string  int  
-possède les instances  
-Nom  Hoareau  Grondin  
-Année de naissance  1996  1995  
-Nom  Nativel  Hoareau  Grondin  
-Année de naissance  1998  1996  1997  
+    | $\text{élève}$||
+    |:--------:|:---------:|
+    |$\texttt{Nom}$|$\texttt{string}$|
+    |$\texttt{Année de naissance}$|$\texttt{int}$|
 
-#### Multi-ensemble
+    Possède les instances :
+
+    | $\text{Nom}$|$\text{Année de naissance}$|
+    |:--------:|:---------:|
+    |$\texttt{Hoareau}$|$\texttt{1996}$|
+    |$\texttt{Grondin}$|$\texttt{1995}$|
+
+    | $\text{Nom}$|$\text{Année de naissance}$|
+    |:--------:|:---------:|
+    |$\texttt{Nativel}$|$\texttt{1998}$|
+    |$\texttt{Horeau}$|$\texttt{1996}$|
+    |$\texttt{Grondin}$|$\texttt{1997}$|
+
+### Multi-ensemble
 
 !!!tip ""
     **Remarque**
-    Un multi-ensemble est une sorte d'ensemble dans lequel un même élément  peut apparaître plusieurs fois comme dans {1, 2, 3, 2}.  
+    Un _multi-ensemble_ est une sorte d'ensemble dans lequel un même élément  peut apparaître plusieurs fois comme dans $\{1, 2, 3, 2\}$.  
     - Notion à mi-chemin des ensembles et des listes.  
-    - On peut voir les multi-ensembles comme des listes quotientées par les  permutations, i.e. des listes commutatives.  
-    - Le multi-ensemble {1, 2, 2} est égal à {2, 1, 2}.  
-Les relations du modèle relationnel sont en fait des multi-ensembles.  
+    - On peut voir les multi-ensembles comme des listes quotientées par les  permutations, _i.e._ des listes commutatives.  
+    - Le multi-ensemble $\{1, 2, 2\}$ est égal à $\{2, 1, 2\}$.  
+    - Les relations du modèle relationnel sont en fait des multi-ensembles.  
 
-### Clés uniques
+## Clés uniques
 
-#### Notation objet
+### Notation objet
 
 !!! quote ""
     **Notation**
-    Soit R(S) une relation, e $\in$ R(S) un enregistrement et A $\in$ S. On note e.A la composante du tuple e associée à l'attribut A. Si K $\subset$ S, on note e.K le sous-tuple de e constitué des composantes associées aux éléments de K. Il s'agit de la projection de e sur les attributs de K.
+    Soit $R(S)$ une relation, $e \in R(S)$ un enregistrement et $A \in S$. On note $e.A$ la composante du tuple $e$ associée à l'attribut $A$. Si $K \subset S$, on note $e.K$ le sous-tuple de $e$ constitué des composantes associées aux éléments de $K$. Il s'agit de la projection de $e$ sur les attributs de $K$.
 
 !!!example ""
     **Exemple**
 
-    !!!warning "j'arrive pas avec les tableaux"
+    $\text{classe}\left(\texttt{filière}, \texttt{ numéro}, \texttt{ salle}\right) =$
 
-    classe(filière,numéro,Salle)=  
-    Filière Numéro  MPSI  MPSI  PCSI  
-    1  2  2  
-    Salle  B.10  C.34  B.1  
-    Si e = (PCSI, 2, B.1), alors e.Numéro = 2 et e.(Numéro, Salle) = (2, B.1).  On dit que e.A est la projection de e sur l'attribut A. e.$(A_1, ... , A_n)$ est la  projection de e sur $A_1 × ··· × A_n$.  
+    | $\texttt{Filière}$ | $\texttt{Numéro}$ | $\texttt{Salle}$|
+    |:---------:|:--------:|:----:|
+    |$\texttt{MPSI}$|$1$|$\text{B.10}$|
+    |$\texttt{MPSI}$|$2$|$\text{C.34}$|
+    |$\texttt{PCSI}$|$2$|$\text{B.1}$|
 
-#### Clé unique
+    Si $e = (\texttt{PCSI}, 2, \text{B.1})$, alors $e.\texttt{numéro} = 2$ et $e.\texttt{(numéro, salle)} = (2,\text{B.1})$.  On dit que $e.{A}$ est la projection de $e$ sur l'attribut $A$. $e.(A_1, ... , A_n)$ est la projection de $e$ sur $A_1 × ··· × A_n$.  
+
+### Clé unique
 
 !!! quote "Définition : clé unique"
-    Soit R(S) une relation de schéma S. On dit que K ⊂ S est une clé unique pour R si et seulement si
-    $$∀(t_1, t_2) \in R^2 , t_1.K = t_2.K ⇐⇒ t_1 = t_2$$
+    Soit $R(S)$ une relation de schéma $S$. On dit que $K ⊂ S$ est une _clé unique_ pour $R$ si et seulement si
+    $$∀(t_1, t_2) \in R^2 , t_1.K = t_2.K ⟺ t_1 = t_2$$
 
 !!! tip ""
     **Remarque**
-    - La connaissance des attributs dans K suffit à distinguer deux éléments.
-    - K est une clé unique si et seulement si la projection sur K est injective.
+    - La connaissance des attributs dans $K$ suffit à distinguer deux éléments.
+    - $K$ est une clé unique si et seulement si la projection sur $K$ est injective.
     - Lorsqu'il y a une clé unique, la table ne contient pas de doublon de lignes.
-    - Souvent, on impose que K soit de cardinal mi
+    - Souvent, on impose que $K$ soit de cardinal minimum. C'est de bon sens : nous nous en tenons à cette pratique
 
 !!!example ""
     **Exemple**
-    
-    !!!warning "j'arrive pas avec les tableaux"
 
-    élève(Nom,Prénom,Année de naissance)=  
-    Prénom Année de naissance  Nom  Patrice  Hoareau  Hoareau  Patrice  Dupont Marie  Patrice  Grondin  
-    1996  1995  1997  1996  
+    $\text{élève}\left(\texttt{Nom}, \texttt{ Prénom}, \texttt{ Année de naissance}\right) =$
 
-    (Nom,Prénom) n'est pas une clé unique, ni (Prénom,Année) mais  (Nom,Année) est une clé unique.  
+    | $\texttt{Nom}$ | $\texttt{Prénom}$ | $\texttt{Année de naissance}$|
+    |:---------:|:--------:|:----:|
+    |$\text{Hoareau}$|$\text{Patrice}$|$1996$|
+    |$\text{Hoareau}$|$\text{Patrice}$|$1995$|
+    |$\text{Dupont}$|$\text{Marie}$|$1997$|
+    |$\text{Grondin}$|$\text{Patrice}$|$1996$|
 
-Soit R(S) une relation de schéma S.  
+    $(\texttt{Nom},\texttt{Prénom})$ n'est pas une clé unique, ni $(\texttt{Prénom},\texttt{Année})$ mais $(\texttt{Nom},\texttt{Année})$ est une clé unique.  
 
-- Souvent, on cherche à limiter la clé unique à un seul attribut.  Le terme clé unique est trompeur : il peut y en avoir plusieurs !  
-Exemple : dans la table Etudiant(id,nom, prénom,num. de  sécu) il y a deux clés uniques possibles :  
-  - id (le numéro d'étudiant).  
-  - num. de sécu  
-- Les clés sont choisies par le développeur au moment d ela conception.  
-Une clé unique peut porter sur plusieurs attributs : il peut très bien ne  pas y avoir de clé à un seul élément.  
+Soit $R(S)$ une relation de schéma $S$.  
+
+- Souvent, on cherche à limiter la clé unique à un seul attribut.  
+- Le terme _clé unique_ est trompeur : il peut y en avoir plusieurs !  
+Exemple : dans la table $\text{Etudiant}(\texttt{id},\texttt{ nom},\texttt{ prénom},\texttt{ num. de  sécu})$ il y a deux clés uniques possibles :  
+    - $\texttt{id}$ (le numéro d'étudiant).  
+    - $\texttt{num. de sécu}$
+    Les clés sont choisies par le développeur au moment de la conception.  
+- Une clé unique peut porter sur plusieurs attributs : il peut très bien ne pas y avoir de clé à un seul élément.  
 - Et d'ailleurs, il est possible qu'il n'y ait pas de clé unique (si la table  possède des doublons de lignes). Mais on décourage d'utiliser de telles  tables.  
-
-
-
 
 #### Clé primaire
 
