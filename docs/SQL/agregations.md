@@ -15,12 +15,14 @@ Les fonctions d'agrégation dans le lagage SQL permettent d'effectuer des opéra
 
 Contrairement aux autres opérateurs, elles s'appliquent à des ensembles (ou _agrégats_) de lignes et pas seulement à des lignes isolées.
 
-Récupérer des informations concernant un groupe de lignes. Exemple : donner pour chaque ville :
+Récupérer des informations concernant un groupe de lignes.
 
-- le nombre de commandes passées par les clients habitant cette ville,
-- le prix le plux cher payé.
-- la moyenne des âges des clients.
-- la somme des totales des commandes des habitants de cette ville.
+!!!example "Exercice donner pour chaque ville "
+
+    - le nombre de commandes passées par les clients habitant cette ville,
+    - le prix le plux cher payé.
+    - la moyenne des âges des clients.
+    - la somme des totales des commandes des habitants de cette ville.
 
 ## Compter
 
@@ -77,7 +79,7 @@ ORDER BY COUNT(CustomerID) DESC;
     GROUP BY CategoryID;
     ```
 
-## `HAVING`
+## $\texttt{HAVING}$
 
 Fixer des conditions sur les groupes affichés (par exemple ceux au dessus d'un certain effectif) et non pas sur les enrengistrements affichés (ce qui est le boulot de `WHERE`).
 
@@ -105,7 +107,7 @@ ORDER BY column_name(s);
     HAVING COUNT(CustomerID) > 5;
     ```
 
-!!!examlpe "Exercice"
+!!!example "Exercice"
 
     - Donner le pays dans lequel se trouve le plus de clients.
     - Donner le prix (unitaire) moyen des produits délivrés par les fournisseurs de chaque ville si le produit le moins cher dans cette ville côute plus de $20$ dollars (prix unitaire).
