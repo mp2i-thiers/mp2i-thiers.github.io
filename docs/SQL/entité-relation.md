@@ -56,7 +56,8 @@ année). L'attribut $\color{blue}\texttt{Oscar}$ devrait donc désigner une ann�
 ## Association
 
 !!!quote "Association"
-Une _association_ est une liaison existant entre les entités. Le _degré_ d'une association est le nombre d'entités intervenant dans l'association
+
+    Une _association_ est une liaison existant entre les entités. Le _degré_ d'une association est le nombre d'entités intervenant dans l'association
 
 !!!example ""
 
@@ -137,7 +138,7 @@ Exemple : l'association _dirige_ est de type $\texttt{1-1}$ entre les entités $
     facture.
     - La solution consiste à éclater le type association ternaire $\color{blue}\texttt{Concerne}$ en deux type association binaires $\color{blue}\texttt{Concerne}$ et $\color{blue}\texttt{Reçoit}$.
 
-    <p align='center'><img src='/images/entrel5.png'/></p>
+    <p align='center'><img src='/images/entrel6.png'/></p>
 
     (Laurent Audibert)
 
@@ -186,7 +187,7 @@ La règle pour placer la clé étrangère pour une association $\texttt{1 - ∗}
 
     Certains auteurs préconisent ceci :
 
-    <p align='center'><img src='/images/entrel6.png'/></p>
+    <p align='center'><img src='/images/entrel7.png'/></p>
 
     Le $1$ (qui signifie $(1,1)$) à côté de $\texttt{Personne}$ signifie pour ces auteurs qu'un Oscar n'est _présenté_ (forme passive) que par une personne. Mais qu'une personne peut très bien présenter plusieurs Oscar ($(1,n)$ du côté d'$\texttt{Oscar}$). On a donc une cardinalité d'association $\texttt{1 - n}$.
     
@@ -194,7 +195,7 @@ La règle pour placer la clé étrangère pour une association $\texttt{1 - ∗}
 
     Pour M.Noyer, il place les cardinalités de pattes ainsi :
 
-    <p align='center'><img src='/images/entrel7.png'/></p>
+    <p align='center'><img src='/images/entrel8.png'/></p>
 
     On a donc une cardinalité d'association $\texttt{n - 1}$.
     Il est de toute façon clair pour tout le monde qu'il faut mettre une clé étrangère dans $\texttt{Oscar}$ vers $\texttt{Personne}$.
