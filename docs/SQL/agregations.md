@@ -46,7 +46,7 @@ FROM Customers
 GROUP BY Country;
 ```
 
-`COUNT(∗)` est équivalent à `COUNT(CustomerID)` car l'identifiant étant une clé primaire, il n'y a pas de `NULL` dans la colonne.
+$\color{blue}\texttt{COUNT(∗)}$ est équivalent à $\color{blue}\texttt{COUNT(CustomerID)}$ car l'identifiant étant une clé primaire, il n'y a pas de $\color{blue}\texttt{NULL}$ dans la colonne.
 
 ## Agrégation
 
@@ -79,11 +79,11 @@ ORDER BY COUNT(CustomerID) DESC;
     GROUP BY CategoryID;
     ```
 
-## $\texttt{HAVING}$
+## $\color{blue}\texttt{HAVING}$
 
-Fixer des conditions sur les groupes affichés (par exemple ceux au dessus d'un certain effectif) et non pas sur les enrengistrements affichés (ce qui est le boulot de `WHERE`).
+Fixer des conditions sur les groupes affichés (par exemple ceux au dessus d'un certain effectif) et non pas sur les enrengistrements affichés (ce qui est le boulot de $\color{blue}\texttt{WHERE}$).
 
-`HAVING` permet de filtrer les agrégats de lignes en utilisant (uniquement) les fonctions d'aggrégation `SUM`, `COUNT`, `AVG`, `MIN`, `MAX`.
+$\color{blue}\texttt{HAVING}$ permet de filtrer les agrégats de lignes en utilisant (uniquement) les fonctions d'aggrégation `SUM`, `COUNT`, `AVG`, `MIN`, `MAX`.
 
 On filtre donc des agrégats (d'enregistrements) plutôt que des enrengistrements.
 

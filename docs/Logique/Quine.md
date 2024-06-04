@@ -30,9 +30,9 @@ fonction sat (P : proposition ;
     sortie : un bouléen
     si L est vide renvoyer evaluer (P, µ)
     prendre x ∈ L
-    si sat (P[x ← T], L\{x}, µ ◦ [x ← T])
+    si sat (P, L\{x}, µ ◦ [x ← T])
         alors renvoyer Vrai
-    sinon renvoyer sat (P[x ← F], L\{x}, µ ◦ [x ← F])
+    sinon renvoyer sat (P, L\{x}, µ ◦ [x ← F])
 ```
 
 Cette fonction réalise donc un bactracking et teste potentiellement $2^{\text{nb de variables de P}}$ contextes.
