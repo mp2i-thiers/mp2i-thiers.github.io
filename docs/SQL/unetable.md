@@ -4,7 +4,7 @@
 
     - Un cours de Quentin Fortier
     - Le tuto SQL du [W3C](https://www.w3schools.com/sql/) (indispensable)
-    - Un cours en français [ici]https://sql.sh/cours
+    - Un cours en français [ici](https://sql.sh/cours)
 
 ## Présentation
 
