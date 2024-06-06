@@ -316,7 +316,7 @@ Shéma référençant :
 |emprunteur||
 |:---|:---:|
 |$\text{Nom}$|$\texttt{string}$|
-|$\text{Livre emprunté } \# $|$\texttt{titre}$|
+|$\text{Livre emprunté } \#$|$\texttt{titre}$|
 
 $$↓$$
 

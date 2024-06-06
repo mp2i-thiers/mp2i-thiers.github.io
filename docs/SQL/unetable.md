@@ -14,7 +14,7 @@ On accède à des informations d'une base de donnée avec un _langage de requêt
 
 On n'utilise ni variable ni boucle contrairement aux langages de programmation habituels.
 
-On écrit (dans un certain langage) $\underline{\textsf{ce qu'on veut obtenir}}$ mais pas $\underline{\textsf{comment l' obtenir}}$. On laisse le SGBD se débrouiller.
+On écrit (dans un certain langage) $\underline{\textsf{ce qu'on veut obtenir}}$ mais pas $\underline{\textsf{comment l'obtenir}}$. On laisse le SGBD se débrouiller.
 
 !!!example "Somme des capacités de salles"
 
@@ -147,9 +147,10 @@ On peut enlever des lignes ET des colonnes.
     ```SQL linenums="1"
     SELECT City FROM Customers
     WHERE Country='UK';
+    ```
 
     <p align='center'><img src='/images/unetable1.png'/></p>
-    ```
+    
 
 ### Enlever des doublons
 
@@ -280,7 +281,9 @@ $\color{blue}\texttt{OFFSET}$.
 
 Même chose avec une syntaxe abrégée :
 
+```SQL linenums="1"
 SELECT * FROM Customers LIMIT 6, 3
+```
 
 Noter qu'on met alors le $\color{blue}\texttt{OFFSET}$ avant le nombre de lignes. Essayer [ici](https://www.w3schools.com/sql/trymysql.asp?filename=trysql_select_limit).
 
@@ -288,7 +291,7 @@ $\color{blue}\texttt{LIMIT k OFFSET 0}$ est équivalent à $\color{blue}\texttt{
 
 ### Cases vides
 
-#### $\color{blue}\texttt{NULL}$
+#### Le mot clé $\color{blue}\texttt{NULL}$
 
 $\color{blue}\texttt{NULL}$ est un mot clé indiquant une case vide.
 
@@ -320,7 +323,7 @@ Il y en a $5$ à connaître :
 
 Ces fonctions peuvent être utilisées pour des informations statistiques sur TOUTE la table ou bien les mêmes informations mais sur les éléments d'une PARTITION de la table (ce qu'on appelle des _agrégats_)
 
-### $\color{blue}\texttt{MIN}$,$\color{blue}\texttt{ MAX}$,$\color{blue}\texttt{ SUM}$
+### Les fonctions $\color{blue}\texttt{MIN}$,$\color{blue}\texttt{ MAX}$,$\color{blue}\texttt{ SUM}$
 
 Syntaxe :
 
@@ -328,7 +331,7 @@ Syntaxe :
 SELECT MAX(nom_colonne) FROM table
 ```
 
-Retourne une table d'une seule ligne et une seule colonne dont le nom est $\texttt{MAX(nom\_colonne)}$
+Retourne une table d'une seule ligne et une seule colonne dont le nom est $\texttt{MAX(nom}\_ \texttt{colonne)}$
 
 Donner le prix minimum parmi les produits et renommer le résultat
 
@@ -348,37 +351,63 @@ SELECT SUM(Price) AS Somme
 FROM Products;
 ```
 
-Donner les produits dont le prix unitaire est maximum (plusieurs
-réponses possibles) (attendre d'avoir vu les requêtes imbriquées)
+Donner les produits dont le prix unitaire est maximum (plusieurs réponses possibles) (attendre d'avoir vu les requêtes imbriquées)
 
 ### Moyenne
+
 Le prix unitaire moyen des produits :
-1 SELECT AVG(Price) AS Moyenne
-2 FROM Products
-3 ;
+
+```SQL linenums="1"
+SELECT AVG(Price) AS Moyenne
+FROM Products
+;
+```
 
 ### Compter
-La fonction COUNT a un comportement particulier
-COUNT(a) : Compte le nombre de fois que a est différent de NULL.
-Souvent on compte le nombre total d'enregistrements avec COUNT(*).
-Exemple : donner le nombre de clients :
-1 SELECT COUNT (*) AS Nombre_de_clients
-2 FROM Customers;
 
-### Le mot clé IN Un raccourci pour éviter de multiples conditions OR
+La fonction $\color{blue}\texttt{COUNT}$ a un comportement particulier
+
+- $\color{blue}\texttt{COUNT(a)}$ : Compte le nombre de fois que $a$ est différent de $\color{blue}\texttt{NULL}$.
+- Souvent on compte le nombre total d'enregistrements avec $\color{blue}\texttt{COUNT(*)}$.
+
+!!!example  "donner le nombre de clients"
+
+    ```SQL linenums="1"
+    SELECT COUNT (*) AS Nombre_de_clients
+    FROM Customers;
+    ```
+
+### Le mot clé $\color{blue}\texttt{IN}$
+
+#### Un raccourci pour éviter de multiples conditions $\texttt{OR}$
+
 Pas explicitement au programme (mais pas explicitement interdit)
-Syntaxe 1 :
-1 SELECT column_name(s)
-2 FROM table_name
-3 WHERE column_name IN (value1 , value2 , ...);
-Syntaxe 2 : Dans des requêtes imbriquées (patience)
-1 SELECT column_name(s)
-2 FROM table_name
-3 WHERE column_name IN (SELECT STATEMENT );
 
-Tous les clients allemands, fran ̧cais et anglais :
-1 SELECT * FROM Customers
-2 WHERE Country IN ('Germany ', 'France ', 'UK');
-Tous les clients qui sont dans le même pays qu'au moins un
-fournisseur : (patience, on en parlera quand on verra les requêtes
-imbriquées)
+- Syntaxe $1$ :
+
+```SQL linenums="1"
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1 , value2 , ...);
+```
+
+- Syntaxe $2$ : Dans des requêtes imbriquées (patience)
+
+```SQL linenums="1"
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (SELECT STATEMENT );
+```
+
+!!!example ""
+
+    Tous les clients allemands, français et anglais :
+
+    ```SQL linenums="1"
+    SELECT * FROM Customers
+    WHERE Country IN ('Germany ', 'France ', 'UK');
+    ```
+
+    Tous les clients qui sont dans le même pays qu'au moins un
+    fournisseur : (patience, on en parlera quand on verra les requêtes
+    imbriquées)
