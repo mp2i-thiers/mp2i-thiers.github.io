@@ -154,32 +154,32 @@ La concaténation des listes $S$ ,$S'$ est notée $S + S '$.
     $\text{card}(R ×R ') = \text{card}(R ) × \text{card}(R ')$ et $\text{card}(S + S ') = \text{card}(S ) + \text{card}(S ')$
     (si $S$ ,$S'$ ont des schémas disjoints).
 
-???example ""
+!!!example ""
 
-||$\texttt{Elève}$||
-|:--:|:--:|:--:|
-|**Nom**| **Prénom**| **Classe**|
-|Dupont| Jean |$\text{MPSI}$    $1$|
-|Michel| Jacques |$\text{MPSI}$ $1$|
+    ||$\texttt{Elève}$||
+    |:--:|:--:|:--:|
+    |**Nom**| **Prénom**| **Classe**|
+    |Dupont| Jean |$\text{MPSI}$    $1$|
+    |Michel| Jacques |$\text{MPSI}$ $1$|
 
-|$\texttt{Prof}$||
-|:--:|:--:|
-|**Nom**| **Matière**|
-|Tartempion| Maths|
-|Duchmol| Anglais|
-|Schprountz| Allemand|
+    |$\texttt{Prof}$||
+    |:--:|:--:|
+    |**Nom**| **Matière**|
+    |Tartempion| Maths|
+    |Duchmol| Anglais|
+    |Schprountz| Allemand|
 
-Pour faire le produit cartésien il faut d'abord renommer pour avoir des schémas disjoints :
+    Pour faire le produit cartésien il faut d'abord renommer pour avoir des schémas disjoints :
 
-||$\texttt{Elève}$ |$×$| $ρ_{\text{Nom←Lehrer}} \texttt{(Prof)}$||
-|:--:|:--:|:--:|:--:|:--:|
-|**Nom**| **Prénom**| **Classe**| **Lehrer**| **Matière**|
-|Dupont| Jean |$\text{MPSI}$ $1$| Tartempion| Maths|
-|Michel| Jeacques| $\text{MPSI}$ $1$| Duchmol| Anglais|
-|Dupont| Jean |$\text{MPSI}$ $1$| Duchmol| Anglais|
-|Michel| Jeacques| $\text{MPSI}$ $1$| Tartempion| Maths|
-|Dupont| Jean |$\text{MPSI}$ $1$ |Schprountz| Allemand|
-|Michel| Jeacques| $\text{MPSI}$ $1$ |Schprountz| Allemand|
+    ||$\texttt{Elève}$ |$×$| $ρ_{\text{Nom←Lehrer}} \texttt{(Prof)}$||
+    |:--:|:--:|:--:|:--:|:--:|
+    |**Nom**| **Prénom**| **Classe**| **Lehrer**| **Matière**|
+    |Dupont| Jean |$\text{MPSI}$ $1$| Tartempion| Maths|
+    |Michel| Jeacques| $\text{MPSI}$ $1$| Duchmol| Anglais|
+    |Dupont| Jean |$\text{MPSI}$ $1$| Duchmol| Anglais|
+    |Michel| Jeacques| $\text{MPSI}$ $1$| Tartempion| Maths|
+    |Dupont| Jean |$\text{MPSI}$ $1$ |Schprountz| Allemand|
+    |Michel| Jeacques| $\text{MPSI}$ $1$ |Schprountz| Allemand|
 
 #### Jointure croisée
 
@@ -263,6 +263,7 @@ En notant $π_C$ la projection sur $C$ :
     Avec $\texttt{DC}= \{\text{Duchmol}\}$, $\{(\text{Dupont, MPSI 1}),(\text{Martin, MPSI 2}),(\text{Bernard, PCSI 2})\}×\texttt{DC}$ contient la ligne $(\text{Martin, MPSI 1, Duchmol})$ qui n'est pas dans $\texttt{Eleve-Prof}$.
 
     Réponse : $\texttt{DC}$ vaut
+
     |$\texttt{DC=R÷R'}$||$\texttt{R''}$|||
     |:--:|:--:|:--:|:--:|:--:|
     |**Nom-Prof**||**Nom-Eleve**|**Classe**| **Nom-Prof**|
@@ -349,7 +350,7 @@ Pour croiser des informations en provenance de plusieurs tables :
 - En théorie, ces tables ont des shémas disjoints.
 - Syntaxe :
 
-```SQL linenums="1"
+```SQL linenums="1" 
 SELECT * FROM table1
 INNER JOIN table2
 ON table1.colt1 = table2.colt2
