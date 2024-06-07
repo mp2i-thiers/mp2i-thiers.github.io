@@ -23,7 +23,7 @@
 
 On dispose de `evaluer (P:prop., µ:ctxt complet)`
 
-```OCaml lnenums="1" title="Listing 1 – Algorithme de satisfiabilité"
+```OCaml linenums="1" title="Listing 1 – Algorithme de satisfiabilité"
 fonction sat (P : proposition ;
               L : ensemble de variables à remplacer par T/F,
               µ : contexte partiel)
