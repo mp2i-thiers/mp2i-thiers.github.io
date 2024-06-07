@@ -45,7 +45,7 @@ L’algorithme de Quine prend en paramètre une proposition en FNC et réalise u
 
 ```OCaml linenums="1"
 prendre une variable x restante dans la formule
-tester récursivement si P[x ← T] est satisfaisable
+tester récursivement si P[x ← T] est satisfiable
 tester récursivement si P[x ← F] est satisfiable
 ```
 
