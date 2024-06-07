@@ -267,7 +267,7 @@ $$
 
 !!!tip "Correction"
 
-    $(¬ A ∧ ¬ B) ∧ (A ∨ B)$
+    $(¬ A ∨ ¬ B) ∧ (A ∨ B)$
 
 ### Priorités
 
@@ -673,7 +673,7 @@ Soient $p \equiv q$ deux FNDC. Elles ont donc même table.
 
 #### FNCC
 
-Soit une expression p à n variables,
+Soit une expression $p$ à $n$ variables,
 
 !!!note "Existence"
     - $\neg p$ a une FNDC $c_1 \vee \dotsb \vee  c_n$ où les $c_i$ sont des mintermes.
@@ -709,7 +709,7 @@ Cette section est laissée pour info mais sera traitée en seconde année.
 
 #### Problème 2-SAT (Aspvall-Plass-Tarjan)
 
-Soit p une proposition mise sous forme conjonctive avec des $2$-clauses
+Soit $p$ une proposition mise sous forme conjonctive avec des $2$-clauses
 
 - On construit un graphe orienté :  
   - Ses sommets sont tous les littéraux formés avec les variables  apparaissant dans la proposition.
@@ -717,7 +717,7 @@ Soit p une proposition mise sous forme conjonctive avec des $2$-clauses
   - Pour deux littéraux $a, b$, l'arc $(\neg a, b)$ est présent si et seulement si la  disjonction $a \vee b$ est dans p. Et dans ce cas $(a, \neg b)$ est présent aussi.
   - Ceci correspond à $a \vee  b \equiv (\neg a \rightarrow  b) \wedge  (\neg b \rightarrow  a)$  
 - Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable $v$ de $p$. Si $\neg v$ est dedans, il y a un chemin d'implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v$.  
-- Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si $p$ est satisfiable, $v \Leftrigtarrow \neg v$ aussi : **ABSURDE**.  
+- Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si $p$ est satisfiable, $v \Leftrightarrow \neg v$ aussi : **ABSURDE**.  
 - Donc si $v$ et $\neg v$ sont dans la même composante connexe, $p$ n'est pas satisfiable (Aspvall-Plass-Tarjan).  
 
 !!!example "Exemple (Mansuy)"
