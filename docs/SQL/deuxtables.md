@@ -231,13 +231,26 @@ $σ_T (R )$ est la sélection de $R$ selon le test $T$ (on conserve toutes les c
 
 !!!example "Exercice"
 
-    On suppose que toutes les personnes (client ou fournisseur) ont renseigné l'attribut $\texttt{City}$ dans la BDD $\texttt{Northwind}$ du W3C.Calculer le nombre de personnes (client ou fournisseur) qui vivent dans une ville hébergeant au moins deux personnes (client ou fournisseur).
+    On suppose que toutes les personnes (client ou fournisseur) ont renseigné l'attribut $\texttt{City}$ dans la BDD $\texttt{Northwind}$ du W3C. Calculer la moyenne de personnes (client ou fournisseur) qui vivent dans une même ville (client ou fournisseur).
 
 ???example "Indication"
 
     Il s'agit de faire la différence entre le cardinal de la réponse d'un $\color{blue}\texttt{UNION ALL}$ avec celui de la réponse d'un $\color{blue}\texttt{UNION}$
 
     Penser à un produit cartésien.
+
+???tip "Correction"
+
+    ```SQL linenums="1"
+    SELECT C1/C2 FROM
+    (SELECT Count(*) AS C1 FROM
+    (SELECT City FROM Customers
+    UNION ALL
+    SELECT City FROM Suppliers) AS Ville1) AS R1,
+    (SELECT Count(*) AS C2 FROM
+    (SELECT City FROM Customers UNION
+    SELECT City FROM Suppliers) AS Ville2) AS R2
+    ```
 
 ### Division cartésienne
 
@@ -247,7 +260,7 @@ $\color{blue}\texttt{Notion non explicitement au programme ITC et MPII}$. (laiss
 
 !!!quote "Division cartésienne"
 
-    On appelle division cartésienne de $R$ par $S$ , la plus grande table $T$ de shéma $C$ telle que $S ×T ⊂R$ . On note $T = R ÷S$
+    On appelle _division cartésienne_ de $R$ par $S$ , la plus grande table $T$ de schéma $C$ telle que $S ×T ⊂R$ . On note $T = R ÷S$
 
 En notant $π_C$ la projection sur $C$ :
 
@@ -268,7 +281,7 @@ En notant $π_C$ la projection sur $C$ :
     ||||Dupont| $\text{MPSI 1}$| Duchmol|
     ||||Bernard| $\text{PCSI 2}$| Duchmol|
 
-    Chercher la division cartésienne (notée $_texttt{DC}$) de $R$ par $R'$.
+    Chercher la division cartésienne (notée $\texttt{DC}$) de $R$ par $R'$.
 
     $R÷R'$ a pour schéma le seul attribut qui est dans le schéma de $R$ et
     pas dans celui de $R$'.
@@ -293,13 +306,13 @@ En notant $π_C$ la projection sur $C$ :
 
 _Figure – Une table_
 
-Question : quels sont les acteurs qui ont tourné dans tous les films de Hitchcock ? (on ne dispose pas du quantificateur universel).
+**Question** : quels sont les acteurs qui ont tourné dans tous les films de Hitchcock ? (on ne dispose pas du quantificateur universel).
 
 Films tournés par Hitchcock :
 
 $T_H = π_{Titre,Directeur} (σ_{Directeur ='Hitchcock'} (Film))$. La table $T_H$ admet (Titre, Directeur ) pour schéma et est constituée de couples (titre, Hitchcock).
 
-Tous les acteurs : $A = π_{Acteur} (Film)$. On cherche $A_2$ : l'ensemble des acteurs qui ont tourné dans tous les films de Hitchcock. C'est le plus grand sous-ensemble de A tel que TH ×A2 ⊂Film, donc A2 = Film ÷TH .
+Tous les acteurs : $A = π_{Acteur} (Film)$. On cherche $A_2$ : l'ensemble des acteurs qui ont tourné dans tous les films de Hitchcock. C'est le plus grand sous-ensemble de $A$ tel que $T_H ×A_2 ⊂Film$, donc $A_2 = Film ÷T_H$ .
 
 !!!tip "Remarque"
 
@@ -311,7 +324,7 @@ $(T_H ×A) −Film$ : seulement les associations (titre, Hitchcock, acteur) qui 
 
 $A' = π_{Acteur} ((T_H ×A) −Film)$ : les acteurs qui n'ont pas tourné dans au moins un film d'Hitchcock.
 
-$A_2 = A −A'$ : les acteurs qui ont tourné dans tous les films d'Hitchcok. $A2 = Film ÷π_{Titre,Directeur} (σ_{Directeur ='Hitchcock '}(Film))$
+$A_2 = A −A'$ : les acteurs qui ont tourné dans tous les films d'Hitchcok. $A_2 = Film ÷π_{Titre,Directeur} (σ_{Directeur ='Hitchcock '}(Film))$
 
 #### Jointure symétrique
 
@@ -380,6 +393,18 @@ INNER JOIN Customers
 ON Orders.CustomerID = Customers.CustomerID;
 ```
 
+!!!example "Exercice (improvisé)"
+
+    Pour chaque achat, donner le prix payé.
+
+???tip "Correction"
+
+    ```SQL linenums="1"
+    SELECT OrderDetailID, P.Price * OD.Quantity FROM OrderDetails AS OD
+    INNER JOIN Products AS P
+    ON OD.ProductID = P.ProductID
+    ```
+
 #### Jointure et intersection
 
 On peut se servir d'une jointure pour obtenir l'intersection de deux tables de même schéma.
@@ -396,19 +421,22 @@ ON S.City = C.City
 
 Hors programme pour l'**ITC**
 
-La jointure que nous avons vue $\color{blue}\texttt{R1 JOIN R2 ON A=B}$ est symétrique : les enregistrements de $\texttt{R1}$ qui ont une valeur de $\texttt{A}$ qui n'existe pas dans $\texttt{D}$ n'apparaissent pas dans le résultat.
+- La jointure que nous avons vue $\color{blue}\texttt{R1 JOIN R2 ON A=B}$ est symétrique : les enregistrements de $\texttt{R1}$ qui ont une valeur de $\texttt{A}$ qui n'existe pas dans $\texttt{D}$ n'apparaissent pas dans le résultat.
+- Parfois on a besoin de faire apparaître, en plus du résultat de la jointure symétrique, les valeurs de $\texttt{R1}$ : c'est la _jointure gauche_ ($\color{blue}\texttt{LEFT JOIN}$)
 
-Parfois on a besoin de faire apparaître, en plus du résultat de la jointure symétrique, les valeurs de $\texttt{R1}$ : c'est la _jointure gauche_ ($\color{blue}\texttt{LEFT JOIN}$)
+!!!example ""
 
-Donner le nom et la ville de chaque client et compléter l'information par le nom des fournisseurs qui vivent dans la même ville que lui.
+    Donner le nom et la ville de chaque client et compléter l'information par le nom des fournisseurs qui vivent dans la même ville que lui.
 
-```SQL linenums="1"
-SELECT C.CustomerName , C.City , S.SupplierName
-FROM Customers AS C LEFT JOIN Suppliers as S
-ON C.City=S.City
-```
+    ```SQL linenums="1"
+    SELECT C.CustomerName , C.City , S.SupplierName
+    FROM Customers AS C LEFT JOIN Suppliers as S
+    ON C.City=S.City
+    ```
 
-Remarque : certaines des lignes obtenues sont complètes, d'autres pas.
+!!!tip "Remarque"
+
+    Certaines des lignes obtenues sont complètes, d'autres pas.
 
 #### Jointure RIGHT JOIN
 
@@ -416,25 +444,38 @@ Hors programme pour l'**ITC**
 
 Il existe de même une _jointure droite_ de mot clé $\color{blue}\texttt{RIGHT JOIN}$
 
-Donner toutes les informations sur les employés et les ventes qu'ils
-ont éventuellement assurées.
+!!!example ""
 
-```SQL linenums="1"
-SELECT Orders.OrderID , Employees.LastName ,
-Employees.FirstName
-FROM Orders
-RIGHT JOIN Employees
-ON Orders.EmployeeID = Employees.EmployeeID
-ORDER BY Orders.OrderID;
-```
+    Donner toutes les informations sur les employés et les ventes qu'ils
+    ont éventuellement assurées.
 
-On constate que le pauvre Adam West n'a effectué aucune vente.
+    ```SQL linenums="1"
+    SELECT Orders.OrderID , Employees.LastName ,
+    Employees.FirstName
+    FROM Orders
+    RIGHT JOIN Employees
+    ON Orders.EmployeeID = Employees.EmployeeID
+    ORDER BY Orders.OrderID;
+    ```
+
+    On constate que le pauvre Adam West n'a effectué aucune vente.
+
+#### Auto-jointure
+
+!!!example "Exercice"
+
+    Donner tous les couples de clients qui vivent dans la même ville. On n'accepte pas les " doublons " comme (Dupont, Durand) et (Durand, Dupont) ni les identifiants identiques comme (Dupont, Dupont) sauf si il s'agit de personnes différentes (le nom n'est pas une clé primaire).
+
+???tip "Solution"
+
+    ```SQL linenums="1"
+    SELECT C1.CustomerName, C2.CustomerName, C1.City FROM 
+    Customers AS C1 
+    INNER JOIN Customers AS C2 
+    ON C1.City = C2.City WHERE C1.CustomerID < C2.CustomerID
+    ```
 
 #### Jointure sur plus de deux tables
-
-Donner tous les couples de clients qui vivent dans la même ville. On n'accepte pas les " doublons " comme (Dupont, Durand) et (Durand, Dupont) ni les identifiants identiques comme (Dupont, Dupont) sauf si il s'agit de personnes différentes (le nom n'est pas une clé primaire).
-
-Solution :
 
 Pour chaque client, indiquer ses achats et l'entreprise qui a livré ces achats :
 
