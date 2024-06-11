@@ -95,7 +95,7 @@ effectifs par ville).
 
 #### Intersection
 
-Malheureusement, certains SGBD ne prennent pas en charge les commande $\color{blue}\texttt{EXCEPT}$ et $\color{blue}\texttt{INTERSECT}$ : il faut se débrouiller autrement : avec une jointure ou avec le mot clé $\color{blue}\texttt{IN}$.
+Malheureusement, certains SGBD ne prennent pas en charge les commande $\texttt{EXCEPT}$ et $\texttt{INTERSECT}$ : il faut se débrouiller autrement : avec une jointure ou avec le mot clé $\color{blue}\texttt{IN}$.
 
 Avec jointure (cf plus loin)
 
@@ -144,7 +144,7 @@ La concaténation des listes $S$ ,$S'$ est notée $S + S '$.
 
 !!!quote "Produit cartésien"
 
-    Si $R (S )$ et $R '(S ')$ sont deux relations de schémas disjoints, on appelle produit cartésien et on note $R ×R '$ la relation de schéma $S + S '$ définie
+    Si $R (S )$ et $R '(S ')$ sont deux relations de schémas $\underline{\text{disjoints}}$, on appelle produit cartésien et on note $R ×R '$ la relation de schéma $S + S '$ définie
     par :
     
     $(R ×R ')(S + S ') = {(u_1,...,u_n ,v_1,...v_m ) |(u_1,...,u_n ) ∈ R(S)∧(v_1,...,v_m) ∈ R'(S')}$
@@ -206,6 +206,21 @@ SELECT * FROM Suppliers , Shippers;
     2 UNION
     3 SELECT COUNT (*) FROM Shippers
     4 -- donne 3 et 29
+    ```
+
+!!!example "Exercice"
+
+    Y a t'il des produits qui ont été achetés dans la même quantité que d'autres ?
+
+???tip "Correction"
+
+    ```SQL linenums="1"
+    SELECT Q2-Q1 <> 0 FROM
+    (SELECT COUNT(*) AS Q2 FROM 
+    (SELECT DISTINCT Quantity FROM OrderDetails) AS T2) AS R2,
+    (SELECT COUNT(*) AS Q1 FROM
+    (SELECT Quantity FROM OrderDetails) AS T1) AS R1
+    
     ```
 
 #### Complément de notations
