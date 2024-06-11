@@ -152,7 +152,7 @@ $(((\neg a) \vee  b) \wedge  (\neg c))$ se représente sous la forme d'un arbre 
 
 On ne note pas les parenthèses autour de la racine.  
 
-On convient (souvent, mais je ne trouve pas ça si commode) que  l'opérateur de négation $\neg$  a priorité sur les autres, que la conjonction et la disjonction ont priorité sur l'implication, et enfin que la  conjonction a priorité sur la disjonction. C'est très classique !  
+On convient (souvent, mais je ne trouve pas ça si commode) que  l'opérateur de négation $\neg a$ priorité sur les autres, que la conjonction et la disjonction ont priorité sur l'implication, et enfin que la  conjonction a priorité sur la disjonction. C'est très classique !  
 
 !!!tip ""
     **Remarque**
@@ -191,17 +191,18 @@ Les opérateurs de même niveau sont évalués de gauche à droite_
     - Si $|{\displaystyle {\mathcal {V}}}| = n$ alors il y a $2^n$ distributions de vérité.
     - L'ensemble des bouléens peut être représenté de différentes façons.
     - Dans ce cours, on pose ${\displaystyle {\mathcal {B}}} = {0, 1}$, et on identifie ${\displaystyle {\mathcal {B}}}$ avec l'anneau $\mathbb{Z}/2\mathbb{Z}$ (donc $1 + 1 = 0$ en particulier.)
-    - La multiplication est l'interprétation de la conjonction, 0 celle de **F**, $1$ celle de **V**, l'addition celle du XOR.  
+    - La multiplication est l'interprétation de la conjonction, $0$ celle de **F**, $1$ celle de **V**, l'addition celle du XOR.  
 
 ### Interprétation
 
 !!! quote "Définition: Une évaluation / interprétation"
-    Soit $µ$ un contexte sur un ensemble de variables ${\displaystyle {\mathcal {V}}}$ à valeur dans ${\displaystyle {\mathcal {B}}} = ℤ/2ℤ$. On appelle _évaluation_ (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur l'ensemble des propositions par :
+
+    Soit $\mu$ un contexte sur un ensemble de variables ${\displaystyle {\mathcal {V}}}$ à valeur dans ${\displaystyle {\mathcal {B}}} = ℤ/2ℤ$. On appelle _évaluation_ (ou encore interprétation) associée à $\mu$ l'application notée $\varepsilon_\mu$ définie sur l'ensemble des propositions par :
 
     - $\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0$
     - pour toute variable $v \in {\displaystyle {\mathcal {V}}}, \varepsilon_\mu(v ) = \mu(v )$
     - pour toute expression $p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p)$
-    - pour toutes expressions $p1$ et $p2$ : 
+    - pour toutes expressions $p_1$ et $p_2$ : 
   
     $$\begin{matrix}
         \varepsilon_\mu(p_1 \wedge p_2) &=& \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
@@ -240,7 +241,7 @@ $$
     Deux propositions $p, q$ sont dites _sémantiquement équivalentes_ si elles ont même table de vérité. Ceci revient à dire que pour tout contexte $\mu$, si $\varepsilon_\mu$ de l'une vaut $1$, alors pour l'autre aussi.On note $p$ $\equiv$ $q$.
 
 !!! quote "Définition: Tautologie"
-    On dit qu'une proposition p est une _tautologie_ lorsque $p$ $\equiv$ $V$ (c'est à dire que la dernière colonne de sa table de vérité ne contient que des $1$).
+    On dit qu'une proposition $p$ est une _tautologie_ lorsque $p$ $\equiv$ $V$ (c'est à dire que la dernière colonne de sa table de vérité ne contient que des $1$).
 
 !!! tip ""
     **Remarque**
@@ -382,7 +383,7 @@ Pour toutes propositions $p_1, p_2, p_3$, les propositions suivantes sont des ta
     - **Subsomption** $(p_1 \wedge  (p_1 \vee  p_2)) \Leftrightarrow p_1$
     - **Distributivité** $(p_1 \wedge  (p_2 \vee  p_3)) \Leftrightarrow (p_1 \wedge  p_2) \vee  (p_1 \wedge  p_3)$
     - **Distributivité** $(p_1 \vee  (p_2 \wedge  p_3)) \Leftrightarrow (p_1 \vee  p_2) \wedge  (p_1 \vee  p_3)$
-    - **Première loi de De Morgan** $\neg (p_1 \wedge  p)_2 \Leftrightarrow (\neg p_1) \vee  (\neg p_2)$
+    - **Première loi de De Morgan** $\neg (p_1 \wedge  p_2) \Leftrightarrow (\neg p_1) \vee  (\neg p_2)$
     - **Seconde loi de De Morgan** $\neg (p_1 \vee  p_2) \Leftrightarrow (\neg p_1) \wedge  (\neg p_2)$
 
 #### Propriétés de $\rightarrow$
@@ -419,10 +420,10 @@ Pour travailler avec une proposition $p$, il est souvent utile de considérer un
 #### Littéraux
 
 !!! quote "Définition: Littéral"
-    On appelle _littéral_ toute proposition de la forme $v$ ou $\neg$v où v est une variable propositionnelle.
+    On appelle _littéral_ toute proposition de la forme $v$ ou $\neg v$ où $v$ est une variable propositionnelle.
 
 !!! quote "Définition: Conjonction et disjonction"
-    On appelle _conjonction_ (resp. disjonction) des propositions $p_1, \dotsb , p_n$ (n $\geq$ 1), la proposition
+    On appelle _conjonction_ (resp. disjonction) des propositions $p_1, \dotsb , p_n$ ($n \geq 1$), la proposition
     $p_1 \wedge  p_2 \dotsb \wedge  p_n$ (resp. $p_1 \vee  p_2 \dotsb \vee  p_n$)
 
 !!! tip ""
@@ -440,7 +441,7 @@ Pour travailler avec une proposition $p$, il est souvent utile de considérer un
     On appelle _clause_ toute disjonction de littéraux. $F$ , disjonction de zéro littéral, est appelé la _clause vide_. (Moyen mnémotechnique : cla**U**se $\leftrightarrow \cup  \leftrightarrow \vee$ )
 
 !!! quote "Définition: Monôme"
-    On appelle _monôme_ toute conjonction de littéraux. V , conjonction de zéro littéral, est appelé le _monôme vide_. (Moyen mnémotechnique : mon**ô**me $\leftrightarrow \wedge$)
+    On appelle _monôme_ toute conjonction de littéraux. $V$ , conjonction de zéro littéral, est appelé le _monôme vide_. (Moyen mnémotechnique : mon**ô**me $\leftrightarrow \wedge$)
 
 !!! quote "Définition: Forme normale conjonctive"
     On appelle _forme normale conjonctive_ (FNC) toute conjonction de clauses et _forme normale disjonctive_ (FND) toute disjonction de monômes.
@@ -666,7 +667,7 @@ Soient $p \equiv q$ deux FNDC. Elles ont donc même table.
   - Donc $l'$ vaut $0$ dans $c$. Et donc $q$ vaut $0$ dans $c$. $p$ et $q$ ne peuvent avoir même table.
   - De ce qui précède, on déduit aussi que des mintermes (ayant les mêmes  variables) distincts ne valent jamais $1$ en même temps.  
 - On a vu que si $p \neq q$ et $p, q$ ne possèdent qu'un minterme, leurs tables sont différentes. On en déduit que des mintermes distincts ne valent jamais $1$ en même temps.
-- Si $p$ et $q$ sont des disjonctions de mintermes, et si un minterme m de p ne se retrouve pas dans $q$ :  
+- Si $p$ et $q$ sont des disjonctions de mintermes, et si un minterme $m$ de $p$ ne se retrouve pas dans $q$ :  
   - Lorsque $m$ vaut $1$, $p$ aussi (comme disjonction). Tous les autres  mintermes valent $0$ (puisque un seul minterme vaut $1$ pour un contexte donné), ceux de $p$ comme ceux de $q$.  
   - Alors dans ce contexte, comme disjonction de $0$, $q$ vaut $0$.  
   - Et donc $p$ et $q$ ne peuvent avoir même table.  
@@ -697,7 +698,7 @@ Soit une expression $p$ à $n$ variables,
 #### Le problème SAT
 
 - Comment tester qu'une proposition est satisfiable ? Il s'agit du  problème dit SAT.  
-- Comment tester qu'une proposition $p$ est une tautologie ? Si on sait  résoudre le problème SAT, il suffit de montrer que $\neg$ p est insatisfiable.  
+- Comment tester qu'une proposition $p$ est une tautologie ? Si on sait  résoudre le problème SAT, il suffit de montrer que $\neg p$ est insatisfiable.  
 - Pour le problème SAT, on peut simplement calculer sa table. Mais on  a alors une complexité en $O(2^n)$, si $n$ est le nombre de variables.  
 - Des algorithmes plus efficaces (en pratique, c'est à dire sauf cas  pathologiques) existent (DPLL) et passent par une mise sous FNC.  Mais dans le pire des cas ce passage à la FNC est lui-même de  complexité exponentielle.  
 
@@ -714,7 +715,7 @@ Soit $p$ une proposition mise sous forme conjonctive avec des $2$-clauses
 - On construit un graphe orienté :  
   - Ses sommets sont tous les littéraux formés avec les variables  apparaissant dans la proposition.
   - Les arcs sont des couples de littéraux de la forme $(a, \neg b)$ ou $(\neg a, b)$  mais pas tous ...
-  - Pour deux littéraux $a, b$, l'arc $(\neg a, b)$ est présent si et seulement si la  disjonction $a \vee b$ est dans p. Et dans ce cas $(a, \neg b)$ est présent aussi.
+  - Pour deux littéraux $a, b$, l'arc $(\neg a, b)$ est présent si et seulement si la  disjonction $a \vee b$ est dans $p$. Et dans ce cas $(a, \neg b)$ est présent aussi.
   - Ceci correspond à $a \vee  b \equiv (\neg a \rightarrow  b) \wedge  (\neg b \rightarrow  a)$  
 - Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable $v$ de $p$. Si $\neg v$ est dedans, il y a un chemin d'implications $v \rightarrow  \dotsb \rightarrow  \neg v$ et un autre $\neg v \rightarrow  \dotsb \rightarrow  v$.  
 - Alors $v \Leftrightarrow \neg v$ est une conséquence de $p : p \models v \Leftrightarrow \neg v$ (ce qui  signifie que tout modèle satisfaisant p, satisfait $v \Leftrightarrow \neg v$ ). Donc si $p$ est satisfiable, $v \Leftrightarrow \neg v$ aussi : **ABSURDE**.  
