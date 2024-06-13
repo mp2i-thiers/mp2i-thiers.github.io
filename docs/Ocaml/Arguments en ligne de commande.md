@@ -5,12 +5,13 @@
 
 ## Les arguments en ligne de commande
 
-Comme en _C_ ou en _Python_ les arguments qui sont passés en ligne de commande d’un programme _OCaml_ sont stockés dans un tableau. Il est traditionnel de nommer ce tableau **argv**.
+Comme en **C** ou en **Python** les arguments qui sont passés en ligne de commande d’un programme **OCaml** sont stockés dans un tableau. Il est traditionnel de nommer ce tableau **argv**.
 
 On le trouve dans le module **Sys** de la bibliothèque standard. Son nom complet est donc `Sys.argv`. Le nombre
-d’arguments (parmi lesquels le nom du programme en position 0) est la longueur du tableau.
+d’arguments (parmi lesquels le nom du programme en position $0$) est la longueur du tableau.
 
-On verra plus tard comment travailler avec les tableaux en OCaml. Retenons simplement qu’on accède à la case $i$ du tableau `tab` par `tab[i]`.
+On verra plus tard comment travailler avec les tableaux en **OCaml**. Retenons simplement qu’on accède à la case $i$ du tableau `tab` par `tab[i]`.
+
 Dans un fichier _arg.ml_, entrer :
 
 ```Ocaml linenums="1"
@@ -33,6 +34,7 @@ $ ocamlopt −o args args.ml
 ```
 
 Dans un terminal, la commande `./args arg1 arg2 arg3` produit l’affichage :
+
 ```
 [0] ./args
 [1] arg1

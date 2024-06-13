@@ -79,6 +79,17 @@ ORDER BY COUNT(CustomerID) DESC;
     GROUP BY CategoryID;
     ```
 
+!!!example "Exercice"
+
+    Quel est le nombre maximum de clients par pays ?
+
+???tip "Correction"
+
+    ```SQL linenums="1"
+    SELECT Country, COUNT(*) AS NBC FROM Customers
+    GROUP BY Country AS A
+    ```
+
 ## $\color{blue}\texttt{HAVING}$
 
 Fixer des conditions sur les groupes affichés (par exemple ceux au dessus d'un certain effectif) et non pas sur les enrengistrements affichés (ce qui est le boulot de $\color{blue}\texttt{WHERE}$).
@@ -111,3 +122,22 @@ ORDER BY column_name(s);
 
     - Donner le pays dans lequel se trouve le plus de clients.
     - Donner le prix (unitaire) moyen des produits délivrés par les fournisseurs de chaque ville si le produit le moins cher dans cette ville côute plus de $20$ dollars (prix unitaire).
+
+???tip "Correction"
+
+    ```SQL linenums="1" title="le pays avec le plus de clients"
+    SELECT Country FROM Customers
+    GROUP BY Country
+    HAVING Count(*) =
+    (SELECT MAX(NBC) FROM
+    (SELECT Country, COUNT(*) AS NBC FROM Customers
+    GROUP BY Country) AS A)
+    ```
+
+    ```SQL linenums="1"
+    SELECT City, MIN(Price) FROM Suppliers AS S
+    JOIN Products AS P 
+    ON P.SupplierID = S.SupplierID
+    GROUP BY S.City
+    HAVING MIN(Price) > 20
+    ```

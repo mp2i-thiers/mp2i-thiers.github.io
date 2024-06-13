@@ -242,8 +242,8 @@ La représentation du résultat de la compression par une liste d’entiers  OCA
 Dans la pratique, on peut donc utiliser la technique suivante pour coder la liste :  
 
 - Tant que tous les entiers sont strictement inférieurs à $255$, coder ces  entiers sur $8$ bits.  
-- Lorsque l’on rencontre le premier entier supérieur ou égal à $255$,  émettre la séquence $11111111$ (_huit_ fois le bit $1$) et continuer, tant  que les entiers sont strictement inférieurs à 511, en codant les entiers  sur 9 bits.  
+- Lorsque l’on rencontre le premier entier supérieur ou égal à $255$,  émettre la séquence $11111111$ (_huit_ fois le bit $1$) et continuer, tant  que les entiers sont strictement inférieurs à $511$, en codant les entiers sur $9$ bits.  
 - Lorsque l’on rencontre le premier entier supérieur ou égal à $511$,  émettre la séquence $111111111$ (_neuf_ fois le bit $1$) et continuer, tant que les entiers sont strictement inférieurs à $1023$, en codant les  entiers sur $10$ bits.  
 - De manière générale, tant que les entiers considérés sont strictement  inférieurs à $n = 2k − 1$, on peut les représenter sur $k$ bits.  
 - Lorsque le premier entier supérieur ou égal à $2k − 1$ est rencontré, on  émet la séquence $1 . . . 1$ (_$k$_ fois le bit $1$) et on continue en codant les entiers sur $k + 1$ bits.  
-- Donc si le code $10$ se trouve au début de la liste des codages, il prend $8$ bits d’espace mais après le premier nombre plus grand que $255$, il  prend $9$ bits etc.  
+- Donc si le code $10$ se trouve au début de la liste des codages, il prend $8$ bits d’espace mais après le premier nombre plus grand que $255$, il prend $9$ bits etc.  

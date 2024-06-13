@@ -107,8 +107,8 @@ La complexité au pire est obtenue lorsqu'on entre systématiquement dans  la se
 - Exploration de la lettre $i$ de $s$ : on se demande si ce n'est pas la  première lettre de $m$.
 - On se place donc en position $i + |m| − 1$ de $s$(donc à droite de $i$). On  explore les positions $i + |m| − 1$, $i + |m| − 2$ . . . dans le texte en comparant avec les positions $−1$, $−2$ etc.. du motif. On espère arriver sans encombre à la lettre $i$.
   - Si on arrive sans erreur à la position $i$ : on a trouvé le motif.
-  - Sinon, on a trouvé un suffixe $xm'$ de $s[: i+ |m|]$ ($s$ tronqué à $i + |m| − 1$) tel que m'est un suffixe propre de m et pas xm'
-    - Si $x$ n'est pas présent dans $m$, on reprend la recherche juste après $x$ (pas la peine de perdre son temps à placer le motif avant le x du texte)
+  - Sinon, on a trouvé un suffixe $xm'$ de $s[: i+ |m|]$ ($s$ tronqué à $i + |m| − 1$) tel que $m'$ est un suffixe propre de $m$ et pas $xm'$
+    - Si $x$ n'est pas présent dans $m$, on reprend la recherche juste après $x$ (pas la peine de perdre son temps à placer le motif avant le $x$ du texte)
     - si $x$ est présent, on aligne le $x$ de $m$ le plus à droite et le $x$ de $s$
 
 #### Règle du _mauvais caractère_ : exemple
@@ -229,9 +229,7 @@ On en déduit la terminaison
 #### Correction Informelle
 
 Par rapport à l'algo naïf, on fait des sauts.  
-Il suffit donc de s'assurer que les positions non explorées du fait des  sauts ne conduisent pas à une solution.  
-Un saut de $1$ case n'est pas intéressant à étudier car il correspond à  l'algo naïf.  
-On s'intéresse au cas $i = 0$ (pour simplifier) et à un saut de $2$ cases  au moins.  
+Il suffit donc de s'assurer que les positions non explorées du fait des  sauts ne conduisent pas à une solution. Un saut de $1$ case n'est pas intéressant à étudier car il correspond à  l'algo naïf. On s'intéresse au cas $i = 0$ (pour simplifier) et à un saut de $2$ cases  au moins.  
 
 - Il existe $3$ caractères $x, y , z$ (avec $y ≠ z$) et des mots $m_1, m_2, m_3, s_1, s_2$ (avec $|m| ≥ 1$) tels que $m = m_1  \underbrace{y}_{pos. d_m(y) <y} m_2 \underbrace{z}_{pos. j} m_3x$
 et $s = s_1 \underbrace{y}_{pos. 0 +j} m_3 s_2$ et $y ∉ m_2 z m_3$
@@ -263,7 +261,7 @@ fonction derniereOccurence (m)
 
 _Listing 3 - Fonction principale_
 
-```C linenums="1"
+```OCaml linenums="1"
 fonction rechercher_bmh (m, texte)
     T := derniereOccurence(m)
     i := 0 /∗position dans le texte : ∗/

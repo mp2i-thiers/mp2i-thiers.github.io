@@ -9,18 +9,16 @@
 
 ## Problème d'exploration
 
-!!!quote ""
-    **Définition**
-    Un _problème d’exploration_ (ou de _recherche_) est un problème
-    algorithmique $P$ donné par une relation binaire
-    $R⊂E ×(S \sqcup  \{None\})$ telle qu’il existe deux sous-ensembles
-    notés $E^+$, $E^−$ de $E$ formant une partition de $E$ et vérifiant :
+!!!quote "Définition"
+
+    Un _problème d’exploration_ (ou de _recherche_) est un problème algorithmique $P$ donné par une relation binaire $R⊂E ×(S \sqcup  \{None\})$ telle qu’il existe deux sous-ensembles notés $E^+$, $E^−$ de $E$ formant une partition de $E$ et vérifiant :
+    
     $R⊂(E^+ \times S )\sqcup (E^− \times \{None\})$
 
 !!!tip "Remarque"
     Les éléments de $E$ sont appelés des entrées et ceux de $S$ des solutions;
 
-    Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s ) ∈R$ et $(e, None) ∈R$.
+    Le fait que l’union soit disjointe interdit d’avoir une entrée $e$ et une solution $s$ telles que $(e, s) ∈R$ et $(e, None) ∈R$.
 
 ## Vocabulaire : solution
 
@@ -31,11 +29,12 @@ Avec les notations de la définition précédente :
 
 ## Backtracking : présentation informelle
 
-!!!quote ""
-    **Définition**
+!!!quote "Définition"
+
     Le _backtracking_ (ou _retour sur trace_) est une classe d’algorithmes cherchant la solution de problèmes d’exploration.
 
 !!!example ""
+
     Notamment les problèmes avec _contraintes de satisfactions_ comme le **Sudoku** où les $N$-reines sont résolubles par backtracking.
 
 Le backtracking construit incrémentalement des _candidats-solutions partiels_ qui sont abandonnés dès lors qu’on établit qu’ils ne peuvent pas être complétés en une solution.
@@ -49,6 +48,7 @@ Les feuilles sont les candidats-solutions qui ne peuvent pas être développés 
 ## Backtracking : arbre de décision
 
 L’algorithme de backtracking parcourt l’arbre de recherche potentiel par un **DFS**.
+
 À chaque nœud $c$ (donc, un candidat-solution), l’algorithme cherche si $c$ peut être complété en une solution valide.
 
 - Si ce n’est pas possible, le sous-arbre de racine $c$ dans l’arbre solution est supprimé.
@@ -77,23 +77,24 @@ fonction backtrack(e, c):
 
 !!!tip ""
     **Remarque**
-    Un candidat-solution _impossible_ est un candidat dont on se rend compte qu’il ne peut pas être complété en une solution.
-    La détection précoce des candidats-solutions impossibles permet de limiter le coût de l’exploration.
+    Un candidat-solution _impossible_ est un candidat dont on se rend compte qu’il ne peut pas être complété en une solution.La détection précoce des candidats-solutions impossibles permet de limiter le coût de l’exploration.
 
 ## Complexité
 
 La complexité d’un algorithme de backtracking de recherche de solution pour une entrée $e$ dépend en particulier de la taille de l’arbre exploré.
 <p style='color:crimson'>On se place dans le cas le pire où aucune détection précoce de candidat impossible n’est détectée.</p>
+
 Il faut alors explorer tout l’arbre de décision.
 
 !!!note ""
     **Complexité**
 
-    On note $h$ la hauteur de l’arbre et $p$, l’arité maximum d’un
-    nœud. L’arbre est alors de taille $\sum_{i=0}^{h}{p^i} = O(p^h)$.
+    On note $h$ la hauteur de l’arbre et $p$, l’arité maximum d’un nœud. L’arbre est alors de taille $\sum_{i=0}^{h}{p^i} = O(p^h)$.
 
     Le test de détection précoce d’impossibilité pour un candidat $c$ a une complexité en $O (g(|c|))$ pour une certaine fonction $g$.
+    
     La taille $|c|$ du candidat est dominée grossièrement par un $k (|e|)$ pour une certaine fonction $k$ ne dépendant que de $e$.
+
     Ainsi, la détection précoce est en $O (g◦k (|e|))$
 
     Lorsque le candidat $c$ est une feuille, le test de validité du candidat comme solution est en $O (l(|c |))$ donc en $O (l ◦k (|e|))$ pour une certaine fonction $l$

@@ -19,11 +19,13 @@ Deux types prédéfinis `in_channel` et `out_channel` décrivent les canaux de c
 ## Ouverture en lecture
 
 Dans un fichier essai.txt du répertoire courant, écrivons trois lignes :
+
 ```
     un
     deux
     trois et quatre
 ```
+
 sans retour chariot après `quatre` .
 
 La fonction `open_in` de type `string -> in channel` permet d’ouvrir un fichier en lecture à partir de son chemin d’accès (ou son nom si le fichier à ouvrir est dans le répertoire courant).
@@ -71,10 +73,9 @@ Si on essaye de lire une nouvelle ligne, on se doute bien qu’on va au devant d
 - : unit = ()
 ```
 
-Le canal `ic` est fermé. Toute tentative de lire une ligne de essai.txt se solde par une exception `Sys_error "Bad file descriptor"`.
+Le canal `ic` est fermé. Toute tentative de lire une ligne de **essai.txt** se solde par une exception `Sys_error "Bad file descriptor"`.
 
-En résumé, pour lire et afficher toutes les lignes d’un fichier et le fermer proprement, il suffit de rentrer dans une boucle infinie qui affiche les lignes une à une et de récupérer l’exception End of file
-qui finira par arriver. On ferme alors le canal.
+En résumé, pour lire et afficher toutes les lignes d’un fichier et le fermer proprement, il suffit de rentrer dans une boucle infinie qui affiche les lignes une à une et de récupérer l’exception `End of file` qui finira par arriver. On ferme alors le canal.
 
 ```Ocaml linenums="1"
 let ic = open_in " test1.txt" in
@@ -87,7 +88,7 @@ try
 with End_of_file -> close_in ic ;;
 ```
 
-Après compilation et exécution, le contenu du fichier test1.txt s’affiche (s’il existe).
+Après compilation et exécution, le contenu du fichier **test1.txt** s’affiche (s’il existe).
 
 ## Ouverture en écriture
 
@@ -100,7 +101,7 @@ La fonction `close_out` referme le canal.
 let oc = open_out "sortie.txt" in close_out oc ;;
 ```
 
-Nous avons juste ouvert puis refermé le fichier mais il a bien été créé. 
+Nous avons juste ouvert puis refermé le fichier mais il a bien été créé.
 
 L'exécution de `ls sort*` renvoie dans le terminal:
 

@@ -56,12 +56,12 @@ Contrainte de portabilité
 
 - Si la machine distante utilise un autre processeur, elle doit pouvoir désérialiser un bloc de données en tenant compte :
 
-  - des problèmes d'alignement : si on transmet un caractère ($1$ octet) puis un entier ($4$ octets), doit on compter en tout $4$ octets en "concaténant "la fin du caractère avec le début de l'entier, ou au contraire prévoire $4$ octets par données (et donc en utilisant inutilement $3$ octets de trop pour le caractère)
-  - ou d'endianness (boutisme) : où est le bit de poids fort ?
+    - des problèmes d'alignement : si on transmet un caractère ($1$ octet) puis un entier ($4$ octets), doit on compter en tout $4$ octets en "concaténant "la fin du caractère avec le début de l'entier, ou au contraire prévoire $4$ octets par données (et donc en utilisant inutilement $3$ octets de trop pour le caractère)
+    - ou d'endianness (boutisme) : où est le bit de poids fort ?
 - Il est utile d'utiliser des conventions. Par exemple :
-  - pas d'alignement,
-  - encodage des types entiers **C** en fonction de leur empreinte mémoire ; tout en big-endian
-  - les nombres à vigules flottantes sont codées selon la norme $IEEE754$
+    - pas d'alignement,
+    - encodage des types entiers **C** en fonction de leur empreinte mémoire ; tout en big-endian
+    - les nombres à vigules flottantes sont codées selon la norme $IEEE754$
 
 !!!example ""
     Protocoles $GIOP$ de $CORBA$ ; $RMI$ de $Java$
@@ -171,4 +171,4 @@ Figure 1 – Graphe non orienté
 Figure 2 – Sérialisation
 
 !!!tip
-    On peut également donner le code OCaml `[[1;3];[0;2;3];[1;3;4];[1;2;4];[2;3]]` c'est aussi une sérialisation
+    On peut également donner le code **OCaml** `[[1;3];[0;2;3];[1;3;4];[1;2;4];[2;3]]` c'est aussi une sérialisation
