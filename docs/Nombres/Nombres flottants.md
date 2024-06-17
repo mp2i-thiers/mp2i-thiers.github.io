@@ -262,3 +262,264 @@ Le nombre réel correspondant est $(-1)^s(\underset{\text{implicite}}{1}+m)2^{e-
 <p align="center"><img src="/images/Nbre_flottants/nbr3.png"></p>
 
 _Figure - Quelques nombres positifs (Wikipedia)_
+
+## Exemples et règles d'arrondis
+
+### Choix du nombre le plus proche
+
+!!!example "Arrondi au plus proche"
+
+    - Soit un nombre de mantisse $1101100000000...$
+    - Le significande complet avec bit caché est $1.1101100...$
+    - On veut l'arrondir à 3 chiffres après la virgule. On a le choix entre $1.110$ ou $1.110 + 0.001 = 1.111$
+        - $2^0 + \frac{1}{2} + \frac{1}{2^2}+0+\underbrace{\frac{1}{2^4}+\frac{1}{2^5}}_{\text{partie à arrondir}} ∼ 111011 $
+        - Arrondi par défaut : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+0 ∼ 1.110$
+        - Arrondi par excès : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+ \frac{1}{2^3} ∼ 1.111$
+
+    - $r=\frac{1}{2^4} + \frac{1}{2^5}$ est-il plus proche de $0$ ou de $\frac{1}{2^3}$ ?
+    - Plus proche de $\frac{1}{2^3}$.
+    - Réponse : $1.111$.
+
+#### Cas de l'examen de $3$ bits après le dernier maintenu
+
+L'exemple précédent était facile car il ya avait une seule réponse possible.
+
+Mais que se passe-t-il quand on a le choix ? Par exemple, en base $10$, comment arrondir à l'unité $1.500$ qui est aussi proche de $1$ que de $2$ ? Arrondir au plus proche pair signifie choisir 2 plutôt que 1.
+
+En base deux, le problème se pose lorsque le nombre après le dernierbit maintenu est $100$ (si $3$ bits au delà du dernier maintenu).
+
+En base deux, on prend en général l'_arrondi au plus proche pair_. Il faut que le dernier chiffre de l'écriture binaire soit pair.
+
+Arrondir au plus proche pair revient, lorsqu'on a le choix, à privilégier les écritures qui se terminent par $0$
+
+#### Exemples d'arrondis au plus proche pair
+
+- Arrondir $1.100100$ à $3$ chiffres après la virgule : plus proche pair $1.100$ ($0$ est pair).
+- Arrondir $1.101100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.101 + 0.001 = 1.110$
+- Arrondir $1.111100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.111 + 0.001 = 10.000$. Il faut changer l'exposant (ajouter $1$ à l'exposant)!!
+- Lorsqu'on est dans le cas de figure où il faut changer l'exposant, et que l'exposant est lui même maximum ($254 = 127+127$ oiur les nombres sur $32$ bits), on se retrouve avec un nombre considéré comme infini !
+
+### Règle d'arrondi au plus proche pair
+
+!!!example ""
+
+    Arrondi au troisème chiffre après la virgule : 
+
+    $1.01110011 = \underbrace{1.011}_{\text{bits maintenus}} \overbrace{10011}^{\text{bits tronqués}}$
+
+On considère les trois chiffres après le dernier bit maintenu :
+
+- **$0xy$** : juste tronquer l'expression (**$x,y$** sont quelconques).
+- **$100$** :  Arrondir au plus proche pair :
+    - Si le dernier bit maintenu vaut $0$ : ne rien faire.
+    - Sinon, ajouter $1$ au dernier bit maintenu en tenant compte des retenus.
+- **$1xy$**, avec $x+y > 0$: ajouter $1$ au dernier bit maintenu.
+
+Dans l'exemple, les trois chiffres après le dernier bit maintenu forment $100$ (équidistance). L'arrondi au plus proche pair est $1.011 + 0.001 =1.100$.
+
+## Problèmes induits par la norme
+
+### Expressions infinies
+
+Les nombre flottants repésentent des rationnels ayant une _expression finie_. Quid des expression illimitées ?
+
+$\frac{1}{5} = 0.2$ admet une _expression finie en base_ $\textit{10}$, $(EF10)$ mais pas $\frac{1}{3}$.
+
+En base $2$, $\frac{1}{a}$ admet une $EF2$ si et seulement si $a=2^n$ ($n>0$).
+
+$\frac{1}{10} = 0.1$ en base $10$. Donc $\frac{1}{10}$ a une $EF10$ mais pas une $EF2$ car $10 = 2 \times 5$ et que $5$ est premier avec $2$.
+
+Il faut donc arrondir. Le standard $IEEE-754$ pévoit $5$ méthodes.
+
+!!!danger "Règle de l'_Arrondi correct_"
+
+    UNe fois un modde d'arrondi choisi, le résultat d'une opération est déterminsite : un seul résultat est possible.
+
+!!!example "Un dixième"
+
+    $0.1$ en base 10 correspond à la séquence suivante : 
+
+    $s=0=S, e=-4+127$ donc $E=01111011$, $M$ est une séquence infinie $\text{1.1001 1001 1001 1001 1001 100 110 0 ...}$ Alors $1+ m = 1.1001100110011001101_2$
+
+    Du fait des arrondis, le nombre que représente $0.A$ sur un ordinateur avec flottants sur $32$ bits est en fait le nombre $\frac{13421773}{134217728}$ soit $0.100000001490116$
+
+### Règle de l'arrondi correct
+
+La norme $IEEE 754$ impose l'arrondi correct pour les $5$ opérations de base et la racine carrée : Un programme les utilisant donne le même résultat sur toute configuration (machine, système, processeur). Sous réserve :
+
+- qu'il n'y ait pas de précision intermédiaire étendue (ou alors désactivée). Ça veut dire que les résultats intermédiaires du calcul d'une expression ne doivent pas être calculés avec une précision plus grande que celle attendue pour le résultat.
+- le compilateur ne doit pas changer l'ordre des opérations si cela peut conduire à un résultat différent.
+
+### Problème d'arrondi célèbre
+
+!!!example "Patriot"
+
+    En $1991$, un anti-missile Patriot rate l'interception d'un missile irakien Skud, lequel blesse $100$ personnes, et en tuer $28$.
+
+    Un micro-processeur interne calcule l'heure en multiples de dixièmes de secondes.
+
+    Le nombre de dixièmes de secondes depuis le démarrage est stocké dans un registre entier puis multiplité par une approximation de $\frac{1}{10}$ sur $24$ bits pour obtenir le temps en seconde.
+
+    Approximation : $209715\times2^{-21}$, erreur $10^{-7}$.
+
+    Processeur démarré $100$ heures auparavant. Erreur de $0.34$ secondes pendant lequel le Skud parcourt $500$m.
+
+    Le Patriot rate sa cible, pas le Skud.
+
+### Double arrondi
+
+#### Cas d'examen de $3$ bits après le dernier maintenu
+
+Soit $x$ réel, $y$ l'arrondi en précison $p$ de $x$.
+
+Soit $x'$ arrondi en précision $q < p$ de $y$.
+
+$x'$ n'est pas toujours l'arrondi en précision $q$ de $x$ !
+
+- $x=1.011010{\color{red}0}101$. Arrondir à $7$ chiffres après la virgule.
+- Après la décimale $7$ de $x$ on a : $101$ L'arrondi $y$ à $7$ chiffres arpès la virgule de $x$ est $1.011{\color{red}0}101$
+- Après la décimale $4$ de $y$ : $101$. L'arrondi $x'$ à $4$ décimales de $y$ est $1.0111$
+- MAIS, après la décimale $4$ de $x$ on a $100$. Suivant la règle de l'arrondi pair, l'arrondi $z$ à 4 déciamles de $x$ est $1.0110$
+- Et on a $z \neq x'$!
+
+On peut montrer que le problème du double arrondi n'intervient que si on choisit l'_arrondi au plus proche pair_. Pas de chance : c'est le mode d'arrondi le plus répandu !
+
+### Pourquoi privilégier l'arrondi au plus proche pair ?
+
+La méthode de "l'arrondi bancaire" (autre nom pour l'arrondi au plus proche pair) est employée pour éliminer le biais qui surviendrait en arrondissant à chaque fois par excès les nombres dont les trois derniers chiffres seraient $100$.
+
+Transposons en base $10$ : Imaginons une multinationale qui reçoit un milliards de virements exprimés en centimes d'euros (sur une certaine période) arrondis au dixième de centime sur un de ses comptes en banque.
+
+Supposons que pour un millième de ces virements, la partie fractionnaire soit de la forme $.x500$ où $x\in ⟦0,9⟧$.
+
+Si la banque arrondi le montatn de ces virements au dixièmes de centime supérieur ($.x +0.1$, puis répercussion de la retenue), la multinationale gagne $0.05$ centime de plus par virement que ce qu'elle aurait dû toucher. Au total cela fait $10^6 \times 5 \times 10^{-2} = 5 \times 10 ^4 = 50 000 \text{ euros}$ que la multinationale a gagnés au détriment de la banque !
+$\color{red}\text{Au centime inférieur, ce serait la banque qui gagnerait de l'argent.}$
+
+D'où la nécessité d'arrondir certains montants au centime supérieur et d'autres au centime inférieur pour équilibrer, comme avec l'arrondi au plus proche pair.
+
+### Cas des exceptions
+
+En cas de problème, la norme impose de signaler des _Exceptions_ :
+
+- Diviser un nombre différent de $0$ par $0$ donne $±\infty$
+- Diviser zéro par zéro, ou calculer le logarithme d'un nombre négatif conduisent à générer des $NaN$ qu'on peut décider de considérer comme des exceptions.
+- Nombre entier positif plus grand que le plus grand entier représentable (_overflow_). Ou plus petit que le plus petit entier représentable (_underflow_).
+
+## Arithmétique psychédélique
+
+!!!warning "Attention aux tests d'égalité"
+
+    ```OCaml linenums="1"
+    1.2 *. 3. ;;
+    - : float = 3.59999999999999964
+    0.1 +. 0.2;;
+    - : float = 0.300000000000000044
+    ```
+
+    Il est risqué d'écrire un programme avec des tests d'égalité entre flottants. Éviter `if x = y then ...`
+
+    Il faut mieux utiliser `if abs_float(x-y) < eps`. Au format double précision, prendre $ε = 10^{-12}$ pour comparer des flottants d'ordre de grandeur $1$ est tout à fait raisonnable.
+
+### Arrondi d'un calcul, commutativité, associativité
+
+L'arrondi de la somme n'est pas la somme des arrondis. Comparer $0.1+0.2$ et $0.3$
+
+La multipliaction et l'addition restent commutatives
+
+L'associativité se perd
+
+```OCaml linenums="1"
+let a = 9e307 and b = 9e307 and c = -2e306 in (a +. b) +. c;;
+- : float = infinity
+a = 9e307 and b = 9e307 and c = -2e306 in a +. (b +. c);;
+- : float = 1.78000000000000023e+308
+```
+
+### Distributivité
+
+La distributivité se perd
+
+```OCaml linenums="1"
+let a = 1e-10 and b = 9e307 and c = 9e307
+    in a *. (b +. c);;
+- : float = infinity
+let a = 1e-10 and b = 9e307 and c = 9e307 in
+    a *. b +. a *. c;;
+- : float = 1.80000000000000021e+298
+```
+
+### Relation d'ordre
+
+Dans $ℝ$, l'addition est compatible avec la relation d'ordre : si $a \leq b$ alors $a + c \leq b + c$.
+
+Nous avons vu que la représentation en machine de $0.1$ est strictement supérieur à $0.1$. En toute logique additionner $10$ fois $0.1$ devrait donner un résultat plus grand que $1$ :
+
+```OCaml linenums="1"
+let rec add n x = 
+    if n = 1 then x
+    else add (n-1) (x+. 0.1)
+        in add 10 0.1
+- : float = 0.999999999999999889
+```
+
+### Convergence et divergence
+
+Dans le cours de maths, la série harmonique $\sum_{k\geq1}{\frac{1}{k}}$ diverge quel que soit l'ordre des opérations. De plus, du fait de la commutativité, les sommes partielles $\sum^{n}_{k=1}{\frac{1}{k}}$ et $\sum^{n}_{k=1}{\frac{1}{n-k+1}}$ sont égales.
+
+Avec l'ordre décroissant :
+
+```OCaml linenums="1"
+let rec harmonique_dec n x = if n = 0 then x
+else harmonique_dec (n-1) (1./. float_of_int n +.x)
+    ;;
+val harmonique_dec : int -> float -> float = <fun>
+harmonique_dec (int_of_float 1e5) 0.;;
+- : float = 12.0901461298634079
+```
+
+Dernières décimales $4079$
+
+Et l'ordre croissant :
+
+```OCaml linenums="1"
+let rec harmonique_cr n m x = if n = m+1 then x
+else harmonique_cr (n+1) m (1. /. float_of_int n +.x);;
+val harmonique_cr : int -> int -> float -> float =
+<fun>
+harmonique_cr 1 (int_of_float 1e5) 0.;;
+- : float = 12.090146129863335
+```
+
+Les dernières décimales des deux résultats ne sont aps égales alors même que l'addition est commutative...
+
+de plus cette série converge pour les nombres flottants. Après un certain rang, $\frac{1}{n}$ devient plus petit que le plus petit nombre dénormalisé et est compté comme $0$.
+
+### Infinis et NaN
+
+```OCaml linenums="1"
+5./.0. , -5./.0.;;
+- : float * float = (infinity , neg_infinity)
+sqrt (-1.);;
+- : float = nan
+max_float ;;
+- : float = 1.79769313486231571e+308
+max_float +. 10.;;
+- : float = 1.79769313486231571e+308
+max_float +. max_float ;;
+- : float = infinity
+```
+
+### Écart avec ke successeur
+
+L'écart entre $x$ et son successeur est croissant avec $x$
+
+```OCaml linenums="1"
+1. +. 1e-16, 1. +. 1e -15;;
+- : float * float = (1., 1.00000000000000111)
+1e16 +. 1., 1e16 +. 10.;;
+- : float * float = (1e+16, 10000000000000010.)
+min_float ;;
+- : float = 2.22507385850720138e-308
+```
+
+Ainsi, si on veut de la précision dans les calculs faisant intervenir de grands nombres, on a intérêt à travailler avec inverses.
