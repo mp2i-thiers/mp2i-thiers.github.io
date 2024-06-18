@@ -1,7 +1,7 @@
 # Tests
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 !!!tip "Crédits"
     - Sur la nuance entre _erreur_ et _défaut_, cet [article](https://latavernedutesteur.fr/2020/11/10/difference-entre-erreur-defaut-defaillance-et-anomalie-cynthia-lefevre/) de Cynthia Lefevre.  
@@ -16,15 +16,15 @@
 
 !!! quote "Définition: Erreur"
 
-    Action humaine produisant un résultat incorrect $\color{red}\text{"l’erreur est humaine"}$
+    Action humaine produisant un résultat incorrect $\color{red}\text{"l'erreur est humaine"}$
 
 !!! quote "Définition: Défaut"
 
-    Une imperfection dans un composant (ou un système) qui peut conduire à ce que ce composant (ou système) n’exécute pas les fonctions requises. $\color{red}\text{On cherche les défauts sans manipuler le système}$.
+    Une imperfection dans un composant (ou un système) qui peut conduire à ce que ce composant (ou système) n'exécute pas les fonctions requises. $\color{red}\text{On cherche les défauts sans manipuler le système}$.
 
 !!! quote "Définition: Défaillance ou Panne"
 
-    $\text{IEEE 729}$ : La fin de la capacité d’un système ou d'un de ses composants d'effectuer la fonction requise, ou de l'effectuer à l'intérieur de limites spécifiées. $\color{red}\text{On cherche une défaillance en manipulant le système}$.
+    $\text{IEEE 729}$ : La fin de la capacité d'un système ou d'un de ses composants d'effectuer la fonction requise, ou de l'effectuer à l'intérieur de limites spécifiées. $\color{red}\text{On cherche une défaillance en manipulant le système}$.
 
 !!! quote "Définition : Anolamie"
 
@@ -32,21 +32,21 @@
 
 !!! tip "Remarque"
 
-    Ce n’est pas parce qu’il y a anomalie qu’il y a défaut. Peut-être le testeur a-t-il compris la spécification d’une façon et le développeur d’une autre.
+    Ce n'est pas parce qu'il y a anomalie qu'il y a défaut. Peut-être le testeur a-t-il compris la spécification d'une façon et le développeur d'une autre.
 
 ### Défaut VS Défaillance
 
 Il y a un rapport de causalité.  
 
-- **A retenir** : Un défaut (dans le code) ou une erreur (de l’utilisateur du  programme) peut causer (un jour) une défaillance.  
+- **A retenir** : Un défaut (dans le code) ou une erreur (de l'utilisateur du  programme) peut causer (un jour) une défaillance.  
 - On peut trouver un défaut sans manipuler le système (analyse du  code).  
 - Mais on trouve une défaillance en manipulant le système.  
 
 ### Test
 
-Définition (norme $\text{IEEE 729}$ ) : Le _test_ est un processus manuel ou automatique, qui vise à établir qu’un système vérifie les propriétés  exigées par sa spécification, ou à détecter des diﬀérences entre les  résultats engendrés par le système et ceux qui sont attendus par la  spécification.  
+Définition (norme $\text{IEEE 729}$ ) : Le _test_ est un processus manuel ou automatique, qui vise à établir qu'un système vérifie les propriétés  exigées par sa spécification, ou à détecter des diﬀérences entre les  résultats engendrés par le système et ceux qui sont attendus par la  spécification.  
 
-Le test ne se préoccupe pas des erreurs. Ce n’est pas au testeur de pointer les imperfections humaines.  
+Le test ne se préoccupe pas des erreurs. Ce n'est pas au testeur de pointer les imperfections humaines.  
 
 Le test met en évidence les défauts afin de prévenir les défaillances.  
 
@@ -58,7 +58,7 @@ Toute fabrication de produit suit les étapes suivantes
 - Réalisation
 - Tests  
 
-Test : On s’assure que le produit final correspond à ce qui a été  demandé selon divers critères :  
+Test : On s'assure que le produit final correspond à ce qui a été  demandé selon divers critères :  
 
 - esthétique
 - performance
@@ -102,7 +102,7 @@ Test : On s’assure que le produit final correspond à ce qui a été  demandé
 
 Démonstration automatique (Hum !) : exhaustive mais considérée comme trop coûteuse.  
 
-Model Checking : vérifier si le modèle d’un système satisfait une  propriété. Par exemple, on souhaite vérifier qu’un programme ne se  bloque pas, qu’une variable n’est jamais nulle, etc. Généralement, la  propriété est écrite dans un langage, souvent en _logique temporelle_.  La vérification est généralement faite de manière automatique.  
+Model Checking : vérifier si le modèle d'un système satisfait une  propriété. Par exemple, on souhaite vérifier qu'un programme ne se  bloque pas, qu'une variable n'est jamais nulle, etc. Généralement, la  propriété est écrite dans un langage, souvent en _logique temporelle_.  La vérification est généralement faite de manière automatique.  
 
 Test : non exhaustif mais facile à mettre en œuvre (bon rapport qualité/temps).  
 
@@ -112,35 +112,35 @@ Le test commence dès le début !
 
 <p align='center'><img src='/images/a1696852da3de0356121d3245c0da149.bmp'/></p>
 
-_Figure – Le cycle en V du Génie Logiciel (d’après [Irif](https://www.irif.fr/~eleph/Enseignement/2010-11/CoursTests.pdf))_
+_Figure – Le cycle en V du Génie Logiciel (d'après [Irif](https://www.irif.fr/~eleph/Enseignement/2010-11/CoursTests.pdf))_
 
 ### Classification
 
 #### Selon le niveau au cycle de développement
 
 - Tests de recette : test de réception du logiciel chez le client final  
-- Tests intégration système : test de l’intégration du logiciel avec  d’autres logiciels  
-- Tests systeme : test d’acception du logiciel avant livraison (nouvelle  version par exemple). Généralement eﬀectué par le client dans ses  locaux après installation du système ou d’une unité fonctionnelle, avec  la participation du fournisseur.  
-- Tests Integration : test de l’intégration des diﬀérents composants  (avec ou sans hardware)  
+- Tests intégration système : test de l'intégration du logiciel avec  d'autres logiciels  
+- Tests systeme : test d'acception du logiciel avant livraison (nouvelle  version par exemple). Généralement eﬀectué par le client dans ses  locaux après installation du système ou d'une unité fonctionnelle, avec  la participation du fournisseur.  
+- Tests Integration : test de l'intégration des diﬀérents composants  (avec ou sans hardware)  
 - $\color{red}\text{Tests Unitaires : tests élémentaires des composants logiciels (une fonction, un module, ...)  }$
 
 #### Selon la caractéristique
 
-- $\color{red}\text{Tests fonctionnels : destinés à s’assurer que, dans le contexte d’utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien  conforme avec celui attendu.}$
+- $\color{red}\text{Tests fonctionnels : destinés à s'assurer que, dans le contexte d'utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien  conforme avec celui attendu.}$
 - Tests de performance (rapidité, consommation mémoire etc.)  
 - Tests de robustesse (mon serveur va-t-il bien réagir à un aﬄux de  connexion ?)  
-- Tests de vulnérabilité : suis-je bien protégé face aux risques  d’intrusions ?  
+- Tests de vulnérabilité : suis-je bien protégé face aux risques  d'intrusions ?  
 
-#### Selon le niveau d’accessibilité
+#### Selon le niveau d'accessibilité
 
-- Tests de type boîte noire : technique de conception de test,  fonctionnel ou non, qui n’est pas fondée sur l’analyse de la structure  interne du composant ou du système mais sur la définition du  composant ou du système.  
-- Tests de type boîte blanche : technique de conception de test, en  général fonctionnel, fondée sur l’analyse de la structure interne du  composant ou du système.  
+- Tests de type boîte noire : technique de conception de test,  fonctionnel ou non, qui n'est pas fondée sur l'analyse de la structure  interne du composant ou du système mais sur la définition du  composant ou du système.  
+- Tests de type boîte blanche : technique de conception de test, en  général fonctionnel, fondée sur l'analyse de la structure interne du  composant ou du système.  
 
 Pour [comparer](https://testingbasicinterviewquestions.blogspot.com/search/label/Black%20Box%20vs%20White%20Box%20Testing) les deux.
 
 ### Divers
 
-Tests de non-régression : à la suite de la modification d’un logiciel (ou  d’un de ses constituants), un test de régression a pour but de montrer que  les autres parties du logiciel n’ont pas été aﬀectées par cette modification.  
+Tests de non-régression : à la suite de la modification d'un logiciel (ou  d'un de ses constituants), un test de régression a pour but de montrer que  les autres parties du logiciel n'ont pas été aﬀectées par cette modification.  
 
 ### En CPGE
 
@@ -153,29 +153,29 @@ Tests de non-régression : à la suite de la modification d’un logiciel (ou  d
 En examinant ce qui a été réalisé, on ne prend pas forcément en compte ce qui aurait du être fait
 
 - Les approches structurelles (boîte blanche) détectent plus facilement les erreurs commises
-- Les approches fonctionnelles (boîte noire) détectent plus facilement les erreurs d’omission
+- Les approches fonctionnelles (boîte noire) détectent plus facilement les erreurs d'omission
 
 ## Partitionnement, limite
 
-### Partitionnement du domaine d’entrée
+### Partitionnement du domaine d'entrée
 
-- Il s’agit de répartir les données en un nombre fini de classes  d’équivalence, sans restreindre le degré d’exigence. Cette méthode est  généralement utilisée pour réduire le nombre total de cas de test à un  ensemble fini.  
-- Exemple : test d’une zone de saisie attendant des nombres de $1$ à $1000$.  
-  - Classe des données valides d’entrée : sélectionner un (ou quelques)  nombre.s dans $[\![ 2, 99]\!]$ (exemple : $50$ et $800$).  
+- Il s'agit de répartir les données en un nombre fini de classes  d'équivalence, sans restreindre le degré d'exigence. Cette méthode est  généralement utilisée pour réduire le nombre total de cas de test à un  ensemble fini.  
+- Exemple : test d'une zone de saisie attendant des nombres de $1$ à $1000$.  
+  - Classe des données valides d'entrée : sélectionner un (ou quelques)  nombre.s dans $[\![ 2, 99]\!]$ (exemple : $50$ et $800$).  
   - Classe des données inférieure à $0$ : sélectionner un ou plusieurs nombres  négatifs ($-1$ et $-100$ par exemple).  
   - Classe des données supérieures à $1001$ : choisir $1050$ et $2300$ par  exemple.  
 
 ### Tests aux limites
 
-#### Test d’une zone de saisie attendant des nombres de 1 à 1000
+#### Test d'une zone de saisie attendant des nombres de 1 à 1000
 
-En complément du partitionnement du domaine d’entrée, on ajoute les  _tests aux limites_
+En complément du partitionnement du domaine d'entrée, on ajoute les  _tests aux limites_
 
 - Ce sont les données encore valides mais au delà desquelles les entrées  ne le sont plus.  
 - Il faut impérativement tester $1$ et $1000$. On peut y ajouter les valeurs  
     - juste en dessous des bornes : $0$ et $999$  
     - juste au-dessus des bornes : $2$ et $1001$  
-- Si un des tests ne donne pas le résutat attendu, le programme n’est  pas correct. En revanche, le programme peut être incorrect même si  tous les tests du scénario donnent satisfaction.  
+- Si un des tests ne donne pas le résutat attendu, le programme n'est  pas correct. En revanche, le programme peut être incorrect même si  tous les tests du scénario donnent satisfaction.  
 
 ## Graphe de flots de contrôle
 
@@ -183,13 +183,13 @@ En complément du partitionnement du domaine d’entrée, on ajoute les  _tests 
 
 En CPGE on s'intéresse uniquement aux $\color{red}\text{Test Unitaires : tests élémentaires des composants logiciels (une fonction, un module, ...)}$;
 
-La plupart des tests que nous avons écrits jusqu’à présent étaient des $\color{red}\text{Tests fonctionnels ("boîte noire") : destinés à s’assurer que, dans le contexte d’utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien conforme avec celui attendu}$.
+La plupart des tests que nous avons écrits jusqu'à présent étaient des $\color{red}\text{Tests fonctionnels ("boîte noire") : destinés à s'assurer que, dans le contexte d'utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien conforme avec celui attendu}$.
 On crée des tests sans ce soucier du code écrit.
 
 ### Tests structurels
 _dits aussi tests boîte blanche_
 
-- Sélection de tests à partir de l’analyse du code source du système  
+- Sélection de tests à partir de l'analyse du code source du système  
 - Constructions des tests uniquement pour du code déjà écrit.  
 
 <p align='center'><img src='/images/tests1.png'/></p>
@@ -199,23 +199,23 @@ _dits aussi tests boîte blanche_
 - Utiliser la structure du code pour dériver des cas de tests.  
 - Complémentaire des tests fonctionnels car on étudie la réalisation et  pas seulement la spécification.  
 - Il y a deux méthodes :  
-    - $color{red}\text{À partir du }\textit{graphe de ﬂot de contrôle}\text{ : couverture de toutes les  instructions, tous les branchements...}$ (CPGE)  
-    - À partir du _graphe de ﬂot de données_ : couverture de toutes les  utilisations d’une variable, de tous les couples définition-utilisation...  
+    - $\color{red}\text{À partir du }\textit{graphe de ﬂot de contrôle}$ $\color{red}\text{ : couverture de toutes les  instructions, tous les branchements...}$ (CPGE)  
+    - À partir du _graphe de ﬂot de données_ : couverture de toutes les  utilisations d'une variable, de tous les couples définition-utilisation...  
 
 ### Graphe de ﬂot de contrôle
 
-Graphe simple orienté connexe avec un sommet initial (ou d’entrée) `E` et un sommet de sortie `S` accessible depuis `E`.
+Graphe simple orienté connexe avec un sommet initial (ou d'entrée) `E` et un sommet de sortie `S` accessible depuis `E`.
 
 - Un sommet interne est  
-  - Soit un bloc d’instructions élémentaires (on regroupe les séquences).  
-  - Soit un sommet de décision étiqueté par un test.  
-- Il y a deux sortes d’arcs :  
-  - Les arcs de sortie de blocs d’instructions : ils représentent le passage  d’un bloc d’instructions à une instruction conditionnelle ou à un autre  bloc d’instruction. Il ne sont pas étiquetés.  
-  - Les arcs de décision : ce sont les arcs de sortie des sommets de décision.  Ils sont étiquetés par les réponses aux tests des expressions  conditionnelles.  
+    - Soit un bloc d'instructions élémentaires (on regroupe les séquences).  
+    - Soit un sommet de décision étiqueté par un test.  
+- Il y a deux sortes d'arcs :  
+    - Les arcs de sortie de blocs d'instructions : ils représentent le passage  d'un bloc d'instructions à une instruction conditionnelle ou à un autre  bloc d'instruction. Il ne sont pas étiquetés.  
+    - Les arcs de décision : ce sont les arcs de sortie des sommets de décision.  Ils sont étiquetés par les réponses aux tests des expressions  conditionnelles.  
 
-Il y a un seul arc de sortie d’un sommet bloc d’instructions. Et, le plus  souvent, deux arcs de sortie (dits _arcs de décision_) des sommets de décision correspondant aux valeurs positives ou négatives des conditions.  
+Il y a un seul arc de sortie d'un sommet bloc d'instructions. Et, le plus  souvent, deux arcs de sortie (dits _arcs de décision_) des sommets de décision correspondant aux valeurs positives ou négatives des conditions.  
 
-### Exemple : calcul de $X_n$
+### Exemple : calcul de $X^n$
 
 ```C linenums="1"
 float power (float x, int n){
@@ -262,9 +262,9 @@ _Avec $T$ pour **True** et $F$ pour **False**_
 
 Un _chemin de contrôle_ est une suite $x_0, x_1, . . . , x_n$ de sommets tels que $x_0 = E$ , $x_n = S$ et $(x_i , x_{i+1})$ est un arc pour tout $i < n$.  
 
-Un _chemin_ est dit _faisable_ si il existe un ensemble de conditions sur les variables d’entrées permettant de passer par tous les sommets de ce chemin.
+Un _chemin_ est dit _faisable_ si il existe un ensemble de conditions sur les variables d'entrées permettant de passer par tous les sommets de ce chemin.
 
-Si un chemin n’est pas faisable, il est dit _infaisable_. La recherche de infaisable est _indécidable_ : on ne sait pas en entrée un GFC quelconque, dire dans tous les cas s'il existe un chemin infaisable.
+Si un chemin n'est pas faisable, il est dit _infaisable_. La recherche de infaisable est _indécidable_ : on ne sait pas en entrée un GFC quelconque, dire dans tous les cas s'il existe un chemin infaisable.
 
 ???example "Exemple des triangles"
     <p align='center'><img src='/images/tests4.png'/></p>
@@ -272,9 +272,9 @@ Si un chemin n’est pas faisable, il est dit _infaisable_. La recherche de infa
     <p align='center'><img src='/images/tests5.png'/></p>
     _Figure - Chemin infaisable_
 
-### Condition d’un chemin
+### Condition d'un chemin
 
-La _condition d’un chemin_ est la conjonction de tous les sommets de décision portant sur les entrées que traverse ce chemin.  
+La _condition d'un chemin_ est la conjonction de tous les sommets de décision portant sur les entrées que traverse ce chemin.  
 
 Exemple : avec $j = 3, k = 5, l = 3$, la condition du chemin vert  parcouru est  
 
@@ -294,7 +294,7 @@ $$¬(j +k ≤ l ∨k +l ≤ j ∨j +l ≤ k)∧j \neq k ∧j \neq l ∧l \neq k 
 
 Cette formule est une _antilogie_ : le chemin est rouge est infaisable.  
 
-### Indécidabilité de la recherche de chemins infaisables
+### Suite de Syracuse
 
 ```C linenums="1"
 void syracuse(int x) {
@@ -308,29 +308,30 @@ void syracuse(int x) {
     printf(" fini\n");
 ```
 
-La conjecture veut que au bout d’un moment $x = 1$.  
+La conjecture veut que au bout d'un moment $x = 1$.  
 
 <p align='center'><img src='/images/tests6.png'/></p>
 
-On ne sait pas s’il existe des chemins infaisables de **$E$** à **$S$**.  
+On ne sait pas s'il existe des chemins infaisables de **$E$** à **$S$**.  
 
-### Syracuse : La discipline de test (DT) $x=2$ sensibilise le chemin C
+### Syracuse : La discipline de test (DT) $x=2$ sensibilise le chemin $C$
 
 Etant donné un chemin faisable, on sait trouver les conditions pour le  parcourir.
 
 <p align='center'><img src='/images/tests7.png'/></p>
 
 - soit le chemin $C$ : $E$,  
-  $x ≠ 1$,  
-  $x\text{ \% } 2==0$,
-  $x= \frac{x}{2}$,
-  $x ≠ 1$, $S$.
+$\begin{matrix}
+ x & ≠ & 1 \\
+ x\text{ \% } 2 & == & 0 \\
+ x & = & \frac{x}{2} \\
+ x & ≠ & 1, S
+\end{matrix}$
   
-Quelle condition le  vérifie ?  
+- Quelle condition le vérifie ?  
 
-- $x \neq 1$
-  $x \text{ mod } 2 = 0$ : $x$ est pair  
-  $\frac{x}{2} = 1$  
+- Celle-ci :
+$\begin{matrix} x & ≠1 &  \\ x\text{ mod } 2 & =0 & \text{: x est pair}  \\ \frac{x}{2} & = 1 & \end{matrix}$
 
 On trouve $x = 2$.  
 
@@ -342,8 +343,8 @@ Génération de tests grâce à un critère de couverture :
 
 - Sélectionner un ensemble minimal de chemins satisfaisant le critère.  
 - Eliminer les chemins infaisables  
-- Pour chaque chemin faisable, on définit un ensemble de conditions associées sur les entrées (c’est à dire un objectif de test). $\color{red}\text{Par exemple : entrée }x > 0$
-- Pour chaque objectif de test (donc pour chaque chemin faisable) choisir un cas de test (donc des valeurs d’entrées satisfaisant la condition associée au chemin). $\color{red}\text{Par exemple : entrée }x = 3$
+- Pour chaque chemin faisable, on définit un ensemble de conditions associées sur les entrées (c'est à dire un _objectif de test_). $\color{red}\text{Par exemple : entrée }x > 0$
+- Pour chaque objectif de test (donc pour chaque chemin faisable) choisir un cas de test (donc des valeurs d'entrées satisfaisant la condition associée au chemin). $\color{red}\text{Par exemple : entrée }x = 3$
 
 ### Critère "tous les sommets"
 
@@ -355,7 +356,7 @@ $$ \tau_s = \frac{\text{nombre de sommets parcourus}}{\text{nombre de sommets}}$
 
 Exigence minimale pour la certification en aéronautique (norme [EUROCAE ED-12B](https://www.eurocae.net/media/1705/airborne-software-training-12-2020.pdf)) : $\tau_s = 1$.  
 
-Qualification niveau C : Un défaut peut provoquer un problème _majeur_ entraînant un dysfonctionnement des équipements vitaux de l’appareil.  
+Qualification niveau **C** : Un défaut peut provoquer un problème _majeur_ entraînant un dysfonctionnement des équipements vitaux de l'appareil.  
 
 ```C linenums="1"
 int somme (int x, int y){
@@ -366,7 +367,7 @@ int somme (int x, int y){
 }
 ```
 
-Il y a deux chemins. L’un  d’eux permet de détecter  le défaut.  
+Il y a deux chemins. L'un d'eux permet de détecter le défaut.  
 
 <p align='center'><img src='/images/tests8.png'/></p>
 
@@ -386,17 +387,17 @@ float div(float x){
 
 <p align='center'><img src='/images/tests9.png'/></p>
 
-Le chemin **$E$ ; $int$  $r$ ; $x≠0$ ; $r=1$ ; $return$ $r$; $S$**  (associé à $x = 2$) couvre bien tous les sommets mais la division par zéro n’est pas détectée.  
+Le chemin **$E$ ; $int$  $r$ ; $x≠0$ ; $r=1$ ; $return$ $r$; $S$**  (associé à $x = 2$) couvre bien tous les sommets mais la division par zéro n'est pas détectée.  
 
 ### Critère "Tous les arcs"
 
-Dit aussi critère "toutes les décisions".  
+Dit aussi critère "_toutes les décisions_".  
 
 Pour chaque décision, un test rend la décision vraie, un autre la rend  fausse.  
 
 Taux de courverture des arcs :
 
-$$\tau_a = \frac{\text{nombre d’arcs parcourus}}{\text{nombre d’arcs}}$$  
+$$\tau_a = \frac{\text{nombre d'arcs parcourus}}{\text{nombre d'arcs}}$$  
 
 [Norme DO 178B](https://www.verifysoft.com/fr_do-178b.html), qualification des systèmes embarqués au niveau B :  un défaut peut provoquer un problème _dangereux_
 
@@ -427,9 +428,9 @@ Pourtant, division par zéro non détectée avec **$\{a = 0,b = 0\}$**.
 
 #### Toutes les conditions multiples
 
-On a vu que le critère "tous les arcs" pouvait passer à côté  d’erreurs.  
+On a vu que le critère "tous les arcs" pouvait passer à côté  d'erreurs.  
 
-C’est parce que ce critère est satisfait pour un sommet de décision  avec seulement deux jeux d’entrées : un jeu d’entrées rendant la  décision vraie et un autre la rendant fausse.  
+C'est parce que ce critère est satisfait pour un sommet de décision  avec seulement deux jeux d'entrées : un jeu d'entrées rendant la  décision vraie et un autre la rendant fausse.  
 
 Plutôt que la considérer la décision comme un seul sommet du graphe  de contrôle, on introduit les sous-decisions comme nouveaux sommets.  
 
@@ -437,7 +438,7 @@ Ce critère est appelé "**toutes les conditions multiples**"
 
 !!!example ""
 
-    Le critère  Toutes-les-décisions  n’est plus satisfait  avec seulement **$\{a = 0,b = 1\}$ $et$ $\{a = 2, b = 1\}$**.  
+    Le critère  Toutes-les-décisions  n'est plus satisfait  avec seulement **$\{a = 0,b = 1\}$ $et$ $\{a = 2, b = 1\}$**.  
     
     Le critère  Toutes-les-décisions  est satisfait avec  **$\{a = 0,b = 1\}$ $et$ $\{a = 2, b = 1\}$ $et$ $\{a = 2, b = 2\}$** et enfin **$\{a = 0,b = 0\}$**. Division par zéro détectée.  
 
@@ -447,8 +448,7 @@ Ce critère est appelé "**toutes les conditions multiples**"
 
 #### Critère "Toutes les décisions multiples" : Explosion combinatoire
 
-!!!example ""
-    **Exemple `if (A && (B || C))`**  
+!!!example "Exemple `if (A && (B || C))`"
 
     Toutes-les-conditions  
 
@@ -479,17 +479,18 @@ Ce critère est appelé "**toutes les conditions multiples**"
 ### Critère Toutes-les-Conditions/Décisions-modifié : MC/DC
 
 !!!note ""
+
     Objectif : améliorer les critères de couverture basés sur les décisions  tout en contrôlant la combinatoire  
 
 !!!quote "Définition: Critère MC/DC"
+
     MC/DC : _Modified Condition/Decision Coverage_
 
-On ne s’intéresse à un jeu de test faisant varier une condition que s’il  inﬂue sur la décision.  
+On ne s'intéresse à un jeu de test faisant varier une condition que s'il  inﬂue sur la décision.  
 
 ### Critère MC/DC
 
-!!!example ""
-    **Exemple `if (A && (B || C))`**
+!!!example "Exemple `if (A && (B || C))`"
  
     Principe : pour chaque test atomique, trouver deux cas de tests qui  changent la décision lorsque les autres conditions sont fixées.  
     
@@ -501,9 +502,9 @@ On ne s’intéresse à un jeu de test faisant varier une condition que s’il  
         - $A = 1$ , $B = 1$ , $C = 0.$ Décision : $1$  
     - Pour $C$ :  
         - $A = 1$ , $B = 0$ , $C = 1.$ Décision : $1$  
-        - **$A = 1$ , $B = 0$ , $C = 0.$ Décision : $0$. Déjà couvert**.  
+        - $\color{red}A = 1 \text{ , } B = 0 \text{ , } C = 0. \text{ Décision : 0. Déjà couvert}$.  
   
-    Si $n$ conditions : critère $MC/DC$ entraîne au plus $2 × n$ tests contre  $2^n$ pour le critère Toutes-les-décisions-multiple.  
+    Si $n$ conditions : critère $MC/DC$ entraîne au plus $2 × n$ tests contre $2^n$ pour le critère Toutes-les-décisions-multiple.  
 
 ### Limite du critère Toutes-les-décisions-multiples
 
@@ -519,7 +520,7 @@ float invsum(int n, float a[]){
 }
 ```
 
-Toutes-les-décisions $=$ toutes-les-décisions-multiples Puisque test atomique
+Toutes-les-décisions $=$ toutes-les-décisions-multiples puisque test atomique.
 
 <p align='center'><img src='/images/tests12.png'/></p>
 
@@ -530,15 +531,16 @@ $\color{red}\text{Défaut non  détecté si le tableau est vide.}$
 ### Critère "tous les chemins"
 
 !!!quote "Définition: Critère Tous-les-chemins"
-    parcourir tous les arcs dans chaque configuration possible (et non pas au moins une fois comme dans le  critère toutes-les-décisions)  
 
-Impraticable dès qu’il y a des boucles car existence de chemins infinis.  
+    Parcourir tous les arcs dans chaque configuration possible (et non pas au moins une fois comme dans le  critère toutes-les-décisions)  
+
+Impraticable dès qu'il y a des boucles car existence de chemins infinis.  
 
 Aﬀaiblissement possible : "tous les chemins qui passent au plus $k$ fois dans les boucles"
 
 En pratique on se limite souvent aux cas $k = 1$ ou $k = 2$. Cela permet au moins de détecter les erreurs produites quand on ne rentre pas dans la/les boucle.s.  
 
-Dans l’exemple précédent, $n = 1$, $a = \{\}$ satisfait le chemin  $\textbf{E,B1,C1,ret. }\frac 1 s\textbf{ , S}$ et détecte la division par zéro.  
+Dans l'exemple précédent, $n = 1$, $a = \{\}$ satisfait le chemin  $\textbf{E,B1,C1,ret. }\frac 1 s\textbf{ , S}$ et détecte la division par zéro.  
 
 ### Hiérarchie des critères
 
