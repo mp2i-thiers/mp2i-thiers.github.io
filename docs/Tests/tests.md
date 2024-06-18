@@ -199,10 +199,10 @@ _dits aussi tests boîte blanche_
 - Utiliser la structure du code pour dériver des cas de tests.  
 - Complémentaire des tests fonctionnels car on étudie la réalisation et  pas seulement la spécification.  
 - Il y a deux méthodes :  
-    - $\color{red}\text{À partir du }\textit{graphe de ﬂot de contrôle}$ $\color{red}\text{ : couverture de toutes les  instructions, tous les branchements...}$ (CPGE)  
-    - À partir du _graphe de ﬂot de données_ : couverture de toutes les  utilisations d'une variable, de tous les couples définition-utilisation...  
+    - $\color{red}\text{À partir du }\textit{graphe de flot de contrôle}$ $\color{red}\text{ : couverture de toutes les  instructions, tous les branchements...}$ (CPGE)  
+    - À partir du _graphe de flot de données_ : couverture de toutes les  utilisations d'une variable, de tous les couples définition-utilisation...  
 
-### Graphe de ﬂot de contrôle
+### Graphe de flot de contrôle
 
 Graphe simple orienté connexe avec un sommet initial (ou d'entrée) `E` et un sommet de sortie `S` accessible depuis `E`.
 
@@ -337,7 +337,7 @@ On trouve $x = 2$.
 
 ### Critère de couverture
 
-On appelle _critère de couverture_ une condition définissant un  ensemble de chemins du graphe de ﬂot de contrôle.  
+On appelle _critère de couverture_ une condition définissant un  ensemble de chemins du graphe de flot de contrôle.  
 
 Génération de tests grâce à un critère de couverture :  
 
@@ -486,7 +486,7 @@ Ce critère est appelé "**toutes les conditions multiples**"
 
     MC/DC : _Modified Condition/Decision Coverage_
 
-On ne s'intéresse à un jeu de test faisant varier une condition que s'il  inﬂue sur la décision.  
+On ne s'intéresse à un jeu de test faisant varier une condition que s'il  influe sur la décision.  
 
 ### Critère MC/DC
 
