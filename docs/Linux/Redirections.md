@@ -65,6 +65,7 @@ Le fichier d'en-tête **stdio.h** de la bibliothèque standard du **C** définit
 - **stderr** pour l'erreur standard.
 
 Ces pointeurs peuvent être utilisés directement avec la majorité des fonctions qui agissent sur les fichiers. Par exemple :
+
 - La fonction scanf utilise le flux stdin.
 - La fonction printf utilise le flux stdout.
 
