@@ -100,9 +100,10 @@ Il est possible d'indiquer au terminal que des données en entrée ou sortie doi
     ivan@fixe: ~/.../UFS$wc −l <file.txt
     1
     ```
+
     - On crée un fichier vide (**touch file.txt**) dont on écrit une ligne avec **echo ”Hello world” >file.txt**
     - La commande **wc -l file.txt** compte le nombre de ligne d'un fichier et affiche le nom de ce fichier.
-    - Avecd la redirection $<$, on redirige l'entrée standard vers **file.txt**. On obtient `1` comme sortie puisque la commande supppose qu'elle prend son entrée dans `stdin` plutôt que dans un fichier. Le nom de fichier a disparu !
+    - Avec la redirection $<$, on redirige l'entrée standard vers **file.txt**. On obtient `1` comme sortie puisque la commande supppose qu'elle prend son entrée dans `stdin` plutôt que dans un fichier. Le nom de fichier a disparu !
 
 ### Fusion des sorties et des erreurs
 
