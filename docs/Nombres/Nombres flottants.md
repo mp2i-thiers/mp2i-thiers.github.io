@@ -35,7 +35,7 @@ L'avantage de la représentation en virgule flottante par rapport à la virgule 
 
     Considérons une représentation en virgule fiwe qui a $5$ chiffres dont un après la virgule. Elle peut exprimer $10^5$ nombres décimaux dans $[0,9999.9]$. Avec $5$ fois les chiffre 1, on ne représente que $1111.1$
 
-    Avec une représentation en virgule flottante et $5$ chiffres $1$ : on peut représenter $11111$, $1111.1$, $111.11$, $11.111$, $1.1111$, $.11111$, donc 6 fois plus d'expressions en virgule flottante qu'en virgule fixe. De plus l'intervalle de représentation est plus grand : [0, 99999].
+    Avec une représentation en virgule flottante et $5$ chiffres $1$ : on peut représenter $11111$, $1111.1$, $111.11$, $11.111$, $1.1111$, $.11111$, donc 6 fois plus d'expressions en virgule flottante qu'en virgule fixe. De plus l'intervalle de représentation est plus grand : $[0, 99999]$.
 
     Cependant, il faut alors oder la position de la virgule. Cela demande donc plus de place.
 
@@ -59,9 +59,9 @@ Il décrit aussi quatre modes d'arrondi et cinq exceptions (comprenant les condi
 
 - La version $1985$ de la nomre $\text{IEEE 754}$ définit 4 formats pour représenter les nombres à virgule flottante :
     - Simple précision ($32$ bits : $1$ bit signe, $8$ bits d'exposant, $23$ bits de mantisse avec $1$ bit implicite)
-    - Simple précision étendue (≥ $43$ bits, obsolète)
+    - Simple précision étendue ($≥ 43$ bits, obsolète)
     - Double précision ($64$ bits : $1$ bit de signe, $11$ bits d'expo, $52$ bits de mantisse avec $1$ implicite)
-    - Double précision étendue (>$79$ bits)
+    - Double précision étendue ($>79$ bits)
 
 ### Bit $1$, bit _implicite_
 
@@ -72,13 +72,13 @@ Il décrit aussi quatre modes d'arrondi et cinq exceptions (comprenant les condi
 
 <p align="center"><img src="/images/Nbre_flottants/nbr2.png"></p>
 
-_Figure - $\text{IEEE-754} siple précision$_
+_Figure - $\text{IEEE-754 simple précision}$_
 
 PLus généralement, les nombres sont écrits au format $(1, E, M)$ donc sur $1 + E + M$ bits :
 
 <p align="center"><img src="/images/Nbre_flottants/nbr1.png"></p>
 
-Ce format $(1, 8, 23)$ obsolète est privilégié ici parce qu'on peut faire tenir 32 bits sur un transparent.
+Ce format $(1, 8, 23)$ obsolète est privilégié ici parce qu'on peut faire tenir $32$ bits sur un transparent.
 
 - Bit de poids fort à $1$ : Négatif, à $0$ : Positif
 - Exposant : Pas de représentation en complément à $2$ (car comparer des nombres serait difficile). L'exposant est _décalé_, afin de le stocker sous forme d'un nombre non signé. En notant $E$ le nombre de chiffres (toujours le même nombre) de l'exposant, on ajoute un décalage de $d=2^{E−1}−1$
@@ -86,7 +86,7 @@ Ce format $(1, 8, 23)$ obsolète est privilégié ici parce qu'on peut faire ten
 
 Ils sont longs de $4$ octets ($32$ bits) : $(1, 8, 23)$
 
-La mantisse complète, le _significande_, doit être considérée comme une valeur sur $24$ bits. Si la mantisse avec bit $1$ implicite est $101000… $ alors le significande en base 2 est **$1.$** $101000…$
+La mantisse complète, le _significande_, doit être considérée comme une valeur sur $24$ bits. Si la mantisse avec bit $1$ implicite est $101000…$ alors le significande en base $2$ est **$1.$** $101000…$
 
 La quantité de nombres représentables au format $(1, E, M)$ est grande mais pas infinie (mince). L'ordinateur travaille donc avec des valeurs en général approchées :
 
@@ -151,7 +151,7 @@ Tableau récapitulatif :
 
 !!!example "Exposant $e$ d'un nombre normalisé"
 
-    Si $E=128$, alors $e∈[−126,127]$. L'exposant $-127$ (qui est décalé vers la valeur $0$) est réservé pour zéro et les nombres dé-normalisés, tandis que l'exposant $128$ (décalé vers$ 255$) est réservé pour coder les infinis et les NaN.
+    Si $E=128$, alors $e∈[−126,127]$. L'exposant $-127$ (qui est décalé vers la valeur $0$) est réservé pour zéro et les nombres dé-normalisés, tandis que l'exposant $128$ (décalé vers $255$) est réservé pour coder les infinis et les $texttt{NaN}$.
 
 ### Real 2 float
 
@@ -182,7 +182,8 @@ $m=\frac{(−1)^s}{2^e}X−1$
 
     $X=-9.6$ ; $s_{10} = 1$ ; $9.6\times 2^{-3} = 1.2\in[1;2[$ donc $e_{10} = 3$ ; $m_{10} =1.2 -1$
 
-    Connaissant $s,e,m$ de la notation scientifique décimale, on veut $s_2, e_2, m_2$ tels que 
+    Connaissant $s,e,m$ de la notation scientifique décimale, on veut $s_2, e_2, m_2$ tels que :
+
     - bits de signe $s_2 = s_{10}$
     - bits d'exposant $e_2 = bin (e+127)$ (conversion de l'exposant _décalé_ en base $2$),
     - Pour la mantisse sur $23$ bits
@@ -272,7 +273,7 @@ _Figure - Quelques nombres positifs (Wikipedia)_
     - Soit un nombre de mantisse $1101100000000...$
     - Le significande complet avec bit caché est $1.1101100...$
     - On veut l'arrondir à 3 chiffres après la virgule. On a le choix entre $1.110$ ou $1.110 + 0.001 = 1.111$
-        - $2^0 + \frac{1}{2} + \frac{1}{2^2}+0+\underbrace{\frac{1}{2^4}+\frac{1}{2^5}}_{\text{partie à arrondir}} ∼ 111011 $
+        - $2^0 + \frac{1}{2} + \frac{1}{2^2}+0+\underbrace{\frac{1}{2^4}+\frac{1}{2^5}}_{\text{partie à arrondir}} ∼ 111011$
         - Arrondi par défaut : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+0 ∼ 1.110$
         - Arrondi par excès : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+ \frac{1}{2^3} ∼ 1.111$
 
@@ -284,7 +285,7 @@ _Figure - Quelques nombres positifs (Wikipedia)_
 
 L'exemple précédent était facile car il ya avait une seule réponse possible.
 
-Mais que se passe-t-il quand on a le choix ? Par exemple, en base $10$, comment arrondir à l'unité $1.500$ qui est aussi proche de $1$ que de $2$ ? Arrondir au plus proche pair signifie choisir 2 plutôt que 1.
+Mais que se passe-t-il quand on a le choix ? Par exemple, en base $10$, comment arrondir à l'unité $1.500$ qui est aussi proche de $1$ que de $2$ ? Arrondir au plus proche pair signifie choisir $2$ plutôt que $1$.
 
 En base deux, le problème se pose lorsque le nombre après le dernierbit maintenu est $100$ (si $3$ bits au delà du dernier maintenu).
 
@@ -333,7 +334,7 @@ Il faut donc arrondir. Le standard $IEEE-754$ pévoit $5$ méthodes.
 
 !!!danger "Règle de l'_Arrondi correct_"
 
-    UNe fois un modde d'arrondi choisi, le résultat d'une opération est déterminsite : un seul résultat est possible.
+    Une fois un modde d'arrondi choisi, le résultat d'une opération est déterminsite : un seul résultat est possible.
 
 !!!example "Un dixième"
 
@@ -345,7 +346,7 @@ Il faut donc arrondir. Le standard $IEEE-754$ pévoit $5$ méthodes.
 
 ### Règle de l'arrondi correct
 
-La norme $IEEE 754$ impose l'arrondi correct pour les $5$ opérations de base et la racine carrée : Un programme les utilisant donne le même résultat sur toute configuration (machine, système, processeur). Sous réserve :
+La norme $\text{IEEE 754}$ impose l'arrondi correct pour les $5$ opérations de base et la racine carrée : Un programme les utilisant donne le même résultat sur toute configuration (machine, système, processeur). Sous réserve :
 
 - qu'il n'y ait pas de précision intermédiaire étendue (ou alors désactivée). Ça veut dire que les résultats intermédiaires du calcul d'une expression ne doivent pas être calculés avec une précision plus grande que celle attendue pour le résultat.
 - le compilateur ne doit pas changer l'ordre des opérations si cela peut conduire à un résultat différent.
@@ -402,7 +403,7 @@ D'où la nécessité d'arrondir certains montants au centime supérieur et d'aut
 En cas de problème, la norme impose de signaler des _Exceptions_ :
 
 - Diviser un nombre différent de $0$ par $0$ donne $±\infty$
-- Diviser zéro par zéro, ou calculer le logarithme d'un nombre négatif conduisent à générer des $NaN$ qu'on peut décider de considérer comme des exceptions.
+- Diviser zéro par zéro, ou calculer le logarithme d'un nombre négatif conduisent à générer des $texttt{NaN}$ qu'on peut décider de considérer comme des exceptions.
 - Nombre entier positif plus grand que le plus grand entier représentable (_overflow_). Ou plus petit que le plus petit entier représentable (_underflow_).
 
 ## Arithmétique psychédélique
@@ -490,11 +491,11 @@ harmonique_cr 1 (int_of_float 1e5) 0.;;
 - : float = 12.090146129863335
 ```
 
-Les dernières décimales des deux résultats ne sont aps égales alors même que l'addition est commutative...
+Les dernières décimales des deux résultats ne sont pas égales alors même que l'addition est commutative...
 
-de plus cette série converge pour les nombres flottants. Après un certain rang, $\frac{1}{n}$ devient plus petit que le plus petit nombre dénormalisé et est compté comme $0$.
+De plus cette série converge pour les nombres flottants. Après un certain rang, $\frac{1}{n}$ devient plus petit que le plus petit nombre dénormalisé et est compté comme $0$.
 
-### Infinis et NaN
+### Infinis et $texttt{NaN}$
 
 ```OCaml linenums="1"
 5./.0. , -5./.0.;;
@@ -509,7 +510,7 @@ max_float +. max_float ;;
 - : float = infinity
 ```
 
-### Écart avec ke successeur
+### Écart avec le successeur
 
 L'écart entre $x$ et son successeur est croissant avec $x$
 
