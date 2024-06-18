@@ -52,7 +52,7 @@ TDF. Elles correspondent aux flux standards (voir figure $\color{red}1$) :
 
 ### Les 3 premières entrées de la TDF
 
-<p align='center'><img src='/images/redir1.png/></p>
+<p align='center'><img src='/images/redir1.png'/></p>
 
 **Figure 1** – Les descripteurs de fichiers pour l'entrée, la sortie et les erreurs (d'après [Wikipedia](https://fr.wikipedia.org/wiki/Descripteur_de_fichier)).Par défaut, quand un programme fonctionne dans un terminal, l'entrée standard correspond au clavier, et la sortie standard ainsi que l'erreur standard sont affichées dans ce terminal.
 
