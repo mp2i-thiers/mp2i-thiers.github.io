@@ -47,5 +47,5 @@ Comme $log(2^{n/2}) = \frac{n}{2}\log(2)$, La complexité totale est en $O \left
 ## Rappels utiles pour l'implantation
 
 $1L<<52$ calcule $2^{52}$ mais caste d'abord $1$ en un `long`
-Le codage binaire d'un entier $i$ représente un ensemble $E_i$ d'entiers.Exemple $i = 100101$ représente $E_ i {0, 2, 5}$.
-$i$ $\&$ $1l << j$ cherche si le $j$-ième bit de $i$ est à $1$, donc si $j ∈ E_i$
+Le codage binaire d'un entier $i$ représente un ensemble $E_i$ d'entiers.Exemple $i = 100101$ représente $E_ i \{0, 2, 5\}$.
+$i$ $\&$ $1L << j$ cherche si le $j$-ième bit de $i$ est à $1$, donc si $j ∈ E_i$

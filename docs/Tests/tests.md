@@ -1,10 +1,7 @@
 # Tests
 
 !!! warning
-    Ce cours a été automatiquement traduit des transparents de M.Noyer par
-    Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce
-    site à pour seul but d’être plus compréhensible pendant les périodes de
-    révision que des diaporamas.
+    Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.
 
 !!!tip "Crédits"
     - Sur la nuance entre _erreur_ et _défaut_, cet [article](https://latavernedutesteur.fr/2020/11/10/difference-entre-erreur-defaut-defaillance-et-anomalie-cynthia-lefevre/) de Cynthia Lefevre.  
@@ -18,19 +15,22 @@
 ### Terminologie
 
 !!! quote "Définition: Erreur"
+
     Action humaine produisant un résultat incorrect $\color{red}\text{"l’erreur est humaine"}$
 
 !!! quote "Définition: Défaut"
+
     Une imperfection dans un composant (ou un système) qui peut conduire à ce que ce composant (ou système) n’exécute pas les fonctions requises. $\color{red}\text{On cherche les défauts sans manipuler le système}$.
 
 !!! quote "Définition: Défaillance ou Panne"
-    IEEE 729 : La fin de la capacité d’un système ou d'un de ses composants d'effectuer la fonction requise, ou de l'effectuer à l'intérieur de limites spécifiées. $\color{red}\text{On cherche une défaillance en manipulant le système}$.
+
+    $\text{IEEE 729}$ : La fin de la capacité d’un système ou d'un de ses composants d'effectuer la fonction requise, ou de l'effectuer à l'intérieur de limites spécifiées. $\color{red}\text{On cherche une défaillance en manipulant le système}$.
 
 !!! quote "Définition : Anolamie"
+
     Un écart entre le résultat attendu et celui obtenu.
 
-!!! tip ""
-    **Remarque**
+!!! tip "Remarque"
 
     Ce n’est pas parce qu’il y a anomalie qu’il y a défaut. Peut-être le testeur a-t-il compris la spécification d’une façon et le développeur d’une autre.
 
@@ -44,7 +44,7 @@ Il y a un rapport de causalité.
 
 ### Test
 
-Définition (norme IEEE 729) : Le _test_ est un processus manuel ou  automatique, qui vise à établir qu’un système vérifie les propriétés  exigées par sa spécification, ou à détecter des diﬀérences entre les  résultats engendrés par le système et ceux qui sont attendus par la  spécification.  
+Définition (norme $\text{IEEE 729}$ ) : Le _test_ est un processus manuel ou automatique, qui vise à établir qu’un système vérifie les propriétés  exigées par sa spécification, ou à détecter des diﬀérences entre les  résultats engendrés par le système et ceux qui sont attendus par la  spécification.  
 
 Le test ne se préoccupe pas des erreurs. Ce n’est pas au testeur de pointer les imperfections humaines.  
 
@@ -54,9 +54,9 @@ Le test met en évidence les défauts afin de prévenir les défaillances.
 
 Toute fabrication de produit suit les étapes suivantes  
 
-1. Conception
-2. Réalisation
-3. Tests  
+- Conception
+- Réalisation
+- Tests  
 
 Test : On s’assure que le produit final correspond à ce qui a été  demandé selon divers critères :  
 
@@ -69,42 +69,42 @@ Test : On s’assure que le produit final correspond à ce qui a été  demandé
 !!!example ""
     **Des Bogues aux conséquences désastreuses**
 
-    - **Suède - 1980** : 
-    776 millions d'euros (275 millions de dollars de 1980).
-    104 camions semi-remorques de 35 tonnes, c'est la cargaison
-    que le Zenobia emporta par le fond lors de son naufrage, 1
+    - **Suède - $1980$** : 
+    $776$ millions d'euros ($275$ millions de dollars de $1980$).
+    $104$ camions semi-remorques de $35$ tonnes, c'est la cargaison
+    que le Zenobia emporta par le fond lors de son naufrage, $1$
     mois seulement après son lancement inaugural.
     Pourquoi ? Un bug dans le logiciel de contrôle des ballasts
     surremplissait les réservoirs par rapport aux indications qui
     lui étaient envoyées.
 
-    - **EADS - 1996** :
-    266 millions d'euros (200 millions d'euros de 1996)
-    Le 4 juin 1996 (1er vol), la fusée Ariane 5 s'est élevée
+    - **EADS - $1996$** :
+    $266$ millions d'euros ($200$ millions d'euros de $1996$)
+    Le $4$ juin $1996$ ($1$er vol), la fusée Ariane $5$ s'est élevée
     jusqu'à la moitié du ciel, avant que son logiciel ne coupe les
     moteurs et que le lanceur explose en plein vol.
     Pourquoi ? L'accélération maximale de la fusée a dépassé la
     valeur admissible par le logiciel, générant une erreur générale
     et donc l'autodestruction. Valeurs recopiées du programme
-    Ariane 4 (moins puissante). La simulation avait été annulée
-    afin d'économiser 800.000 francs (11900Œeuros).
+    Ariane $4$ (moins puissante). La simulation avait été annulée
+    afin d'économiser $800.000$ francs ($119000$ euros).
 
 ### Coût des tests
 
 - Budget IT : Budget alloué aux technologies de l'information (ou IT pour Information Technology).
-- Dans les entreprises, la part du budget IT consacrée aux tests et à l'assurance qualité augmente de 9 points d'une année sur l'autre selon Capgemini.
-- De 26% en 2014, elle passe à 35 % en 2015.
-- Il était prévu qu'en 2018, la part des tests et de la qualité passe à 40 % du total. (Source [Silicon](https://www.silicon.fr))
+- Dans les entreprises, la part du budget IT consacrée aux tests et à l'assurance qualité augmente de $9$ points d'une année sur l'autre selon Capgemini.
+- De $26$% en $2014$, elle passe à $35$ % en $2015$.
+- Il était prévu qu'en $2018$, la part des tests et de la qualité passe à $40$ % du total. (Source [Silicon](https://www.silicon.fr))
 
 ### VVT
 
-**Validation, Vérification et Test logiciel.**
+**$V$alidation, $V$érification et $T$est logiciel.**
 
-Démonstration automatique (Hum !) : exhaustive mais considérée  comme trop coûteuse.  
+Démonstration automatique (Hum !) : exhaustive mais considérée comme trop coûteuse.  
 
-Model Checking : vérifier si le modèle d’un système satisfait une  propriété. Par exemple, on souhaite vérifier qu’un programme ne se  bloque pas, qu’une variable n’est jamais nulle, etc. Généralement, la  propriété est écrite dans un langage, souvent en logique temporelle.  La vérification est généralement faite de manière automatique.  
+Model Checking : vérifier si le modèle d’un système satisfait une  propriété. Par exemple, on souhaite vérifier qu’un programme ne se  bloque pas, qu’une variable n’est jamais nulle, etc. Généralement, la  propriété est écrite dans un langage, souvent en _logique temporelle_.  La vérification est généralement faite de manière automatique.  
 
-Test : non exhaustif mais facile à mettre en œuvre (bon rapport  qualité/temps).  
+Test : non exhaustif mais facile à mettre en œuvre (bon rapport qualité/temps).  
 
 ### Cycle en V
 
@@ -122,11 +122,11 @@ _Figure – Le cycle en V du Génie Logiciel (d’après [Irif](https://www.irif
 - Tests intégration système : test de l’intégration du logiciel avec  d’autres logiciels  
 - Tests systeme : test d’acception du logiciel avant livraison (nouvelle  version par exemple). Généralement eﬀectué par le client dans ses  locaux après installation du système ou d’une unité fonctionnelle, avec  la participation du fournisseur.  
 - Tests Integration : test de l’intégration des diﬀérents composants  (avec ou sans hardware)  
-- $\color{red}\text{Tests Unitaires : tests élémentaires des composants logiciels (une  fonction, un module, ...)  }$
+- $\color{red}\text{Tests Unitaires : tests élémentaires des composants logiciels (une fonction, un module, ...)  }$
 
 #### Selon la caractéristique
 
-- $\color{red}\text{Tests fonctionnels : destinés à s’assurer que, dans le contexte d’utilisation réelle, le comportement fonctionnel obtenu est bien  conforme avec celui attendu.}
+- $\color{red}\text{Tests fonctionnels : destinés à s’assurer que, dans le contexte d’utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien  conforme avec celui attendu.}$
 - Tests de performance (rapidité, consommation mémoire etc.)  
 - Tests de robustesse (mon serveur va-t-il bien réagir à un aﬄux de  connexion ?)  
 - Tests de vulnérabilité : suis-je bien protégé face aux risques  d’intrusions ?  
@@ -173,8 +173,8 @@ En complément du partitionnement du domaine d’entrée, on ajoute les  _tests 
 
 - Ce sont les données encore valides mais au delà desquelles les entrées  ne le sont plus.  
 - Il faut impérativement tester $1$ et $1000$. On peut y ajouter les valeurs  
-  - juste en dessous des bornes : $0$ et $999$  
-  - juste au-dessus des bornes : $2$ et $1001$  
+    - juste en dessous des bornes : $0$ et $999$  
+    - juste au-dessus des bornes : $2$ et $1001$  
 - Si un des tests ne donne pas le résutat attendu, le programme n’est  pas correct. En revanche, le programme peut être incorrect même si  tous les tests du scénario donnent satisfaction.  
 
 ## Graphe de flots de contrôle
@@ -183,7 +183,7 @@ En complément du partitionnement du domaine d’entrée, on ajoute les  _tests 
 
 En CPGE on s'intéresse uniquement aux $\color{red}\text{Test Unitaires : tests élémentaires des composants logiciels (une fonction, un module, ...)}$;
 
-La plupart des tests que nous avons écrits jusqu’à présent étaient des $\color{red}\text{Tests fonctionnels ("boîte noire") : destinés à s’assurer que, dans le contexte d’utilisation réelle, le comportement fonctionnel obtenu est bien conforme avec celui attendu}$.
+La plupart des tests que nous avons écrits jusqu’à présent étaient des $\color{red}\text{Tests fonctionnels ("boîte noire") : destinés à s’assurer que, dans le contexte d’utilisation}$ $\color{red}\text{réelle, le comportement fonctionnel obtenu est bien conforme avec celui attendu}$.
 On crée des tests sans ce soucier du code écrit.
 
 ### Tests structurels
@@ -199,7 +199,7 @@ _dits aussi tests boîte blanche_
 - Utiliser la structure du code pour dériver des cas de tests.  
 - Complémentaire des tests fonctionnels car on étudie la réalisation et  pas seulement la spécification.  
 - Il y a deux méthodes :  
-    - À partir du _graphe de ﬂot de contrôle_ : couverture de toutes les  instructions, tous les branchements... (CPGE)  
+    - $color{red}\text{À partir du }\textit{graphe de ﬂot de contrôle}\text{ : couverture de toutes les  instructions, tous les branchements...}$ (CPGE)  
     - À partir du _graphe de ﬂot de données_ : couverture de toutes les  utilisations d’une variable, de tous les couples définition-utilisation...  
 
 ### Graphe de ﬂot de contrôle
