@@ -113,7 +113,7 @@ Un nombre qui est égalt à sa représentation en flottant est dit _repésentabl
     - Zéro ($e_d=0$);
     - Infini ($e_d = 2^{N-1}-1$);  
     - NaN (_Not a Nunber_ ($e_d = 2^{N-1}-1$) "pas un nombre", comme $0/0$ ou $\sqrt{-1}$);
-- L'exposant est décalé dans $⟦0,2^E−1⟧$ donc le décalage est de $2^{E−1}−1$.LEs nombres "normalisés" ont un exposant décalé dans $⟦1,2^E−2⟧$ .
+- L'exposant est décalé dans $\llbracket0,2^E−1\rrbracket$ donc le décalage est de $2^{E−1}−1$.LEs nombres "normalisés" ont un exposant décalé dans $\llbracket1,2^E−2\rrbracket$ .
 - Le bit implicite de la mantisse est déterminé par la valeur de l'exposant décalé. Il vaut $0$ si l'exposant décalé est égal à $0$ et $1$ sinon.
 
 #### Nombres normalisés et dé-normalisés
@@ -135,7 +135,7 @@ Pour un format $1, E, M$ :
 - Si la règle était la même que pour les nombres normalisés, l'exposant serait donc de $0-\text{decalage}$ soit $-2^{E-1}+1$, donc $-1023$ pour les flottants double précision.
 - Mais par convention, l'exposant pour les nombres dé-normalisés est en fait égal au plus petit exposant de nombre normalisé soit $−2^{E−1}+1+1$. Ce qui change c'est le bit implicite $0$ (dé-normalisé) ou $1$ (normalisé)
     - Plus petit normalisé positif $(1 + m)2^{-2^{E-1}+1+1}$ avec $m=0$
-    - PLus petit dé-normalisé positif $(0 + m)2^{-2^{E-1}+1+1}$ avec $m$ non nul minimum. Ainsi, $m$ s'écrit avec $M-1$ bits à $0$ suivis de 1 donc $m = 2^{-M}$. Conclusion $2^{-M}2^{-2^{E-1}+1+1}$
+    - Plus petit dé-normalisé positif $(0 + m)2^{-2^{E-1}+1+1}$ avec $m$ non nul minimum. Ainsi, $m$ s'écrit avec $M-1$ bits à $0$ suivis de $1$ donc $m = 2^{-M}$. Conclusion $2^{-M}2^{-2^{E-1}+1+1}$
 
 ### Exposant pour un format $(1, E, M)$
 
@@ -151,7 +151,7 @@ Tableau récapitulatif :
 
 !!!example "Exposant $e$ d'un nombre normalisé"
 
-    Si $E=128$, alors $e∈[−126,127]$. L'exposant $-127$ (qui est décalé vers la valeur $0$) est réservé pour zéro et les nombres dé-normalisés, tandis que l'exposant $128$ (décalé vers $255$) est réservé pour coder les infinis et les $texttt{NaN}$.
+    Si $E=128$, alors $e∈[−126,127]$. L'exposant $-127$ (qui est décalé vers la valeur $0$) est réservé pour zéro et les nombres dé-normalisés, tandis que l'exposant $128$ (décalé vers $255$) est réservé pour coder les infinis et les $\texttt{NaN}$.
 
 ### Real 2 float
 
@@ -223,7 +223,7 @@ $m=\frac{(−1)^s}{2^e}X−1$
 
      $$M = \text{0011 0011 0011 0011 0011 010}$$
 
-     Finalemnt : $-9.6_{10}$ est représenté par
+     Finalement : $-9.6_{10}$ est représenté par
 
      $$1_2 \text{ } 10000010_2 \text{ 0011 0011 0011 0011 0011 010}_2$$
 
@@ -272,7 +272,7 @@ _Figure - Quelques nombres positifs (Wikipedia)_
 
     - Soit un nombre de mantisse $1101100000000...$
     - Le significande complet avec bit caché est $1.1101100...$
-    - On veut l'arrondir à 3 chiffres après la virgule. On a le choix entre $1.110$ ou $1.110 + 0.001 = 1.111$
+    - On veut l'arrondir à $3$ chiffres après la virgule. On a le choix entre $1.110$ ou $1.110 + 0.001 = 1.111$
         - $2^0 + \frac{1}{2} + \frac{1}{2^2}+0+\underbrace{\frac{1}{2^4}+\frac{1}{2^5}}_{\text{partie à arrondir}} ∼ 111011$
         - Arrondi par défaut : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+0 ∼ 1.110$
         - Arrondi par excès : $2^0 + \frac{1}{2^1} + \frac{1}{2^2}+ \frac{1}{2^3} ∼ 1.111$
@@ -295,16 +295,18 @@ Arrondir au plus proche pair revient, lorsqu'on a le choix, à privilégier les 
 
 #### Exemples d'arrondis au plus proche pair
 
-- Arrondir $1.100100$ à $3$ chiffres après la virgule : plus proche pair $1.100$ ($0$ est pair).
-- Arrondir $1.101100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.101 + 0.001 = 1.110$
-- Arrondir $1.111100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.111 + 0.001 = 10.000$. Il faut changer l'exposant (ajouter $1$ à l'exposant)!!
-- Lorsqu'on est dans le cas de figure où il faut changer l'exposant, et que l'exposant est lui même maximum ($254 = 127+127$ oiur les nombres sur $32$ bits), on se retrouve avec un nombre considéré comme infini !
+!!!example ""
+
+    - Arrondir $1.100100$ à $3$ chiffres après la virgule : plus proche pair $1.100$ ($0$ est pair).
+    - Arrondir $1.101100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.101 + 0.001 = 1.110$
+    - Arrondir $1.111100$ à $3$ chiffres après la virgule : $1$ est impair. Plus proche pair : $1.111 + 0.001 = 10.000$. Il faut changer l'exposant (ajouter $1$ à l'exposant)!!
+    - Lorsqu'on est dans le cas de figure où il faut changer l'exposant, et que l'exposant est lui même maximum ($254 = 127+127$ oiur les nombres sur $32$ bits), on se retrouve avec un nombre considéré comme infini !
 
 ### Règle d'arrondi au plus proche pair
 
 !!!example ""
 
-    Arrondi au troisème chiffre après la virgule : 
+    Arrondi au troisième chiffre après la virgule : 
 
     $1.01110011 = \underbrace{1.011}_{\text{bits maintenus}} \overbrace{10011}^{\text{bits tronqués}}$
 
@@ -338,7 +340,7 @@ Il faut donc arrondir. Le standard $IEEE-754$ pévoit $5$ méthodes.
 
 !!!example "Un dixième"
 
-    $0.1$ en base 10 correspond à la séquence suivante : 
+    $0.1$ en base $10$ correspond à la séquence suivante : 
 
     $s=0=S, e=-4+127$ donc $E=01111011$, $M$ est une séquence infinie $\text{1.1001 1001 1001 1001 1001 100 110 0 ...}$ Alors $1+ m = 1.1001100110011001101_2$
 
@@ -391,9 +393,9 @@ La méthode de "l'arrondi bancaire" (autre nom pour l'arrondi au plus proche pai
 
 Transposons en base $10$ : Imaginons une multinationale qui reçoit un milliards de virements exprimés en centimes d'euros (sur une certaine période) arrondis au dixième de centime sur un de ses comptes en banque.
 
-Supposons que pour un millième de ces virements, la partie fractionnaire soit de la forme $.x500$ où $x\in ⟦0,9⟧$.
+Supposons que pour un millième de ces virements, la partie fractionnaire soit de la forme $.x500$ où $x\in \llbracket 0,9 \rrbracket $.
 
-Si la banque arrondi le montatn de ces virements au dixièmes de centime supérieur ($.x +0.1$, puis répercussion de la retenue), la multinationale gagne $0.05$ centime de plus par virement que ce qu'elle aurait dû toucher. Au total cela fait $10^6 \times 5 \times 10^{-2} = 5 \times 10 ^4 = 50 000 \text{ euros}$ que la multinationale a gagnés au détriment de la banque !
+Si la banque arrondi le montant de ces virements au dixièmes de centime supérieur ($.x +0.1$, puis répercussion de la retenue), la multinationale gagne $0.05$ centime de plus par virement que ce qu'elle aurait dû toucher. Au total cela fait $10^6 \times 5 \times 10^{-2} = 5 \times 10 ^4 = 50 000 \text{ euros}$ que la multinationale a gagnés au détriment de la banque !
 $\color{red}\text{Au centime inférieur, ce serait la banque qui gagnerait de l'argent.}$
 
 D'où la nécessité d'arrondir certains montants au centime supérieur et d'autres au centime inférieur pour équilibrer, comme avec l'arrondi au plus proche pair.
@@ -403,7 +405,7 @@ D'où la nécessité d'arrondir certains montants au centime supérieur et d'aut
 En cas de problème, la norme impose de signaler des _Exceptions_ :
 
 - Diviser un nombre différent de $0$ par $0$ donne $±\infty$
-- Diviser zéro par zéro, ou calculer le logarithme d'un nombre négatif conduisent à générer des $texttt{NaN}$ qu'on peut décider de considérer comme des exceptions.
+- Diviser zéro par zéro, ou calculer le logarithme d'un nombre négatif conduisent à générer des $\texttt{NaN}$ qu'on peut décider de considérer comme des exceptions.
 - Nombre entier positif plus grand que le plus grand entier représentable (_overflow_). Ou plus petit que le plus petit entier représentable (_underflow_).
 
 ## Arithmétique psychédélique
@@ -495,7 +497,7 @@ Les dernières décimales des deux résultats ne sont pas égales alors même qu
 
 De plus cette série converge pour les nombres flottants. Après un certain rang, $\frac{1}{n}$ devient plus petit que le plus petit nombre dénormalisé et est compté comme $0$.
 
-### Infinis et $texttt{NaN}$
+### Infinis et $\texttt{NaN}$
 
 ```OCaml linenums="1"
 5./.0. , -5./.0.;;

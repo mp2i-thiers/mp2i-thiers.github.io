@@ -26,11 +26,11 @@ let taille2 a =
     in aux 0 a;;
 ```
 
-Malheureusement, ce n'est pas vrai car la pile d'appel n'est pas vidée : on doit garder en mémoire la valeur de `d`$^\textsf{1.}$ dans la stack frame courante. Les stack frames qui s'empilent du fait de l'appel `aux (acc+1) g` ne peuvent effacer cette valeur car elle est nécessaire au calcul final. 
+Malheureusement, ce n'est pas vrai car la pile d'appel n'est pas vidée : on doit garder en mémoire la valeur de `d`$^\textsf{1.}$ dans la stack frame courante. Les stack frames qui s'empilent du fait de l'appel `aux (acc+1) g` ne peuvent effacer cette valeur car elle est nécessaire au calcul final.
 
 En clair, la pile d'appel n'est pas vidée et les stack frames s'accumulent. Oublions donc cette version malheureuse qui ne remplit pas son objectif.
 
-La solution pour obtenir une véritable récursion terminale consiste à utiliser une méthode de programmation appelée _Continuation-passing style_ (**CPS**). Le _flot de contrôle_$^\textsf{2.}$ est passéexplicitement en paramètre d'une fonction auxiliaire sous la forme d'une _fonction de continuation_.
+La solution pour obtenir une véritable récursion terminale consiste à utiliser une méthode de programmation appelée _Continuation-passing style_ (**CPS**). Le _flot de contrôle_$^\textsf{2.}$ est passé explicitement en paramètre d'une fonction auxiliaire sous la forme d'une _fonction de continuation_.
 
 Par convention, cette fonction de continuation est souvent représentée par un paramètre noté **k**. Plutôt que d'appeler `taille g` et d'attendre la fin du calcul pour ensuite calculer des valeurs basées sur son résultat, on appelle aux `g (fun resg -> ...)`, où le second argument est une fonction qui indique quoi faire une fois que le résultat (`resg`) est disponible.
 

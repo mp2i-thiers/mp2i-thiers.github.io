@@ -131,16 +131,16 @@ ls: impossible d'accéder à'asip': Aucun fichier ou dossier de ce type
 
 !!!example "Exercices"
 
-    Exercice 1 :
+    Exercice $1$ :
 
     Ecrire un programme **simple.c** dont le **main** fait un affichage mais sans aucune inclusion de bibliothèque. Le compiler avec **gcc** et rediriger les erreurs vers un fichier **erreursimple.txt**
 
-    Exercice 2 : 
+    Exercice $2$ : 
 
     - Consulter le manuel de **tr**
     - Supprimer la lettre "o" de tous les mots de **myfile**
 
-    Exercice 3 :
+    Exercice $3$ :
 
     Avec la commande **ls** lister les droits du contenu du répertoire courant et d'un fichier **t_oufoukoa** qui n'existe pas. La sortie de **ls** doit être redirigée vers un fichier **liste_fichiers** tandis que les erreurs sont envoyées vers **erreurls**.
 

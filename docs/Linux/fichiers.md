@@ -223,13 +223,13 @@ Sous **Linux**, considérons un fichier :
 
 Pour chaque type de fichier, on donne également la convention d'affichage utilisée par la commande **ls -l nomDuFichier**
 
-$\color{blue}\text{ordinaire}$ (on dit aussi régulier ou normal). (**-**)
+$\color{blue}\text{ordinaire}$ : (on dit aussi régulier ou normal). (**-**)
 
-$\color{blue}\text{répertoire}$ ils contiennent seulement la liste des noms des fichiers qui y sont stockés ainsi que leurs numéros d'inode. (**d**)
+$\color{blue}\text{répertoire}$ : ils contiennent seulement la liste des noms des fichiers qui y sont stockés ainsi que leurs numéros d'inode. (**d**)
 
-$\color{blue}\text{lien symbolique}$ (**l**)
+$\color{blue}\text{lien symbolique}$ : (**l**)
 
-$\color{blue}\text{pseudo-fichier}$
+$\color{blue}\text{pseudo-fichier}$ :
 
 - Périphériques :
     - avec accès par caractères (**c**). Exemple : souris, clavier.
@@ -252,7 +252,7 @@ crw−rw−−−−1 root input 13,32 août 19 09:57 mouse0
 crw−rw−−−−1 root input 13,33 août 19 09:57 mouse1
 ```
 
-La souris est bien un périphérique en mode caractère (la première lettre de la ligne). L'évènement 11 est curieusement associé à ma caméra (comme on peut le voir en entrant **xinput list**)
+La souris est bien un périphérique en mode caractère (la première lettre de la ligne). L'évènement $11$ est curieusement associé à ma caméra (comme on peut le voir en entrant **xinput list**)
 
 ### Bloc
 
