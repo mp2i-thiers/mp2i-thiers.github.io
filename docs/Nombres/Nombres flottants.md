@@ -113,7 +113,7 @@ Un nombre qui est égalt à sa représentation en flottant est dit _repésentabl
     - Zéro ($e_d=0$);
     - Infini ($e_d = 2^{N-1}-1$);  
     - NaN (_Not a Nunber_ ($e_d = 2^{N-1}-1$) "pas un nombre", comme $0/0$ ou $\sqrt{-1}$);
-- L'exposant est décalé dans $\llbracket0,2^E−1\rrbracket$ donc le décalage est de $2^{E−1}−1$.LEs nombres "normalisés" ont un exposant décalé dans $\llbracket1,2^E−2\rrbracket$ .
+- L'exposant est décalé dans $[\![0,2^E−1]\!]$ donc le décalage est de $2^{E−1}−1$.LEs nombres "normalisés" ont un exposant décalé dans $[\![1,2^E−2]\!]$ .
 - Le bit implicite de la mantisse est déterminé par la valeur de l'exposant décalé. Il vaut $0$ si l'exposant décalé est égal à $0$ et $1$ sinon.
 
 #### Nombres normalisés et dé-normalisés
@@ -393,7 +393,7 @@ La méthode de "l'arrondi bancaire" (autre nom pour l'arrondi au plus proche pai
 
 Transposons en base $10$ : Imaginons une multinationale qui reçoit un milliards de virements exprimés en centimes d'euros (sur une certaine période) arrondis au dixième de centime sur un de ses comptes en banque.
 
-Supposons que pour un millième de ces virements, la partie fractionnaire soit de la forme $.x500$ où $x\in \llbracket 0,9 \rrbracket $.
+Supposons que pour un millième de ces virements, la partie fractionnaire soit de la forme $.x500$ où $x\in [\![ 0,9 ]\!] $.
 
 Si la banque arrondi le montant de ces virements au dixièmes de centime supérieur ($.x +0.1$, puis répercussion de la retenue), la multinationale gagne $0.05$ centime de plus par virement que ce qu'elle aurait dû toucher. Au total cela fait $10^6 \times 5 \times 10^{-2} = 5 \times 10 ^4 = 50 000 \text{ euros}$ que la multinationale a gagnés au détriment de la banque !
 $\color{red}\text{Au centime inférieur, ce serait la banque qui gagnerait de l'argent.}$
