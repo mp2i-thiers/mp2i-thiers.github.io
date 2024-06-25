@@ -152,12 +152,10 @@ Régulièrement, il a besoin d'accéder à des ressources protégées (comme  un
 
 ### Vue logique
 
-#### Système de fichier ♥
-
 !!!quote "Système de fichier ♥"
 
-_Système de fichier_ : ensemble de conventions et structures permettant
-de stocker des données sur un support physique
+    _Système de fichier_ : ensemble de conventions et structures permettant
+    de stocker des données sur un support physique
 
 Chaque système de fichier implémente (à sa façon) les primitives de
 manipulation de fichiers génériques offertes par le système
@@ -175,13 +173,13 @@ Chaque système de fichier possède ses propres caractéristiques et  objectifs.
 
 !!!example "Quelques exemples : "
 
-|OS|Système de fichier|
-|:--|:--|
-|MSDOS|FAT|
-|Windows 95/98| FAT32 ($F$ile $A$llocation $T$able $32$ bits)|
-|Windows NT| NTFS ($N$ew $T$echnology $F$ile $S$ystem)|
-|MAC OS|HFS+ ($H$igh Performance $F$ile $S$ystem)|
-|Linux|ext4 ($Ext$ended File System)|
+    |OS|Système de fichier|
+    |:--|:--|
+    |MSDOS|FAT|
+    |Windows 95/98| FAT32 ($F$ile $A$llocation $T$able $32$ bits)|
+    |Windows NT| NTFS ($N$ew $T$echnology $F$ile $S$ystem)|
+    |MAC OS|HFS+ ($H$igh Performance $F$ile $S$ystem)|
+    |Linux|ext4 ($Ext$ended File System)|
 
 ### Système de fichier
 
@@ -422,7 +420,7 @@ $\color{blue}\text{Ouverture}$ d'un terminal sous Ubuntu : `Ctr+Alt+T`.
 
 ### Un terminal
 
-<p align='center'><img src='/images/linux4.img'/></p>
+<p align='center'><img src='/images/linux4.png'/></p>
 
 _Figure – Un terminal dans lequel on n'a encore rien écrit_
 
@@ -561,7 +559,7 @@ Les métacaractères du shell permettent :
 
 ### Métacaractères de construction
 
-Prioritaires : *, ?  
+Prioritaires : \*, ?  
 
 - `*` désigne une chaîne de caractères quelconque ♥
 - `?` désigne un caractère quelconque ♥
@@ -572,18 +570,18 @@ Prioritaires : *, ?
 
 !!!example ""
 
-Voici le contenu du répertoire courant :  
+    Voici le contenu du répertoire courant :  
 
-```bash linenums="1"
-$ ls  
-alain Ali tata titi toto tutu zut
-```
+    ```bash linenums="1"
+    $ ls  
+    alain Ali tata titi toto tutu zut
+    ```
 
-- **ls t[ao]t[ao]** retourne **tata** et **toto** ,  
-- **ls ???** retourne les noms de $3$ lettres donc **zut** et **Ali**  
-- **ls A*** retourne les noms qui commencent par $A$ donc **Ali**  
-- **ls t??o** retourne les noms de $4$ lettres qui terminent par $o$ et  commencent par $t$ donc **toto**  
-- **ls [!b-z]\*** désigne les noms qui ne commencent pas par une lettre  entre $b$ et $z$ donc **alain** et **Ali** .  
+    - **ls t[ao]t[ao]** retourne **tata** et **toto** ,  
+    - **ls ???** retourne les noms de $3$ lettres donc **zut** et **Ali**  
+    - **ls A*** retourne les noms qui commencent par $A$ donc **Ali**  
+    - **ls t??o** retourne les noms de $4$ lettres qui terminent par $o$ et  commencent par $t$ donc **toto**  
+    - **ls [!b-z]\*** désigne les noms qui ne commencent pas par une lettre  entre $b$ et $z$ donc **alain** et **Ali** .  
 
 ### Métacaractères de modification (PI)
 
@@ -635,10 +633,9 @@ $ echo $? # afficher la réponse du test précédent
 On obtient $0$ si le fichier existe et est un répertoire, $1$ sinon.  
 ...  
 
-
 ### Utiliser le résultat d'une commande comme argument d'une autre (PI)
 
-Pour info. Les $‘$ (`ALT GR + 7`) entourant une commande permettent  d'utiliser le résultat de cette commande comme argument(s) dans la ligne  de commande.
+Pour info. Les $‘$ (**ALT GR + 7**) entourant une commande permettent d'utiliser le résultat de cette commande comme argument(s) dans la ligne  de commande.
 
 ```bash linenums="1"
 $ echo " Nous sommes le" `date +% d /% m /% y`
@@ -652,7 +649,7 @@ $ echo " 2 + 2  = " èxpr 2 + 2`
 2 + 2 = 4  
 ```
 
-#### Positionnement/recherche dans l'arborescence ♥
+### Positionnement/recherche dans l'arborescence ♥
 
 !!! quote "pwd"
 
@@ -708,7 +705,7 @@ La commande **history** permet de lister le contenu de l'historique des commande
 
 On peut aussi utiliser les ﬂèches haut et bas pour naviguer dans  l'historique des commandes.  
 
-#### Taille du contenu d'un répertoire
+### Taille du contenu d'un répertoire
 
 **du -h -d 1 monRepertoire** : taille des fichiers et sous-répertoires.  (du pour Disk User)
 
