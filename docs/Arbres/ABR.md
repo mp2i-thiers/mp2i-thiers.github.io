@@ -25,6 +25,7 @@
 _Figure – Un ABR_
 
 ``` mermaid
+%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 graph TB; 
     A((8))-->B((3))
     A-->C((10))
@@ -47,10 +48,11 @@ Les étiquettes de gauche ont des valeurs plus petites que celle de la racine, c
 On peut facilement récupérer les clés d’un arbre binaire de recherche dans l’ordre croissant en réalisant un parcours en profondeur infixe.
 
 !!!example "Contre-exemple"
-    
+
     _Figure – Un arbre binaire qui n’est pas un ABR_
 
     ``` mermaid
+    %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
     graph TB;
         A((6))-->B((4))
         A-->C((5))
@@ -65,6 +67,7 @@ On peut facilement récupérer les clés d’un arbre binaire de recherche dans 
     _Figure – Un ABR pour représenter_ ```[4,5,6]```
 
     ``` mermaid
+    %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
     graph TB; 
         A((6))-->B((5))
         A -->Z(( ))
@@ -77,6 +80,7 @@ On peut facilement récupérer les clés d’un arbre binaire de recherche dans 
     _Figure – Un ABR équilibré pour représenter_ ```[4,5,6]```
 
     ``` mermaid
+    %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
     graph TB; 
         A((5))-->B((6))
         A-->C((4))
@@ -85,6 +89,7 @@ On peut facilement récupérer les clés d’un arbre binaire de recherche dans 
     _Figure – Un ABR pour représenter_ ```[4,5,6]```
 
     ``` mermaid
+    %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
     graph TB; 
         A -->Z(( ))
         A((4))-->B((5))
@@ -167,6 +172,7 @@ create ([1;4;2;3]) ;;
 Figure – ABR obtenu par ```create([1;4;2;3]);;```
 
 ``` mermaid
+%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 graph TB; 
     A((3))-->B((2))
     A-->C((4))
@@ -182,6 +188,7 @@ Si la liste est déjà triée, on obtient une liste chaînée.
 Figure – ABR obtenu par ```create([1;4;2;3]);;```
 
 ``` mermaid
+%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 graph TB; 
     A((4))-->B((3))
     A -->Z(( ))
