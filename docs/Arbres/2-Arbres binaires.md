@@ -48,8 +48,8 @@ _Figure 4_ – Une expression arithmétique
 ``` mermaid
 %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 graph TB; 
-    A((+))-->B((3))
-    A-->C((×))
+    A(('+'))-->B((3))
+    A-->C(('×'))
     C-->D((4))
     C-->E((5))
 ```
@@ -114,7 +114,7 @@ Avec les conventions de la définition $\color{blue}1$ :
 
 !!!warning ""
 
-    $\color{red}\text{Pour certains auteurs, les feuilles sont les \textbf{nil} !!}$
+    $\color{red}\text{Pour certains auteurs, les feuilles sont les nils !!}$
 
 !!!tip "Remarque"
 
@@ -235,7 +235,7 @@ Tous les niveaux sont complets sauf le dernier qui est rempli incomplètement en
 
     La relation binaire $\prec$ sur les arbres étiquetés par $E$ définie par 
     
-    $A \preceq B \Leftrightarrow $ $A$ est un descendant de $B$
+    $A \preceq B \Leftrightarrow$ $A$ est un descendant de $B$
     
     C'est un ordre bien fondé et $\prec$ est un ordre strict.
 
@@ -351,7 +351,7 @@ Pour un arbre de taille $n$ :
 
 !!!warning "Proposition"
 
-    Soit A un arbre. Alors h(A) + 1 ≤|A|≤2h(A)+1 −1. Et les bornes sont atteintes.
+    Soit $A$ un arbre. Alors $h(A) + 1 ≤|A|≤2^{h(A)+1} −1$. Et les bornes sont atteintes.
 
 !!!note "Preuve par induction"
 
@@ -407,7 +407,7 @@ style G display:none
 
 #### Cas d'un fils unique
 
-Par récurrence sur le nombre de feuille $n$ de $A$, on montre que la profondeur moyenne mA est plus grande que $log_2(n)$. Supposons la propriété vraie pour tout arbre binaire d'au plus $n$ feuilles $(2 ≤n)$. On se donne un arbre $A$ de $n + 1$ feuilles $(n ≥2)$. Si $A$ n'a qu'un fils, on se ramène au problème à deux fils :
+Par récurrence sur le nombre de feuille $n$ de $A$, on montre que la profondeur moyenne $m_A$ est plus grande que $log_2(n)$. Supposons la propriété vraie pour tout arbre binaire d'au plus $n$ feuilles $(2 ≤n)$. On se donne un arbre $A$ de $n + 1$ feuilles $(n ≥2)$. Si $A$ n'a qu'un fils, on se ramène au problème à deux fils :
 
 - L'unique fils $F$ de $A$ a autant de feuilles que $A$ mais la profondeur de ses feuilles est plus petite (car $m_A = m_F + 1$).
 - En descendant dans l'arbre on finit par trouver un premier descendant $D$ qui a deux fils (car $A$ a au moins deux feuilles) et $n + 1$ feuilles.
@@ -417,8 +417,9 @@ Par récurrence sur le nombre de feuille $n$ de $A$, on montre que la profondeur
 
 On suppose que $A$ a deux fils $F_g ,F_d$ . Soit $k$ tel que $F_g$ possède $k$ feuilles $(n + 1 > k ≥1)$, $F_d$ en a $n + 1 −k$
 
-Relation moyenne/ somme des profondeurs : On a à gauche
-$\frac{\sum_{i =1}^k{ p^g_i}}{k} = m_g$
+Relation moyenne $/$ somme des profondeurs :
+
+On a à gauche : $\frac{\sum_{i =1}^k{ p^g_i}}{k} = m_g$
 
 !!!note "Notation"
 

@@ -579,7 +579,7 @@ Considérons que l’on veuille ajouter le nœud $x$ à notre tas binaire :
 
 - On insère $x$ à la prochaine position libre (la position libre la plus à gauche possible sur le dernier niveau),
 - puis on eﬀectue l’opération suivante (que l’on appelle _percolation_ vers le haut ou _percolate-up_) pour rétablir si nécessaire la propriété d’ordre du tas binaire :
-- Tant que $x$ n’est pas la racine de l’arbre et que l’étiquette de x est strictement supérieure à celle du père, échanger les positions entre x et son père.
+- Tant que $x$ n’est pas la racine de l’arbre et que l’étiquette de $x$ est strictement supérieure à celle du père, échanger les positions entre $x$ et son père.
 
 ##### Shéma de l'ajout
 
@@ -719,7 +719,7 @@ let rec percolate_down k t =
 ##### Complexité de la percolation basse
 
 - À chaque appel interne on descend d’un étage dans l’arbre.
-- Le nombre d’appel est majoré par la hauteur ( $\log_2(n)$ pour $n$ nœuds dans cet arbre complet gauche).
+- Le nombre d’appel est majoré par la hauteur $($ $\log_2(n)$ pour $n$ nœuds dans cet arbre complet gauche $)$.
 - A chaque appel interne, il y a moins de $c$ opérations élémentaires.
 - Coût total entre $\log_2(n)$ et $c\log_2(n)$. ODG $\Theta(\log_2(n))$
 
@@ -727,11 +727,11 @@ let rec percolate_down k t =
 
 ```ocaml linenums="1"
 let remove t = 
-    (* mettre dernier elt dans t .(1) : *) 
+    (* mettre dernier elt dans t .(1) : *)
     t.(1) <- t.(t.(0)) ;
-    (* chger taille du tas : *) 
-    t.(0) <- t.(0) - 1; 
-    percolate_down 1 t;; 
+    (* chger taille du tas : *)
+    t.(0) <- t.(0) - 1;
+    percolate_down 1 t;;
 ```
 
 Complexité : la même que la percolation.

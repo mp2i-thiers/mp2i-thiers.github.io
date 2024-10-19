@@ -408,7 +408,7 @@ Pour un graphe $G (S, A)$, on note $B=S \setminus (F \cup E)$ l'ensemble des som
     - prédecesseur de $3$ : $P[3] = 2$.
     - prédecesseur de $2$ : $P[2] = 5$.
     - prédecesseur de $5$ : $P[5] = 1$.
-    - Donc $1523$ avec un coût de 8.
+    - Donc $1523$ avec un coût de $8$.
 
 ### Correction
 

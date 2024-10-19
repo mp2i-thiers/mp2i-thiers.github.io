@@ -86,7 +86,7 @@ Dans l'accès séquentiel, une opération de lecture ou d'écriture se fait touj
 - Les fichiers texte n'autorisent que ce type d'accès.
 - Les fichiers structurés autorisent les deux types d'accès (séquentiel ou direct).
 
-<p align='center'><img src='/images/fichiers1.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers1.png'/></p>
 
 _Figure 1_ – Accès séquentiel : on accède au $53$ème élément $\underline{\textsf{après}}$ le $52$ème. (d'après E. Thirion)
 
@@ -96,7 +96,7 @@ L'accès direct n'est possible que pour les fichiers dits _structurés_ : ils so
 
 Le terme "accès direct" signifie qu'il est possible d'accéder directement à un enregistrement à partir de sa position dans le fichier : par exemple lire (ou modifier) le $53$ème enregistrement du fichier ou le modifier sans avoir lu ou modifié ceux qui précèdent.
 
-<p align='center'><img src='/images/fichiers2.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers2.png'/></p>
 
 _Figure 2_ – Accès direct : on accède au $53$ème enregistrement $\underline{\textsf{directement}}$ sans passer par les précédents. (d'après E. Thirion)
 
@@ -129,7 +129,7 @@ passe dans le mode _par ligne_ :
 
 !!!example ""
 
-    <p align='center'><img src='/images/fichiers3.png'/></p>
+    <p align='center'><img src='/images/Fichiers/fichiers3.png'/></p>
 
     _Figure 3_ – Exemple schématique de partitionnement d'un support mixtebLinux/Windows, avec des liens entre les partitions (Wikipedia)
 
@@ -291,7 +291,7 @@ Un super-bloc contient les informations suivantes
 
 ### Vue d'un disque logique
 
-<p align='center'><img src='/images/fichiers4.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers4.png'/></p>
 
 _Figure 4_ – Un disque logique
 
@@ -363,7 +363,7 @@ Les inodes sont tous de même taille et contiennent les informations suivantes :
 
 ### Vue schématique pour le format ext4
 
-<p align='center'><img src='/images/fichiers5.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers5.png'/></p>
 
 _Figure 5_ – Une inode avec ses liens directs et les indirections de niveau 1,2,3 (cf [SCO Group](http://uw714doc.xinuos.com/en/FS_admin/_ufs_Inodes.html))
 
@@ -375,17 +375,17 @@ En exercice
 
 !!!example "_Figure 6_ – Un répertoire contenant un fichier toto"
 
-    <p align='center'><img src='/images/fichiers6.png'/></p>
+    <p align='center'><img src='/images/Fichiers/fichiers6.png'/></p>
 
 ### Copier
 
-<p align='center'><img src='/images/fichiers7.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers7.png'/></p>
 
 _Figure 7_ – **cp toto titi** duplique les données de **toto**. Un inode autre que celui de **toto** pointe sur les données dupliquées.
 
 ### Renommage ou déplacement
 
-<p align='center'><img src='/images/fichiers8.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers8.png'/></p>
 
 _Figure 8_ – Déplacement **mv toto R2/titi** : par rapport à la figure $6$, **titi** de **R2**
 (inode $236$) $\underline{\textsf{est}}$ l'ancien toto de **R1** (inode $128$)
@@ -406,7 +406,7 @@ syntaxe : **ln toto ../R2/titi**.
 
 Je peux changer **toto** de place (dans la même partition), le lien entre **toto** et **titi** ne disparaît pas.
 
-<p align='center'><img src='/images/fichiers9.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers9.png'/></p>
 
 _Figure 9_ – Lien physique : Dans le répertoire courant, on entre **ln toto R2/titi** : **titi** et **toto** pointent vers le même inode. Pas de duplication des données.
 
@@ -444,11 +444,11 @@ Les données resteront jusqu'à la suppression de tous les noms associés au mê
 
     Entrons **rm titi**. Les blocs de données et l'inode correspondant sont libérés : le système pourra les attribuer à d'autres fichiers. Voir figure $11$.
 
-    <p align='center'><img src='/images/fichiers10.png'/></p>
+    <p align='center'><img src='/images/Fichiers/fichiers10.png'/></p>
 
     _Figure 10_ – Suppression **rm toto** : l'inode $47$ et ses données ne sont pas libérés
 
-    <p align='center'><img src='/images/fichiers11.png'/></p>
+    <p align='center'><img src='/images/Fichiers/fichiers11.png'/></p>
 
     _Figure 11_ – Suppression **rm titi** : l'inode $47$ et ses données sont libérées
 
@@ -474,7 +474,7 @@ create symbolic links relative to link location
 
 Si on déplace ou renomme la source, le lien est cassé.
 
-<p align='center'><img src='/images/fichiers12.png'/></p>
+<p align='center'><img src='/images/Fichiers/fichiers12.png'/></p>
 
 _Figure 12_ - Lien symbolique **ln -sr R1/toto R2/titi**
 

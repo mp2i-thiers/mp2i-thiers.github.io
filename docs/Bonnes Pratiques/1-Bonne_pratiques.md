@@ -177,7 +177,7 @@ asup.c:9:5: error: too many arguments to function 'f'
 
 En cas d'erreur, aucun exécutable n'est produit.
 
-Le cycle de travail consiste en de $\underline\text{fréquents}$ aller-retours entre l'édition du fichier source et la compilation.
+Le cycle de travail consiste en de $\underline{\text{fréquents}}$ aller-retours entre l'édition du fichier source et la compilation.
 
 Compiler souvent ! La compilation n'est pas nécessairement chronophage avec un bon Makefile (cf plus tard)
 
@@ -212,7 +212,7 @@ abort () ; // quitter le programme prématurément
 
 ### Utiliser des prototypes
 
-En C, l'écriture du prototype d'une fonction `f` permet d'appeler `f` avant d'avoir écrit son code.
+En **C**, l'écriture du prototype d'une fonction `f` permet d'appeler `f` avant d'avoir écrit son code.
 
 Dans cet exemple, f n'a pas encore de corps. Mais la compilation avec `gcc -c` permet de se rendre compte que dans le corps de main , on appelle f avec trop d'arguments :
 
@@ -246,7 +246,7 @@ L'_erreur de segmentation_ est un plantage d'une application qui a tenté d'écr
 
 Dans cet exemple le pointeur `variable_entiere` n'est pas initialisé et contient donc une valeur quelconque qui a de forte chance d'être une zone mémoire interdite en écriture.
 
-```C lineums="1"
+```C linenums="1"
 #include <stdio.h>
 #include <stdlib.h>
 

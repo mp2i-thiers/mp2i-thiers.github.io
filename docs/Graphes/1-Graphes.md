@@ -57,9 +57,9 @@ Les arêtes multiples ne sont pas au programme.
 La définition suivante ne s’applique pas aux graphes avec arêtes multiples.
 
 !!! quote "Définition: Graphe simple non orienté"
-    Un graphe (simple) non orienté $G$ est un couple $(V, E)$ où $E ⊆ P(V)$ est un ensemble de paires ou de singleton d’éléments de $V$. On appelle sommets les éléments de $V$ et arcs ceux de $E$.
+    Un graphe (simple) non orienté $G$ est un couple $(S, A)$ où $A ⊆ P(S)$ est un ensemble de paires ou de singleton d’éléments de $S$. On appelle sommets les éléments de $S$ et arcs ceux de $A$.
 
-La lettre $E$ est utilisée pour les arcs car en anglais, _arcs_ se dit _edge_.  
+La lettre $E$ est utilisée pour les arcs car en anglais, _arc_ se dit _edge_.  
 
 Certains auteurs utilisent un vocabulaire spécial pour les graphes non  orientés. Par exemple, une arête (undirected edge) désigne un arc.  
 
@@ -73,12 +73,12 @@ Soit $a = \{x, y\}$. On dit que :
 Au programme ne figurent que les graphes avec au plus un seul arc d’un  sommet à un autre.
 
 !!! quote "Définition: Graphe simple orienté"
-    Un graphe simple orienté $G$ est un couple $(V, E)$ où :
+    Un graphe simple orienté $G$ est un couple $(S, A)$ où :
 
-    - $V$ est appelé l’ensemble des sommets de $G$,
-    - Et $E ⊆ V^2$ est un ensemble de couples d’éléments de $V$ appelé l’ensemble des arcs de $G$.
+    - $S$ est appelé l’ensemble des sommets de $G$,
+    - Et $A ⊆ S^2$ est un ensemble de couples d’éléments de $S$ appelé l’ensemble des arcs de $G$.
   
-La lettre $V$ est utilisée pour les sommets car en anglais, sommet se dit _vertex_ (au pluriel _vertices_).  
+La lettre $V$ peut être utilisée pour les sommets car en anglais, sommet se dit _vertex_ (au pluriel _vertices_).  
 
 Un _arbre_ est un cas particulier de graphe orienté simple.
 
@@ -106,9 +106,9 @@ Dans un graphe général orienté, on distingue le degré sortant ou  extérieur
 ### Matrice d’adjacence sommets-sommets
 
 !!! quote "Définition: Matrice d'adjacence"
-    Soit $G = (V, E)$ un graphe fini simple.
+    Soit $G = (S, A)$ un graphe fini simple.
     Notons $\{v_1,..., v_n\}$ les sommets de $S$.
-    On appelle matrice d’adjacence sommets-sommets de $G = (V, E)$ la
+    On appelle matrice d’adjacence sommets-sommets de $G = (S, A)$ la
     matrice $A_{n×n} = (a_{ij})_1{≤i,j≤n}$ telle que
     
     $$
@@ -131,9 +131,9 @@ Dans un graphe général orienté, on distingue le degré sortant ou  extérieur
 ### Liste d’adjacence
 
 !!! quote "Définition: Liste d'adjacence"
-    Soit $G = (V, E)$ un graphe fini simple.
+    Soit $G = (S, A)$ un graphe fini simple.
 
-    On appelle liste d’adjacence de $G$ toute liste de couples $(s, l)$ où $s$ parcourt $V$ et $l$ est une liste de ses voisins.
+    On appelle liste d’adjacence de $G$ toute liste de couples $(s, l)$ où $s$ parcourt $S$ et $l$ est une liste de ses voisins.
 
 !!!tip ""
     **Remarque**
@@ -204,12 +204,13 @@ Avec un tel choix :
 
 #### Listes d’adjacence en Ocaml : quelle représentation ?
 
-En Ocaml pour un graphe $G = (V, E)$ :  
-On peut considérer une liste $L$ de longueur $|V|$ de tuples $(s, l)$ ou $s$ est un sommet et $l$ la liste des voisins de $s$.  
+En Ocaml pour un graphe $G = (S, A)$ :  
+On peut considérer une liste $L$ de longueur $|S|$ de tuples $(s, l)$ ou $s$ est un sommet et $l$ la liste des voisins de $s$.  
 
 !!!note ""
+
     - **Avantages** : pas de place mémoire perdue ; possibilité d’ajouter un  nouveau sommet après avoir vérifié que ce sommet n’est pas déjà dans  la liste.  
-    - **Inconvénients** : Accès à la liste d’adjacence de $s$ en $O(|V|)$ ; test de voisinage entre $s$ et $x$ en $O(|V| + deg (s))$ ; ajout d’un arc $(s, x)$ en  $O(|V| + deg (s))$.  
+    - **Inconvénients** : Accès à la liste d’adjacence de $s$ en $O(|S|)$ ; test de voisinage entre $s$ et $x$ en $O(|S| + deg (s))$ ; ajout d’un arc $(s, x)$ en  $O(|S| + deg (s))$.  
 
 
 On peut préferer gérer un tableau de listes $l$ plutôt qu’une liste de  tuples (les sommets sont alors des nombres).  
@@ -222,11 +223,11 @@ On peut préferer gérer un tableau de listes $l$ plutôt qu’une liste de  tup
 
 ##### Tableau de liste de chaînes
 
-Dans le même esprit qu’en Ocaml, pour représenter $G = (V, E)$  
+Dans le même esprit qu’en Ocaml, pour représenter $G = (S, A)$  
 Tableau $t$ des successeurs de chaque sommet.  
 $t[i]$ pointe sur la liste des sucesseurs du sommet $i$.  
 Accès direct à un sommet via $t$.  
-Complexité spatiale optimale en $O(|E| + |V|)$  
+Complexité spatiale optimale en $O(|A| + |S|)$  
 
 <p align='center'><img src='/images/Graphes/graphes25.bmp'/></p>
 
@@ -296,14 +297,14 @@ sur le mailllon suivant.
 
 #### Sous-graphes
 
-Convention : $V$ pour vertice, $E$ pour edge.  
+Convention : $S$ pour sommets, $A$ pour arcs.  
 
-- Un sous-graphe est un graphe contenu dans un autre graphe :  "$H = (V_H, E_H)$ est un sous-graphe de $G = (V_G, E_G)$ si $V_H ⊂ V_G$,  $E_H ⊂ E_G$ et pour tout arc (resp. arête) de $E_H$, les extrémités sont  dans $V_H$".  
+- Un sous-graphe est un graphe contenu dans un autre graphe :  "$H = (S_H, A_H)$ est un sous-graphe de $G = (S_G, A_G)$ si $S_H ⊂ S_G$,  $A_H ⊂ A_G$ et pour tout arc (resp. arête) de $A_H$, les extrémités sont  dans $S_H$".  
 On supprime des arcs et des sommets avec la contrainte qu’**il ne faut pas conserver d’arc dont une extrémité a été supprimée de l’ensemble des sommets.**
 
-- Un sous-graphe couvrant (ou graphe partiel) est un sous-graphe ayant  le même ensemble de sommets que le graphe qui le contient.  "$H$ est un sous-graphe couvrant de $G$ (ou $H$ couvre $G$) si $V_H = V_G$  et $E_H ⊂ E_G$."  **On garde tous les sommets, on enlève certains arcs.**
+- Un sous-graphe couvrant (ou graphe partiel) est un sous-graphe ayant  le même ensemble de sommets que le graphe qui le contient.  "$H$ est un sous-graphe couvrant de $G$ (ou $H$ couvre $G$) si $S_H = S_G$  et $A_H ⊂ A_G$."  **On garde tous les sommets, on enlève certains arcs.**
 
-- Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "$H$ est un sous-graphe induit de $G$ si, pour tout $(x, y) \in V_H^2$, l’existence d’un lien entre $x$ et $y$ dans $H$ est équivalente à l’existence  d’un lien entre $x$ et $y$ dans $G$."  
+- Un sous-graphe induit est un sous-graphe défini par un sous ensemble  de sommets.  "$H$ est un sous-graphe induit de $G$ si, pour tout $(x, y) \in S_H^2$, l’existence d’un lien entre $x$ et $y$ dans $H$ est équivalente à l’existence  d’un lien entre $x$ et $y$ dans $G$."  
 **On enlève des sommets, toutes les arêtes correspondant à ces sommets et uniquement celles-là.**
 
 !!!example ""
@@ -318,7 +319,7 @@ On supprime des arcs et des sommets avec la contrainte qu’**il ne faut pas con
 #### Chaînes et Chemins
 
 !!!note ""
-    Soit $G = (V, E)$ un graphe.  
+    Soit $G = (S, A)$ un graphe.  
 
     - Un chemin d’un sommet $x$ à un sommet $y$ est une séquence de (au  moins 2) sommets $x = x_0, x_1,..., x_{n−1}, x_n$ = y dans laquelle chaque $x_i$  admet $x_{i+1}$ pour voisin.  
     - Un sommet $y$ est _accessible_ depuis $x$ s’il existe un chemin de $x$ à $y$.  
@@ -344,12 +345,12 @@ orientés) de celle de _cycle_ (pour les graphes non orientés). Dans un graphe 
 
 !!!warning ""
     **Proposition**
-    S’il existe un chemin de $x$ à $y$ dans le graphe $G = (V , E )$, alors il existe un chemin élémentaire de $x$ à $v$ .
+    S’il existe un chemin de $x$ à $y$ dans le graphe $G = (S , A )$, alors il existe un chemin élémentaire de $x$ à $v$ .
 Preuve en TD.
 
 #### Distance et diamètre
 
-La distance entre deux sommets $x$ et $y$ d’un graphe $G = (V, E)$  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la longueur d’un plus court chemin (resp. chaîne) allant de $x$ à $y$ s’il en  existe un ou bien $+\infty$ sinon.
+La distance entre deux sommets $x$ et $y$ d’un graphe $G = (S, A)$  orienté (resp. non orienté) est notée $d_G (x, y)$ et est égale à la longueur d’un plus court chemin (resp. chaîne) allant de $x$ à $y$ s’il en  existe un ou bien $+\infty$ sinon.
 
 Il s’agit bien d’une distance au sens mathématiques. En particulier,  elle vérifie l’inégalité triangulaire  
 
@@ -366,7 +367,7 @@ Le diamètre d’un graphe $G$ est la valeur : $sup_{(x,y) \in S^2} (d_G (x, y))
 - La connexité est une relation d’équivalence.  
 - Les classes d’équivalences sont appelées _composantes connexes_. La composante connexe d’un sommet $x$ est notée ici $\dot{x}$ et vaut :  
 
-$$\dot{x} = \{y ∈ V| \text{ il existe une chaîne de x à y }\}$$
+$$\dot{x} = \{y ∈ S| \text{ il existe une chaîne de x à y }\}$$
 
 - Un graphe est dit _connexe_ si il possède une seule composante  connexe.
 - La connexité est étendue aux graphes orientés en ne tenant pas compte du sens des arcs.  
@@ -463,7 +464,7 @@ _Deux composantes connexes après suppression de $\{S_4, S_5\}$._
 !!!note ""
     **Preuve**
 
-    ##### Si $G = (V, E)$ non orienté est connexe, $p ≥ n − 1$
+    ##### Si $G = (S, A)$ non orienté est connexe, $p ≥ n − 1$
 
     Par récurrence forte :
 
@@ -473,8 +474,8 @@ _Deux composantes connexes après suppression de $\{S_4, S_5\}$._
     - Si $P(k)$ pour $n ≥ 2$ et tout $k ≤ n$. Soit $G$ connexe à $n + 1$ sommets. Tout sommet possède au moins une arête incidente car $G$ est connexe.  
   
         - Si $G$ possède un sommet $x$ de degré $d(x) = 1$, $x$ n’est sur aucune  chaîne simple joignant deux autres sommets. On supprime $x$ et son  unique arrête adjacente, le sous-graphe $G'$ obtenu est connexe à $n$  sommets. Par **HR** le nombre d’arêtes de $G'$ est $p' ≥ n − 1$. En  remettant l’arête de $x$, on a au moins $(n + 1) − 1$ arêtes dans $G$.  
-        - Sinon, tous les degrés sont $≥ 2$. La somme des degrés dans un graphe est $\sum_{x \in V}d(x) = 2p$ car toutes les arêtes sont comptées deux fois. On  a donc 
-        $$2p = \sum_{x \in V} \underbrace{d(x)}_{\geq 2} \geq 2|V| = 2n+2 $$ 
+        - Sinon, tous les degrés sont $≥ 2$. La somme des degrés dans un graphe est $\sum_{x \in S}d(x) = 2p$ car toutes les arêtes sont comptées deux fois. On  a donc 
+        $$2p = \sum_{x \in S} \underbrace{d(x)}_{\geq 2} \geq 2|S| = 2n+2 $$ 
         Donc $p \geq n+1 \geq (n+1) - 1$. **OK**
 
 
@@ -564,9 +565,9 @@ Une _forêt_ est un graphe non orienté acyclique, c’est une union disjointe  
 #### Racine, arborescence
 
 !!! quote "Définition: Racine et Arborescence"
-    Un sommet $r$ d’un graphe orienté $G = (V , E)$ est une racine de $G$ si  pour tout sommet $x$ de $G$ il existe un chemin de $r$ à $x$.  
+    Un sommet $r$ d’un graphe orienté $G = (S , A)$ est une racine de $G$ si  pour tout sommet $x$ de $G$ il existe un chemin de $r$ à $x$.  
 
-    On dit qu’un graphe orienté $G = (V , E)$ est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant $1$ et si il existe un chemin de $x_0$ à tous les  autres sommets.  
+    On dit qu’un graphe orienté $G = (S , A)$ est une _arborescence_ s’il  possède un unique élément $x_0$ de degré entrant nul, si tous les autres  sont de degré entrant $1$ et si il existe un chemin de $x_0$ à tous les  autres sommets.  
 
 !!!example ""
     **Exemple**
@@ -612,7 +613,7 @@ Un _tournoi_ est un graphe orienté  obtenu à partir d’un graphe complet  en 
 
 #### Graphe biparti
 
-Un graphe _biparti_ $G = (V , E)$  est un graphe (orienté ou non orienté)  admettant une partition $\{P_1, P_2\}$  de ses sommets telle que  $\{x, y\} \in E \Rightarrow (x, y) ∈ P_1 × P_2 ∪ P_2 × P_1$  
+Un graphe _biparti_ $G = (S , A)$  est un graphe (orienté ou non orienté)  admettant une partition $\{P_1, P_2\}$  de ses sommets telle que  $\{x, y\} \in A \Rightarrow (x, y) ∈ P_1 × P_2 ∪ P_2 × P_1$  
 
 Les arbres (et plus généralement les forêts)  sont des graphes bipartis.  
 
@@ -714,7 +715,7 @@ Dès qu’un sommet bleu est abordé, il devient vert. Suivant les traitements, 
 
 #### Graphe de liaison induit
 
-Soit $G = (V , E)$ un graphe et $s_0 \in S$. On appelle graphe de liaison  induit par l’exploration de $G$ à partir de $x$, le sous-graphe de $G$  engendré par les arêtes$\left \{u,v \right \}\in E$ (resp. les arcs) par lesquelles  passent l’exploration de $G$ , (l’exploration passe par $\left \{u,v \right \}$ (resp.  $(u, v)$) si celle-ci provoque le coloriage du sommet $v$ en vert).  
+Soit $G = (S , A)$ un graphe et $s_0 \in S$. On appelle graphe de liaison  induit par l’exploration de $G$ à partir de $x$, le sous-graphe de $G$  engendré par les arêtes$\left \{u,v \right \}\in A$ (resp. les arcs) par lesquelles  passent l’exploration de $G$ , (l’exploration passe par $\left \{u,v \right \}$ (resp.  $(u, v)$) si celle-ci provoque le coloriage du sommet $v$ en vert).  
 
 Pour un parcours depuis $s_0$ :  
 
@@ -770,11 +771,12 @@ Animation du parcours en largeur d'abord :
 A la fin on obtient :
 <p align="center"><img src="/images/Graphes/graphes20.png"></p>
 Avec en rouge le graphe de liaison induit.
+
 Deux arborescences de racines respectives $S_1$ et $S_5$.
 
 #### Coût des opérations de file
 
-Pour un graphe $G = (V , E)$ avec $|E| = p$ et $|V| = n$  
+Pour un graphe $G = (S , A)$ avec $|A| = p$ et $|S| = n$  
 
 - Tous les sommets sont coloriés en bleu exactement une fois au début  puis plus jamais : $O(n)$.
 - Un sommet finit toujours par entrer dans la file (soit du fait de la  boucle tant que , soit du fait de Largeur).  Du fait des tests de couleurs, il n’y entre qu’une fois.
@@ -783,10 +785,10 @@ Pour un graphe $G = (V , E)$ avec $|E| = p$ et $|V| = n$
 
 #### Gestion des listes d’adjacence
 
-Pour un graphe $G = (V , E)$ avec $|E| = p$ et $|V| = n$
+Pour un graphe $G = (S , A)$ avec $|A| = p$ et $|S| = n$
 
 - Une liste d’adjacence donnée n’est balayée qu’une fois et une seule (puisque chaque sommet est ajouté dans la file puis défilé une fois et  une seule). Chaque élément de cette liste donne lieu à des opérations  de coloriage/enfilement en $O(1)$.
-- La somme des longueurs des listes d’adjacence est en $\Theta(\left|E \right|) = \Theta(p)$.  Donc le temps total consacré au balayage des listes d’adjacence est en  $\Theta(p)$.
+- La somme des longueurs des listes d’adjacence est en $\Theta(\left|A \right|) = \Theta(p)$.  Donc le temps total consacré au balayage des listes d’adjacence est en  $\Theta(p)$.
 - Enfin la coloration initiale est en $\Theta(n)$.
 - Le total des opérations est en $\Theta(n + p)$ pour le parcours en largeur.  
 
@@ -805,9 +807,9 @@ Conséquence : à la fin de l’appel de <code>Largeur</code> les sommets rouges
 !!! note ""
     **Preuve : accessiblité = coloration en rouge**
 
-    Posons $G = (V , E)$ et faison un bfs depuis $s_0\in V$ . On montre qu’il y a un  chemin vert/rouge depuis $s_0$ vers tout sommet de la file, et qu’existe un  chemin totalement rouge de $s_0$ vers tout sommet rouge.
+    Posons $G = (S , A)$ et faison un bfs depuis $s_0\in S$ . On montre qu’il y a un  chemin vert/rouge depuis $s_0$ vers tout sommet de la file, et qu’existe un  chemin totalement rouge de $s_0$ vers tout sommet rouge.
 
-    - Au tour 1, $s_0$ sort de la file et devient rouge. Alors il y a un chemin  rouge de $s_0$ à $s_0$. Et tous les voisins de $s$ deviennent verts : donc il y a  un chemin rouge/vert vers eux.
+    - Au tour $1$, $s_0$ sort de la file et devient rouge. Alors il y a un chemin  rouge de $s_0$ à $s_0$. Et tous les voisins de $s$ deviennent verts : donc il y a  un chemin rouge/vert vers eux.
     - Supposons la propriété vraie au tour $k$. Soit $s$ le sommet défilé au  tour $k + 1$. Il faut vérifier la propriété pour le nouveau sommet rouge  et les nouveaux verts.  
 
         - $s$ devient rouge. Puisque $s$ était dans la file, il y a été placé par un  sommet $x$ qui est devenu rouge. Par **HR**, il y a un chemin rouge de $s$ à  $x$ et donc (en ajoutant l’arc $(x, s)$) de $s_0$ à $s$.
@@ -880,12 +882,12 @@ La présence de $s$ en haut de la pile engendre donc un nombre  d’opérations 
 #### Complexité totale
 
 !!!note ""
-    Pour un graphe $G = (V, E)$ avec $|E| = p$ et $|V| = n$  
+    Pour un graphe $G = (S, A)$ avec $|A| = p$ et $|S| = n$  
 
     - On somme les nombres d’opérations occasionnées par chaque sommet pour obtenir la complexité totale.  
     - Le nombre total d’opération est (majoré par un nombre) proportionnel  à  
     
-    $$\sum_{s\in V}(1 + deg^+ s) = n + \sum_{i\in V}deg^+ s  = n + p = O(n+p)$$
+    $$\sum_{s\in S}(1 + deg^+ s) = n + \sum_{i\in S}deg^+ s  = n + p = O(n+p)$$
     
     - Même si on ajoute le coût d’initialisation en $O(n)$ et la copie en $O(n+p)$, l’ensemble reste en  $O(n)$  
 
@@ -907,7 +909,7 @@ A la fin on obtient :
 
 <p align='center'><img src='/images/Graphes/graphes15.png'/></p>
 
-Soit $G_l = (V , L)$ le graphe de liaison induit par le parcours en  profondeur d’un graphe $G$ . Un arc $u → v$ est :  
+Soit $G_l = (S , L)$ le graphe de liaison induit par le parcours en  profondeur d’un graphe $G$ . Un arc $u → v$ est :  
 
 - un arc de <code style='color:crimson'>liaison</code> si et seulement si $u \rightarrow v \in L$  
 - un arc <code style='color:olivedrab'>retour</code> si et seulement si $u$ est un descendant de $v$ dans $L$.  
@@ -1009,7 +1011,7 @@ La résolution de ce problème consiste à effectuer un _tri topologique_ des so
 On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc n'aille de droite à gauche
 
 !!!quote "Définition: Tri topologique"
-    On appelle `tri topologique` d'un graphe orienté $G = (V, E)$ toute injection $r: S\rightarrow \mathbb{N}$ telle que $\forall x \rightarrow y \in A: r(x) \le r(y)$. On appelle $r(x)$ le _rang_ du sommet $x$.
+    On appelle `tri topologique` d'un graphe orienté $G = (S, A)$ toute injection $r: S\rightarrow \mathbb{N}$ telle que $\forall x \rightarrow y \in A: r(x) \le r(y)$. On appelle $r(x)$ le _rang_ du sommet $x$.
 
 <p align='center'><img src='/images/Graphes/graphes18.png'/></p>
 
@@ -1034,18 +1036,18 @@ On peut représenter les sommets alignés de gauche à droite sans qu'aucun arc 
   
     ##### Tri topologique $\Rightarrow$ graphe acyclique
 
-    Soit $G = (V , E )$ un graphe orienté.
-    Rappel : un tri toplogique $r$ est une numérotation injective des sommets telle que pour deux sommets $x, y$ : $(r(x) \le r(y) \Rightarrow y \rightarrow x \notin E)$.
+    Soit $G = (S , A )$ un graphe orienté.
+    Rappel : un tri toplogique $r$ est une numérotation injective des sommets telle que pour deux sommets $x, y$ : $(r(x) \le r(y) \Rightarrow y \rightarrow x \notin A)$.
 
     - On suppose qu’existe un circuit élémentaire $C$ et on prend $x$ dans ce circuit tel que $r(x) = min(\{ r(y)\text{ | }y \in C \})$.
-    - Soit $y$ le prédecesseur de $x$ dans $C$ . Comme $y \rightarrow x \in E$, on a $r(y) < r(x)$.
+    - Soit $y$ le prédecesseur de $x$ dans $C$ . Comme $y \rightarrow x \in A$, on a $r(y) < r(x)$.
     Contradiction avec $r(x) \leq r(y)$.
 
 ### Composantes fortement connexes (CFC)
 
 #### Observations
 
-Soit $G = (V, E)$ un graphe orienté. On a vue qu’une composante fortement connexe de $G$ contenant un sommet $x$ est l’ensemble des sommets $y$ tels que $y$ est accessible à partir de $x$ et $x$ est accessible à partir de $y$.
+Soit $G = (S, A)$ un graphe orienté. On a vue qu’une composante fortement connexe de $G$ contenant un sommet $x$ est l’ensemble des sommets $y$ tels que $y$ est accessible à partir de $x$ et $x$ est accessible à partir de $y$.
 
 Le parcours en profondeur d’un graphe à partir d’un sommet $x$ ayant comme résultat l’ensemble des sommets accessibles à partir de $x$, on va utiliser ce parcours pour calculer la composante fortement connexe contenant $x$.
 
