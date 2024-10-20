@@ -15,7 +15,7 @@
 
 #### Tableaux associatifs
 
-!!! quote"Un tableau associatif"
+!!!quote "Un tableau associatif"
 
     Aussi appelé _dictionnaire_ ou _table d'association_ est un type de données associant à un ensemble de clefs un ensemble correspondant de valeurs.
 
@@ -38,10 +38,10 @@ Opérations dont la complexité temporelle attendue est en $O (1)$ :
 - recherche : détermination de la valeur associée à une clef, si elle existe ;
 
 $\color{red}\text{Le plus souvent ces opérations ont un coup moyen en } O (1)$
-$\color{red}\text{et une complexité au pire (rarement atteinte) en } O (n) \text{ (où n est le nombre de clés)}$
+$\color{red}\text{et une complexité au pire (rarement atteinte) en } O (n)$ $\color{red}\text{ (où n est le nombre de clés)}$
 
-Dans les sujets de concours d'ITC, sauf mention du contraire, on peut supposer abusivement que 
-$\color{red}\text{les opérations d'ajout-insertion-recherche-modification sont en temps constant au pire cas}$.
+Dans les sujets de concours d'ITC, sauf mention du contraire, on peut supposer abusivement que
+$\color{red}\text{les opérations d'ajout-insertion-recherche-modification}$ $\color{red}\text{sont en temps constant au pire cas.}$
 
 Souvent, on s'accorde la possibilité de boucler sur les clés du dictionnaire.
 
@@ -84,8 +84,8 @@ Deux structures sont particulièrement efficaces pour représenter les tableaux 
 
 |Opérations| Tables de hachage |Arbre équilibré|
 |:-:|:-:|:-:|
-|Insertion| $O (1)$ moyenne, $O (n)$ pire| $O (log n)$ moyenne et pire.|
-|recherche| $O (1)$ moyenne, $O (n$) pire| $O (log n)$ moyenne et pire.|
+|Insertion| $O (1)$ moyenne, $O (n)$ pire| $O (log (n))$ moyenne et pire.|
+|recherche| $O (1)$ moyenne, $O (n$) pire| $O (log (n))$ moyenne et pire.|
 
 - En général, les tables de hachage ont une représentation plus compacte en mémoire.
 - Les tables de hachage imposent la création (souvent difficile) d'une _fonction de hachage_, les arbres équilibrés ont juste besoin d'un ordre total sur les clefs.
@@ -107,13 +107,13 @@ Cette affirmation doit être relativisée :
 
 #### Fonctionnement d'un tableau
 
-- Considérons une liste $L$ $\texttt{Python}$ dont les éléments sont notés $E_0,E_1,E_2,...$
+- Considérons une liste $\texttt{Python}$ $L$ dont les éléments sont notés $E_0,E_1,E_2,...$
 - Les adresses des éléments de $L$ (des _mots binaires_ de $8$ ou $4$ octets) sont enregistrées dans un tableau d'adresse. Ces mots/adresses occupent des places contiguës en mémoire.
 - $\texttt{Python}$ connaît l'adresse du début du tableau des adresses de la liste $L$. Il retrouve n'importe quel élément par une opération simple. Par exemple il trouve l'adresse de $E_3$ en calculant :
 
-**adresse de $E_0 + 3 ×$ taille d'une adresse**
+$\kern 3pc$**adresse de $E_0 + 3 ×$ taille d'une adresse**
 
-Dans la suite on note *$a_0$* l'adresse de $E_0$ et $t$ la taille d'une adresse.
+Dans la suite on note $a_0$ l'adresse de $E_0$ et $t$ la taille d'une adresse.
 
 !!!example "Trouver le $3$ème élément d'une liste $L$"
 
@@ -424,7 +424,7 @@ la cle pantalon correspond a la valeur 19
 
 - En utilisant une syntaxe allégée :
 
-```Python linenums="1" title = "Listing 7 – Effet similaire au précédent"
+```Python linenums="1" title="Listing 7 – Effet similaire au précédent"
 for cle in placard:
     print("la cle ",cle, "correspond a la valeur ",placard[cle])
 ```
