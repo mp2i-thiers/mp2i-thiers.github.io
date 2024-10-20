@@ -66,11 +66,9 @@ return 0;
 
 Ouvrir un terminal :
 
-- ♥ Compilation avec affichage des warning (mises en garde) (option `-Wall`):
-$\kern 4pc$ `gcc -Wall exemple.c`
+- ♥ Compilation avec affichage des warning (mises en garde) (option `-Wall`): `gcc -Wall exemple.c`
 Fichier exécutable produit : `a.out` (nom par défaut)
-- ♥ Si on veut fixer le nom du fichier produit :
-$\kern 4pc$ `gcc -Wall initialiser.c -o toto`
+- ♥ Si on veut fixer le nom du fichier produit : `gcc -Wall initialiser.c -o toto`
 - Exécution.
 
 ```bash linenums="1"
@@ -163,7 +161,7 @@ hello
 |**%o** |**int**| entier exprimé en octal|
 |**%x** |**int**| entier exprimé en héxadécimal|
 |**%c** |**char**| caractère|
-|**%s** |**char*** et **char t[]**| chaîne de caractères|
+|**%s** |**char** et **char t[]**| chaîne de caractères|
 |**%f** |**double**| flottants et doubles en notation décimale|
 |**%e** |**double**| flottant en notation scientifique|
 |**%p** |adresses||
@@ -218,7 +216,7 @@ Les opérateurs arithmétiques ne devraient pas surprendre les utilisateurs de $
 ## Pas de type bouléen importé par défaut
 
 - En $\texttt{C}$, il n'existe pas de type bouléen importé par défaut.
-- À la place, la valeur 0 représente le bouléen false et toute autre valeur, true .
+- À la place, la valeur $0$ représente le bouléen `false` et toute autre valeur, `true` .
 - Or, ce n'est pas l'esprit du programme d'info en CPGE. Une bonne façon de mettre des bouléens dans un programme $\texttt{C}$ est alors d'importer la bibliothèque `#include <stdbool.h>`. ♥
 
 ## Opérateurs bouléens ♥
@@ -381,12 +379,12 @@ Pour arrêter : `CTRL + C`
     - d'éviter les séquences d'instructions répétitives, et cela d'autant plus facilement que la notion d'arguments permet de paramétrer certains modules.
     - le partage d'outils communs qu'il suffit d'avoir écrits et mis au poin une seule fois. La _compilation séparée_ est ici bien pratique pour ne compiler qu'une partie du programme indépendamment des autres.
 
-## Programmation modulaire en C
+## Programmation modulaire en $\texttt{C}$
 
 ### Fonctions et procédures
 
-- Il n'existe qu'un seul type de module en C : les fonctions et procédures
-- Les arguments sont transmis _par valeur_ en C aux fonctions.
+- Il n'existe qu'un seul type de module en $\texttt{C}$ : les fonctions et procédures
+- Les arguments sont transmis _par valeur_ en $\texttt{C}$ aux fonctions.
 - Il semble donc impossible de modifier un argument transmis mais en réalité certaines valeurs (pointeurs et tableaux) sont en fait des adresses : cela fournit un moyen détourné de modifier l'agument transmis.
 - La compilation séparée se fait par fichier source (alors qu'en Fortran par exemple, elle se fait par module).
 

@@ -7,7 +7,7 @@
 
 !!!quote "byte"
 
-    On appelle _byte_ (ou _multiplets_ en français) la plus petite unité « logiquement » adressable par un programme sur un ordinateur. Aujourd'hui, le besoin d'une structure commune pour le partage des données a fait que le byte de 8 bits, ou 1 octet, s'est généralisé en informatique
+    On appelle _byte_ (ou _multiplets_ en français) la plus petite unité « logiquement » adressable par un programme sur un ordinateur. Aujourd'hui, le besoin d'une structure commune pour le partage des données a fait que le byte de $8$ bits, ou $1$ octet, s'est généralisé en informatique
 
 !!!note "Remarque (Wikipedia)"
 
@@ -25,7 +25,7 @@
 
 - Il est souvent utile de connaître la taille d'un type de donnée (en particulier d'une _structure_).
 - En C la taille des types primitifs est une constante exprimée en byte. Cependant, la taille réelle en octet du byte dépend des machines et de l'OS. Pour assurer la portabilité du code, il est préférable de réserver une zone mémoire en byte plutôt qu'en octet.
-- Ci-dessous, la fonction malloc alloue une zone mémoire faisant la taille (en bytes) de 10 entiers. Elle retourne un pointeur sur cette zone :
+- Ci-dessous, la fonction malloc alloue une zone mémoire faisant la taille (en bytes) de $10$ entiers. Elle retourne un pointeur sur cette zone :
 
 ```C linenums="1"
 int∗ pointeur;
@@ -48,7 +48,7 @@ Les parenthèses ne sont pas obligatoires avec `sizeof` s'il s'agit de détermin
     Dans un fichier $\texttt{taille.c}$ :
     
     - Directement dans le main, afficher la taille des types `size t, int, int* `.
-    - Directement dans le main , créer maintenant un tableau de 5 entiers et afficher sa taille avec la technique précédente.
+    - Directement dans le main , créer maintenant un tableau de $5$ entiers et afficher sa taille avec la technique précédente.
     - Écrire une fonction `int tailletab (int t[])` qui prend en paramètre un tableau et affiche sa taille selon la technique précédente. Appeler maintenant dans le main cette fonction avec un tableau de $5$ entiers et comparer avec l'affichage précédent. Expliquer.
 
 ## Multiples de l'octet
