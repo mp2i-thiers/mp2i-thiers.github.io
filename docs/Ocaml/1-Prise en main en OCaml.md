@@ -22,6 +22,10 @@
     - Cette introduction de [Jean-Christophe Filliatre](https://www.enseignement.polytechnique.fr/profs/informatique/Jean-Christophe.Filliatre/14-15/INF549/ocaml.pdf)
     - Quelques mots sur la [compilation](https://icps.u-strasbg.fr/~violard/PF/2007-2008/compilateur.html)
 
+!!!note "Bonus pour approfondir le cours"
+
+    Cette [page](https://ocaml.gelez.xyz/VIII/1-le-type-list/) et les $3$ suivantes (cliquer sur page suivante) sont aussi très instructives.
+
 ## Généralités
 
 ### Compilation
