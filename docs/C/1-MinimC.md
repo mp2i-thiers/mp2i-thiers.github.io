@@ -231,7 +231,7 @@ Les voici :
 |`\|\|` |OU|
 |`!` |NON|
 
-```C lineums="1"
+```C linenums="1"
 #include <stdio.h>// charger les entrées−sorties
 #include <stdbool.h>// bouléens
 
@@ -290,18 +290,18 @@ else{
 
 !!!example "Détection et affichage de la parité d'un entier saisi"
 
-```C linenums="1"
-// parité d'un entier
-int n;
-printf("entrer un nombre entier : ");
-scanf("%i", &n);
-if(n%2==0){
-    printf("votre nombre est pair  \n");
-}
-else{
-    printf("votre nombre est impair \n");
-}
-```
+    ```C linenums="1"
+    // parité d'un entier
+    int n;
+    printf("entrer un nombre entier : ");
+    scanf("%i", &n);
+    if(n%2==0){
+        printf("votre nombre est pair  \n");
+    }
+    else{
+        printf("votre nombre est impair \n");
+    }
+    ```
 
 ### Sinon si ♥
 
@@ -511,13 +511,13 @@ $./a.out
 ## Initialisation de tableau
 
 - Avec `int t[5]` on déclare un tableu de $5$ entiers. Ce qui est dedans est impossible à prévoir.
-- Pour déclarer le contenu d'un tableau à sa création, on peut utiliser une syntaxe énumérative :
+- Pour déclarer le contenu d'un tableau à sa création, on peut utiliser une syntaxe énumérative
 
 ```C linenums="1"
 int t[5] = {1, 5, 45, 3, 9};
 ```
 
-- Si on écrit int `t[5]={10,20}` , les éléments $2$,$3$,$4$ sont mis par défaut à $0$.
+- Si on écrit `int t[5]={10,20}` , les éléments $2$,$3$,$4$ sont mis par défaut à $0$.
 
 !!!danger "Danger"
 

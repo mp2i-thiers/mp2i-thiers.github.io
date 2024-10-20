@@ -10,7 +10,7 @@
 
 !!!warning "Avertissment"
 
-    Nous utilisons toujours le langage **C** tel que défini dans la norme « C99 » .
+    Nous utilisons toujours le langage $\texttt{C}$ tel que défini dans la norme « C99 » .
 
 !!!note "Historique"
 
@@ -18,7 +18,7 @@
     - Création début des années $70$ pour réécrire $\texttt{UNIX}$
     - A inspiré de nombreux langages plus modernes comme $\texttt{C++}$, $\texttt{C\#}$, $\texttt{Java}$ et $\texttt{PHP}$ ou $\texttt{Javascript}$.
     - Utilisé par exemple pour réaliser les bases (compilateurs, interpréteurs...) des langages plus modernes.
-    - C offre au développeur une marge de contrôle importante sur la machine (notamment sur la gestion de la mémoire)
+    - $\texttt{C}$ offre au développeur une marge de contrôle importante sur la machine (notamment sur la gestion de la mémoire)
 
 ## Compilation
 
@@ -26,11 +26,11 @@
 
 La traduction d'un (ou plusieurs) fichiers sources en $\texttt{C}$ vers le langage machine se fait en 2 étapes indépendantes et souvent enchaînées automatiquement (donc difficile à distinguer pour le débutant).
 
-!!!quote"Prétraitement"
+!!!quote "Prétraitement"
 
     Opération purement textuelle $\color{red}\text{consistant par exemple à supprimer les } \textit{commentaires}$
 
-- Compilation . En $3$ sous-étapes :
+- Compilation. En $3$ sous-étapes :
     - Compilation proprement dite
     - Assemblage
     - Édition de liens
@@ -41,7 +41,8 @@ La traduction d'un (ou plusieurs) fichiers sources en $\texttt{C}$ vers le langa
 
 !!!quote "Assemblage"
 
-    $\color{red}\text{Transforme le code assembleur en instructions binaires}$ (donc directement compréhensibles par le processeur) Cette instruction et la précédente sont généralement effectuées dans la foulée l'une de l'autre sauf précision contraire passée en argument du compilateur.. Fichier binaire produit appelé $\color{red}\textit{fichier objet}\text{ (ou }\textit{module objet})$.
+    $\color{red}\text{Transforme le code assembleur en instructions binaires}$ (donc directement compréhensibles par le processeur) Cette instruction et la précédente sont généralement effectuées dans la foulée l'une de l'autre sauf précision contraire passée en argument du compilateur.
+    Fichier binaire produit appelé $\color{red}\textit{fichier objet}\text{ (ou }\textit{module objet})$.
 
 !!!quote "Édition de liens"
 
@@ -183,7 +184,7 @@ Les fichiers **.a** : Archives constituées de fichiers objets correspondant aux
 
 Exemple **libc.a** : archive contenant notamment **stdio.o**.
 
-### gcc et bibliothèques
+### `gcc` et bibliothèques
 
 Option `-l` de `gcc`
 
@@ -191,7 +192,7 @@ Option `-l` de `gcc`
 
 !!!example ""
 
-    la librairie mathématique **libm.a** est située sur mon ordinateur dans **/usr/lib/x86 64-linux-gnu/**
+    La librairie mathématique **libm.a** est située sur mon ordinateur dans **/usr/lib/x86 64-linux-gnu/**
 
     Pour la trouver, entrer :
     
