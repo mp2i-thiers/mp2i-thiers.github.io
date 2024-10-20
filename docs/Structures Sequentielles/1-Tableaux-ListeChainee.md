@@ -90,7 +90,7 @@ void vector_set(vector∗ v, int i, int x){
 }
 ```
 
-En fait, nous utiliserons vector_set comme fonction auxiliaire d'une fonction vector_push , qui ajoute un élément et incrémente la taille du tableau (en lançant parfois un redimensionnement).
+En fait, nous utiliserons `vector_set` comme fonction auxiliaire d'une fonction `vector_push` , qui ajoute un élément et incrémente la taille du tableau (en lançant parfois un redimensionnement).
 
 ### Redimensionnement
 
@@ -113,7 +113,7 @@ void vector_resize(vector∗ v, int c){
 
 - Si `c > v->capacity` , on redimensionne en `max(2*v->capacity,c)`.
 - On réalloue un nouveau tableau interne et on copie les valeurs de l'ancien dedans.
-- On désalloue l'ancien tableau ; puis on redéfini la taille du tableau redimensionnable
+- On désalloue l'ancien tableau; puis on redéfini la taille du tableau redimensionnable
 
 ### Accumulation
 

@@ -27,9 +27,9 @@ _Figure_ – Empiler et dépiler
 
 !!!example ""
 
-<p align='center'><img src='/images/PilesFiles/pilesfiles2.png'/></p>
+    <p align='center'><img src='/images/PilesFiles/pilesfiles2.png'/></p>
 
-_Figure_ – Empilement de $A$ puis$ B$, dépilement de $B$ puis $A$ $(\texttt{LIFO})$
+    _Figure_ – Empilement de $A$ puis$ B$, dépilement de $B$ puis $A$ $(\texttt{LIFO})$
 
 #### Historique
 

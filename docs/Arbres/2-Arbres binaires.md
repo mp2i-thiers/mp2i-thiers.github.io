@@ -190,7 +190,7 @@ Ainsi $|Ai |> |Aj |$ et $A_i = A_j$ : **ABSURDE**.
 
     $\textbf{1.}$ Et nous avec !
 
-### Abres binaires
+### Arbres binaires
 
 _Figure 8_ – Un arbre binaire parfait
 
@@ -538,7 +538,7 @@ Soit un tri $T$ et son arbre de décision $A$.
 
 - La complexité en moyenne de $T$ est donc proportionnelle à la profondeur moyenne des $n!$ feuilles.
 - Or, celle-ci est minorée par $log_2(n!)$ Et la formule de Stirling nous donne $log_2(n!) = Θ(n \times log(n))$.
-- Ainsi, la meilleure complexité possible en moyenne pour un tri par comparaison est Θ(n \times log (n)).
+- Ainsi, la meilleure complexité possible en moyenne pour un tri par comparaison est $Θ(n \times log (n))$.
 - La complexité au pire est supérieure à la complexité en moyenne. Un algorithme qui, comme le tri fusion, réalise une complexité au pire en $Θ(n\times log (n))$ est donc un algorithme de tri par comparaison optimal.
 
 ## Parcours d'arbres binaires
