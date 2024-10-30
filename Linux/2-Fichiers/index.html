@@ -1,0 +1,3637 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1-Linux/">
+      
+      
+        <link rel="next" href="../3-Droits/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Fichiers, systèmes de fichiers - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fichiers-systemes-de-fichiers" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fichiers, systèmes de fichiers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quun-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'un fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opertation-sur-les-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opértation sur les fichiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opértation sur les fichiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fichier-logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichier logique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-de-manipulation-des-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Séquence de manipulation des fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-dacces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erreurs d'accès
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-sequentiel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès séquentiel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-direct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès direct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipuler-un-fichier-texte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipuler un fichier texte
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partitions-peripheriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitions périphériques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitions périphériques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peripheriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Périphériques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connaitre-les-systemes-de-fichiers-montes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connaître les systèmes de fichiers montés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udev" class="md-nav__link">
+    <span class="md-ellipsis">
+      udev
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#majeurs-et-mineurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Majeurs et mineurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les fichiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les fichiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-types-de-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les types de fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peripheriques_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Périphériques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organisation-du-super-bloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organisation du super-bloc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-dun-disque-logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vue d'un disque logique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connaitre-linode-dun-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connaître l'inode d'un fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nombre-dinodes-utilisees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nombre d'inodes utilisées
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#champs-dun-inode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Champs d'un inode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-schematique-pour-le-format-ext4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vue schématique pour le format ext4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taille-maximale-dun-fichier-regulier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille maximale d'un fichier régulier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ajouter-deplacer-supprimer-lier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajouter, déplacer, supprimer, lier
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter, déplacer, supprimer, lier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renommage-ou-deplacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renommage ou déplacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lien-physique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lien physique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-et-inode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppression et inode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lien-symbolique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lien symbolique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quun-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'un fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opertation-sur-les-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opértation sur les fichiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opértation sur les fichiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fichier-logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichier logique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-de-manipulation-des-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Séquence de manipulation des fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-dacces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erreurs d'accès
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-sequentiel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès séquentiel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-direct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès direct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipuler-un-fichier-texte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipuler un fichier texte
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partitions-peripheriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitions périphériques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitions périphériques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peripheriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Périphériques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connaitre-les-systemes-de-fichiers-montes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connaître les systèmes de fichiers montés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udev" class="md-nav__link">
+    <span class="md-ellipsis">
+      udev
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#majeurs-et-mineurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Majeurs et mineurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les fichiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les fichiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-types-de-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les types de fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peripheriques_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Périphériques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organisation-du-super-bloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organisation du super-bloc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-dun-disque-logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vue d'un disque logique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connaitre-linode-dun-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connaître l'inode d'un fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nombre-dinodes-utilisees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nombre d'inodes utilisées
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#champs-dun-inode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Champs d'un inode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-schematique-pour-le-format-ext4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vue schématique pour le format ext4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taille-maximale-dun-fichier-regulier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille maximale d'un fichier régulier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ajouter-deplacer-supprimer-lier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajouter, déplacer, supprimer, lier
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter, déplacer, supprimer, lier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renommage-ou-deplacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renommage ou déplacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lien-physique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lien physique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-et-inode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suppression et inode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lien-symbolique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lien symbolique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="fichiers-systemes-de-fichiers">Fichiers, systèmes de fichiers<a class="headerlink" href="#fichiers-systemes-de-fichiers" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Un cours du site <a href="https://www.malekal.com/les-repertoires-systemes-arborescence-linux/">Malekal</a></li>
+<li>Un cours de Eric Thirion <a href="http://cours.thirion.free.fr">ici</a></li>
+</ul>
+</div>
+<h2 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
+<h3 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h3>
+<p>La RAM est <em>volatile</em>. Mais les codes et les données des programmes stockés dans la mémoire centrale (et en particulier ceux du systèmes d'exploitation) ont besoin d'être conservé au delà de l'arrept de l'ordinateur.</p>
+<p>C'est le rôle du <em>système de gestion de fichiers</em> qui assure la conservation des données sur un support de masse <em>non volatile</em> (disque dur, DVD, clé USB...).</p>
+<p>Le système d'exploitation offre à l'utilisateur une interface de stockage indépendante des propriétés physiques des supports de conservation. Son unité de base est le <em>fichier</em>.</p>
+<p>Le concept de fichier présente deux niveaux :</p>
+<ul>
+<li>le <em>fichier logique</em> représente les données incluses dans le fichier telles qu'elles sont vues par l'utilisateur;</li>
+<li>le <em>fichier physique</em> représente le fichier tel qu'il est alloué physiquement sur la mémoire de masse.</li>
+</ul>
+<p>Le système d'exploitation gère ces deux niveaux et assure la
+correspondance entre eux via la notion de <em>répertoire</em></p>
+<h3 id="quest-ce-quun-fichier">Qu'est-ce qu'un fichier<a class="headerlink" href="#quest-ce-quun-fichier" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Fichier</p>
+<p>Un <em>fichier</em> est un ensemble de données numériques réunies sous un même nom, enregistré sur un suport de stockage permanent appelé <em>mémoire de masse</em> (ex : disque dur, clé USB, mémoire flash etc...).</p>
+</div>
+<p>Afin de faciliter leur organisation, les fichiers sont disposés dans des <em>systèmes de fichiers</em> qui permettent de les placer dans des emplacements appelés <em>répertoires</em> eux-même organisés selon le même principe. On obtient alors une hierarchie <em>arborescente</em>.</p>
+<p>Un fichier possède toujours (au moins) un <em>nom</em> qui sert à désigner le contenu pour l'utilisateur humain et à y accéder. Le système, lui, utilise plutôt un numéro d'<em>inode</em>.</p>
+<p>Chaque fichier possède en outre des <em>métadonnées</em> (des informations sur le fichier lui-même) comme sa longueur, son auteur, les personnes autorisées à le manipuler ou la date de dernière modification.</p>
+<h2 id="opertation-sur-les-fichiers">Opértation sur les fichiers<a class="headerlink" href="#opertation-sur-les-fichiers" title="Permanent link">&para;</a></h2>
+<h3 id="fichier-logique">Fichier logique<a class="headerlink" href="#fichier-logique" title="Permanent link">&para;</a></h3>
+<p>Correspond à la vue que l'utilisateur a de la conservation de ces données :</p>
+<ul>
+<li>C'est un type de données standard défini dans les langages de programmation que l'on peut <em>créer</em>, <em>ouvrir</em>, <em>fermer</em>, <em>détruire</em>. Les opérations de créations et de fermeture effectuent la liaison du fichier logique avec le fichier physique. Les opérations de destruction et de fermeture rompent cette liaison.</li>
+<li>C'est également un ensemble d'enregistrements (ou <em>articles</em>) sur le modèle des <em>structures</em> en <strong>C</strong>.</li>
+</ul>
+<h3 id="operations">Opérations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h3>
+<p>Les langages de programmation permettent de :</p>
+<ul>
+<li>créer des fichiers</li>
+<li>enregistrer des informations dans un fichier (c'est l'accès en <em>écriture</em>)</li>
+<li>lire des informations dans un fichier (c'est l'accès en <em>lecture</em>).</li>
+<li>Que ce soit en lecture ou en écriture, il y a deux façons d'accéder au contenu d'un fichier<ul>
+<li>accès <em>séquentiel</em></li>
+<li>et accès <em>direct</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="sequence-de-manipulation-des-fichiers">Séquence de manipulation des fichiers<a class="headerlink" href="#sequence-de-manipulation-des-fichiers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ouvrir le fichier : on informe le système que l'on a l'intention d'accèder au fichier. C'est ici que peuvent survenir les <em>erreurs d'accès</em>.</li>
+<li>Lire des informations / Ecrire des informations</li>
+<li>Fermer le fichier. On informe le système que le programm a fini d'utiliser le fichier. Un autre programme ou un autre utilisateur
+pourra donc y accéder à son tour.</li>
+<li>Quand on accède en écriture à un fichier qui n'existe pas, le système le crée. En revanche l'accès en lecture à un fichier qui n'existe pas soulève une erreur.</li>
+</ul>
+<h3 id="erreurs-dacces">Erreurs d'accès<a class="headerlink" href="#erreurs-dacces" title="Permanent link">&para;</a></h3>
+<p>Le système d'exploitation peut refuser l'accès à un fichier pour diverses raisons :</p>
+<ul>
+<li>accès en lecture à un fichier qui n'existe pas,</li>
+<li>accès en lecture sur un fichier dont on n'a pas les droits (ce fichier appartient à un autre utilisateur)</li>
+<li>accès en écriture sur un fichier alors qu'on n'a pas le droit d'écriture dessus.</li>
+<li>accès en écriture sur un fichier alors qu'un autre utilisateur est en train de l'exploiter (en lecture ou écriture),</li>
+<li>accès en écriture sur un fichier alors que le périphérique qui le contient est plein.</li>
+<li>quand on essaye d'accèder à une ligne après la dernière ligne du fichier.</li>
+</ul>
+<p>Cette liste n'est pas exhaustive.</p>
+<h3 id="acces-sequentiel">Accès séquentiel<a class="headerlink" href="#acces-sequentiel" title="Permanent link">&para;</a></h3>
+<p>Dans l'accès séquentiel, une opération de lecture ou d'écriture se fait toujours juste après la dernière partie du fichier lue ou écrite (voir figure <span class="arithmatex">\(1\)</span> ci-dessous).</p>
+<ul>
+<li>Les fichiers texte n'autorisent que ce type d'accès.</li>
+<li>Les fichiers structurés autorisent les deux types d'accès (séquentiel ou direct).</li>
+</ul>
+<p align='center'><img src='/images/Fichiers/fichiers1.png'/></p>
+
+<p><em>Figure 1</em> – Accès séquentiel : on accède au <span class="arithmatex">\(53\)</span>ème élément <span class="arithmatex">\(\underline{\textsf{après}}\)</span> le <span class="arithmatex">\(52\)</span>ème. (d'après E. Thirion)</p>
+<h3 id="acces-direct">Accès direct<a class="headerlink" href="#acces-direct" title="Permanent link">&para;</a></h3>
+<p>L'accès direct n'est possible que pour les fichiers dits <em>structurés</em> : ils sont définis comme une suite de blocs de taille fixe que l'on appelle <em>enregistrements</em>. (voir figure <span class="arithmatex">\(2\)</span> ci-dessous).</p>
+<p>Le terme "accès direct" signifie qu'il est possible d'accéder directement à un enregistrement à partir de sa position dans le fichier : par exemple lire (ou modifier) le <span class="arithmatex">\(53\)</span>ème enregistrement du fichier ou le modifier sans avoir lu ou modifié ceux qui précèdent.</p>
+<p align='center'><img src='/images/Fichiers/fichiers2.png'/></p>
+
+<p><em>Figure 2</em> – Accès direct : on accède au <span class="arithmatex">\(53\)</span>ème enregistrement <span class="arithmatex">\(\underline{\textsf{directement}}\)</span> sans passer par les précédents. (d'après E. Thirion)</p>
+<h3 id="manipuler-un-fichier-texte">Manipuler un fichier texte<a class="headerlink" href="#manipuler-un-fichier-texte" title="Permanent link">&para;</a></h3>
+<p>L'accès se fait en lecture ou en écriture mais (en général) pas les deux. Deux options pour le mode écriture : écriture au début (donc avec écrasement du contenu) ou bien, à la fin, en conservant le contenu précédent (dans ce cas, on parle de mode <em>ajout</em>).</p>
+<p>On accède aux informations séquentiellement, le "grain" de la
+séquence étant soit la ligne soit le caractère. On indique ici ce qu'il se
+passe dans le mode <em>par ligne</em> :</p>
+<ul>
+<li>Après l'ouverture du fichier en lecture on accède à sa première ligne. Le contenu d'une ligne est recopié dans une variable de type <em>chaîne de caractères</em> pour un usage immédiat ou ultérieur. Dès qu'une ligne <span class="arithmatex">\(i\)</span> est lue, un "curseur" se déplace dans le fichier pour accéder à la ligne suivante.</li>
+<li>Après l'ouverture en écriture, on accède aussi à la première ligne. On peut alors écrire dans cette ligne une chaîne de caractère (par exemple, le contenu d'une variable). Puis on passe à la seconde ligne si on décide d'en ajouter une etc.</li>
+</ul>
+<h2 id="partitions-peripheriques">Partitions périphériques<a class="headerlink" href="#partitions-peripheriques" title="Permanent link">&para;</a></h2>
+<h3 id="presentation_1">Présentation<a class="headerlink" href="#presentation_1" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Partition</p>
+<p>Une <em>partition</em> est une section d'un support de stockage (disque dur, SSD, carte-mémoire...).</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Partitionnement</p>
+<p>Le partitionnement est l'opération qui consiste à diviser ce support en partitions dans lesquelles le système d'exploitation peut gérer les informations de manière séparée, généralement en y créant un système de fichiers, une manière d'organiser l'espace disponible.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Faux ami</p>
+<p>Le sens mathématique est différent.</p>
+</div>
+<div class="admonition example">
+<p><p align='center'><img src='/images/Fichiers/fichiers3.png'/></p></p>
+<p><em>Figure 3</em> – Exemple schématique de partitionnement d'un support mixtebLinux/Windows, avec des liens entre les partitions (Wikipedia)</p>
+</div>
+<h3 id="peripheriques">Périphériques<a class="headerlink" href="#peripheriques" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Périphérique</p>
+<p>Un <em>périphérique</em> est un matériel (physique) connecté à l'unité centrale d'un ordinateur : disque, souris, écran, réseau...
+Les périphériques sont repérables par un nom dans l'arborescence (sous <strong>/dev</strong>).</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Pilote de périphérique/ Driver</p>
+<p>Un <em>pilote de périphériques</em> ou <em>driver</em> est une fonction du système d'exploitation permettant de manipuler une catégorie de périphériques via les opérations classiques autorisées par les <em>inodes</em> : <strong>open</strong>, <strong>read</strong>, <strong>write</strong>, <strong>close</strong>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Pseudo-périphérique</p>
+<p>Un <em>pseudo-périphérique</em> est une entrée gérée comme un périphérique bien que non associée à un élément physique.</p>
+</div>
+<ul>
+<li>Utilisation <span class="arithmatex">\(1\)</span> : repérage de périphériques dits virtuels, <em>i.e.</em> des parties de périphériques (physiques), par exemple : les écrans virtuels de l'écran (physique), partitions (logiques) du disque (physique)...</li>
+<li>Utilisation <span class="arithmatex">\(2\)</span> : mise en évidence de fonctionnalités du système d'exploitation dans l'arborescence, par exemple : la "poubelle" qui a pour nom <strong>/dev/null</strong>.</li>
+</ul>
+<p>Pour l'OS, périphériques et pseudo-périphériques sont des fichiers.</p>
+<h3 id="connaitre-les-systemes-de-fichiers-montes">Connaître les systèmes de fichiers montés<a class="headerlink" href="#connaitre-les-systemes-de-fichiers-montes" title="Permanent link">&para;</a></h3>
+<p>Il suffit d'entrer la commande <strong>mount</strong>.</p>
+<p>Par exemple :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nv">$mount</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>...
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>/dev/sdc1<span class="w"> </span>on<span class="w"> </span>/media/ivan/KINGSTON<span class="w"> </span><span class="nb">type</span><span class="w"> </span>vfat<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>...
+</span></code></pre></div></td></tr></table></div>
+<p>On constate que ma clé usb est repérée par <strong>sdc1</strong>, qu'elle est montée sur <strong>/media/ivan/KINGSTOM</strong> et que son système de fichier est <span class="arithmatex">\(\text{VFAT}\)</span></p>
+<h3 id="udev">udev<a class="headerlink" href="#udev" title="Permanent link">&para;</a></h3>
+<p>Le démon <span class="arithmatex">\(udev\)</span> est chargé de gérer les <em>device-nodes</em> : pseudos-fichiers stockés normalement dans <strong>/dev</strong> chargés de représenter les périphériques.</p>
+<p>Ce sont en réalité des points d'entrées vers le noyau caractérisés par un type d'accès (bloc ou char) et deux nombres, un majeur et un mineur :</p>
+<ul>
+<li>le type définit le mode d'accès (donc par bloc ou par caractère) au périphérique</li>
+<li>le majeur permet au noyau de connaître le driver qui gère le périphérique</li>
+<li>le mineur permet au driver de savoir quel périphérique parmi ceux qu'il gère (il peut y en avoir plusieurs) est utilisé.</li>
+</ul>
+<h3 id="majeurs-et-mineurs">Majeurs et mineurs<a class="headerlink" href="#majeurs-et-mineurs" title="Permanent link">&para;</a></h3>
+<p>La commande <strong>ls -l</strong> nous donne les informations sur le type d'accès et les majeurs et mineurs (entre autres)
+J'interroge ci-dessous le système à propos de mon disque dur NVMe :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nv">$ls</span><span class="w"> </span>−l<span class="w"> </span>/dev/nvme0n1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>brw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>disk<span class="w"> </span><span class="m">259</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>août<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:57<span class="w"> </span>/dev/nvme0n1
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>le <strong>b</strong> en début de ligne indique qu'il s'agit d'un périphérique avec accès par bloc.</li>
+<li>le majeur est <span class="arithmatex">\(259\)</span>, il indique quel driver est utilisé</li>
+<li>le mineur est <span class="arithmatex">\(0\)</span> : il indique quel périphérique est ici géré par ce driver.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Péripheérique avec accès séquentiel</p>
+<p>J'interroge ci-dessous le système à propos de ma souris :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>ls<span class="w"> </span>−l<span class="w"> </span>/dev/input/mouse1
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>crw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>input<span class="w"> </span><span class="m">13</span>,<span class="w"> </span><span class="m">33</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">17</span>:25<span class="w"> </span>/dev/input/mouse1
+</span></code></pre></div></td></tr></table></div>
+<p>le <strong>c</strong> en début de ligne indique qu'il s'agit d'un périphérique avec accès par octet (ou par caractère).
+le majeur est <span class="arithmatex">\(13\)</span>, il indique quel driver est utilisé
+le mineur est <span class="arithmatex">\(33\)</span> : il indique quel périphérique est ici géré par ce driver.</p>
+</div>
+<h2 id="les-fichiers">Les fichiers<a class="headerlink" href="#les-fichiers" title="Permanent link">&para;</a></h2>
+<h3 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h3>
+<p>Sous <strong>Linux</strong>, considérons un fichier :</p>
+<ul>
+<li>Il est toujours désigné par un nom</li>
+<li>Il possède un unique <em>inode</em> (certaines informations concernant le fichier). C'est une structure créée au même moment que le fichier afin de contenir ses informations fondamentales. Tous les inodes sont conservés dans une table, et sont identifiés par un <em>INumber</em> (numéro d'index ou d'inode).</li>
+<li>Le système fournit à propos de ce fichier des primitives permettant de :<ul>
+<li>l'ouvrir</li>
+<li>le fermer</li>
+<li>le lire</li>
+<li>le modifier</li>
+</ul>
+</li>
+</ul>
+<h3 id="les-types-de-fichiers">Les types de fichiers<a class="headerlink" href="#les-types-de-fichiers" title="Permanent link">&para;</a></h3>
+<p>Pour chaque type de fichier, on donne également la convention d'affichage utilisée par la commande <strong>ls -l nomDuFichier</strong></p>
+<p><span class="arithmatex">\(\color{blue}\text{ordinaire}\)</span> : (on dit aussi régulier ou normal). (<strong>-</strong>)</p>
+<p><span class="arithmatex">\(\color{blue}\text{répertoire}\)</span> : ils contiennent seulement la liste des noms des fichiers qui y sont stockés ainsi que leurs numéros d'inode. (<strong>d</strong>)</p>
+<p><span class="arithmatex">\(\color{blue}\text{lien symbolique}\)</span> : (<strong>l</strong>)</p>
+<p><span class="arithmatex">\(\color{blue}\text{pseudo-fichier}\)</span> :</p>
+<ul>
+<li>Périphériques :<ul>
+<li>avec accès par caractères (<strong>c</strong>). Exemple : souris, clavier.</li>
+<li>avec accès par blocs (<strong>b</strong>). Les périphériques blocs (disque dur, lecteurs de DVD) gèrent une certaine quantité d'information par groupe de bloc.</li>
+</ul>
+</li>
+<li>dispositif de communication (<strong>p</strong>) pour les canaux de communication des <em>pipes</em>.</li>
+<li>les sockets (<strong>s</strong>) (réseaux)</li>
+</ul>
+<h3 id="peripheriques_1">Périphériques<a class="headerlink" href="#peripheriques_1" title="Permanent link">&para;</a></h3>
+<p>Dans <strong>/dev/input</strong> on trouve la plupart des périphériques d'entrées sur l'ordinateur (mais pas tous -par ex. : les microphones-).</p>
+<p>Ci-dessous, les <strong>event</strong> représentent des évènements en rapport avec le clavier (même en rapport lointain, ma webcam est considérée comme faisant partie du clavier !) et <strong>mouse</strong>...</p>
+<div class="language-Bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nv">$ls</span><span class="w"> </span>−l<span class="w"> </span>/dev/input/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>crw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>input<span class="w"> </span><span class="m">13</span>,74<span class="w"> </span>août<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:57<span class="w"> </span>event10
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>crw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>input<span class="w"> </span><span class="m">13</span>,75<span class="w"> </span>août<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:57<span class="w"> </span>event11
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>...
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>crw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>input<span class="w"> </span><span class="m">13</span>,32<span class="w"> </span>août<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:57<span class="w"> </span>mouse0
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>crw−rw−−−−1<span class="w"> </span>root<span class="w"> </span>input<span class="w"> </span><span class="m">13</span>,33<span class="w"> </span>août<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:57<span class="w"> </span>mouse1
+</span></code></pre></div></td></tr></table></div>
+<p>La souris est bien un périphérique en mode caractère (la première lettre de la ligne). L'évènement <span class="arithmatex">\(11\)</span> est curieusement associé à ma caméra (comme on peut le voir en entrant <strong>xinput list</strong>)</p>
+<h3 id="bloc">Bloc<a class="headerlink" href="#bloc" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Bloc</p>
+<p>Un <em>bloc</em> (ou en anglais cluster) est la plus petite unité de stockage du système de fichiers d'une mémoire de masse. Le choix de la taille de bloc est effectué lors du formatage, et influe sur les performances et sur la capacité utile.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Bloc logique</p>
+<p>Le <em>bloc logique</em> est la plus petite unité transférable (en lecture/écriture) du disque. Sa taille peut être différente de celle d'un bloc physique.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Sytème de fichiers</p>
+<p>Un <em>système de fichiers</em> est une séquence de blocs logiques décomposées hiérarchiquement comme suit :</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\text{bloc amorce}\)</span> : contient le chargeur primaire (ou secteur de boot) ;</li>
+<li><span class="arithmatex">\(\color{blue}\text{superbloc}\)</span> : informations sur le système de fichiers ;</li>
+<li><span class="arithmatex">\(\color{blue}\text{table des inodes}\)</span> : un inode contient des informations sur un fichier ;</li>
+<li><span class="arithmatex">\(\color{blue}\text{blocs de données}\)</span> : le contenu d'un même fichier est réparti sur un ou plusieurs blocs.</li>
+</ul>
+</div>
+<h3 id="organisation-du-super-bloc">Organisation du super-bloc<a class="headerlink" href="#organisation-du-super-bloc" title="Permanent link">&para;</a></h3>
+<p>On donne avant la définition suivante :</p>
+<div class="admonition quote">
+<p class="admonition-title">Bitmap</p>
+<p>Pour un disque de <span class="arithmatex">\(n\)</span> blocs, le <em>bitmap</em> est un tableau de <span class="arithmatex">\(n\)</span> bits tel que le bit <span class="arithmatex">\(x\)</span> est à <span class="arithmatex">\(0\)</span> si le bloc <span class="arithmatex">\(x\)</span> est occupé et à <span class="arithmatex">\(1\)</span> sinon.</p>
+</div>
+<p>Un super-bloc contient les informations suivantes</p>
+<ul>
+<li>nombre total de blocs de la partition ;</li>
+<li>nombre et bitmap de blocs libres ;</li>
+<li>nombre total d'inodes ;</li>
+<li>nombre d'inodes libres ;</li>
+<li>tête de la liste chaînée des inodes libres.</li>
+</ul>
+<h3 id="vue-dun-disque-logique">Vue d'un disque logique<a class="headerlink" href="#vue-dun-disque-logique" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/Fichiers/fichiers4.png'/></p>
+
+<p><em>Figure 4</em> – Un disque logique</p>
+<h3 id="inodes">Inodes<a class="headerlink" href="#inodes" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Noeud d'index ou inode</p>
+<p>Un <em>noeud d'index</em> ou <em>inode</em> (contraction de l'anglais index et node) est une structure de données contenant des informations à propos d'un fichier ou répertoire.</p>
+</div>
+<p>À chaque fichier correspond un numéro d'inode (i-number) dans le système de fichiers dans lequel il réside, unique dans la partition sur laquelle est située le système de fichiers.</p>
+<p>Chaque fichier a un seul inode mais peut avoir plusieurs noms (lesquels font référence au même inode). Un nom de fichier est aussi appelé un <em>lien</em>.</p>
+<p>Les inodes contiennent toutes les informations sur les fichiers à part le ou les noms.</p>
+<p>Les inodes sont créés en même temps que le système de fichier auxquels ils appartiennent. Leur nombre est donc fixe et dépend de la taille de la partition à laquelle est associé le système de fichier.</p>
+<h3 id="connaitre-linode-dun-fichier">Connaître l'inode d'un fichier<a class="headerlink" href="#connaitre-linode-dun-fichier" title="Permanent link">&para;</a></h3>
+<p>Pour connaître le numéro d'inode d'un fichier :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nv">$ls</span><span class="w"> </span>−i<span class="w"> </span>asup<span class="w"> </span><span class="c1"># num d&#39;inode du fichier asup</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="m">10224747</span><span class="w"> </span>asup
+</span></code></pre></div></td></tr></table></div>
+<h3 id="nombre-dinodes-utilisees">Nombre d'inodes utilisées<a class="headerlink" href="#nombre-dinodes-utilisees" title="Permanent link">&para;</a></h3>
+<p>On a des informations sur les inodes utilisés par les partitions avec <strong>df -i</strong> :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nv">$df</span><span class="w"> </span>−i
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>Sys.<span class="w"> </span>de<span class="w"> </span>fichiers<span class="w"> </span>Inoeuds<span class="w"> </span>IUtil.<span class="w"> </span>ILibre<span class="w"> </span>IUti%<span class="w"> </span>Monté<span class="w"> </span>sur
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>udev<span class="w"> </span><span class="m">2016836</span><span class="w"> </span><span class="m">580</span><span class="w"> </span><span class="m">2016256</span><span class="w"> </span><span class="m">1</span>%<span class="w"> </span>/dev
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>tmpfs<span class="w"> </span><span class="m">2032479</span><span class="w"> </span><span class="m">1076</span><span class="w"> </span><span class="m">2031403</span><span class="w"> </span><span class="m">1</span>%<span class="w"> </span>/run
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>/dev/nvme0n1p5<span class="w"> </span><span class="m">31227904</span><span class="w"> </span><span class="m">736385</span><span class="w"> </span><span class="m">30491519</span><span class="w"> </span><span class="m">3</span>%<span class="w"> </span>/
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>tmpfs<span class="w"> </span><span class="m">2032479</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2032478</span><span class="w"> </span><span class="m">1</span>%<span class="w"> </span>/dev/shm
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>tmpfs<span class="w"> </span><span class="m">2032479</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2032474</span><span class="w"> </span><span class="m">1</span>%<span class="w"> </span>/run/lock
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>tmpfs<span class="w"> </span><span class="m">2032479</span><span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">2032461</span><span class="w"> </span><span class="m">1</span>%<span class="w"> </span>/sys/fs/cgroup
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>/dev/loop1<span class="w"> </span><span class="m">10803</span><span class="w"> </span><span class="m">10803</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/snap/core18/2074
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>/dev/loop2<span class="w"> </span><span class="m">293</span><span class="w"> </span><span class="m">293</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/snap/discord/122
+</span></code></pre></div></td></tr></table></div>
+<h3 id="champs-dun-inode">Champs d'un inode<a class="headerlink" href="#champs-dun-inode" title="Permanent link">&para;</a></h3>
+<p>Les inodes sont tous de même taille et contiennent les informations suivantes :</p>
+<ul>
+<li>type du fichier (<strong>- d l c p b...</strong>)</li>
+<li>droits d'accès ou <em>mode</em> (<strong>-rw-rw-r–</strong>)</li>
+<li>nombres de liens physiques sur le fichier</li>
+<li>numéro de l'utilisateur et du groupe auquel appartient le fichier.</li>
+<li>Taille en byte du fichier</li>
+<li>Deux tableaux contenant un total de <span class="arithmatex">\(13\)</span> "adresses disques" (ce sont des pointeurs) (<span class="arithmatex">\(13\)</span> pour le standard <strong>ext2</strong>, <span class="arithmatex">\(15\)</span> pour <strong>ext4</strong>). <span class="arithmatex">\(10\)</span> adresses directes, une adresse indirecte à un niveau d'indirection, une adresse indirecte à deux niveaux d'indirection et une adresse indirecte à trois niveaux.</li>
+<li>Informations de dates :<ul>
+<li>date et heure (<strong>ctime</strong>) de dernière modification de l'inode (ls -lc)</li>
+<li>dernière date et heure (<strong>mtime</strong>) auxquelles le fichier a été modifié (<strong>ls -l</strong>)</li>
+<li>date et heure (<strong>atime</strong>) de création (<strong>ls -lu</strong>)</li>
+</ul>
+</li>
+</ul>
+<div class="admonition example">
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>UFS<span class="nv">$ls</span><span class="w"> </span>−lu<span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>−rw−rw−r−−1<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">42531</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>UFS<span class="nv">$ls</span><span class="w"> </span>−lc<span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>−rw−rw−r−−1<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">42531</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">10</span>:43<span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="nv">$ls</span><span class="w"> </span>−l<span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>−rw−rw−r−−1<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">42531</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">10</span>:43<span class="w"> </span>slides<span class="w"> </span>ufs.tex
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="vue-schematique-pour-le-format-ext4">Vue schématique pour le format ext4<a class="headerlink" href="#vue-schematique-pour-le-format-ext4" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/Fichiers/fichiers5.png'/></p>
+
+<p><em>Figure 5</em> – Une inode avec ses liens directs et les indirections de niveau 1,2,3 (cf <a href="http://uw714doc.xinuos.com/en/FS_admin/_ufs_Inodes.html">SCO Group</a>)</p>
+<h3 id="taille-maximale-dun-fichier-regulier">Taille maximale d'un fichier régulier<a class="headerlink" href="#taille-maximale-dun-fichier-regulier" title="Permanent link">&para;</a></h3>
+<p>En exercice</p>
+<h2 id="ajouter-deplacer-supprimer-lier">Ajouter, déplacer, supprimer, lier<a class="headerlink" href="#ajouter-deplacer-supprimer-lier" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title"><em>Figure 6</em> – Un répertoire contenant un fichier toto</p>
+<p><p align='center'><img src='/images/Fichiers/fichiers6.png'/></p></p>
+</div>
+<h3 id="copier">Copier<a class="headerlink" href="#copier" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/Fichiers/fichiers7.png'/></p>
+
+<p><em>Figure 7</em> – <strong>cp toto titi</strong> duplique les données de <strong>toto</strong>. Un inode autre que celui de <strong>toto</strong> pointe sur les données dupliquées.</p>
+<h3 id="renommage-ou-deplacement">Renommage ou déplacement<a class="headerlink" href="#renommage-ou-deplacement" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/Fichiers/fichiers8.png'/></p>
+
+<p><em>Figure 8</em> – Déplacement <strong>mv toto R2/titi</strong> : par rapport à la figure <span class="arithmatex">\(6\)</span>, <strong>titi</strong> de <strong>R2</strong>
+(inode <span class="arithmatex">\(236\)</span>) <span class="arithmatex">\(\underline{\textsf{est}}\)</span> l'ancien toto de <strong>R1</strong> (inode <span class="arithmatex">\(128\)</span>)</p>
+<h3 id="lien-physique">Lien physique<a class="headerlink" href="#lien-physique" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Lien physique</p>
+<p>Un <em>lien physique</em> est une référence directe à un fichier via son inode.</p>
+</div>
+<p>Avantage : On peut changer le contenu ou la localisation du fichier original, le lien physique restera valide.</p>
+<p>Inconvénient : un lien physique référence un numéro d'inode ce qui impose de rester dans la même partition (en effet : deux disques logiques différents peuvent avoir chacun une inode <span class="arithmatex">\(47\)</span>).</p>
+<p>Inconvénient : on ne peut pas faire un lien physique avec un répertoire.</p>
+<p>syntaxe : <strong>ln toto ../R2/titi</strong>.</p>
+<p>Je peux changer <strong>toto</strong> de place (dans la même partition), le lien entre <strong>toto</strong> et <strong>titi</strong> ne disparaît pas.</p>
+<p align='center'><img src='/images/Fichiers/fichiers9.png'/></p>
+
+<p><em>Figure 9</em> – Lien physique : Dans le répertoire courant, on entre <strong>ln toto R2/titi</strong> : <strong>titi</strong> et <strong>toto</strong> pointent vers le même inode. Pas de duplication des données.</p>
+<div class="admonition example">
+<p>Situation initiale : un fichier <strong>toto</strong> de <span class="arithmatex">\(121\)</span> octets et <span class="arithmatex">\(1\)</span> seul alias.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nv">$ls</span><span class="w"> </span>−ali<span class="w"> </span>toto
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="m">2373803</span><span class="w"> </span>−rw−rw−r−−1<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">121</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">22</span>:03<span class="w"> </span>toto
+</span></code></pre></div></td></tr></table></div>
+<p>Création d'un lien symbolique :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nv">$ln</span><span class="w"> </span>toto<span class="w"> </span>titi
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nv">$ls</span><span class="w"> </span>−ali<span class="w"> </span>toto
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="m">2373803</span><span class="w"> </span>−rw−rw−r−−2<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">121</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">22</span>:03<span class="w"> </span>toto
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>ivan@fixe:<span class="w"> </span>̃/.../UFS<span class="nv">$ls</span><span class="w"> </span>−ali<span class="w"> </span>titi
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="m">2373803</span><span class="w"> </span>−rw−rw−r−−2<span class="w"> </span>ivan<span class="w"> </span>ivan<span class="w"> </span><span class="m">121</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">22</span>:03<span class="w"> </span>titi
+</span></code></pre></div></td></tr></table></div>
+<p>Le nombre d'alias de <strong>toto</strong> est maintenant <span class="arithmatex">\(2\)</span>.
+<strong>toto</strong> et <strong>titi</strong> partagent le même inode <span class="arithmatex">\(2373803\)</span>.</p>
+</div>
+<h3 id="suppression-et-inode">Suppression et inode<a class="headerlink" href="#suppression-et-inode" title="Permanent link">&para;</a></h3>
+<p>En supprimant un fichier (<strong>rm</strong> pour remove), tout ce qui se passe est la suppression de l'un des noms pointant vers un numéro d'inode spécifique.</p>
+<p>Les données resteront jusqu'à la suppression de tous les noms associés au même numéro d'inode. Les systèmes Linux se mettent à jour sans nécessiter de redémarrage du système en grande partie à cause du fonctionnement des inodes.</p>
+<div class="admonition example">
+<p>Dans la situation de l'exemple précédent , entrons <strong>rm toto</strong> : l'inode de <strong>toto</strong> n'est pas libéré puisque le lien de <strong>titi</strong> existe toujours. Voir figure <span class="arithmatex">\(10\)</span> ci dessous .</p>
+<p>Entrons <strong>rm titi</strong>. Les blocs de données et l'inode correspondant sont libérés : le système pourra les attribuer à d'autres fichiers. Voir figure <span class="arithmatex">\(11\)</span>.</p>
+<p><p align='center'><img src='/images/Fichiers/fichiers10.png'/></p></p>
+<p><em>Figure 10</em> – Suppression <strong>rm toto</strong> : l'inode <span class="arithmatex">\(47\)</span> et ses données ne sont pas libérés</p>
+<p><p align='center'><img src='/images/Fichiers/fichiers11.png'/></p></p>
+<p><em>Figure 11</em> – Suppression <strong>rm titi</strong> : l'inode <span class="arithmatex">\(47\)</span> et ses données sont libérées</p>
+</div>
+<h3 id="lien-symbolique">Lien symbolique<a class="headerlink" href="#lien-symbolique" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Lien symbolique</p>
+<p>Un <em>lien symbolique</em> est une référence à un nom (<em>i.e.</em> un chemin
+absolu ou relatif). Tandis qu'un lien physique réfère plutôt un inode.</p>
+</div>
+<p>Avec un lien symbolique on peut traverser les partitions.</p>
+<p>Création avec l'option <strong>s</strong> de <strong>ln</strong> : <strong>ln -s /path/to/original symlink</strong>. Par exemple <strong>ln -s R1/toto titi</strong> crée un lien symbolique entre titi du répertoire courant et toto du répertoire R1.</p>
+<p>Par défaut, le lien symbolique doit être créé dans le répertoire courant. Si on veut spécifier aussi un chemin relatif pour le lien symbolique, utiliser l'option <strong>r</strong> :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>−r,<span class="w"> </span>−−relative
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>create<span class="w"> </span>symbolic<span class="w"> </span>links<span class="w"> </span>relative<span class="w"> </span>to<span class="w"> </span>link<span class="w"> </span>location
+</span></code></pre></div></td></tr></table></div>
+<p><strong>ln -sr R1/toto R2/titi</strong>. Voir la figure <strong>12</strong> ci-dessous.</p>
+<p>Si on déplace ou renomme la source, le lien est cassé.</p>
+<p align='center'><img src='/images/Fichiers/fichiers12.png'/></p>
+
+<p><em>Figure 12</em> - Lien symbolique <strong>ln -sr R1/toto R2/titi</strong></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nv">$stat</span><span class="w"> </span>toto
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>Fichier:<span class="w"> </span>toto
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>Taille:<span class="w"> </span><span class="m">121</span><span class="w"> </span>Blocs:<span class="w"> </span><span class="m">8</span><span class="w"> </span>Blocs<span class="w"> </span>d<span class="s1">&#39;E/S: 4096 fichier</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="s1">...</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="s1">$ln −s toto lstoto</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="s1">$ls −al toto lstoto</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="s1">lrwxrwxrwx 1 ivan ivan 4 janv. 17 11:33 lstoto −&gt;toto</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="s1">−rw−rw−r−−2 ivan ivan 121 janv. 11 2023 toto</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="s1">$stat lstoto</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="s1">Fichier: lstoto −&gt;toto</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="s1">Taille: 4 Blocs: 0 Blocs d&#39;</span>E/S:<span class="w"> </span><span class="m">4096</span><span class="w"> </span>lien<span class="w"> </span>symbolique
+</span></code></pre></div></td></tr></table></div>
+<p>La taille de <strong>toto</strong> est de <span class="arithmatex">\(121\)</span> bytes (<span class="arithmatex">\(121\)</span> carcatères), celle du lien symbolique de <span class="arithmatex">\(4\)</span>.</p>
+<p>On constate que la première lettre du retour de <strong>ls</strong> est <strong>l</strong>. Et qu'un lien symbolique possède tous les droits par défaut.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

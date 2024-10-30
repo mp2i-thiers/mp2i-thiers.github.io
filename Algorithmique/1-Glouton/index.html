@@ -1,0 +1,3010 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../2-Prodgyn/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Algorithmes gloutons - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#algorithmes-gloutons" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithmes gloutons
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemple-du-rendu-de-monnaie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple du rendu de monnaie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exemple du rendu de monnaie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stratégie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-du-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction du programme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimalite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimalité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemple-du-rendu-de-monnaie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple du rendu de monnaie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exemple du rendu de monnaie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stratégie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-du-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction du programme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimalite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimalité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="algorithmes-gloutons">Algorithmes gloutons<a class="headerlink" href="#algorithmes-gloutons" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par
+Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de
+révision que des diaporamas.</p>
+</div>
+<h2 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h2>
+<h3 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<p>Un algorithme <em>glouton</em> (greedy algorithm en anglais, parfois  appelé aussi algorithme gourmand, ou goulu) est un  algorithme qui suit le principe de réaliser, étape par étape, un  choix optimum local, afin d’obtenir un résultat optimum  global (Wikipedia).  </p>
+<div class="admonition example">
+<p><strong>Exemples classiques</strong></p>
+<ul>
+<li>Rendu de monnaie</li>
+<li>Coloration des sommets d’un graphe</li>
+<li>Algorithme de Dijkstra pour la recherche de PCC ;  </li>
+</ul>
+</div>
+<p>Un algorithme glouton fournit le plus souvent une solution au  problème. Dans les cas où il ne donne pas systématiquement  la solution optimale, il est appelé une <em>heuristique gloutonne</em>.  </p>
+<div class="admonition example">
+<p class="admonition-title">Exemple d’heuristique gloutonne</p>
+<p><p align='center'><img src='/images/Glouton/glouton1.bmp'/></p></p>
+<p>Un algorithme glouton peut retourner une solution sous-optimale.  </p>
+<p>En partant du point <span class="arithmatex">\(A\)</span> et en cherchant à monter selon la plus forte pente, un algorithme glouton trouvera le maximum local  <span class="arithmatex">\(m\)</span>, mais pas le maximum global <span class="arithmatex">\(M\)</span>.</p>
+<p>Il faut bien comprendre que même si elle ne fournit pas toujours de solution optimale, une stratégie gloutonne est souvent adoptée en raison de la simplicité de sa mise en œuvre.</p>
+</div>
+<h2 id="exemple-du-rendu-de-monnaie">Exemple du rendu de monnaie<a class="headerlink" href="#exemple-du-rendu-de-monnaie" title="Permanent link">&para;</a></h2>
+<h3 id="presentation_1">Présentation<a class="headerlink" href="#presentation_1" title="Permanent link">&para;</a></h3>
+<p>Soit un ensemble <span class="arithmatex">\(C\)</span> (pour "coins") de <span class="arithmatex">\(n\)</span> valeurs entières de billets et pièces de monnaies <span class="arithmatex">\(v_1 &lt; v_2 &lt; ··· &lt; v_n\)</span>. Par exemple  <span class="arithmatex">\(C =\text{ {1€, 2€, 5€, 10€, 20€, 100€, 200€}}\)</span></p>
+<p>Le problème du rendu de monnaie consiste à déterminer le  nombre minimal de billets et de pièces pour rendre une somme donnée. Par exemple, la somme de <span class="arithmatex">\(49\)</span>€ peut être rendue en utilisant <span class="arithmatex">\(49\)</span> pièces de <span class="arithmatex">\(1\)</span>€, ou <span class="arithmatex">\(2\)</span> billets de <span class="arithmatex">\(20\)</span>€, <span class="arithmatex">\(1\)</span> billet de <span class="arithmatex">\(5\)</span>€ et <span class="arithmatex">\(2\)</span> pièces de <span class="arithmatex">\(2\)</span>€. Donc <span class="arithmatex">\(5\)</span> billets/pièces rendues <strong>VS</strong> <span class="arithmatex">\(49\)</span>. Ce nombre <span class="arithmatex">\(5\)</span> est  d’ailleurs le plus petit qu’on puisse trouver pour le système de pièces <span class="arithmatex">\(C\)</span>.  </p>
+<h3 id="precisions">Précisions<a class="headerlink" href="#precisions" title="Permanent link">&para;</a></h3>
+<p>Pour raison de concision, nous emploierons dans toute la suite  le terme "pièce" au lieu de "pièce ou billet".</p>
+<p>De plus nous supposons que le stock de chaque valeur de pièce est illimité, ce qui ne reﬂète que partiellement la réalité (dans un <span class="arithmatex">\(DAB\)</span>, il y a un nombre fini de billets de <span class="arithmatex">\(10\)</span>,<span class="arithmatex">\(20\)</span>,<span class="arithmatex">\(50\)</span> et <span class="arithmatex">\(100\)</span>€).</p>
+<p>La solution calculée par l’algorithme que nous présentons et  donc une solution théorique qui ne tient pas compte de la réalité du stock.  </p>
+<h3 id="strategie">Stratégie<a class="headerlink" href="#strategie" title="Permanent link">&para;</a></h3>
+<p>On choisit d’abord les pièces qui permettent de rendre la plus  grande valeur possible sur la somme à rendre. Dans l’exemple des <span class="arithmatex">\(49\)</span>€, il s’agit de deux billets de <span class="arithmatex">\(20\)</span>€.</p>
+<p>Il reste alors à rendre <span class="arithmatex">\(9\)</span>€. On choisit la plus grande valeur de  pièce plus petite que <span class="arithmatex">\(9\)</span>, soit <span class="arithmatex">\(5\)</span>€. On rend donc un billet de <span class="arithmatex">\(5\)</span> (et pas <span class="arithmatex">\(2\)</span> car <span class="arithmatex">\(2 × 5 &gt; 9\)</span>). Enfin la plus grande valeur de pièce plus petite que les <span class="arithmatex">\(4\)</span>€ à rendre est <span class="arithmatex">\(2\)</span>€. On peut en rendre deux, ce qui ramène la somme à rendre à <span class="arithmatex">\(0\)</span>€. On s’arrête donc là.  </p>
+<h3 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h3>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">let</span> <span class="n">greedy_change</span> <span class="o">(</span><span class="n">coins</span><span class="o">:</span><span class="kt">int</span> <span class="kt">array</span><span class="o">)</span> <span class="o">(</span><span class="n">v</span><span class="o">:</span><span class="kt">int</span><span class="o">):</span> <span class="kt">int</span> <span class="kt">array</span> <span class="o">=</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">coins</span> <span class="k">in</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">let</span> <span class="n">change</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="n">n</span> <span class="mi">0</span> <span class="k">in</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="k">let</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">ref</span> <span class="n">v</span> <span class="k">and</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ref</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="k">while</span> <span class="o">!</span><span class="n">cur</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>        <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.(!</span><span class="n">i</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>        <span class="k">if</span> <span class="o">!</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">c</span> <span class="k">then</span> <span class="n">decr</span> <span class="n">i</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>        <span class="k">else</span> <span class="o">(</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>            <span class="n">change</span><span class="o">.(!</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">change</span><span class="o">.(!</span><span class="n">i</span><span class="o">)+</span><span class="mi">1</span><span class="o">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>            <span class="n">cur</span> <span class="o">:=</span> <span class="o">!</span><span class="n">cur</span> <span class="o">-</span> <span class="n">c</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="o">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="k">done</span> <span class="o">;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="n">change</span> <span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p><strong>Paramètres et variables</strong></p>
+<p>Paramètres :  </p>
+<ul>
+<li><code>coins</code> : tableau des valeurs de pièces avec <code>t.(0)=1</code>  </li>
+<li><code>v</code> : valeur à rembouser  </li>
+</ul>
+<p>Variables locales :  </p>
+<ul>
+<li><code>!i</code> : numéro de la valeur courante de pièce</li>
+<li><code>change.(!i)</code> : nb de pièces de la valeur courante  </li>
+<li><code>!cur</code> : somme restant à rendre.  </li>
+</ul>
+</div>
+<h3 id="correction-du-programme">Correction du programme<a class="headerlink" href="#correction-du-programme" title="Permanent link">&para;</a></h3>
+<p>Un variant de boucle est <code>!cur + !i</code>. Terminaison OK.  </p>
+<p>La condition <span class="arithmatex">\(t_0 = 1\)</span> assure la correction (principe : apcr, on  peut rendre autant de pièces de <span class="arithmatex">\(1\)</span>€ que la somme restante).
+Le fait que <span class="arithmatex">\(t_0 = 1\)</span>, assure que <code>!i ≥ 0</code> et donc l’accès valide  au tableau <code>coins</code>.  </p>
+<h3 id="optimalite">Optimalité<a class="headerlink" href="#optimalite" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p><strong>Proposition</strong></p>
+<p>Si <code>coins</code> décrit le système monétaire de la zone euro, alors le programme <code>greedy_change</code> cacule un rendu de monnaie avec le nombre minimal d’éléments.  </p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Un système de pièces qui, tel celui de la zone euro, permet un rendu optimal est qualifié de <em>canonique</em>.  </p>
+</div>
+<div class="admonition note">
+<p><strong>Preuve</strong></p>
+<p>Certaines combinaison de pièces ne peuvent se trouver dans une solution optimale :</p>
+<ul>
+<li>
+<p>Une pièce de valeur <strong>val</strong> <span class="arithmatex">\(= 1,5,10,50\)</span> ou <span class="arithmatex">\(100\)</span> n’est jamais utilisé deux fois dans une solution optimale. En eﬀet, pour chacune de ces valeurs il est plus avantageux de rendre une pièce de valeur 2val plutôt que deux de valeur val.</p>
+</li>
+<li>
+<p>Une pièce de valeur <span class="arithmatex">\(2\)</span> ou <span class="arithmatex">\(20\)</span> n’est jamais utilisée <span class="arithmatex">\(3\)</span> fois dans une solution optimale. En eﬀet <span class="arithmatex">\(3\)</span> pièces de valeur <span class="arithmatex">\(2\)</span> sont avantageusement remplacée par par une pièce de valeur <span class="arithmatex">\(1\)</span> et une de <span class="arithmatex">\(5\)</span> ; <span class="arithmatex">\(3\)</span> pièces de valeur <span class="arithmatex">\(20\)</span> sont remplacées par une <span class="arithmatex">\(10\)</span> et une de <span class="arithmatex">\(50\)</span>.</p>
+</li>
+<li>
+<p>Une pièce de valeur <span class="arithmatex">\(1\)</span> n’accompagne jamais deux pièces de valeur <span class="arithmatex">\(2\)</span> : on pourrait remplacer l’ensemble par une pièce de <span class="arithmatex">\(5\)</span>. Une pièce de valeur <span class="arithmatex">\(10\)</span> n’accompagne jamais deux pièces de valeur <span class="arithmatex">\(20\)</span> : on pourrait remplacer l’ensemble par une pièce de <span class="arithmatex">\(50\)</span>.  </p>
+</li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exercice</strong></p>
+<p>Ecrivons un petit programme qui prend en compte les  contraintes précédentes et faisons le tourner pour explorer  exhaustivement toutes les combinaisons possibles de pièces de  moins de <span class="arithmatex">\(200\)</span>€. </p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<p>La correction ci-dessous est longue, mais est intéressante à lire car c'est un alogrithme de backtracking assez simple à comprendre.</p>
+</div>
+<details class="example">
+<summary>Correction longue</summary>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span>
+<span class="normal"><a href="#__codelineno-1-53">53</a></span>
+<span class="normal"><a href="#__codelineno-1-54">54</a></span>
+<span class="normal"><a href="#__codelineno-1-55">55</a></span>
+<span class="normal"><a href="#__codelineno-1-56">56</a></span>
+<span class="normal"><a href="#__codelineno-1-57">57</a></span>
+<span class="normal"><a href="#__codelineno-1-58">58</a></span>
+<span class="normal"><a href="#__codelineno-1-59">59</a></span>
+<span class="normal"><a href="#__codelineno-1-60">60</a></span>
+<span class="normal"><a href="#__codelineno-1-61">61</a></span>
+<span class="normal"><a href="#__codelineno-1-62">62</a></span>
+<span class="normal"><a href="#__codelineno-1-63">63</a></span>
+<span class="normal"><a href="#__codelineno-1-64">64</a></span>
+<span class="normal"><a href="#__codelineno-1-65">65</a></span>
+<span class="normal"><a href="#__codelineno-1-66">66</a></span>
+<span class="normal"><a href="#__codelineno-1-67">67</a></span>
+<span class="normal"><a href="#__codelineno-1-68">68</a></span>
+<span class="normal"><a href="#__codelineno-1-69">69</a></span>
+<span class="normal"><a href="#__codelineno-1-70">70</a></span>
+<span class="normal"><a href="#__codelineno-1-71">71</a></span>
+<span class="normal"><a href="#__codelineno-1-72">72</a></span>
+<span class="normal"><a href="#__codelineno-1-73">73</a></span>
+<span class="normal"><a href="#__codelineno-1-74">74</a></span>
+<span class="normal"><a href="#__codelineno-1-75">75</a></span>
+<span class="normal"><a href="#__codelineno-1-76">76</a></span>
+<span class="normal"><a href="#__codelineno-1-77">77</a></span>
+<span class="normal"><a href="#__codelineno-1-78">78</a></span>
+<span class="normal"><a href="#__codelineno-1-79">79</a></span>
+<span class="normal"><a href="#__codelineno-1-80">80</a></span>
+<span class="normal"><a href="#__codelineno-1-81">81</a></span>
+<span class="normal"><a href="#__codelineno-1-82">82</a></span>
+<span class="normal"><a href="#__codelineno-1-83">83</a></span>
+<span class="normal"><a href="#__codelineno-1-84">84</a></span>
+<span class="normal"><a href="#__codelineno-1-85">85</a></span>
+<span class="normal"><a href="#__codelineno-1-86">86</a></span>
+<span class="normal"><a href="#__codelineno-1-87">87</a></span>
+<span class="normal"><a href="#__codelineno-1-88">88</a></span>
+<span class="normal"><a href="#__codelineno-1-89">89</a></span>
+<span class="normal"><a href="#__codelineno-1-90">90</a></span>
+<span class="normal"><a href="#__codelineno-1-91">91</a></span>
+<span class="normal"><a href="#__codelineno-1-92">92</a></span>
+<span class="normal"><a href="#__codelineno-1-93">93</a></span>
+<span class="normal"><a href="#__codelineno-1-94">94</a></span>
+<span class="normal"><a href="#__codelineno-1-95">95</a></span>
+<span class="normal"><a href="#__codelineno-1-96">96</a></span>
+<span class="normal"><a href="#__codelineno-1-97">97</a></span>
+<span class="normal"><a href="#__codelineno-1-98">98</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="n">greedy_change</span> <span class="o">(</span><span class="n">coins</span><span class="o">:</span><span class="kt">int</span> <span class="kt">array</span><span class="o">)</span> <span class="o">(</span><span class="n">v</span><span class="o">:</span><span class="kt">int</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">array</span> <span class="o">=</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">coins</span> <span class="k">in</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">let</span> <span class="n">change</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="n">n</span> <span class="mi">0</span> <span class="k">in</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="k">let</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">ref</span> <span class="n">v</span> <span class="k">and</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ref</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="k">while</span> <span class="o">!</span><span class="n">cur</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.(!</span><span class="n">i</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>        <span class="k">if</span> <span class="o">!</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">c</span> <span class="k">then</span> <span class="n">decr</span> <span class="n">i</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="k">else</span> <span class="o">(</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>            <span class="n">change</span><span class="o">.(!</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">change</span><span class="o">.(!</span><span class="n">i</span><span class="o">)+</span><span class="mi">1</span><span class="o">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>            <span class="n">cur</span><span class="o">:=!</span><span class="n">cur</span> <span class="o">-</span><span class="n">c</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="o">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">done</span><span class="o">;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="n">change</span><span class="o">;;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="k">let</span> <span class="n">coins</span>  <span class="o">=</span> <span class="o">[|</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">5</span><span class="o">;</span><span class="mi">10</span><span class="o">;</span><span class="mi">20</span><span class="o">;</span><span class="mi">50</span><span class="o">;</span><span class="mi">100</span><span class="o">|];;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="k">let</span> <span class="n">nb_max</span> <span class="o">=</span>  <span class="o">[|</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">1</span><span class="o">|];;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="k">let</span> <span class="n">contraint3</span> <span class="n">t</span> <span class="o">=</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">1</span><span class="o">)</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="k">then</span> <span class="bp">false</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="k">else</span> <span class="o">(</span><span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="mi">3</span><span class="o">)=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">4</span><span class="o">)</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">then</span> <span class="bp">false</span> <span class="k">else</span> <span class="bp">true</span><span class="o">);;</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="k">let</span> <span class="n">value</span> <span class="n">t</span> <span class="o">=</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="k">let</span> <span class="n">n</span><span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">t</span> <span class="k">in</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span> <span class="k">in</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="k">do</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a>    <span class="n">s</span> <span class="o">:=</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a>    <span class="o">!</span><span class="n">s</span> <span class="o">+</span> <span class="n">t</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="o">*</span> <span class="n">coins</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="k">done</span><span class="o">;</span> <span class="o">!</span><span class="n">s</span> <span class="o">;;</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="n">value</span> <span class="n">nb_max</span> <span class="o">;;</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="k">let</span> <span class="n">maximum</span> <span class="n">tab</span> <span class="o">=</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span> <span class="k">and</span> <span class="n">n</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">tab</span> <span class="k">in</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="k">for</span> <span class="n">k</span><span class="o">=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="k">do</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a>    <span class="k">if</span> <span class="n">snd</span> <span class="n">tab</span><span class="o">.(</span><span class="n">k</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">snd</span> <span class="n">tab</span><span class="o">.(!</span><span class="n">j</span><span class="o">)</span> <span class="k">then</span> <span class="n">j</span><span class="o">:=</span><span class="n">k</span><span class="o">;</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="k">done</span><span class="o">;</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="n">tab</span><span class="o">.(!</span><span class="n">j</span><span class="o">);;</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40"></a>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="k">let</span> <span class="n">check</span> <span class="bp">()</span> <span class="o">=</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">aux</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">=</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43"></a>    <span class="k">match</span> <span class="n">i</span> <span class="k">with</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44"></a>    <span class="o">|</span> <span class="n">x</span>  <span class="k">when</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">7</span> <span class="o">-&gt;</span> <span class="n">explore</span> <span class="n">i</span> <span class="n">acc</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45"></a>    <span class="o">|</span>  <span class="o">_</span> <span class="o">-&gt;</span> <span class="c">(*i=7*)</span> <span class="k">let</span> <span class="n">newacc</span> <span class="o">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">rev</span> <span class="n">acc</span> <span class="k">in</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46"></a>                    <span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">of_list</span> <span class="n">newacc</span> <span class="k">in</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47"></a>                    <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">value</span> <span class="n">t</span> <span class="k">in</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48"></a>                    <span class="k">if</span> <span class="n">contraint3</span> <span class="n">t</span> <span class="k">then</span> <span class="n">t</span><span class="o">,</span><span class="n">v</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49"></a>                    <span class="k">else</span> <span class="o">(</span><span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="mi">0</span> <span class="mi">7</span><span class="o">),</span> <span class="mi">0</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="k">and</span> <span class="n">explore</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">=</span> 
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51"></a>    <span class="k">let</span> <span class="n">nb</span> <span class="o">=</span> <span class="n">nb_max</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52"></a>    <span class="k">let</span> <span class="n">tab</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="o">(</span><span class="n">nb</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">([||],</span><span class="mi">0</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53"></a>    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">nb</span> <span class="k">do</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a>    <span class="n">tab</span><span class="o">.(</span><span class="n">j</span><span class="o">)</span> <span class="o">&lt;-</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="n">j</span><span class="o">::</span><span class="n">acc</span><span class="o">);</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a>    <span class="k">done</span><span class="o">;</span> <span class="n">maximum</span> <span class="n">tab</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="k">in</span> <span class="n">aux</span> <span class="mi">0</span> <span class="bp">[]</span><span class="o">;;</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57"></a>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="n">check</span><span class="bp">()</span><span class="o">;;</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59"></a>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60"></a><span class="k">let</span> <span class="n">coins</span>  <span class="o">=</span> <span class="o">[|</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">5</span><span class="o">;</span><span class="mi">10</span><span class="o">;</span><span class="mi">20</span><span class="o">;</span><span class="mi">50</span><span class="o">;</span><span class="mi">100</span><span class="o">|];;</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="c">(*contraintes 1 et 2*)</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="k">let</span> <span class="n">nb_max</span> <span class="o">=</span>  <span class="o">[|</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">1</span><span class="o">;</span><span class="mi">1</span><span class="o">|];;</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63"></a>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="c">(*3 tableaux de choix de pièces et 3 valeurs associées On renvoie le</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="c">tuple t,v dont v est le plus grand</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="c">*)</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67"></a><span class="k">let</span> <span class="n">maxi</span> <span class="n">t1</span> <span class="n">v1</span> <span class="n">t2</span> <span class="n">v2</span> <span class="n">t3</span> <span class="n">v3</span> <span class="o">=</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68"></a><span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">max</span> <span class="n">v1</span> <span class="o">(</span><span class="n">max</span> <span class="n">v2</span> <span class="n">v3</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">v1</span> <span class="k">then</span> <span class="n">t1</span><span class="o">,</span><span class="n">v1</span> <span class="k">else</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70"></a>    <span class="o">(</span><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">v2</span> <span class="k">then</span> <span class="n">t2</span><span class="o">,</span><span class="n">v2</span> <span class="k">else</span> <span class="n">t3</span><span class="o">,</span> <span class="n">v3</span><span class="o">);;</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71"></a>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="k">let</span> <span class="n">check</span> <span class="bp">()</span> <span class="o">=</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="k">let</span> <span class="n">contraint3</span> <span class="n">t</span> <span class="o">=</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74"></a>    <span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="mi">0</span><span class="o">)=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">1</span><span class="o">)</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75"></a>    <span class="k">then</span> <span class="bp">false</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76"></a>    <span class="k">else</span> <span class="o">(</span><span class="k">if</span> <span class="n">t</span><span class="o">.(</span><span class="mi">3</span><span class="o">)=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="o">.(</span><span class="mi">4</span><span class="o">)</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77"></a>        <span class="k">then</span> <span class="bp">false</span> <span class="k">else</span> <span class="bp">true</span><span class="o">)</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78"></a><span class="k">in</span> <span class="k">let</span> <span class="k">rec</span> <span class="n">aux</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">=</span> <span class="k">match</span> <span class="n">i</span> <span class="k">with</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79"></a>        <span class="o">|</span> <span class="n">x</span>  <span class="k">when</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">7</span> <span class="o">&amp;&amp;</span> <span class="n">nb_max</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-&gt;</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80"></a>        <span class="k">let</span> <span class="n">t1</span><span class="o">,</span><span class="n">v1</span> <span class="o">=</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">0</span><span class="o">::</span><span class="n">acc</span><span class="o">)</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81"></a>        <span class="k">in</span> <span class="k">let</span>  <span class="n">t2</span><span class="o">,</span><span class="n">v2</span> <span class="o">=</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">1</span><span class="o">::</span><span class="n">acc</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82"></a>        <span class="k">if</span> <span class="n">v1</span><span class="o">&lt;</span><span class="n">v2</span> <span class="k">then</span> <span class="n">t2</span><span class="o">,</span><span class="n">v2</span> <span class="k">else</span> <span class="n">t1</span><span class="o">,</span><span class="n">v1</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83"></a>        <span class="o">|</span>  <span class="n">x</span> <span class="k">when</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">7</span> <span class="o">&amp;&amp;</span> <span class="n">nb_max</span><span class="o">.(</span><span class="n">i</span><span class="o">)</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-&gt;</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84"></a>        <span class="k">let</span> <span class="n">t1</span><span class="o">,</span><span class="n">v1</span> <span class="o">=</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">0</span><span class="o">::</span><span class="n">acc</span><span class="o">)</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85"></a>        <span class="k">in</span> <span class="k">let</span> <span class="n">t2</span><span class="o">,</span><span class="n">v2</span> <span class="o">=</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">1</span><span class="o">::</span><span class="n">acc</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86"></a>        <span class="k">let</span> <span class="n">t3</span><span class="o">,</span><span class="n">v3</span> <span class="o">=</span> <span class="n">aux</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">2</span><span class="o">::</span><span class="n">acc</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87"></a>        <span class="k">let</span> <span class="n">v</span> <span class="o">=</span>  <span class="n">max</span> <span class="n">v1</span> <span class="o">(</span><span class="n">max</span> <span class="n">v2</span> <span class="n">v3</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88"></a>        <span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">v1</span> <span class="k">then</span> <span class="n">t1</span><span class="o">,</span><span class="n">v1</span> <span class="k">else</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89"></a>            <span class="o">(</span><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">v2</span> <span class="k">then</span> <span class="n">t2</span><span class="o">,</span><span class="n">v2</span> <span class="k">else</span> <span class="n">t3</span><span class="o">,</span> <span class="n">v3</span><span class="o">)</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90"></a>        <span class="o">|</span>  <span class="o">_</span> <span class="o">-&gt;</span> <span class="c">(*i=7*)</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91"></a>        <span class="k">let</span> <span class="n">newacc</span> <span class="o">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">rev</span> <span class="n">acc</span> <span class="k">in</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92"></a>        <span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">of_list</span> <span class="n">newacc</span> <span class="k">in</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93"></a>        <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">value</span> <span class="n">t</span> <span class="k">in</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94"></a>        <span class="k">if</span> <span class="n">contraint3</span> <span class="n">t</span> <span class="k">then</span> <span class="n">t</span><span class="o">,</span><span class="n">v</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95"></a>        <span class="k">else</span> <span class="o">(</span><span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="mi">7</span> <span class="mi">0</span><span class="o">),</span> <span class="mi">0</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96"></a><span class="k">in</span> <span class="n">aux</span> <span class="mi">0</span> <span class="bp">[]</span><span class="o">;;</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97"></a>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98"></a><span class="n">check</span><span class="bp">()</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<div class="admonition note">
+<p><strong>Explication</strong>
+On constate que la plus grande somme possible remboursable  avec ces pièces est  </p>
+<div class="arithmatex">\[2 × 2 + 5 + 2 × 20 + 50 + 100 = 199\]</div>
+<p>Ainsi, la solution optimale ne pourra JAMAIS rembourser plus  de <span class="arithmatex">\(199\)</span>€ avec des pièces de moins de <span class="arithmatex">\(200\)</span>€. Dit autrement,  la solution optimale doit rembourser toute somme <span class="arithmatex">\(S &gt; 200\)</span>€ avec le maximum possible de pièces de <span class="arithmatex">\(200\)</span>€ (qui est en fait  <span class="arithmatex">\(k = S/200\)</span>).<br />
+Or, notre algorithme calcule exactement <span class="arithmatex">\(k\)</span>.  </p>
+<p>Pour une somme inférieure à <span class="arithmatex">\(199\)</span>€ reprenons notre petit  programme et faison le tourner pour trouver le nombre  maximum de pièces de moins de <span class="arithmatex">\(100\)</span> euros.  </p>
+<p>On trouve alors que la solution optimale ne peut rembourser  qu’une somme de <span class="arithmatex">\(99\)</span>€ avec ces pièces. Pour rembourser  une somme entre entre <span class="arithmatex">\(100\)</span>€ et <span class="arithmatex">\(199\)</span>€, il faut un billet de <span class="arithmatex">\(100\)</span>€.</p>
+<p>C’est exactement la quantité que trouve notre programme dans ce cas là!</p>
+<p>etc.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

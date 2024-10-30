@@ -1,0 +1,3380 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2-Complexit%C3%A9/">
+      
+      
+        <link rel="next" href="../../Arbres/1-Induction_structurelle/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Complexité moyenne et amortie - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#complexite-moyenne-et-amortie" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Complexité moyenne et amortie
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tri-rapide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri rapide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri rapide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-la-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de la partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-temporelle-de-la-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité temporelle de la partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction par induction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-rapide-complexite-en-nombre-de-comparaisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri rapide : complexité en nombre de comparaisons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri rapide : complexité en nombre de comparaisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-ou-lune-des-listes-est-toujours-vide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas où l'une des listes est toujours vide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-moyenne-du-tri-rapide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité moyenne du tri rapide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité amortie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité amortie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-du-compteur-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple du compteur binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyse-grossiere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyse grossière
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadre-detude-de-complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadre d'étude de complexité amortie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differentes-methodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diﬀérentes méthodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cout-amorti-dune-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coût amorti d'une opération
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theoreme-damortissement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Théorème d'amortissement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corollaire-au-th-damortissement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corollaire au th. d'amortissement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retour-au-compteur-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retour au compteur binaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexite-moyen-vs-complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité moyen vs complexité amortie
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tri-rapide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri rapide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri rapide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-la-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de la partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-temporelle-de-la-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité temporelle de la partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction par induction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tri-rapide-complexite-en-nombre-de-comparaisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tri rapide : complexité en nombre de comparaisons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri rapide : complexité en nombre de comparaisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-ou-lune-des-listes-est-toujours-vide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas où l'une des listes est toujours vide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-moyenne-du-tri-rapide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité moyenne du tri rapide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité amortie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité amortie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple-du-compteur-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple du compteur binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyse-grossiere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyse grossière
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadre-detude-de-complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadre d'étude de complexité amortie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differentes-methodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diﬀérentes méthodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cout-amorti-dune-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coût amorti d'une opération
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theoreme-damortissement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Théorème d'amortissement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corollaire-au-th-damortissement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corollaire au th. d'amortissement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retour-au-compteur-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retour au compteur binaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexite-moyen-vs-complexite-amortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité moyen vs complexité amortie
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="complexite-moyenne-et-amortie">Complexité moyenne et amortie<a class="headerlink" href="#complexite-moyenne-et-amortie" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>
+<p><a href="https://fr.wikipedia.org/wiki/Analyse_amortie">Wikipedia (Analyse amortie)</a></p>
+</li>
+<li>
+<p>"Option informatique MPSI - MP/MP*" Roger MANSUY (Vuibert)</p>
+</li>
+<li>
+<p>"Algorithmique - 3ème édition Cours avec 957 exercices et 158 problèmes" Thomas H. Cormen, Charles Leiserson, Ronald Rivest, Cliﬀord Stein (Dunod)</p>
+</li>
+<li>
+<p>"Informatique - MP2I/MPI - CPGE 1re et 2e années" Balabonski Thibaut, Conchon Sylvain, Filliâtre Jean-Christophe, Nguyen Kim, Sartre Laurent (ellipse)</p>
+</li>
+</ul>
+</div>
+<h2 id="tri-rapide">Tri rapide<a class="headerlink" href="#tri-rapide" title="Permanent link">&para;</a></h2>
+<p>Dans le tri rapide, on sépare l'entrée en deux listes en comparant à un élément pivot, on les trie séparément et on les fusionne par concaténation.</p>
+<ul>
+<li>
+<p>Dans le tri rapide, la fonction de division est délicate et celle de fusion triviale. C'est le contraire pour le tri fusion.</p>
+</li>
+<li>
+<p>On donne une version pour les listes. On peut en donner une version en place pour des tableaux.</p>
+</li>
+<li>
+<p>Mis au point en <span class="arithmatex">\(1960\)</span> par Tony Hoare, alors étudiant en visite à l'université d'Etat de Moscou.</p>
+</li>
+<li>
+<p>Possède une variante <em>Quick select</em> pour le calcul du <span class="arithmatex">\(k\)</span>-ième élément d'une liste sans procéder au tri préalable (application : calcul de la médiane).</p>
+</li>
+</ul>
+<h3 id="partition">Partition<a class="headerlink" href="#partition" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">partition</span> <span class="n">l</span> <span class="n">p</span> <span class="o">=</span> <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="o">|</span> <span class="bp">[]</span>   <span class="o">-&gt;</span> <span class="bp">[]</span> <span class="o">,</span><span class="bp">[]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="o">|</span> <span class="n">t</span><span class="o">::</span><span class="n">q</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span><span class="n">l2</span><span class="o">)</span> <span class="o">=</span> <span class="n">partition</span> <span class="n">q</span> <span class="n">p</span> <span class="k">in</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">p</span> <span class="k">then</span> <span class="o">(</span><span class="n">t</span><span class="o">::</span><span class="n">l1</span><span class="o">,</span><span class="n">l2</span><span class="o">)</span> <span class="k">else</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span><span class="n">t</span><span class="o">::</span><span class="n">l2</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="terminaison-de-la-partition">Terminaison de la partition<a class="headerlink" href="#terminaison-de-la-partition" title="Permanent link">&para;</a></h4>
+<p>Les cas de bases terminent et l'appel interne se fait avec une liste strictement plus courte que la liste initiale et il n'y a pas de boucle ou d'appel à une fonction qui ne termine pas.</p>
+<p>C'est tout bon !</p>
+<h4 id="complexite-temporelle-de-la-partition">Complexité temporelle de la partition<a class="headerlink" href="#complexite-temporelle-de-la-partition" title="Permanent link">&para;</a></h4>
+<p>Dans tous les cas de la forme <span class="arithmatex">\(C_{n} = C_{n} - 1 + 1\)</span> pour une liste de taille <span class="arithmatex">\(n\)</span>. Linéaire.</p>
+<h4 id="correction-par-induction">Correction par induction<a class="headerlink" href="#correction-par-induction" title="Permanent link">&para;</a></h4>
+<p>Montrons que la fonction retourne deux listes dont la 1ere contient tous les éléments de <span class="arithmatex">\(l\)</span> plus petits que le pivot, les éléments strictement plus grands étant dans la seconde.</p>
+<ul>
+<li><em>Cas de base</em> : <strong>OK</strong> de façon évidente</li>
+<li><em>Hérédité</em> : Supposons que <code>partition q p</code> partitionne correctement <code>q</code> en <span class="arithmatex">\(l_1, l_2\)</span>. Supposons aussi <span class="arithmatex">\(t ≤ p\)</span>. Alors dans le tuple retourné :</li>
+<li>On ajoute <span class="arithmatex">\(t\)</span> à la liste <span class="arithmatex">\(l_1\)</span> des éléments de <span class="arithmatex">\(q\)</span> plus petits que <span class="arithmatex">\(p\)</span>. On obtient exactement tous les éléments de <span class="arithmatex">\(l\)</span> plus petits que le pivot.</li>
+<li>La liste <span class="arithmatex">\(l_2\)</span> est constituée exactement des éléments de <span class="arithmatex">\(q\)</span> strictement plus grands que <span class="arithmatex">\(p\)</span> ; donc (puisque <span class="arithmatex">\(t ≤ p\)</span>) exactement ceux ceux de <span class="arithmatex">\(l\)</span>.</li>
+<li>Correction <strong>OK</strong>. Le cas <span class="arithmatex">\(t &gt; p\)</span> cas est laissé au lecteur.</li>
+</ul>
+<h3 id="algorithme">Algorithme<a class="headerlink" href="#algorithme" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">tri_rapide</span> <span class="n">l</span> <span class="o">=</span> <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="o">|</span> <span class="n">t</span><span class="o">::</span><span class="n">q</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span><span class="n">l2</span><span class="o">)</span> <span class="o">=</span> <span class="n">partition</span> <span class="n">q</span> <span class="n">t</span> <span class="k">in</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="o">(</span><span class="n">tri_rapide</span> <span class="n">l1</span><span class="o">)@(</span><span class="n">t</span><span class="o">::(</span><span class="n">tri_rapide</span> <span class="n">l2</span><span class="o">));;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="terminaison">Terminaison<a class="headerlink" href="#terminaison" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Variant <span class="arithmatex">\(|l|\)</span>.</li>
+<li>Le cas de base termine (envoie de la liste vide).</li>
+<li>L'appel à <code>partition</code> termine (déjà vu).</li>
+<li>Seulement deux appels internes, tous deux eﬀectués avec des listes de taille strictement inférieure à <span class="arithmatex">\(|l|\)</span> (puisque <span class="arithmatex">\(|l1| + |l2| = |l| − 1\)</span>).</li>
+<li>Terminaison <strong>OK</strong>.</li>
+</ul>
+<h3 id="correction">Correction<a class="headerlink" href="#correction" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Preuve par induction</p>
+<p>Cas de base : <strong>OK</strong>.</p>
+<p>Supposons que les deux appels internes retournent une version triée de
+<code>l1</code> et de <code>l2</code>.</p>
+<ul>
+<li>Par correction de partition : <code>l1</code> contient les éléments de <code>q</code> plus petits ou égaux au pivot et <code>l2</code> les éléments strictement plus grands.</li>
+<li>La concaténation retournée<ul>
+<li>est triée : d'abords les éléments plus petits que le pivot     rangés dans l'ordre, puis le pivot, puis les éléments plus grands que le pivot rangés dans l'ordre.</li>
+<li>contient exactement tous les éléments de <code>q</code> (puisque la réunion de <code>l1</code> et <code>l2</code> les contient) plus l'élément manquant <code>t</code> .</li>
+<li>La concaténation est la version triée de <code>l</code> .</li>
+</ul>
+</li>
+</ul>
+<p>Hérédité <strong>OK</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve par récurrence</p>
+<p>Cas de base : <strong>OK</strong>.</p>
+<p><span class="arithmatex">\(\color{red}\text{Supposons que le tri soit correct pour des tailles de liste} ≤ n\)</span>. Par <strong>HR</strong>, les deux appels sur <span class="arithmatex">\(l_1\)</span> et <span class="arithmatex">\(l_2\)</span> retournent une version triée de <code>l1</code> et de <code>l2</code>.</p>
+<ul>
+<li>Par correction de <code>partition</code> : <code>l1</code> contient les éléments de <code>q</code> plus petits ou égaux au pivot et <code>l2</code> les éléments strictement plus grands.</li>
+<li>La concaténation retournée<ul>
+<li>est triée : d'abords les éléments plus petits que le pivot     rangés dans l'ordre, puis le pivot, puis les éléments plus grands que le pivot rangés dans l'ordre.</li>
+<li>contient exactement tous les éléments de <code>q</code> (puisque la réunion de <code>l1</code> et <code>l2</code> les contient) plus l'élément manquant <code>t</code> .</li>
+<li>La concaténation est la version triée de <code>l</code> .</li>
+</ul>
+</li>
+</ul>
+<p>Hérédité <strong>OK</strong></p>
+</div>
+<h3 id="tri-rapide-complexite-en-nombre-de-comparaisons">Tri rapide : complexité en nombre de comparaisons<a class="headerlink" href="#tri-rapide-complexite-en-nombre-de-comparaisons" title="Permanent link">&para;</a></h3>
+<h4 id="cas-ou-lune-des-listes-est-toujours-vide">Cas où l'une des listes est toujours vide<a class="headerlink" href="#cas-ou-lune-des-listes-est-toujours-vide" title="Permanent link">&para;</a></h4>
+<p>Supposons que l'une des listes retournée par partition soit vide à chaque fois (cela se produit par exemple si la liste est déjà triée).</p>
+<p>On désigne par <span class="arithmatex">\(T_n\)</span> la complexité temporelle en nombre de compraisons pour une liste triée de taille <span class="arithmatex">\(n\)</span>.</p>
+<ul>
+<li>Alors Tn vériﬁe une relation de la forme <span class="arithmatex">\(Tn = Tn−1 + n − 1\)</span>. (<span class="arithmatex">\(n − 1\)</span> : nombre de comparaisons dans <code>partition</code>). Remarquons au passage que <span class="arithmatex">\(T_1 = 0\)</span>  (aucune comparaison) et que <span class="arithmatex">\(T_{1-1} + 1 - 1 = 0 = T_1\)</span></li>
+<li>Complexité en somme des premiers entiers soit <span class="arithmatex">\(O(n^2)\)</span>.</li>
+<li>On montre dans la suite que ce cas est bien le pire, c'est à dire que la complexité <span class="arithmatex">\(C_n\)</span> en nombre de comparaisons est la pire si le pivot est à une extrémité et donc que <span class="arithmatex">\(C_n = T_n\)</span>.</li>
+</ul>
+<p>Hypothèse de récurrence selon <span class="arithmatex">\(n\)</span> (<span class="arithmatex">\(= HR(n)\)</span>):
+<span class="arithmatex">\(\forall q \leq n\)</span> :</p>
+<ol>
+<li><span class="arithmatex">\(T_{q}\)</span> est la pire complexité</li>
+<li>
+<p><span class="arithmatex">\(\forall k \in \{ 1,\ldots,n\},T_{k - 1} + T_{n - k} + n–1 \leq T_{n}\)</span> (avec égalité si <span class="arithmatex">\(k=1\)</span>)</p>
+</li>
+<li>
+<p><em>Cas de base</em> :  <span class="arithmatex">\(n = 1\)</span>, <span class="arithmatex">\(T_0 = 0 = T_1,k \in \{ 1\}.\)</span> Alors <span class="arithmatex">\(T_{1 - 1} + T_{1 - 1} + 1–1 = 0 \leq T_1\)</span> et <span class="arithmatex">\(T_1\)</span> est la pire complexité. <strong>OK</strong></p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(HR(n)\)</span> est vérifiée. Soit <span class="arithmatex">\(k \in \{ 1,\ldots,n + 1\}\)</span></p>
+<div class="arithmatex">\[\begin{matrix}
+T_{k - 1} + \textcolor{red}{T_{n + 1–k}} + n &amp;\underset{\text{def. de T}}{=} &amp; T_{k - 1} + \textcolor{red}{T_{n - k} + (n - k)} + n–1 + 1\\
+&amp;&amp; \\
+&amp;\underset{\text{HR(n)}}{\leq} &amp; T_{n} + (n–k + 1) \leq T_{n} + n \\
+&amp;&amp; \\
+&amp; = &amp; T_{n + 1}
+\end{matrix}
+\]</div>
+<p>C'est ce qu'on veut.</p>
+</li>
+<li>
+<p>Soit <span class="arithmatex">\(l\)</span> une liste <span class="arithmatex">\(\color{red}\text{quelconque}\)</span> de longueur <span class="arithmatex">\(n+1\)</span> partitionnée lors de l'appel <code>partition q</code>en deux sous-listes <span class="arithmatex">\(l_1, l_2\)</span> de longueur <span class="arithmatex">\(k\)</span> et <span class="arithmatex">\(n-k\)</span> (<span class="arithmatex">\(k ≥ 0\)</span>). Notons <span class="arithmatex">\(C^l_{n+1}\)</span> la complexité exavte en nombre de comparaisons de l'appel <code>tri_rapide l</code>; <span class="arithmatex">\(C^{l_1}_{n+1}\)</span> (resp. <span class="arithmatex">\(C^{l_2}_{n+1}\)</span>) les complexités de <code>tri_rapide l1</code> (resp. <code>tri_rapide l2</code>).</p>
+</li>
+<li>Si <span class="arithmatex">\(l_i\)</span> est vide <span class="arithmatex">\(C^l_{n+1} = C^{l_j}_{n} + n \leq T_n + n\)</span> par <strong>HR</strong> donc <span class="arithmatex">\(C^l_{n+1} = T_{n+1}\)</span>.</li>
+<li>Si <span class="arithmatex">\(|l_1|\times|l_2| ≠ 0\)</span> alors <span class="arithmatex">\(1 ≤ k ≤ n-1\)</span> et :</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\begin{matrix} C^l_{n+1} &amp; = &amp; C^{l_1}_{k} + C^{l_1}_{n-k} +n \\ &amp; &amp; \\
+&amp; \underbrace{≤}_{HR(n)} &amp; T_k + T_{n-k} + n \\ &amp;&amp; \\
+&amp; \underbrace{=}_{\begin{matrix}k'= k+1  \\ k' \in ⟦2,n ⟧\end{matrix}} &amp; T_{k'-1} + T_{n+1-k'} + n \\ &amp; &amp; \\
+&amp; ≤ &amp; T_{n+1}
+\end{matrix}\)</span>\)</span>
+(d'après la preuve du transparent précédent)</p>
+<ul>
+<li>Ainsi, <span class="arithmatex">\(\color{red}l \text{ étant quelconque}\)</span>, <span class="arithmatex">\(T_{n+1}\)</span> est la pire complexité possible. <strong>IZP</strong> !</li>
+</ul>
+<h3 id="complexite-moyenne-du-tri-rapide">Complexité moyenne du tri rapide<a class="headerlink" href="#complexite-moyenne-du-tri-rapide" title="Permanent link">&para;</a></h3>
+<p>La complexité moyenne <span class="arithmatex">\(C(n)\)</span> du tri rapide pour une liste de taille <span class="arithmatex">\(n\)</span> est la moyenne des complexités pour les diﬀérentes positions du pivot.</p>
+<p>Elle vériﬁe (si la position ﬁnale du pivot est équiprobable) :</p>
+<div class="arithmatex">\[\begin{matrix}C(n) &amp;=&amp; \frac{1}{n} \sum_{k=0}^{n-1}(C(k)+C(n-k-1)+n-1)\\ &amp; &amp; \\
+    &amp;=&amp; n-1+\frac{1}{n}\sum_{k=0}^{n-1}(C(k) + C(n-k-1))
+\end{matrix}
+\]</div>
+<p>On constate que chaque terme apparaît deux fois.</p>
+<p>Alors <span class="arithmatex">\(C(n) = n - 1 + \frac{2}{n}\sum_{k = 0}^{n - 1}C(k)\)</span>
+donc <span class="arithmatex">\(nC(n) = 2\sum_{k = 0}^{n - 1}C(k) + n(n - 1)\)</span> et donc ainsi :</p>
+<div class="arithmatex">\[
+\begin{align}
+nC(n) - (n-1)C(n-1) &amp;\underbrace =_\text{def} \textcolor{red}{2\sum_{k=0}^{n-1}C(k)}+n(n-1)-(n-1)C(n-1) \nonumber\\
+    &amp;= \textcolor{red}{2C(n-1)+2\sum_{k=0}^{n-2}C(k) + (n-1)(n-2)}- (n-1)(n-2) +n(n-1) - (n-1)C(n-1) \nonumber\\
+    &amp;= 2C(n-1) +\textcolor{red}{(n-1)C(n-1)}-(n-1)(n-2) + n(n-1)-(n-1)C(n-1) \nonumber\\
+    &amp;= 2C(n-1)+n(n-1)-(n-1)(n-2) \nonumber\\
+    &amp;\Rightarrow nC(n)-(n-1)C(n-1) = 2(n-1) \nonumber
+\end{align}
+\]</div>
+<p>Il vient ainsi</p>
+<p><span class="arithmatex">\(\frac{C(n)}{n + 1}–\frac{C(n - 1)}{n} = \frac{2(n - 1)}{n(n + 1)} = \frac{4}{n + 1}–\frac{2}{n}\)</span> (décomposition en éléments simples)</p>
+<p>Par télescopage, et puisque <span class="arithmatex">\(C(0) = 0\)</span> :</p>
+<p><span class="arithmatex">\(\begin{matrix}
+\frac{C(n)}{n + 1}–\frac{C(0)}{1} &amp;=&amp; \frac{C(n)}{n + 1} \\ &amp; &amp;\\
+ &amp;=&amp;4\sum_{k = 1}^{n}{\frac{1}{k + 1}}–2\sum_{k = 1}^{n}{\frac{1}{k}} \\ &amp; &amp;\\
+ &amp;=&amp; 4\sum_{k = 2}^{n + 1}{\frac{1}{k}} - 2\sum_{k = 1}^{n}{\frac{1}{k}} \\ &amp; &amp;\\
+ &amp;=&amp; 2\sum_{k = 2}^{n}\frac{1}{k} + \frac{4}{n + 1} - 2 \\ &amp; &amp;\\
+ &amp;=&amp; 2\sum_{k = 1}^{n}{\frac{1}{k}} + {\frac{4}{n + 1}–4} \leq 2\underset{\color{red}\sim \ln(n)}{\underbrace{\sum_{k = 1}^{n}{\frac{1}{k}}}} + \underset{\color{red}O\left( \frac{1}{n} \right)}{\underbrace{\frac{4}{n + 1}}} \\
+\end{matrix}\)</span></p>
+<p>Sachant que <span class="arithmatex">\(\sum_{k = 1}^{n}{\frac{1}{k}} = \ln n + \gamma + O\left( \frac{1}{n} \right)\)</span> où <span class="arithmatex">\(γ\)</span> est la constante d'Euler (<span class="arithmatex">\(\gamma \simeq 0,577\)</span>) alors :</p>
+<div class="arithmatex">\[\frac{C(n)}{n+1} = (2 \ln n + 2\gamma + O(\frac{1}{n}))+\frac{4}{n+1}-4=2\ln n +2\gamma + O(\frac{1}{n}) -4\]</div>
+<p>Donc <span class="arithmatex">\(C(n) = O\left( n\log n \right)\)</span>.</p>
+<p>On peut minorer de la même façon, (en exo : utiliser <span class="arithmatex">\(\sum_{k=1}^{n}{\frac{1}{k}} &gt; \ln(n)\)</span> apcr) donc <span class="arithmatex">\(C_{n} = \Theta\left( n\log n \right)\)</span></p>
+<h2 id="complexite-amortie">Complexité amortie<a class="headerlink" href="#complexite-amortie" title="Permanent link">&para;</a></h2>
+<h3 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<p>L'<em>analyse amortie</em> est une méthode d'évaluation de la complexité temporelle des opérations sur une structure de données (tableaux, piles, ﬁles, arbres...).</p>
+<p>Elle consiste principalement à majorer le coût cumulé d'une suite d'opérations pour attribuer à chaque opération la moyenne de cette majoration, en prenant en compte le fait que les cas chers surviennent rarement et isolément et <span class="arithmatex">\(\color{red}\textsf{compensent les cas bon marché}\)</span>.</p>
+<h3 id="exemple-du-compteur-binaire">Exemple du compteur binaire<a class="headerlink" href="#exemple-du-compteur-binaire" title="Permanent link">&para;</a></h3>
+<p>On veut représenter, pour un entier <span class="arithmatex">\(n\)</span>, tous les tableaux possibles de bouléens de longueur <span class="arithmatex">\(n\)</span>.</p>
+<p>Un tel tableau <code>t</code> peut être vu comme la représentation binaire d'en entier positif sur <span class="arithmatex">\(n\)</span> bits. Il y en a <span class="arithmatex">\(2n − 1\)</span>. On choisit la version <em>little endian</em> (bit de poids faible en <code>t[0])</code>, donc <span class="arithmatex">\(1\)</span> s'écrit</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Pour avoir tous les tableaux, on part du tableau entièrement nul et on lui applique itérativement un incrément de <span class="arithmatex">\(1\)</span> (donc <span class="arithmatex">\(2^n\)</span> fois) :</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">incr</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">c</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span><span class="w"> </span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">        </span><span class="n">i</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">//propagation de la retenue</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Nous voulons mesurer la complexité de cette fonction en nombre d'accès aux éléments du tableau.</p>
+<h3 id="analyse-grossiere">Analyse grossière<a class="headerlink" href="#analyse-grossiere" title="Permanent link">&para;</a></h3>
+<p>Pour un tableau de taille <span class="arithmatex">\(n\)</span>.</p>
+<ul>
+<li>La complexité dépend du nombre de tour dans la boucle while.</li>
+<li>Meileur cas : si <code>t[0] == 0</code> , alors pas de passage dans la boucle, deux
+accès seulement (en lecture puis écriture).</li>
+<li>Pire cas : tous les bits à <span class="arithmatex">\(1\)</span>. Pour chacun des <span class="arithmatex">\(n\)</span> passages, un accès en
+lecture puis un en écriture. <span class="arithmatex">\(2n\)</span> accès .</li>
+<li>Dans le pire cas, la complexité est en <span class="arithmatex">\(O(n)\)</span> pour un tableau.</li>
+<li>Majorer le coût des <span class="arithmatex">\(2^n\)</span> appels à incr : <span class="arithmatex">\(2n2^n = n2^{n+1}\)</span>.</li>
+<li>C'est trop imprécis car passer <span class="arithmatex">\(n\)</span> fois dans la boucle arrive
+exceptionnellement.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<table>
+<thead>
+<tr>
+<th>Numéro</th>
+<th>Paramètre</th>
+<th>Nombre de tours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(0000 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(1000 . . . 0\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\)</span></td>
+<td><span class="arithmatex">\(0100 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(3\)</span></td>
+<td><span class="arithmatex">\(1100 . . . 0\)</span></td>
+<td><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(4\)</span></td>
+<td><span class="arithmatex">\(0010 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(5\)</span></td>
+<td><span class="arithmatex">\(1010 . . . 0\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(6\)</span></td>
+<td><span class="arithmatex">\(0110 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(7\)</span></td>
+<td><span class="arithmatex">\(1110 . . . 0\)</span></td>
+<td><span class="arithmatex">\(3\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(8\)</span></td>
+<td><span class="arithmatex">\(0001 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(9\)</span></td>
+<td><span class="arithmatex">\(1001 . . . 0\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(10\)</span></td>
+<td><span class="arithmatex">\(0101 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(11\)</span></td>
+<td><span class="arithmatex">\(1101 . . . 0\)</span></td>
+<td><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(12\)</span></td>
+<td><span class="arithmatex">\(0011 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(13\)</span></td>
+<td><span class="arithmatex">\(1011 . . . 0\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(14\)</span></td>
+<td><span class="arithmatex">\(0111 . . . 0\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(15\)</span></td>
+<td><span class="arithmatex">\(1111 . . . 0\)</span></td>
+<td><span class="arithmatex">\(4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Total : <span class="arithmatex">\(14\)</span> passages dans while</p>
+<p>Sur <span class="arithmatex">\(16\)</span> appels consécutifs à <code>incr</code> :</p>
+<ul>
+<li>
+<p>Un appel sur <span class="arithmatex">\(2\)</span> : <span class="arithmatex">\(0\)</span> tour de boucle ;</p>
+</li>
+<li>
+<p>Un appel sur <span class="arithmatex">\(4\)</span> : <span class="arithmatex">\(1\)</span> tours de boucle ;</p>
+</li>
+<li>
+<p>Un appel sur <span class="arithmatex">\(8\)</span> : <span class="arithmatex">\(2\)</span> tours de boucle ;</p>
+</li>
+<li>
+<p>Un appel sur <span class="arithmatex">\(16\)</span> : <span class="arithmatex">\(3\)</span> tours de boucle ;</p>
+</li>
+</ul>
+</div>
+<h3 id="cadre-detude-de-complexite-amortie">Cadre d'étude de complexité amortie<a class="headerlink" href="#cadre-detude-de-complexite-amortie" title="Permanent link">&para;</a></h3>
+<p>On eﬀectue une étude de complexité amortie pour des algorithmes qui</p>
+<ul>
+<li>ont une faible complexité pour de nombreuses entrées ;</li>
+<li>sont coûteux pour certaines entrées (peu nombreuses en proportion) ;</li>
+<li>vériﬁent que dans toute séquence d'appel à l'algorithme, les entrées coûteuses interviennent assez rarement pour que le coût moyen reste faible.</li>
+</ul>
+<h3 id="differentes-methodes">Diﬀérentes méthodes<a class="headerlink" href="#differentes-methodes" title="Permanent link">&para;</a></h3>
+<p>Il y a <span class="arithmatex">\(3\)</span> méthodes usuelles d'analyse amortie : la méthode de l'agrégat, la méthode comptable et la <span class="arithmatex">\(\color{red}\textsf{méthode du potentiel}\)</span> (seule étudiée ici).</p>
+<p>Méthode du potentiel : A chaque entrée possible <span class="arithmatex">\(x\)</span>, on associe un nombre positif ou nul <span class="arithmatex">\(φ(x)\)</span> dit <em>potentiel</em>. Il représente un coût latent dans l'entrée mais pas encore réalisé.</p>
+<p>Une séquence d'un algorithme ayant de bonnes propriétés de complexité amortie alterne entre :</p>
+<ul>
+<li>de (nombreuses) opérations de faible coût faisant monter progressivement le potentiel,</li>
+<li>et de (peu nombreuses) opérations de coût élevé faisant diminuer brusquement le potentiel.</li>
+</ul>
+<p>Dans l'exemple du compteur binaire, le potentiel est le nombre de <span class="arithmatex">\(1\)</span> dans le tableau.</p>
+<h3 id="cout-amorti-dune-operation">Coût amorti d'une opération<a class="headerlink" href="#cout-amorti-dune-operation" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Coût amorti</p>
+<p>Soit une opération <span class="arithmatex">\(op\)</span> dont l'exécution produit une sortie <span class="arithmatex">\(x_{s}\)</span> à partir d'une entrée <span class="arithmatex">\(x_{e}\)</span>. Le <em>coût réel</em> <span class="arithmatex">\(C\)</span> de <span class="arithmatex">\(op\)</span> est la complexité temporelle de son exécution. Son <em>coût amorti</em> <span class="arithmatex">\(A\)</span> et la somme du coût réel et de la variation de potentiel : <span class="arithmatex">\(A = C + \varphi(x_s) - \varphi(x_e)\)</span>.</p>
+</div>
+<p>Dans cette déﬁnition, les <em>entrées</em> et <em>sorties</em> représentent au sens large ce qui est donné à l'algorithme (paramètres, état de la mémoire au début de l'appel) et ce qu'il produit (résultats renvoyés, état de la mémoire en sortie).</p>
+<p>Une <em>séquence d'opérations consécutives</em> est une suite d'appels à un algorithme de sorte que chaque sortie d'un appel soit l'entrée du suivant.</p>
+<p>On montre que le coût réel est toujours inférieur au coût amorti.</p>
+<h3 id="theoreme-damortissement">Théorème d'amortissement<a class="headerlink" href="#theoreme-damortissement" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p><strong>Théorème</strong></p>
+<p>Soit une suite de <span class="arithmatex">\(n\)</span> opérations <span class="arithmatex">\(x_0\overset{op_1}→x_1\overset{op_2}→x_2 . . .\overset{op_n}→x_n\)</span>
+à partir d'une entrée <span class="arithmatex">\(x_0\)</span> telle que <span class="arithmatex">\(φ(x_0) = 0\)</span>. En notant <span class="arithmatex">\(C_i\)</span> le coût réel de l'opération <span class="arithmatex">\(op_i\)</span> et <span class="arithmatex">\(A_i\)</span> son coût amorti, on a la relation d'amortissement suivante :</p>
+<div class="arithmatex">\[\sum_{i=1}^{n}C_i \leq \sum_{i=1}^{n}A_i\]</div>
+</div>
+<div class="admonition note">
+<p><strong>Preuve</strong></p>
+<div class="arithmatex">\[ \sum_{i=1}^{n}A_i = \sum_{i=1}^{n}C_i + \sum_{i=1}^{n}(\varphi(x_i) - \varphi(x_{i-1})) = \sum_{i=1}^{n}C_i + \varphi(x_n) - \varphi(x_0) \geq \sum_{i=1}^{n}C_i\]</div>
+</div>
+<h3 id="corollaire-au-th-damortissement">Corollaire au th. d'amortissement<a class="headerlink" href="#corollaire-au-th-damortissement" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p><strong>Corollaire</strong></p>
+<p>Avec les notations du th. d'amortissement, si le coût amorti est borné par une constante <span class="arithmatex">\(k\)</span>, alors la complexité moyenne au sein d'une séquence arbitraire de <span class="arithmatex">\(n\)</span> opérations est bornée par <span class="arithmatex">\(k\)</span>.</p>
+</div>
+<div class="admonition note">
+<p><strong>Démonstration</strong></p>
+<div class="arithmatex">\[\sum_{i=1}^n C_i \underbrace{\leq}_{\textsf{par th. d'amortissement}} \sum_{i=1}^n A_i \leq \sum_{i=1}^n k = k\times n\]</div>
+</div>
+<h3 id="retour-au-compteur-binaire">Retour au compteur binaire<a class="headerlink" href="#retour-au-compteur-binaire" title="Permanent link">&para;</a></h3>
+<p>Complexité en nombre d'accès aux cases du tableau :</p>
+<p>Soit <span class="arithmatex">\(k\)</span> le nombre de <span class="arithmatex">\(1\)</span> consécutifs depuis la position <span class="arithmatex">\(0\)</span>. L'appel <code>incr(c,n)</code> réalise :</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(2(k + 1)\)</span> accès mémoire si <span class="arithmatex">\(k &lt; n\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(2n\)</span> accès si <span class="arithmatex">\(k = n\)</span>.</p>
+</li>
+</ul>
+<p>On déﬁnit le potentiel <span class="arithmatex">\(φ(c)\)</span> du tableau <span class="arithmatex">\(c\)</span> par</p>
+<div class="arithmatex">\[\Phi(c) = 2 \times \underbrace{(\textsf{nombre de 1 dans c})}_{|c|_{1}} \]</div>
+<p>Si <span class="arithmatex">\(c_{i}\)</span> possède <span class="arithmatex">\(k\)</span> bits <span class="arithmatex">\(1\)</span> consécutifs depuis la position <span class="arithmatex">\(0\)</span>, alors soit <span class="arithmatex">\(k'\)</span> tel que <span class="arithmatex">\(|c|_{1} = k + k’\)</span>. Une application de <code>incr</code>, transforme <span class="arithmatex">\(c_{i}\)</span> en <span class="arithmatex">\(c_{i + 1}\)</span>.</p>
+<p>Le delta de potentiel est :</p>
+<div class="arithmatex">\[\phi(c_{i+1}) - \phi(c_i) = \left \{ \begin{matrix}
+ 2(k’ + 1) - 2(k + k’) =  2 - 2k &amp;  \text{ si k différent de n} \\
+ -2k &amp;   \text{ si } k = n \text{ car alors } c_{i+1} = 00...0
+\end{matrix}\right.\]</div>
+<p>Complexité en nombre d'accès aux cases du tableau :</p>
+<div class="arithmatex">\[A_{i+1} = C_{i+1} + \phi(c_{i+1}) - \phi(c_i) =\left \{ \begin{matrix}
+ (2k + 1) +2 -2k = 3 &amp;  \text{ si } k ≠ n \\
+ 2k -2k = 0 &amp;   \text{ si } k = n
+\end{matrix}\right.\]</div>
+<p>On en déduit que la complexité amortie est bornée par <span class="arithmatex">\(3\)</span>. D'après le corollaire du th. d'amortissement, toute séquence d'incrémentation commençant en <span class="arithmatex">\(00 . . . 0\)</span> réalise moins de <span class="arithmatex">\(3\)</span> opérations d'accès au tableau par appel à <code>incr</code>.</p>
+<h2 id="complexite-moyen-vs-complexite-amortie">Complexité moyen vs complexité amortie<a class="headerlink" href="#complexite-moyen-vs-complexite-amortie" title="Permanent link">&para;</a></h2>
+<p>La complexité moyenne est une moyenne (donc calculée avec des probabilités)</p>
+<p>Elle donne :</p>
+<ul>
+<li>Une complexité supposée représentative du plus grand nombre d'entrée ;</li>
+<li>Sans apporter aucune garantie sur la complexité d'une opération particulière ni même sur une séquence particulière d'opérations.</li>
+</ul>
+<p>La complexité amortie apporte une borne garantie à toute séquence d'opération.</p>
+<ul>
+<li>Son calcul n'utilise pas de probabilité ;</li>
+<li>Elle ne dit rien de la complexité d'une opération particulière mais assure un équilibre à toute séquence d'opérations.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

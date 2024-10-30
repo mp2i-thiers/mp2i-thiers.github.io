@@ -1,0 +1,3298 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../01-MinimC/">
+      
+      
+        <link rel="next" href="../03-Bytes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Chaîne de compilation - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chaine-de-compilation" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chaîne de compilation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#du-fichier-source-au-langage-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Du fichier source au langage machine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environnement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environnement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choix-pour-la-mp2i-a-thiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix pour la MP2I à Thiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiler-puis-executer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiler puis exécuter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lapplication-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'application gcc ♥
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-processeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-processeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pré-processeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pretraitement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prétraitement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-processeur_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-processeur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compilation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilateur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lassembleur" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'assembleur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edition-de-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Édition de liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edition-de-liens-ld" class="md-nav__link">
+    <span class="md-ellipsis">
+      Édition de liens ld
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retour-sur-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retour sur GCC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retour sur GCC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fichiers-provisoires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichiers provisoires ♥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcc-et-bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcc et bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encore-plus-sur-libma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encore plus sur libm.a
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-aux-bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès aux bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options-de-production-de-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options de production de fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-de-gcc-a-un-format-de-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application de gcc à un format de fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-du-processus-de-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schéma du processus de compilation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#du-fichier-source-au-langage-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Du fichier source au langage machine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environnement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environnement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choix-pour-la-mp2i-a-thiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix pour la MP2I à Thiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiler-puis-executer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiler puis exécuter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lapplication-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'application gcc ♥
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-processeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-processeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pré-processeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pretraitement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prétraitement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-processeur_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-processeur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compilation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilateur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lassembleur" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'assembleur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edition-de-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Édition de liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edition-de-liens-ld" class="md-nav__link">
+    <span class="md-ellipsis">
+      Édition de liens ld
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retour-sur-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retour sur GCC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retour sur GCC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fichiers-provisoires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichiers provisoires ♥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcc-et-bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcc et bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encore-plus-sur-libma" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encore plus sur libm.a
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces-aux-bibliotheques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès aux bibliothèques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options-de-production-de-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options de production de fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-de-gcc-a-un-format-de-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application de gcc à un format de fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-du-processus-de-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schéma du processus de compilation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="chaine-de-compilation">Chaîne de compilation<a class="headerlink" href="#chaine-de-compilation" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Un cours de Christophe Rippert à l'ENSIMAG</li>
+<li>Un tuto sur <a href="https://koor.fr/C/Tutorial/Compilation.wp">KOOR.fr</a></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissment</p>
+<p>Nous utilisons toujours le langage <span class="arithmatex">\(\texttt{C}\)</span> tel que défini dans la norme « C99 » .</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Historique</p>
+<ul>
+<li><span class="arithmatex">\(\texttt{C}\)</span> : langage de programmation impératif généraliste, de <em>bas niveau</em> (il gère les échanges <span class="arithmatex">\(\texttt{RAM}\)</span>/processeur). Mais pas de <em>très bas niveau</em> sinon il gérerait aussi ce qui se passe dans le processeur. Toujours très utilisé.</li>
+<li>Création début des années <span class="arithmatex">\(70\)</span> pour réécrire <span class="arithmatex">\(\texttt{UNIX}\)</span></li>
+<li>A inspiré de nombreux langages plus modernes comme <span class="arithmatex">\(\texttt{C++}\)</span>, <span class="arithmatex">\(\texttt{C\#}\)</span>, <span class="arithmatex">\(\texttt{Java}\)</span> et <span class="arithmatex">\(\texttt{PHP}\)</span> ou <span class="arithmatex">\(\texttt{Javascript}\)</span>.</li>
+<li>Utilisé par exemple pour réaliser les bases (compilateurs, interpréteurs...) des langages plus modernes.</li>
+<li><span class="arithmatex">\(\texttt{C}\)</span> offre au développeur une marge de contrôle importante sur la machine (notamment sur la gestion de la mémoire)</li>
+</ul>
+</div>
+<h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h2>
+<h3 id="du-fichier-source-au-langage-machine">Du fichier source au langage machine<a class="headerlink" href="#du-fichier-source-au-langage-machine" title="Permanent link">&para;</a></h3>
+<p>La traduction d'un (ou plusieurs) fichiers sources en <span class="arithmatex">\(\texttt{C}\)</span> vers le langage machine se fait en 2 étapes indépendantes et souvent enchaînées automatiquement (donc difficile à distinguer pour le débutant).</p>
+<div class="admonition quote">
+<p class="admonition-title">Prétraitement</p>
+<p>Opération purement textuelle <span class="arithmatex">\(\color{red}\text{consistant par exemple à supprimer les } \textit{commentaires}\)</span></p>
+</div>
+<ul>
+<li>Compilation. En <span class="arithmatex">\(3\)</span> sous-étapes :<ul>
+<li>Compilation proprement dite</li>
+<li>Assemblage</li>
+<li>Édition de liens</li>
+</ul>
+</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">Compilation proprement dite</p>
+<p><span class="arithmatex">\(\color{red}\text{Transforme le fichier généré par le préprocesseur en }\textit{assembleur}\)</span> (une suite d'instructions du microprocesseur lisibles -- avec de l'entraînement -- par un humain),</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Assemblage</p>
+<p><span class="arithmatex">\(\color{red}\text{Transforme le code assembleur en instructions binaires}\)</span> (donc directement compréhensibles par le processeur) Cette instruction et la précédente sont généralement effectuées dans la foulée l'une de l'autre sauf précision contraire passée en argument du compilateur.
+Fichier binaire produit appelé <span class="arithmatex">\(\color{red}\textit{fichier objet}\text{ (ou }\textit{module objet})\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Édition de liens</p>
+<p><span class="arithmatex">\(\color{red}\text{Génération des liens entre les différents fichiers objets du projet}\)</span>. En effet, un programme complexe est en général écrit sur plusieurs fichiers différents. L'éditeur de lien produit un fichier <em>exécutable</em>.</p>
+</div>
+<h3 id="environnement">Environnement<a class="headerlink" href="#environnement" title="Permanent link">&para;</a></h3>
+<h4 id="choix-pour-la-mp2i-a-thiers">Choix pour la MP2I à Thiers<a class="headerlink" href="#choix-pour-la-mp2i-a-thiers" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Un éditeur de texte <strong>emacs</strong> tournant sous Linux couplé au compilateur <span class="arithmatex">\(\texttt{C}\)</span> <strong>gcc</strong> lancé depuis un terminal</li>
+<li>Avantage : s'installe sans (trop) de difficultés pour la plupart des configurations Linux.</li>
+<li>Par exemple, sous Ubuntu, puisque <strong>gcc</strong> et le terminal sont fournis
+par défaut, il ne reste qu'à installer <strong>emacs</strong> :</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nv">$sudo</span><span class="w"> </span>apt−get<span class="w"> </span>install<span class="w"> </span>emacs
+</span></code></pre></div></td></tr></table></div>
+<h3 id="un-code">Un code<a class="headerlink" href="#un-code" title="Permanent link">&para;</a></h3>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// Le fichier hello . c Mon premier code C</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="c1">// pour communiquer avec des fichier</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="c1">// pour gérer la mémoire</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="err">”</span><span class="n">Hello</span><span class="w"> </span><span class="n">world</span><span class="o">!</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">);</span><span class="c1">// affichage puis passage à la ligne</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="err">”</span><span class="o">%</span><span class="n">i</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="c1">// affichage de i</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c1">// renvoyer 0 : c.a.d tout s&#39;est bien passé</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="compiler-puis-executer">Compiler puis exécuter<a class="headerlink" href="#compiler-puis-executer" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nv">$gcc</span><span class="w"> </span>hello.c<span class="w"> </span>−o<span class="w"> </span>hello
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>$./hello
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>Hello<span class="w"> </span>world!
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nv">i</span><span class="o">=</span><span class="m">10</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="gcc">GCC<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h2>
+<h3 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title"><span class="arithmatex">\(\texttt{GCC}\)</span></p>
+<p><span class="arithmatex">\(\texttt{GNU}\)</span> <span class="arithmatex">\(\texttt{C}\)</span>ompiler <span class="arithmatex">\(\texttt{C}\)</span>ollection, abrégé en <span class="arithmatex">\(\texttt{GCC}\)</span>, est un ensemble de compilateurs créés par le projet <span class="arithmatex">\(\texttt{GNU}\)</span>. Nous l'utilisons pour <span class="arithmatex">\(\texttt{C}\)</span> mais il peut aussi compiler <span class="arithmatex">\(\texttt{Java}\)</span>, <span class="arithmatex">\(\texttt{Ada}\)</span>, <span class="arithmatex">\(\texttt{Fortran}\)</span>...</p>
+</div>
+<p>Trois composantes <span class="arithmatex">\(\texttt{GCC}\)</span> désigne :</p>
+<ul>
+<li>la collection complète de compilateurs (le « projet
+<span class="arithmatex">\(\texttt{GCC}\)</span> » )</li>
+<li>la partie commune à tous les compilateurs (« <span class="arithmatex">\(\texttt{GCC}\)</span> » ) ;</li>
+<li>le compilateur <span class="arithmatex">\(\texttt{C}\)</span> lui-même (le frontend <code>gcc</code> ), écrit en
+minuscule).</li>
+</ul>
+<p>frontend <code>gcc</code> est un une application <em>frontale</em> (en anglais « frontend » ), ce qui signifie que l'utilisateur interragit directement avec lui.</p>
+<h3 id="lapplication-gcc">L'application <code>gcc</code> ♥<a class="headerlink" href="#lapplication-gcc" title="Permanent link">&para;</a></h3>
+<p><code>gcc</code> permet d'appeler dans l'ordre le préprocesseur, le compilateur, l'assembleur et le <em>linker</em> (lieur) pour le langage <span class="arithmatex">\(\texttt{C}\)</span> (et aussi <span class="arithmatex">\(\texttt{C++}\)</span>). Opérations réalisées par <strong>gcc</strong> :</p>
+<ul>
+<li>appel du préprocesseur <span class="arithmatex">\(\texttt{C}\)</span> (nommé <strong>cpp</strong>) ;</li>
+<li>appel du compilateur <span class="arithmatex">\(\texttt{C}\)</span> (nommé <strong>cc</strong>). Le compilateur génère un fichier assembleur;</li>
+<li>appel de l'assembleur (<strong>as</strong>) pour générer le fichier objet ;</li>
+<li>appel de l'éditeur de liens (<strong>ld</strong>) pour générer l'exécutable ou la bibliothèque. La librairie <span class="arithmatex">\(\texttt{C}\)</span> standard est incluse par défaut dans la ligne de commande de l'édition de liens.</li>
+</ul>
+<h2 id="pre-processeur">Pré-processeur<a class="headerlink" href="#pre-processeur" title="Permanent link">&para;</a></h2>
+<h3 id="pretraitement">Prétraitement<a class="headerlink" href="#pretraitement" title="Permanent link">&para;</a></h3>
+<p>Le pré-processeur est un module de pré-traitement qui effectue des transformations sur le code écrit avant qu'il ne soit traité par le compilateur.</p>
+<ul>
+<li>Consiste en la modification du texte d'un fichier source basée sur l'interprétation des directives à destination du préprocesseur. ♥</li>
+<li>On les reconnaît parce qu'elles commencent par un hastag #. Elle ne se terminent pas par un point-virgule <code>;</code> .</li>
+<li>Les deux directives les plus importantes sont :<ul>
+<li><code>#include</code> : inclusion d'autres fichiers source. Récursif : si <strong>A</strong> inclut <strong>B</strong> qui inclut <strong>C</strong>, après pré-processing, <strong>A</strong> contient <strong>C</strong>. ♥</li>
+<li><code>#define</code> : définition de macros ou symboles (c'est à dire des bout de code qui seront recopiées tels-quels dans le code <span class="arithmatex">\(\texttt{C}\)</span>). ♥</li>
+</ul>
+</li>
+<li>D'autres directives <code>#if</code>, <code>#ifndef</code> et <code>#endif</code>, utilisées lors de l'écriture de fichiers d'en-tête, seront présentées ultérieurement (pour la compilation de projets sur plusieurs fichiers).</li>
+</ul>
+<h3 id="pre-processeur_1">Pré-processeur<a class="headerlink" href="#pre-processeur_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Effectue des remplacements textuels (et non sémantiques) : le pré-processeur <span class="arithmatex">\(\underline{\text{n'est pas le compilateur}}\)</span>, il n'interprète pas ce qu'il manipule. Analogie : fonction <strong>Remplacer</strong> d'un traitement de texte. ♥</li>
+<li>Avec <code>#define NOM val</code> , le pré-processeur remplace chaque occurence de la chaine <strong>NOM</strong> par la valeur <strong>val</strong> dans tout le texte du fichier. ♥</li>
+<li>Entrer <code>cpp hello.c hello.i</code> puis vérifier l'explosion de la taille de <strong>hello.i</strong>.</li>
+</ul>
+<h2 id="compilation_1">Compilation<a class="headerlink" href="#compilation_1" title="Permanent link">&para;</a></h2>
+<h3 id="compilateur">Compilateur<a class="headerlink" href="#compilateur" title="Permanent link">&para;</a></h3>
+<p>Traduire le code <span class="arithmatex">\(\texttt{C}\)</span> en code assembleur (programme <code>cc</code>).</p>
+<ul>
+<li>Compilation séparée : chaque fichier source est compilé sans regarder les autres fichiers, même s'ils font partie du même programme</li>
+<li>Le compilateur a juste besoin de connaitre les <em>prototypes</em> (on dit aussi <em>signatures</em>) de toutes les fonctions utilisées dans le fichier compilé, mais il n'a pas besoin d'avoir à sa disposition le code des fonctions externes.</li>
+<li>Les prototypes des fonctions sont définies dans des fichiers <code>.h</code>, qui sont inclus par le pré-processeur (via la directive <code>#include</code>) dans le fichier <span class="arithmatex">\(\texttt{C}\)</span> qui les utilise.</li>
+<li>Entrer <code>cc -S hello.i</code> . On obtient <strong>hello.s</strong>. L'ouvrir et vérifier par exemple la mention du registre <span class="arithmatex">\(32\)</span> bits <code>%eax</code>, du pointeur de sommet de pile <code>%rsp</code> et du pointeur de cadre de pile <code>%rbp</code></li>
+</ul>
+<h3 id="lassembleur">L'assembleur<a class="headerlink" href="#lassembleur" title="Permanent link">&para;</a></h3>
+<ul>
+<li>L'assembleur <code>as</code> prend un fichier écrit en langage assembleur et le traduit en code binaire (langage machine).</li>
+<li>Avec <code>as -o hello.o hello.s</code>, l'assembleur produit un fichier objet <code>hello.o</code> illisible pour un humain et non encore exploitable tel quel (il manque les <em>liens</em>).</li>
+</ul>
+<h3 id="edition-de-liens">Édition de liens<a class="headerlink" href="#edition-de-liens" title="Permanent link">&para;</a></h3>
+<p>L'éditeur de lien <code>ld</code> a pour rôle de fusionner les différents fichiers objets pour produire l'exécutable final. Il fusionne :</p>
+<ul>
+<li>les codes contenus dans les différentes fonctions de tous les fichiers objets du programme, pour obtenir une seule grosse zone de code ;</li>
+<li>les données statiques allouées dans tous les fichiers objets du programme, pour obtenir une grosse zone de données statiques commune à tout le programme.</li>
+</ul>
+<p>Un programme <span class="arithmatex">\(\texttt{C}\)</span> utilise toujours d'autres fichiers objets contenus dans la bibliothèque standard <strong>libc.a</strong>. Par exemple le fichier objet contenant le code de <code>printf</code> mais aussi d'autres fichiers qui permettent de rendre le code exécutable.</p>
+<h3 id="edition-de-liens-ld">Édition de liens <code>ld</code><a class="headerlink" href="#edition-de-liens-ld" title="Permanent link">&para;</a></h3>
+<p>Dans la compilation de <strong>hello.c</strong>, l'assembleur a laissé un « trou » à l'endroit de l'appel à <code>printf</code>. C'est une indication pour insérer à cet endroit un véritable appel à la fonction <code>printf</code> (on trouve sur ma machine le fichier objet <code>stdio.o</code> dans l'archive <strong>/usr/lib/x86 64-linux-gnu/libc.a</strong>)</p>
+<p>Si on appelle dans un fichier .c une fonction mal orthographiée ou qui n'existe pas, c'est l'éditeur de lien qui repère l'erreur.</p>
+<p>Oublions d'écrire un <code>main</code> dans le projet. Un des fichiers inclus automatiquement par l'éditeur de lien inclu un appel à <code>main</code> lequel est cherché dans les fichiers sources qu'on lui donne. <code>ld</code> déclenche une erreur.</p>
+<h2 id="retour-sur-gcc">Retour sur GCC<a class="headerlink" href="#retour-sur-gcc" title="Permanent link">&para;</a></h2>
+<h3 id="fichiers-provisoires">Fichiers provisoires ♥<a class="headerlink" href="#fichiers-provisoires" title="Permanent link">&para;</a></h3>
+<p>Au cours de la compilation, des fichiers provisoires sont produits. Ils sont effacés par le compilateur quand ce dernier termine sa tâche :</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\text{.c}\)</span> : fichier source contenant le programme (et ses commentaires) écrit par le programmeur,</li>
+<li><span class="arithmatex">\(\color{blue}\text{.i}\)</span> : fichiers générés par le préprocesseur (ce sont des fichiers textes),</li>
+<li><span class="arithmatex">\(\color{blue}\text{.s}\)</span> : fichiers assembleurs (donc lisibles par un humain),</li>
+<li><span class="arithmatex">\(\color{blue}\text{.o}\)</span> : fichiers objets (binaires) produits après l'assemblage.</li>
+</ul>
+<h3 id="bibliotheques">Bibliothèques<a class="headerlink" href="#bibliotheques" title="Permanent link">&para;</a></h3>
+<p>« Bibliothèque » est la traduction de l'anglais « library » . On utilise improprement en français le mot « librairie » .</p>
+<p>Les fichiers <strong>.a</strong> : Archives constituées de fichiers objets correspondant aux librairies précompilées (par exemple la librairie standard d'entrées-sorties).</p>
+<p>Exemple <strong>libc.a</strong> : archive contenant notamment <strong>stdio.o</strong>.</p>
+<h3 id="gcc-et-bibliotheques"><code>gcc</code> et bibliothèques<a class="headerlink" href="#gcc-et-bibliotheques" title="Permanent link">&para;</a></h3>
+<p>Option <code>-l</code> de <code>gcc</code></p>
+<ul>
+<li>Les éventuelles librairies précompilées utilisées sont déclarées par la chaîne <strong>-lbibliothèqueDésirée</strong> et se situent souvent dans un sous-répertoire de <strong>/usr/lib/</strong>.</li>
+</ul>
+<div class="admonition example">
+<p>La librairie mathématique <strong>libm.a</strong> est située sur mon ordinateur dans <strong>/usr/lib/x86 64-linux-gnu/</strong></p>
+<p>Pour la trouver, entrer :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nv">$find</span><span class="w"> </span>/usr/lib<span class="w"> </span>−name<span class="w"> </span>libm.a<span class="w"> </span><span class="c1"># affiche localisation de libm.a</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Un nom de librairie commence par <strong>lib</strong>. A la suite de <code>-l</code> on n'écrit que ce qui est après « <strong>lib</strong> » et avant le point.</p>
+<p>Pour utiliser <strong>libm.a</strong> et ses fonctions dans le programme <strong>myprog</strong> : ♥</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nv">$gcc</span><span class="w"> </span>myprog.c<span class="w"> </span>−lm<span class="w"> </span>−o<span class="w"> </span>myprog
+</span></code></pre></div></td></tr></table></div>
+<h3 id="encore-plus-sur-libma">Encore plus sur libm.a<a class="headerlink" href="#encore-plus-sur-libma" title="Permanent link">&para;</a></h3>
+<p>Un certain nombre de fonctions de la librairie <strong>libm.a</strong> sont des fonctions intégrées du compilateur (built-in functions).</p>
+<p>Pour des fonctions comme <code>cos</code> , la directive <code>#include &lt;math.h&gt;</code> est toujours nécessaire mais pas (ou pas toujours) l'option <code>-lm</code> de <strong>gcc</strong>.</p>
+<p>En revanche, d'autres fonctions comme <code>nextafterf</code> ne sont toujours pas des fonctions intégrées du compilateur et nécessite encore l'option <code>-lm</code> de <strong>gcc</strong>. Du moins sur ma machine...</p>
+<h3 id="acces-aux-bibliotheques">Accès aux bibliothèques<a class="headerlink" href="#acces-aux-bibliotheques" title="Permanent link">&para;</a></h3>
+<p>Les fonctions dont les prototypes sont dans <strong>stdlib.h</strong> et <strong>stdio.h</strong> sont écrites dans la librairie <strong>libc</strong> laquelle est importée par défaut par <code>gcc</code> . <code>gcc truc.c</code> se comprend donc comme <code>gcc truc.c -lc</code>. L'usage de <code>-lc</code> est donc implicite.</p>
+<p>Les librairies précompilées sont cherchées par défaut dans le répertoire
+<strong>/usr/lib</strong> et ses descendants.</p>
+<p>Mais il peut se produire qu'elles ne se trouvent pas dans ce répertoire usuel, on spécifie alors leur chemin d'accès par l'option `-L</p>
+<h3 id="options-de-production-de-fichiers">Options de production de fichiers<a class="headerlink" href="#options-de-production-de-fichiers" title="Permanent link">&para;</a></h3>
+<p>On peut demander à gcc de produire les fichiers intermédiaires manipulés par les différents programmes qu'il appelle si on veut les observer :</p>
+<ul>
+<li><code>gcc -E -o hello.i hello.c</code> produit le fichier en sortie du pré-processeur,</li>
+<li><code>gcc -S hello.c</code> produit le fichier en sortie du compilateur (après avoir appelé aussi le pré-processeur)</li>
+<li><code>gcc -c hello.c</code> produit le fichier en sortie de l'assembleur (après avoir appelé aussi le pré-processeur et le compilateur)</li>
+<li><code>gcc -o hello hello.c</code> appelle tous les programmes nécessaires pour produire directement le binaire hello.</li>
+</ul>
+<h3 id="application-de-gcc-a-un-format-de-fichier">Application de gcc à un format de fichier<a class="headerlink" href="#application-de-gcc-a-un-format-de-fichier" title="Permanent link">&para;</a></h3>
+<p>Le programme <code>gcc</code> se base simplement sur l'extension du fichier qu'on lui donne pour déterminer quelles opérations il doit effectuer. Par exemple, si le fichier se termine par :</p>
+<ul>
+<li><code>.c</code> , il appelle dans l'ordre : le pré-processeur, le compilateur, l'assembleur et l'éditeur de lien.</li>
+<li><code>.i</code> il appelle dans l'ordre : le compilateur, l'assembleur et l'éditeur de lien.</li>
+<li><code>.s</code> : il appelle dans l'ordre : l'assembleur et l'éditeur de lien.</li>
+<li><code>.o</code> : il appelle l'éditeur de lien.</li>
+<li><code>gcc -o hello hello.c</code> appelle tous les programmes nécessaires pour produire directement le binaire <strong>hello</strong>. Détruit en outre les fichiers intermédiaires.</li>
+</ul>
+<h3 id="schema-du-processus-de-compilation">Schéma du processus de compilation<a class="headerlink" href="#schema-du-processus-de-compilation" title="Permanent link">&para;</a></h3>
+<p>Chaîne de compilation pour un programme composé d'un programme principal <code>prog.c</code> qui utilise un module <code>mod.c</code> (Christophe Rippert).</p>
+<p align='center'><img src='/images/ChaineCompil/chainecompil1.png'/></p>
+
+<p><strong>crt0.o</strong> : chargé par défaut par <code>ld</code> ; permet de rendre le fichier objet exécutable</p>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<p>Quelques options du compilateur <strong>gcc</strong> :</p>
+<ul>
+<li><code>-c</code> : supprime l'édition de liens ; produit un fichier objet.</li>
+<li><code>-E</code> : n'active que le préprocesseur (le résultat est envoyé sur la sortie standard).</li>
+<li><code>-I nom-de-répertoire</code> : spécifie le répertoire dans lequel doivent être recherchés les fichiers en-têtes à inclure (en plus du répertoire courant).</li>
+<li><code>-L nom-de-répertoire</code> : spécifie le répertoire dans lequel doivent être recherchées les librairies précompilées (en plus du répertoire usuel).</li>
+<li><code>-o nom-de-fichier</code> spécifie le nom du fichier produit. Par défaut, l'exécutable fichier s'appelle <strong>a.out</strong>.</li>
+<li><code>-S</code> : n'active que le préprocesseur et le compilateur ; produit un fichier assembleur.</li>
+<li><code>-v</code> : pour <em>verbose</em>. Affiche la liste des commandes exécutées par les différentes étapes de la compilation.</li>
+<li><code>-W</code> : imprime des messages d'avertissement (warning) supplémentaires.</li>
+<li><code>-Wall</code> imprime tous les messages d'avertissement. Attention, cela peut-être très verbeux !</li>
+<li>...</li>
+</ul>
+<p><strong>Le manuel</strong> : Pour plus d'informations sur <strong>gcc</strong>, entrer :</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nv">$man</span><span class="w"> </span>gcc
+</span></code></pre></div></td></tr></table></div>
+<p>Pour quitter la <em>manpage</em>, taper <span class="arithmatex">\(q\)</span> puis « Entrée » .</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

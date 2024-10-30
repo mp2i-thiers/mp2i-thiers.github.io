@@ -1,0 +1,4035 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Nombres/2-Flottants/">
+      
+      
+        <link rel="next" href="../2-R%C3%A9cursion%20terminal/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>OCaml - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ocaml" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OCaml
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-compilateurs-mp2i" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Compilateurs (MP2I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world-mp2i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello world (MP2I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commentaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commentaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-dune-fonction-a-ses-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application d'une fonction à ses arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#affichage-avec-printf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Affichage avec printf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucle-interractive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucle interractive
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boucle interractive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dans-un-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dans un terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreteurs-en-ligne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpréteurs en ligne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuareg" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuareg
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-propos-des-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      À propos des variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-persistante-vraiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable persistante, vraiment ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-locale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable locale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-types-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les types de base
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les types de base">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types de base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type unit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-construits-predefinis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types construits predéfinis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plus-sur-les-listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plus sur les listes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plus-sur-les-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plus sur les tuples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expressions-conditionnelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expressions conditionnelles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expressions conditionnelles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-mots-cles-if-then-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les mots clés if then else
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-anonymes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions anonymes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sucre-syntaxique-forcer-le-type-du-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sucre syntaxique ; Forcer le type du paramètre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-de-fonction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application de fonction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sans-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sans argument
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sans-resultat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sans résultat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-superieur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre supérieur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-partielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application partielle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-recursives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions récursives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-mutuellement-recursives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions mutuellement récursives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrage-sur-motif-de-largument" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur motif de l'argument
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emuler-des-boucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emuler des boucles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtrage-sur-les-listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur les listes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtrage sur les listes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequence-de-la-definition-inductive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conséquence de la définition inductive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-de-filtrage-match-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction de filtrage match with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrage-sur-des-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur des tuples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-compilateurs-mp2i" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Compilateurs (MP2I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world-mp2i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello world (MP2I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commentaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commentaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-dune-fonction-a-ses-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application d'une fonction à ses arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#affichage-avec-printf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Affichage avec printf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boucle-interractive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boucle interractive
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boucle interractive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dans-un-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dans un terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreteurs-en-ligne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpréteurs en ligne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuareg" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuareg
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-propos-des-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      À propos des variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-persistante-vraiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable persistante, vraiment ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-locale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable locale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-types-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les types de base
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les types de base">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types de base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type unit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-construits-predefinis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types construits predéfinis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plus-sur-les-listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plus sur les listes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plus-sur-les-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plus sur les tuples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expressions-conditionnelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expressions conditionnelles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expressions conditionnelles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-mots-cles-if-then-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les mots clés if then else
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-anonymes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions anonymes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sucre-syntaxique-forcer-le-type-du-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sucre syntaxique ; Forcer le type du paramètre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-de-fonction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application de fonction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sans-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sans argument
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sans-resultat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sans résultat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-superieur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre supérieur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-partielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application partielle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-recursives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions récursives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-mutuellement-recursives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions mutuellement récursives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrage-sur-motif-de-largument" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur motif de l'argument
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emuler-des-boucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emuler des boucles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtrage-sur-les-listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur les listes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtrage sur les listes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequence-de-la-definition-inductive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conséquence de la définition inductive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-de-filtrage-match-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction de filtrage match with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrage-sur-des-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrage sur des tuples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ocaml">OCaml<a class="headerlink" href="#ocaml" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<details class="abstract" open="open">
+<summary>Sommaire</summary>
+<ul>
+<li>
+<p>Généralités</p>
+<ul>
+<li>Compilation</li>
+<li>Boucle interractive</li>
+</ul>
+</li>
+<li>
+<p>Variable</p>
+</li>
+<li>Les types de base</li>
+<li>Expressions conditionnelles</li>
+<li>Fonction </li>
+<li>Filtrage sur les listes</li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Ce cours de <a href="https://www-sop.inria.fr/lemme/Olivier.Pons/htdocs/ENSEIGNEMENT/OBJET/OCAML/cours1.html">Olivier Pons</a>  </li>
+<li>Cette page de la <a href="https://www.ocaml.org/docs/tour-of-ocaml">documentation officielle</a> et les remarques à propos des parenthèses.
+(Le vieux lien n'exsite plus donc ça vous renvoie sur la page principale d'OCaml)</li>
+<li>Cette introduction de <a href="https://www.enseignement.polytechnique.fr/profs/informatique/Jean-Christophe.Filliatre/14-15/INF549/ocaml.pdf">Jean-Christophe Filliatre</a></li>
+<li>Quelques mots sur la <a href="https://icps.u-strasbg.fr/~violard/PF/2007-2008/compilateur.html">compilation</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bonus pour approfondir le cours</p>
+<p>Cette <a href="https://ocaml.gelez.xyz/VIII/1-le-type-list/">page</a> et les <span class="arithmatex">\(3\)</span> suivantes (cliquer sur page suivante) sont aussi très instructives.</p>
+</div>
+<h2 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h2>
+<h3 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h3>
+<h4 id="2-compilateurs-mp2i">2 Compilateurs (MP2I)<a class="headerlink" href="#2-compilateurs-mp2i" title="Permanent link">&para;</a></h4>
+<p>Il y a deux compilateurs en <strong>OCaml</strong>:</p>
+<ul>
+<li><code>ocamlc</code> qui produit un <em>bytecode</em> ; un code compréhensible par un interpréteur appelé <code>ocamlrun</code>.
+Avantages : simplicité, portabilité et rapidité de compilation.</li>
+<li><code>ocamlopt</code> qui compile directement en langage machine (l'exécution sera alors plus rapide qu'avec l'intrepréteur). Il accepte des fichiers de type <code>.ml</code> (fichiers de code) et <code>.mli</code> (fichiers d'interfaces).
+Il produit :</li>
+<li>Un fichier objet <code>.o</code> en langage machine ;</li>
+<li>Un fichier <code>.cmx</code> contenant des informations pour l'édition de lien et l'optimisation des relations entre les divers modules.</li>
+<li>Un fichier d'interface <code>.cmi</code> qui contient les signatures des types exportés vers d'autres unités de compilation.</li>
+</ul>
+<h4 id="hello-world-mp2i">Hello world (MP2I)<a class="headerlink" href="#hello-world-mp2i" title="Permanent link">&para;</a></h4>
+<p>Dans un fichier <code>hello.ml</code> écrivons</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">print_string</span> <span class="s2">&quot;hello world</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Pas besoin de fonction <code>main()</code>. Pas besoin de parenthèse !</p>
+<p>Compilons et exécutons (dans un terminal)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ocamlopt  asup.ml −o hello
+</span></code></pre></div>
+<p>Sans surprise, la commande <code>./toto</code> affiche</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hello world
+</span></code></pre></div>
+<p>Listons les fichiers de préfixe <code>hello</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ls hello∗
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>hello hello.cmi hello.cmx hello.ml hello.o
+</span></code></pre></div>
+<h4 id="commentaires">Commentaires<a class="headerlink" href="#commentaires" title="Permanent link">&para;</a></h4>
+<p>Les commentaires en OCaml commencent par <code>(*</code> et finissent par <code>*)</code> .</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c">(*on déclare x et on teste si il est pair ou impair *)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">in</span> <span class="n">x</span> <span class="ow">mod</span> <span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="c">(*On peut</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c">faire des commentaires</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c">sur plusieurs lignes *)</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h4 id="application-dune-fonction-a-ses-arguments">Application d'une fonction à ses arguments<a class="headerlink" href="#application-dune-fonction-a-ses-arguments" title="Permanent link">&para;</a></h4>
+<p>En OCaml, l'application d'une fonction s'écrit par <strong>simple juxtaposition de la fonction et de son argument</strong>. À la différence
+de la plupart des langages où l'application de <code>f</code> à <code>x</code> doit s'écrire <code>f(x)</code> , on se contente ici d'écrire <code>f x</code>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Remarque</p>
+<p>Rien n'interdit d'écrire
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">print_string</span><span class="o">(</span><span class="s2">&quot;hello world!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div></p>
+</div>
+<p>Mais les parenthèses autour de la chaîne de caractères sont tout
+simplement inutiles. Et c'est considéré comme inélégant.</p>
+<p>En dehors des appels de fonctions, les parenthèses peuvent et doivent être utilisées lorsque les priorités des opérateurs l'exigent, comme dans l'expression <code>2*(1+3)</code> .</p>
+<h4 id="affichage-avec-printf">Affichage avec <code>printf</code><a class="headerlink" href="#affichage-avec-printf" title="Permanent link">&para;</a></h4>
+<p>L'affichage en OCaml est un peu contraignant :</p>
+<ul>
+<li><code>print_string</code> pour les chaînes de caractères,</li>
+<li><code>print_int</code> pour les entiers,</li>
+<li><code>print_float</code> pour les flottants...</li>
+</ul>
+<p>Heureusement, OCaml emprunte au C quelques habitudes comme la fonction <code>printf</code> du module <code>Printf</code>.</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">#</span> <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;une chaîne : %s, un entier : %d, un flottant %f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="s2">&quot;toto&quot;</span> <span class="mi">45</span> <span class="mi">32</span><span class="o">.</span><span class="mi">3</span><span class="o">;;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a> <span class="n">une</span> <span class="n">chaîne</span> <span class="o">:</span> <span class="n">toto</span> <span class="o">,</span> <span class="n">un</span> <span class="n">entier</span> <span class="o">:</span> <span class="mi">45</span><span class="o">,</span> <span class="n">un</span> <span class="n">flottant</span> <span class="mi">32</span><span class="o">.</span><span class="mi">300000</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="boucle-interractive">Boucle interractive<a class="headerlink" href="#boucle-interractive" title="Permanent link">&para;</a></h3>
+<h4 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h4>
+<p>Le plus souvent, nous ne compilerons pas les codes <code>.ml.</code></p>
+<p>Nous nous contenterons d'utiliser une <em>boucle interractive</em>. Il en existe plusieurs. Faisons un rapide tour d'horizon.</p>
+<h4 id="dans-un-terminal">Dans un terminal<a class="headerlink" href="#dans-un-terminal" title="Permanent link">&para;</a></h4>
+<p>OCaml est un langage compilé. Cependant</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">print_string</span> <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">;;</span><span class="c">(*un commentaire*)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">hello</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">;;</span> <span class="c">(* ne pas oublier les deux points-virgules*)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Observons que le <em>type</em> des expressions est calculé (on dit <em>inféré</em>) et affiché. Ici, le type <code>unit</code> correspond au type <code>void</code> en <strong>C</strong>.</p>
+<p>On quitte la boucle interactive avec la commande <code>exit(0);;</code></p>
+<p>Le double point-virgule sépare les différentes décalarations et expressions à évaluer.</p>
+<h4 id="interpreteurs-en-ligne">Interpréteurs en ligne<a class="headerlink" href="#interpreteurs-en-ligne" title="Permanent link">&para;</a></h4>
+<p>Si on n'a pas encore installé OCaml sur sa machine, on peut utiliser un interpréteur en ligne :</p>
+<ul>
+<li><a href="https://try.ocamlpro.com">TryOCaml</a>;</li>
+</ul>
+<p align='center'><img src='/images/OCamlbase/ocamlbase1.png'/></p>
+
+<ul>
+<li><a href="http://ocaml.besson.link">Better OCaml</a>;</li>
+</ul>
+<p align='center'><img src='/images/OCamlbase/ocamlbase2.png'/></p>
+
+<p>Raccourcis :</p>
+<ul>
+<li><code>Ctrl+Enter</code> Exécute le code sélectionné</li>
+<li><code>Ctrl+Shif+Enter</code> Exécute le code entier.</li>
+<li><code>Ctrl+Space</code> montre le menu d'autocomplétion</li>
+</ul>
+<h4 id="tuareg">Tuareg<a class="headerlink" href="#tuareg" title="Permanent link">&para;</a></h4>
+<p>Pour ma part, j'utilise le greffon Tuareg d'emacs pour rendre plus agréable l'utilisation de l'interpréteur OCaml.</p>
+<p align='center'><img src='/images/OCamlbase/ocamlbase3.png'/></p>
+
+<p>Consulter par exemple <a href="https://www.lri.fr/~filliatr/ens/compil/ocaml.html">cette page</a>.</p>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<p>Syntaxe <code>let &lt;id&gt; = &lt;expr&gt;</code>. Le plus souvent <code>&lt;id&gt;</code> est un identificateur (il commence par une lettre minuscule ou un underscore). La partie à droite  de l'égalité est une <em>expression</em> (elle peut être le résultat d'un calcul).</p>
+<p>Une déclaration affecte le résultat de l'évaluation d'une expression à une varialble, et est introduite par le mot clé <code>let</code>. Par exemple écrivons ceci :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">print_int</span> <span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="n">print_int</span> <span class="n">y</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Le programme calcule le résultat de <code>1+2</code>, l'affecte à la variable <code>x</code>, affiche la valeur de <code>x</code>, puis calcule le carré de <code>x</code>, l'affecte à la variable <code>y</code> et enfin affiche la valeur de <code>y</code>.</p>
+<p><code>x,y</code> sont des variables globales utilisables ailleurs dans le
+programme.</p>
+<h3 id="a-propos-des-variables">À propos des variables<a class="headerlink" href="#a-propos-des-variables" title="Permanent link">&para;</a></h3>
+<p>Une variable est nécessairement initialisée.</p>
+<p>Le type de la variable n'a pas besoin d'être déclaré, il est <em>inféré</em> par le compilateur.</p>
+<p>Le contenu de la variable n'est pas modifiable. Dans le code
+précédent, <span class="arithmatex">\(x\)</span> contient <span class="arithmatex">\(3\)</span> pour toute la durée du programme. La
+variable est <em>immuable</em> ou <em>persistante</em> (on est en paradigme
+<em>fonctionnel</em>).</p>
+<h3 id="variable-persistante-vraiment">Variable persistante, vraiment ?<a class="headerlink" href="#variable-persistante-vraiment" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span><span class="mi">3</span><span class="o">;;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a> <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;;</span> <span class="c">(*c&#39;est une AUTRE variable x*)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a> <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">4</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="variable-locale">Variable locale<a class="headerlink" href="#variable-locale" title="Permanent link">&para;</a></h3>
+<p>En <strong>C</strong>, les variables locales sont définies dans un bloc délimité par des accolades et elles n'ont pas d'existence hors de ce bloc.</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">      </span><span class="p">...</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>En <strong>OCaml</strong>, il n'y a pas de notion de bloc. Les variables locales d'une expression sont introduites par la construction <code>let in</code> .</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">let</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span> <span class="k">in</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">20</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Les variables locales sont immuables et obligatoirement initialisées.</p>
+<p>Portée de la variable <code>x</code> :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">let</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span> <span class="k">in</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">20</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a> <span class="nc">Error</span><span class="o">:</span> <span class="nc">Unbound</span> <span class="n">value</span> <span class="n">x</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Une déclaration locale est visible seulement dans l'expression qui suit le <code>in</code>.</p>
+<h2 id="les-types-de-base">Les types de base<a class="headerlink" href="#les-types-de-base" title="Permanent link">&para;</a></h2>
+<h3 id="types-de-base">Types de base<a class="headerlink" href="#types-de-base" title="Permanent link">&para;</a></h3>
+<ul>
+<li>entiers (<code>int</code>), opérateurs : <code>+ - * / mod</code></li>
+<li>flottants (<code>float</code>), opérateurs : <code>+. -. *. /.</code></li>
+<li>caractères (<code>char</code>), <code>'a','b','1' ...</code> avec une seule quote.</li>
+<li>chaînes, (<code>string</code>), <code>"abc", "b"</code> (double quotes), concaténation :</li>
+</ul>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="s2">&quot;toto&quot;</span> <span class="o">^</span> <span class="s2">&quot; et gogo&quot;</span><span class="o">;;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;toto et gogo&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>booléans, (<code>bool</code>), <code>true, false</code> ; opérateurs : <code>&amp;&amp;, || , not</code></li>
+<li>Opérateur de comparaison <strong>de valeurs</strong> pour tous les types
+<code>=, &gt;, &lt;, &gt;=, &lt;=, &lt;&gt;</code>. Polymorphes, mais les deux arguments
+doivent avoir le <strong>MEME type</strong>.</li>
+<li>Opérateur de comparaison <strong>physique</strong> pour tous les types <code>==, !=</code></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Quelques opérations</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="mi">1</span><span class="o">.</span><span class="mi">5</span><span class="o">+.</span><span class="mi">3</span><span class="o">.</span><span class="mi">5</span><span class="o">;;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">5</span><span class="o">.</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="mi">2</span><span class="o">&gt;</span><span class="mi">7</span><span class="o">;;</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="s2">&quot;bonjour&quot;</span> <span class="o">&gt;</span> <span class="s2">&quot;bon&quot;</span><span class="o">;;</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">true</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="s2">&quot;durand&quot;</span> <span class="o">&lt;</span> <span class="s2">&quot;martin&quot;</span><span class="o">;;</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">true</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="s2">&quot;ab&quot;</span> <span class="o">=</span> <span class="s2">&quot;ba&quot;</span><span class="o">;;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="mi">6</span> <span class="ow">mod</span> <span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="type-unit">Type unit<a class="headerlink" href="#type-unit" title="Permanent link">&para;</a></h3>
+<p>Pour définir une fonction sans résultat, OCaml introduit le type <code>unit</code> qui ne contient qu'une seule valeur, notée <code>()</code>.</p>
+<p>C'est par exemple le type de retour de la fonction <code>print_string</code>.</p>
+<p>Il sert aussi à définir des fonctions sans argument.</p>
+<p>Il joue un rôle comparable au type <code>void</code> de <strong>C</strong>.</p>
+<h3 id="types-construits-predefinis">Types construits predéfinis<a class="headerlink" href="#types-construits-predefinis" title="Permanent link">&para;</a></h3>
+<p>Les tuples (<code>t1 * t2 * .. * tn</code>) où <code>ti</code> est le type de la
+composante <span class="arithmatex">\(i\)</span> du <em>n-uplet</em>.</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">false</span> <span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="s2">&quot;hello&quot;</span><span class="o">;;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a> <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">string</span> <span class="o">=</span> <span class="o">(</span><span class="bp">false</span> <span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="s2">&quot;hello&quot;</span><span class="o">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="k">let</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">=</span> <span class="n">x</span><span class="o">;;</span> <span class="c">(* unpacking *)</span><span class="o">;;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a> <span class="k">val</span> <span class="n">a</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a> <span class="k">val</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">5</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a> <span class="k">val</span> <span class="n">c</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Les listes <code>t_list</code> , où <code>t</code> est <strong>le</strong> type des éléments.</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">[</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">];;</span> <span class="c">(* une liste d&#39;entiers *)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span> <span class="mi">2</span><span class="o">;</span> <span class="mi">3</span><span class="o">]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="o">;</span><span class="s2">&quot;bc&quot;</span><span class="o">]</span> <span class="o">@</span> <span class="o">[</span><span class="s2">&quot;bonjour&quot;</span><span class="o">];;</span> <span class="c">(*@: operateur de concatenation *)</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="o">;</span> <span class="s2">&quot;bc&quot;</span><span class="o">;</span> <span class="s2">&quot;bonjour&quot;</span><span class="o">]</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="o">[</span><span class="mi">1</span><span class="o">]@</span><span class="bp">[]</span><span class="o">;;</span> <span class="c">(* []: liste vide *)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="plus-sur-les-listes">Plus sur les listes<a class="headerlink" href="#plus-sur-les-listes" title="Permanent link">&para;</a></h3>
+<p>La liste vide est polymorphe.
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="bp">[]</span><span class="o">;;</span><span class="c">(*la liste vide est polymorphe *)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="o">-</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="kt">list</span> <span class="o">=</span> <span class="bp">[]</span>
+</span></code></pre></div></td></tr></table></div></p>
+<p>Le module <code>List</code> contient des fonctions de manipulation de listes:</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="nn">List</span><span class="p">.</span><span class="n">length</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">];;</span> <span class="c">(* En O(n) !!! *)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="nn">List</span><span class="p">.</span><span class="n">hd</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">];;</span> <span class="c">(*tête (head) de la liste; O(1)*)</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="nn">List</span><span class="p">.</span><span class="n">tl</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">];;</span> <span class="c">(* queue (tail) de la liste; O(1)*)</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">2</span><span class="o">;</span> <span class="mi">3</span><span class="o">]</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="mi">3</span><span class="o">::[</span><span class="mi">2</span><span class="o">;</span><span class="mi">1</span><span class="o">];;</span> <span class="c">(* ajouter un élément en tête de liste *)</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">3</span><span class="o">;</span> <span class="mi">2</span><span class="o">;</span> <span class="mi">1</span><span class="o">]</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="k">let</span> <span class="n">a</span><span class="o">::</span><span class="n">b</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">;</span><span class="mi">2</span><span class="o">;</span><span class="mi">3</span><span class="o">];;</span> <span class="c">(*séparer la tête de la queue *)</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10"></a>  <span class="o">!</span> <span class="nc">Warning</span> <span class="mi">8</span><span class="o">:</span> <span class="n">this</span> <span class="n">pattern</span> <span class="o">-</span><span class="n">matching</span> <span class="n">is</span> <span class="n">not</span> <span class="n">exhaustive</span> <span class="o">!</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11"></a> <span class="k">val</span> <span class="n">a</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12"></a> <span class="k">val</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">int</span> <span class="kt">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">2</span><span class="o">;</span> <span class="mi">3</span><span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="plus-sur-les-tuples">Plus sur les tuples<a class="headerlink" href="#plus-sur-les-tuples" title="Permanent link">&para;</a></h3>
+<p>Cas d'un tuple de taille <span class="arithmatex">\(2\)</span> :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">,</span><span class="mi">6</span><span class="o">.</span><span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a> <span class="k">val</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">float</span> <span class="o">=</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">6</span><span class="o">.</span><span class="mi">2</span><span class="o">)</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="n">fst</span> <span class="n">y</span><span class="o">;;</span> <span class="c">(*pour first y*)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="n">snd</span> <span class="n">y</span><span class="o">;;</span> <span class="c">(*pour second y*)</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">6</span><span class="o">.</span><span class="mi">2</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Tuples contenant des tuples</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">let</span> <span class="n">z</span><span class="o">=</span> <span class="o">(</span><span class="n">y</span><span class="o">,(</span><span class="mi">2</span><span class="o">.</span> <span class="o">+.</span> <span class="mi">1</span><span class="o">.,</span><span class="mi">4</span><span class="o">));;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a> <span class="k">val</span> <span class="n">z</span> <span class="o">:</span> <span class="o">(</span><span class="kt">int</span> <span class="o">*</span> <span class="kt">float</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="kt">float</span> <span class="o">*</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="o">((</span><span class="mi">1</span><span class="o">,</span> <span class="mi">6</span><span class="o">.</span><span class="mi">2</span><span class="o">),</span> <span class="o">(</span><span class="mi">3</span><span class="o">.,</span> <span class="mi">4</span><span class="o">))</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="k">let</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">z</span><span class="o">;;</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a> <span class="k">val</span> <span class="n">a</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">float</span> <span class="o">=</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">6</span><span class="o">.</span><span class="mi">2</span><span class="o">)</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a> <span class="k">val</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">(</span><span class="mi">3</span><span class="o">.,</span> <span class="mi">4</span><span class="o">)</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="k">let</span> <span class="o">((</span><span class="n">e</span><span class="o">,</span><span class="n">f</span><span class="o">),(</span><span class="n">g</span><span class="o">,</span><span class="n">h</span><span class="o">))</span> <span class="o">=</span> <span class="n">z</span><span class="o">;;</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a> <span class="k">val</span> <span class="n">e</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a> <span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">6</span><span class="o">.</span><span class="mi">2</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a> <span class="k">val</span> <span class="n">g</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a> <span class="k">val</span> <span class="n">h</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">4</span> 
+</span></code></pre></div></td></tr></table></div>
+<p>Déconstruire un tuple en ne prenant que certains items.</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">let</span> <span class="o">(_,(_,</span><span class="n">i</span><span class="o">))</span> <span class="o">=</span> <span class="n">z</span><span class="o">;;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a> <span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">4</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Le symbole <code>_</code> indique la présence d'une composante sans la nommer.</p>
+<p>Isomorphisme de types :</p>
+<ul>
+<li>Un élément de type <code>int * int * int</code> est un triplet d'entier.</li>
+<li>Un élément de type <code>int * (int * int)</code> est un couple dont le
+premier élément est un entier et le second un couple d'entiers.</li>
+<li>Un élément de type <code>(int * int) * int</code> est un couple dont le
+premier élément est un couple d'entiers et le second un entier</li>
+<li>Les <span class="arithmatex">\(3\)</span> ensembles des éléments appartenant à chacun de ces <span class="arithmatex">\(3\)</span> types sont en bijection canonique. C'est un exemple d'isomorphisme de types. Malheureusement, pour OCaml, ces types sont bien distincts !</li>
+</ul>
+<h2 id="expressions-conditionnelles">Expressions conditionnelles<a class="headerlink" href="#expressions-conditionnelles" title="Permanent link">&para;</a></h2>
+<h3 id="les-mots-cles-if-then-else">Les mots clés <code>if</code> then <code>else</code><a class="headerlink" href="#les-mots-cles-if-then-else" title="Permanent link">&para;</a></h3>
+<p>En OCaml, il n'y a pas de distinction expression/instruction : il n'y a que des expressions.</p>
+<p>Les expressions conditionnelles sont définies à l'aide de l'opérateur ternaire <code>if e1 then e2 else e3</code>.</p>
+<p>L'expression <code>e1</code> doit renvoyer une valeur bouléenne.</p>
+<p>En général (sauf cas particulier où <code>e2</code> est de type <code>unit</code>) la branche négative est <strong>obligatoire</strong>.</p>
+<p>Une expression conditionnelle est polymorphe : i.e. <code>e2</code> peut être de n'importe quel type, mais <code>e3</code> est obligatoirement du même type que <code>e2</code>.</p>
+<div class="admonition example">
+<p><div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="o">;;</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a> <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">42</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="o">(</span><span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">then</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">4</span><span class="o">);;</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a> <span class="k">val</span> <span class="n">v</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">9</span>
+</span></code></pre></div></td></tr></table></div>
+Branche négative non obligatoire si type <code>unit</code> :
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">if</span> <span class="o">(</span><span class="mi">3</span> <span class="ow">mod</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span> <span class="k">then</span> <span class="n">print_string</span> <span class="s2">&quot;okayyyyy&quot;</span><span class="o">;;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a> <span class="n">okayyyyy</span> <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</span></code></pre></div></td></tr></table></div></p>
+</div>
+<h2 id="fonction">Fonction<a class="headerlink" href="#fonction" title="Permanent link">&para;</a></h2>
+<h3 id="fonctions-anonymes">Fonctions anonymes<a class="headerlink" href="#fonctions-anonymes" title="Permanent link">&para;</a></h3>
+<p>Les fonctions en OCaml sont des valeurs comme les autres. Syntaxe : <code>fun &lt;id&gt; -&gt; &lt;expr&gt;</code>.</p>
+<ul>
+<li><code>&lt;id&gt;</code> désigne le paramètre de la fonction. Il a une portée localisée au corps de la fonction.</li>
+<li><code>-&gt;</code> désigne le début du corps de la fonction.</li>
+<li><code>&lt;expr&gt;</code> est une expression quelconque qui peut utiliser <code>&lt;id&gt;</code>.</li>
+</ul>
+<div class="admonition example">
+<p>Fonction produit <span class="arithmatex">\(x →x ×x\)</span> :
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">;;</span><span class="c">(* fonction anonyme *)</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">)</span> <span class="mi">5</span><span class="o">;;</span><span class="c">(* appliquer une fonction anonyme *)</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">25</span>
+</span></code></pre></div></td></tr></table></div></p>
+<p>Observer le type de la fonction. Il est noté sous la forme <span class="arithmatex">\(τ_1 →τ_2\)</span>.</p>
+<p>Inférence de type : comme on utilise l'opérateur <code>*</code> , OCaml en déduit que le type de la fonction est <code>int -&gt; int</code> .</p>
+<p>Pour nommer une fonction :
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">let</span> <span class="n">f</span> <span class="o">=</span> <span class="k">fun</span> <span class="n">x</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+.</span> <span class="n">y</span><span class="o">;;</span> <span class="c">(*déclarer f*)</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a> <span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">float</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="n">f</span> <span class="mi">1</span><span class="o">.</span> <span class="mi">2</span><span class="o">.;;</span> <span class="c">(* utiliser f*)</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a> <span class="o">-</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span>
+</span></code></pre></div></td></tr></table></div></p>
+</div>
+<h3 id="sucre-syntaxique-forcer-le-type-du-parametre">Sucre syntaxique ; Forcer le type du paramètre<a class="headerlink" href="#sucre-syntaxique-forcer-le-type-du-parametre" title="Permanent link">&para;</a></h3>
+<p>OCaml permet de déclarer une fonction de façon plus concise que <code>let f = fun ...</code> .</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">let</span> <span class="n">f</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+.</span> <span class="n">y</span><span class="o">;;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="c">(*équivalent à let f = fun x y -&gt; x+.y*)</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="n">f</span> <span class="mi">1</span><span class="o">.</span> <span class="mi">2</span><span class="o">.;;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>On peut indiquer le type du paramètre et celui de retour :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">let</span> <span class="n">f</span> <span class="o">(</span><span class="n">x</span><span class="o">:</span><span class="kt">int</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>C'est ici surtout utile pour le lecteur.</p>
+<p>Attention aux priorités (penser aux parenthèses) :</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="n">f</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="o">(</span><span class="n">f</span> <span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="n">f</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">);;</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">16</span><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>En OCaml, l'application d'une fonction est syntaxiquement plus
+prioritaire que les autres opérations.</p>
+<h3 id="application-de-fonction">Application de fonction<a class="headerlink" href="#application-de-fonction" title="Permanent link">&para;</a></h3>
+<p>En programmation fonctionnelle, l'application de fonction est la seule opération qui permette d'effectuer un calcul. Même <code>2 + 3</code> est en fait du sucre syntaxique pour exprimer l'application de <code>(+)</code> à <code>2</code> et <code>3</code> : c.a.d <code>(+) 2 3</code></p>
+<p>Pour effectuer <code>&lt;expr1&gt; &lt;expr2&gt;</code> :</p>
+<ul>
+<li>On évalue <code>&lt;expr1&gt;</code> . C'est nécessairement une fonction de la forme <code>fun x -&gt; e</code> de type <span class="arithmatex">\(τ→τ′\)</span>.</li>
+<li>On évalue <code>&lt;expr 2&gt;</code> . L'expression résultante <code>v</code> doit être de type <span class="arithmatex">\(τ\)</span>.</li>
+<li>On évalue l'expression <code>e</code> dans un environnement où <code>x</code> est associé à la valeur <code>v</code> . La valeur renvoyée est de type <span class="arithmatex">\(τ′\)</span>.</li>
+</ul>
+<h3 id="fonction-sans-argument">Fonction sans argument<a class="headerlink" href="#fonction-sans-argument" title="Permanent link">&para;</a></h3>
+<p>Une fonction sans argument prend en fait un unique argument de type <code>unit</code> (qu'on note <code>()</code>).</p>
+<div class="admonition example">
+<p><div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="k">let</span> <span class="n">f</span> <span class="bp">()</span> <span class="o">=</span> <span class="n">print_string</span> <span class="s2">&quot;coucou&quot;</span><span class="o">;;</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">-&gt;</span> <span class="kt">unit</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+Bien sûr, la fonction <code>f</code> ci-dessus peut être vue comme un alias pour l'expression <code>print_string "coucou"</code>.</p>
+</div>
+<p>Les fonctions dont le type de retour est <code>unit</code> sont souvent utilisées pour réaliser des affichages ou bien des mises à jour de variables mutables (tableaux, références...).</p>
+<h3 id="fonction-sans-resultat">Fonction sans résultat<a class="headerlink" href="#fonction-sans-resultat" title="Permanent link">&para;</a></h3>
+<p>Les fonctions sans résultat sont utilisées à des fins d'affichage et/ou pour réaliser des <em>effets de bord</em>.
+Pour le moment toutes nos variables sont persistantes mais on
+découvrira bientôt comment créer des variables mutables.</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="k">let</span> <span class="n">print_square</span> <span class="n">x</span> <span class="o">=</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%f^0.5=%f&quot;</span> <span class="n">x</span> <span class="o">(</span><span class="n">sqrt</span> <span class="n">x</span><span class="o">);;</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a> <span class="k">val</span> <span class="n">print_square</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">unit</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="n">print_square</span> <span class="mi">2</span><span class="o">.;;</span> <span class="c">(* Observer : &#39;2.&#39; pas &#39;2&#39;*)</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a> <span class="mi">5</span> <span class="mi">2</span><span class="o">.</span><span class="mi">000000</span><span class="o">^</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="o">=</span><span class="mi">1</span><span class="o">.</span><span class="mi">414214</span> <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="ordre-superieur">Ordre supérieur<a class="headerlink" href="#ordre-superieur" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p><div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span>
+<span class="normal"><a href="#__codelineno-31-5">5</a></span>
+<span class="normal"><a href="#__codelineno-31-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="k">let</span> <span class="n">f</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a> <span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="k">let</span> <span class="n">affiche</span> <span class="n">f</span> <span class="n">x</span> <span class="o">=</span> <span class="n">print_int</span> <span class="o">(</span><span class="n">f</span> <span class="n">x</span><span class="o">);;</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a> <span class="k">val</span> <span class="n">affiche</span> <span class="o">:</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">int</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="n">affiche</span> <span class="n">f</span> <span class="mi">2</span><span class="o">;;</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</span></code></pre></div></td></tr></table></div>
+Ci-dessus <code>affiche</code> prend deux arguments : une fonction d'un
+certain type (noté <code>'a</code> ) vers les entiers, un élément de type <code>'a</code> . Le type de retour est unit . Le type de la fonction est donc <code>('a -&gt; int) -&gt; 'a -&gt; unit = &lt;fun&gt;</code></p>
+</div>
+<p>On a vu qu'on peut passer une fonction en argument. On peut aussi renvoyer une fonction.</p>
+<div class="admonition example">
+<p>renvoie de l'homothétie de rapport <span class="arithmatex">\(x\)</span> :
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span>
+<span class="normal"><a href="#__codelineno-32-5">5</a></span>
+<span class="normal"><a href="#__codelineno-32-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="k">let</span> <span class="n">homothetie</span> <span class="n">x</span> <span class="o">=</span> <span class="k">fun</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="o">;;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a> <span class="k">val</span> <span class="n">homothetie</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="o">(</span><span class="n">homothetie</span> <span class="mi">3</span><span class="o">)</span> <span class="mi">5</span><span class="o">;;</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">15</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="n">homothetie</span> <span class="mi">3</span> <span class="k">in</span> <span class="n">g</span> <span class="mi">5</span><span class="o">;;</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">15</span>
+</span></code></pre></div></td></tr></table></div></p>
+</div>
+<h3 id="application-partielle">Application partielle<a class="headerlink" href="#application-partielle" title="Permanent link">&para;</a></h3>
+<p>Définissons une fonction à deux arguments :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span>
+<span class="normal"><a href="#__codelineno-33-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="k">let</span> <span class="n">milieu</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span><span class="o">+.</span><span class="n">y</span><span class="o">)/.</span><span class="mi">2</span><span class="o">.;;</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a> <span class="k">val</span> <span class="n">milieu</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">float</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="n">milieu</span> <span class="mi">2</span><span class="o">.</span> <span class="mi">3</span><span class="o">.;;</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">.</span><span class="mi">5</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Lorsqu'une fonction a plusieurs arguments, on n'est pas obligé de les lui fournir tous lors de l'application.
+Si on ne le fait pas le résultat de cette application partielle est lui même une fonction qui peut éventuellement être lié a un
+identificateur et être appliqué par la suite.</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="n">milieu</span> <span class="mi">2</span><span class="o">.;;</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="k">val</span> <span class="n">g</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">-&gt;</span> <span class="kt">float</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="n">g</span> <span class="mi">3</span><span class="o">.;;</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">2</span><span class="o">.</span><span class="mi">5</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="fonctions-recursives">Fonctions récursives<a class="headerlink" href="#fonctions-recursives" title="Permanent link">&para;</a></h3>
+<p>Ecrivons la fonction <code>puissance</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>let puissance b n =
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    if n =0 then 1
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    else b * puissance b (n-1);;
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>Characters 69 -78:
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>    else b * puissance b (n-1);;
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>                       ^^^^^^^^^
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>Error: Unbound value puissance
+</span></code></pre></div>
+<p>Il faut prévenir le compilateur que la fonction est récursive en faisant suivre le mot clef <code>let</code> du mot clef <code>rec</code>.
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span>
+<span class="normal"><a href="#__codelineno-36-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">puissance</span> <span class="n">b</span> <span class="n">n</span> <span class="o">=</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">=</span><span class="mi">0</span> <span class="k">then</span> <span class="mi">1</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a>    <span class="k">else</span> <span class="n">b</span> <span class="o">*</span> <span class="n">puissance</span> <span class="n">b</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);;</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a> <span class="k">val</span> <span class="n">puissance</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="fonctions-mutuellement-recursives">Fonctions mutuellement récursives<a class="headerlink" href="#fonctions-mutuellement-recursives" title="Permanent link">&para;</a></h3>
+<p>On utilise une construction de la forme
+<code>let rec g = ... and f = ...</code>
+Calcul de parité</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span>
+<span class="normal"><a href="#__codelineno-37-4">4</a></span>
+<span class="normal"><a href="#__codelineno-37-5">5</a></span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span>
+<span class="normal"><a href="#__codelineno-37-7">7</a></span>
+<span class="normal"><a href="#__codelineno-37-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">pair</span> <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="n">impair</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="k">and</span> <span class="n">impair</span> <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">pair</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);;</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a> <span class="k">val</span> <span class="n">pair</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">bool</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a> <span class="k">val</span> <span class="n">impair</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">bool</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="n">pair</span> <span class="mi">5</span><span class="o">;;</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="n">impair</span> <span class="mi">5</span><span class="o">;;</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">true</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="filtrage-sur-motif-de-largument">Filtrage sur motif de l'argument<a class="headerlink" href="#filtrage-sur-motif-de-largument" title="Permanent link">&para;</a></h3>
+<p>Quand on connaît la forme du motif de l'argument, on peut anticiper :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-38-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-38-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-38-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-38-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-38-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-38-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-38-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-38-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-38-10">10</a></span>
+<span class="normal"><a href="#__codelineno-38-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="k">let</span> <span class="n">f</span> <span class="o">((</span><span class="n">x</span><span class="o">,(</span><span class="n">y</span><span class="o">,</span><span class="n">z</span><span class="o">)),</span><span class="n">t</span><span class="o">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="n">z</span><span class="o">*</span><span class="n">y</span><span class="o">;;</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a> <span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="o">(</span><span class="kt">int</span> <span class="o">*</span> <span class="o">(</span><span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">))</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="n">f</span> <span class="o">((</span><span class="mi">1</span><span class="o">,(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">))</span> <span class="o">,</span><span class="mi">4</span><span class="o">);;</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="n">f</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">);;</span> <span class="c">(* erreur de type*)</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="nc">Characters</span> <span class="mi">2</span><span class="o">-</span><span class="mi">11</span><span class="o">:</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7"></a> <span class="n">f</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">);;</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8"></a>   <span class="o">^^^^^^^^^</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9"></a><span class="nc">Error</span><span class="o">:</span> <span class="nc">This</span> <span class="n">expression</span> <span class="n">has</span> <span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">b</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">c</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">d</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10"></a>       <span class="n">but</span> <span class="n">an</span> <span class="n">expression</span> <span class="n">was</span> <span class="n">expected</span> <span class="k">of</span> <span class="k">type</span>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11"></a>       <span class="o">(</span><span class="kt">int</span> <span class="o">*</span> <span class="o">(</span><span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">))</span> <span class="o">*</span> <span class="kt">int</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="emuler-des-boucles">Emuler des boucles<a class="headerlink" href="#emuler-des-boucles" title="Permanent link">&para;</a></h3>
+<p>Pour le moment on ne présente pas les traits impératifs de OCaml.
+Comment émuler une boucle comme celle-ci :
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">45</span><span class="p">){</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">3</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
+<p>On peut le faire facilement avec une fonction comme celle-ci :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">loop</span> <span class="n">x</span> <span class="o">=</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">45</span> <span class="k">then</span> <span class="n">loop</span> <span class="o">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="filtrage-sur-les-listes">Filtrage sur les listes<a class="headerlink" href="#filtrage-sur-les-listes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Les présents transparents ne sont qu'une introduction à OCaml.
+On ne présente ci-dessous que le cas particulier du filtrage sur les listes.</p>
+</div>
+<h3 id="listes">Listes<a class="headerlink" href="#listes" title="Permanent link">&para;</a></h3>
+<p>Les listes d'objets de type <span class="arithmatex">\(τ\)</span> sont définies inductivement par</p>
+<ul>
+<li>la liste vide <code>[]</code> est une liste d'objets de n'importe quel type donc en particulier de type <span class="arithmatex">\(τ\)</span>;</li>
+<li>Si <span class="arithmatex">\(e\)</span> est de type <span class="arithmatex">\(τ\)</span> et si <code>t</code> est une liste de type <span class="arithmatex">\(τ\)</span>, alors <code>e::t</code> est une liste d'objets de type <span class="arithmatex">\(τ\)</span>.</li>
+</ul>
+<p>On peut donc explorer une liste en la déconstruisant : on sépare son élément de tête du reste de la liste ; on traite l'élément de tête et on applique le même traitement au reste de la liste.</p>
+<h3 id="consequence-de-la-definition-inductive">Conséquence de la définition inductive<a class="headerlink" href="#consequence-de-la-definition-inductive" title="Permanent link">&para;</a></h3>
+<p>On a vu comment sont construites inductivement les listes. Il devient possible de les explorer.</p>
+<div class="admonition example">
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span>
+<span class="normal"><a href="#__codelineno-41-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">longueur</span> <span class="n">t</span> <span class="o">=</span> <span class="k">if</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">[]</span> <span class="k">then</span> <span class="mi">0</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="k">else</span> <span class="k">let</span> <span class="n">l</span> <span class="o">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">tl</span> <span class="n">t</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">longueur</span> <span class="n">l</span><span class="o">;;</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a> <span class="k">val</span> <span class="n">longueur</span> <span class="o">:</span> <span class="err">’</span><span class="n">a</span> <span class="kt">list</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span> <span class="o">&gt;</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="n">longueur</span> <span class="o">[</span><span class="mi">3</span><span class="o">;</span><span class="mi">6</span><span class="o">;</span><span class="mi">8</span><span class="o">];;</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Rappel : <code>List.tl t</code> donne la queue de liste (tout sauf le premier élément)</p>
+<p>On pourrait aussi écrire, de façon plus proche de la définition inductive :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">longueur</span> <span class="n">t</span> <span class="o">=</span> <span class="k">if</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">[]</span> <span class="k">then</span> <span class="mi">0</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a>    <span class="k">else</span> <span class="k">let</span> <span class="o">_::</span><span class="n">l</span> <span class="o">=</span> <span class="n">t</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">longueur</span> <span class="n">l</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Mais on recevrait un Warning pour risque de filtrage non exhaustif dans <code>let _::l = t</code></p>
+<h3 id="instruction-de-filtrage-match-with">Instruction de filtrage match with<a class="headerlink" href="#instruction-de-filtrage-match-with" title="Permanent link">&para;</a></h3>
+<p>L'exemple simpliste du calcul de la longueur pourrait faire penser qu'on peut résoudre élégamment tous les problèmes sur les listes avec les opérateurs <code>if then else</code>.</p>
+<p>Mais on risque vite d'avoir une cascade inesthétique de
+<code>if then else</code>.</p>
+<p>Pour éviter cela, l'instruction match with réalise un <em>filtrage</em> de motif.
+Elle permet soit de gérer différents cas en fonction des valeurs d'une expression, soit d'accéder aux éléments d'un type construit (ou les deux à la fois).</p>
+<p>Plus lisible que <code>if then else</code> en cascades <code>match with</code> effectue en outre une <em>analyse d'exhaustivité</em>. Il vérifie que tous les cas possibles ont bien été couverts ce qui est très utile pour le débugage.</p>
+<div class="admonition example">
+<p class="admonition-title">Calcul de longueur avec filtrage</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
+<span class="normal"><a href="#__codelineno-43-2">2</a></span>
+<span class="normal"><a href="#__codelineno-43-3">3</a></span>
+<span class="normal"><a href="#__codelineno-43-4">4</a></span>
+<span class="normal"><a href="#__codelineno-43-5">5</a></span>
+<span class="normal"><a href="#__codelineno-43-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">longueur</span> <span class="n">l</span> <span class="o">=</span> <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a><span class="o">|</span> <span class="o">_::</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span> <span class="n">longueur</span> <span class="n">t</span><span class="o">;;</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a>  <span class="k">val</span> <span class="n">longueur</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="kt">list</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a><span class="n">longueur</span> <span class="o">[</span><span class="mi">3</span><span class="o">;</span><span class="mi">6</span><span class="o">;</span><span class="mi">8</span><span class="o">];;</span>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Observer le <code>_::t</code> qui permet de ne pas tenir compte de la valeur de l'élément de tête, seulement de son existence.</p>
+<h3 id="filtrage-sur-des-tuples">Filtrage sur des tuples<a class="headerlink" href="#filtrage-sur-des-tuples" title="Permanent link">&para;</a></h3>
+<p>Le <em>filtrage</em> de motif permet soit de gérer différents cas en fonction des
+valeurs d'une expression, soit d'accéder aux éléments d'un type
+construit (ou les deux à la fois).
+La fonction suivante filtre ses arguments (une paire) pour faire leur addition en tenant compte du cas où l'un d'entre eux est zéro :
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-44-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-44-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-44-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-44-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-44-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-44-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-44-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-44-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-44-10">10</a></span>
+<span class="normal"><a href="#__codelineno-44-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">somme</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a>    <span class="k">match</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span> <span class="k">with</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a>    <span class="o">|</span> <span class="mi">0</span><span class="o">,</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a>    <span class="o">|</span> <span class="n">n</span><span class="o">,</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">n</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5"></a>    <span class="o">|</span> <span class="o">_,_</span> <span class="c">(* autres cas*)</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">+</span>
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6"></a>                                <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7"></a>                                <span class="k">then</span> <span class="n">somme</span> <span class="n">a</span> <span class="o">(</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8"></a>                                <span class="k">else</span> <span class="n">somme</span> <span class="o">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="n">b</span><span class="o">;;</span>
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9"></a> <span class="k">val</span> <span class="n">somme</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10"></a><span class="n">somme</span> <span class="mi">2</span> <span class="mi">3</span><span class="o">;;</span> <span class="c">(*exo : faire tourner à la main*)</span>
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11"></a><span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">5</span>
+</span></code></pre></div></td></tr></table></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

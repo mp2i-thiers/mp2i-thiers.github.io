@@ -1,0 +1,3257 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/">
+      
+      
+        <link rel="next" href="../2-Arbres%20binaires/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Induction structurelle - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#induction-structurelle" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Induction structurelle
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objets-inductifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objets inductifs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sur-les-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sur les termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructeurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructeurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructeurs-arites-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructeurs, arités, termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sous-termes-immediats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sous-termes immédiats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-bases-cas-de-combinaisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de bases, cas de combinaisons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure-des-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure des termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-typee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signature typée
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordre-structurel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre structurel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ordre structurel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relation-dordre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation d'ordre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensembles-bien-fondes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensembles bien fondés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensembles-bien-ordonnesfondes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensembles bien ordonnés/fondés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bon-ordre-et-element-minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bon ordre et élément minimal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements-sans-predecesseurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Éléments sans prédécesseurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taille-et-ordre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille et ordre
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Taille et ordre">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-structurel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre structurel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloture-reflexive-transitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clôture réﬂexive-transitive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theoreme-de-lordre-bien-fonde" class="md-nav__link">
+    <span class="md-ellipsis">
+      Théorème de l'ordre bien fondé
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principe-dinduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe d'induction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-dinduction-structurelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction structurelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Récurrence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objets-inductifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objets inductifs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-sur-les-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction sur les termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructeurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructeurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructeurs-arites-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructeurs, arités, termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sous-termes-immediats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sous-termes immédiats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-bases-cas-de-combinaisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de bases, cas de combinaisons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure-des-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure des termes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-typee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signature typée
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordre-structurel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre structurel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ordre structurel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relation-dordre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation d'ordre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensembles-bien-fondes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensembles bien fondés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensembles-bien-ordonnesfondes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensembles bien ordonnés/fondés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bon-ordre-et-element-minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bon ordre et élément minimal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements-sans-predecesseurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Éléments sans prédécesseurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taille-et-ordre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille et ordre
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Taille et ordre">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-structurel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre structurel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloture-reflexive-transitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clôture réﬂexive-transitive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theoreme-de-lordre-bien-fonde" class="md-nav__link">
+    <span class="md-ellipsis">
+      Théorème de l'ordre bien fondé
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principe-dinduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe d'induction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-dinduction-structurelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction structurelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Récurrence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="induction-structurelle">Induction structurelle<a class="headerlink" href="#induction-structurelle" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<h2 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
+<h3 id="objets-inductifs">Objets inductifs<a class="headerlink" href="#objets-inductifs" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Présentation informelle</p>
+<p>Les objets <em>inductifs</em> sont des objets construits progressivement à partir d'objets de même nature.</p>
+</div>
+<p>Les objets inductifs sont décrits par deux choses :</p>
+<ol>
+<li>un ou plusieurs objets de base (qui forment le point de départ de toute construction) ;</li>
+<li>une ou plusieurs règles de combinaisons (qui permettent de former des objets plus grands)</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Les constructions en Lego :</p>
+<ul>
+<li>les briques et les plaques sont des constructions de base</li>
+<li>A partir de deux constructions en Lego, on obtient une troisième en les emboîtant.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple des listes en OCaml</p>
+<p>Cas de base : la liste vide <code>[]</code></p>
+<p>Règle de combinaison : si <code>l</code> est une liste et <code>e</code> un élément, alors <code>e::l</code> est une nouvelle liste qui contient un élément de plus que la queue <code>l</code> .</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : les entiers de Peano</p>
+<p>Cas de base : L'entier zéro, noté <span class="arithmatex">\(Z\)</span> est un nombre entier naturel.</p>
+<p>Règle de construction : si <span class="arithmatex">\(n\)</span> est un entier naturel, alors son successeur, noté <strong><span class="arithmatex">\(S(n)\)</span></strong> est encore un entier naturel.</p>
+<p>3 se note <strong><span class="arithmatex">\(S(S(S(Z)))\)</span></strong>.</p>
+</div>
+<h3 id="fonction-sur-les-termes"><strong>Fonction sur les termes</strong><a class="headerlink" href="#fonction-sur-les-termes" title="Permanent link">&para;</a></h3>
+<p>Pour définir une fonction sur les termes, on se donne autant d'équations que de constructeurs. On définit l'addition <span class="arithmatex">\(+ : \mathbb{N} × \mathbb{N} → \mathbb{N}\)</span> par :
+<span class="arithmatex">\(\left\{\begin{matrix}
+Z + m = m  \\
+S(n) + m = S(n + m)
+\end{matrix}\right.\)</span></p>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>(en désignant <span class="arithmatex">\(Z\)</span> par <span class="arithmatex">\(0\)</span>, <span class="arithmatex">\(2\)</span> par <span class="arithmatex">\(S(S(Z))\)</span>) etc.</p>
+<p><span class="arithmatex">\(2 + 3 = S(1) + 3 = S(1 + 3) = S(S(0) + 3) = S(S(0 + 3)) = S(S(3)) = 5\)</span>.</p>
+</div>
+<h3 id="constructeurs"><strong>Constructeurs</strong><a class="headerlink" href="#constructeurs" title="Permanent link">&para;</a></h3>
+<p>On utilise une syntaxe proche de <strong>OCaml</strong>.</p>
+<p>A chaque objet de base et chaque manière de construire un nouvel objet à partir d'objets plus petits sont associés un symbole appelé constructeur.</p>
+<p>Tout objet est alors construit comme une combinaison d'applications explicites de ces constructeurs.</p>
+<h3 id="constructeurs-arites-termes"><strong>Constructeurs, arités, termes</strong><a class="headerlink" href="#constructeurs-arites-termes" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Constructeur</p>
+<p>Un <em>constructeur</em> est un symbole attendant un nombre fixe d'arguments. Ce nombre est l'<em>arité du constructeur</em>.</p>
+<p>Pour définir un ensemble <span class="arithmatex">\(E\)</span> d'objets inductifs, on fournit une <em>signature</em>, c.a.d un ensemble de constructeurs. Les éléments de <span class="arithmatex">\(E\)</span>, appelés <em>termes</em> sont alors construits en utilisant exclusivement la règle suivante : 
+  - Si <em>c</em> est un constructeur d'arité <em>n</em> et si <span class="arithmatex">\(t_1,...,t_n\)</span> sont <span class="arithmatex">\(n\)</span> termes alors l'application <span class="arithmatex">\(c(t_1,...,t_n)\)</span> forme un terme.</p>
+</div>
+<h3 id="sous-termes-immediats"><strong>Sous-termes immédiats</strong><a class="headerlink" href="#sous-termes-immediats" title="Permanent link">&para;</a></h3>
+<p>Si <span class="arithmatex">\(t=c(t_1,...,t_n)\)</span>, on dit que <span class="arithmatex">\(t_1\)</span> (ou <span class="arithmatex">\(t_2\)</span> etc.) est un sous-terme <em>immédiat</em> de <span class="arithmatex">\(t\)</span>.
+Dans la notation,</p>
+<div class="arithmatex">\[t=c(c(t_2,t_3),t_1)\]</div>
+<p>On a <span class="arithmatex">\(t_1\)</span> qui est un sous-terme immédiat de <span class="arithmatex">\(t\)</span> mais <span class="arithmatex">\(t_2,t_3\)</span> sont des sous-termes (non immédiats)</p>
+<h3 id="cas-de-bases-cas-de-combinaisons"><strong>Cas de bases, cas de combinaisons</strong><a class="headerlink" href="#cas-de-bases-cas-de-combinaisons" title="Permanent link">&para;</a></h3>
+<p>Un constructeur <span class="arithmatex">\(c\)</span> d'arité zéro est lui-même un terme. Un tel constructeur est appelé une <em>constante</em> et forme un cas de base.</p>
+<p>Un constructeur <span class="arithmatex">\(c\)</span> d'arité non nulle doit nécessairement être appliqué à plusieurs termes déjà construits pour former un nouveau terme. Cela représente un cas de combinaison.</p>
+<p>Un constructeur <em>n-aire</em> est un constructeur d'arité <span class="arithmatex">\(n\)</span>. On parle de constructeurs <em>unaires</em>, <em>binaires</em>, <em>ternaires</em> pour les arités <span class="arithmatex">\(1, 2, 3\)</span></p>
+<h3 id="structure-des-termes"><strong>Structure des termes</strong><a class="headerlink" href="#structure-des-termes" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Sous termes immédiats</p>
+<p>Les termes <span class="arithmatex">\(t_1\)</span> à <span class="arithmatex">\(t_n\)</span> utilisés pour construire un terme <span class="arithmatex">\(t=c(t_1,...,t_n)\)</span> sont appelés sous-termes immédiats de <span class="arithmatex">\(t\)</span>. Deux termes sont égaux si et seulement si ils sont construits de la même façon, c'est à dire à partir des mêmes sous-termes, combinas par les mêmes constructeurs</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Cette égalité est syntaxique. </p>
+<p>Contre-exemple : L'égalité dans <span class="arithmatex">\(\mathbb{Q}\)</span> n'est pas seulement syntaxique. En eﬀet <span class="arithmatex">\(\frac{6}{4}\)</span> est égal à <span class="arithmatex">\(\frac{3}{2}\)</span>.</p>
+</div>
+<h3 id="precisions"><strong>Précisions</strong><a class="headerlink" href="#precisions" title="Permanent link">&para;</a></h3>
+<p>Sauf mention du contraire, on ne considère que des termes finis : ceux qui peuvent être formés à partir d'un nombre fini d'applications de constructeurs.</p>
+<p>Un ensemble inductif <span class="arithmatex">\(E\)</span> dont la signature contient au moins un symbole de constante est non vide.</p>
+<p>Une signature peut très bien contenir une infinité de symboles (mais les termes n'en utilisent qu'un nombre fini).</p>
+<h3 id="signature-typee"><strong>Signature typée</strong><a class="headerlink" href="#signature-typee" title="Permanent link">&para;</a></h3>
+<p>Parfois, on impose que chaque élément d'un constructeur soit d'une nature précise.</p>
+<p>Par exemple dans <code>e::l</code>, on s'attend à ce que <code>e</code> et <code>l</code> aient des types diﬀérents. Le premier est de type élément et le second de type liste d'éléments.</p>
+<p>On peut donc utiliser une notation de type</p>
+<div class="arithmatex">\[c\text{ : }E_1 × · · · × E_n → E\]</div>
+<p>pour indiquer qu'un constructeur <span class="arithmatex">\(c\)</span> d'arité <span class="arithmatex">\(n\)</span> attend des arguments pris dans les ensembles respectifs <span class="arithmatex">\(E_1, . . . , E_n\)</span>.</p>
+<p>Avec cette convention, <span class="arithmatex">\(c\)</span> <span class="arithmatex">\(:\)</span> <span class="arithmatex">\(E\)</span> désigne que <span class="arithmatex">\(c\)</span> est une constante de l'ensemble <span class="arithmatex">\(E\)</span> .</p>
+<h2 id="ordre-structurel"><strong>Ordre structurel</strong><a class="headerlink" href="#ordre-structurel" title="Permanent link">&para;</a></h2>
+<h3 id="relation-dordre">Relation d'ordre<a class="headerlink" href="#relation-dordre" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : </p>
+<p>Soit <span class="arithmatex">\(E\)</span> un ensemble; une relation <span class="arithmatex">\(≤\)</span> sur <span class="arithmatex">\(E\)</span> est une realtion d'ordre si pour tous <span class="arithmatex">\(x,y\)</span> et <span class="arithmatex">\(z\)</span> éléments de <span class="arithmatex">\(E\)</span> :</p>
+<ul>
+<li><span class="arithmatex">\(x ≤ x\)</span> (réfléxivité)</li>
+<li>(<span class="arithmatex">\(x ≤ y\)</span> et <span class="arithmatex">\(y ≤ x\)</span>) <span class="arithmatex">\(⇒\)</span> <span class="arithmatex">\(x=y\)</span> (antisymétrie)</li>
+<li>(<span class="arithmatex">\(x ≤ y\)</span> et <span class="arithmatex">\(y ≤ z\)</span>) <span class="arithmatex">\(⇒\)</span> <span class="arithmatex">\(x ≤ z\)</span></li>
+</ul>
+</div>
+<h3 id="ensembles-bien-fondes"><strong>Ensembles bien fondés</strong><a class="headerlink" href="#ensembles-bien-fondes" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : </p>
+<p>Un ensemble <span class="arithmatex">\(E\)</span> est dit <em>bien fondé</em> s'il est muni d'une relation d'ordre <span class="arithmatex">\(≼\)</span> telle qu'il n'existe pas de suite<span class="arithmatex">\(^a\)</span> strictement décroissante de cet ensemble.</p>
+<p>Un ensemble est dit <em>bien ordonné</em>, si il est bien fondé et si, de plus, la relation d'ordre est totale.</p>
+<p><span class="arithmatex">\(a\)</span>. Rappel : une suite sur <span class="arithmatex">\(E\)</span> est simplement une application <span class="arithmatex">\(f : \mathbb{N} → E\)</span></p>
+</div>
+<h3 id="ensembles-bien-ordonnesfondes"><strong>Ensembles bien ordonnés/fondés</strong><a class="headerlink" href="#ensembles-bien-ordonnesfondes" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<p><span class="arithmatex">\(ℕ\)</span> muni de <span class="arithmatex">\(≤\)</span> usuel est bien ordonné</p>
+<p><span class="arithmatex">\(ℕ^2\)</span> muni de l'ordre lexicographique est bien ordonné </p>
+<p><span class="arithmatex">\((a, b)  ≼_L (a', b') \Leftrightarrow (a &lt; a') ∨ (a = a' ∧ b ≤ b')\)</span></p>
+<p><span class="arithmatex">\(ℕ^2\)</span> muni de l'ordre produit est bien fondé </p>
+<p><span class="arithmatex">\((a, b)  ≼_P(a', b') \Leftrightarrow (a ≤ a') ∧ (b ≤ b')\)</span></p>
+<p>Relation non totale.</p>
+<p><span class="arithmatex">\(ℤ\)</span> muni de l'ordre usuel n'est pas bien fondé <span class="arithmatex">\((−1, −2, −3 . . .\)</span> est infini strictement décroissante).</p>
+</div>
+<h3 id="bon-ordre-et-element-minimal"><strong>Bon ordre et élément minimal</strong><a class="headerlink" href="#bon-ordre-et-element-minimal" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p><strong>Proposition</strong></p>
+<p>Un ensemble ordonné <span class="arithmatex">\(E\)</span> est bien ordonné si et seulement si toutes les parties non vides de <span class="arithmatex">\(E\)</span> admettent un élément minimal unique. </p>
+<p>Par <em>élément minimal</em>, on entend un élément plus petit que tous les autres.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve</p>
+<p><strong>Si <span class="arithmatex">\(E\)</span> est bien ordonné</strong></p>
+<p>Soit <span class="arithmatex">\(A ⊂ E\)</span> une partie non vide sans élément minimal. Prenons <span class="arithmatex">\(e_0 ∈ A\)</span>.</p>
+<ul>
+<li>Puisque <span class="arithmatex">\(e_0\)</span> n'est pas minimal, on peut trouver <span class="arithmatex">\(e_1 ∈ A\)</span> tel que <span class="arithmatex">\(¬(e_1 ≥ e_0)\)</span>, c'est à dire <span class="arithmatex">\(e_1 &lt; e_0\)</span> puisque l'ordre est total.</li>
+<li>De proche en proche on construit un <span class="arithmatex">\(n\)</span>-uplet (<span class="arithmatex">\(e_0, e_1, . . . , e_n\)</span>) de valeurs de <span class="arithmatex">\(A\)</span> donc de <span class="arithmatex">\(E\)</span> strictement décroissantes aussi longue qu'on veut. Contradiction avec "bien fondé". A possède donc un élément minimal.</li>
+<li>L'unicité de l'élément minimal vient de l'antisymétrie. 
+  Si <span class="arithmatex">\(e, e'\)</span> sont minimaux dans <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(e ≤ e'\)</span> et <span class="arithmatex">\(e' ≤ e\)</span>, donc <span class="arithmatex">\(e = e'\)</span> par antisymétrie.</li>
+</ul>
+<p><strong>Si toute partie a un élément minimal</strong></p>
+<p>L'ordre est total car toute partie à deux éléments admet un élément minimal. L'un est donc plus petit que l'autre.</p>
+<ul>
+<li>Considérons la suite <span class="arithmatex">\((u_n)_n\)</span> d'éléments de <span class="arithmatex">\(E\)</span> . 
+  Posons <span class="arithmatex">\(U={u_n|n\in\mathbb{N}}⊂E\)</span>.</li>
+<li>Comme <span class="arithmatex">\(U≠∅\)</span>, <span class="arithmatex">\(U\)</span> admet un élément minimal, disons, <span class="arithmatex">\(u_k\)</span> . Si la suite est strictement décroissante, alors <span class="arithmatex">\(u_k&gt;u_{k+1}\)</span>, ce qui contredit la minimalité.</li>
+<li>Il n'y a pas de suite strictement décroissante dans l'ensemble : il est bien fondé.</li>
+</ul>
+</div>
+<h3 id="elements-sans-predecesseurs"><strong>Éléments sans prédécesseurs</strong><a class="headerlink" href="#elements-sans-predecesseurs" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Elements sans prédécesseur</p>
+<p>Dans toute partie d'un ensemble bien fondé, il y a un ou des éléments qui ne sont plus petits qu'aucun autre de cette partie. On les appelle <em>éléments sans prédécesseur</em>.</p>
+</div>
+<p>Soit <span class="arithmatex">\(E\)</span> bien fondé et <span class="arithmatex">\(e_0\)</span>, <span class="arithmatex">\(F\)</span> tels que <span class="arithmatex">\(e_0∈ F ⊂ E\)</span> . Si <span class="arithmatex">\(e_0\)</span> est sans prédécesseur dans <span class="arithmatex">\(F\)</span> , alors on est content.
+Sinon, on peut trouver <span class="arithmatex">\(e_1 &lt; e_0\)</span> dans <span class="arithmatex">\(F\)</span> .</p>
+<p>De proche en proche on construit une suite <span class="arithmatex">\(e_0 &gt; e_1 &gt;···&gt;e_n\)</span> dans <span class="arithmatex">\(F\)</span>. Mais cette suite ne se prolonge pas indéfiniment car l'ordre est bien fondé.</p>
+<p>Donc il existe <span class="arithmatex">\(e_k ∈ F\)</span> sans prédécesseur.</p>
+<p>Réciproquement <span class="arithmatex">\(\color{red}\text{Si toute partie d'un ensemble ordonné admet des éléments}\)</span> 
+<span class="arithmatex">\(\color{red}\text{sans prédécesseur, l'ensemble est bien fondé}\)</span>.</p>
+<p>Preuve : adapter le transparent précédent.</p>
+<h2 id="taille-et-ordre"><strong>Taille et ordre</strong><a class="headerlink" href="#taille-et-ordre" title="Permanent link">&para;</a></h2>
+<h3 id="taille"><strong>Taille</strong><a class="headerlink" href="#taille" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Taille d'un terme</p>
+<p>La <em>taille</em> d'un terme est le nombre de constructeurs qui le composent. Si <span class="arithmatex">\(t\)</span> est un terme, on note <span class="arithmatex">\(|t|\)</span> sa taille.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Pour les entiers de Peano, la taille de <span class="arithmatex">\(Z\)</span> est <span class="arithmatex">\(1\)</span>, celle de <span class="arithmatex">\(S(S(S(Z)))\)</span> est <span class="arithmatex">\(4\)</span>.</p>
+</div>
+<p>La définition de la taille peut subir quelques aménagements suivant les contextes.</p>
+<p>Par exemple, pour les listes on a coutume de dire que <code>[]</code> est de taille <span class="arithmatex">\(0\)</span> et non <span class="arithmatex">\(1\)</span>, et que la taille de <code>[1;2]</code> (qui est en fait <code>1::2::[]</code>) est <span class="arithmatex">\(2\)</span> et non <span class="arithmatex">\(3\)</span>. La taille des listes est donc usuellement un translaté de <span class="arithmatex">\(-1\)</span> de la définition de la taille prise dans le transparent précédent.</p>
+<h3 id="ordre-structurel_1">Ordre structurel<a class="headerlink" href="#ordre-structurel_1" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Ordre structurel</p>
+<p>Soit <span class="arithmatex">\(E\)</span> un ensemble de termes et <span class="arithmatex">\((t_1, t_2) ∈ E^2\)</span>. Notons <span class="arithmatex">\(t_1 &lt;_i t_2\)</span> pour indiquer que <span class="arithmatex">\(t_1\)</span> est un sous-terme "immédiat" de <span class="arithmatex">\(t_2\)</span>.</p>
+<p>L'<em>ordre structurel</em> sur <span class="arithmatex">\(E\)</span> est la relation d'ordre <span class="arithmatex">\(≤\)</span> engendré par <span class="arithmatex">\(&lt;_i\)</span>, c.a.d la clôture réﬂexive-transitive de <span class="arithmatex">\(&lt;_i\)</span> (plus petite relation binaire contenant <span class="arithmatex">\(&lt;_i\)</span> et à la fois réﬂexive et transitive).
+  Un sous-terme de <span class="arithmatex">\(t\)</span> est un terme <span class="arithmatex">\(t'\)</span> tel que <span class="arithmatex">\(t' ≤ t\)</span></p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Pour s'assurer que la relation <span class="arithmatex">\(≤\)</span> engendre bien un ordre, il faut s'assurer qu'elle est anti-symétrique. Elle est, par définition de la clôture, réﬂexive et transitive.</p>
+</div>
+<h3 id="cloture-reflexive-transitive">Clôture réﬂexive-transitive<a class="headerlink" href="#cloture-reflexive-transitive" title="Permanent link">&para;</a></h3>
+<p>La clôture réﬂexive-transitive de <span class="arithmatex">\(&lt;_i\)</span> est par définition la plus petite relation binaire <span class="arithmatex">\(R\)</span> sur <span class="arithmatex">\(E\)</span> (i.e. partie de <span class="arithmatex">\(E × E\)</span> ) telle que :</p>
+<ol>
+<li><span class="arithmatex">\(&lt;_i\)</span> est incluse dans <span class="arithmatex">\(R\)</span></li>
+<li>Si <span class="arithmatex">\(x∈E\)</span>, alors <span class="arithmatex">\((x,x)∈R\)</span></li>
+<li>Si <span class="arithmatex">\((x, y ) ∈ R\)</span> et <span class="arithmatex">\((y , z) ∈ R\)</span> alors <span class="arithmatex">\((x, z) ∈ R\)</span></li>
+</ol>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Idée de la preuve pour l'existence de <span class="arithmatex">\(≤\)</span> (qu'on préfère noter de façon infixe)</p>
+<p>Indication : <span class="arithmatex">\(E × E\)</span> contient  <span class="arithmatex">\(&lt;_i\)</span> et est réﬂexive-transitive. Donc l'ensemble des relations qui vérifient les 3 points est non vide. 
+  Alors l'intersection de toutes les relations <span class="arithmatex">\(R\)</span> qui vérifient les points ci-dessus est bien réﬂexive-transitive. 
+  Et c'est la plus petite à le vérifier : on la note <span class="arithmatex">\(≤\)</span>.</p>
+</div>
+<h3 id="theoreme-de-lordre-bien-fonde">Théorème de l'ordre bien fondé<a class="headerlink" href="#theoreme-de-lordre-bien-fonde" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p><strong>Théorème</strong>
+  Soit <span class="arithmatex">\(E\)</span> un ensemble de termes. Notons <span class="arithmatex">\(≤\)</span> l'<em>ordre structurel</em> sur <span class="arithmatex">\(E\)</span> et <span class="arithmatex">\(&lt;\)</span> l'<em>ordre strict associé</em>. On a les propriétés suivantes :</p>
+<ul>
+<li>Si <span class="arithmatex">\(t_1 &lt; t_2\)</span>, alors <span class="arithmatex">\(|t_1| &lt; |t_2|\)</span></li>
+<li>La relation <span class="arithmatex">\(≤\)</span> est une relation d'ordre bien fondée.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve</p>
+<p>On suppose <span class="arithmatex">\(t_1 &lt; t_2\)</span>,</p>
+<p>Puisque <span class="arithmatex">\(t_1 ≤ t_2\)</span>, alors par conséquence de la définition de la clôture réﬂexive-transitive, il existe <span class="arithmatex">\(x_1,x_2,...,x_k\)</span> tels que <span class="arithmatex">\(x_1=t_1,x_k=t_2\)</span> et pour tout <span class="arithmatex">\(j∈⟦1,k−1⟧\)</span>, <span class="arithmatex">\(x_j &lt;_i x_{j+1}\)</span>.</p>
+<p>Comme <span class="arithmatex">\(t_1 &lt; t_2\)</span>, alors <span class="arithmatex">\(k ≥ 2\)</span>.</p>
+<p>Pour <span class="arithmatex">\(j\)</span> convenable, puisque <span class="arithmatex">\(x_j\)</span> est un sous-terme immédiat de <span class="arithmatex">\(x_{j+1}\)</span> (ce que signifie <span class="arithmatex">\(x_j  &lt;_i x_{j+1}\)</span>) et donc <span class="arithmatex">\(|x_j| &lt; |x_{j+1}|\)</span> (puisqu'il faut au moins un constructeur de plus pour construire <span class="arithmatex">\(x_{j+1}\)</span> que pour <span class="arithmatex">\(x_j\)</span> ). </p>
+<p>Par transitivité de <span class="arithmatex">\(&lt;\)</span> sur <span class="arithmatex">\(ℕ\)</span>, on a <span class="arithmatex">\(|t_1| &lt; |t_2|\)</span></p>
+<p><strong>Preuve : anti-symétrie</strong></p>
+<p>Soient <span class="arithmatex">\(t_1, t_2\)</span> deux termes tels que <span class="arithmatex">\(t_1 ≤ t_2, t_2 ≤ t_1\)</span> et <span class="arithmatex">\(t_1 \neq  t_2\)</span>. </p>
+<p>On a donc <span class="arithmatex">\(t_1 &lt; t_2\)</span> puisque <span class="arithmatex">\(t_1 ≤ t_2\)</span> et <span class="arithmatex">\(t_1≠t_2\)</span>. </p>
+<p>Ainsi <span class="arithmatex">\(|t_1| &lt;_ℕ |t_2|\)</span> par le point précédent. 
+  De même, on obtient <span class="arithmatex">\(|t_2| &lt;_ℕ |t_1|\)</span>. 
+  Alors <span class="arithmatex">\(|t_2|, |t_1|\)</span> sont dans <span class="arithmatex">\(ℕ\)</span>, <span class="arithmatex">\(|t_1| &lt;_ℕ |t_2|\)</span> et <span class="arithmatex">\(|t_2| &lt;_ℕ |t_1|\)</span> : <strong>ABSURDE</strong>.</p>
+<p><strong>Preuve : caractère bien fondé</strong></p>
+<p>Supposons qu'il existe une suite infinie strictement décroissante <span class="arithmatex">\((t_i)_{i∈ℕ}\)</span> pour l'ordre structurel. </p>
+<p>Alors, par le point 1 du théorème, la suite des tailles <span class="arithmatex">\((|t_i|)_{i∈ℕ}\)</span> est une suite infinie strictement décroissante de <span class="arithmatex">\(ℕ\)</span>. 
+  Or cela est impossible puisque <span class="arithmatex">\(ℕ\)</span> est bien ordonné. <strong>ABSURDE</strong>.</p>
+</div>
+<h2 id="principe-dinduction">Principe d'induction<a class="headerlink" href="#principe-dinduction" title="Permanent link">&para;</a></h2>
+<h3 id="presentation_1">Présentation<a class="headerlink" href="#presentation_1" title="Permanent link">&para;</a></h3>
+<p>La définition des ensembles inductifs amène naturellement à une technique de raisonnement sur les termes proche de la récurrence.</p>
+<p>On peut résumer cette technique ainsi : une propriété à propos des objets inductifs qui vaut pour toutes les constantes et est préservée par chaque construction inductive, est nécessairement vraie pour tous les objets pouvant être construits.</p>
+<h3 id="principe-dinduction-structurelle">Principe d'induction structurelle<a class="headerlink" href="#principe-dinduction-structurelle" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p><strong>Théorème</strong></p>
+<p>Soit <span class="arithmatex">\(E\)</span> un ensemble inductif (non vide donc avec au moins une constante) et une propriété <span class="arithmatex">\(P\)</span> à propos des objets de <span class="arithmatex">\(E\)</span>. Si, pour chaque constructeur <span class="arithmatex">\(c\)</span> d'arité <span class="arithmatex">\(n\)</span>, la propriété <span class="arithmatex">\(P(c(t_1,...,t_n))\)</span> est satisfaite dès lors que les propriétés <span class="arithmatex">\(P(t_1)\)</span> à <span class="arithmatex">\(P(t_n)\)</span> sont satisfaites, alors <span class="arithmatex">\(P(t)\)</span> est satisfaite pour tout <span class="arithmatex">\(t\)</span> de <span class="arithmatex">\(E\)</span> .</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Si <span class="arithmatex">\(t\)</span> est une constante, alors pour tout terme <span class="arithmatex">\(x ∈ E , x &lt;_i t\)</span> est faux. Donc <span class="arithmatex">\(∀x ∈ E , (x  &lt;_i t \Rightarrow P(x))\)</span> est vraie. Par suite <span class="arithmatex">\(P\)</span> est satisfaite pour tous les sous-termes immédiats de <span class="arithmatex">\(t\)</span>. Il vient donc que <span class="arithmatex">\(P(t)\)</span> est satisfaite.</p>
+<p><em>Rappel :<span class="arithmatex">\(x &lt;_i t\)</span> signifie que x est sous-terme immédiat de t.</em></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve</p>
+<p>Supposons que le sous-ensemble <span class="arithmatex">\(A ⊂ E\)</span> des termes ne satisfaisant pas <span class="arithmatex">\(P\)</span> est non vide.</p>
+<p><span class="arithmatex">\(A\)</span> admet donc un élément sans prédécesseur <span class="arithmatex">\(t_0\)</span> puisque l'ordre est bien fondé. </p>
+<p>Si <span class="arithmatex">\(t_0\)</span> est une constante, alors <span class="arithmatex">\(P(t_0)\)</span> est satisfaite. Ce n'est pas possible puisque <span class="arithmatex">\(t_0 ∈ A\)</span>. </p>
+<p>Si <span class="arithmatex">\(t_0\)</span> n'est pas une constante, il a des sous-termes immédiats. Ils ne peuvent donc être dans <span class="arithmatex">\(A\)</span> puisque plus petits strictement que <span class="arithmatex">\(t_0\)</span>.</p>
+<p>Mézalors, chaque sous-terme satisfait la propriété <span class="arithmatex">\(P\)</span>. </p>
+<p>D'après l'hypothèse sur <span class="arithmatex">\(t\)</span>, cela veut dire que <span class="arithmatex">\(P(t_0)\)</span> est satisfaite et donc que <span class="arithmatex">\(t_0∉A\)</span> : <strong>ABSURDE</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple : élément neutre</p>
+<p>Les équations définissant l'addition des entiers de Peano assurent que <span class="arithmatex">\(Z + n = n\)</span> vaut pour tout <span class="arithmatex">\(n ∈ ℤ\)</span>.</p>
+<p>Montrons que <span class="arithmatex">\(n + Z = n\)</span> pour tout <span class="arithmatex">\(n\)</span> également : 
+  - Cas de base : <span class="arithmatex">\(Z + Z = Z\)</span> par définition de <span class="arithmatex">\(+\)</span> (1ere équation) 
+  - Hérédité : prenons un entier de Peano <span class="arithmatex">\(n\)</span> satisfaisant <span class="arithmatex">\(n + Z = n\)</span>. Alors : </p>
+<p><span class="arithmatex">\(S(n) + Z = S(n + Z)\text{ par déf. de +} \\ = S(n) \text{ Par HI }\)</span></p>
+<ul>
+<li>On en déduit que pour tout entier de Peano <span class="arithmatex">\(n\)</span>, <span class="arithmatex">\(n + Z = n\)</span>.</li>
+</ul>
+</div>
+<h3 id="recurrence"><strong>Récurrence</strong><a class="headerlink" href="#recurrence" title="Permanent link">&para;</a></h3>
+<p>En récrivant le principe d'induction structurelle des entiers de Peano avec les notations habituelles (<span class="arithmatex">\(0\)</span> au lieu de <span class="arithmatex">\(Z\)</span>, <span class="arithmatex">\(2\)</span> au lieu de <span class="arithmatex">\(S(S(Z))\)</span>), et en considérant <span class="arithmatex">\(P\)</span>, un prédicat sur les entiers, nous obtenons que :</p>
+<ul>
+<li>Si <span class="arithmatex">\(P(0)\)</span> est vrai</li>
+<li>Si pour tout <span class="arithmatex">\(n\)</span> satisfaisant <span class="arithmatex">\(P(n)\)</span>, la propriété <span class="arithmatex">\(P(n + 1)\)</span> est satisfaite ;</li>
+<li>Alors pour tout <span class="arithmatex">\(n\)</span> entier, la propriété <span class="arithmatex">\(P(n)\)</span> est satisfaite.</li>
+<li>C'est précisément le principe de récurrence !!</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

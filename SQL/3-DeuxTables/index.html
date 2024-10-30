@@ -1,0 +1,3852 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2-UneTable/">
+      
+      
+        <link rel="next" href="../4-Agregations/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Requêtes sur plusieurs tables - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requetes-sur-plusieurs-tables" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requêtes sur plusieurs tables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operateurs-ensemblistes-usuels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateurs ensemblistes usuels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérateurs ensemblistes usuels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Différence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-ensemblistes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations ensemblistes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations ensemblistes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttunion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{UNION}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-ensembliste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction ensembliste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#produits-cartesien-jointure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produits cartésien, jointure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produits cartésien, jointure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#produit-cartesien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produit cartésien
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produit cartésien">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-croisee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure croisée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complement-de-notations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complément de notations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#division-cartesienne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Division cartésienne
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Division cartésienne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-exemple-plus-elabore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un exemple plus élaboré
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-symetrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure symétrique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jointure symétrique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recollement-de-deux-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recollement de deux relations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-ensemblistes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations ensemblistes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations ensemblistes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jointure-symetrique_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure symétrique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-et-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure et intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointures-colorbluetextttleft-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointures \(\color{blue}\texttt{LEFT JOIN}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure RIGHT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-jointure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-jointure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-sur-plus-de-deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure sur plus de deux tables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operateurs-ensemblistes-usuels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateurs ensemblistes usuels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérateurs ensemblistes usuels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Différence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-ensemblistes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations ensemblistes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations ensemblistes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttunion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{UNION}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-ensembliste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction ensembliste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#produits-cartesien-jointure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produits cartésien, jointure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produits cartésien, jointure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#produit-cartesien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produit cartésien
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produit cartésien">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-croisee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure croisée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complement-de-notations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complément de notations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#division-cartesienne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Division cartésienne
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Division cartésienne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-exemple-plus-elabore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un exemple plus élaboré
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-symetrique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure symétrique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jointure symétrique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recollement-de-deux-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recollement de deux relations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemple
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-ensemblistes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations ensemblistes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations ensemblistes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jointure-symetrique_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure symétrique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-et-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure et intersection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointures-colorbluetextttleft-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointures \(\color{blue}\texttt{LEFT JOIN}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure RIGHT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-jointure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-jointure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointure-sur-plus-de-deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jointure sur plus de deux tables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="requetes-sur-plusieurs-tables">Requêtes sur plusieurs tables<a class="headerlink" href="#requetes-sur-plusieurs-tables" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Un cours de Quentin Fortier</li>
+<li>Le tuto SQL du <a href="https://www.w3schools.com/sql/">W3C</a> (indispensable)</li>
+<li>Un cours en français <a href="https://sql.sh/cours">ici</a></li>
+</ul>
+</div>
+<h2 id="operateurs-ensemblistes-usuels">Opérateurs ensemblistes usuels<a class="headerlink" href="#operateurs-ensemblistes-usuels" title="Permanent link">&para;</a></h2>
+<h3 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h3>
+<p>Ces opérateurs ensemblistes concernent <em>uniquement</em> des relations ayant le même schéma.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{P1}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Id</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Hoareau</td>
+<td style="text-align: center;"><span class="arithmatex">\(2011\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+<tr>
+<td style="text-align: center;">Grondin</td>
+<td style="text-align: center;"><span class="arithmatex">\(5256\)</span></td>
+<td style="text-align: center;">Marie</td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(52\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{P2}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Id</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(52\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+<tr>
+<td style="text-align: center;">Grondin</td>
+<td style="text-align: center;"><span class="arithmatex">\(5256\)</span></td>
+<td style="text-align: center;">Pierre</td>
+</tr>
+</tbody>
+</table>
+<p>Il existe la notion de <em>schémas compatibles</em> quand deux relations ont le même nombre d'attributs et que les attributs ont le même domaine.</p>
+<p><strong>PB</strong> : deux attributs de même domaine pouvant avoir des <em>sémantiques</em> différentes. Ex : <span class="arithmatex">\(\texttt{Age }\)</span>et<span class="arithmatex">\(\texttt{ Nombre de carottes}\)</span>.</p>
+<h3 id="union">Union<a class="headerlink" href="#union" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Union</p>
+<p>L'<em>union</em> de deux relations <span class="arithmatex">\(R_1(S )\)</span> et <span class="arithmatex">\(R_2(S )\)</span> est l'ensemble des <span class="arithmatex">\(n\text{-uplets}\)</span> appartenant à <span class="arithmatex">\(R_1(S )\)</span> ou <span class="arithmatex">\(R_2(S )\)</span>. On la note <span class="arithmatex">\(R_1 ∪R_2(S )\)</span> ou plus simplement <span class="arithmatex">\(R_1 ∪R_2\)</span>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{P1 ∪ P2}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Id</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(52\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+<tr>
+<td style="text-align: center;">Grondin</td>
+<td style="text-align: center;"><span class="arithmatex">\(5256\)</span></td>
+<td style="text-align: center;">Pierre</td>
+</tr>
+<tr>
+<td style="text-align: center;">Hoareau</td>
+<td style="text-align: center;"><span class="arithmatex">\(2011\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+<tr>
+<td style="text-align: center;">Grondin</td>
+<td style="text-align: center;"><span class="arithmatex">\(5256\)</span></td>
+<td style="text-align: center;">Marie</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intersection">Intersection<a class="headerlink" href="#intersection" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Intersection</p>
+<p>L'<em>intersection</em> de deux relations <span class="arithmatex">\(R_1(S )\)</span> et <span class="arithmatex">\(R_2(S )\)</span> est l'ensemble des <span class="arithmatex">\(n\text{-uplets}\)</span> appartenant à <span class="arithmatex">\(R_1(S )\)</span> et <span class="arithmatex">\(R_2(S )\)</span>. On la note <span class="arithmatex">\(R_1 ∩ R_2(S )\)</span> ou plus simplement <span class="arithmatex">\(R_1 ∩R_2\)</span>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(P1∩P2\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Id</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(52\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+</tbody>
+</table>
+<h3 id="difference">Différence<a class="headerlink" href="#difference" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Différence</p>
+<p>La <em>différence</em> de deux relations <span class="arithmatex">\(R_1(S )\)</span> et <span class="arithmatex">\(R_2(S )\)</span> est l'ensemble des <span class="arithmatex">\(n\text{-uplets}\)</span> appartenant à <span class="arithmatex">\(R_1(S )\)</span> mais pas à <span class="arithmatex">\(R_2(S )\)</span>. On la note <span class="arithmatex">\(R_1 −R_2(S )\)</span> ou plus simplement <span class="arithmatex">\(R_1 −R_2\)</span>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{P1−P2}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Id</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Grondin</td>
+<td style="text-align: center;"><span class="arithmatex">\(5256\)</span></td>
+<td style="text-align: center;">Pierre</td>
+</tr>
+<tr>
+<td style="text-align: center;">Hoareau</td>
+<td style="text-align: center;"><span class="arithmatex">\(2011\)</span></td>
+<td style="text-align: center;">Patrice</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Pour tous ces opérateurs binaires, le schéma de la nouvelle table construite est le même que celui des deux tables entrées.</p>
+</div>
+<h3 id="operations-ensemblistes">Opérations ensemblistes<a class="headerlink" href="#operations-ensemblistes" title="Permanent link">&para;</a></h3>
+<h4 id="le-mot-cle-colorbluetextttunion">Le mot clé <span class="arithmatex">\(\color{blue}\texttt{UNION}\)</span><a class="headerlink" href="#le-mot-cle-colorbluetextttunion" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\color{blue}\texttt{UNION}\)</span>, <span class="arithmatex">\(\color{blue}\texttt{INTERSECT}\)</span> et <span class="arithmatex">\(\color{blue}\texttt{EXCEPT}\)</span> sur des tables de même shéma.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="k">UNION</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">R2</span><span class="w"> </span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><span class="arithmatex">\(\color{blue}\texttt{UNION}\)</span> donne la réunion sans doublon de lignes, <span class="arithmatex">\(\color{blue}\texttt{UNION ALL}\)</span> donne la réunion avec potentiellement des doublons de lignes.</p>
+<p>La liste sans doublon des villes où il y a des clients ou des fournisseurs.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">UNION</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span>
+</span></code></pre></div></td></tr></table></div>
+<p><span class="arithmatex">\(\color{blue}\texttt{UNION ALL}\)</span> pour autoriser les doublons (pratique pour voir les
+effectifs par ville).</p>
+<h4 id="intersection_1">Intersection<a class="headerlink" href="#intersection_1" title="Permanent link">&para;</a></h4>
+<p>Malheureusement, certains SGBD ne prennent pas en charge les commande <span class="arithmatex">\(\texttt{EXCEPT}\)</span> et <span class="arithmatex">\(\texttt{INTERSECT}\)</span> : il faut se débrouiller autrement : avec une jointure ou avec le mot clé <span class="arithmatex">\(\color{blue}\texttt{IN}\)</span>.</p>
+<p>Avec jointure (cf plus loin)</p>
+<p>Avec <span class="arithmatex">\(\color{blue}\texttt{IN}\)</span> on récupère les villes de clients qui sont aussi des villes
+d'opérateurs :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">City</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Noter le <span class="arithmatex">\(\color{blue}\texttt{DISTINCT}\)</span> pour éviter les doublons</p>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>En <span class="arithmatex">\(\text{SQLite}\)</span>, la commande <span class="arithmatex">\(\color{blue}\texttt{INTERSECT}\)</span> est bien reconnue.</p>
+</div>
+<h4 id="soustraction-ensembliste">Soustraction ensembliste<a class="headerlink" href="#soustraction-ensembliste" title="Permanent link">&para;</a></h4>
+<p>La commande <span class="arithmatex">\(\color{blue}\texttt{EXCEPT}\)</span> (parfois <span class="arithmatex">\(\color{blue}\texttt{MINUS}\)</span>) existante sur d'autres SGBD n'est pas implantée en <span class="arithmatex">\(MySQL\)</span>.</p>
+<p>Mais on peut s'en passer. Donner sans doublon les villes de clients qui ne sont pas des villes de fournisseurs :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">CITY</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CITY</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>La commande <span class="arithmatex">\(\color{blue}\texttt{MINUS}\)</span> est bien implantée en <span class="arithmatex">\(\text{SQLite}\)</span>.</p>
+<h2 id="produits-cartesien-jointure">Produits cartésien, jointure<a class="headerlink" href="#produits-cartesien-jointure" title="Permanent link">&para;</a></h2>
+<h3 id="produit-cartesien">Produit cartésien<a class="headerlink" href="#produit-cartesien" title="Permanent link">&para;</a></h3>
+<h4 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h4>
+<p>La concaténation des listes <span class="arithmatex">\(S\)</span> ,<span class="arithmatex">\(S'\)</span> est notée <span class="arithmatex">\(S + S '\)</span>.</p>
+<div class="admonition example">
+<p><span class="arithmatex">\((1,2) + (2,4) = (1,2,2,4)\)</span>. </p>
+<p>Cet opérateur est parfois noté de façon plus précise <span class="arithmatex">\(\uplus\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Produit cartésien</p>
+<p>Si <span class="arithmatex">\(R (S )\)</span> et <span class="arithmatex">\(R '(S ')\)</span> sont deux relations de schémas <span class="arithmatex">\(\underline{\text{disjoints}}\)</span>, on appelle produit cartésien et on note <span class="arithmatex">\(R ×R '\)</span> la relation de schéma <span class="arithmatex">\(S + S '\)</span> définie
+par :</p>
+<p><span class="arithmatex">\((R ×R ')(S + S ') = {(u_1,...,u_n ,v_1,...v_m ) |(u_1,...,u_n ) ∈ R(S)∧(v_1,...,v_m) ∈ R'(S')}\)</span></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p><span class="arithmatex">\(\text{card}(R ×R ') = \text{card}(R ) × \text{card}(R ')\)</span> et <span class="arithmatex">\(\text{card}(S + S ') = \text{card}(S ) + \text{card}(S ')\)</span>
+(si <span class="arithmatex">\(S\)</span> ,<span class="arithmatex">\(S'\)</span> ont des schémas disjoints).</p>
+</div>
+<div class="admonition example">
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Elève}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+<td style="text-align: center;"><strong>Classe</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;">Jean</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span>    <span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">Michel</td>
+<td style="text-align: center;">Jacques</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Prof}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Matière</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Tartempion</td>
+<td style="text-align: center;">Maths</td>
+</tr>
+<tr>
+<td style="text-align: center;">Duchmol</td>
+<td style="text-align: center;">Anglais</td>
+</tr>
+<tr>
+<td style="text-align: center;">Schprountz</td>
+<td style="text-align: center;">Allemand</td>
+</tr>
+</tbody>
+</table>
+<p>Pour faire le produit cartésien il faut d'abord renommer pour avoir des schémas disjoints :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Elève}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(×\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(ρ_{\text{Nom←Lehrer}} \texttt{(Prof)}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+<td style="text-align: center;"><strong>Classe</strong></td>
+<td style="text-align: center;"><strong>Lehrer</strong></td>
+<td style="text-align: center;"><strong>Matière</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;">Jean</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Tartempion</td>
+<td style="text-align: center;">Maths</td>
+</tr>
+<tr>
+<td style="text-align: center;">Michel</td>
+<td style="text-align: center;">Jeacques</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+<td style="text-align: center;">Anglais</td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;">Jean</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+<td style="text-align: center;">Anglais</td>
+</tr>
+<tr>
+<td style="text-align: center;">Michel</td>
+<td style="text-align: center;">Jeacques</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Tartempion</td>
+<td style="text-align: center;">Maths</td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;">Jean</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Schprountz</td>
+<td style="text-align: center;">Allemand</td>
+</tr>
+<tr>
+<td style="text-align: center;">Michel</td>
+<td style="text-align: center;">Jeacques</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span> <span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;">Schprountz</td>
+<td style="text-align: center;">Allemand</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="jointure-croisee">Jointure croisée<a class="headerlink" href="#jointure-croisee" title="Permanent link">&para;</a></h4>
+<p>Il existe un opérateur <span class="arithmatex">\(\color{blue}\texttt{CROSS JOIN}\)</span> (pas universellement reconnu) mais la syntaxe suivante est universelle :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">--produit cartésien de deux tables</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">table2</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Récupérer tous les tuples (fournisseur,expéditeur) :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Shippers</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="c1">--87 résultats</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Le cardinal du produit cartésien est le produit des cardinaux :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="mi">1</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="mi">2</span><span class="w"> </span><span class="k">UNION</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="mi">3</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Shippers</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="mi">4</span><span class="w"> </span><span class="c1">-- donne 3 et 29</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Y a t'il des produits qui ont été achetés dans la même quantité que d'autres ?</p>
+</div>
+<details class="tip">
+<summary>Correction</summary>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Q2</span><span class="o">-</span><span class="n">Q1</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">FROM</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Q2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">T2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Q1</span><span class="w"> </span><span class="k">FROM</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">T1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">R1</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<h4 id="complement-de-notations">Complément de notations<a class="headerlink" href="#complement-de-notations" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(π_A(R )\)</span> représente la projection de la relation <span class="arithmatex">\(R\)</span> sur les colonnes de l'ensemble d'attributs <span class="arithmatex">\(A\)</span> (on conserve toutes les lignes, on ne garde que certaine colonnes).</p>
+<p><span class="arithmatex">\(σ_T (R )\)</span> est la sélection de <span class="arithmatex">\(R\)</span> selon le test <span class="arithmatex">\(T\)</span> (on conserve toutes les colonnes, on ne garde que les lignes qui vérifient le test).</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>On suppose que toutes les personnes (client ou fournisseur) ont renseigné l'attribut <span class="arithmatex">\(\texttt{City}\)</span> dans la BDD <span class="arithmatex">\(\texttt{Northwind}\)</span> du W3C. Calculer la moyenne de personnes (client ou fournisseur) qui vivent dans une même ville (client ou fournisseur).</p>
+</div>
+<details class="example">
+<summary>Indication</summary>
+<p>Il s'agit de faire la différence entre le cardinal de la réponse d'un <span class="arithmatex">\(\color{blue}\texttt{UNION ALL}\)</span> avec celui de la réponse d'un <span class="arithmatex">\(\color{blue}\texttt{UNION}\)</span></p>
+<p>Penser à un produit cartésien.</p>
+</details>
+<details class="tip">
+<summary>Correction</summary>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">C1</span><span class="o">/</span><span class="n">C2</span><span class="w"> </span><span class="k">FROM</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">Count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">C1</span><span class="w"> </span><span class="k">FROM</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Ville1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">R1</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">Count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">C2</span><span class="w"> </span><span class="k">FROM</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">UNION</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Ville2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">R2</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<h3 id="division-cartesienne">Division cartésienne<a class="headerlink" href="#division-cartesienne" title="Permanent link">&para;</a></h3>
+<h4 id="presentation_1">Présentation<a class="headerlink" href="#presentation_1" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\color{blue}\texttt{Notion non explicitement au programme ITC et MPII}\)</span>. (laissée pour info). Soient deux tables <span class="arithmatex">\(R\)</span> ,<span class="arithmatex">\(S\)</span> de schéma <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> telles que <span class="arithmatex">\(B ⊂A\)</span>. On pose <span class="arithmatex">\(C = A −B\)</span> (en notant la soustraction ensembliste comme la différence des entiers).</p>
+<div class="admonition quote">
+<p class="admonition-title">Division cartésienne</p>
+<p>On appelle <em>division cartésienne</em> de <span class="arithmatex">\(R\)</span> par <span class="arithmatex">\(S\)</span> , la plus grande table <span class="arithmatex">\(T\)</span> de schéma <span class="arithmatex">\(C\)</span> telle que <span class="arithmatex">\(S ×T ⊂R\)</span> . On note <span class="arithmatex">\(T = R ÷S\)</span></p>
+</div>
+<p>En notant <span class="arithmatex">\(π_C\)</span> la projection sur <span class="arithmatex">\(C\)</span> :</p>
+<ul>
+<li>On pose <span class="arithmatex">\(T_1 = π_C (R )\)</span>. <span class="arithmatex">\(T_1\)</span> a <span class="arithmatex">\(C\)</span> pour schéma.</li>
+<li>Soit <span class="arithmatex">\(T_2 = π_C ((S ×T_1) −R )\)</span>.</li>
+<li>Alors <span class="arithmatex">\(T = T_1 −T_2\)</span></li>
+<li>La division cartésienne est donc plus petite que la projection sur <span class="arithmatex">\(C\)</span></li>
+<li>La division est utilisée pour répondre à des requêtes de type : " quels sont les produits achetés par tous les clients ? "</li>
+</ul>
+<div class="admonition example">
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{R'}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{R}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Classe</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Classe</strong></td>
+<td style="text-align: center;"><strong>Nom-Prof</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;">Tartempion</td>
+</tr>
+<tr>
+<td style="text-align: center;">Martin</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Martin</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;">Tartempion</td>
+</tr>
+<tr>
+<td style="text-align: center;">Bernard</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI 2}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Bernard</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI 2}\)</span></td>
+<td style="text-align: center;">Tartempion</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Bernard</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI 2}\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+</tr>
+</tbody>
+</table>
+<p>Chercher la division cartésienne (notée <span class="arithmatex">\(\texttt{DC}\)</span>) de <span class="arithmatex">\(R\)</span> par <span class="arithmatex">\(R'\)</span>.</p>
+<p><span class="arithmatex">\(R÷R'\)</span> a pour schéma le seul attribut qui est dans le schéma de <span class="arithmatex">\(R\)</span> et
+pas dans celui de <span class="arithmatex">\(R\)</span>'.</p>
+<p>Posons <span class="arithmatex">\(\texttt{DC}= \{\text{Tartempion}, \text{Duchmol}\}\)</span>, <span class="arithmatex">\(\{(\text{Dupont, MPSI 1}),(\text{Martin, MPSI 2}),(\text{Bernard, PCSI 2})\}×\texttt{DC}\)</span> a <span class="arithmatex">\(6\)</span> lignes, donc plus que nécessaire. Alors <span class="arithmatex">\(\texttt{DC}\)</span> est trop gros.</p>
+<p>Avec <span class="arithmatex">\(\texttt{DC}= \{\text{Duchmol}\}\)</span>, <span class="arithmatex">\(\{(\text{Dupont, MPSI 1}),(\text{Martin, MPSI 2}),(\text{Bernard, PCSI 2})\}×\texttt{DC}\)</span> contient la ligne <span class="arithmatex">\((\text{Martin, MPSI 1, Duchmol})\)</span> qui n'est pas dans <span class="arithmatex">\(\texttt{Eleve-Prof}\)</span>.</p>
+<p>Réponse : <span class="arithmatex">\(\texttt{DC}\)</span> vaut</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{DC=R÷R'}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{R''}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Nom-Prof</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Nom-Eleve</strong></td>
+<td style="text-align: center;"><strong>Classe</strong></td>
+<td style="text-align: center;"><strong>Nom-Prof</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Tartempion</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Dupont</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI 1}\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Bernard</td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI 2}\)</span></td>
+<td style="text-align: center;">Duchmol</td>
+</tr>
+</tbody>
+</table>
+<p>On a <span class="arithmatex">\((R÷R'×R')∪R'' = R\)</span>.</p>
+</div>
+<h4 id="un-exemple-plus-elabore">Un exemple plus élaboré<a class="headerlink" href="#un-exemple-plus-elabore" title="Permanent link">&para;</a></h4>
+<p align='center'><img src='/images/DeuxTables/deuxtables1.png'/></p>
+
+<p><em>Figure – Une table</em></p>
+<p><strong>Question</strong> : quels sont les acteurs qui ont tourné dans tous les films de Hitchcock ? (on ne dispose pas du quantificateur universel).</p>
+<p>Films tournés par Hitchcock :</p>
+<p><span class="arithmatex">\(T_H = π_{Titre,Directeur} (σ_{Directeur ='Hitchcock'} (Film))\)</span>. La table <span class="arithmatex">\(T_H\)</span> admet (Titre, Directeur ) pour schéma et est constituée de couples (titre, Hitchcock).</p>
+<p>Tous les acteurs : <span class="arithmatex">\(A = π_{Acteur} (Film)\)</span>. On cherche <span class="arithmatex">\(A_2\)</span> : l'ensemble des acteurs qui ont tourné dans tous les films de Hitchcock. C'est le plus grand sous-ensemble de <span class="arithmatex">\(A\)</span> tel que <span class="arithmatex">\(T_H ×A_2 ⊂Film\)</span>, donc <span class="arithmatex">\(A_2 = Film ÷T_H\)</span> .</p>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Tous les acteurs dans <span class="arithmatex">\(A_2\)</span> ont tourné dans tous les films de Hitchcock et un acteur qui n'est pas dans <span class="arithmatex">\(A_2\)</span> a manqué au moins un film de Hitchcock.</p>
+</div>
+<p><span class="arithmatex">\(T_H ×A\)</span> : toutes les associations (titre, Hitchcock, acteur) possibles de titres de Hitchcock avec un acteur, même celles qui n'existent pas.</p>
+<p><span class="arithmatex">\((T_H ×A) −Film\)</span> : seulement les associations (titre, Hitchcock, acteur) qui n'existent pas. Si un nom d'acteur et un film figurent dans une même ligne de cette table, cet acteur n'a pas tourné dans ce film d'Hitchcock.</p>
+<p><span class="arithmatex">\(A' = π_{Acteur} ((T_H ×A) −Film)\)</span> : les acteurs qui n'ont pas tourné dans au moins un film d'Hitchcock.</p>
+<p><span class="arithmatex">\(A_2 = A −A'\)</span> : les acteurs qui ont tourné dans tous les films d'Hitchcok. <span class="arithmatex">\(A_2 = Film ÷π_{Titre,Directeur} (σ_{Directeur ='Hitchcock '}(Film))\)</span></p>
+<h4 id="jointure-symetrique">Jointure symétrique<a class="headerlink" href="#jointure-symetrique" title="Permanent link">&para;</a></h4>
+<h5 id="recollement-de-deux-relations">Recollement de deux relations<a class="headerlink" href="#recollement-de-deux-relations" title="Permanent link">&para;</a></h5>
+<div class="admonition quote">
+<p>Soient <span class="arithmatex">\(R (S )\)</span> et <span class="arithmatex">\(R '(S ')\)</span> deux relations de schémas disjoints et <span class="arithmatex">\(A ∈S\)</span> , <span class="arithmatex">\(A' ∈S '\)</span> deux attributs de même domaine. On appelle jointure symétrique de <span class="arithmatex">\(R\)</span> et <span class="arithmatex">\(R '\)</span> selon <span class="arithmatex">\((A,A')\)</span> et on note <span class="arithmatex">\(R\Join_{[A=A']}R'\)</span>  les éléments <span class="arithmatex">\(e\)</span> de <span class="arithmatex">\(R ×R '\)</span> tels que <span class="arithmatex">\(e.A = e.A'\)</span></p>
+<p><span class="arithmatex">\(R\Join_{[A=A']}R ' := σ_{A=A'}R ×R ' = \left \{e ∈R ×R ' |e.A = e.A' \right \}\)</span></p>
+</div>
+<p>De la même façon qu' on peut se passer en logique classique de l'opérateur <span class="arithmatex">\(⇒\)</span> (défini avec <span class="arithmatex">\(∨\)</span> et <span class="arithmatex">\(¬\)</span>), on n'a pas besoin en théorie de l'opérateur de jointure <span class="arithmatex">\(\Join_{[*=□]}\)</span> car il est défini comme composée d'autres opérateurs.</p>
+<p>Mais se serait une mauvaise idée en terme de complexité : coût en <span class="arithmatex">\(O (|R |×|R '|)\)</span> tests alors qu'il existe des implantations utilisant des index avec un coût linéaire en nombre de tests.</p>
+<p>Quel est le schéma de <span class="arithmatex">\(R\Join_{[A=A']}R '\)</span> ?</p>
+<p>La jointure est une sélection du produit cartésien <span class="arithmatex">\(R ×R '\)</span> donc : <span class="arithmatex">\(S + S '\)</span>.</p>
+<h5 id="exemple">Exemple<a class="headerlink" href="#exemple" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Livre}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Auteur}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Titre</strong></td>
+<td style="text-align: center;"><strong>Nom-auteur</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Madame Bovary</td>
+<td style="text-align: center;">Flaubert</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Flaubert</td>
+<td style="text-align: center;">Gustave</td>
+</tr>
+<tr>
+<td style="text-align: center;">Le père Goriot</td>
+<td style="text-align: center;">Balzac (de)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Balzac (de)</td>
+<td style="text-align: center;">Honoré</td>
+</tr>
+</tbody>
+</table>
+<p>Réaliser la jointure symétrique selon (<span class="arithmatex">\(\texttt{Nom-auteur},\texttt{ Nom}\)</span>).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Livre}\Join_{[\texttt{Nom-auteur=Nom}]}\texttt{Auteur}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Titre</strong></td>
+<td style="text-align: center;"><strong>Nom-auteur</strong></td>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Madame Bovary</td>
+<td style="text-align: center;">Flaubert</td>
+<td style="text-align: center;">Flaubert</td>
+<td style="text-align: center;">Gustave</td>
+</tr>
+<tr>
+<td style="text-align: center;">Le père Goriot</td>
+<td style="text-align: center;">Balzac (de)</td>
+<td style="text-align: center;">Balzac (de)</td>
+<td style="text-align: center;">Honoré</td>
+</tr>
+</tbody>
+</table>
+<p>Il y a des doublons de valeurs. Comment éviter cela ?</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\pi_{\texttt{Titre,Nom,Prénom}}(\texttt{Livre}\Join_{[\texttt{Nom-auteur=Nom}]}\texttt{Auteur})\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Titre</strong></td>
+<td style="text-align: center;"><strong>Nom</strong></td>
+<td style="text-align: center;"><strong>Prénom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Madame Bovary</td>
+<td style="text-align: center;">Flaubert</td>
+<td style="text-align: center;">Gustave</td>
+</tr>
+<tr>
+<td style="text-align: center;">Le père Goriot</td>
+<td style="text-align: center;">Balzac (de)</td>
+<td style="text-align: center;">Honoré</td>
+</tr>
+</tbody>
+</table>
+<h4 id="operations-ensemblistes_1">Opérations ensemblistes<a class="headerlink" href="#operations-ensemblistes_1" title="Permanent link">&para;</a></h4>
+<h5 id="jointure-symetrique_1">Jointure symétrique<a class="headerlink" href="#jointure-symetrique_1" title="Permanent link">&para;</a></h5>
+<p>Pour croiser des informations en provenance de plusieurs tables :</p>
+<ul>
+<li>Principe : récupérer les lignes de deux tables lorsque ces lignes ont une caractéristique commune.</li>
+<li>En théorie, ces tables ont des shémas disjoints.</li>
+<li>Syntaxe :</li>
+</ul>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">table1</span><span class="p">.</span><span class="n">colt1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table2</span><span class="p">.</span><span class="n">colt2</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Noms des clients et leurs numéros d'achats :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition example">
+<p class="admonition-title">Exercice (improvisé)</p>
+<p>Pour chaque achat, donner le prix payé.</p>
+</div>
+<details class="tip">
+<summary>Correction</summary>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">OrderDetailID</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">Price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">P</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">ProductID</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<h4 id="jointure-et-intersection">Jointure et intersection<a class="headerlink" href="#jointure-et-intersection" title="Permanent link">&para;</a></h4>
+<p>On peut se servir d'une jointure pour obtenir l'intersection de deux tables de même schéma.</p>
+<p>Donner les villes où il y a des clients et des fournisseurs :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">C</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">S</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="jointures-colorbluetextttleft-join">Jointures <span class="arithmatex">\(\color{blue}\texttt{LEFT JOIN}\)</span><a class="headerlink" href="#jointures-colorbluetextttleft-join" title="Permanent link">&para;</a></h4>
+<p>Hors programme pour l'<strong>ITC</strong></p>
+<ul>
+<li>La jointure que nous avons vue <span class="arithmatex">\(\color{blue}\texttt{R1 JOIN R2 ON A=B}\)</span> est symétrique : les enregistrements de <span class="arithmatex">\(\texttt{R1}\)</span> qui ont une valeur de <span class="arithmatex">\(\texttt{A}\)</span> qui n'existe pas dans <span class="arithmatex">\(\texttt{D}\)</span> n'apparaissent pas dans le résultat.</li>
+<li>Parfois on a besoin de faire apparaître, en plus du résultat de la jointure symétrique, les valeurs de <span class="arithmatex">\(\texttt{R1}\)</span> : c'est la <em>jointure gauche</em> (<span class="arithmatex">\(\color{blue}\texttt{LEFT JOIN}\)</span>)</li>
+</ul>
+<div class="admonition example">
+<p>Donner le nom et la ville de chaque client et compléter l'information par le nom des fournisseurs qui vivent dans la même ville que lui.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerName</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">SupplierName</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">C</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">S</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="k">ON</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span><span class="o">=</span><span class="n">S</span><span class="p">.</span><span class="n">City</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Certaines des lignes obtenues sont complètes, d'autres pas.</p>
+</div>
+<h4 id="jointure-right-join">Jointure RIGHT JOIN<a class="headerlink" href="#jointure-right-join" title="Permanent link">&para;</a></h4>
+<p>Hors programme pour l'<strong>ITC</strong></p>
+<p>Il existe de même une <em>jointure droite</em> de mot clé <span class="arithmatex">\(\color{blue}\texttt{RIGHT JOIN}\)</span></p>
+<div class="admonition example">
+<p>Donner toutes les informations sur les employés et les ventes qu'ils
+ont éventuellement assurées.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="w"> </span><span class="p">,</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">Employees</span><span class="p">.</span><span class="n">FirstName</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Employees</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On constate que le pauvre Adam West n'a effectué aucune vente.</p>
+</div>
+<h4 id="auto-jointure">Auto-jointure<a class="headerlink" href="#auto-jointure" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Donner tous les couples de clients qui vivent dans la même ville. On n'accepte pas les " doublons " comme (Dupont, Durand) et (Durand, Dupont) ni les identifiants identiques comme (Dupont, Dupont) sauf si il s'agit de personnes différentes (le nom n'est pas une clé primaire).</p>
+</div>
+<details class="tip">
+<summary>Solution</summary>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">C1</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span><span class="n">C2</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span><span class="n">C1</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">C1</span><span class="w"> </span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">C2</span><span class="w"> </span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="k">ON</span><span class="w"> </span><span class="n">C1</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C2</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">C1</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">C2</span><span class="p">.</span><span class="n">CustomerID</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<h4 id="jointure-sur-plus-de-deux-tables">Jointure sur plus de deux tables<a class="headerlink" href="#jointure-sur-plus-de-deux-tables" title="Permanent link">&para;</a></h4>
+<p>Pour chaque client, indiquer ses achats et l'entreprise qui a livré ces achats :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span>
+<span class="normal"><a href="#__codelineno-16-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="w"> </span><span class="p">,</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">    </span><span class="n">Shippers</span><span class="p">.</span><span class="n">ShipperName</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="k">FROM</span><span class="w"> </span><span class="p">((</span><span class="w"> </span><span class="n">Orders</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Shippers</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">ShipperID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Shippers</span><span class="p">.</span><span class="n">ShipperID</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Les SGBD peuvent être plus ou moins permissifs sur le parenthésage. Mais l'opération de jointure interne est associative.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

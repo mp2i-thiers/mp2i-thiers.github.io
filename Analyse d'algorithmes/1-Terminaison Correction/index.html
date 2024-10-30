@@ -1,0 +1,3593 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Algorithmique/2-Prodgyn/">
+      
+      
+        <link rel="next" href="../2-Complexit%C3%A9/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Terminaison et correction - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terminaison-et-correction" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Terminaison et correction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terminaison-et-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison et variants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminaison et variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demontrer-quune-boucle-ou-une-recursion-termine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Démontrer qu'une boucle ou une récursion termine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequence-de-lexistence-dun-variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conséquence de l'existence d'un variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precaution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précaution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-de-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variant de récursion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fusion-de-listes-triees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fusion de listes triées
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fusion de listes triées">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de fusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-mauvais-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un mauvais exemple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-factorielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      La factorielle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redaction-cas-dun-variant-de-boucle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rédaction (cas d'un variant de boucle)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-dichotomique-dans-une-liste-triee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche dichotomique dans une liste triée
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recherche dichotomique dans une liste triée">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-dichot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de dichot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correction-et-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction et invariants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correction et invariants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specification-dun-algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spécification d'un algorithme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usages-de-la-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usages de la spécification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariant-de-boucle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invariant de boucle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-de-2n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul de \(2^n\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etude-de-cas-tri-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étude de cas : tri fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étude de cas : tri fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fusion-rappel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fusion (rappel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction de la fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correction de la fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heredite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hérédité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-de-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction de séparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-tri-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le tri fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le tri fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terminaison-et-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison et variants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminaison et variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demontrer-quune-boucle-ou-une-recursion-termine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Démontrer qu'une boucle ou une récursion termine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequence-de-lexistence-dun-variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conséquence de l'existence d'un variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precaution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Précaution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-de-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variant de récursion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fusion-de-listes-triees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fusion de listes triées
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fusion de listes triées">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de fusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-mauvais-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un mauvais exemple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-factorielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      La factorielle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redaction-cas-dun-variant-de-boucle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rédaction (cas d'un variant de boucle)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-dichotomique-dans-une-liste-triee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche dichotomique dans une liste triée
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recherche dichotomique dans une liste triée">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-de-dichot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison de dichot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correction-et-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction et invariants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correction et invariants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specification-dun-algorithme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spécification d'un algorithme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usages-de-la-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usages de la spécification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariant-de-boucle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invariant de boucle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-de-2n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul de \(2^n\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etude-de-cas-tri-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étude de cas : tri fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étude de cas : tri fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fusion-rappel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fusion (rappel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction-de-la-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction de la fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correction de la fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heredite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hérédité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-de-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction de séparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-tri-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le tri fusion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le tri fusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="terminaison-et-correction">Terminaison et correction<a class="headerlink" href="#terminaison-et-correction" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<details class="abstract" open="open">
+<summary>Sommaire</summary>
+<ol>
+<li>Terminaison et variants</li>
+<li>Correction et invariants  </li>
+<li>Étude de cas : tri fusion</li>
+</ol>
+</details>
+<h2 id="terminaison-et-variants">Terminaison et variants<a class="headerlink" href="#terminaison-et-variants" title="Permanent link">&para;</a></h2>
+<h3 id="demontrer-quune-boucle-ou-une-recursion-termine">Démontrer qu'une boucle ou une récursion termine<a class="headerlink" href="#demontrer-quune-boucle-ou-une-recursion-termine" title="Permanent link">&para;</a></h3>
+<p>Montrer la <em>terminaison</em> d'un programme, c'est prouver que le programme termine quel que soit l'état initial.</p>
+<p>Le problème se pose principalement pour les boucles conditionnelles (<code>while</code>) et pour les fonctions récursives.</p>
+<div class="admonition example">
+<p class="admonition-title">Focntions récursives en C et en OCaml</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">power</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="p">{</span><span class="n">r</span><span class="err">∗</span><span class="o">=</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="err">−</span><span class="o">=</span><span class="mi">1</span><span class="p">;}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="n">power</span> <span class="n">x</span> <span class="n">n</span> <span class="o">=</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="k">let</span> <span class="k">rec</span> <span class="n">pow</span> <span class="n">n</span> <span class="n">acc</span> <span class="o">=</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>        <span class="k">match</span> <span class="n">n</span> <span class="k">with</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="o">|</span> <span class="n">z</span> <span class="k">when</span> <span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;exposant négatif&quot;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>        <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">acc</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">pow</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="n">x</span><span class="o">*</span><span class="n">acc</span><span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="k">in</span> <span class="n">pow</span> <span class="n">n</span> <span class="mi">1</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="notion-de-variant">Notion de variant<a class="headerlink" href="#notion-de-variant" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>Soit un algorithme et une boucle de cet algorithme. Un <em>variant</em> (de cette boucle) est une fonction des variables de l'algorithme qui :</p>
+<ul>
+<li>ne prend que des valeurs entières positives ou nulles <span class="arithmatex">\(\color{red}\text{lorsque la condition de boucle est vérifiée}\)</span>,</li>
+<li>décroît strictement à chaque tour de boucle</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>Soit un algorithme récursif. Un <em>variant</em> (de cette récursion) est une
+fonction des variables de l'algorithme qui :</p>
+<ul>
+<li>ne prend que des valeurs entières positives ou nulles <span class="arithmatex">\(\color{red}\text{lorsque la condition de récursion est vérifiée}\)</span>,</li>
+<li>décroît strictement à chaque appel récursif.</li>
+</ul>
+</div>
+<h3 id="consequence-de-lexistence-dun-variant">Conséquence de l'existence d'un variant<a class="headerlink" href="#consequence-de-lexistence-dun-variant" title="Permanent link">&para;</a></h3>
+<p>Il n'existe pas de suite strictement décroissante (infinie) d'entiers positifs.</p>
+<p>En conséquence, si un variant de boucle (resp. de récursion) est identifié, la boucle (resp. la récursion) termine.</p>
+<div class="admonition example">
+<p>Considérons ces 2 codes d'exponentiation naïve.</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">power</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">        </span><span class="p">{</span><span class="n">r</span><span class="err">∗</span><span class="o">=</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="err">−</span><span class="o">=</span><span class="mi">1</span><span class="p">;}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">let</span> <span class="n">power</span> <span class="n">x</span> <span class="n">n</span> <span class="o">=</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="k">let</span> <span class="k">rec</span> <span class="n">pow</span> <span class="n">n</span> <span class="n">acc</span> <span class="o">=</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>        <span class="k">match</span> <span class="n">n</span> <span class="k">with</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="o">|</span> <span class="n">z</span> <span class="k">when</span> <span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;exposant négatif&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>        <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">acc</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">pow</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="n">x</span><span class="o">*</span><span class="n">acc</span><span class="o">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>    <span class="k">in</span> <span class="n">pow</span> <span class="n">n</span> <span class="mi">1</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Pour le code en <strong>C</strong>, les variables sont <span class="arithmatex">\(x , n, r\)</span> . 
+Le variant est <span class="arithmatex">\(n\)</span> (quantité entière strictement décroissante à chaque appel).</p>
+<p>Pour le code en <strong>OCaml</strong>, les variables de la récursion sont <span class="arithmatex">\(acc, n, x\)</span> . 
+Le variant est encore <span class="arithmatex">\(n\)</span>.</p>
+<p>Ces deux programmes terminent.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">){</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="err">−</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On est tenté de prendre <span class="arithmatex">\(x\)</span> comme variant.</p>
+<p>Mais il s'avère que <span class="arithmatex">\(x\)</span> devient négatif au bout de quelques tours <span class="arithmatex">\(\color{red}\text{sans que ce soit une condition de sortie de boucle}\)</span>. 
+Ce n'est donc pas un variant. Ouf ! Car le programme ne s'arrête manifestement pas.</p>
+</div>
+<h3 id="precaution">Précaution<a class="headerlink" href="#precaution" title="Permanent link">&para;</a></h3>
+<p>Lorsque le candidat variant ne peut prendre que des valeurs positives (par exemple : longueur d'une liste), sa stricte décroisssance suffit pour établir la terminaison.</p>
+<p>En revanche, il faut faire attention s'il peut prendre des valeurs négatives. Dans ce cas, il faut vérifier que ces valeurs négatives sont bien capturées par la condition de sortie de boucle.</p>
+<h3 id="variant-de-recursion">Variant de récursion<a class="headerlink" href="#variant-de-recursion" title="Permanent link">&para;</a></h3>
+<p>Soit <code>v</code> le candidat variant.</p>
+<ul>
+<li>On établit que les cas de bases terminent et, d'une façon plus générale, que tout ce qui n'est pas appel récursif interne termine</li>
+<li>On établit que, lors d'un appel interne, le variant est strictement plus petit que dans l'appel externe.</li>
+<li>Si, par sa nature, le candidat variant ne peut prendre que des valeurs positives (par exemple : longueur d'une liste), les deux premiers points suffisent pour établir la terminaison.</li>
+<li>En revanche, si il peut prendre des valeurs négatives, il faut s'assurer que les cas de bases capturent bien les valeurs négatives du variant (<em>i.e.</em> le cas <span class="arithmatex">\(v ≤0\)</span> est pris en compte par un des cas de base).</li>
+</ul>
+<h3 id="fusion-de-listes-triees">Fusion de listes triées<a class="headerlink" href="#fusion-de-listes-triees" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Écrire un programme <strong>OCaml</strong>
+<code>fusion : int list -&gt; int -&gt; list -&gt; int list</code> qui prend en paramètres deux listes triées d'entiers (par ordre croissant) et les fusionne en une seule liste triée. Établir la terminaison.</p>
+</div>
+<h4 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<div class="language-Ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">fusion</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">=</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="k">match</span> <span class="n">l1</span> <span class="o">,</span> <span class="n">l2</span> <span class="k">with</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="o">|</span> <span class="bp">[]</span><span class="o">,</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="o">|</span> <span class="n">l</span><span class="o">,</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="o">|</span> <span class="n">x1</span><span class="o">::</span><span class="n">t1</span><span class="o">,</span> <span class="n">x2</span><span class="o">::</span><span class="n">t2</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&lt;=</span><span class="n">x2</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>        <span class="k">then</span> <span class="n">x1</span> <span class="o">::</span> <span class="n">fusion</span> <span class="n">t1</span> <span class="n">l2</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>        <span class="k">else</span> <span class="n">x2</span> <span class="o">::</span> <span class="n">fusion</span> <span class="n">l1</span> <span class="n">t2</span> <span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h4 id="terminaison-de-fusion">Terminaison de fusion<a class="headerlink" href="#terminaison-de-fusion" title="Permanent link">&para;</a></h4>
+<p>Cette fonction ne manipule pas directement des nombres entiers mais des listes.</p>
+<p>On pourrait prendre comme variant la longueur de <code>l1</code> (resp. <code>l2</code> ).
+Malheureusement, cette longueur est certe décroissante mais pas toujours strictement.</p>
+<p>En revanche :</p>
+<ul>
+<li>Les <span class="arithmatex">\(2\)</span> cas de base terminent et</li>
+<li>la somme des longueurs des deux listes est strictement décroissante à chaque appel récursif.</li>
+<li>Par sa nature (somme de longueurs de listes), le candidat variant ne peut prendre que des valeurs positives.</li>
+</ul>
+<p>La somme des longueurs des listes est donc bien un variant. Le programme termine.</p>
+<h3 id="un-mauvais-exemple">Un mauvais exemple<a class="headerlink" href="#un-mauvais-exemple" title="Permanent link">&para;</a></h3>
+<p>Ou comment conclure un peu trop vite qu'une fonction termine</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c">(*précondition : n &gt; 0*)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">f</span> <span class="n">n</span> <span class="o">=</span> <span class="k">match</span> <span class="n">n</span> <span class="k">with</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Le cas de base termine</p>
+<p>On a bien que <code>f 0</code> termine.</p>
+<p><code>n</code> semble un bon candidat variant. L'argument de l'appel interne respecte la règle de stricte décroissance : <span class="arithmatex">\(n −2 &lt; n\)</span>.</p>
+<p>On conclut un peu vite que <code>f n</code> termine. Mais <code>f 1</code> nous prouve le contraire !</p>
+<p>C'est parce que, en prenant <span class="arithmatex">\(n\)</span> comme variant, on a oublié de vérifier si
+<span class="arithmatex">\(n &lt; 0\)</span> est pris en compte par les cas de base. Or, ce n'est pas traité.</p>
+<h3 id="la-factorielle">La factorielle<a class="headerlink" href="#la-factorielle" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">let</span> <span class="n">factorielle</span> <span class="n">n</span> <span class="o">=</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">facto</span> <span class="n">acc</span> <span class="n">n</span> <span class="o">=</span> <span class="k">match</span> <span class="n">n</span> <span class="k">with</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">acc</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">facto</span> <span class="o">(</span><span class="n">acc</span><span class="o">*</span><span class="n">n</span><span class="o">)</span> <span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">in</span> <span class="n">facto</span> <span class="mi">1</span> <span class="n">n</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Il faut étudier la terminaison de la fonction auxiliaire.</p>
+<p>Le candidat variant est <span class="arithmatex">\(n\)</span>. C'est bien une quantité strictement décroissante.</p>
+<p>Mais par sa nature (un entier), <span class="arithmatex">\(n\)</span> peut prendre des valeurs négatives.
+Et celles-ci ne sont pas couvertes par les cas de base : il est clair que <code>facto</code> ne termine pas si <span class="arithmatex">\(n &lt; −1\)</span>.
+Encore une fois, la stricte décroissance ne suffit pas.</p>
+<p>Deux possibilités :</p>
+<ul>
+<li>On peut ajouter le filtrage
+<code>| x when x&lt;0 -&gt; failwith "cas &lt;0"</code> . L'hypothèse <span class="arithmatex">\(n ≤0\)</span> est alors bien capturée par les cas de base.</li>
+<li>On peut aussi ajouter la précondition <span class="arithmatex">\(n ≥0\)</span> avant l'appel à <code>factorielle</code> .</li>
+<li>On numérote les appels internes à partir de <span class="arithmatex">\(0\)</span>, et on note ni la valeur du paramètre <span class="arithmatex">\(n\)</span> lors de l'appel récursif <span class="arithmatex">\(n\)</span> (<span class="arithmatex">\(n_0\)</span> est la valeur de <code>n</code> lors de l'appel <code>factorielle n</code>). On trouve la récurrence <span class="arithmatex">\(n_{i+1} = n_i −1.\)</span></li>
+<li>On en déduit que <span class="arithmatex">\(n_i = n_0 −i\)</span> . Et donc <span class="arithmatex">\(n_{n_0} = n_0 −n_0 = 0\)</span>. Comme <span class="arithmatex">\(0\)</span> est bien capturé par le cas de base, la terminaison pour la précondition <span class="arithmatex">\(n ≥0\)</span> est établie.</li>
+<li>Mais c'est quand même plus simple d'ajouter un cas de base !!</li>
+</ul>
+<h3 id="redaction-cas-dun-variant-de-boucle">Rédaction (cas d'un variant de boucle)<a class="headerlink" href="#redaction-cas-dun-variant-de-boucle" title="Permanent link">&para;</a></h3>
+<p>Quand le candidat variant <code>v</code> est une expression complexe imposant d'être très précis, on raisonne par récurrence pour montrer qu'il s'agit bien d'un variant :</p>
+<ul>
+<li>On numérote les tours de boucles à partir de <span class="arithmatex">\(1\)</span> ; le tour <span class="arithmatex">\(0\)</span> désignant ce qui se passe avant la boucle.</li>
+<li>Les variables et le candidat variant sont indicés par les tours de boucles : <span class="arithmatex">\(x_i\)</span> désigne la valeur de la variable <span class="arithmatex">\(x\)</span> à la fin du tour <span class="arithmatex">\(i\)</span> ; <span class="arithmatex">\(x_0\)</span> la valeur de <span class="arithmatex">\(x\)</span> avant la boucle.</li>
+<li>Si le candidat variant <span class="arithmatex">\(v\)</span> peut prendre des valeurs négatives, on montre que si <span class="arithmatex">\(\color{red}v_i\)</span> <span class="arithmatex">\(\color{red}\text{est négatif au tour i, alors il n'y a pas de tour de boucle supplémentaire.}\)</span></li>
+<li>Pour <span class="arithmatex">\(i ∈ℕ\)</span>, on suppose qu'il y a un tour <span class="arithmatex">\(i + 1\)</span> (s'il n'y en a pas, le programme s'arrête et on est content). <span class="arithmatex">\(\color{red}\text{Il s'agit alors de prouver que } v_i &gt; v_i +1\)</span>. Remarque : une conséquence de l'hypothèse est que <span class="arithmatex">\(v_i ≥0\)</span>.</li>
+<li>Si la décroissance stricte est prouvée, le candidat variant est bien un variant. On en déduit la terminaison du programme.</li>
+</ul>
+<h3 id="recherche-dichotomique-dans-une-liste-triee">Recherche dichotomique dans une liste triée<a class="headerlink" href="#recherche-dichotomique-dans-une-liste-triee" title="Permanent link">&para;</a></h3>
+<p>L'idée centrale de cette approche repose sur l'idée de réduire de moitié l'espace de recherche à chaque étape : on regarde la valeur du milieu et si ce n'est pas celle recherchée, on sait qu'il faut continuer de chercher dans la première moitié ou dans la seconde.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Écrire en <strong>C</strong> une fonction impérative
+<code>bool dichot(int n, int t[], int x)</code> qui indique par un bouléen si <span class="arithmatex">\(x\)</span> est présent dans le tableau trié (par ordre croissant) <span class="arithmatex">\(t\)</span> . Établir la terminaison.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<p>Sémantique : <code>g</code> est l'indice à partir duquel on cherche, <code>d</code> celui à partir
+duquel on ne cherche plus.</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">dichot</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="c1">// on cherche x entre g et d−1</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">d</span><span class="p">){</span><span class="c1">// hypothèses : n&gt;=0, |t| = n</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="c1">// milieu</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">t</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">            </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">            </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="p">}</span><span class="c1">// while</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="p">}</span><span class="c1">//dichot</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h4 id="terminaison-de-dichot">Terminaison de dichot<a class="headerlink" href="#terminaison-de-dichot" title="Permanent link">&para;</a></h4>
+<p>Les variables sont <code>x,g,d,m,t</code> .</p>
+<p><code>x</code> (resp. <code>t</code> ) ne varie pas selon les tours de boucle, <code>g</code> est croissante dans la boucle, <code>m</code> n'est pas monotone dans la boucle. Ces quantités ne peuvent donc être des variants de boucles.</p>
+<p><code>d</code> est bien décroissante à chaque tour de boucle mais pas strictement décroissante : <code>d</code> ne peut pas être un variant.</p>
+<p>Notons <span class="arithmatex">\(d_i , g_i\)</span> les valeurs respectives de <code>d,g</code> à la fin de chaque tour de boucle <span class="arithmatex">\(i ≥1\)</span>.</p>
+<p>Si <span class="arithmatex">\(d_i −g_i ≤0\)</span> (donc <span class="arithmatex">\(d_i ≤ g_i\)</span> ) : il n'y a pas de tour de boucle supplémentaire. De plus, di −gi est manifestement toujours entier. Ainsi, <span class="arithmatex">\(d_i −g_i\)</span> est un bon candidat variant.</p>
+<p>Soit <span class="arithmatex">\(i ∈ ℕ\)</span>. S'il y a un tour <span class="arithmatex">\(i + 1\)</span>, alors <span class="arithmatex">\(d_i &gt; g_i\)</span> donc <span class="arithmatex">\(d_i −g_i &gt; 0\)</span>. On a
+<span class="arithmatex">\(m_i +1 = \left \lfloor \frac{d_i + g_i}{2} \right \rfloor\)</span></p>
+<ul>
+<li>si <span class="arithmatex">\(t_{m_i+1} = x\)</span> , alors le programme s'arrête : on est content.</li>
+<li>Sinon, comme <span class="arithmatex">\(d_i −g_i &gt; 0\)</span>, on a que <span class="arithmatex">\(g_i ≤ m_{i +1} &lt; d_i\)</span>.</li>
+<li>Si <span class="arithmatex">\(d_{i +1} = m_{i +1}\)</span> , alors <span class="arithmatex">\(g_{i +1} = g_i\)</span> et
+    <span class="arithmatex">\(<span class="arithmatex">\(d_{i +1} −g_{i +1} = m_{i +1} −g_i &lt;d_i −g_i\)</span>\)</span>
+    (décroissance stricte)</li>
+<li>Si <span class="arithmatex">\(g_{i +1} = m_{i +1} + 1\)</span>, alors <span class="arithmatex">\(d_{i +1} = d_i\)</span> et
+  <span class="arithmatex">\(<span class="arithmatex">\(d_{i +1} −g_{i +1} = d_i −m_{i +1} −1 &lt;d_i −m_{i +1} ≤d_i −g_i\)</span>\)</span>
+  (décroissance stricte)</li>
+<li>Dans tous les cas de figure la décroissance est stricte.</li>
+<li>Ainsi <span class="arithmatex">\(d_i −g_i\)</span> est un variant. L'algorithme s'arrête à un moment.</li>
+</ul>
+<h2 id="correction-et-invariants">Correction et invariants<a class="headerlink" href="#correction-et-invariants" title="Permanent link">&para;</a></h2>
+<h3 id="specification-dun-algorithme">Spécification d'un algorithme<a class="headerlink" href="#specification-dun-algorithme" title="Permanent link">&para;</a></h3>
+<p>La <em>spécification</em> d'un problème algorithmique est une description des attendus en deux parties :</p>
+<ul>
+<li>la description des entrées admissibles, et</li>
+<li>la description du résultat et/ou des effets attendus.</li>
+</ul>
+<p>On décrit les entrées admissibles par des contraintes appelée <em>préconditions</em>.</p>
+<div class="admonition example">
+<ul>
+<li>les entrées sont des entiers positifs</li>
+<li>les entrées sont un tableau de flottants trié par ordre croissant et un flottant ;</li>
+<li>Les entrées sont deux listes sans intersection...</li>
+</ul>
+</div>
+<p>La <em>spécification d'un algorithme</em> est la spécification du problème résolu par cet algorithme.</p>
+<div class="admonition example">
+<p>Les questions de code dans un DS d'informatique sont des spécifications de l'algorithme attendu.</p>
+</div>
+<h3 id="usages-de-la-specification">Usages de la spécification<a class="headerlink" href="#usages-de-la-specification" title="Permanent link">&para;</a></h3>
+<p>En phase de conception, la spécification décrit ce qui doit être réalisé.</p>
+<p>En phase d'utilisation, la spécification indique à l'utilisateur ce qu'il doit entrer et le résultat auquel il peut s'attendre.</p>
+<p>En phase de test, la spécification donne les critères pour se prononcer sur la réussite ou l'échec d'un test.</p>
+<p>En phase de preuve de correction, la spécification énonce ce qui doit être démontré.</p>
+<h3 id="invariant-de-boucle">Invariant de boucle<a class="headerlink" href="#invariant-de-boucle" title="Permanent link">&para;</a></h3>
+<p>Objectif : Déterminer si un programme contenant une boucle est correct vis à vis de sa <em>spécification</em> (c.a.d s'il fait bien ce qu'on attend de lui).</p>
+<p>Moyen : On utilise un invariant de boucle, c'est-à-dire une propriété :</p>
+<ol>
+<li>qui est vérifiée avant d'entrer dans la boucle.</li>
+<li>qui si elle est vérifiée avant une itération est vérifiée après celle-ci,</li>
+</ol>
+<p>Un invariant de boucle pas très utile est par exemple <code>1==1</code>. Il s'applique à toutes les boucles ! C'est pour cette raison qu'on ajoute souvent une troisième contrainte :</p>
+<ol>
+<li>Lorsque la propriété est vérifiée en sortie de boucle, elle permet de déduire que le programme est correct (ou du moins la partie du programme délimitée par la boucle).</li>
+</ol>
+<h3 id="calcul-de-2n">Calcul de <span class="arithmatex">\(2^n\)</span><a class="headerlink" href="#calcul-de-2n" title="Permanent link">&para;</a></h3>
+<p>Montrer que ce programme de calcul de <span class="arithmatex">\(2^n\)</span> est correct pour tout entier <span class="arithmatex">\(n ≥0\)</span>, <em>c.a.d</em> qu'en sortie de boucle <code>p</code> contient <span class="arithmatex">\(2^n\)</span>.</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="c1">// pré condition : n entier &gt;=0</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="err">∗</span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="err">−</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On note <span class="arithmatex">\(c_i , p_i\)</span> les contenus des variables <code>c</code> et <code>p</code> après l'itération <span class="arithmatex">\(i\)</span>.</p>
+<ul>
+<li>Avant l'entrée dans la boucle : <span class="arithmatex">\(c_0 = n, p_0 = 1\)</span>.</li>
+<li>Après l'itération <span class="arithmatex">\(i\)</span> : <span class="arithmatex">\(c_{i +1} = c_i −1 et p_{i +1} = 2×p_i\)</span> .</li>
+<li>Invariant potentiel <span class="arithmatex">\(Inv(i)\)</span> : <span class="arithmatex">\(c_i ≥0\)</span> et <span class="arithmatex">\(p_i = 2^{n−c_i}\)</span> .</li>
+<li>Cas de base, itération <span class="arithmatex">\(0\)</span> (avant l'entrée dans la boucle) : <span class="arithmatex">\(c0 = n ≥0, p_0 = 1 = 20 = 2n−c_0\)</span> : <strong>OK</strong>.</li>
+<li>Hérédité. On suppose <span class="arithmatex">\(Inv(i )\)</span> vérifié.</li>
+<li>Si on entre dans la boucle, alors <span class="arithmatex">\(c_i &gt; 0\)</span> et <span class="arithmatex">\(c_{i +1} = c_i −1 ≥0\)</span>. De plus <span class="arithmatex">\(p_{i +1} = 2×p_i = 2^{n−c_i+1} = 2^{n−(c_i −1)} = 2^{n−c_{i +1}}\)</span> . Donc <span class="arithmatex">\(Inv(i + 1)\)</span> vérifié.</li>
+<li>Si on sort de la boucle, alors <span class="arithmatex">\(c_i ≤0\)</span> (condition de sortie) et <span class="arithmatex">\(c_i ≥0\)</span> (par <span class="arithmatex">\(Inv(i)\)</span>) donc <span class="arithmatex">\(c_i = 0\)</span>, donc <span class="arithmatex">\(p_i = 2^{n−c_i} = 2^n\)</span> .</li>
+</ul>
+<h3 id="vocabulaire">Vocabulaire<a class="headerlink" href="#vocabulaire" title="Permanent link">&para;</a></h3>
+<p>Il y a correction <em>totale</em> lorsque le programme termine toujours et vérifie la spécification.</p>
+<p>Il y a correction <em>partielle</em> lorsque le programme vérifie la spécification dans tous les cas où il termine.</p>
+<h2 id="etude-de-cas-tri-fusion">Étude de cas : tri fusion<a class="headerlink" href="#etude-de-cas-tri-fusion" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Dans tout ce qui suit :</p>
+<ul>
+<li>Par <em>liste trié</em>, on sous-entend implicitement "liste triée par ordre croissant ".</li>
+<li>Par <em>version triée d'une liste</em> on sous-entend une nouvelle liste, triée par ordre croissant, ayant la même taille que la première, et contenant tous les éléments de la première avec le même nombre d'occurences.</li>
+</ul>
+</div>
+<h3 id="historique">Historique<a class="headerlink" href="#historique" title="Permanent link">&para;</a></h3>
+<p>Écrit vers 1945.</p>
+<p>Attribué au Hongro-Américain John Von Neumann.</p>
+<p>Un des premiers algorithmes de tris proposé pour les ordinateurs.</p>
+<p>Utilise le principe <em>diviser pour régner</em> qui consiste à décomposer récursivement un gros problème en plus petits sous-problèmes.</p>
+<h3 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h3>
+<p>On veut une version triée d'une liste <code>l</code> .</p>
+<ul>
+<li>Découper la liste en deux parties de tailles proches.</li>
+<li>Trier ces deux parties.</li>
+<li>Fusionner les deux listes triées obtenues.</li>
+</ul>
+<h3 id="fusion-rappel">Fusion (rappel)<a class="headerlink" href="#fusion-rappel" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">fusion</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">=</span> 
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>    <span class="k">match</span> <span class="n">l1</span> <span class="o">,</span> <span class="n">l2</span> <span class="k">with</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="o">|</span> <span class="bp">[]</span><span class="o">,</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>    <span class="o">|</span> <span class="n">l</span><span class="o">,</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>    <span class="o">|</span> <span class="n">x1</span><span class="o">::</span><span class="n">t1</span><span class="o">,</span> <span class="n">x2</span><span class="o">::</span><span class="n">t2</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&lt;=</span><span class="n">x2</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>        <span class="k">then</span> <span class="n">x1</span> <span class="o">::</span> <span class="n">fusion</span> <span class="n">t1</span> <span class="n">l2</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>        <span class="k">else</span> <span class="n">x2</span> <span class="o">::</span> <span class="n">fusion</span> <span class="n">l1</span> <span class="n">t2</span> <span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Terminaison : déjà établie</li>
+<li>Correction : on veut montrer que <p style='color:red'><span class="arithmatex">\(\text{pour deux listes triées par ordre croissant }\)</span><code style='color:red'>l1, l2</code> , <span class="arithmatex">\(\color{red}\text{la liste obtenue par appel de}\)</span> <code style='color:red'>fusion l1 l2</code> <span class="arithmatex">\(\color{red}\text{est une version triée de }\)</span><code style='color:red'>l1 @ l2</code>.</p></li>
+</ul>
+<h3 id="correction-de-la-fusion">Correction de la fusion<a class="headerlink" href="#correction-de-la-fusion" title="Permanent link">&para;</a></h3>
+<p>Préconditions : <code>l1</code> et <code>l2</code> sont des listes triées d'entiers.</p>
+<ul>
+<li>On note <span class="arithmatex">\(n_1 = |l_1|\)</span> et <span class="arithmatex">\(n_2 = |l_2|\)</span> les longueurs des listes opérandes.</li>
+<li>On montre par récurrence sur <span class="arithmatex">\(n_1 + n_2 = n\)</span> la propriété <span class="arithmatex">\(P(n)\)</span> "<span class="arithmatex">\(\color{red}\text{la liste résultat de}\)</span> <code style='color:red'>fusion l1 l2</code> <span class="arithmatex">\(\color{red}\text{est une version triée de}\)</span> <code style='color:red'>l1 @ l2</code> ".
+Remarque : sa taille est donc <span class="arithmatex">\(n_1 + n_2\)</span></li>
+<li>Cas de base. Lorsque <span class="arithmatex">\(n_1 + n_2 = 0\)</span>, alors les deux listes sont vides. On
+retourne la liste vide qui est triée et contient les éléments de <code>l1,l2</code>.</li>
+</ul>
+<h4 id="heredite">Hérédité<a class="headerlink" href="#heredite" title="Permanent link">&para;</a></h4>
+<p>On suppose <span class="arithmatex">\(P(n)\)</span> vérifiée. On réalise l'appel <code>fusion l1 l2</code> avec <span class="arithmatex">\(n_1 + n_2 = n + 1\)</span>.</p>
+<ul>
+<li>Si l'une des deux listes est vide, on retourne celle qui ne l'est pas. L'invariant est vérifié trivialement.</li>
+<li>Si les deux listes sont non vides, supposons que l'appel interne soit
+<code>fusion q1 l2</code> (se produit si le premier élément <span class="arithmatex">\(x_1\)</span> de <code>l1</code> est
+inférieur au premier de <code>l2</code> ; l'autre cas est laissé au lecteur).</li>
+<li>L'hypothèse de récurrence s'applique puisque
+  <span class="arithmatex">\(|q_1|+ |l_2|= n_1 −1 + n_2 = n\)</span> et <code>q1,l2</code> sont triés</li>
+<li>Donc <code>fusion q1 l2</code> est une version triée de <code>q1@l2</code> .</li>
+<li>Comme <code>q1,l2</code> ne contiennent que des éléments plus grands que <span class="arithmatex">\(x_1\)</span> , <code>x1::fusion q1 l2</code> est triée et contient les bons éléments. <strong>IZP</strong><span class="arithmatex">\(^1\)</span> !!</li>
+</ul>
+<p><span class="arithmatex">\(\overline{\text{1. In Ze Pocket}}\)</span></p>
+<h3 id="fonction-de-separation">Fonction de séparation<a class="headerlink" href="#fonction-de-separation" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<ul>
+<li>
+<p>Écrire une fonction <code>div : int -&gt; 'a list -&gt; 'a list *'a list</code> qui prend en paramètres un indice <span class="arithmatex">\(i\)</span> et une liste <span class="arithmatex">\(t\)</span> et un retourne les deux listes <code>t[:i]</code> et <code>t[i:]</code> (en notation de slicing Python).
+Par exemple <code>div 3 [0;1;2;3;4]</code> renvoie <code>([0; 1; 2], [3; 4])</code>.</p>
+</li>
+<li>
+<p>Écrire une fonction <code>separer : 'a list -&gt; 'a list * 'a list</code> qui sépare une liste en deux listes de tailles égales à <span class="arithmatex">\(1\)</span> près : la première moitié et la seconde. 
+Par exemple <code>separer [0;1;2;3;4]</code> renvoie <code>([0; 1; 2], [3; 4])</code> </p>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<p><div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span>
+<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">div</span> <span class="n">i</span> <span class="n">l</span> <span class="o">=</span> 
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>    <span class="k">match</span> <span class="n">i</span><span class="o">,</span><span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>    <span class="o">|</span> <span class="mi">0</span><span class="o">,</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="bp">[]</span><span class="o">,</span> <span class="n">l</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>    <span class="o">|</span> <span class="o">_,</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;impossible&quot;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>    <span class="o">|</span> <span class="o">_,</span> <span class="n">x</span><span class="o">::</span><span class="n">q</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="n">d</span><span class="o">,</span><span class="n">f</span> <span class="o">=</span> <span class="n">div</span> <span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="n">q</span> <span class="k">in</span> <span class="n">x</span><span class="o">::</span><span class="n">d</span><span class="o">,</span> <span class="n">f</span> <span class="o">;;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="k">let</span> <span class="n">separer</span> <span class="n">l</span> <span class="o">=</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">length</span> <span class="n">l</span> <span class="k">in</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>    <span class="n">div</span> <span class="o">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="n">l</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+Les preuves de terminaison et correction de ces deux fonctions sont admises et laissées au lecteur.</p>
+</div>
+<h3 id="le-tri-fusion">Le tri fusion<a class="headerlink" href="#le-tri-fusion" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Écrire la fonction <code>tri : 'a list -&gt; 'a list</code> qui réalise le tri fusion. Établir terminaison et correction.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction du code</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">tri</span> <span class="n">l</span> <span class="o">=</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>    <span class="k">match</span> <span class="n">l</span> <span class="k">with</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>    <span class="o">|</span> <span class="o">[_]</span> <span class="o">-&gt;</span> <span class="n">l</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a>    <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="n">l1</span><span class="o">,</span><span class="n">l2</span> <span class="o">=</span> <span class="n">separer</span> <span class="n">l</span> <span class="k">in</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a>        <span class="k">let</span> <span class="n">l1</span> <span class="k">&#39;</span><span class="o">=</span> <span class="n">tri</span> <span class="n">l1</span> <span class="k">and</span> <span class="n">l2</span> <span class="k">&#39;</span> <span class="o">=</span> <span class="n">tri</span> <span class="n">l2</span> <span class="k">in</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>        <span class="n">fusion</span> <span class="n">l1&#39;</span> <span class="n">l2</span> <span class="k">&#39;</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h4 id="terminaison">Terminaison<a class="headerlink" href="#terminaison" title="Permanent link">&para;</a></h4>
+<p>Dans les cas de bases, (liste vide ou singleton), la fonction termine de façon évidente.</p>
+<p>Si <code>tri l</code> termine pour tout <code>l</code> de taille <span class="arithmatex">\(≤n\)</span>, considérons l'appel
+<code>tri l</code> pour <code>l</code> de taille <span class="arithmatex">\(n + 1\)</span> avec <span class="arithmatex">\(n &gt; 0\)</span>.</p>
+<p>L'appel à <code>separer</code> termine (admis) et retourne deux listes de tailles
+<span class="arithmatex">\(\left \lfloor \frac{n+1}{2} \right \rfloor\)</span> et <span class="arithmatex">\(\left \lceil \frac{n+1}{2} \right \rceil\)</span>. Ces deux listes sont passées chacune en argument de <code>tri</code>.</p>
+<p>Et ces deux appels terminent par hypothèse de récurrence puisque, <span class="arithmatex">\(n + 1\)</span> étant plus grand que <span class="arithmatex">\(2\)</span>, les deux parties entières de <span class="arithmatex">\(\frac{n+1}{2}\)</span> sont strictement plus petites que <span class="arithmatex">\(n + 1\)</span>.</p>
+<p>Enfin, la fusion de deux listes termine toujours donc <code>tri l</code> termine.
+Hérédité <strong>OK</strong>.</p>
+<h4 id="correction">Correction<a class="headerlink" href="#correction" title="Permanent link">&para;</a></h4>
+<p>Dans les cas de bases, (liste vide ou singleton), la fonction retourne une version triée de <code>l</code> de façon évidente.</p>
+<p>Si <code>tri l</code> renvoie une version triée de <code>l</code> pour tout <code>l</code> de taille <span class="arithmatex">\(≤n\)</span>, considérons l'appel <code>tri l</code> pour <code>l</code> de taille <span class="arithmatex">\(n + 1\)</span> avec <span class="arithmatex">\(n &gt; 0\)</span>.</p>
+<p>L'appel à <code>separer</code> termine (admis) et retourne la première et seconde moitié de <code>l</code> : <code>l1,l2</code>. Elles sont chacune strictement plus courtes que <code>l</code> puisque <span class="arithmatex">\(n + 1 &gt; 1\)</span>.</p>
+<p>Ces deux listes sont passées chacune en argument de <code>tri</code> et, par <strong>HR</strong>, on obtient une version triée de chacune. On les note <code>l1',l2'</code>.</p>
+<p>Enfin, <code>fusion</code> appliquée à ces <span class="arithmatex">\(2\)</span> listes retourne une version triée de <code>l1'@l2'</code> .</p>
+<p>Cette liste est une version triée de <code>l1@l2</code> donc de <code>l</code> . <strong>IZP</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

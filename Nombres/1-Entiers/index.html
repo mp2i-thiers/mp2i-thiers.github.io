@@ -1,0 +1,4010 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Logique/2-Quine/">
+      
+      
+        <link rel="next" href="../2-Flottants/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Représentation des entiers - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#representation-des-entiers" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Représentation des entiers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boutisme
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boutisme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gulliver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gulliver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#big-endian-gros-boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Big-endian (gros-boutisme)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#little-endian-petit-boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Little-endian (petit-boutisme)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de représentations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Base de représentations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passage-de-la-base-10-a-la-base-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passage de la base 10 à la base k
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-en-base-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations en base \(2\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations en base \(2\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addition-en-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Addition en binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-en-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction en binaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entiers-non-signes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Entiers non signés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Entiers non signés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-du-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas du C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cas du C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-automatique-de-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion automatique de types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-du-ocaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas du Ocaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entiers-signes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entiers signés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entiers signés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mettre-le-signe-en-bit-de-poids-fort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mettre le signe en bit de poids fort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2-sur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\) sur \(8\) bits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complement-a-2-sur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complément à 2 sur 8 bits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2-sur-n-bits-ca2_n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\) sur \(N\) bits (\(CA2\_N\))
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Représentation des entiers signés en complément à \(2\) sur \(N\) bits (\(CA2\_N\))">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methode-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ca2_n-compatibilite-avec-laddition" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(CA2\_n\) compatibilité avec l'addition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methode-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-de-tete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul de tête
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-binaire-grace-au-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction binaire grâce au complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#du-complement-a-2-a-la-notation-decimale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Du complément à \(2\) à la notation décimale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parite-et-signe-en-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parité et signe en complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-de-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension de format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Justification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entiers-signes-en-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entiers signés en C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entiers signés en C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valeurs-maximales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valeurs maximales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contraindre-la-taille-des-entiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contraindre la taille des entiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-entiers-en-textpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les entiers en \(\text{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les entiers en \(\text{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decoupage-des-entiers-en-textpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Découpage des entiers en \(\text{Python}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-arithmetiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations arithmétiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boutisme
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boutisme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gulliver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gulliver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#big-endian-gros-boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Big-endian (gros-boutisme)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#little-endian-petit-boutisme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Little-endian (petit-boutisme)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de représentations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Base de représentations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passage-de-la-base-10-a-la-base-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passage de la base 10 à la base k
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-en-base-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations en base \(2\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opérations en base \(2\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addition-en-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Addition en binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-en-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction en binaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entiers-non-signes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Entiers non signés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Entiers non signés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-du-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas du C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cas du C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-automatique-de-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion automatique de types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-du-ocaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas du Ocaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entiers-signes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entiers signés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entiers signés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mettre-le-signe-en-bit-de-poids-fort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mettre le signe en bit de poids fort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2-sur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\) sur \(8\) bits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complement-a-2-sur-8-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complément à 2 sur 8 bits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2-sur-n-bits-ca2_n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\) sur \(N\) bits (\(CA2\_N\))
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Représentation des entiers signés en complément à \(2\) sur \(N\) bits (\(CA2\_N\))">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methode-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ca2_n-compatibilite-avec-laddition" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(CA2\_n\) compatibilité avec l'addition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methode-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-de-tete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul de tête
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soustraction-binaire-grace-au-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soustraction binaire grâce au complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#du-complement-a-2-a-la-notation-decimale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Du complément à \(2\) à la notation décimale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parite-et-signe-en-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parité et signe en complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-entiers-signes-en-complement-a-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des entiers signés en complément à \(2\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-de-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension de format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Justification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entiers-signes-en-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entiers signés en C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entiers signés en C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valeurs-maximales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valeurs maximales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contraindre-la-taille-des-entiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contraindre la taille des entiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-entiers-en-textpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les entiers en \(\text{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les entiers en \(\text{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decoupage-des-entiers-en-textpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Découpage des entiers en \(\text{Python}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-arithmetiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations arithmétiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="representation-des-entiers">Représentation des entiers<a class="headerlink" href="#representation-des-entiers" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Wikipédia : <a href="https://fr.wikipedia.org/wiki/Complément_à_deux">Complément à deux</a> et <a href="https://fr.wikibooks.org/w/index.php?title=Architecture_des_ordinateurs/Représentation_des_données&amp;oldid=360556">ce Wiki</a></li>
+<li><a href="https://en.cppreference.com/w/c/numeric/math/nextafter">cpprefrence</a> (Fonction de bibliothèques en <strong>C</strong>)</li>
+<li>Les cours de mes collègues Nicolas Pécheux et Quentin Fortier</li>
+</ul>
+</div>
+<h2 id="boutisme">Boutisme<a class="headerlink" href="#boutisme" title="Permanent link">&para;</a></h2>
+<p>En informatique, certaines données telles que les nombres entiers peuvent être représentées sur plusieurs octets. L'ordre dans lequel ces octets sont organisés en mémoire ou dans une communication est appelé endianness (mot anglais traduit par "boutisme" ou par "endianisme" ).</p>
+<p>De la même manière que certains langages humains s'écrivent de gauche à droite, et d'autres s'écrivent de droite à gauche, il existe une alternative majeure à l'organisation des octets représentant une donnée : l'orientation <em>big-endian</em> et l'orientation <em>little-endian</em>.</p>
+<p>En maths, la convention d'écriture des polynômes est le big-endian (ou mot de poids fort en tête) comme dans <span class="arithmatex">\(X^3 + X^2 + 1\)</span>.</p>
+<h3 id="gulliver">Gulliver<a class="headerlink" href="#gulliver" title="Permanent link">&para;</a></h3>
+<p>Les termes <em>big-endian</em> et <em>little-endian</em> ont été popularisés dans le domaine informatique par Dany Cohen, en référence aux "Voyages de Gulliver" , roman satirique de Jonathan Swift.</p>
+<p>En <span class="arithmatex">\(1721\)</span>, Swift décrit comment de nombreux habitants de Lilliput refusent d'obéir à un décret obligeant à manger les oeufs à la coque par le petit bout.</p>
+<p>La répression pousse les rebelles, dont la cause est appelée big-endian, à se réfugier dans l'empire rival de Blefuscu ce qui entretient une guerre longue et meurtrière entre les deux empires.</p>
+<p align='center'><img src='/images/Entiers/entiers1.png'/></p>
+
+<p><em>Figure</em> – un oeuf</p>
+<h3 id="big-endian-gros-boutisme">Big-endian (gros-boutisme)<a class="headerlink" href="#big-endian-gros-boutisme" title="Permanent link">&para;</a></h3>
+<p>Soit un entier sur <span class="arithmatex">\(32\)</span> bits à écrire en en mémoire, par exemple <span class="arithmatex">\(\texttt{0xA0B70708}\)</span> en notation hexadécimal. Pour une structure de mémoire fondée sur une unité atomique de <span class="arithmatex">\(1\)</span> octet et un incrément d'adresse de <span class="arithmatex">\(1\)</span> octet, la convention big-endian consiste à enregistrer <span class="arithmatex">\(\texttt{A0}\)</span> à l'adresse mémoire la plus petite et <span class="arithmatex">\(\texttt{08}\)</span> à la plus grande.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">...</th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{A0}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{B7}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{07}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{08}\)</span></th>
+<th style="text-align: center;">...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Tous les protocoles TCP/IP communiquent en big-endian. Il en va de même pour le protocole PCI Express. Les processeurs Motorola 68000, les SPARC (Sun Microsystems), les System/370 (IBM) sont des architectures qui respectent cette règle</p>
+<h3 id="little-endian-petit-boutisme">Little-endian (petit-boutisme)<a class="headerlink" href="#little-endian-petit-boutisme" title="Permanent link">&para;</a></h3>
+<p>En little-endian ("mot de poids faible en tête" ), le nombre <span class="arithmatex">\(\texttt{0xA0B70708}\)</span> est enregistré, pour une structure de mémoire fondée sur une unité atomique de <span class="arithmatex">\(1\)</span> octet et un incrément d'adresse de <span class="arithmatex">\(1\)</span> octet, avec <span class="arithmatex">\(\texttt{08}\)</span> à l'adresse mémoire la plus petite, <span class="arithmatex">\(\texttt{A0}\)</span> à la plus grande.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">...</th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{08}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{07}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{B7}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{A0}\)</span></th>
+<th style="text-align: center;">...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Par exemple, les processeurs <span class="arithmatex">\(x86\)</span> ont une architecture petit-boutiste.</p>
+<p>L'inconvénient du little-endian est la moindre lisibilité du code machine par le programmeur. Son intérêt réside dans la plus grande rapidité des opérations arithmétiques.</p>
+<p>Dans ce cours, nous représentons les nombres de fa ̧con plus lisible pour le programmeur, c'est à dire selon la convention big-endian (bit de poids fort en tête)</p>
+<h2 id="base-de-representations">Base de représentations<a class="headerlink" href="#base-de-representations" title="Permanent link">&para;</a></h2>
+<h3 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h3>
+<h4 id="base-2">Base <span class="arithmatex">\(2\)</span><a class="headerlink" href="#base-2" title="Permanent link">&para;</a></h4>
+<p>Un nombre en base <span class="arithmatex">\(2\)</span> peut-être vu comme un état de case mémoire. La base <span class="arithmatex">\(2\)</span> est de plus très pratique pour les calculs arithmétiques.</p>
+<p>Nombres entiers : Couramment stockés sur <span class="arithmatex">\(32\)</span> ou <span class="arithmatex">\(64\)</span> bits. Dans les exemples ci-dessous : souvent sur <span class="arithmatex">\(8\)</span> bits (pour des raisons de place).</p>
+<p>Sur <span class="arithmatex">\(8\)</span> bits, entiers entre <span class="arithmatex">\(0\)</span> et <span class="arithmatex">\(2^8 −1 = 255\)</span>. Sur <span class="arithmatex">\(N\)</span> bits, on représente tous les entiers de <span class="arithmatex">\(0\)</span> à <span class="arithmatex">\(2N −1\)</span>.</p>
+<p>Un octet <span class="arithmatex">\(= 8\)</span> bits. Avec un octet on représente <span class="arithmatex">\(256\)</span> nombres :
+le plus souvent sur <span class="arithmatex">\([\![0,255]\!]\)</span>ou <span class="arithmatex">\([\![-128,127]\!]\)</span>.</p>
+<p>En base <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(32\)</span> bits, on représente les entiers de <span class="arithmatex">\(0\)</span> à
+<span class="arithmatex">\(2^{32} −1 = 4294967295\)</span> (<span class="arithmatex">\(4\)</span> milliards environ).</p>
+<h4 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h4>
+<p>Pour distinguer cent un en base <span class="arithmatex">\(10\)</span>, du nombre cinq écrit en
+base <span class="arithmatex">\(2\)</span>, on indice l'écriture binaire. <span class="arithmatex">\(101\)</span> (en base <span class="arithmatex">\(10\)</span>) ou <span class="arithmatex">\(101_2\)</span>
+(en base <span class="arithmatex">\(2\)</span>).</p>
+<p>Pour les autres bases, on indique le nombre de symboles, par
+exemple <span class="arithmatex">\(432_5\)</span> représente un nombre en base <span class="arithmatex">\(5\)</span>.</p>
+<h4 id="passage-de-la-base-10-a-la-base-k">Passage de la base 10 à la base k<a class="headerlink" href="#passage-de-la-base-10-a-la-base-k" title="Permanent link">&para;</a></h4>
+<p>fonction changement_base(n, k)
+    entree : n (le nb)
+    entree : k (la base)
+    sortie : a, suite des coefs de n en base k
+    a := suite vide
+    tant que n !=0 :
+        debut
+        ajouter à a le reste de la division de n par k
+        n := quotient de la division de n par k
+        fin
+        Inverser la suite a /∗ pour Big−Endian ∗/
+renvoyer la suite des restes</p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>écrire <span class="arithmatex">\(123\)</span> en binaire.    </p>
+<p><p align='center'><img src='/images/Entiers/entiers2.png'/></p></p>
+<p><em>Figure</em> – Méthode <span class="arithmatex">\(1\)</span></p>
+<p><span class="arithmatex">\(123 = 111 \text{ }1001_2\)</span></p>
+<p>pour la base deux à dix</p>
+<p><span class="arithmatex">\(1111011_2\)</span> représente <span class="arithmatex">\(123\)</span> :</p>
+<p><span class="arithmatex">\(1 ×2^6 + 1 ×2^5 + 1 ×2^4 + 1 ×2^3 + 0 ×2^2 + 1 ×2^1 + 1 ×2^0 = 123\)</span>.</p>
+</div>
+<h3 id="operations-en-base-2">Opérations en base <span class="arithmatex">\(2\)</span><a class="headerlink" href="#operations-en-base-2" title="Permanent link">&para;</a></h3>
+<h4 id="addition-en-binaire">Addition en binaire<a class="headerlink" href="#addition-en-binaire" title="Permanent link">&para;</a></h4>
+<p>Principe :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(0 + 0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(0 + 1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1 + 0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1 + 1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0\)</span> (avec retenue)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="w">    </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w">       </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w">        </span><span class="p">(</span><span class="err">∗</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">retenue</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="o">+</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="err">−−−−−−−−−−−−−−−−−−−−−</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Ceci est cablé dans le processeur dans la partie réservée aux calculs arithmétiques et logiques (UAL).</p>
+<h4 id="soustraction-en-binaire">Soustraction en binaire<a class="headerlink" href="#soustraction-en-binaire" title="Permanent link">&para;</a></h4>
+<p>Principe :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(0 - 0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span>.</td>
+<td style="text-align: left;">Retenue : non</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(0 - 1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span>.</td>
+<td style="text-align: left;">Retenue : oui</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(0 - (1+{\color{red}1})\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span>.</td>
+<td style="text-align: left;">Où le <span class="arithmatex">\({\color{red}1}\)</span> est la retenue. Retenue : oui</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1 - (1+{\color{red}1})\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span>.</td>
+<td style="text-align: left;">Où le <span class="arithmatex">\({\color{red}1}\)</span> est la retenue. Retenue : oui</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1 - 0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span>.</td>
+<td style="text-align: left;">Retenue : non</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1 - 1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span>.</td>
+<td style="text-align: left;">Retenue : non</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="w">    </span><span class="err">∗</span><span class="w">   </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w">        </span><span class="p">(</span><span class="err">∗</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">retenue</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="o">-</span><span class="w">     </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="err">−−−−−−−−−−−−−−−</span><span class="o">-</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>La retenue est à ajouter aux chiffres sur la ligne du bas.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p><span class="arithmatex">\(100 - 011 = 001\)</span></p>
+</div>
+<h2 id="3-entiers-non-signes">3 Entiers non signés<a class="headerlink" href="#3-entiers-non-signes" title="Permanent link">&para;</a></h2>
+<h3 id="cas-du-c">Cas du C<a class="headerlink" href="#cas-du-c" title="Permanent link">&para;</a></h3>
+<h4 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h4>
+<p>Un entier non signé ( unsingned int ) est un entier positif, qui est stocké en mémoire avec sa représentation en base <span class="arithmatex">\(2\)</span> sans interprétation particulière de son bit de poids fort.</p>
+<p>Si les entiers sont codés sur <span class="arithmatex">\(4\)</span> octets, alors le plus grand entier
+non signé est <span class="arithmatex">\(2^{32} −1\)</span> soit <span class="arithmatex">\(4294967295\)</span>.</p>
+<p>Le comportement de ces nombres est cyclique.</p>
+<p>Conseil : on ne doit les utiliser que si ce comportement cyclique est attendu. Et il faut surtout éviter de mélanger les types signés et non signés dans un même calcul à moins d'avoir bien lu (l'indigeste) norme !</p>
+<p>Ces nombres ne peuvent être négatifs, un nombre négatif est donc automatiquement converti en son équivalent modulo <span class="arithmatex">\(2^{32}\)</span></p>
+<div class="admonition example">
+<p>Le code suivant :</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%u</span><span class="se">\n</span><span class="s"> &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// %u pour unsigned int</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">−</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// affiche le + grand</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">nombre</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">x</span><span class="o">=</span><span class="mi">4294967295</span><span class="p">;</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>produit :</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="mi">42</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="mi">4294967295</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="mi">0</span>
+</span></code></pre></div>
+</div>
+<h4 id="conversion-automatique-de-types">Conversion automatique de types<a class="headerlink" href="#conversion-automatique-de-types" title="Permanent link">&para;</a></h4>
+<p>La somme d'un entier non signé et d'un entier signé est convertie en un entier signé.</p>
+<p>Que donne l'affichage de ce programme ?</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">−</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mais combien  vaut a+b ?</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="k">else</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Coucou</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Perdu : c'est <span class="arithmatex">\(\texttt{"Hello"}\)</span> !</p>
+<p>Lorsqu'on compare un entier signé et non signé, le signé est
+converti en non signé :
+Que donne l'affichage de ce programme ?</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">−</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">else</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Coucou</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Perdu : c'est <span class="arithmatex">\(\texttt{"Coucou"}\)</span> ! En effet, <span class="arithmatex">\(−1\)</span> est converti en <span class="arithmatex">\(2^{32} −1...\)</span></p>
+<h3 id="cas-du-ocaml">Cas du Ocaml<a class="headerlink" href="#cas-du-ocaml" title="Permanent link">&para;</a></h3>
+<p>En travaux</p>
+<h2 id="entiers-signes">Entiers signés<a class="headerlink" href="#entiers-signes" title="Permanent link">&para;</a></h2>
+<h3 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h3>
+<h4 id="mettre-le-signe-en-bit-de-poids-fort">Mettre le signe en bit de poids fort<a class="headerlink" href="#mettre-le-signe-en-bit-de-poids-fort" title="Permanent link">&para;</a></h4>
+<p>Sur <span class="arithmatex">\(8\)</span> bits on représente les entiers non signés de <span class="arithmatex">\(0\)</span> à <span class="arithmatex">\(255\)</span>.</p>
+<p>Sur <span class="arithmatex">\(8\)</span> bits on voudrait maintenant représenter les nombres de <span class="arithmatex">\(-128\)</span> à <span class="arithmatex">\(127\)</span>.</p>
+<p>Notation utilisée sur des écritures de nombres de longueur donnée (<span class="arithmatex">\(8\)</span>, <span class="arithmatex">\(16\)</span>, <span class="arithmatex">\(32\)</span> bits). Bit de poids fort du nombre pour le signe.</p>
+<p>Première idée <span class="arithmatex">\(00000010_2 = +2\)</span> en décimal et <span class="arithmatex">\(10000010_2 = −2\)</span> en décimal. PB :</p>
+<ul>
+<li>Le nombre <span class="arithmatex">\(0\)</span> possède deux représentations <span class="arithmatex">\(10000000_2\)</span> et <span class="arithmatex">\(00000000_2\)</span> (<span class="arithmatex">\(0\)</span> et <span class="arithmatex">\(−0\)</span>).</li>
+<li>Il faudrait modifier l'algorithme d'addition. Si un des nombres est négatif : erreur. Ainsi <span class="arithmatex">\(3 + (−4) = −1\)</span> Mais <span class="arithmatex">\(00000011_2 + 10000100_2 = 10000111_2 → −7\)</span>.</li>
+</ul>
+<h4 id="representation-des-entiers-signes-en-complement-a-2-sur-8-bits">Représentation des entiers signés en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits<a class="headerlink" href="#representation-des-entiers-signes-en-complement-a-2-sur-8-bits" title="Permanent link">&para;</a></h4>
+<p>Prenons l'exemple des mots de <span class="arithmatex">\(8\)</span> bits : on peut représenter les entiers relatifs compris entre <span class="arithmatex">\(−2^{8−1} = −128\)</span> et <span class="arithmatex">\(2^{8−1} −1 = 127\)</span></p>
+<p>entier relatif <span class="arithmatex">\(x\)</span> positif ou nul : pas de changement.</p>
+<p>entier relatif <span class="arithmatex">\(x\)</span> strictement négatif : représenté par l'entier naturel <span class="arithmatex">\(x + 2^8 = x + 256\)</span>, qui est compris entre <span class="arithmatex">\(128\)</span> et <span class="arithmatex">\(255\)</span>.</p>
+<p>Ainsi les entiers naturels de <span class="arithmatex">\(0\)</span> à <span class="arithmatex">\(127\)</span> servent à représenter les entiers relatifs positifs ou nul</p>
+<p>Et les entiers naturels de <span class="arithmatex">\(128\)</span> à <span class="arithmatex">\(255\)</span> servent à représenter les entiers relatifs strictement négatifs</p>
+<h4 id="complement-a-2-sur-8-bits">Complément à 2 sur 8 bits<a class="headerlink" href="#complement-a-2-sur-8-bits" title="Permanent link">&para;</a></h4>
+<p align='center'><img src='/images/Entiers/entiers3.png'/></p>
+
+<h4 id="representation-des-entiers-signes-en-complement-a-2-sur-n-bits-ca2_n">Représentation des entiers signés en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(N\)</span> bits (<span class="arithmatex">\(CA2\_N\)</span>)<a class="headerlink" href="#representation-des-entiers-signes-en-complement-a-2-sur-n-bits-ca2_n" title="Permanent link">&para;</a></h4>
+<h5 id="methode-1">Méthode 1<a class="headerlink" href="#methode-1" title="Permanent link">&para;</a></h5>
+<p>On veut représenter un nombre <span class="arithmatex">\(−2^{N −1} ≤X &lt;2^{N −1}\)</span> en <span class="arithmatex">\(CA2\_N\)</span> (donc <span class="arithmatex">\(|X|\)</span> tient sur <span class="arithmatex">\(N −1\)</span> bits) :</p>
+<ul>
+<li>Si <span class="arithmatex">\(X\)</span> est négatif, on calcule la représentation binaire de <span class="arithmatex">\(2^N + X\)</span> . Le premier bit sera automatiquement <span class="arithmatex">\(1\)</span>.</li>
+<li>Si <span class="arithmatex">\(X\)</span> est positif, le premier bit sera à <span class="arithmatex">\(0\)</span> et les <span class="arithmatex">\(N −1\)</span> autres bits
+seront la représentation de <span class="arithmatex">\(X\)</span> en base <span class="arithmatex">\(2\)</span> sur (<span class="arithmatex">\(N −1\)</span>) bits.</li>
+</ul>
+<div class="admonition example">
+<p><span class="arithmatex">\(-67\)</span> en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits. :</p>
+<ul>
+<li><span class="arithmatex">\(2^8 −67 = 189\)</span></li>
+<li><span class="arithmatex">\(189 →\overline{10111101}^8\)</span>.</li>
+</ul>
+</div>
+<h5 id="ca2_n-compatibilite-avec-laddition"><span class="arithmatex">\(CA2\_n\)</span> compatibilité avec l'addition<a class="headerlink" href="#ca2_n-compatibilite-avec-laddition" title="Permanent link">&para;</a></h5>
+<p>On reprend l'exemple de <span class="arithmatex">\(3 + (−4)\)</span>.</p>
+<p>En <span class="arithmatex">\(CA2\_8\)</span>, 3 s'écrit comme <span class="arithmatex">\(\overline{00000011}^8\)</span>
+En <span class="arithmatex">\(CA2\_8\)</span>, pour <span class="arithmatex">\(−4\)</span> :</p>
+<ul>
+<li><span class="arithmatex">\(−4 + 256 = 252 7→\overline{11111100}^8\)</span></li>
+</ul>
+<p>Addition en binaire :</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="err">−−−−−−−−−−−−−−−−−</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span></code></pre></div>
+<p>Que des <span class="arithmatex">\(1\)</span> : il s'agit de <span class="arithmatex">\(−1\)</span> en <span class="arithmatex">\(CA2\_8\)</span>. Plus besoin de modifier l'algorithme d'addition !</p>
+<h5 id="methode-2">Méthode 2<a class="headerlink" href="#methode-2" title="Permanent link">&para;</a></h5>
+<p>Complément à <span class="arithmatex">\(2\)</span> (sur <span class="arithmatex">\(n\)</span> bits). Ici <span class="arithmatex">\(n = 8\)</span>.</p>
+<ul>
+<li>Si le nombre est positif, donner son expression en binaire sur <span class="arithmatex">\(n\)</span> bits.</li>
+<li>Si c'est <span class="arithmatex">\(−2^{N −1}\)</span> son complément à <span class="arithmatex">\(2\)</span> est <span class="arithmatex">\(1\)</span> suivi de <span class="arithmatex">\(N−1\)</span> zéros.</li>
+<li>Si le nombre est négatif mais <span class="arithmatex">\(&gt;−2^{N −1}\)</span>. Inverser tous les bits du binaire de sa valeur absolue (ie. transformer <span class="arithmatex">\(1\)</span> en <span class="arithmatex">\(0\)</span> et lycée de Versailles).</li>
+<li>Ajouter <span class="arithmatex">\(1\)</span> au bit de poids faible (attention aux retenues) !</li>
+</ul>
+<div class="admonition example">
+<p><span class="arithmatex">\(-67\)</span> en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits. :</p>
+<ul>
+<li><span class="arithmatex">\(67\)</span> : <span class="arithmatex">\(01000011_2\)</span></li>
+<li>inversion : <span class="arithmatex">\(10111100_2\)</span></li>
+<li>ajout de <span class="arithmatex">\(1\)</span> au bit de poids faible : <span class="arithmatex">\(10111101_2\)</span>. Finalement
+<span class="arithmatex">\(\overline{1011\text{ }1101}^8\)</span>.</li>
+</ul>
+</div>
+<h4 id="calcul-de-tete">Calcul de tête<a class="headerlink" href="#calcul-de-tete" title="Permanent link">&para;</a></h4>
+<p>Si l'on doit transformer un nombre négatif non nul en son
+complément à deux "de tête", un bon moyen est de garder tous les
+chiffres depuis la droite jusqu'au premier 1 (compris) puis
+d'inverser tous les suivants.</p>
+<div class="admonition example">
+<ul>
+<li>Prenons par exemple le nombre <span class="arithmatex">\(-20\)</span></li>
+<li>Codage binaire de sa valeur absolue <span class="arithmatex">\(20\)</span> : <span class="arithmatex">\(00010100\)</span></li>
+<li>On garde la partie à droite telle quelle : <span class="arithmatex">\(00010\)</span><strong><span class="arithmatex">\(100\)</span></strong>
+On inverse la partie de gauche après le premier un : <strong><span class="arithmatex">\(11101\)</span></strong><span class="arithmatex">\(100\)</span>
+Et voici <span class="arithmatex">\(-20 : \overline{11101100}^8\)</span>.</li>
+</ul>
+</div>
+<h4 id="soustraction-binaire-grace-au-complement-a-2">Soustraction binaire grâce au complément à <span class="arithmatex">\(2\)</span><a class="headerlink" href="#soustraction-binaire-grace-au-complement-a-2" title="Permanent link">&para;</a></h4>
+<p>On veut effectuer <span class="arithmatex">\(15 −14\)</span></p>
+<p>En binaire <span class="arithmatex">\(15 →1111_2\)</span> et <span class="arithmatex">\(14 →1110_2\)</span></p>
+<p><span class="arithmatex">\(15\)</span> et <span class="arithmatex">\(−14\)</span> peuvent s'écrire en <span class="arithmatex">\(CA2\_5\)</span>. <span class="arithmatex">\(15 →\overline{01111}^5\)</span> et <span class="arithmatex">\(−14→\overline{10010}^5\)</span></p>
+<p>On effectue ensuite une simple addition en <span class="arithmatex">\(CA2\_5\)</span>.</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="o">+</span><span class="err">−−−−−−−−−−−−−</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span>
+</span></code></pre></div>
+<p>Le bit le plus à gauche (<span class="arithmatex">\(1\)</span>) est un <em>artefact</em> (Altération du résultat d'un examen due au procédé technique utilisé) qui n'est pas pris en compte.</p>
+<p>On sait que le résultat de <span class="arithmatex">\(15 −14\)</span> tient en <span class="arithmatex">\(CA2_5\)</span> puisque ce sont deux nombres de <em>signes opposés</em> qui tiennent en <span class="arithmatex">\(CA2_5\)</span>.</p>
+<p>On trouve donc que <span class="arithmatex">\(15 −14\)</span> vaut <span class="arithmatex">\(\overline{00001}^5\)</span>, ce qui correspond à <span class="arithmatex">\(1\)</span> en <span class="arithmatex">\(CA2_5\)</span>.</p>
+<h4 id="du-complement-a-2-a-la-notation-decimale">Du complément à <span class="arithmatex">\(2\)</span> à la notation décimale<a class="headerlink" href="#du-complement-a-2-a-la-notation-decimale" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Soit <span class="arithmatex">\(X\)</span> de complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits <span class="arithmatex">\(\overline{1010\text{ }1101}^8\)</span>.</li>
+<li>Nombre négatif non nul (<span class="arithmatex">\(1\)</span> en bit de poids fort).</li>
+<li>On peut coder <span class="arithmatex">\(X\)</span> en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits, donc <span class="arithmatex">\(−2^{8−1} = −128 ≤X ≤ −1\)</span>.</li>
+<li>On calcule le codage décimal de <span class="arithmatex">\(\text{1010 1101}\)</span>, puis on soustrait <span class="arithmatex">\(256\)</span> (i.e. <span class="arithmatex">\(−2^8\)</span>).</li>
+</ul>
+<p><span class="arithmatex">\(−(1 ×2^8) + 1 ×2^7 + 0 ×2^6 + 1 ×2^5 + 0 ×2^4 + 1 ×2^3 + 1 ×2^2 + 0 ×2^1 + 1 ×2^0 = −83 = X\)</span></p>
+<h4 id="parite-et-signe-en-complement-a-2">Parité et signe en complément à <span class="arithmatex">\(2\)</span><a class="headerlink" href="#parite-et-signe-en-complement-a-2" title="Permanent link">&para;</a></h4>
+<p>Pour reconnaître un nombre positif en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(n\)</span> bits, il suffit que son bit de poids fort soit à <span class="arithmatex">\(0\)</span>,</p>
+<p>Négatif : son bit de poids fort à <span class="arithmatex">\(1\)</span>.</p>
+<p><span class="arithmatex">\(-1\)</span> est toujours l'entier qui, en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(n\)</span> bits, a une représentation ne comportant que des <span class="arithmatex">\(1\)</span>.</p>
+<h4 id="representation-des-entiers-signes-en-complement-a-2">Représentation des entiers signés en complément à <span class="arithmatex">\(2\)</span><a class="headerlink" href="#representation-des-entiers-signes-en-complement-a-2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{0}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(127\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{0}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{0}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{0}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{1}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{1}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{1}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-127\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\color{red}\texttt{1}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(=\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-128\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><em>Figure</em> – Quelques entiers signés en complément à <span class="arithmatex">\(2\)</span></p>
+<p>Le premier bit est le bit de signe.</p>
+<p>En complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(N\)</span> bits on représente tous les entiers de <span class="arithmatex">\(−2^{N −1}\)</span> à <span class="arithmatex">\(2^{N −1} −1\)</span>. Sur <span class="arithmatex">\(32\)</span> bits : de <span class="arithmatex">\(−2^{31} = −2147483648\)</span> à
+<span class="arithmatex">\(2^{31} −1 = 2147483647\)</span> (plus ou moins <span class="arithmatex">\(2\)</span> milliards).</p>
+<h4 id="extension-de-format">Extension de format<a class="headerlink" href="#extension-de-format" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Extension de signe</p>
+<p>Si l'on veut passer un enteir signé <span class="arithmatex">\(x\)</span> d'un format <span class="arithmatex">\(n\)</span> bits vers un format <span class="arithmatex">\(n+k\)</span> bits en gardant la même valeur, il suffit de faire une extension de signe: le bit de signe est répété sur les nouveaux <span class="arithmatex">\(k\)</span> bits de poids fort</p>
+<p><p align='center'><img src='/images/Entiers/entiers4.png'/></p></p>
+<p><em>Figure</em> – Duplication du bit de poids fort</p>
+</div>
+<div class="admonition example">
+<p>Soit <span class="arithmatex">\(\overline{10001000}^8\)</span> un entier signé représenté en complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(8\)</span> bits. En complément à <span class="arithmatex">\(2\)</span> sur <span class="arithmatex">\(12\)</span> bits, on obtient : <span class="arithmatex">\(\overline{111110001000}^{12}\)</span></p>
+</div>
+<h4 id="justification">Justification<a class="headerlink" href="#justification" title="Permanent link">&para;</a></h4>
+<p>Soit <span class="arithmatex">\(T\)</span> la représentation en <span class="arithmatex">\(CA2N\)</span> de <span class="arithmatex">\(X\)</span> (pour <span class="arithmatex">\(N &gt;2\)</span>).</p>
+<p>Si <span class="arithmatex">\(X ≥0\)</span>, son codage en <span class="arithmatex">\(CA2N\)</span> est son codage en binaire (il tient forcément sur moins de <span class="arithmatex">\(N −1\)</span> bits) auquel on ajoute des zéros à gauche pour remplir <span class="arithmatex">\(N\)</span> bits. Pour remplir <span class="arithmatex">\(N + 1\)</span> bits, on ajoute juste un zéro de plus à gauche. Et donc, une extension de format de <span class="arithmatex">\(CA2N\)</span> à <span class="arithmatex">\(CA2(N +1)\)</span> consiste juste à dupliquer le bit de poids fort.</p>
+<p>Si <span class="arithmatex">\(X &lt;0\)</span>, <span class="arithmatex">\(2^{N −1} ≤X ≤−1\)</span> donc <span class="arithmatex">\(−2^{N −1} ≤X + 2^N ≤2^N -1\)</span>. Ainsi <span class="arithmatex">\(X + 2^N\)</span> est de la forme <span class="arithmatex">\(2^{N −1} + \sum^{N −2}_{i =0} {x_{N −2−i} 2^{N −2−i}}\)</span></p>
+<p>(<span class="arithmatex">\(\overline{1xN −2 ...x0}^N\)</span> est le codage de <span class="arithmatex">\(X\)</span> ). </p>
+<p>Codons <span class="arithmatex">\(X\)</span> en <span class="arithmatex">\(CA2(N +1)\)</span> :</p>
+<ul>
+<li><span class="arithmatex">\(X + 2^{N +1} = 2^N + (X + 2^N ) = 2^N + 2^{N −1} + \sum^{N −2}_{i =0} {x_{N −2−i}2^{N −2−i}} .\)</span></li>
+<li>Ainsi le codage en <span class="arithmatex">\(CA2(N +1)\)</span> de <span class="arithmatex">\(X\)</span> est <span class="arithmatex">\(\overline{11x_{N−2} ...x_0}^{N+1}\)</span></li>
+</ul>
+<h4 id="overflow">Overflow<a class="headerlink" href="#overflow" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Overflow</p>
+<p>Il y a <em>overflow</em> (dépassement de capacité) lorsque le nombre à représenter ne tient pas dans le format choisi.</p>
+</div>
+<p>Pour reconnaître un overflow dans une addition en complément à <span class="arithmatex">\(2\)</span> :</p>
+<ul>
+<li>Si les deux opérandes sont du même signe : dépassement si le résultat est de signe opposé,</li>
+<li>Si les deux opérandes sont de signes opposés, il n'y a jamais dépassement.</li>
+</ul>
+<div class="admonition example">
+<p>On additionne <span class="arithmatex">\(\overline{01111000}^8\)</span> (<span class="arithmatex">\(120\)</span>) et <span class="arithmatex">\(\overline{01110011}^8\)</span> (<span class="arithmatex">\(115\)</span>) en <span class="arithmatex">\(CA2\_8\)</span>.</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="w">  </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="err">−−−−−−−−−−−−−−−−−−</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">changement</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">signe</span><span class="w"> </span><span class="n">donc</span><span class="w"> </span><span class="n">overflow</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On constate un overflow. On passe au <span class="arithmatex">\(CA2\_9\)</span>. <span class="arithmatex">\(120\)</span> : <span class="arithmatex">\(\overline{001111000}^9\)</span> et <span class="arithmatex">\(115\)</span> : <span class="arithmatex">\(\overline{001110011}^9\)</span></p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="w">    </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span><span class="w"> </span><span class="err">∗</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="err">−−−−−−−−−−−−−−−−−−−−</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
+<p>Le résultat, <span class="arithmatex">\(\overline{011101011}^9\)</span> représente <span class="arithmatex">\(235\)</span> en <span class="arithmatex">\(CA2_9\)</span>.</p>
+</div>
+<h3 id="entiers-signes-en-c">Entiers signés en C<a class="headerlink" href="#entiers-signes-en-c" title="Permanent link">&para;</a></h3>
+<h4 id="valeurs-maximales">Valeurs maximales<a class="headerlink" href="#valeurs-maximales" title="Permanent link">&para;</a></h4>
+<p>Le fichier <span class="arithmatex">\(\texttt{limits.h}\)</span> (voir <a href="https://www.bourguet.org/v2/clang/libc90/limits_8h.html">ici</a>) contient toutes les réponses à nos questions.</p>
+<p>Compilons :</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">8</a></span>
+<span class="normal"><a href="#__codelineno-10-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;limits.h&gt;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">INT_MAX</span><span class="p">);</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INT_MAX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// produit un Warning !!</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">);</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Sur ma machine, on obtient</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="mi">2147483647</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="mi">-2147483648</span>
+</span></code></pre></div>
+<p>Les entiers sont donc implémentés en <span class="arithmatex">\(CA2\_32\)</span>.</p>
+<h4 id="contraindre-la-taille-des-entiers">Contraindre la taille des entiers<a class="headerlink" href="#contraindre-la-taille-des-entiers" title="Permanent link">&para;</a></h4>
+<p>Les entiers <code>int</code> sont souvent sur <span class="arithmatex">\(4\)</span> octets mais pas toujours : cela dépend des implémentations.</p>
+<p>Lorsque la taille des entiers est élément important pour le programmeur, le fichier d'en-tête <code>&lt;stdint.h&gt;</code> est une aide précieuse. Il décrit des types de tailles précises <code>intN_t</code> (entiers signés de <span class="arithmatex">\(N\)</span> bits) et <code>uintN_t</code> (non signés sur <span class="arithmatex">\(N\)</span> bits).</p>
+<div class="admonition exemple">
+<p><code>uint16_t</code> représente les entiers non signés sur <span class="arithmatex">\(16\)</span> bits (<span class="arithmatex">\(2\)</span> octets).</p>
+<div class="language-C highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(){</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">i</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">127</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// max valeur signée sur 8 bits</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%4d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%4d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// dépassement</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On obtient :</p>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="mi">127</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="mi">-128</span>
+</span></code></pre></div>
+</div>
+<h3 id="les-entiers-en-textpython">Les entiers en <span class="arithmatex">\(\text{Python}\)</span><a class="headerlink" href="#les-entiers-en-textpython" title="Permanent link">&para;</a></h3>
+<p>Cette section hors programme est laissée au lecteur curieux.</p>
+<h4 id="decoupage-des-entiers-en-textpython">Découpage des entiers en <span class="arithmatex">\(\text{Python}\)</span><a class="headerlink" href="#decoupage-des-entiers-en-textpython" title="Permanent link">&para;</a></h4>
+<p>D'après Nicolas Pécheux.</p>
+<ul>
+<li>
+<p>Les entiers en <span class="arithmatex">\(\text{Python}\)</span> ont une précision non limitée. Ils ne fonctionnent donc pas en complément à <span class="arithmatex">\(2\)</span>.</p>
+</li>
+<li>
+<p>Sur une machine <span class="arithmatex">\(32\)</span> bits, la représentation binaire d'un entier <span class="arithmatex">\(\text{Python}\)</span> <span class="arithmatex">\(x\)</span> est découpée en paquets de <span class="arithmatex">\(15\)</span> bits, stockés dans un tableau dont les éléments sont des entiers de <span class="arithmatex">\(16\)</span> bits (pour que la taille soit un multiple de <span class="arithmatex">\(8\)</span>).</p>
+</li>
+</ul>
+<p>Les cases du tableau sont donc les coefficients de <span class="arithmatex">\(x\)</span> dans sa représentation en base <span class="arithmatex">\(2^{15}\)</span>.</p>
+<p>À ce tableau est associée un (petit) entier indiquant le nombre
+de chiffres de <span class="arithmatex">\(x\)</span> dans la base <span class="arithmatex">\(2^{15}\)</span>.</p>
+<div class="admonition example">
+<p>D'après Nicolas Pécheux.</p>
+<p>Soit le nombre <span class="arithmatex">\(x = 1234567891011\)</span>. Il s'écrit en binaire</p>
+<p><span class="arithmatex">\(\underbrace{000010001111101}_{1149_{10}}\text{ }|\text{ }\underbrace{110001111110110}_{25590_{10}}\text{ }|\text{ }\underbrace{000100001000011}_{2115_{10}}\)</span></p>
+<p>Dans la base <span class="arithmatex">\(2^{15}\)</span>, il faut <span class="arithmatex">\(32768\)</span> symboles pour les digits. On peut garder l'écriture en base <span class="arithmatex">\(10\)</span> comme symbole. Ainsi <span class="arithmatex">\(x\)</span> s'écrit</p>
+<p><span class="arithmatex">\(1149_{10}25590_{10}2115_{10_{\color{red}2^{15}}}\)</span> en base <span class="arithmatex">\(2^{15}\)</span></p>
+<p>Alors <span class="arithmatex">\(x\)</span> est représenté en <span class="arithmatex">\(\text{Python}\)</span> par le tableau <span class="arithmatex">\([1149,
+25590, 2115]\)</span> et l'entier <span class="arithmatex">\(3\)</span>. Et <span class="arithmatex">\(−x\)</span> est représenté par <span class="arithmatex">\([1149,25590, 2115]\)</span> et <span class="arithmatex">\(−3\)</span>.</p>
+</div>
+<h4 id="operations-arithmetiques">Opérations arithmétiques<a class="headerlink" href="#operations-arithmetiques" title="Permanent link">&para;</a></h4>
+<p>La base choisie (<span class="arithmatex">\(2^{15}\)</span> pour une machine <span class="arithmatex">\(32\)</span> bits, <span class="arithmatex">\(2^{30}\)</span> pour une <span class="arithmatex">\(64\)</span> bits) ne doit pas être trop grande pour que le processeur puisse faire les opérations arithmétiques entre les digits.</p>
+<p>En cas d'addition par exemple, les coefficients de mêmes exposants sont additionnés par le processeur. Un petit logiciel est ensuite chargé d'harmoniser les résultats (en cas de propagation de retenue par exemple).</p>
+<p>Ce traitement logiciel ralenti les opérations arithmétiques sur les entiers <span class="arithmatex">\(\text{Python}\)</span>.</p>
+<p>Pour connaître la base (en exposant de <span class="arithmatex">\(2\)</span>) et la taille d'occupation (en octets) de chaque digit dans cette base, il suffit d'entrer</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>import<span class="w"> </span>sys
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>sys.int_info
+</span></code></pre></div></td></tr></table></div>
+<p>On obtient</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sys.int_info<span class="o">(</span><span class="nv">bits_per_digit</span><span class="w"> </span><span class="o">=</span><span class="m">30</span>,
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">      </span><span class="nv">sizeof_digit</span><span class="w"> </span><span class="o">=</span><span class="m">4</span><span class="o">)</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

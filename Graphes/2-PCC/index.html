@@ -1,0 +1,3504 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1-Graphes/">
+      
+      
+        <link rel="next" href="../../Linux/1-Linux/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Plus cours chemin - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plus-cours-chemin" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plus cours chemin
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphe-pondere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe pondéré
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poids-dune-chaine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poids d'une chaîne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-plus-court-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le plus court chemin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-de-plus-courts-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche de plus courts chemins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longueur-de-plus-courts-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longueur de plus courts chemins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longueur de plus courts chemins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-particuliers-des-graphes-orientes-non-ponderes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas particuliers des graphes orientés non pondérés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuits-de-poids-negatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circuits de poids négatif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sous-chemin-du-plus-court-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sous-chemin du plus court chemin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-floyd-warshall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Floyd-Warshall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Floyd-Warshall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudo-code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pseudo-code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1er" class="md-nav__link">
+    <span class="md-ellipsis">
+      1er
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2nd" class="md-nav__link">
+    <span class="md-ellipsis">
+      2nd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floyd-warshall-fermeture-transitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floyd-Warshall : Fermeture transitive
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Dijkstra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Dijkstra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#necessite-de-la-valuation-positive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nécessité de la valuation positive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-pour-une-source-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité pour une source e
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité pour une source e">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#force-brute-pour-un-graphe-de-n-sommets-et-p-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force brute pour un graphe de n sommets et p arcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avec-file-de-priorite-pour-un-graphe-de-n-sommets-et-p-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avec file de priorité pour un graphe de n sommets et p arcs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graphe-pondere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphe pondéré
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poids-dune-chaine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poids d'une chaîne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-plus-court-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le plus court chemin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recherche-de-plus-courts-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recherche de plus courts chemins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longueur-de-plus-courts-chemins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longueur de plus courts chemins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longueur de plus courts chemins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-particuliers-des-graphes-orientes-non-ponderes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas particuliers des graphes orientés non pondérés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuits-de-poids-negatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circuits de poids négatif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sous-chemin-du-plus-court-chemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sous-chemin du plus court chemin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-floyd-warshall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Floyd-Warshall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Floyd-Warshall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudo-code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pseudo-code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1er" class="md-nav__link">
+    <span class="md-ellipsis">
+      1er
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2nd" class="md-nav__link">
+    <span class="md-ellipsis">
+      2nd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floyd-warshall-fermeture-transitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floyd-Warshall : Fermeture transitive
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithme de Dijkstra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithme de Dijkstra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#necessite-de-la-valuation-positive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nécessité de la valuation positive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-pour-une-source-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité pour une source e
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité pour une source e">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#force-brute-pour-un-graphe-de-n-sommets-et-p-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force brute pour un graphe de n sommets et p arcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avec-file-de-priorite-pour-un-graphe-de-n-sommets-et-p-arcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avec file de priorité pour un graphe de n sommets et p arcs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="plus-cours-chemin">Plus cours chemin<a class="headerlink" href="#plus-cours-chemin" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d’être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<h2 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h2>
+<h3 id="graphe-pondere">Graphe pondéré<a class="headerlink" href="#graphe-pondere" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Graphe pondéré</p>
+<p>On dit qu'un triplet <span class="arithmatex">\(G = (V, E, p)\)</span> est un graphe pondéré si le couple <span class="arithmatex">\((V,E)\)</span> est un graphe et si <span class="arithmatex">\(p\)</span> est une fonction de <span class="arithmatex">\(E\)</span> dans <span class="arithmatex">\(\mathbb{R}\)</span></p>
+</div>
+<p>On dit que <span class="arithmatex">\(p\)</span> est la (fonction de) <em>pondération</em>. Souvent notée <span class="arithmatex">\(w\)</span> pour weight.</p>
+<p>Si <span class="arithmatex">\(e \in E\)</span>, alors <span class="arithmatex">\(p(e)\)</span> est le <em>poids</em> de <span class="arithmatex">\(e\)</span> ou <em>pondération</em> de <span class="arithmatex">\(e\)</span>.</p>
+<p>Les graphes sont munis par défaut de la fonction de pondération <span class="arithmatex">\(p:E \to \mathbb{R}, e \mapsto 1\)</span>. Donc tout graphe est un graphe pondéré qui s'ignore.</p>
+<h3 id="poids-dune-chaine">Poids d'une chaîne<a class="headerlink" href="#poids-dune-chaine" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Poids d'une chaîne</p>
+<p>Le <em>poids</em> d'une chaîne (resp. chemin) d'un graphe pondéré non orienté (resp. orienté) est la somme des poids des arêtes(resp. arcs) de la chaîne (resp. chemin).</p>
+</div>
+<p>Si <span class="arithmatex">\(c\)</span> est la chaîne <span class="arithmatex">\(x_1, \dots, x_n\)</span> :</p>
+<div class="arithmatex">\[p(c) = \sum_{i=1}^{n-1} p(\{x_i, x_{i+1}\})\]</div>
+<p><pre class="mermaid"><code>graph LR
+A(A) ---- 7 ---&gt; B(B)
+A --- 5 --&gt; C(C)
+A -- 2 --&gt; D
+C --- 6 --&gt; D(D)</code></pre>
+<em>Figure - graphe <span class="arithmatex">\(ABCD\)</span> avec les poids <span class="arithmatex">\(7\)</span> <span class="arithmatex">\(5\)</span> <span class="arithmatex">\(-2\)</span> et <span class="arithmatex">\(6\)</span> en mermaid</em></p>
+<p><span class="arithmatex">\(p(ACDA) = -2 +6 +5 = 9\)</span></p>
+<p><span class="arithmatex">\(p(ADC) = -2+6 = 4 \text{ et } p(AC)=5\)</span></p>
+<p>Le <em>plus court chemin</em> de <span class="arithmatex">\(A\)</span> à <span class="arithmatex">\(C\)</span> est <span class="arithmatex">\(ADC\)</span></p>
+<h3 id="le-plus-court-chemin">Le plus court chemin<a class="headerlink" href="#le-plus-court-chemin" title="Permanent link">&para;</a></h3>
+<p>Etant donné un graphe pondéré, on recherche le plus court chemin d’un sommet à un autre (ou à tous les autres, ou le plus court chemin entre tous les couples de sommets...)</p>
+<div class="admonition example">
+<p><strong>Exemple :</strong></p>
+<p>Dans une carte routière de la France, les villes étant des sommets, les routes étant des arcs, chercher le (ou les) trajet(s) de Paris à Marseille qui optimise(nt) l'un des critères suivants :</p>
+<ul>
+<li>le temps de trajet</li>
+<li>la distance parcourue</li>
+<li>le prix des péages</li>
+</ul>
+</div>
+<h3 id="recherche-de-plus-courts-chemins">Recherche de plus courts chemins<a class="headerlink" href="#recherche-de-plus-courts-chemins" title="Permanent link">&para;</a></h3>
+<p>Dans tout ce qui suit, les graphes sont considérés comme orientés. Si le graphe <span class="arithmatex">\(G\)</span> est non orienté, on l'oriente en construisant le graphe orienté tel que :</p>
+<ul>
+<li><span class="arithmatex">\(G'\)</span> a les mêmes sommets que <span class="arithmatex">\(G\)</span></li>
+<li>pour tout arête <span class="arithmatex">\(\{x, y\}\)</span> de <span class="arithmatex">\(G\)</span>, <span class="arithmatex">\(G'\)</span> possède les arcs <span class="arithmatex">\(\{x, y\}\)</span> et <span class="arithmatex">\(\{y, x\}\)</span></li>
+</ul>
+<p>On recherche pour tout couple de sommets <span class="arithmatex">\((i, j)\)</span> le plus court chemin de <span class="arithmatex">\(i\)</span> à <span class="arithmatex">\(j\)</span> et on calcule sa longueur <span class="arithmatex">\(d(i, j)\)</span>. Si <span class="arithmatex">\(j\)</span> n'est pas accessible depuis <span class="arithmatex">\(i\)</span>, on note <span class="arithmatex">\(d(i, j) = +\infty\)</span>.</p>
+<h3 id="longueur-de-plus-courts-chemins">Longueur de plus courts chemins<a class="headerlink" href="#longueur-de-plus-courts-chemins" title="Permanent link">&para;</a></h3>
+<h4 id="cas-particuliers-des-graphes-orientes-non-ponderes">Cas particuliers des graphes orientés non pondérés<a class="headerlink" href="#cas-particuliers-des-graphes-orientes-non-ponderes" title="Permanent link">&para;</a></h4>
+<p>Si le graphe <span class="arithmatex">\(G\)</span> est orienté et non pondéré, on considère sa pondération par défaut.</p>
+<p>Lors du parcours en largeur les sommets sont explorés par distance croissante au sommet source. Grâce à cette propriété on résout le problème de cheminement suivant : calculer les longueurs des plus courts chemins entre un sommet source et tous les sommets du graphe (voir TD).</p>
+<h3 id="circuits-de-poids-negatif">Circuits de poids négatif<a class="headerlink" href="#circuits-de-poids-negatif" title="Permanent link">&para;</a></h3>
+<p>Pour rechercher un <span class="arithmatex">\(PCC\)</span>( <span class="arithmatex">\(=\)</span> plus court chemin) dans un graphe, il faut s'assurer au préalable que celui-c ne possède pas de circuit de poids négatif. Cela ne veut pas dire que le graphe ne peut pas contenir d'arcs de poids négatif.</p>
+<pre class="mermaid"><code>graph LR
+A(A) -- -1 --&gt; B(B)
+C(C) -- 1 --&gt; A
+B -- -2 --&gt; C
+C --3--&gt; D(D)</code></pre>
+<div class="arithmatex">\[p(ABCA) = -2\]</div>
+<div class="arithmatex">\[p(ABCD) = 0\]</div>
+<div class="arithmatex">\[p(ABCABCD) = -2\]</div>
+<div class="arithmatex">\[p(ABCABCABCD) = -4\]</div>
+<h3 id="sous-chemin-du-plus-court-chemin">Sous-chemin du plus court chemin<a class="headerlink" href="#sous-chemin-du-plus-court-chemin" title="Permanent link">&para;</a></h3>
+<p>Si un <span class="arithmatex">\(PCC\)</span> de <span class="arithmatex">\(A\)</span> à <span class="arithmatex">\(C\)</span> passe par <span class="arithmatex">\(B\)</span>, alors le sous-chemin entre <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span> est un chemin de poids minimum.</p>
+<p>En effet, s’il existe un autre chemin plus court entre <span class="arithmatex">\(A\)</span> et <span class="arithmatex">\(B\)</span>, il suffit de le mettre à la place du premier pour obtenir un nouveau chemin de <span class="arithmatex">\(A\)</span> à <span class="arithmatex">\(C\)</span> encore plus court.</p>
+<ul>
+<li>Ceci contredit le fait que le premier chemin avait un poids minimum.</li>
+<li>Ceci est un cas particulier du principe d’optimalité de Bellman qui dit que l’on peut déduire une solution optimale d’un problème en combinant des solutions optimales d’une série de sous-problèmes.</li>
+</ul>
+<p>Pour les <span class="arithmatex">\(PCC\)</span>, on l’utilise en calculant d’abord les <span class="arithmatex">\(PCC\)</span> passant par un
+sous-ensemble de sommets avant de s’attaquer aux <span class="arithmatex">\(PCC\)</span> passant par
+un ensemble de sommets plus gros.</p>
+<h2 id="algorithme-de-floyd-warshall">Algorithme de Floyd-Warshall<a class="headerlink" href="#algorithme-de-floyd-warshall" title="Permanent link">&para;</a></h2>
+<h3 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<p>L'lagorithme de Floyd-Warshall (parfois appelé algorithme de Roy-Floyd-Warshall car décrit par Bernard Roy en 1959) est un algorithme pour déterminer les distances des plus courts chemins entre toutes les paires de sommets dans un graphe orienté et pondéré, en temps cubique en le nombre de sommets.</p>
+<p>Il prend en entrée un graphe orienté et valué, décrit par une matrice d'adjacence donnant le poids d'un arc lorsqu'il existe et la valeur <span class="arithmatex">\(+\infty\)</span> sinon. Le graphe ne doit pas posséder de circuit de poids strictement négatif.</p>
+<p>C'est un exemple de programmation dynamique.</p>
+<p>Notons <span class="arithmatex">\(\{1, 2, \dots, n\}\)</span> l'ensemble des sommets du graphe.
+On note aussi <span class="arithmatex">\(W_{ij}^k\)</span> la valeur de l'arc allant de <span class="arithmatex">\(i\)</span> à <span class="arithmatex">\(j\)</span> n'empruntant que des sommets intermédiaires dans <span class="arithmatex">\(\{1, 2, \dots, k\}\)</span> s'il en existe un, et <span class="arithmatex">\(+\infty\)</span> sinon.</p>
+<p>On note <span class="arithmatex">\(W^k\)</span> la matrice des <span class="arithmatex">\(W_{ij}^k\)</span></p>
+<p>Pour <span class="arithmatex">\(k=0\)</span>, <span class="arithmatex">\(W^0\)</span> est la matrice d’adjacence par poids.
+Trouvons une relation de récurrence. On considère un chemin <span class="arithmatex">\(C\)</span> entre <span class="arithmatex">\(i\)</span> et <span class="arithmatex">\(j\)</span> de poids minimal dont les sommets intermédiaires sont dans <span class="arithmatex">\(\{1, 2, \dots, k\}\)</span>. De deux choses l’une :</p>
+<ul>
+<li>soit <span class="arithmatex">\(C\)</span> n’emprunte pas le sommet <span class="arithmatex">\(k\)</span> ; </li>
+<li>soit <span class="arithmatex">\(C\)</span> emprunte exactement une fois le sommet <span class="arithmatex">\(k\)</span> (car les circuits sont de poids positifs ou nuls) et <span class="arithmatex">\(C\)</span> est donc la concaténation de deux chemins, <span class="arithmatex">\(C_{i,k}\)</span> entre <span class="arithmatex">\(i\)</span> et <span class="arithmatex">\(k\)</span> et <span class="arithmatex">\(C_{k,j}\)</span> entre <span class="arithmatex">\(k\)</span> et <span class="arithmatex">\(j\)</span> respectivement, dont les sommets intermédiaires sont dans <span class="arithmatex">\(\{1, 2, \dots, k-1\}\)</span>. Par principe de sous-optimalité, si <span class="arithmatex">\(C\)</span> est optimal, <span class="arithmatex">\(C_{i,k}\)</span>, <span class="arithmatex">\(C_{k,j}\)</span> aussi.</li>
+</ul>
+<p>Cela nous donne la relation de récurrence <span class="arithmatex">\(\color{red}{W_{i,j}^k = \min(W_{i,j}^{k-1}, W_{i,k}^{k-1} + W_{k,j}^{k-1})}\)</span>, pour tous <span class="arithmatex">\(i, j\)</span> et <span class="arithmatex">\(k\)</span> dans <span class="arithmatex">\(\{1, 2, \dots, n\}\)</span>. Ainsi on résout les sous-problèmes par valeur de <span class="arithmatex">\(k\)</span> croissante.</p>
+<h3 id="pseudo-code">Pseudo-code<a class="headerlink" href="#pseudo-code" title="Permanent link">&para;</a></h3>
+<h4 id="1er">1er<a class="headerlink" href="#1er" title="Permanent link">&para;</a></h4>
+<p>Inconvénients : on crée une matrice à chaque itération. Coûteux en mémoire.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">fonction</span> <span class="nc">FloydWarshall</span><span class="o">(</span><span class="nc">G</span><span class="o">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="n">entree</span><span class="o">:</span> <span class="n">un</span> <span class="n">graphe</span> <span class="n">orienté</span> <span class="n">pondéré</span> <span class="nc">G</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">sortie</span><span class="o">:</span> <span class="n">la</span> <span class="n">matrice</span> <span class="n">des</span> <span class="n">plus</span> <span class="n">courts</span> <span class="n">chemins</span> <span class="nc">W</span><span class="o">^</span><span class="n">n</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="nc">W⁰</span> <span class="err">⟵</span> <span class="n">matrice</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span> <span class="n">d&#39;adjacence</span> <span class="n">pondérée</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">pour</span> <span class="n">k</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>        <span class="n">créer</span> <span class="n">une</span> <span class="n">matrice</span> <span class="nc">W</span><span class="o">^</span><span class="n">k</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>        <span class="n">pour</span> <span class="n">i</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>            <span class="n">pour</span> <span class="n">j</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>                <span class="nc">W</span><span class="o">^</span><span class="n">k_</span><span class="o">{</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">}</span> <span class="err">⟵</span> <span class="n">min</span><span class="o">(</span><span class="nc">W</span><span class="o">^{</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">}_{</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">},</span> <span class="nc">W</span><span class="o">^{</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">}_{</span><span class="n">i</span><span class="o">,</span><span class="n">k</span><span class="o">}</span> <span class="o">+</span> <span class="nc">W</span><span class="o">^{</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">}{</span><span class="n">k</span><span class="o">,</span><span class="n">j</span><span class="o">})</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">renvoyer</span> <span class="nc">W</span><span class="o">^</span><span class="n">n</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="2nd">2nd<a class="headerlink" href="#2nd" title="Permanent link">&para;</a></h4>
+<p>Avantage : il n'y a plus qu'une matrice modifiée à chaque itération</p>
+<p>Complexité temporelle en <span class="arithmatex">\(\Theta(n^3)\)</span> (triple boucle toujours parcourue)</p>
+<p>Complexité en mémoire de l'ordre du nombre de coefficients, donc <span class="arithmatex">\(\Theta(n^2)\)</span></p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">fonction</span> <span class="nc">FloydWarshall</span><span class="o">(</span><span class="nc">G</span><span class="o">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="n">entree</span><span class="o">:</span> <span class="n">un</span> <span class="n">graphe</span> <span class="n">orienté</span> <span class="n">pondéré</span> <span class="nc">G</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">sortie</span><span class="o">:</span> <span class="n">la</span> <span class="n">matrice</span> <span class="n">des</span> <span class="n">plus</span> <span class="n">courts</span> <span class="n">chemins</span> <span class="nc">W</span><span class="o">^</span><span class="n">n</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="nc">W</span> <span class="o">&lt;-</span> <span class="n">matrice</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span> <span class="n">d&#39;adjacence</span> <span class="n">pondérée</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="n">pour</span> <span class="n">k</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="n">pour</span> <span class="n">i</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>            <span class="n">pour</span> <span class="n">j</span> <span class="n">allant</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">à</span> <span class="n">n</span> <span class="n">faire</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>                <span class="nc">W_</span><span class="o">{</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">}</span> <span class="err">⟵</span> <span class="n">min</span><span class="o">(</span><span class="nc">W_</span><span class="o">{</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">},</span> <span class="nc">W_</span><span class="o">{</span><span class="n">i</span><span class="o">,</span><span class="n">k</span><span class="o">}</span> <span class="o">+</span> <span class="nc">W_</span><span class="o">{</span><span class="n">k</span><span class="o">,</span><span class="n">j</span><span class="o">})</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">renvoyer</span> <span class="nc">W</span>
+</span></code></pre></div></td></tr></table></div>
+<details class="example">
+<summary>Exemple</summary>
+<p>Graphe :
+<pre class="mermaid"><code>graph LR
+A(1) -- -2 --&gt; C(3)
+B(2) -- 4 --&gt; A
+B -- 3 --&gt; C
+C -- 2 --&gt; D
+D -- -1 --&gt; B</code></pre></p>
+<p>Initialisation :</p>
+<div class="arithmatex">\[\begin{pmatrix}
+0 &amp; +\infty &amp; -2 &amp; +\infty \\
+4 &amp; 0 &amp; 3 &amp; +\infty \\
++\infty &amp; +\infty &amp; 0 &amp; 2 \\
++\infty &amp; -1 &amp; +\infty &amp; 0
+\end{pmatrix}\]</div>
+<p>Chemins :</p>
+<div class="arithmatex">\[\begin{pmatrix}
+13 &amp; \\
+21 &amp; 23\\
+34 &amp; \\
+42 &amp; \\
+\end{pmatrix}\]</div>
+<p>Pas de circuit de poids négatif. On ne fera pas mieux que <span class="arithmatex">\(0\)</span> pour aller de <span class="arithmatex">\(x\)</span> à <span class="arithmatex">\(x\)</span>.</p>
+<p><strong>Sommets intermédiaires dans <span class="arithmatex">\(\{1\}\)</span>:</strong></p>
+<div class="arithmatex">\[\begin{pmatrix}
+0 &amp; +\infty &amp; -2 &amp; +\infty \\
+4 &amp; 0 &amp; min(\textbf{3}, \textbf{4}, \textbf{-2}) &amp; +\infty \\
++\infty &amp; +\infty &amp; 0 &amp; 2 \\
++\infty &amp; -1 &amp; +\infty &amp; 0
+\end{pmatrix}\]</div>
+<p>Chemins :</p>
+<div class="arithmatex">\[\begin{pmatrix}
+13 &amp; \\
+21 &amp; \textbf{213}\\
+34 &amp; \\
+42 &amp; \\
+\end{pmatrix}\]</div>
+<p><strong>Sommets intermédiaires dans <span class="arithmatex">\(\{1; 2\}\)</span>:</strong></p>
+<div class="arithmatex">\[\begin{pmatrix}
+0 &amp; +\infty &amp; -2 &amp; +\infty \\
+4 &amp; 0 &amp; 2 &amp; +\infty \\
++\infty &amp; +\infty &amp; 0 &amp; 2 \\
+min(+\infty, \textbf{-1+4}) &amp; -1 &amp; min(+\infty, \textbf{-1+2}) &amp; 0
+\end{pmatrix}\]</div>
+<p>Chemins :</p>
+<div class="arithmatex">\[\begin{pmatrix}
+13 &amp; \\
+21 &amp; 213\\
+34 &amp; \\
+42 &amp; \textbf{421} &amp; \textbf{4213} \\
+\end{pmatrix}\]</div>
+<p><strong>Sommets intermédiaires dans <span class="arithmatex">\(\{1; 2; 3\}\)</span>:</strong></p>
+<div class="arithmatex">\[\begin{pmatrix}
+0 &amp; +\infty &amp; -2 &amp; min(+\infty, \textbf{-2+2}) \\
+4 &amp; 0 &amp; 2 &amp; min(+\infty, \textbf{2+2}) \\
++\infty &amp; +\infty &amp; 0 &amp; 2 \\
+3 &amp; -1 &amp; 1 &amp; 0\\
+\end{pmatrix}\]</div>
+<p>Chemins : </p>
+<div class="arithmatex">\[\begin{pmatrix}
+13 &amp; \textbf{134} &amp; \\
+21 &amp; 213 &amp; \textbf{2134}\\
+34 &amp; &amp; \\
+42 &amp; 421 &amp; 4213 \\
+\end{pmatrix}\]</div>
+<p><strong>Sommets intermédiaires dans <span class="arithmatex">\(\{1; 2; 3; 4\}\)</span>:</strong></p>
+<div class="arithmatex">\[\begin{pmatrix}
+0 &amp; min(+\infty, \textbf{0-1}) &amp; -2 &amp; 0 \\
+4 &amp; 0 &amp; 2 &amp; 4 \\
+min(+\infty, \textbf{3+2}) &amp; min(\infty, \textbf{-1+2}) &amp; 0 &amp; 2 \\
+3 &amp; -1 &amp; 1 &amp; 0\\
+\end{pmatrix}\]</div>
+<p>Chemins :</p>
+<div class="arithmatex">\[\begin{pmatrix}
+13 &amp; 134 &amp; \textbf{1342}\\
+21 &amp; 213 &amp; 2134\\
+34 &amp; \textbf{342} &amp; \textbf{3421} \\
+42 &amp; 421 &amp; 4213 \\
+\end{pmatrix}\]</div>
+<p><span class="arithmatex">\(k = 4\)</span> : On s'arrête là</p>
+</details>
+<h3 id="floyd-warshall-fermeture-transitive">Floyd-Warshall : Fermeture transitive<a class="headerlink" href="#floyd-warshall-fermeture-transitive" title="Permanent link">&para;</a></h3>
+<p>Le problème de la <em>fermeture transitive</em> dans un graphe non pondéré <span class="arithmatex">\(G =(V,E)\)</span> consiste à déterminer si deux sommets <span class="arithmatex">\(a\)</span> et <span class="arithmatex">\(b\)</span> peuvent être reliés par un chemin allant de <span class="arithmatex">\(a\)</span> à <span class="arithmatex">\(b\)</span>.</p>
+<p>Pour cela, on utilise la <em>matrice d'adjacence bouléenne <span class="arithmatex">\(W\)</span></em> dans laquelle <span class="arithmatex">\(W_{i,j}\)</span> vaut <span class="arithmatex">\(\textbf{true}\)</span> si il existe un chemin allant de <span class="arithmatex">\(i\)</span> à <span class="arithmatex">\(j\)</span> et <span class="arithmatex">\(\textbf{false}\)</span> sinon.</p>
+<p>La relation de récurrence devient :</p>
+<div class="arithmatex">\[W_{i,j}^k \leftarrow W_{i,j}^{k-1} \lor (W_{i,k}^{k-1} \land W_{k,j}^{k-1})\]</div>
+<p>On ne cherche pas la longueur d'un chemin mais seulement s'il en existe un.</p>
+<div class="admonition note">
+<p><strong>Correction de Floyd-Warshall lorsque G ne contient pas de cycle de poids strictement négatif</strong></p>
+<p>Invariant : <span class="arithmatex">\(W^k_{i,j}\)</span> est égal au poids d'un chemin minimal reliant <span class="arithmatex">\(v_i\)</span> à <span class="arithmatex">\(v_j\)</span> et ne passant que par des sommets intermédiaires de la liste <span class="arithmatex">\(v_1, \dots, v_k\)</span>.</p>
+<p>Cas de base : Vrai si <span class="arithmatex">\(k = 0\)</span> car <span class="arithmatex">\(W^k_{i,j}\)</span> est le poids du chemin minimal qui relie <span class="arithmatex">\(v_i\)</span> à <span class="arithmatex">\(v_j\)</span> sans passer par aucun sommet intermédiaire. <strong>OK</strong></p>
+<p>Si <span class="arithmatex">\(k &lt; n\)</span>, on suppose l’invariant réalisé et on considère <span class="arithmatex">\(C = v_i \rightsquigarrow v_j\)</span>  un <span class="arithmatex">\(PCC\)</span> ne passant que par les sommets intermédiaire <span class="arithmatex">\(v_1, \dots, v_{k+1}\)</span>. </p>
+<ul>
+<li>Si <span class="arithmatex">\(C\)</span> ne passe pas par <span class="arithmatex">\(v_{k+1}\)</span>, alors, par <strong>HR</strong>, son poids est <span class="arithmatex">\(W^{k+1}_{i,j} = W^k_{i,j}\)</span>. </li>
+<li>S’il passe par <span class="arithmatex">\(v_{k+1}\)</span>, alors il n’y passe qu’une fois (pas de circuit de poids négatif). Il se décompose en <span class="arithmatex">\(C_1 = v_i \rightsquigarrow v_{k+1}\)</span> et <span class="arithmatex">\(C_2 = v_{k+1} \rightsquigarrow v_j\)</span> qui sont des chemins ne passant que par des sommets dans <span class="arithmatex">\(v_1, \dots, v_{k}\)</span> . Par principe d’optimalité, ces chemins sont les meilleurs ne passant que par <span class="arithmatex">\(v_1, \dots, v_{k}, v_{k+1}\)</span>. Donc, par <strong>HR</strong>, leurs poids sont <span class="arithmatex">\(W^k_{i,k+1}\)</span> et <span class="arithmatex">\(W^k_{k+1,j}\)</span>. Le poids de <span class="arithmatex">\(C\)</span> est donc <span class="arithmatex">\(W^k_{i,k+1} + W^k_{k+1,j}\)</span>.</li>
+<li>Finalement, <span class="arithmatex">\(min(w^k_{i,j}, W^k_{i,k+1} + W^k_{j+1,j})\)</span> est le poids minimal d'un chemin reliant <span class="arithmatex">\(v_i\)</span> à <span class="arithmatex">\(v_j\)</span> et ne passant que par les sommets intermédiaire <span class="arithmatex">\(v_1, \dots, v_{k+1}\)</span>. </li>
+</ul>
+<p>Si <span class="arithmatex">\(k=n\)</span>, <span class="arithmatex">\(W\)</span> contient les longueurs de tous les <span class="arithmatex">\(PCC\)</span>. </p>
+</div>
+<h2 id="algorithme-de-dijkstra">Algorithme de Dijkstra<a class="headerlink" href="#algorithme-de-dijkstra" title="Permanent link">&para;</a></h2>
+<h3 id="presentation_1">Présentation<a class="headerlink" href="#presentation_1" title="Permanent link">&para;</a></h3>
+<p>Calcule, dans un graphe orienté pondéré par des <strong>réels positifs</strong>, les plus courts chemins à partir d'une source unique en direction de tous les autres sommets.</p>
+<p>Dû à l'informaticien néerlandais Edsger Dijkstra (par ailleurs prix Turing), publié en 1959.</p>
+<p>Comme les arcs sont de poids positifs, on peut supprimer les boucles : passer par une boucle ne raccourcira jamais un chemin. Dans la suite, nos graphes sont sans boucle.</p>
+<h3 id="necessite-de-la-valuation-positive">Nécessité de la valuation positive<a class="headerlink" href="#necessite-de-la-valuation-positive" title="Permanent link">&para;</a></h3>
+<p>On serait tenté, si un graphe possède des valuations positives,
+d’ajouter une même constante à chaque valuation pour les rendre
+toutes positives afin d’appliquer l’algorithme de Dijkstra.</p>
+<p>Malheureusement cette approche permet certes de trouver les <span class="arithmatex">\(PCC\)</span>
+dans le nouveau graphe mais le chemin suivi peut très bien ne pas
+être le meilleur dans l’ancien.</p>
+<p>Considérons 
+<pre class="mermaid"><code>graph LR
+A(x) --2--&gt; B(y)
+B -- -4 --&gt; C(z)
+A -- 1 --&gt; C</code></pre>
+Le <span class="arithmatex">\(PCC\)</span> de <span class="arithmatex">\(x\)</span> à <span class="arithmatex">\(z\)</span> passe par <span class="arithmatex">\(y\)</span>.</p>
+<p>Ajoutons 4 à toutes les valuations
+<pre class="mermaid"><code>graph LR
+A(x) --6--&gt; B(y)
+B -- 0 --&gt; C(z)
+A -- 5 --&gt; C</code></pre>
+Le <span class="arithmatex">\(PCC\)</span> de <span class="arithmatex">\(x\)</span> à <span class="arithmatex">\(z\)</span> passe par l'arc <span class="arithmatex">\(\{x,z\}\)</span>.</p>
+<h3 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(G\)</span> a pour ensemble de sommets <span class="arithmatex">\([\![ 1, n ]\!]\)</span></p>
+<p>On cherche les <span class="arithmatex">\(PCC\)</span> depuis la <em>source</em> (ou <em>entrée</em>) <span class="arithmatex">\(e\)</span> vers tous les autres sommets.</p>
+<p>Principe :</p>
+<ul>
+<li>A chaque tour, on choisit parmi tous les sommets verts celui dont la distance à l'enrée est la plus petite(le plus court chemin). Ce sommet devient rouge.</li>
+<li>Tout voisin bleu du sommet choisi est ajouté à l'ensemble des sommets verts (en ce sens c'est un parcours en largeur). Les informations concernant les distances à la source des voisins du sommet qui vient de devenir rouge sont mises à jour.</li>
+</ul>
+<p>C'est un algorithme glouton dont le résultat est optimal. Nous avons vu qu'il existe des algos gloutons non optimaux(par exemple pour la coloration).</p>
+<p>L'ensemble des sommets verts est noté <span class="arithmatex">\(F\)</span> car il est souvent implémenté avec un file de priorité. Graphe <span class="arithmatex">\(G = (S,A)\)</span></p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nc">F</span> <span class="o">:=</span> <span class="o">{</span><span class="n">e</span><span class="o">}</span> <span class="o">/*</span><span class="n">sommets</span> <span class="n">en</span> <span class="n">cours</span> <span class="n">de</span> <span class="n">traitement</span> <span class="o">(=</span><span class="n">verts</span><span class="o">)*/</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nc">E</span> <span class="o">:=</span> <span class="err">∅</span> <span class="o">/*</span><span class="n">sommets</span> <span class="n">traités</span> <span class="o">=</span> <span class="n">sommets</span> <span class="n">rouges</span><span class="o">*/</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nc">D</span> <span class="o">:=</span> <span class="n">tableau</span> <span class="n">des</span> <span class="n">distances</span> <span class="n">minimales</span> <span class="o">(</span><span class="n">d_e</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">k</span> <span class="err">≠</span> <span class="n">e</span> <span class="err">⇒</span> <span class="n">d_k</span> <span class="o">=</span> <span class="o">+</span><span class="err">∞</span><span class="o">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">tant</span> <span class="n">que</span> <span class="nc">F</span> <span class="err">≠</span> <span class="err">∅</span> <span class="n">faire</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="n">choisir</span> <span class="n">k</span> <span class="err">∈</span> <span class="nc">F</span> <span class="n">avec</span> <span class="n">d_k</span> <span class="n">minimal</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="nc">F</span> <span class="o">:=</span> <span class="nc">F</span> <span class="err">\</span> <span class="o">{</span><span class="n">k</span><span class="o">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="nc">E</span> <span class="o">:=</span> <span class="nc">E</span> <span class="err">∪</span> <span class="o">{</span><span class="n">k</span><span class="o">}</span> <span class="o">/*</span><span class="n">k</span> <span class="n">devient</span> <span class="n">rouge</span><span class="o">*/</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="n">pour</span> <span class="n">tout</span> <span class="n">voisin</span> <span class="n">v</span> <span class="n">de</span> <span class="n">k</span> <span class="n">non</span> <span class="n">rouge</span> <span class="n">faire</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>        <span class="n">si</span> <span class="n">v</span> <span class="err">∉</span> <span class="nc">F</span> <span class="o">/*</span><span class="n">si</span> <span class="n">v</span> <span class="n">est</span> <span class="n">bleu</span><span class="o">*/</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>            <span class="nc">F</span> <span class="o">:=</span> <span class="nc">F</span> <span class="err">∪</span> <span class="o">{</span><span class="n">v</span><span class="o">}</span> <span class="o">/*</span><span class="n">v</span> <span class="n">devient</span> <span class="n">vert</span><span class="o">*/</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>        <span class="n">fin</span> <span class="n">si</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>        <span class="n">si</span> <span class="n">d_k</span> <span class="o">+</span> <span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">v</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">d_v</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>            <span class="o">/*</span><span class="n">passer</span> <span class="n">par</span> <span class="n">k</span> <span class="n">pour</span> <span class="n">atteindre</span> <span class="n">v</span> <span class="n">est</span> <span class="n">plus</span> <span class="n">rentable</span><span class="o">*/</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>            <span class="n">d_v</span> <span class="o">:=</span> <span class="n">d_k</span> <span class="o">+</span> <span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">v</span><span class="o">)</span> <span class="o">/*</span><span class="n">maj</span> <span class="n">tab</span><span class="o">.</span> <span class="n">des</span> <span class="n">distances</span><span class="o">*/</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="n">fin</span> <span class="n">si</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a>    <span class="n">fin</span> <span class="n">faire</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="n">fin</span> <span class="n">faire</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="variant">Variant<a class="headerlink" href="#variant" title="Permanent link">&para;</a></h3>
+<p>Pour un graphe <span class="arithmatex">\(G (S, A)\)</span>, on note <span class="arithmatex">\(B=S \setminus (F \cup E)\)</span> l'ensemble des sommets bleus.</p>
+<ul>
+<li>Variant : <span class="arithmatex">\(|F| + |B|\)</span> (cardinal de l'ensemble de sommets verts ou bleus). Quantité entière positive.</li>
+<li>
+<p>C'est une quantité décroissante strictement à la fin de chaque tour de boucle car :</p>
+<ul>
+<li>on retire toujours un sommet de <span class="arithmatex">\(F\)</span> (si ce n'est pas possible, <span class="arithmatex">\(F=\emptyset\)</span> et l'algorithme s'arrête).</li>
+<li>tout sommet ajouté à <span class="arithmatex">\(F\)</span> est retiré de <span class="arithmatex">\(B\)</span>.</li>
+<li>ainsi, l'ensemble de  s sommets verts ou bleus comporte un élément de moins à la fin d'un tour par rapport au tour précédent.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p>On gère en plus un tableau <span class="arithmatex">\(P\)</span> (prédécesseur) qui garde en mémoire la dernière étape sur le chemin de la source au sommet considéré.</p>
+<p><p align="center"><img src="/images/PCC/pcc_anim.gif"></p></p>
+<div class="arithmatex">\[ 
+\begin{array}{c|c|c|c}
+\text{F} &amp; \text{E} &amp; \text{T} &amp; \text{P} \\
+\hline
+\{1\} &amp; \emptyset &amp; [\![0; \infty; \infty; \infty ; \infty ]\!] &amp; [\![ 1,-1,-1,-1,-1]\!] \\
+\{2; 5\} &amp; \{1\} &amp; [\![0; 12; \infty; \infty ; 5 ]\!] &amp; [\![ 1,1,-1,-1,1]\!] \\
+\{2;3;4\} &amp; \{1;5\} &amp; [\![0; 6; 9; 7 ; 5 ]\!] &amp; [\![ 1,5,5,5,1]\!] \\
+\{3;4\} &amp; \{1;5;2\} &amp; [\![0; 6; 8; 7 ; 5 ]\!] &amp; [\![ 1,5,2,5,1]\!] \\
+\{3\} &amp; \{1;5;2;4\} &amp; [\![0; 6; 8; 7 ; 5 ]\!] &amp; [\![ 1,5,2,5,1]\!] \\
+\emptyset &amp; \{1;5;2;4;3\} &amp; [\![0; 6; 8; 7 ; 5 ]\!] &amp; [\![ 1,5,2,5,1]\!] \\
+\end{array}
+\]</div>
+<p><span class="arithmatex">\(PCC\)</span> pour aller de 1 à 3 :</p>
+<ul>
+<li>On a <span class="arithmatex">\(T = [\![0; 6; 8; 7 ; 5 ]\!]\)</span> et <span class="arithmatex">\(P = [\![ 1,5,2,5,1]\!]\)</span>.</li>
+<li>prédecesseur de <span class="arithmatex">\(3\)</span> : <span class="arithmatex">\(P[3] = 2\)</span>.</li>
+<li>prédecesseur de <span class="arithmatex">\(2\)</span> : <span class="arithmatex">\(P[2] = 5\)</span>.</li>
+<li>prédecesseur de <span class="arithmatex">\(5\)</span> : <span class="arithmatex">\(P[5] = 1\)</span>.</li>
+<li>Donc <span class="arithmatex">\(1523\)</span> avec un coût de <span class="arithmatex">\(8\)</span>.</li>
+</ul>
+</div>
+<h3 id="correction">Correction<a class="headerlink" href="#correction" title="Permanent link">&para;</a></h3>
+<p>Pour un graphe <span class="arithmatex">\(G\)</span> d'ensemble de sommets <span class="arithmatex">\(S\)</span>, notons <span class="arithmatex">\(D\)</span> le tableau des distances et <span class="arithmatex">\(\delta(e,u)\)</span> la longueur d'un <span class="arithmatex">\(PCC\)</span> de <span class="arithmatex">\(e\)</span> à <span class="arithmatex">\(u\)</span>, <span class="arithmatex">\(w(a, b)\)</span> le poids de l'arc <span class="arithmatex">\(a \rightarrow b\)</span>.</p>
+<div class="admonition definition">
+<p><strong>Théorème</strong></p>
+<p>A la fin de l'Algorithme de Dijkstra, on a <span class="arithmatex">\(d_u = \delta(e, u)\)</span> pour tout sommet <span class="arithmatex">\(u \in S\)</span>.</p>
+</div>
+<div class="admonition note">
+<p><strong>Notations</strong></p>
+<p>On note <span class="arithmatex">\(F^k; E^k, d_u^k\)</span> les valeurs de <span class="arithmatex">\(F, E, d_u\)</span> à la fin de l'itération <span class="arithmatex">\(k\)</span>.</p>
+<p><span class="arithmatex">\(F^k\)</span> est l'ensemble des sommets verts à la fin de l'itération <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(E^k\)</span> l'ensemble des sommets rouges et <span class="arithmatex">\(S \setminus (F^k \cup E^k)\)</span> l'ensemble des sommets bleus.</p>
+<p>Un sommet <span class="arithmatex">\(u\)</span> est bleu à la fin de l'étape <span class="arithmatex">\(k\)</span> si et seulement si <span class="arithmatex">\(d_u = +\infty\)</span> si et seulement si <span class="arithmatex">\(u\)</span> n'est voisin d'aucun sommet rouge à la fin de l'étape <span class="arithmatex">\(k\)</span>.</p>
+<p>Pour tout sommet <span class="arithmatex">\(u \in S\)</span>, <span class="arithmatex">\(d_u &lt; +\infty\)</span> documente un chemin de <span class="arithmatex">\(e\)</span> à <span class="arithmatex">\(u\)</span> n'empruntant que des sommets verts ou rouges.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Rappel</strong></p>
+<p>A la fin du parcours, les sommets accessibles depuis <span class="arithmatex">\(e\)</span> sont dans <span class="arithmatex">\(E\)</span></p>
+</div>
+<p>Invariant de boucle :</p>
+<ol>
+<li>Sommets rouges : <span class="arithmatex">\(\forall u \in E^k, d_u^k = \delta(e, u)\)</span> <strong>(point 1)</strong></li>
+<li>Sommet <span class="arithmatex">\(v\)</span> vert ou bleu différents de <span class="arithmatex">\(e\)</span> : <span class="arithmatex">\(d_v^k = min(\{d_u^k + w(u, v) | u \in E^k\})\)</span> ce qui revient par le point 1 à <span class="arithmatex">\(d_v^k = min(\{\delta(e, u) + w(u, v) | u \in E^k\})\)</span> <strong>(point 2)</strong></li>
+</ol>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>La distance <span class="arithmatex">\(d^k_v\)</span> est donc le poids minimal d'un chemin vert-rouge de <span class="arithmatex">\(e\)</span> à <span class="arithmatex">\(v\)</span> dont l'avant dernier sommet est rouge.</p>
+<p>Pour un sommet bleu <span class="arithmatex">\(v\)</span> à l'étape k, les <span class="arithmatex">\(w(u, v)\)</span> pour <span class="arithmatex">\(u\)</span> rouge étant infinis(car <span class="arithmatex">\(v\)</span> n'est pas voisin d'un rouge), on retrouve que <span class="arithmatex">\(d_v^k = +\infty\)</span>.</p>
+</div>
+<p><strong>Cas de base :</strong></p>
+<ul>
+<li>
+<p>Au tour 0 (avant la boucle) :</p>
+<ul>
+<li>L'ensemble des sommets rouge est vide, donc pour un sommet <span class="arithmatex">\(v \neq e\)</span> le minimum des sommes <span class="arithmatex">\(\delta(u,v) + w(u,v)\)</span> pour les u rouges est infini. Or <span class="arithmatex">\(d_v^0 = +\infty\)</span> : <strong>Point 2 OK</strong>.</li>
+<li>Le point 1 est vrai car il n'y a pas de sommet rouge.</li>
+</ul>
+</li>
+<li>
+<p>A la fin du 1er tour de boucle <span class="arithmatex">\(e\)</span> est rouge, <span class="arithmatex">\(d_e^1 = 0 = \delta(e, e)\)</span> (Point 1 OK) et <span class="arithmatex">\(d_v^1 = w(e,v)\)</span> pour tout <span class="arithmatex">\(v \neq e\)</span> donc <span class="arithmatex">\(d_v^1 = min(\{\delta(e, u) + w(e,v) | u \in E^1\})\)</span> <strong>(Point 2 OK)</strong> puisque seul <span class="arithmatex">\(e\)</span> est rouge.</p>
+</li>
+</ul>
+<p><strong>Hérédité (pour le point 1) :</strong></p>
+<p>Soit <span class="arithmatex">\(u\)</span> un sommet rouge à la fin de l'étape <span class="arithmatex">\(k+1(k \geq 1)\)</span>.</p>
+<ul>
+<li>On a <span class="arithmatex">\(d_u^{k+1} = d_u^k\)</span> (pas de changement dans le tableau des distances).</li>
+<li>Comme <span class="arithmatex">\(u\)</span> est rouge, il est accessible, donc <span class="arithmatex">\(d_u^{k+1}\)</span> est fini, donc le chemin qui le document n'emprunte que des sommets verts ou rouges.</li>
+<li>Si <span class="arithmatex">\(u \notin E^{k+1}\setminus E^k\)</span>, c'est à dire si <span class="arithmatex">\(u\)</span> n'est pas le sommet qu'on vient de rendre rouge, alors <span class="arithmatex">\(u in E^k\)</span> et par HR <span class="arithmatex">\(d_u^k = \delta(e, u)\)</span> <strong>(Point 1 OK)</strong>.</li>
+<li>
+<p>Si <span class="arithmatex">\(u\)</span> entre dans <span class="arithmatex">\(E^{k+1}\)</span> alors au début du passage <span class="arithmatex">\(k+1\)</span>, <span class="arithmatex">\(u\)</span> est vert (<span class="arithmatex">\(u \in F^k\)</span>) et <span class="arithmatex">\(d_u^k \leq d_s^k\)</span> pour tout sommet vert <span class="arithmatex">\(s\)</span> (car <span class="arithmatex">\(u\)</span> est choisi).</p>
+<ul>
+<li>Soit <span class="arithmatex">\(\color{red}{e \rightsquigarrow \textit{u} \text{ un } PCC \text{ et } \textit{v} \text{ son premier sommet non rouge}}\)</span> (<span class="arithmatex">\(u=v\)</span> possible). Les sous chemins <span class="arithmatex">\(e \rightsquigarrow v\)</span> et <span class="arithmatex">\(v \rightsquigarrow u\)</span> sont des <span class="arithmatex">\(PCC\)</span> par principe d'optimalité. Comme les poids des arcs sont positifs (condition Dijkstra), il vient que <span class="arithmatex">\(\color{red}{\delta(e, u) \geq \delta(e, v)}\)</span>.</li>
+<li><span class="arithmatex">\(\color{red}{\text{Le prédécesseur } \textit{r} \text{ de } \textit{v} \text{ dans } e \rightsquigarrow v \text{ est rouge et différent de u}}\)</span>
+<span class="arithmatex">\(\color{red}{\text{ donc } d_r^k = \delta(e, r) \text{par HR.}}\)</span></li>
+<li><span class="arithmatex">\(\color{red}{\text{Comme } \textit{v} \text{ n'est pas rouge, il vérifie le point 2}}\)</span> donc </li>
+</ul>
+<div class="arithmatex">\[
+\begin{align}\nonumber
+    d_v^k &amp; \space\space\space\space\space\space = \space\space\space\space min(\{\delta(e,x) + w(x,v) | x \in E^k\})\text{ par HR.(2)}\\ \nonumber
+    &amp;\underbrace{=}_{e\rightsquigarrow r \rightarrow v \text{ PCC}} \delta(e, r) + w(r, v) = \delta(e,v)\\
+\end{align} \\
+\color{red}\text{Ainsi } d^k_v = \delta(e,v)
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\color{red}{\text{On a } \delta(e,u) \geq \delta(e,v)}\)</span>. Et <span class="arithmatex">\(d^k_v \geq d^k_u\)</span> car <span class="arithmatex">\(u\)</span> est choisi. Or, <span class="arithmatex">\(d_u^k\)</span> est le poids d'un chemin de <span class="arithmatex">\(e\)</span> à <span class="arithmatex">\(u\)</span> donc plus grand que <span class="arithmatex">\(\delta(e,u)\)</span> alors</li>
+</ul>
+<div class="arithmatex">\[
+    \delta(e,u) \geq \delta(e,v) = d^k_v \geq d^k_u \geq \delta(e,u) \textbf{ Point 1 OK}
+\]</div>
+</li>
+</ul>
+<p><strong>Hérédité (pour le point 2) :</strong></p>
+<p>Soit <span class="arithmatex">\(v\)</span> un sommet vert ou bleu à la fin de l'étape <span class="arithmatex">\(k+1\)</span> <span class="arithmatex">\(\color{red}{\text{non voisin}}\)</span> de l'élément <span class="arithmatex">\(u\)</span> qui entre dans <span class="arithmatex">\(E^{k+1}\)</span>.</p>
+<ul>
+<li>Alors <span class="arithmatex">\(d_v^k = d^{k+1}_v\)</span> car <span class="arithmatex">\(d^k_u + w(u,v) = +\infty\)</span></li>
+<li>
+<p>On a :</p>
+<div class="arithmatex">\[
+\begin{align}
+    D^{k+1}_v &amp;= d^k_v&amp; \\ \nonumber
+    &amp;= min(\{\delta(e, x) + w(x, v) | x \in \underbrace{E^{k+1}}_{E^{k+1}\backslash\{u\}}\})&amp;\\ \nonumber
+    &amp;= min(\{\delta(x,k) + w(x, v) | x \in E^k\}\cup\{\underbrace{\delta(e,u)+w(u,v)}_{=+\infty}\}) &amp;\\ \nonumber
+    &amp;= min(\{\delta(e,x) + w(x, v) | x \in E^{k+1}\})\color{red}{\text{ : Point 2 OK}} \nonumber
+\end{align}
+\]</div>
+</li>
+</ul>
+<p>Soit <span class="arithmatex">\(v\)</span> vert ou bleu à la fin de l'étape <span class="arithmatex">\(k+1\)</span> et <span class="arithmatex">\(\color{red}{\text{voisin}}\)</span> de l'élément rouge <span class="arithmatex">\(u\)</span> entrant dans <span class="arithmatex">\(E^{k+1}\)</span>.</p>
+<ul>
+<li>
+<p>Le sommet <span class="arithmatex">\(v\)</span> est vert ou bleu à l'étape <span class="arithmatex">\(k\)</span> mais vert à l'étape <span class="arithmatex">\(k+1\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(d_v^k = min(\{\delta(e, x) + w(x, v) | x \in E^k\})\)</span> par HR.2</li>
+<li><span class="arithmatex">\(d_v^{k+1} = min(d^k_v, \underbrace{d_u^k}_{=\delta(e,u)\text{ par HR.1}} + w(u,v))\)</span> par algo Dijkstra</li>
+</ul>
+</li>
+<li>
+<p>On a donc encore</p>
+<div class="arithmatex">\[
+    d^{k+1}_v = min(\{\delta(e, x) + w(x, v) | x \in \underbrace{E^{k+1}}_{E^k\cup\{u\}}\}) \textbf{ Point 2 OK }\text{dans ce cas}
+\]</div>
+</li>
+</ul>
+<h3 id="complexite-pour-une-source-e">Complexité pour une source e<a class="headerlink" href="#complexite-pour-une-source-e" title="Permanent link">&para;</a></h3>
+<h4 id="force-brute-pour-un-graphe-de-n-sommets-et-p-arcs">Force brute pour un graphe de n sommets et p arcs<a class="headerlink" href="#force-brute-pour-un-graphe-de-n-sommets-et-p-arcs" title="Permanent link">&para;</a></h4>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nc">F</span> <span class="o">:=</span> <span class="o">{</span><span class="n">e</span><span class="o">};</span> <span class="nc">E</span> <span class="o">:=</span> <span class="err">∅</span><span class="o">;</span> <span class="nc">D</span> <span class="o">:=</span> <span class="n">tableau</span> <span class="n">des</span> <span class="n">distances</span> <span class="n">minimales</span><span class="o">;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">tant</span> <span class="n">que</span> <span class="nc">F</span> <span class="n">non</span> <span class="n">vide</span> <span class="n">faire</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="nc">Choisir</span> <span class="n">k</span> <span class="n">dans</span> <span class="nc">F</span> <span class="n">avec</span> <span class="n">d_k</span> <span class="n">minimal</span> <span class="o">/*</span><span class="n">explorer</span> <span class="nc">D</span> <span class="n">en</span> <span class="nc">O</span><span class="o">(</span><span class="n">n</span><span class="o">)*/</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="nc">F</span> <span class="o">:=</span> <span class="nc">F</span><span class="err">\</span><span class="o">{</span><span class="n">k</span><span class="o">};</span> <span class="nc">E</span> <span class="o">:=</span> <span class="nc">E</span><span class="err">∪</span><span class="o">{</span><span class="n">k</span><span class="o">};</span> <span class="o">/*</span><span class="nc">MAJ</span> <span class="n">en</span> <span class="nc">O</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="n">si</span> <span class="nc">E</span><span class="o">,</span><span class="nc">F</span> <span class="n">tableaux</span><span class="o">*/</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="n">pour</span> <span class="n">tout</span> <span class="n">voisin</span> <span class="n">r</span> <span class="n">de</span> <span class="n">k</span> <span class="n">non</span> <span class="n">rouge</span> <span class="n">faire</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="n">si</span> <span class="n">r</span> <span class="err">∉</span> <span class="nc">F</span> <span class="n">faire</span> <span class="o">/*</span> <span class="n">cas</span> <span class="n">r</span> <span class="n">bleu</span><span class="o">*/</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>            <span class="nc">F</span> <span class="o">:=</span> <span class="nc">F</span><span class="err">∪</span><span class="o">{</span><span class="n">r</span><span class="o">};</span> <span class="o">/*</span><span class="nc">O</span><span class="o">(</span><span class="mi">1</span><span class="o">)*/</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>        <span class="n">si</span> <span class="n">d_k</span> <span class="o">+</span> <span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">r</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">d_r</span> <span class="n">faire</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>            <span class="n">d_r</span> <span class="o">:=</span> <span class="n">d_k</span> <span class="o">+</span> <span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">r</span><span class="o">);</span> <span class="o">/*</span><span class="n">maj</span> <span class="n">tableau</span> <span class="n">des</span> <span class="n">distances</span> <span class="n">en</span> <span class="nc">O</span><span class="o">(</span><span class="mi">1</span><span class="o">)*/</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Au plus <span class="arithmatex">\(n\)</span> transferts de <span class="arithmatex">\(F\)</span> vers <span class="arithmatex">\(E\)</span> (ligne L4). Pour chacun recherche (ligne L3) du plus petit élément vert dans le tableau des distances : <span class="arithmatex">\(O(n)\)</span></p>
+<p>(L5 à L9) Coût des vérifications et mises à jour pour un sommet <span class="arithmatex">\(k\)</span> :
+<span class="arithmatex">\(O (deg^{+} k )\)</span>. Au total, complexité en multiple de :
+<span class="arithmatex">\(n + \sum_{k = 0}^{n-1} (n + deg^{+} k) = n + n^2 + p = O(n^2)\text{ (Rappel : }p = O(n²))\)</span></p>
+<h4 id="avec-file-de-priorite-pour-un-graphe-de-n-sommets-et-p-arcs">Avec file de priorité pour un graphe de n sommets et p arcs<a class="headerlink" href="#avec-file-de-priorite-pour-un-graphe-de-n-sommets-et-p-arcs" title="Permanent link">&para;</a></h4>
+<p>Puisqu’on gère un ensemble <span class="arithmatex">\(F\)</span> des sommets verts et un tableau <span class="arithmatex">\(D\)</span> des distances à la source, on peut les fusionner en une seule file de priorité <span class="arithmatex">\(T\)</span> d’éléments <span class="arithmatex">\((s ,d (e,s ))\)</span>.</p>
+<p>On implante les files de priorité comme des tas. On considère donc un tas-min (fils plus grands que père). Création par descente en <span class="arithmatex">\(O (n)\)</span>. On gère en interne <span class="arithmatex">\(\color{red}{\text{un tableau des positions dans le tas}}\)</span> pour obtenir en <span class="arithmatex">\(O (1)\)</span> la position d'un sommet dans <span class="arithmatex">\(T\)</span> en vue d'une MAJ.</p>
+<div class="language-ocaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span>
+<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nc">E</span> <span class="o">:=</span> <span class="err">∅</span><span class="o">;</span> <span class="o">/*</span><span class="n">sommets</span> <span class="n">rouges</span><span class="o">*/</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nc">T</span> <span class="o">:=</span> <span class="n">tas</span><span class="o">-</span><span class="n">min</span> <span class="n">des</span> <span class="n">couples</span> <span class="o">(</span><span class="n">sommet</span><span class="o">,</span> <span class="n">distance</span> <span class="n">depuis</span> <span class="n">e</span><span class="o">);</span> <span class="o">/*</span><span class="nc">O</span><span class="o">(</span><span class="n">n</span><span class="o">)*/</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">tant</span> <span class="n">que</span> <span class="nc">T</span> <span class="err">≠</span> <span class="err">∅</span> <span class="o">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="n">retirer</span> <span class="n">le</span> <span class="n">sommet</span> <span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">d</span><span class="o">(</span><span class="n">e</span><span class="o">,</span><span class="n">k</span><span class="o">))</span> <span class="n">du</span> <span class="n">tas</span> <span class="nc">T</span> <span class="o">/*</span><span class="nc">O</span><span class="o">(</span><span class="n">ln</span> <span class="n">n</span><span class="o">)*/</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="nc">E</span> <span class="o">:=</span> <span class="nc">E</span><span class="err">∪</span><span class="o">{</span><span class="n">k</span><span class="o">};</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="n">pour</span> <span class="n">tout</span> <span class="n">voisin</span> <span class="n">r</span> <span class="n">de</span> <span class="n">k</span> <span class="n">non</span> <span class="n">traité</span> <span class="o">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>        <span class="o">/*</span><span class="n">nb</span> <span class="n">passages</span> <span class="o">:</span> <span class="n">deg</span><span class="o">^+</span> <span class="n">k</span><span class="o">*/</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>        <span class="n">si</span> <span class="n">d</span><span class="o">(</span><span class="n">e</span><span class="o">,</span><span class="n">k</span><span class="o">)+</span><span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">r</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="o">(</span><span class="n">e</span><span class="o">,</span><span class="n">r</span><span class="o">):</span> <span class="o">/*</span><span class="nc">O</span><span class="o">(</span><span class="mi">1</span><span class="o">)*/</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>            <span class="nc">MAJ</span> <span class="nc">T</span> <span class="n">avec</span> <span class="n">d</span><span class="o">(</span><span class="n">e</span><span class="o">,</span><span class="n">r</span><span class="o">)</span> <span class="o">:=</span> <span class="n">d</span><span class="o">(</span><span class="n">e</span><span class="o">,</span><span class="n">k</span><span class="o">)+</span><span class="n">w</span><span class="o">(</span><span class="n">k</span> <span class="err">⟶</span> <span class="n">r</span><span class="o">)</span> <span class="o">/*</span><span class="nc">O</span><span class="o">(</span><span class="n">ln</span> <span class="n">n</span><span class="o">)*/</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Complexité de chaque accès/maj dans la file majoré en <span class="arithmatex">\(O (\log n)\)</span>. La file de priorité contient au plus <span class="arithmatex">\(n\)</span> éléments.</li>
+<li>Par passage dans la boucle <code>while</code> : choix puis suppression du sommet <span class="arithmatex">\(k\)</span> le plus prioritaire : <span class="arithmatex">\(O(\log n)\)</span>. Pour ses <span class="arithmatex">\(deg^{+} k\)</span> voisins, au plus <span class="arithmatex">\(deg^{+} k\)</span> maj de clés. Donc coût pour <span class="arithmatex">\(k\)</span> en <span class="arithmatex">\(O((1+deg^{+}k)\log n)\)</span>. Coût total </li>
+</ul>
+<div class="arithmatex">\[ \underbrace{n}_{\text{création du tas}} + \sum_{e=0}^{n-1} (deg^{+} k + 1) \log n = \newline n + n \log n + \log n \sum_{e=0}^{n-1} (deg^{+} k) \leq n \log n + p \log n \]</div>
+<ul>
+<li>Complexité en <span class="arithmatex">\(O((n + p) \log n)\)</span></li>
+<li>Si <span class="arithmatex">\(p \log n = O(n^2)\)</span>, c'est à dire si <span class="arithmatex">\(p = O(\frac{n^2}{\log n})\)</span>, la complexité avec file de priorités est au moins aussi bonne qu'en force brute.</li>
+<li>Si le graphe est creux (peu d'arêtes), <span class="arithmatex">\(p=O(n)\)</span>, et donc la complexité avec file de priorité est <span class="arithmatex">\(O(n \log n)\)</span>.</li>
+<li>Mais si le graphe est dense (par exemple complet) il y a un nombre d'arc ou d'arêtes en <span class="arithmatex">\(p=O(n^2)\)</span>, et donc la complexité avec file de priorité est <span class="arithmatex">\(O(n^2 \log n)\)</span>. Dans ce cas, l'implémentation par file de priorité n'est pas intéressante.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

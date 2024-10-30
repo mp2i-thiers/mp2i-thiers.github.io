@@ -1,0 +1,3582 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1-BDD_intro/">
+      
+      
+        <link rel="next" href="../3-DeuxTables/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Requêtes sur une table - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requetes-sur-une-table" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requêtes sur une table
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langages-de-requetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Langages de requêtes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syntaxe-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntaxe SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrogation-de-la-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrogation de la table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interrogation de la table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-identite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction identité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choix-de-colonnes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix de colonnes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choix de colonnes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrer-des-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrer des lignes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtrer des lignes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clause-colorbluetextttwhere-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clause \(\color{blue}\texttt{WHERE}\) (Sélection)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrer-des-colonnes-et-des-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrer des colonnes et des lignes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enlever-des-doublons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enlever des doublons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enlever des doublons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorbluetextttdistinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\color{blue}\texttt{DISTINCT}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operateurs-de-comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateurs de comparaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-avec-des-colonnes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul avec des colonnes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calcul avec des colonnes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renommage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renommage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparaison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operateur-colorbluetextttlike" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateur \(\color{blue}\texttt{LIKE}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trier-avec-colorbluetextttorder-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trier avec \(\color{blue}\texttt{ORDER BY}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiter-le-nombre-de-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiter le nombre de lignes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limiter le nombre de lignes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorbluetextttlimit-pour-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\color{blue}\texttt{LIMIT}\) pour MYSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donner-un-point-de-depart-colorbluetextttoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Donner un point de départ : \(\color{blue}\texttt{OFFSET}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cases-vides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cases vides
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cases vides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttnull" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{NULL}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-dune-fonction-dagregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application d'une fonction d'agrégation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-fonctions-colorbluetextttmincolorbluetexttt-maxcolorbluetexttt-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les fonctions \(\color{blue}\texttt{MIN}\),\(\color{blue}\texttt{ MAX}\),\(\color{blue}\texttt{ SUM}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{IN}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le mot clé \(\color{blue}\texttt{IN}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#un-raccourci-pour-eviter-de-multiples-conditions-textttor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un raccourci pour éviter de multiples conditions \(\texttt{OR}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langages-de-requetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Langages de requêtes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syntaxe-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntaxe SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Création
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrogation-de-la-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrogation de la table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interrogation de la table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonction-identite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction identité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choix-de-colonnes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix de colonnes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choix de colonnes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrer-des-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrer des lignes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtrer des lignes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clause-colorbluetextttwhere-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clause \(\color{blue}\texttt{WHERE}\) (Sélection)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtrer-des-colonnes-et-des-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtrer des colonnes et des lignes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enlever-des-doublons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enlever des doublons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enlever des doublons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorbluetextttdistinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\color{blue}\texttt{DISTINCT}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operateurs-de-comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateurs de comparaison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-avec-des-colonnes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul avec des colonnes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calcul avec des colonnes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renommage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renommage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparaison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operateur-colorbluetextttlike" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérateur \(\color{blue}\texttt{LIKE}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trier-avec-colorbluetextttorder-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trier avec \(\color{blue}\texttt{ORDER BY}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiter-le-nombre-de-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiter le nombre de lignes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limiter le nombre de lignes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorbluetextttlimit-pour-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\color{blue}\texttt{LIMIT}\) pour MYSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donner-un-point-de-depart-colorbluetextttoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Donner un point de départ : \(\color{blue}\texttt{OFFSET}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cases-vides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cases vides
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cases vides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttnull" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{NULL}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-dune-fonction-dagregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application d'une fonction d'agrégation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-fonctions-colorbluetextttmincolorbluetexttt-maxcolorbluetexttt-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les fonctions \(\color{blue}\texttt{MIN}\),\(\color{blue}\texttt{ MAX}\),\(\color{blue}\texttt{ SUM}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-mot-cle-colorbluetextttin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le mot clé \(\color{blue}\texttt{IN}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le mot clé \(\color{blue}\texttt{IN}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#un-raccourci-pour-eviter-de-multiples-conditions-textttor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un raccourci pour éviter de multiples conditions \(\texttt{OR}\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="requetes-sur-une-table">Requêtes sur une table<a class="headerlink" href="#requetes-sur-une-table" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>Un cours de Quentin Fortier</li>
+<li>Le tuto SQL du <a href="https://www.w3schools.com/sql/">W3C</a> (indispensable)</li>
+<li>Un cours en français <a href="https://sql.sh/cours">ici</a></li>
+</ul>
+</div>
+<h2 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
+<h3 id="langages-de-requetes">Langages de requêtes<a class="headerlink" href="#langages-de-requetes" title="Permanent link">&para;</a></h3>
+<p>On accède à des informations d'une base de donnée avec un <em>langage de requêtes</em>.</p>
+<p>On n'utilise ni variable ni boucle contrairement aux langages de programmation habituels.</p>
+<p>On écrit (dans un certain langage) <span class="arithmatex">\(\underline{\textsf{ce qu'on veut obtenir}}\)</span> mais pas <span class="arithmatex">\(\underline{\textsf{comment l'obtenir}}\)</span>. On laisse le SGBD se débrouiller.</p>
+<div class="admonition example">
+<p class="admonition-title">Somme des capacités de salles</p>
+<p>D'après un exemple de Q. Fortier. On cherche le nombre de places dans des salles de cinéma climatisées à Marseille.</p>
+<ul>
+<li>En <strong>Python</strong>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">for</span> <span class="n">salle</span> <span class="ow">in</span> <span class="n">liste_des_salles</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">si</span> <span class="n">climatisé</span><span class="p">(</span><span class="n">salle</span><span class="p">)</span> <span class="ow">and</span> <span class="n">situé_à_Marseille</span><span class="p">(</span><span class="n">salle</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>        <span class="n">somme</span><span class="o">+=</span> <span class="n">capacité</span><span class="p">(</span><span class="n">salle</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Dans un <strong>langage de requête</strong> :
+<div class="language-SQL highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Calculer</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">somme</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">capacités</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">salles</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">      </span><span class="n">de</span><span class="w"> </span><span class="n">cinéma</span><span class="w"> </span><span class="n">climatisées</span><span class="w"> </span><span class="err">à</span><span class="w"> </span><span class="n">Marseille</span>
+</span></code></pre></div></li>
+</ul>
+</div>
+<h3 id="sql">SQL<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h3>
+<p>Le langage de requêtes le plus utilisé est <strong>SQL</strong> (<span class="arithmatex">\(S\)</span>tructured <span class="arithmatex">\(Q\)</span>uery <span class="arithmatex">\(L\)</span>angage) Plusieurs implémentations (avec des nuances dans la syntaxe)</p>
+<ul>
+<li>En <span class="arithmatex">\(MPI\)</span>, nous utilisons <span class="arithmatex">\(\text{MySQL}\)</span> open source, gratuit.</li>
+<li><span class="arithmatex">\(\text{Oracle Database}\)</span> : propriétaire, payant</li>
+<li><span class="arithmatex">\(\text{PostgreSQL}\)</span> : open source, gratuit.</li>
+<li>Pour les cours d'ITC, nous utilisons <span class="arithmatex">\(\text{SQLite}\)</span> et le navigateur léger <a href="https://sqlitebrowser.org"><span class="arithmatex">\(\text{DB Browser for SQLite}\)</span></a>.</li>
+</ul>
+<h3 id="syntaxe-sql">Syntaxe SQL<a class="headerlink" href="#syntaxe-sql" title="Permanent link">&para;</a></h3>
+<p>Chaque requête est terminée par un point virgule "<span class="arithmatex">\(\texttt{ ; }\)</span>"</p>
+<p><strong>SQL</strong> n'est pas sensible à la casse (majuscules/minuscules) mais il est d'usage d'écrire les mots clés en majuscules et les noms de tables et colonnes en minuscules.</p>
+<h3 id="types-sql">Types SQL<a class="headerlink" href="#types-sql" title="Permanent link">&para;</a></h3>
+<p>Les attributs peuvent être de type</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\texttt{INT}\)</span> entier</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{CHAR(k)}\)</span> chaîne d'au plus <span class="arithmatex">\(k\)</span> caractères</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{FLOAT}\)</span> (nombre flottant)</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{BOOLEAN}\)</span> : bouléen (en fait <span class="arithmatex">\(0\)</span> ou <span class="arithmatex">\(1\)</span>)</li>
+<li>D'autres types existent comme un type <span class="arithmatex">\(\color{blue}\texttt{TIME}\)</span> mais le programme se limite aux <span class="arithmatex">\(4\)</span> précédents.</li>
+<li>Pour les dates, conformément au programme, on utilise des chaînes de caractères au format <span class="arithmatex">\(\text{AAAA-MM-JJ}\)</span> : l'ordre lexicographique correspond alors à l'ordre chronologique. De même, les horaires sont écrits au format <span class="arithmatex">\(\text{HH-MM-SS}\)</span>.</li>
+</ul>
+<h3 id="creation">Création<a class="headerlink" href="#creation" title="Permanent link">&para;</a></h3>
+<p>La syntaxe de création de table n'est pas au programme. On crée une table <span class="arithmatex">\(\texttt{Utilisateur}\)</span> avec une clé primaire <span class="arithmatex">\(\texttt{id}\)</span> qui est incrémentée automatiquement à chaque nouvel utilisateur :</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple du cours de <span class="arithmatex">\(\text{MPI}\)</span></p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">utilisateur</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">(</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="n">nom</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="n">prenom</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="n">date_naissance</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="n">pays</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="n">code_postal</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p><span class="arithmatex">\(\text{MPI}\)</span> : Le type <span class="arithmatex">\(\color{blue}\texttt{VARCHAR(100)}\)</span> indique que les chaînes de caractères
+ont au plus <span class="arithmatex">\(100\)</span> lettres contrairement à <span class="arithmatex">\(\color{blue}\texttt{CHAR(100)}\)</span> dont l'occupation
+en mémoire est figée.</p>
+</div>
+<h3 id="insertion">Insertion<a class="headerlink" href="#insertion" title="Permanent link">&para;</a></h3>
+<p>Syntaxe hors programme</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">‘</span><span class="n">utilisateur</span><span class="err">‘</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">(</span><span class="err">‘</span><span class="n">nom</span><span class="err">‘</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="n">prenom</span><span class="err">‘</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="n">date_naissance</span><span class="err">‘</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="n">pays</span><span class="err">‘</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="err">‘</span><span class="n">ville</span><span class="err">‘</span><span class="p">,</span><span class="w"> </span><span class="err">‘</span><span class="n">habite_marseille</span><span class="err">‘</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">VALUES</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="p">(</span><span class="s1">&#39;DUPONT &#39;</span><span class="p">,</span><span class="s1">&#39;Pierre &#39;</span><span class="p">,</span><span class="s1">&#39;2002:11:30 &#39;</span><span class="p">,</span><span class="s1">&#39;UK&#39;</span><span class="p">,</span><span class="s1">&#39;LONDON &#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="p">(</span><span class="s1">&#39;CAGOLE &#39;</span><span class="p">,</span><span class="s1">&#39;MARIE &#39;</span><span class="p">,</span><span class="s1">&#39;2001:02:23 &#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;ISTRES &#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="interrogation-de-la-table">Interrogation de la table<a class="headerlink" href="#interrogation-de-la-table" title="Permanent link">&para;</a></h2>
+<h3 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h3>
+<p>Une fois la table créée et remplie, on pose des questions sur son contenu.</p>
+<p>Pour faire tourner les exemples, se rendre sur <a href="https://www.w3schools.com/sql/">W3C</a></p>
+<h3 id="fonction-identite">Fonction identité<a class="headerlink" href="#fonction-identite" title="Permanent link">&para;</a></h3>
+<p>Afficher toutes les colonnes de la table client</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="choix-de-colonnes">Choix de colonnes<a class="headerlink" href="#choix-de-colonnes" title="Permanent link">&para;</a></h3>
+<h4 id="projection">Projection<a class="headerlink" href="#projection" title="Permanent link">&para;</a></h4>
+<p>On ne conserve que certaines colonnes, par exemple le nom de client et sa ville :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CustomerName</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Il s'agit d'une <em>projection</em> sur une ou plusieurs colonnes.</p>
+<h3 id="filtrer-des-lignes">Filtrer des lignes<a class="headerlink" href="#filtrer-des-lignes" title="Permanent link">&para;</a></h3>
+<h4 id="clause-colorbluetextttwhere-selection">Clause <span class="arithmatex">\(\color{blue}\texttt{WHERE}\)</span> (Sélection)<a class="headerlink" href="#clause-colorbluetextttwhere-selection" title="Permanent link">&para;</a></h4>
+<p>On ne conserve que certaines lignes dont les caractéristiques sont filtrées dans la clause <span class="arithmatex">\(\color{blue}\texttt{WHERE}\)</span>. Il s'agit d'une <em>Sélection</em>.</p>
+<div class="admonition example">
+<p>Donner tous les renseignement sur les clients mexicains :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="mi">1</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="mi">2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;Mexico &#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="filtrer-des-colonnes-et-des-lignes">Filtrer des colonnes et des lignes<a class="headerlink" href="#filtrer-des-colonnes-et-des-lignes" title="Permanent link">&para;</a></h3>
+<p>On peut enlever des lignes ET des colonnes.</p>
+<div class="admonition example">
+<p>Donner toutes les villes ou vivent des clients en Grande-Bretagne :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;UK&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><p align='center'><img src='/images/UneTable/unetable1.png'/></p></p>
+</div>
+<h3 id="enlever-des-doublons">Enlever des doublons<a class="headerlink" href="#enlever-des-doublons" title="Permanent link">&para;</a></h3>
+<h4 id="colorbluetextttdistinct"><span class="arithmatex">\(\color{blue}\texttt{DISTINCT}\)</span><a class="headerlink" href="#colorbluetextttdistinct" title="Permanent link">&para;</a></h4>
+<p>On a vu que le SGBD travaille avec des multi-ensembles. Il n'est donc pas rare que les requêtes de projection renvoient des doublons (contrairement aux projections du cours de maths).</p>
+<p>Le mot clé <span class="arithmatex">\(\color{blue}\texttt{DISTINCT}\)</span> supprime les doublons.</p>
+<div class="admonition example">
+<p>Donner sans doublon les villes des clients anglais.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;UK&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><p align='center'><img src='/images/UneTable/unetable2.png'/></p></p>
+<p><em>Figure – Une seule fois Londres</em></p>
+</div>
+<h3 id="operateurs-de-comparaison">Opérateurs de comparaison<a class="headerlink" href="#operateurs-de-comparaison" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\texttt{=}\)</span> (et surtout pas <span class="arithmatex">\(\color{blue}\texttt{==}\)</span>)</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{&lt;}\)</span>, <span class="arithmatex">\(\color{blue}\texttt{&lt;=}\)</span></li>
+<li><span class="arithmatex">\(\color{blue}\texttt{!=}\)</span> (ou son équivalent <span class="arithmatex">\(\color{blue}\texttt{&lt;&gt;}\)</span>)</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{AND}\)</span>, <span class="arithmatex">\(\color{blue}\texttt{OR}\)</span>, <span class="arithmatex">\(\color{blue}\texttt{NOT}\)</span></li>
+<li><span class="arithmatex">\(\color{blue}\texttt{LIKE}\)</span> (voir plus loin)</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{IS NULL}\)</span> (pour repérer les cases vides ou non renseignées) ; <span class="arithmatex">\(\color{blue}\texttt{IS NOT}\)</span></li>
+<li><span class="arithmatex">\(\color{blue}\texttt{NULL}\)</span> (pour repérer les cases non vides) ;</li>
+</ul>
+<h3 id="calcul-avec-des-colonnes">Calcul avec des colonnes<a class="headerlink" href="#calcul-avec-des-colonnes" title="Permanent link">&para;</a></h3>
+<h4 id="renommage">Renommage<a class="headerlink" href="#renommage" title="Permanent link">&para;</a></h4>
+<p>Mot clé <span class="arithmatex">\(\color{blue}\texttt{AS}\)</span></p>
+<p>La somme de la colonne Quantité avec le numéro de produit (ce qui ne signifie rien, bien sûr)</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ProductID</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Somme_DEBILE</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Le renommage permettra d'utiliser ce résultat dans des requêtes plus complexes.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Calcul de carré ou de racine</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">POW</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">POW</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Observons que dans ce cas précis, on veut juste un résultat numérique sans lien avec aucune table. D'où l'absence de <span class="arithmatex">\(\color{blue}\texttt{FROM}\)</span>.</p>
+<h3 id="comparaison">Comparaison<a class="headerlink" href="#comparaison" title="Permanent link">&para;</a></h3>
+<h4 id="operateur-colorbluetextttlike">Opérateur <span class="arithmatex">\(\color{blue}\texttt{LIKE}\)</span><a class="headerlink" href="#operateur-colorbluetextttlike" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\color{blue}\texttt{LIKE}\)</span> est utilisé pour chercher un motif particulier dans une colonne dont le domaine est <span class="arithmatex">\(\color{blue}\texttt{CHAR}\)</span>. Deux jokers sont utilisés en conjonction avec <span class="arithmatex">\(\color{blue}\texttt{LIKE}\)</span></p>
+<ul>
+<li>Le signe de pourcentage <span class="arithmatex">\(\%\)</span> représente zéro, un ou plusieurs caractères.</li>
+<li>L'underscore <span class="arithmatex">\(\_\)</span> représente un seul caractère.</li>
+</ul>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1">-- clients dont le nom commence par a</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">CustomerName</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;a%&#39;</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="cm">/* clients dont le nom a n pour</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="cm">2ème lettre et se termine par s*/</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">CustomerName</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;_n%s&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="trier-avec-colorbluetextttorder-by">Trier avec <span class="arithmatex">\(\color{blue}\texttt{ORDER BY}\)</span><a class="headerlink" href="#trier-avec-colorbluetextttorder-by" title="Permanent link">&para;</a></h3>
+<p>Pour trier le résultat attendu par ordre croissant (par défaut -mot clé <span class="arithmatex">\(\color{blue}\texttt{ASC}\)</span>) ou décroissant (mot clé <span class="arithmatex">\(\color{blue}\texttt{DESC}\)</span>).</p>
+<p>Quand plusieurs colonnes sont indiquées, le tri se fait par ordre lexicographique.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">column1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">column1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Trier les clients par odre décroissant de pays et croissant de nom :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="mi">1</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="mi">2</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Country</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">CustomerName</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Coût d'un tri en <span class="arithmatex">\(O (n \times log(n))\)</span>.</p>
+<h3 id="limiter-le-nombre-de-lignes">Limiter le nombre de lignes<a class="headerlink" href="#limiter-le-nombre-de-lignes" title="Permanent link">&para;</a></h3>
+<h4 id="colorbluetextttlimit-pour-mysql"><span class="arithmatex">\(\color{blue}\texttt{LIMIT}\)</span> pour MYSQL<a class="headerlink" href="#colorbluetextttlimit-pour-mysql" title="Permanent link">&para;</a></h4>
+<p>Attention, ce code <strong>SQL</strong> fonctionne avec <span class="arithmatex">\(\text{MySQL}\)</span> mais pas <span class="arithmatex">\(\text{SQL SERVER}\)</span>. Bien indiquer sur la copie qu'on travaille en <span class="arithmatex">\(\text{MySQL}\)</span> <span class="arithmatex">\(!!\)</span> Voir ce qu'en dit le <a href="https://www.w3schools.com/sql/sql_top.asp">W3SCHOOL</a></p>
+<p>Syntaxe en <span class="arithmatex">\(\text{MYSQL}\)</span> et <span class="arithmatex">\(\text{SQLite}\)</span> (diffère de <span class="arithmatex">\(\text{ORACLE}\)</span>)</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="nb">number</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Seulement les <span class="arithmatex">\(3\)</span> premières lignes de la réponse :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Affiche les lignes <span class="arithmatex">\(0,1,2\)</span>. Essayer <a href="https://www.w3schools.com/sql/trymysql.asp?filename=trysql_select_limit">ici</a>.</p>
+<h4 id="donner-un-point-de-depart-colorbluetextttoffset">Donner un point de départ : <span class="arithmatex">\(\color{blue}\texttt{OFFSET}\)</span><a class="headerlink" href="#donner-un-point-de-depart-colorbluetextttoffset" title="Permanent link">&para;</a></h4>
+<p>Seulement <span class="arithmatex">\(3\)</span> lignes après la sixième (incluse) :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Cela affiche les lignes <span class="arithmatex">\(6,7,8\)</span>. Noter la syntaxe : d'abord <span class="arithmatex">\(\color{blue}\texttt{LIMIT}\)</span> ensuite
+<span class="arithmatex">\(\color{blue}\texttt{OFFSET}\)</span>.</p>
+<p>Même chose avec une syntaxe abrégée :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Noter qu'on met alors le <span class="arithmatex">\(\color{blue}\texttt{OFFSET}\)</span> avant le nombre de lignes. Essayer <a href="https://www.w3schools.com/sql/trymysql.asp?filename=trysql_select_limit">ici</a>.</p>
+<p><span class="arithmatex">\(\color{blue}\texttt{LIMIT k OFFSET 0}\)</span> est équivalent à <span class="arithmatex">\(\color{blue}\texttt{LIMIT k}\)</span></p>
+<h3 id="cases-vides">Cases vides<a class="headerlink" href="#cases-vides" title="Permanent link">&para;</a></h3>
+<h4 id="le-mot-cle-colorbluetextttnull">Le mot clé <span class="arithmatex">\(\color{blue}\texttt{NULL}\)</span><a class="headerlink" href="#le-mot-cle-colorbluetextttnull" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\color{blue}\texttt{NULL}\)</span> est un mot clé indiquant une case vide.</p>
+<p>Deux opérateurs y sont associés :</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\texttt{IS NULL}\)</span> (pour repérer les cases vides ou non renseignées) ;</li>
+<li><span class="arithmatex">\(\color{blue}\texttt{IS NOT NULL}\)</span> (pour repérer les cases non vides) ;</li>
+</ul>
+<p>Les noms de clients, celui de leur contact et leur adresse pour les clients dont le champ Adress est non vide</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CustomerName</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">ContactName</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Address</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="application-dune-fonction-dagregation">Application d'une fonction d'agrégation<a class="headerlink" href="#application-dune-fonction-dagregation" title="Permanent link">&para;</a></h3>
+<p>Il y en a <span class="arithmatex">\(5\)</span> à connaître :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Correspondances</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Algèbre relationnelle</td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{SQL}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>comptage</em> ou <em>cardinal</em></td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{COUNT}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>max</em></td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{MAX}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>min</em></td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{MIN}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>somme</em></td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{SUM}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>moyenne</em></td>
+<td style="text-align: center;"><span class="arithmatex">\(\color{blue}\texttt{AVG}\)</span> (pour "average ")</td>
+</tr>
+</tbody>
+</table>
+<p>Ces fonctions peuvent être utilisées pour des informations statistiques sur TOUTE la table ou bien les mêmes informations mais sur les éléments d'une PARTITION de la table (ce qu'on appelle des <em>agrégats</em>)</p>
+<h3 id="les-fonctions-colorbluetextttmincolorbluetexttt-maxcolorbluetexttt-sum">Les fonctions <span class="arithmatex">\(\color{blue}\texttt{MIN}\)</span>,<span class="arithmatex">\(\color{blue}\texttt{ MAX}\)</span>,<span class="arithmatex">\(\color{blue}\texttt{ SUM}\)</span><a class="headerlink" href="#les-fonctions-colorbluetextttmincolorbluetexttt-maxcolorbluetexttt-sum" title="Permanent link">&para;</a></h3>
+<p>Syntaxe :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">nom_colonne</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Retourne une table d'une seule ligne et une seule colonne dont le nom est <span class="arithmatex">\(\texttt{MAX(nom}\_ \texttt{colonne)}\)</span></p>
+<p>Donner le prix minimum parmi les produits et renommer le résultat</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">Price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SmallestPrice</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Products</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Idem avec prix maximum</p>
+</div>
+<p>Donner la somme des prix unitaires de la table produit.</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Somme</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Products</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Donner les produits dont le prix unitaire est maximum (plusieurs réponses possibles) (attendre d'avoir vu les requêtes imbriquées)</p>
+<h3 id="moyenne">Moyenne<a class="headerlink" href="#moyenne" title="Permanent link">&para;</a></h3>
+<p>Le prix unitaire moyen des produits :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Moyenne</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="compter">Compter<a class="headerlink" href="#compter" title="Permanent link">&para;</a></h3>
+<p>La fonction <span class="arithmatex">\(\color{blue}\texttt{COUNT}\)</span> a un comportement particulier</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\texttt{COUNT(a)}\)</span> : Compte le nombre de fois que <span class="arithmatex">\(a\)</span> est différent de <span class="arithmatex">\(\color{blue}\texttt{NULL}\)</span>.</li>
+<li>Souvent on compte le nombre total d'enregistrements avec <span class="arithmatex">\(\color{blue}\texttt{COUNT(*)}\)</span>.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">donner le nombre de clients</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Nombre_de_clients</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="le-mot-cle-colorbluetextttin">Le mot clé <span class="arithmatex">\(\color{blue}\texttt{IN}\)</span><a class="headerlink" href="#le-mot-cle-colorbluetextttin" title="Permanent link">&para;</a></h3>
+<h4 id="un-raccourci-pour-eviter-de-multiples-conditions-textttor">Un raccourci pour éviter de multiples conditions <span class="arithmatex">\(\texttt{OR}\)</span><a class="headerlink" href="#un-raccourci-pour-eviter-de-multiples-conditions-textttor" title="Permanent link">&para;</a></h4>
+<p>Pas explicitement au programme (mais pas explicitement interdit)</p>
+<ul>
+<li>Syntaxe <span class="arithmatex">\(1\)</span> :</li>
+</ul>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="n">value1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">value2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Syntaxe <span class="arithmatex">\(2\)</span> : Dans des requêtes imbriquées (patience)</li>
+</ul>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">STATEMENT</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition example">
+<p>Tous les clients allemands, français et anglais :</p>
+<div class="language-SQL highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Country</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Germany &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;France &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;UK&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Tous les clients qui sont dans le même pays qu'au moins un
+fournisseur : (patience, on en parlera quand on verra les requêtes
+imbriquées)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

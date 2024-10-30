@@ -1,0 +1,4315 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Linux/4-Redirections/">
+      
+      
+        <link rel="next" href="../2-Quine/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Logique - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#logique" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Logique
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-des-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu des propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique-classique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logique classique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tiers-exclu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tiers exclu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dautres-mathematiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      D'autres mathématiques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure-dapres-wikipedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure (d'après Wikipedia)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantique-vs-deduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sémantique VS déduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pour-avoir-mal-a-la-tete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pour avoir mal à la tête
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntaxe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Syntaxe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lalphabet" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'alphabet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensemble-des-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensemble des propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-arborescente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation arborescente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplification-de-lecriture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplification de l'écriture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priorites-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorités en Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sémantique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sémantique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interprétation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-de-verite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables de vérité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equivalence-semantique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equivalence sémantique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      XOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priorites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dautres-operateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      D'autres opérateurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#satisfiabilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Satisfiabilité
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Satisfiabilité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tautologies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tautologies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautologie-proposition-satisfiable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tautologie, proposition satisfiable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-consequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de conséquence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-leftrightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\Leftrightarrow\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-vee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\vee\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations-entre-vee-et-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relations entre \(\vee\) et \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-rightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\rightarrow\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raisonnement-en-mathematiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raisonnement en mathématiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formes-normales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formes normales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formes normales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecriture-simplifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ecriture simplifiée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#litteraux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Littéraux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clauses-monomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clauses, Monômes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-conjonctivedisjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      forme normale conjonctive/disjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reecriture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Réécriture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniquement-des-neg-et-des-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniquement des \(\neg\) et des \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-disjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forme normale disjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explosion-combinatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explosion combinatoire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mintermes-maxtermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mintermes, maxtermes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-conjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forme normale conjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#existence-de-la-fndc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existence de la FNDC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unicite-de-la-fndc-a-lordre-pres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unicité de la FNDC à l'ordre près
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fncc" class="md-nav__link">
+    <span class="md-ellipsis">
+      FNCC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#probleme-sat-et-n-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème SAT et \(n\)-SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème SAT et \(n\)-SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation-du-probleme-2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation du problème \(2\)-SAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le problème SAT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2-SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème 2-SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-SAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-sat-aspvall-plass-tarjan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2-SAT (Aspvall-Plass-Tarjan)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion-pour-le-probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion pour le problème SAT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-des-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu des propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique-classique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logique classique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tiers-exclu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tiers exclu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dautres-mathematiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      D'autres mathématiques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure-dapres-wikipedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure (d'après Wikipedia)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantique-vs-deduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sémantique VS déduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pour-avoir-mal-a-la-tete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pour avoir mal à la tête
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntaxe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Syntaxe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lalphabet" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'alphabet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensemble-des-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensemble des propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-arborescente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation arborescente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplification-de-lecriture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplification de l'écriture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priorites-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorités en Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sémantique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sémantique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interprétation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-de-verite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables de vérité
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equivalence-semantique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equivalence sémantique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      XOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priorites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorités
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dautres-operateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      D'autres opérateurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#satisfiabilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Satisfiabilité
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Satisfiabilité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tautologies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tautologies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tautologie-proposition-satisfiable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tautologie, proposition satisfiable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-consequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de conséquence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-leftrightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\Leftrightarrow\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-vee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\vee\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations-entre-vee-et-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relations entre \(\vee\) et \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-rightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de \(\rightarrow\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raisonnement-en-mathematiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raisonnement en mathématiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formes-normales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formes normales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formes normales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecriture-simplifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ecriture simplifiée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#litteraux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Littéraux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clauses-monomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clauses, Monômes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-conjonctivedisjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      forme normale conjonctive/disjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reecriture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Réécriture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniquement-des-neg-et-des-wedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniquement des \(\neg\) et des \(\wedge\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-disjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forme normale disjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explosion-combinatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explosion combinatoire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mintermes-maxtermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mintermes, maxtermes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forme-normale-conjonctive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forme normale conjonctive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#existence-de-la-fndc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Existence de la FNDC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unicite-de-la-fndc-a-lordre-pres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unicité de la FNDC à l'ordre près
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fncc" class="md-nav__link">
+    <span class="md-ellipsis">
+      FNCC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#probleme-sat-et-n-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème SAT et \(n\)-SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème SAT et \(n\)-SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presentation-du-probleme-2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation du problème \(2\)-SAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le problème SAT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2-SAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problème 2-SAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-SAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-sat-aspvall-plass-tarjan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2-SAT (Aspvall-Plass-Tarjan)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion-pour-le-probleme-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion pour le problème SAT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="logique">Logique<a class="headerlink" href="#logique" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et Elowan et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<p>Wikipedia,<br />
+Mansuy,<br />
+Becirspahic.  </p>
+</div>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="proposition">Proposition<a class="headerlink" href="#proposition" title="Permanent link">&para;</a></h3>
+<p>Notion affinée au cours des siècles.  </p>
+<p>Une <em>proposition</em> est une construction syntaxique pensée parler de  <em>vérité</em>. La définition précise de ce concept est l'un des objectifs du  <em>calcul des propositions</em>.  </p>
+<p>"Pourvu que je n'attrape pas le Coronavirus !" exprime un souhait  et pas un fait. Il n'est pas modélisé par une proposition.  </p>
+<p>Il n'y a pas de <em>quantification</em> en calcul des propositions. Ainsi "M.  Noyer marche sur les eaux" est exprimable comme une proposition  mais pas "tous les marseillais marchent sur les eaux" ni "il existe  un marseillais qui marche sur les eaux" (d'ailleurs c'est M. Noyer !)  </p>
+<p>Le <em>calcul des propositions</em> est la première étape dans la définition de  la logique et du raisonnement. Etape suivante : <em>calcul des prédicats</em>.  </p>
+<h3 id="contenu-des-propositions">Contenu des propositions<a class="headerlink" href="#contenu-des-propositions" title="Permanent link">&para;</a></h3>
+<p>Une proposition donne une information évaluable sur quelque chose.  </p>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p><span class="arithmatex">\(2 + 2 = 4\)</span> ou "la maison de Pierre est rose" ou "si <span class="arithmatex">\(a ≤ b\)</span>  et <span class="arithmatex">\(f(a)f(b) &lt; 0\)</span> alors il existe <span class="arithmatex">\(c\in \left ] a,b \right [\)</span> tel que <span class="arithmatex">\(f(c) = 0\)</span>".  </p>
+</div>
+<p>L'idée est qu'on puisse attribuer une <em>valeur de vérité</em> à toute  proposition.</p>
+<p>Par exemple <span class="arithmatex">\(2 + 2 = 4\)</span> a pour valeur <strong>Vrai</strong>, la seconde phrase est  vérifiable en se rendant chez Pierre, la dernière dépend du type et de  la continuité de <span class="arithmatex">\(f\)</span> .  </p>
+<div class="admonition example">
+<p><strong>Contre-exemple</strong></p>
+<p>"À quelle heure finit le cours ?" ou "Travaille  davantage !". Ces phrases n'apportent pas d'information.  Il est difficile de leur attribuer une valeur.</p>
+</div>
+<p>Les valeurs attribuées aux propositions sont en général <span class="arithmatex">\(0\)</span> ou <span class="arithmatex">\(1\)</span>, <strong>True</strong>  ou <strong>False</strong>, <strong>Vrai</strong> ou <strong>Faux</strong>.  </p>
+<h3 id="logique-classique">Logique classique<a class="headerlink" href="#logique-classique" title="Permanent link">&para;</a></h3>
+<p>C'est celle du cours de maths en CPGE.  </p>
+<p>Quand le cardinal de l'ensemble des valeurs possibles que peuvent  prendre les propositions est <span class="arithmatex">\(2\)</span>, on parle de <em>logique classique</em> ou  <em>bouléenne</em>.  </p>
+<p>Il existe d'autres logiques. Elles sont parfois <em>tri-valuées</em>. Par exemple <strong>Vrai</strong>, <strong>Faux</strong>, <strong>Je ne sais pas</strong>.</p>
+<p>Pourquoi faudrait-il d'autres logiques ?<br />
+<span class="arithmatex">\(\color{red} \text {En logique classique "je suis ici ou ailleurs" (= tiers exclu) est toujours vrai.}\)</span> Cependant "si <span class="arithmatex">\(x\in \mathbb{Q}\)</span> alors machin  sinon truc" n'est exploitable que si on possède un test  d'appartenance à <span class="arithmatex">\(\mathbb{Q}\)</span> en temps fini, ce qui n'est pas le cas. Les <em>logiciens intuitionnistes</em> refusent le tiers exclu.  </p>
+<h3 id="tiers-exclu">Tiers exclu<a class="headerlink" href="#tiers-exclu" title="Permanent link">&para;</a></h3>
+<p>Le principe du tiers exclu a été introduit par Aristote comme  conséquence du <em>principe de non-contradiction</em>. Le principe de  non-contradiction stipule que pour toute proposition <span class="arithmatex">\(P\)</span> on ne peut pas avoir <span class="arithmatex">\(P\)</span> et <span class="arithmatex">\(\neg P\)</span> (non <span class="arithmatex">\(P\)</span>) en même temps.  </p>
+<p>La proposition <span class="arithmatex">\(\neg (P \wedge  \neg P)\)</span> (toujours vraie dans toute les logiques)  équivaut sémantiquement (par utilisation de règle de De Morgan) à  <span class="arithmatex">\(\neg P \vee  \neg \neg P\)</span>.<br />
+On retrouve le tiers exclu SI ON ACCEPTE que <span class="arithmatex">\(\neg \neg P\)</span> et <span class="arithmatex">\(P\)</span> sont  sémantiquement équivalents.  </p>
+<h3 id="dautres-mathematiques">D'autres mathématiques<a class="headerlink" href="#dautres-mathematiques" title="Permanent link">&para;</a></h3>
+<p>La <em>logique intuitionniste</em> qui engendre les <em>mathématiques constructives</em>, admet le principe de non-contradiction mais réfute celui  du tiers exclu.  </p>
+<p>Pour un <em>constructiviste</em>, le raisonnement "si <span class="arithmatex">\(a \in A\)</span> alors <em>bla</em> sinon  <em>bli</em>" n'a de sens que s'il existe un test pour déterminer l'appartenance  à <span class="arithmatex">\(A\)</span>.  </p>
+<p>Les constructivistes réfutent aussi l'axiome du choix qui dit en  substance que "dans un ensemble infini, je peux choisir un élément", au motif que "je ne peux pas choisir si je ne sais pas comment choisir".</p>
+<p>La plupart des théorèmes de CPGE sont adaptables en  mathématiques constructives (parfois, les énoncés sont les mêmes,  d'autre fois, il faut adapter).
+En revanche l'affirmation "tout <span class="arithmatex">\(𝕂\)</span>-espace vectoriel admet une
+base " n'est pas constructive (oui pour la dimension finie mais pas en dimension quelconque)  </p>
+<p>Une preuve de mathématiques constructives est bien adaptée à  l'informatique en ce sens qu'elle est pratiquement donnée sous forme  d'algorithme.  </p>
+<h3 id="structure-dapres-wikipedia">Structure (d'après Wikipedia)<a class="headerlink" href="#structure-dapres-wikipedia" title="Permanent link">&para;</a></h3>
+<p>Dans les théories de la logique mathématique, on considère deux  points de vue dits <em>syntaxique</em> et <em>sémantique</em>, c'est le cas en calcul des  propositions.  </p>
+<ul>
+<li>La <em>forme</em> : Aspect syntaxique. Il s'agit de définir le langage du calcul des propositions par les règles d'écriture des propositions. On décrit donc ce qu'EST une proposition.  </li>
+<li>Le <em>fond</em> : Aspect sémantique. Il s'agit de donner un <em>sens</em> aux symboles représentant les connecteurs logiques. Il y a deux façons de donner un tel sens :<ul>
+<li>Soit par <em>sémantique</em> : en munissant d' une <em>interprétation</em> (un sens) les connecteurs logique. On peut alors définir inductivement une interprétation pour toute proposition complexe. Ex: table de vérité.</li>
+<li>Soit par <em>déduction</em> : On se donne des règles purement syntaxiques qui permettent de déduire une proposition d'un ensemble d'autres : les <em>règles d'inférence</em> (Par exemple : <em>calcul des séquents</em> ou <em>déduction naturelle</em>).
+  On ne se préoccupe donc pas du sens, juste de la déductibilité.</li>
+</ul>
+</li>
+</ul>
+<h3 id="semantique-vs-deduction">Sémantique VS déduction<a class="headerlink" href="#semantique-vs-deduction" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Une interprétation</p>
+<p>La fonction "qui donne du sens" est appelé une <em>interprétation</em>.</p>
+</div>
+<p>On construit un <em>arbre d'inférence</em> et on dit qu'une formule est  <em>prouvable</em> si toutes les feuilles de l'arbre sont des <em>axiomes</em>. On appelle <em>théorème</em> une proposition prouvable.  </p>
+<p>En calcul des propositions, tout ce qui est <em>vrai</em> est <em>prouvable</em> et  réciproquement.  </p>
+<p>Si on reste en logique du 1er ordre (en ajoutant quantificateurs,  termes et prédicats au cours de 1ere année) alors ce qui est <em>vrai</em> est <em>prouvable</em> et réciproquement.  </p>
+<h3 id="pour-avoir-mal-a-la-tete">Pour avoir mal à la tête<a class="headerlink" href="#pour-avoir-mal-a-la-tete" title="Permanent link">&para;</a></h3>
+<p>La logique du 1er ordre (telle qu'enseignée en MP2I/MPI) est <span class="arithmatex">\(\color{red}\text{cohérente : on ne peut pas démontrer à la fois une formule et son contraire}\)</span>; ce qui revient à dire qu'on ne peut pas démontrer le faux.</p>
+<p>Le calcul des prédicats est <span class="arithmatex">\(\color{red}\text{complet : ce qui est vrai est prouvable et  réciproquement}\)</span>.  </p>
+<p>Aucun système logique cohérent (comme la déduction naturelle ou le  calcul des séquents) ne peut démontrer tous les résultats de  l'arithmétique. <span class="arithmatex">\(\color{red}\text{Quel que soit le système, s'il est assez riche pour exprimer l'arithmétique, on peut}\)</span> <span class="arithmatex">\(\color{red}\text{trouver un énoncé valide qui ne sera  pas démontrable dans ce système}\)</span>.  </p>
+<p><span class="arithmatex">\(\color{red}\text{Aucun système logique cohérent assez riche pour exprimer  l'arithmétique ne peut}\)</span> <span class="arithmatex">\(\color{red}\text{démontrer sa propre cohérence}\)</span>. Par exemple,  les mathématiques enséeignées en CPGE ne peuvent pas établir la  preuve qu'elles sont sans contradiction.  </p>
+<h2 id="syntaxe">Syntaxe<a class="headerlink" href="#syntaxe" title="Permanent link">&para;</a></h2>
+<h3 id="lalphabet">L'alphabet<a class="headerlink" href="#lalphabet" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>On considère un alphabet <span class="arithmatex">\(\Sigma\)</span> constitué :</p>
+<ul>
+<li>de symboles <strong>Vrai</strong> et <strong>Faux</strong> notés <strong>V</strong> et <strong>F</strong>,  </li>
+<li>de <em>variables propositionnelles</em> en nombre dénombrable notées dans ce cours en lettres romaines <span class="arithmatex">\(a, b\)</span>, <span class="arithmatex">\(\dotsb\)</span> , <span class="arithmatex">\(a_1\)</span>, <span class="arithmatex">\(\dotsb\)</span> , <span class="arithmatex">\(z_{32}\)</span>, <span class="arithmatex">\(\dotsb\)</span></li>
+<li>de deux symboles de parenthèses "(<span class="arithmatex">\(,\)</span>)" (ouvrante et fermante).  </li>
+<li>d'un connecteur unaire <span class="arithmatex">\(\neg\)</span>  dit de négation  </li>
+<li>de trois connecteurs binaires notés <span class="arithmatex">\(\vee , \wedge , \rightarrow\)</span> et appelés connecteurs logiques de <em>disjonction</em>, <em>conjonction</em> et d'<em>implication</em>.  </li>
+</ul>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>On dit aussi <em>opérateur</em> pour "connecteur"  </li>
+<li>Dans certains cours, on ajoute aussi l'opérateur <span class="arithmatex">\(\Leftrightarrow\)</span> et le XOR.
+Dans certains autres, seulement <span class="arithmatex">\(\neg , \vee , \wedge\)</span> , voire même <span class="arithmatex">\(\neg , \wedge\)</span> .</li>
+<li>Le <strong>NAND</strong> (<span class="arithmatex">\(A\)</span> NAND <span class="arithmatex">\(B\)</span> vaut <span class="arithmatex">\(\neg (A \wedge  B)\)</span>) est <em>universel</em>.  </li>
+</ul>
+</div>
+<h3 id="ensemble-des-propositions">Ensemble des propositions<a class="headerlink" href="#ensemble-des-propositions" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>On appelle <em>langage des propositions</em> le langage défini inductivement par :</p>
+<ul>
+<li>les constantes et les variables propositionnelles sont dans le langage,</li>
+<li>si <span class="arithmatex">\(A\)</span> est dans le langage, alors <span class="arithmatex">\((A)\)</span> aussi,</li>
+<li>si <span class="arithmatex">\(A\)</span> est dans le langage <span class="arithmatex">\((\neg A)\)</span> aussi, </li>
+<li>si <span class="arithmatex">\(A, B\)</span> sont dans le langage alors <span class="arithmatex">\((A \vee  B)\)</span>, <span class="arithmatex">\((A \wedge  B)\)</span> et <span class="arithmatex">\((A \rightarrow B)\)</span> aussi.  </li>
+</ul>
+</div>
+<h3 id="representation-arborescente">Représentation arborescente<a class="headerlink" href="#representation-arborescente" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\((((\neg a) \vee  b) \wedge  (\neg c))\)</span> se représente sous la forme d'un arbre binaire (dit <em>arbre syntaxique</em>) :</p>
+<p align="center"><img src="/images/Logique/logique1.png"></p>
+
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Puisque les propositions sont construites comme des arbres binaires, il est naturel de parler de leur taille et de leur hauteur.</p>
+</div>
+<h3 id="simplification-de-lecriture">Simplification de l'écriture<a class="headerlink" href="#simplification-de-lecriture" title="Permanent link">&para;</a></h3>
+<p>On ne note pas les parenthèses autour de la racine.  </p>
+<p>On convient (souvent, mais je ne trouve pas ça si commode) que  l'opérateur de négation <span class="arithmatex">\(\neg a\)</span> priorité sur les autres, que la conjonction et la disjonction ont priorité sur l'implication, et enfin que la  conjonction a priorité sur la disjonction. C'est très classique !  </p>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>C'est à dire : <span class="arithmatex">\(\neg \gg \wedge \gg \vee \gg \text{ } \rightarrow\)</span></p>
+</div>
+<p>Pour passer des écritures sans parenthèses aux écritures avec  parenthèses, une règle simple : plus l'opérateur est prioritaire, plus il a  de parenthèses autour de lui.  </p>
+<h3 id="priorites-en-python">Priorités en Python<a class="headerlink" href="#priorites-en-python" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/Logique/logique9.bmp'/></p>
+
+<p><em>Figure – Règles de priorité de la plus haute (en haut) à la plus basse (en bas).
+Les opérateurs de même niveau sont évalués de gauche à droite</em></p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Remettre des parenthèses  </p>
+<ul>
+<li><span class="arithmatex">\(\neg a \vee  b \wedge  c\)</span>  </li>
+<li><span class="arithmatex">\(((\neg a) \vee  (b \wedge  c))\)</span>  </li>
+<li><span class="arithmatex">\(\neg a \wedge  b \vee  c\)</span>  </li>
+<li><span class="arithmatex">\((((\neg a) \wedge  b) \vee  c)\)</span>  </li>
+<li><span class="arithmatex">\(a \vee  \neg b \wedge  c \rightarrow  a \wedge  c\)</span>  </li>
+<li><span class="arithmatex">\([(a \vee  ((\neg b) \wedge  c)) \rightarrow  (a \wedge  c)]\)</span>  </li>
+</ul>
+</div>
+<h2 id="semantique">Sémantique<a class="headerlink" href="#semantique" title="Permanent link">&para;</a></h2>
+<h3 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Un contexte</p>
+<p>Un <em>contexte</em> (ou une <em>distribution de vérité</em>) sur un ensemble de variables propositionnelles <span class="arithmatex">\({\displaystyle {\mathcal {V}}}\)</span> est une application de <span class="arithmatex">\({\displaystyle {\mathcal {V}}}\)</span> dans l'ensemble des bouléens <span class="arithmatex">\({\displaystyle {\mathcal {B}}}\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>Si <span class="arithmatex">\(|{\displaystyle {\mathcal {V}}}| = n\)</span> alors il y a <span class="arithmatex">\(2^n\)</span> distributions de vérité.</li>
+<li>L'ensemble des bouléens peut être représenté de différentes façons.</li>
+<li>Dans ce cours, on pose <span class="arithmatex">\({\displaystyle {\mathcal {B}}} = {0, 1}\)</span>, et on identifie <span class="arithmatex">\({\displaystyle {\mathcal {B}}}\)</span> avec l'anneau <span class="arithmatex">\(\mathbb{Z}/2\mathbb{Z}\)</span> (donc <span class="arithmatex">\(1 + 1 = 0\)</span> en particulier.)</li>
+<li>La multiplication est l'interprétation de la conjonction, <span class="arithmatex">\(0\)</span> celle de <strong>F</strong>, <span class="arithmatex">\(1\)</span> celle de <strong>V</strong>, l'addition celle du XOR.  </li>
+</ul>
+</div>
+<h3 id="interpretation">Interprétation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Une évaluation / interprétation</p>
+<p>Soit <span class="arithmatex">\(\mu\)</span> un contexte sur un ensemble de variables <span class="arithmatex">\({\displaystyle {\mathcal {V}}}\)</span> à valeur dans <span class="arithmatex">\({\displaystyle {\mathcal {B}}} = ℤ/2ℤ\)</span>. On appelle <em>évaluation</em> (ou encore interprétation) associée à <span class="arithmatex">\(\mu\)</span> l'application notée <span class="arithmatex">\(\varepsilon_\mu\)</span> définie sur l'ensemble des propositions par :</p>
+<ul>
+<li><span class="arithmatex">\(\varepsilon_\mu(V ) = 1, \varepsilon_\mu(F ) = 0\)</span></li>
+<li>pour toute variable <span class="arithmatex">\(v \in {\displaystyle {\mathcal {V}}}, \varepsilon_\mu(v ) = \mu(v )\)</span></li>
+<li>pour toute expression <span class="arithmatex">\(p, \varepsilon_\mu(\neg p) = 1 − \varepsilon_\mu(p)\)</span></li>
+<li>pour toutes expressions <span class="arithmatex">\(p_1\)</span> et <span class="arithmatex">\(p_2\)</span> : </li>
+</ul>
+<div class="arithmatex">\[\begin{matrix}
+    \varepsilon_\mu(p_1 \wedge p_2) &amp;=&amp; \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
+    \varepsilon_\mu(p_1 \vee p_2) &amp;=&amp; \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)\\
+     \varepsilon_\mu(p_1 \rightarrow p_2) &amp;=&amp; 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1).
+\end{matrix}\]</div>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Observer l'analogie avec les fonctions caractéristiques.</p>
+</div>
+<h3 id="implication">Implication<a class="headerlink" href="#implication" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Comme on va le voir <span class="arithmatex">\(a \rightarrow b\)</span> est <em>sémantiquement</em> équivalent à  <span class="arithmatex">\(\neg a \vee b\)</span>, c'est à dire que les deux propositions ont la même valeur de  vérité pour toute interprétation.</li>
+<li>L'interprétation de l'implication donnée au transparent précédent  s'obtient par calcul :  </li>
+</ul>
+<div class="arithmatex">\[
+\begin{matrix}
+\varepsilon_\mu((\neg p_1) \vee  p_2)
+    &amp;=&amp;  \varepsilon_\mu(\neg p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(\neg p_1)\varepsilon_\mu(p_2)  \\
+    &amp;=&amp; (1 − \varepsilon_\mu(p_1)) + \varepsilon_\mu(p_2) − (1 − \varepsilon_\mu(p_1))\varepsilon_\mu(p_2)  \\
+    &amp;=&amp; 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2) − \varepsilon_\mu(p_2) + \varepsilon_\mu(p_1)\varepsilon_\mu(p_2)  \\
+    &amp;=&amp; 1 − \varepsilon_\mu(p_1) + \varepsilon_\mu(p_2)\varepsilon_\mu(p_1)  \\
+    &amp;=&amp;\varepsilon_\mu(p_1 \rightarrow  p_2)
+\end{matrix}
+\]</div>
+<h3 id="tables-de-verite">Tables de vérité<a class="headerlink" href="#tables-de-verite" title="Permanent link">&para;</a></h3>
+<p align="center"><img src="/images/Logique/logique2.png"></p>
+
+<h3 id="equivalence-semantique">Equivalence sémantique<a class="headerlink" href="#equivalence-semantique" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Sémantiquement équivalent</p>
+<p>Deux propositions <span class="arithmatex">\(p, q\)</span> sont dites <em>sémantiquement équivalentes</em> si elles ont même table de vérité. Ceci revient à dire que pour tout contexte <span class="arithmatex">\(\mu\)</span>, si <span class="arithmatex">\(\varepsilon_\mu\)</span> de l'une vaut <span class="arithmatex">\(1\)</span>, alors pour l'autre aussi.On note <span class="arithmatex">\(p\)</span> <span class="arithmatex">\(\equiv\)</span> <span class="arithmatex">\(q\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Tautologie</p>
+<p>On dit qu'une proposition <span class="arithmatex">\(p\)</span> est une <em>tautologie</em> lorsque <span class="arithmatex">\(p\)</span> <span class="arithmatex">\(\equiv\)</span> <span class="arithmatex">\(V\)</span> (c'est à dire que la dernière colonne de sa table de vérité ne contient que des <span class="arithmatex">\(1\)</span>).</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>Par exemple <span class="arithmatex">\(a \wedge V\)</span> est sémantiquement équivalente à <span class="arithmatex">\(a\)</span>.  </li>
+<li>Montrer que le tiers exclu <span class="arithmatex">\(a \vee \neg a\)</span> est une tautologie.  </li>
+<li>Certains auteurs parlent d'<em>équivalence logique</em>.  </li>
+</ul>
+</div>
+<h3 id="xor">XOR<a class="headerlink" href="#xor" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Exercice</p>
+<p>Définir l'opérateur XOR au moyen des opérateurs usuels</p>
+<p>La table du XOR (=OU du cantinier)</p>
+<div class="arithmatex">\[\begin{array}{c|c|c}
+a &amp; b &amp; a \oplus b\\
+\hline
+1 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0
+\end{array}\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<p><span class="arithmatex">\((¬ A ∨ ¬ B) ∧ (A ∨ B)\)</span></p>
+</div>
+<h3 id="priorites">Priorités<a class="headerlink" href="#priorites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Les opérateurs <span class="arithmatex">\(\wedge\)</span>  et <span class="arithmatex">\(\vee\)</span>  sont associatifs : en conséquence on peut écrire  ((<span class="arithmatex">\(a \vee b\)</span>) <span class="arithmatex">\(\vee\)</span>  (<span class="arithmatex">\(c\)</span> <span class="arithmatex">\(\vee\)</span>  <span class="arithmatex">\(d\)</span>)) comme <span class="arithmatex">\(a \vee  b \vee  c \vee  d\)</span></li>
+<li><span class="arithmatex">\(\rightarrow\)</span>  n'est pas associatif : <span class="arithmatex">\(a\)</span> <span class="arithmatex">\(\rightarrow\)</span>  (<span class="arithmatex">\(b\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(c\)</span>) n'est pas sémantiquement  équivalent à (<span class="arithmatex">\(a\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(b\)</span>) <span class="arithmatex">\(\rightarrow\)</span>  c</li>
+<li>Exercice : montrer ces assertions par des tables de vérité.  </li>
+<li>L'implication n'est pas associative mais par convention  <span class="arithmatex">\(A\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(B\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(C\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(D\)</span> se lit <span class="arithmatex">\(A\)</span> <span class="arithmatex">\(\rightarrow\)</span>  (<span class="arithmatex">\(B\)</span> <span class="arithmatex">\(\rightarrow\)</span>  (<span class="arithmatex">\(C\)</span> <span class="arithmatex">\(\rightarrow\)</span>  <span class="arithmatex">\(D\)</span>)).</li>
+</ul>
+<p>Observer l'analogie avec une fonction f de type <code>a-&gt;b-&gt;c-&gt;d</code> en  <strong>OCaml</strong> : <code>f x</code> est de type <code>b-&gt;c-&gt;d</code>.  </p>
+<h3 id="dautres-operateurs">D'autres opérateurs<a class="headerlink" href="#dautres-operateurs" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<ul>
+<li>Montrer qu'on peut se passer de l'opérateur d'implication.  </li>
+<li>L'opérateur binaire <span class="arithmatex">\(\Leftrightarrow\)</span> est défini ainsi : <span class="arithmatex">\(a \Leftrightarrow  b\)</span> a la table de  <span class="arithmatex">\((a \rightarrow b) \wedge  (b \rightarrow   a)\)</span>. Montrer que <span class="arithmatex">\(a\)</span> XOR <span class="arithmatex">\(b\)</span> est sémantquement  équivalent à <span class="arithmatex">\(\neg (a \Leftrightarrow  b)\)</span>.  </li>
+</ul>
+</div>
+<details class="example">
+<summary>Calcul à partir de l'arbre syntaxique</summary>
+<p><span class="arithmatex">\((a \vee n) \rightarrow ((\neg c)\vee (b \wedge V)), \mu(a) = 1; \mu(b) = \mu(c) = 0\)</span>. Commencer par les feuilles et remonter aux pères.</p>
+<p><p align="center"><img src="/images/Logique/logique3.png"></p></p>
+<p><p align="center"><img src="/images/Logique/logique4.png"></p></p>
+<p><p align="center"><img src="/images/Logique/logique5.png"></p></p>
+<p><p align="center"><img src="/images/Logique/logique6.png"></p></p>
+<p><p align="center"><img src="/images/Logique/logique7.png"></p></p>
+</details>
+<h2 id="satisfiabilite">Satisfiabilité<a class="headerlink" href="#satisfiabilite" title="Permanent link">&para;</a></h2>
+<h3 id="tautologies">Tautologies<a class="headerlink" href="#tautologies" title="Permanent link">&para;</a></h3>
+<h4 id="tautologie-proposition-satisfiable">Tautologie, proposition satisfiable<a class="headerlink" href="#tautologie-proposition-satisfiable" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Tautologie, modèle et antilogie</p>
+<ul>
+<li>On appelle <em>tautologie</em> toute expression évaluée à <span class="arithmatex">\(1\)</span> dans tout contexte.</li>
+<li>Une proposition <span class="arithmatex">\(p\)</span> est dite <em>satisfiable</em> ou <em>satisfaisable</em> si il existe un contexte <span class="arithmatex">\(\mu\)</span> tel que  <span class="arithmatex">\(\varepsilon_\mu(p) = 1\)</span>. On dit que <span class="arithmatex">\(\mu\)</span> est un modèle de <span class="arithmatex">\(p\)</span> et on note <span class="arithmatex">\(\mu \models p\)</span>.  </li>
+<li>Une proposition qui n'est pas satisfiable est apellée une <em>antilogie</em>. On  dit aussi que l'expression est <em>insatisfiable</em>.  </li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exemples</strong></p>
+<ul>
+<li>Le tiers exclu <span class="arithmatex">\(a \vee  \neg a\)</span> est une tautologie, <span class="arithmatex">\((a \wedge  b) \rightarrow  b\)</span> aussi.  </li>
+<li><span class="arithmatex">\(a \rightarrow  b\)</span> est satisfiable mais n'est pas une tautologie.  </li>
+<li><span class="arithmatex">\(a \wedge  \neg a\)</span> est insatisfiable.  </li>
+<li>Montrer que <span class="arithmatex">\((\neg A \rightarrow  A) \rightarrow  A\)</span> est une tautologie  </li>
+</ul>
+</div>
+<h4 id="notation">Notation<a class="headerlink" href="#notation" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<ul>
+<li>Pour indiquer qu'une proposition <span class="arithmatex">\(a\)</span> <em>est sémantiquement équivalente</em> à  une proposition <span class="arithmatex">\(b\)</span>, il n'est pas suffisant d'écrire <span class="arithmatex">\(a \Leftrightarrow b\)</span>.</li>
+<li>En effet <span class="arithmatex">\(a \Leftrightarrow b\)</span> est juste une proposition. Celle-ci peut être  satisfiable ou non (peut-être même pas, comme <span class="arithmatex">\(V \Leftrightarrow F\)</span> ).  </li>
+<li>La bonne façon d'indiquer cette équivalence est de déclarer  "<span class="arithmatex">\(a \Leftrightarrow b\)</span> est une tautologie".</li>
+<li>Les mathématiciens sont parfois paresseux : il leur arrive d'écrire  "<span class="arithmatex">\(a \Leftrightarrow b\)</span>" au lieu de "<span class="arithmatex">\(a \Leftrightarrow b\)</span> est <em>vraie</em> (ce qui signifie vraie  pour tout contexte)".  </li>
+<li>On écrit <span class="arithmatex">\(a \equiv b\)</span> pour indiquer que <span class="arithmatex">\(a \Leftrightarrow b\)</span> est une tautologie.  </li>
+<li>Attention, "<span class="arithmatex">\(\equiv\)</span>" n'est pas un opérateur (il n'appartient pas au  langage) mais un <em>méta-opérateur</em>.  </li>
+</ul>
+</div>
+<p>A ce propos, un principe empirique est que, pour exprimer des idées  sur un langage, il faut souvent "sortir" du langage.  </p>
+<h4 id="notion-de-consequence">Notion de conséquence<a class="headerlink" href="#notion-de-consequence" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Conséquence</p>
+<p>On considère une expression logique <span class="arithmatex">\(p\)</span> et <span class="arithmatex">\(\chi\)</span> un ensemble d'expressions logiques. On dit que <span class="arithmatex">\(p\)</span> est une <em>conséquence</em> de <span class="arithmatex">\(\chi\)</span> si toute interprétation qui satisfait toutes les formules de l'ensemble <span class="arithmatex">\(\chi\)</span> satisfait <span class="arithmatex">\(p\)</span>. Si c'est le cas, on note : <span class="arithmatex">\(\chi \models p\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Notation</p>
+<p>Si <span class="arithmatex">\(\chi = \left \{  h_1, \dotsb , h_n \right \}\)</span>, on écrit aussi <span class="arithmatex">\(h_1, \dotsb , h_n \models p\)</span>.  Si <span class="arithmatex">\(\chi = \left \{h \right \}\)</span>, on écrit <span class="arithmatex">\(h \models p\)</span>  Par convention, <span class="arithmatex">\(\models p\)</span> indique que <span class="arithmatex">\(p\)</span> est une tautologie.  </p>
+</div>
+<h4 id="proprietes-de-leftrightarrow">Propriétés de <span class="arithmatex">\(\Leftrightarrow\)</span><a class="headerlink" href="#proprietes-de-leftrightarrow" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2, p_3\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition note">
+<p class="admonition-title">Proporiété de <span class="arithmatex">\(\Leftrightarrow\)</span></p>
+<ul>
+<li><strong>Réflexivité</strong> <span class="arithmatex">\(p_1 \Leftrightarrow p_1\)</span></li>
+<li><strong>Symétrie</strong> <span class="arithmatex">\((p_1 \Leftrightarrow p_2) \Leftrightarrow (p_2 \Leftrightarrow p_1)\)</span></li>
+<li><strong>Transitivité</strong> <span class="arithmatex">\(((p_1 \Leftrightarrow p_2) \wedge  (p_2 \Leftrightarrow p_3)) \Leftrightarrow (p_1 \Leftrightarrow p_3)\)</span></li>
+</ul>
+</div>
+<h4 id="proprietes-de-wedge">Propriétés de <span class="arithmatex">\(\wedge\)</span><a class="headerlink" href="#proprietes-de-wedge" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2, p_3\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition note">
+<p class="admonition-title">Proporiété de <span class="arithmatex">\(\wedge\)</span></p>
+<ul>
+<li><strong>Élément neutre</strong> <span class="arithmatex">\((p_1 \wedge  V ) \Leftrightarrow p_1\)</span></li>
+<li><strong>Élément absorbant</strong> <span class="arithmatex">\((p_1 \wedge  F )\Leftrightarrow F\)</span></li>
+<li><strong>Commutativité</strong> <span class="arithmatex">\((p_1 \wedge  p_2) \Leftrightarrow (p_2 \wedge  p_1)\)</span></li>
+<li><strong>Associativité</strong> <span class="arithmatex">\((p_1 \wedge  (p_2 \wedge  p_3))\Leftrightarrow ((p_1 \wedge  p_2) \wedge  p_3)\)</span></li>
+<li><strong>Idempotence</strong> <span class="arithmatex">\((p_1 \wedge  p_1) \Leftrightarrow p_1\)</span></li>
+</ul>
+</div>
+<h4 id="proprietes-de-vee">Propriétés de <span class="arithmatex">\(\vee\)</span><a class="headerlink" href="#proprietes-de-vee" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2, p_3\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition note">
+<p class="admonition-title">Propriétés de <span class="arithmatex">\(\vee\)</span></p>
+<ul>
+<li><strong>Élément neutre</strong> <span class="arithmatex">\((p_1 \vee  F ) \Leftrightarrow p_1\)</span></li>
+<li><strong>Élément absorbant</strong> <span class="arithmatex">\((p_1 \vee  V ) \Leftrightarrow V\)</span></li>
+<li><strong>Commutativité</strong> <span class="arithmatex">\((p_1 \vee  p_2) \Leftrightarrow (p_2 \vee  p_1)\)</span></li>
+<li><strong>Associativité</strong> <span class="arithmatex">\((p_1 \vee  (p_2 \vee  p_3)) \Leftrightarrow ((p_1 \vee  p_2) \vee  p_3)\)</span></li>
+<li><strong>Idempotence</strong> <span class="arithmatex">\((p_1 \vee  p_1) \Leftrightarrow p_1\)</span></li>
+</ul>
+</div>
+<h4 id="relations-entre-vee-et-wedge">Relations entre <span class="arithmatex">\(\vee\)</span>  et <span class="arithmatex">\(\wedge\)</span><a class="headerlink" href="#relations-entre-vee-et-wedge" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2, p_3\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition example">
+<ul>
+<li><strong>Subsomption</strong> <span class="arithmatex">\((p_1 \vee  (p_1 \wedge  p_2)) \Leftrightarrow p_1\)</span></li>
+<li><strong>Subsomption</strong> <span class="arithmatex">\((p_1 \wedge  (p_1 \vee  p_2)) \Leftrightarrow p_1\)</span></li>
+<li><strong>Distributivité</strong> <span class="arithmatex">\((p_1 \wedge  (p_2 \vee  p_3)) \Leftrightarrow (p_1 \wedge  p_2) \vee  (p_1 \wedge  p_3)\)</span></li>
+<li><strong>Distributivité</strong> <span class="arithmatex">\((p_1 \vee  (p_2 \wedge  p_3)) \Leftrightarrow (p_1 \vee  p_2) \wedge  (p_1 \vee  p_3)\)</span></li>
+<li><strong>Première loi de De Morgan</strong> <span class="arithmatex">\(\neg (p_1 \wedge  p_2) \Leftrightarrow (\neg p_1) \vee  (\neg p_2)\)</span></li>
+<li><strong>Seconde loi de De Morgan</strong> <span class="arithmatex">\(\neg (p_1 \vee  p_2) \Leftrightarrow (\neg p_1) \wedge  (\neg p_2)\)</span></li>
+</ul>
+</div>
+<h4 id="proprietes-de-rightarrow">Propriétés de <span class="arithmatex">\(\rightarrow\)</span><a class="headerlink" href="#proprietes-de-rightarrow" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2, p_3\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition note">
+<p class="admonition-title">Propriétés de <span class="arithmatex">\(\rightarrow\)</span></p>
+<ul>
+<li><strong>Modus ponens</strong> <span class="arithmatex">\((p_1 \wedge  (p _1\rightarrow  p_2)) \rightarrow  p_2\)</span></li>
+<li><strong>Double implication</strong> <span class="arithmatex">\(((p_1 \rightarrow  p_2) \wedge  (p_2 \rightarrow  p_1)) \Leftrightarrow (p_1 \Leftrightarrow p_2)\)</span></li>
+</ul>
+</div>
+<h4 id="raisonnement-en-mathematiques">Raisonnement en mathématiques<a class="headerlink" href="#raisonnement-en-mathematiques" title="Permanent link">&para;</a></h4>
+<p>Pour toutes propositions <span class="arithmatex">\(p_1, p_2\)</span>, les propositions suivantes sont des tautologies :</p>
+<div class="admonition note">
+<ul>
+<li><strong>Disjonction de cas</strong> <span class="arithmatex">\(((p_1 \rightarrow  p_2) \wedge  (\neg p_1 \rightarrow  p_2)) \Leftrightarrow p_2\)</span></li>
+<li><strong>Contraposition</strong> <span class="arithmatex">\((p_1 \rightarrow  p_2) \Leftrightarrow (\neg p_2 \rightarrow  \neg p_1)\)</span></li>
+<li><strong>Raisonnement par l'absurde</strong> <span class="arithmatex">\((\neg p_1 \rightarrow  F ) \Leftrightarrow p_1\)</span></li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Montrer qu'on a bien des tautologies en consruisant des tables de vérité.</p>
+</div>
+<h3 id="formes-normales">Formes normales<a class="headerlink" href="#formes-normales" title="Permanent link">&para;</a></h3>
+<h4 id="ecriture-simplifiee">Ecriture simplifiée<a class="headerlink" href="#ecriture-simplifiee" title="Permanent link">&para;</a></h4>
+<p>Pour travailler avec une proposition <span class="arithmatex">\(p\)</span>, il est souvent utile de considérer une expression sémantiquement équivalente à <span class="arithmatex">\(p\)</span> mais plus simple :  </p>
+<ul>
+<li>Ce peut être une version standardisée, dite <em>normale</em> (Analogie :  <span class="arithmatex">\(\frac{6}{4}\)</span> a pour forme normale <span class="arithmatex">\(\frac{3}{2}\)</span> )</li>
+<li>ou encore une version avec moins de connecteurs : <span class="arithmatex">\(F\)</span> pour <span class="arithmatex">\(a \wedge  (\neg a)\)</span> (Analogie : <span class="arithmatex">\(6\)</span> pour <span class="arithmatex">\(1 + 2 + 3\)</span>).  </li>
+</ul>
+<h4 id="litteraux">Littéraux<a class="headerlink" href="#litteraux" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Littéral</p>
+<p>On appelle <em>littéral</em> toute proposition de la forme <span class="arithmatex">\(v\)</span> ou <span class="arithmatex">\(\neg v\)</span> où <span class="arithmatex">\(v\)</span> est une variable propositionnelle.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Conjonction et disjonction</p>
+<p>On appelle <em>conjonction</em> (resp. disjonction) des propositions <span class="arithmatex">\(p_1, \dotsb , p_n\)</span> (<span class="arithmatex">\(n \geq 1\)</span>), la proposition
+<span class="arithmatex">\(p_1 \wedge  p_2 \dotsb \wedge  p_n\)</span> (resp. <span class="arithmatex">\(p_1 \vee  p_2 \dotsb \vee  p_n\)</span>)</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Par convention :</p>
+<ul>
+<li>Une conjonction de <span class="arithmatex">\(0\)</span> proposition est <span class="arithmatex">\(V\)</span>  </li>
+<li>Une disjonction de <span class="arithmatex">\(0\)</span> proposition est <span class="arithmatex">\(F\)</span>  </li>
+<li>Tout littéral est à la fois une conjonction et une disjonction.  </li>
+</ul>
+</div>
+<h4 id="clauses-monomes">Clauses, Monômes<a class="headerlink" href="#clauses-monomes" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Clause</p>
+<p>On appelle <em>clause</em> toute disjonction de littéraux. <span class="arithmatex">\(F\)</span> , disjonction de zéro littéral, est appelé la <em>clause vide</em>. (Moyen mnémotechnique : cla<strong>U</strong>se <span class="arithmatex">\(\leftrightarrow \cup  \leftrightarrow \vee\)</span> )</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Monôme</p>
+<p>On appelle <em>monôme</em> toute conjonction de littéraux. <span class="arithmatex">\(V\)</span> , conjonction de zéro littéral, est appelé le <em>monôme vide</em>. (Moyen mnémotechnique : mon<strong>ô</strong>me <span class="arithmatex">\(\leftrightarrow \wedge\)</span>)</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Forme normale conjonctive</p>
+<p>On appelle <em>forme normale conjonctive</em> (FNC) toute conjonction de clauses et <em>forme normale disjonctive</em> (FND) toute disjonction de monômes.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>On considère implicitement qu'il n'y a pas <span class="arithmatex">\(2\)</span> fois la même variable dans une clause ou monôme.</p>
+</div>
+<h4 id="forme-normale-conjonctivedisjonctive">forme normale conjonctive/disjonctive<a class="headerlink" href="#forme-normale-conjonctivedisjonctive" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p><strong>Proposition</strong></p>
+<p>Toute proposition est <em>sémantiquement équivalente</em> à une <em>forme normale conjonctive</em> (resp. <em>forme normale disjonctive</em>).</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>Fait : On n'a besoin que des <span class="arithmatex">\(3\)</span> opérateurs <span class="arithmatex">\(\neg , \vee , \wedge\)</span></li>
+<li>Convertir une proposition en forme normale conjonctive requiert  l'utilisation de règles de transformation logiques, comme l'élimination de double négations, les lois de De Morgan, et la loi de distributivité.</li>
+<li>Principe : ramener la négation "au contact" des variables (de Morgan), "remonter" les <span class="arithmatex">\(\wedge\)</span> (distibutivité) et supprimer les <span class="arithmatex">\(\neg \neg\)</span>. Par exemple, si <span class="arithmatex">\(v_1, v_2, v_3, v_4\)</span> sont des variables :</li>
+</ul>
+<div class="arithmatex">\[\begin{matrix}
+\underset{\textsf{F. ni conjonctive ni disjonctive}}{\underbrace{\neg(v_1\wedge (v_2\vee \neg v_3)) \vee v_4}} &amp;\equiv&amp; \neg v_1 \vee \neg(v_2 \vee \neg v_3) \vee v_4 \\ 
+&amp;\equiv&amp; \neg v_1 \vee (\neg v_2 \wedge \neg \neg v_3) \vee v_4 \\
+&amp;\equiv&amp; (\neg v_1 \vee \neg v_2 \vee v_4) \wedge (\neg v_1 \vee v_3 \vee v_4)
+\end{matrix}\]</div>
+<ul>
+<li>Les formes normales conjonctives ou disjonctives de littéraux ne sont  en général pas uniques !  </li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exemples</strong></p>
+<p>Les propositions suivantes, dans lesquelles <span class="arithmatex">\(a, b, c, d, e, f\)</span> sont des littéraux,  sont des formes conjonctives :  </p>
+<ul>
+<li><span class="arithmatex">\(a \wedge  b\)</span></li>
+<li><span class="arithmatex">\(a \vee  b\)</span> (oui car c'est une clause - il y a zéro conjonction-)  </li>
+<li><span class="arithmatex">\(a\)</span>  </li>
+<li><span class="arithmatex">\((a \vee  b) \wedge  c\)</span></li>
+<li><span class="arithmatex">\((a \vee  \neg b \vee  \neg c) \wedge  (\neg d \vee  e \vee  f )\)</span>  </li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Contre exemples</strong></p>
+<p>Les propositions suivantes, dans lesquelles <span class="arithmatex">\(a, b, c, d, e, f\)</span> sont des variables,  ne sont pas des formes conjonctives :  </p>
+<ul>
+<li><span class="arithmatex">\(\neg (a \wedge  b)\)</span> : la négation <span class="arithmatex">\(\neg\)</span>  est devant la proposition <span class="arithmatex">\((a \wedge  b)\)</span> qui n'est  pas atomique (ce n'est pas un littéral)  </li>
+<li><span class="arithmatex">\(a \wedge  (b \vee  (c \wedge  d))\)</span> : un <span class="arithmatex">\(\wedge\)</span> est imbriqué dans un <span class="arithmatex">\(\vee\)</span> .  </li>
+</ul>
+</div>
+<h4 id="reecriture">Réécriture<a class="headerlink" href="#reecriture" title="Permanent link">&para;</a></h4>
+<p>Pour obtenir une FNC à partir d'une proposition <span class="arithmatex">\(p\)</span> :</p>
+<ul>
+<li>Supprimer les constantes : <span class="arithmatex">\(V\)</span> est remplacé par <span class="arithmatex">\(v \vee \neg v\)</span> ; <span class="arithmatex">\(F\)</span> par <span class="arithmatex">\(v \wedge \neg v\)</span> où <span class="arithmatex">\(v\)</span> est une variable.</li>
+<li>Supprimer les implications : on exprime la proposition uniquement avec des <span class="arithmatex">\(\neg, \vee, \wedge\)</span></li>
+<li>On descend <span class="arithmatex">\(\neg\)</span> par les lois de De Morgan au contact des variables.
+-On applique la distributivité pour faire descendre les <span class="arithmatex">\(\vee\)</span> et remonter les <span class="arithmatex">\(\wedge\)</span>.</li>
+</ul>
+<h4 id="uniquement-des-neg-et-des-wedge">Uniquement des <span class="arithmatex">\(\neg\)</span>  et des <span class="arithmatex">\(\wedge\)</span><a class="headerlink" href="#uniquement-des-neg-et-des-wedge" title="Permanent link">&para;</a></h4>
+<p>Toute proposition peut "s'exprimer" sans constante : V est remplacé par <span class="arithmatex">\(v \vee \neg v\)</span> ; F par <span class="arithmatex">\(v \wedge  \neg v\)</span> où <span class="arithmatex">\(v\)</span> est une variable.  </p>
+<p>Tous les opérateurs peuvent se définir avec <span class="arithmatex">\(\neg , \wedge , \vee\)</span>  uniquement.  </p>
+<p>Une disjonction <span class="arithmatex">\(a \vee  b\)</span> peut s'exprimer comme la négation d'une  conjonction <span class="arithmatex">\(\neg (\neg a \wedge  \neg b)\)</span>  </p>
+<p>En appliquant ces règles, on obtient que toute proposition est  sémantiquement équivalente à une expression ne contenant que des  variables et les connecteurs <span class="arithmatex">\(\neg , \wedge\)</span> . Ceci nous sert au transparent  suivant.  </p>
+<div class="admonition note">
+<p><strong>Preuve d'existence d'une forme normale conjonctive</strong></p>
+<p>Récurrence sur la taille de la proposition p. </p>
+<p><strong>HR</strong> : <span class="arithmatex">\(p\)</span> est équivalente à FNC.</p>
+<ul>
+<li>Si <span class="arithmatex">\(p\)</span> est un littéral : ok.</li>
+<li>
+<p>Si <span class="arithmatex">\(p = \neg q\)</span>, on applique l'hypothèse de récurrence à <span class="arithmatex">\(q\)</span> qui s'écrit donc  <span class="arithmatex">\(c_1 \wedge  \dotsb \wedge  c_n\)</span> où les <span class="arithmatex">\(c_i\)</span> sont des clauses.</p>
+<ul>
+<li>Par les lois de De Morgan, chaque clause <span class="arithmatex">\(c_i\)</span> s'écrit comme un <span class="arithmatex">\(\neg m_i\)</span> où  <span class="arithmatex">\(m_1\)</span> est un monôme mi =  <span class="arithmatex">\(\bigwedge_{k_i=1}^{n_i} l_{i,k_i}\)</span>(les <span class="arithmatex">\(l_{i,k_i}\)</span> sont des littéraux).</li>
+<li>Alors par De Morgan (encore) :
+<span class="arithmatex">\(p \equiv \neg (\neg m_1 \wedge  \dotsb \wedge  \neg m_n) \equiv (\neg \neg m_1) \vee  \dotsb \vee  (\neg \neg m_n) \equiv m_1 \vee  \dotsb \vee  m_n\)</span>. </li>
+<li>On a bien ce qu'on veut :<br />
+$$
+p \equiv \bigvee_{i=1}^n (\bigwedge_{k_i=1}^{n_i} l_{i,k_i})  \underset{\textsf{distributivité}}{\underbrace{\equiv}}~~\overbrace{\underset {\underset {k_n \in [![1~,~n_n]!]}{\vdots}}{\bigwedge_{k_1 \in [![1~;~ n_1]!]}}\underset{\textsf{clause}}{l_{1,k_1 \vee \dotsb \vee l_{n,k_n}}}}^{\textsf{conjonction de clauses}}
+$$</li>
+</ul>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(p = f_1 \wedge  f_2,\)</span> par <strong>HR</strong> <span class="arithmatex">\(f_1 \equiv p_1 \wedge  \dotsb \wedge  p_n\)</span> et <span class="arithmatex">\(f_2 \equiv q_1 \wedge  \dotsb \wedge  q_n\)</span> où les  <span class="arithmatex">\(p_k , q_r\)</span> sont des clauses.<br />
+$$
+p \underset{\textsf{assoc. de}~\wedge}{\underbrace{\equiv}}  \underset{\textsf{conjonction de clauses}}{\underbrace{p_1 \wedge  \dotsb \wedge  p_{n_1} \wedge  q_1 \wedge  \dotsb \wedge  q_{n_2}}}
+$$
+Ce qu'on veut.  </p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(p = f_1 \vee f_2\)</span> alors, par <strong>HR</strong>, <span class="arithmatex">\(p\)</span> est équivalent à une formule de la
+forme <span class="arithmatex">\((p_1 \wedge \dotsb \wedge p_{n_1} ) \vee (q_1 \wedge \dotsb \wedge q_{n_2} )\)</span> où les <span class="arithmatex">\(p_i ,q_j\)</span> sont des clauses.
+Et par distributivité :
+<span class="arithmatex">\(p \equiv \underset{(k_1,k_2)\in [\![1,n_1]\!] \times [\![1, n_2]\!] }{\bigwedge} ~(p_{k_1} \vee q_{k_2 }) : \textsf{OK}\)</span></p>
+</li>
+</ul>
+</div>
+<h4 id="forme-normale-disjonctive">Forme normale disjonctive<a class="headerlink" href="#forme-normale-disjonctive" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On sait que toute proposition peut s'exprimer comme conjonction de  clause.</li>
+</ul>
+<div class="admonition note">
+<ul>
+<li>Soit <span class="arithmatex">\(p\)</span> une proposition, alors <span class="arithmatex">\(\neg p\)</span> s'écrit sous la forme
+<span class="arithmatex">\(\neg p \equiv c_1 \wedge  \dotsb \wedge  c_n\)</span> avec <span class="arithmatex">\(c_i = l_{i,1} \vee  \dotsb \vee  l_{i,n_i}\)</span> .  </li>
+<li>Donc <span class="arithmatex">\(p \equiv \neg \neg p \equiv \neg c_1 \vee  \dotsb \vee  \neg c_n\)</span> par De Morgan.  </li>
+<li>Or chaque <span class="arithmatex">\(\neg c_i\)</span> est équivalent sémantiquement à une conjonction de littéraux (par De Morgan) : <span class="arithmatex">\(\neg c_i \equiv \neg l_{i,1} \wedge  \dotsb \wedge  \neg l_{i,n_i}\)</span>.</li>
+</ul>
+</div>
+<ul>
+<li>Donc toute proposition peut s'écrire comme disjonction de monômes.  </li>
+<li><strong>PB</strong> : ces réécritures ne sont pas uniques.  </li>
+</ul>
+<h4 id="explosion-combinatoire">Explosion combinatoire<a class="headerlink" href="#explosion-combinatoire" title="Permanent link">&para;</a></h4>
+<p>Considérons la proposition en forme disjonctive :  <span class="arithmatex">\((\textsf{x}_1 \wedge  \textsf{y}_1) \vee  (\textsf{x}_2 \wedge  \textsf{y}_2) \vee  \dotsb \vee  (\textsf{x}_n \wedge  \textsf{y}_n)\)</span> de taille linéaire  </p>
+<p>Par distributivité, sa FNC, de taille <span class="arithmatex">\(2^n\)</span>, est de la forme :  </p>
+<div class="arithmatex">\[
+\begin{align}
+(\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{x}_n) \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \\
+\dotsb \wedge  (\textsf{x}_1 \vee  \textsf{x}_2 \vee  \dotsb \vee  \textsf{x}_k \vee  \textsf{y}_{k+1} \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  \dotsb \\
+\wedge (\textsf{x}_1 \vee  \textsf{y}_2 \vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n) \wedge  (\textsf{y}_1 \vee  \textsf{y}_ 2\vee  \dotsb \vee  \textsf{y}_{n-1} \vee  \textsf{y}_n)
+\end{align}
+\]</div>
+<h4 id="mintermes-maxtermes">Mintermes, maxtermes<a class="headerlink" href="#mintermes-maxtermes" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Minterme / Maxterme</p>
+<p>Soient <span class="arithmatex">\(v_1, \dotsb , v_n\)</span> des variables distinctes.</p>
+<ul>
+<li>On appelle <em>minterme</em> de <span class="arithmatex">\(v_1, \dotsb , v_n\)</span>, tout monôme où chaque variable  <span class="arithmatex">\(v_i\)</span> apparaît exactement une fois (et il n'y a pas d'autre variable).  </li>
+<li>On appelle <em>m<strong>A</strong>xterme</em> de <span class="arithmatex">\(v_1, \dotsb , v_n\)</span>, une cl<strong>A</strong>use où chaque variable <span class="arithmatex">\(v_i\)</span>  apparaît exactement une fois (et il n'y a pas d'autre variable).  </li>
+</ul>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Les <span class="arithmatex">\(4\)</span> (à l'ordre près) maxtermes de <span class="arithmatex">\(v_1\)</span> et <span class="arithmatex">\(v_2\)</span> sont
+<span class="arithmatex">\(v_1 \vee  v_2, v_1 \vee  \neg v_2, \neg v_1 \vee  v_2, \neg v_1 \vee  \neg v_2\)</span>.<br />
+On confond les maxtermes <span class="arithmatex">\(v_1 \vee  v_2\)</span> et <span class="arithmatex">\(v_2 \vee  v_1\)</span>.  </p>
+</div>
+<h4 id="forme-normale-conjonctive">Forme normale conjonctive<a class="headerlink" href="#forme-normale-conjonctive" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Forme normale conjonctive/disjonctive complète</p>
+<p>On dit qu'une proposition est en <em>forme normale conjonctive complète</em> (i.e. avec maxtermes) (FNCC), si elle s'écrit comme une conjonction de maxtermes tous distincts.</p>
+<p>On dit qu'une proposition est en <em>forme normale disjonctive complète</em> (i.e. avec mintremes) (FNDC), si elle s'écrit comme une disjonction de mintermes tous distincts.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Mettre une proposition sous FNCC, c'est donner une expression en  FNCC sémantiquement équivalente à cette proposition.</p>
+<p><span class="arithmatex">\((v_1 \vee  \neg v_2 \vee  v_3) \wedge  (v_1 \vee  v_2 \vee  \neg v_3)\)</span> est une FNCC sur les variables  <span class="arithmatex">\(v_1, v_2, v_3\)</span> mais pas <span class="arithmatex">\((v_1\vee  \neg v_2 \vee  v_3) \wedge  \neg (v_1 \vee  v_2 \vee  \neg v_3)\)</span> car la négation  n'est pas au contact des variables. <span class="arithmatex">\((v_1 \vee v_2 \vee \neg v_3 ) \wedge (v_1 \vee v_3 )\)</span> non plus car il manque une variable. </p>
+<p><em>Utilisation</em> : démonstration automatique de théorèmes ou <strong>PB SAT</strong>.      </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Soit <span class="arithmatex">\(p\)</span> une proposition à <span class="arithmatex">\(3\)</span> variables dont la table est :
+<span class="arithmatex">\(\text{Table de } p\)</span></p>
+<div class="arithmatex">\[\begin{array}{c|c|c|c}
+ a &amp; b &amp; c &amp; p \\
+ \hline
+ 1 &amp; 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 1 &amp; 0 &amp; '1' \\
+ 1 &amp; 0 &amp; 1 &amp; '1' \\
+ 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 &amp; '1' \\
+ 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1
+ \end{array}\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(p\)</span> est sépantiquement équivalent à la disjonction de mintermes <span class="arithmatex">\(q\)</span> suivante : <span class="arithmatex">\((a ∧ b ∧ ¬c) ∨ (a ∧ ¬b ∧ c) ∨ (¬a ∧ b ∧ ¬c) ∨ (¬a ∧ ¬b ∧ ¬c)\)</span></p>
+</li>
+<li>
+<p>En effet, <span class="arithmatex">\(p\)</span> prend la valeur <span class="arithmatex">\(1\)</span> pour les mêmes cpntextes exactement que la FNDC <span class="arithmatex">\(q\)</span> (une disjonction vaut <span class="arithmatex">\(1\)</span> si et seulement si un terme vaut <span class="arithmatex">\(1\)</span>).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(¬p\)</span> est sémantiquement équivalente à la disjonction de mintermes <span class="arithmatex">\(q'\)</span> suivante : <span class="arithmatex">\((a ∧ b ∧ c) ∨ (a ∧ ¬b ∧ ¬c) ∨ (¬a ∧ b ∧ ¬c) ∨ (¬a ∧ ¬b ∧ c)\)</span></p>
+</li>
+<li>
+<p>Donc <span class="arithmatex">\(¬¬p\)</span> est sémantiquement équivalente à : <span class="arithmatex">\((¬a ∨ ¬b ∨ ¬c) ∧ (¬a ∨ b ∨ c) ∧ (a ∨ ¬b ∨ c) ∧ (a ∨ b ∨ ¬c)\)</span></p>
+</li>
+<li>
+<p>Lire positivement les variables des lignes à <span class="arithmatex">\(1\)</span> pour la FND</p>
+</li>
+<li>Lire négativement les variables des lignes à <span class="arithmatex">\(0\)</span> pour la FNC</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p><strong>Proposition</strong></p>
+<p>Toute proposition est sémantiquement équivalente à une FNCC (resp. FNDC) unique à l'ordre des maxtermes (resp. mintermes) près (et à ordre  des littéraux près dans chaque maxterme -resp. minterme-).  </p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Soit <span class="arithmatex">\(P\)</span> une antilogie : ladisjonction à zéro minterme est <span class="arithmatex">\(F\)</span> par convention. Or <span class="arithmatex">\(F ≡ P\)</span>, donc <span class="arithmatex">\(P\)</span> est bien une disjonction de minterme.</p>
+<p>Soit <span class="arithmatex">\(P\)</span> une tautologie : la conjonction à zéro maxterme est <span class="arithmatex">\(V\)</span> par convention. Or <span class="arithmatex">\(V ≡ P\)</span>^, donc P est une conjonction de maxterme.</p>
+<p>Un minterme est satisfait par un seul contexte ; un maxterme par tous les contextes sauf <span class="arithmatex">\(1\)</span>.</p>
+<p>Dans ce qui suit on dit que deux FNDC sont égales si elles ont les mêmes mintermes (les mintermes sont donnés à l'ordre des littéraux près).</p>
+</div>
+<h4 id="existence-de-la-fndc">Existence de la FNDC<a class="headerlink" href="#existence-de-la-fndc" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p><strong>Démonstration</strong></p>
+<ul>
+<li>On construit la table de vérité de la proposition : il y a <span class="arithmatex">\(2^n\)</span> lignes  correspondants aux valeurs de vérité des <span class="arithmatex">\(n\)</span> variables de <span class="arithmatex">\(p\)</span>.  </li>
+<li>Chaque ligne satisfaisant l'expression (<span class="arithmatex">\(1\)</span> dans la dernière colonne)  donne un minterme. Toutes les variables sont présentes et une variable <span class="arithmatex">\(v\)</span> <span class="arithmatex">\(y\)</span> apparaît positivement (<span class="arithmatex">\(v\)</span>) si sa valeur de vérité dans la ligne est <span class="arithmatex">\(1\)</span>, négativement (<span class="arithmatex">\(\neg v\)</span>) sinon.  </li>
+<li>On considère la disjonction de tous les mintermes ainsi obtenus. C'est une expression <span class="arithmatex">\(q\)</span> en FNDC. Possiblement <span class="arithmatex">\(q\)</span> est vide.  </li>
+<li>Soit <span class="arithmatex">\(\mu\)</span> un contexte. Si <span class="arithmatex">\(\varepsilon_\mu(p) = 1\)</span>, alors le minterme associé à <span class="arithmatex">\(\mu\)</span> est  vrai pour <span class="arithmatex">\(\mu\)</span> donc <span class="arithmatex">\(\varepsilon_\mu(q) = 1\)</span>.  </li>
+<li>Si <span class="arithmatex">\(\varepsilon_\mu(p) = 0\)</span>, alors <span class="arithmatex">\(q\)</span> ne contient pas le minterme associé à <span class="arithmatex">\(\mu\)</span>. Ainsi, pour tout minterme <span class="arithmatex">\(m\)</span> de <span class="arithmatex">\(q\)</span>, on a <span class="arithmatex">\(\varepsilon_\mu(m)=0\)</span> et donc <span class="arithmatex">\(\varepsilon_\mu(q) = 0\)</span>. </li>
+<li><span class="arithmatex">\(\color{red}{\textsf{Donc } p \textsf{ et } q \textsf{ prennent bien la même valeur pour tout contexte.}}\)</span>  </li>
+</ul>
+</div>
+<h4 id="unicite-de-la-fndc-a-lordre-pres">Unicité de la FNDC à l'ordre près<a class="headerlink" href="#unicite-de-la-fndc-a-lordre-pres" title="Permanent link">&para;</a></h4>
+<p>Soient <span class="arithmatex">\(p \equiv q\)</span> deux FNDC. Elles ont donc même table.</p>
+<ul>
+<li>Si <span class="arithmatex">\(p \neq q\)</span> et <span class="arithmatex">\(p, q\)</span> ne possèdent qu'un minterme :  </li>
+<li>Si <span class="arithmatex">\(p, q\)</span> ont deux littéraux <span class="arithmatex">\(l, l'\)</span> de la même variable <span class="arithmatex">\(v\)</span> distincts, l'un des  littéraux vaut <span class="arithmatex">\(\neg v\)</span> l'autre <span class="arithmatex">\(v\)</span> . Autrement dit <span class="arithmatex">\(l \equiv \neg l'\)</span></li>
+<li>Comme <span class="arithmatex">\(p\)</span> est une conjonction, il n'y a qu'un seul contexte <span class="arithmatex">\(c\)</span> (i.e. une  seule ligne) dans lequel <span class="arithmatex">\(p\)</span> vaut <span class="arithmatex">\(1\)</span>.</li>
+<li>Alors <span class="arithmatex">\(l\)</span> vaut aussi <span class="arithmatex">\(1\)</span> dans ce contexte (<span class="arithmatex">\(p\)</span> étant une conjonction).</li>
+<li>Donc <span class="arithmatex">\(l'\)</span> vaut <span class="arithmatex">\(0\)</span> dans <span class="arithmatex">\(c\)</span>. Et donc <span class="arithmatex">\(q\)</span> vaut <span class="arithmatex">\(0\)</span> dans <span class="arithmatex">\(c\)</span>. <span class="arithmatex">\(p\)</span> et <span class="arithmatex">\(q\)</span> ne peuvent avoir même table.</li>
+<li>De ce qui précède, on déduit aussi que des mintermes (ayant les mêmes  variables) distincts ne valent jamais <span class="arithmatex">\(1\)</span> en même temps.  </li>
+<li>On a vu que si <span class="arithmatex">\(p \neq q\)</span> et <span class="arithmatex">\(p, q\)</span> ne possèdent qu'un minterme, leurs tables sont différentes. On en déduit que des mintermes distincts ne valent jamais <span class="arithmatex">\(1\)</span> en même temps.</li>
+<li>Si <span class="arithmatex">\(p\)</span> et <span class="arithmatex">\(q\)</span> sont des disjonctions de mintermes, et si un minterme <span class="arithmatex">\(m\)</span> de <span class="arithmatex">\(p\)</span> ne se retrouve pas dans <span class="arithmatex">\(q\)</span> :  </li>
+<li>Lorsque <span class="arithmatex">\(m\)</span> vaut <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(p\)</span> aussi (comme disjonction). Tous les autres  mintermes valent <span class="arithmatex">\(0\)</span> (puisque un seul minterme vaut <span class="arithmatex">\(1\)</span> pour un contexte donné), ceux de <span class="arithmatex">\(p\)</span> comme ceux de <span class="arithmatex">\(q\)</span>.  </li>
+<li>Alors dans ce contexte, comme disjonction de <span class="arithmatex">\(0\)</span>, <span class="arithmatex">\(q\)</span> vaut <span class="arithmatex">\(0\)</span>.  </li>
+<li>Et donc <span class="arithmatex">\(p\)</span> et <span class="arithmatex">\(q\)</span> ne peuvent avoir même table.  </li>
+</ul>
+<h4 id="fncc">FNCC<a class="headerlink" href="#fncc" title="Permanent link">&para;</a></h4>
+<p>Soit une expression <span class="arithmatex">\(p\)</span> à <span class="arithmatex">\(n\)</span> variables,</p>
+<div class="admonition note">
+<p class="admonition-title">Existence</p>
+<ul>
+<li><span class="arithmatex">\(\neg p\)</span> a une FNDC <span class="arithmatex">\(c_1 \vee \dotsb \vee  c_n\)</span> où les <span class="arithmatex">\(c_i\)</span> sont des mintermes.</li>
+<li>Donc <span class="arithmatex">\(p\)</span> se réécrit comme <span class="arithmatex">\((\neg c_1) \wedge  \dotsb \wedge (\neg c_n)\)</span>. Or les négations de mintermes se réécrivent en maxtermes (par De Morgan).</li>
+<li>Et donc <span class="arithmatex">\(p\)</span> se réécrit en une FNCC. Voilà pour l'existence.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Unicité</p>
+<p>Si <span class="arithmatex">\(p\)</span> avait deux FNCC distinctes, par De Morgan <span class="arithmatex">\(\neg p\)</span> aurait deux FNDC distinctes. Or il y a une seule FNDC possible pour une formule.</p>
+</div>
+<h2 id="probleme-sat">Problème SAT<a class="headerlink" href="#probleme-sat" title="Permanent link">&para;</a></h2>
+<h3 id="probleme-sat-et-n-sat">Problème SAT et <span class="arithmatex">\(n\)</span>-SAT<a class="headerlink" href="#probleme-sat-et-n-sat" title="Permanent link">&para;</a></h3>
+<h4 id="presentation-du-probleme-2-sat">Présentation du problème <span class="arithmatex">\(2\)</span>-SAT<a class="headerlink" href="#presentation-du-probleme-2-sat" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Le problème SAT qui consiste à déterminer si une proposition est  satisfiable ou non est en général de complexité exponentielle en le  nombre de variables.  </li>
+<li>Le problème CNF-SAT est la restriction du problème SAT aux formes  normales conjonctives.  </li>
+<li>Le problème <span class="arithmatex">\(n\)</span>-SAT est la restriction du problème SAT aux formes  normales conjonctives avec au plus <span class="arithmatex">\(n\)</span> littéraux par clause. Nous verrons l'<em>alogrithme de Quin</em> qui résoud le porblème CNF-STAT : il est souvent méilleur que la recherche exhaustive en force brute.</li>
+<li>Le problème <span class="arithmatex">\(2\)</span>-SAT consiste à déterminer si une forme conjonctive  dont les clauses ont seulement deux littéraux est satisfiable. Il admet des solutions polynômiales.  </li>
+</ul>
+<h4 id="le-probleme-sat">Le problème SAT<a class="headerlink" href="#le-probleme-sat" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Comment tester qu'une proposition est satisfiable ? Il s'agit du  problème dit SAT.  </li>
+<li>Comment tester qu'une proposition <span class="arithmatex">\(p\)</span> est une tautologie ? Si on sait  résoudre le problème SAT, il suffit de montrer que <span class="arithmatex">\(\neg p\)</span> est insatisfiable.  </li>
+<li>Pour le problème SAT, on peut simplement calculer sa table. Mais on  a alors une complexité en <span class="arithmatex">\(O(2^n)\)</span>, si <span class="arithmatex">\(n\)</span> est le nombre de variables.  </li>
+<li>Des algorithmes plus efficaces (en pratique, c'est à dire sauf cas  pathologiques) existent (DPLL) et passent par une mise sous FNC.  Mais dans le pire des cas ce passage à la FNC est lui-même de  complexité exponentielle.  </li>
+</ul>
+<h3 id="probleme-2-sat">Problème 2-SAT<a class="headerlink" href="#probleme-2-sat" title="Permanent link">&para;</a></h3>
+<h4 id="2-sat">2-SAT<a class="headerlink" href="#2-sat" title="Permanent link">&para;</a></h4>
+<p>Cette section est laissée pour info mais sera traitée en seconde année.  </p>
+<h4 id="probleme-2-sat-aspvall-plass-tarjan">Problème 2-SAT (Aspvall-Plass-Tarjan)<a class="headerlink" href="#probleme-2-sat-aspvall-plass-tarjan" title="Permanent link">&para;</a></h4>
+<p>Soit <span class="arithmatex">\(p\)</span> une proposition mise sous forme conjonctive avec des <span class="arithmatex">\(2\)</span>-clauses</p>
+<ul>
+<li>On construit un graphe orienté :  </li>
+<li>Ses sommets sont tous les littéraux formés avec les variables  apparaissant dans la proposition.</li>
+<li>Les arcs sont des couples de littéraux de la forme <span class="arithmatex">\((a, \neg b)\)</span> ou <span class="arithmatex">\((\neg a, b)\)</span>  mais pas tous ...</li>
+<li>Pour deux littéraux <span class="arithmatex">\(a, b\)</span>, l'arc <span class="arithmatex">\((\neg a, b)\)</span> est présent si et seulement si la  disjonction <span class="arithmatex">\(a \vee b\)</span> est dans <span class="arithmatex">\(p\)</span>. Et dans ce cas <span class="arithmatex">\((a, \neg b)\)</span> est présent aussi.</li>
+<li>Ceci correspond à <span class="arithmatex">\(a \vee  b \equiv (\neg a \rightarrow  b) \wedge  (\neg b \rightarrow  a)\)</span>  </li>
+<li>Une fois ce graphe construit, on examine la composante fortement  connexe de toute variable <span class="arithmatex">\(v\)</span> de <span class="arithmatex">\(p\)</span>. Si <span class="arithmatex">\(\neg v\)</span> est dedans, il y a un chemin d'implications <span class="arithmatex">\(v \rightarrow  \dotsb \rightarrow  \neg v\)</span> et un autre <span class="arithmatex">\(\neg v \rightarrow  \dotsb \rightarrow  v\)</span>.  </li>
+<li>Alors <span class="arithmatex">\(v \Leftrightarrow \neg v\)</span> est une conséquence de <span class="arithmatex">\(p : p \models v \Leftrightarrow \neg v\)</span> (ce qui  signifie que tout modèle satisfaisant p, satisfait <span class="arithmatex">\(v \Leftrightarrow \neg v\)</span> ). Donc si <span class="arithmatex">\(p\)</span> est satisfiable, <span class="arithmatex">\(v \Leftrightarrow \neg v\)</span> aussi : <strong>ABSURDE</strong>.  </li>
+<li>Donc si <span class="arithmatex">\(v\)</span> et <span class="arithmatex">\(\neg v\)</span> sont dans la même composante connexe, <span class="arithmatex">\(p\)</span> n'est pas satisfiable (Aspvall-Plass-Tarjan).  </li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple (Mansuy)</p>
+<p><span class="arithmatex">\(p = (v_1 \vee  v_2) \wedge  (\neg v_1 \vee  v_3) \wedge  (v_1 \vee  \neg v_2) \wedge  (\neg v_2 \vee  v_3) \wedge  (\neg v_1 \vee  \neg v_3)\)</span> donne le graphe  </p>
+<p><p align="center"><img src="/images/Logique/logique8.png"></p></p>
+<ul>
+<li><span class="arithmatex">\(\neg v_1\)</span> accède à <span class="arithmatex">\(v_1\)</span> via <span class="arithmatex">\(v_2\)</span> et</li>
+<li><span class="arithmatex">\(v_1\)</span> accède à <span class="arithmatex">\(\neg v_1\)</span> via <span class="arithmatex">\(\neg v_3\)</span>  </li>
+<li>Donc <span class="arithmatex">\(v_1\)</span> et <span class="arithmatex">\(\neg v_1\)</span> sont dans la même composante connexe.</li>
+<li>Par suite <span class="arithmatex">\(p\)</span> n'est pas satisfiable.  </li>
+</ul>
+</div>
+<h4 id="conclusion-pour-le-probleme-sat">Conclusion pour le problème SAT<a class="headerlink" href="#conclusion-pour-le-probleme-sat" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Le problème SAT est le problème algorithmique qui consiste, étant  donnée une formule à décider en FNC si elle valide ou non.  </li>
+<li>Le problème est NP-<em>complet</em>, même pour le cas particulier <span class="arithmatex">\(3\)</span>-SAT où on n'autorise que les clauses d'au plus trois littéraux.</li>
+<li>Un problème <span class="arithmatex">\({\displaystyle {\mathcal {P}}}\)</span> NP-complet vérifie :  </li>
+<li>Il est possible de vérifier une solution de <span class="arithmatex">\({\displaystyle {\mathcal {P}}}\)</span> efficacement (en temps  polynomial) : on me donne un candidat solution, et je peux vérifier en temps polynomial ce qu'il en est. La classe des problèmes vérifiant cette propriété est notée NP.</li>
+<li>tous les problèmes de la classe NP se ramènent à <span class="arithmatex">\({\displaystyle {\mathcal {P}}}\)</span> via une réduction polynomiale. Cela signifie que le problème est au moins aussi difficile que tous les autres problèmes de la classe NP (aspect "complet"). Appliqué à la satisfiabilité, cela signifie que si on me donne un problème de la classe NP, je peux le transformer en temps polynomial en un problème de satisfiabilité.</li>
+<li>Bien sûr, un problème de la classe P (polynomial) vérifie la première  condition. On a donc P <span class="arithmatex">\(\subset\)</span> NP, mais a-t-on NP <span class="arithmatex">\(\subset\)</span> P ?  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4114 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1-Induction_structurelle/">
+      
+      
+        <link rel="next" href="../3-Rec_Ter_Abr/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Les arbres binaires - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#les-arbres-binaires" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Les arbres binaires
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arithmetique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arithmétique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definition-mathematique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Définition mathématique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Définition mathématique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arbre-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convention-de-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convention de représentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-darbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types d'arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preuve-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preuve par induction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preuve par induction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordre-sur-les-arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre sur les arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements-sans-predecesseur-de-displaystyle-mathcal-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eléments sans prédecesseur de \({\displaystyle {\mathcal {A}}}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-dinduction-applique-aux-arbres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction appliqué aux arbres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction-inductives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction inductives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonction inductives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profondeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-type-textocaml-pour-les-arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un type \(\text{OCAML}\) pour les arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hauteur-et-taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hauteur et taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-du-calcul-de-la-hauteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité du calcul de la hauteur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité du calcul de la hauteur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methode-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode informelle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-entre-taille-et-hauteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation entre taille et hauteur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profondeur-moyenne-et-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur moyenne et applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profondeur moyenne et applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profondeur-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur moyenne
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profondeur moyenne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-dun-fils-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas d'un fils unique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-fils-et-n1-feuilles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux fils et \(n+1\) feuilles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-aux-tris" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application aux tris
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application aux tris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permutation-associee-a-une-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permutation associée à une liste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre de décision
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne-a-partir-de-larbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne à partir de l'arbre de décision
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parcours-darbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours d'arbres binaires
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours d'arbres binaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-en-profondeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours en profondeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours en profondeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depth-first-search-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth-first search (DFS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-ocaml-rappel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type OCAML (rappel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-prefixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours préfixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-suffixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours suffixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-infixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours infixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compléments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours en largeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours en largeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-fonctions-auxiliaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux fonctions auxiliaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe du parcours en largeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-du-parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité du parcours en largeur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arithmetique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arithmétique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logique
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definition-mathematique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Définition mathématique
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Définition mathématique">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arbre-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre binaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convention-de-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convention de représentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-darbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types d'arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preuve-par-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preuve par induction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preuve par induction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordre-sur-les-arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre sur les arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements-sans-predecesseur-de-displaystyle-mathcal-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eléments sans prédecesseur de \({\displaystyle {\mathcal {A}}}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-dinduction-applique-aux-arbres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe d'induction appliqué aux arbres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction-inductives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction inductives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonction inductives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profondeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-type-textocaml-pour-les-arbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un type \(\text{OCAML}\) pour les arbres binaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hauteur-et-taille" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hauteur et taille
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-du-calcul-de-la-hauteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité du calcul de la hauteur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexité du calcul de la hauteur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methode-informelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Méthode informelle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-entre-taille-et-hauteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation entre taille et hauteur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profondeur-moyenne-et-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur moyenne et applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profondeur moyenne et applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profondeur-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profondeur moyenne
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profondeur moyenne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-de-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas de base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cas-dun-fils-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas d'un fils unique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-fils-et-n1-feuilles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux fils et \(n+1\) feuilles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-aux-tris" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application aux tris
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application aux tris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permutation-associee-a-une-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permutation associée à une liste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbre de décision
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-en-moyenne-a-partir-de-larbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité en moyenne à partir de l'arbre de décision
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parcours-darbres-binaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours d'arbres binaires
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours d'arbres binaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-en-profondeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours en profondeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours en profondeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depth-first-search-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth-first search (DFS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-ocaml-rappel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type OCAML (rappel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-prefixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours préfixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-suffixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours suffixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-infixe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours infixe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compléments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours en largeur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours en largeur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-fonctions-auxiliaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux fonctions auxiliaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe du parcours en largeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-du-parcours-en-largeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexité du parcours en largeur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="les-arbres-binaires">Les arbres binaires<a class="headerlink" href="#les-arbres-binaires" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li>"Option informatique MPSI, MP/MP* ", Roger Mansuy, paru chez Vuibert.</li>
+<li><a href="https://fr.wikipedia.org/wiki/Arbre_binaire">Wikipédia</a>, arbres binaires</li>
+<li>Un cours à <a href="https://info-llg.fr/option-mp/pdf/01.arbres.pdf">Louis Le Grand</a></li>
+</ul>
+</div>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="resume">Résumé<a class="headerlink" href="#resume" title="Permanent link">&para;</a></h3>
+<p>"Les arbres permettent la réalisation de structures de données : structure persistante de dictionnaire, structure persistante de file de priorité. Ils permettent aussi de représenter des expressions arithmétiques ou des formules logiques "(programme officiel CPGE 2013).</p>
+<div class="admonition example">
+<p><em>Figure 1</em> – Une arborescence de fichiers</p>
+<p><p align="center"><img src="/images/ArbresBinaires/ab1.png"></p></p>
+<p><strong>Commentaire</strong></p>
+<p>La colonne de gauche est l'affichage arborescent de mon répertoire <span class="arithmatex">\(\texttt{Files}\)</span> à l'aide de la commande <span class="arithmatex">\(\text{Unix}\)</span> <span class="arithmatex">\(\texttt{tree Files/}\)</span></p>
+<p><em>Figure 2</em> – Contenu d'un fichier html</p>
+<p><p align="center"><img src="/images/ArbresBinaires/ab2.png"></p></p>
+<p><strong>Commentaire</strong></p>
+<p>La colonne de gauche est le code d'un fichier <span class="arithmatex">\(\texttt{html}\)</span>. Noter la présentation arborescente de ce langage de balises.</p>
+<p><em>Figure 3</em> – Affichage html</p>
+<p><p align="center"><img src="/images/ArbresBinaires/ab3.png"></p></p>
+<p><strong>Commentaire</strong></p>
+<p>La colonne de gauche est l'interprétation du fichier précédent par <span class="arithmatex">\(\texttt{Firefox}\)</span>.</p>
+</div>
+<h3 id="arithmetique">Arithmétique<a class="headerlink" href="#arithmetique" title="Permanent link">&para;</a></h3>
+<p><em>Figure 4</em> – Une expression arithmétique</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A(('+'))--&gt;B((3))
+    A--&gt;C(('×'))
+    C--&gt;D((4))
+    C--&gt;E((5))</code></pre>
+<p><strong>Commentaire</strong></p>
+<p>La colonne de gauche est la représentation arborescente de <span class="arithmatex">\(3 + 4 ×5\)</span></p>
+<h3 id="logique">Logique<a class="headerlink" href="#logique" title="Permanent link">&para;</a></h3>
+<p><em>Figure 5</em> – Une expression logique</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A((¬))--&gt;B((∧))
+    B--&gt;F((A))
+    B--&gt;C((∨))
+    C--&gt;D((B))
+    C--&gt;E((C))</code></pre>
+<p><strong>Commentaire</strong></p>
+<p>La colonne de gauche est la représentation arborescente de <span class="arithmatex">\(¬(A ∧(B ∨C )\)</span> soit "<span class="arithmatex">\(\text{Non}\)</span> (<span class="arithmatex">\(A\)</span> <span class="arithmatex">\(\text{et}\)</span> (<span class="arithmatex">\(B\)</span> <span class="arithmatex">\(\text{ou}\)</span> <span class="arithmatex">\(C\)</span>)) "</p>
+<h2 id="definition-mathematique">Définition mathématique<a class="headerlink" href="#definition-mathematique" title="Permanent link">&para;</a></h2>
+<h3 id="arbre-binaire">Arbre binaire<a class="headerlink" href="#arbre-binaire" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Définition <span class="arithmatex">\(1\)</span> : Arbre binaire</p>
+<p>Soient <span class="arithmatex">\(E\)</span> un ensemble de cardinal au moins un ; <strong>nil</strong> un élément d'un  ensemble sans intersection avec <span class="arithmatex">\(E\)</span> ; <span class="arithmatex">\(C\)</span> un symbole de constructeur ternaire sans intersection avec les précédents. On définit inductivement les <em>arbres binaires étiquetés</em> par <span class="arithmatex">\(E\)</span> en convenant que :</p>
+<ul>
+<li><span class="arithmatex">\(\color{blue}\text{Règle de base}\)</span> : <strong>nil</strong> est un arbre binaire appelé arbre vide</li>
+<li><span class="arithmatex">\(\color{blue}\text{Règle d'induction}\)</span> : Si <span class="arithmatex">\(x ∈E\)</span> et si <span class="arithmatex">\(F_g\)</span> ,<span class="arithmatex">\(F_d\)</span> sont deux arbres binaires étiquetés par <span class="arithmatex">\(E\)</span> , alors <span class="arithmatex">\(A = C (F_g ,x ,F_d )\)</span> est un arbre binaire étiqueté par <span class="arithmatex">\(E\)</span> .</li>
+<li><span class="arithmatex">\(\color{blue}\text{Règle de complétude}\)</span> : Seuls <strong>nil</strong> et les éléments que l'on peut former en un nombre fini d'application des règles d'induction sont des arbres binaires.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Un arbre est donc un élément d'un ensemble inductif (voir chapitre précédent). On fait le choix dans la suite de ne pas utiliser de symbole pour le constructeur ternaire : on écrira <span class="arithmatex">\((F_g ,x ,F_d )\)</span> plutôt que <span class="arithmatex">\(C (F_g ,x ,F_d )\)</span>. La raison est purement esthétique : cela alourdirait les transparents.</p>
+</div>
+<h3 id="vocabulaire">Vocabulaire<a class="headerlink" href="#vocabulaire" title="Permanent link">&para;</a></h3>
+<p>Avec les conventions de la définition <span class="arithmatex">\(\color{blue}1\)</span> :</p>
+<div class="admonition quote">
+<p class="admonition-title">Étiquette</p>
+<p><span class="arithmatex">\(x\)</span> est appelée <em>étiquette</em> de la racine de <span class="arithmatex">\(A\)</span>,</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Fils gauche / droit</p>
+<p>Si <span class="arithmatex">\(A = (F_g ,x ,F_d )\)</span>, on dit que <span class="arithmatex">\(F_g\)</span> est le <em>fils gauche</em> de <span class="arithmatex">\(A\)</span>, et <span class="arithmatex">\(F_d\)</span> son <em>fils droit</em>. Ce sont des <em>sous-termes immédiats</em> de <span class="arithmatex">\(A\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Père</p>
+<p>On dit que <span class="arithmatex">\(A\)</span> est le <em>père</em> de <span class="arithmatex">\(F_g\)</span> . On dit parfois <span class="arithmatex">\(\underline{\text{improprement}}\)</span> que <span class="arithmatex">\(x\)</span> est le père de <span class="arithmatex">\(F_g\)</span> .</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Feuille</p>
+<p>Si <span class="arithmatex">\(Fg = Fd =\)</span> <strong>nil</strong> on dit que <span class="arithmatex">\(A\)</span> est un <em>arbre-feuille</em> ou plus simplement une <em>feuille</em>.</p>
+</div>
+<div class="admonition warning">
+<p><span class="arithmatex">\(\color{red}\text{Pour certains auteurs, les feuilles sont les nils !!}\)</span></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Si <span class="arithmatex">\(A = <span class="arithmatex">\((**nil**,\)</span>x\)</span> ,<span class="arithmatex">\(F_d\)</span> ), nous disons que <span class="arithmatex">\(A\)</span> a un seul fils</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Chemin</p>
+<p>Si <span class="arithmatex">\(A\)</span> est un arbre, on appelle <em>chemin</em> tout <span class="arithmatex">\(n\)</span>-uplet (<span class="arithmatex">\(n &gt; 0\)</span>) <span class="arithmatex">\(A = A_0,...,A_n\)</span> tel que <span class="arithmatex">\(A_0 = A\)</span> et quel que soit <span class="arithmatex">\(k &lt; n, A_{k +1}\)</span> est un fils de <span class="arithmatex">\(A_k\)</span> . Le nombre <span class="arithmatex">\(n\)</span> est la <em>longueur du chemin</em>. Parfois, pour désigner un chemin, on ne donne que les étiquettes.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Sous-arbre</p>
+<p>Dans un chemin, tous les <span class="arithmatex">\(A_i\)</span> avec <span class="arithmatex">\(i &gt; 0\)</span> sont appelés des <em>descendants</em> de <span class="arithmatex">\(A\)</span>. On dit aussi <em>sous-arbre</em> ou <em>sous-termes</em>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Noeud interne</p>
+<p>Un <em>nœud interne</em> possède au moins un fils qui n'est pas l'arbre vide. Ce sont tous les nœuds d'un arbre à l'exception de <strong>nil</strong> et des feuilles.</p>
+</div>
+<h3 id="convention-de-representation">Convention de représentation<a class="headerlink" href="#convention-de-representation" title="Permanent link">&para;</a></h3>
+<p>Par convention, on ne représente ni <strong>nil</strong>, ni les arcs d'extrêmités <strong>nil</strong>. Au lieu de</p>
+<p><em>Figure 6</em> – Avec <strong>nil</strong></p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A((1))--&gt;B((2))
+    B--&gt;F((4))
+    F--&gt;G((nil))
+    F--&gt;H((nil))
+    B--&gt;I((5))
+    I--&gt;J((nil))
+    I--&gt;K((nil))
+    A--&gt;C((3))
+    C--&gt;D((nil))
+    C--&gt;E((nil))</code></pre>
+<p>On représente</p>
+<p><em>Figure 7</em> – Sans <strong>nil</strong></p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A((1))--&gt;B((2))
+    B--&gt;D((4))
+    B--&gt;E((5))
+    A--&gt;C((3))</code></pre>
+<h3 id="proprietes">Propriétés<a class="headerlink" href="#proprietes" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Lemme</p>
+<p>Dans un arbre, aucun chemin ne comporte deux fois un même arbre non vide.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve</p>
+<ul>
+<li>Soit un chemin <span class="arithmatex">\(A_1,...,A_i ,...,A_j ,...,A_k\)</span> tel que <span class="arithmatex">\(A_i = A_j\)</span> .</li>
+<li>Par application du théorème sur l'ordre structurel (voir chapitre <a href="https://mp2i-thiers.github.io/Arbres/induction_structurelle/">induction</a>), les tailles <em>structurelles</em> (nombres de constructeurs) sont strictement décroissantes.</li>
+</ul>
+</div>
+<p>Ainsi <span class="arithmatex">\(|Ai |&gt; |Aj |\)</span> et <span class="arithmatex">\(A_i = A_j\)</span> : <strong>ABSURDE</strong>.</p>
+<h3 id="types-darbres-binaires">Types d'arbres binaires<a class="headerlink" href="#types-darbres-binaires" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Certains arbres ne sont pas binaires. Exemple : la figure <span class="arithmatex">\(\color{blue}1\)</span>.</li>
+<li>Un <em>arbre binaire entier</em> est un arbre dont tous les nœuds possèdent zéro ou deux fils (ex : la figure <span class="arithmatex">\(\color{blue}4\)</span> mais pas <span class="arithmatex">\(\color{blue}5\)</span>).</li>
+<li>Un <em>arbre binaire parfait</em> est un arbre binaire entier dans lequel toutes les feuilles sont à la même distance de la racine (c'est-à-dire à la même profondeur) (ex : la figure <span class="arithmatex">\(\color{blue}7\)</span>).</li>
+<li>L'arbre binaire parfait est parfois nommé arbre binaire <em>complet</em>. Cependant certains auteurs<span class="arithmatex">\(^\textbf{1.}\)</span> définissent un arbre binaire complet comme étant un arbre binaire entier dans lequel les feuilles ont pour profondeur soit <span class="arithmatex">\(n\)</span> soit <span class="arithmatex">\(n −1\)</span> pour un <span class="arithmatex">\(n\)</span> donné (voir figure <span class="arithmatex">\(\color{blue}8\)</span>).</li>
+</ul>
+<div class="admonition tip">
+<p><span class="arithmatex">\(\textbf{1.}\)</span> Et nous avec !</p>
+</div>
+<h3 id="arbres-binaires">Arbres binaires<a class="headerlink" href="#arbres-binaires" title="Permanent link">&para;</a></h3>
+<p><em>Figure 8</em> – Un arbre binaire parfait</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A(( ))--&gt;B(( ))
+    A--&gt;C(( ))
+    B--&gt;D(( ))
+    B--&gt;E(( ))
+    C--&gt;F(( ))
+    C--&gt;G(( ))    </code></pre>
+<p>Tous les niveaux sont remplis.</p>
+<p><em>Figure 9</em> – Un arbre binaire complet gauche</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A(( ))--&gt;B(( ))
+    A--&gt;C(( ))
+    B--&gt;D(( ))
+    B--&gt;E(( ))
+    C--&gt;F(( ))
+    C--&gt;G(( ))
+    D--&gt;H(( ))
+    D--&gt;I(( ))    
+    E--&gt;J(( ))
+    E~~~K(( ))
+    style K display:none</code></pre>
+<p>Tous les niveaux sont complets sauf le dernier qui est rempli incomplètement en commençant par la gauche.</p>
+<h2 id="preuve-par-induction">Preuve par induction<a class="headerlink" href="#preuve-par-induction" title="Permanent link">&para;</a></h2>
+<h3 id="ordre-sur-les-arbres-binaires">Ordre sur les arbres binaires<a class="headerlink" href="#ordre-sur-les-arbres-binaires" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title"><span class="arithmatex">\(\prec\)</span></p>
+<p>La relation binaire <span class="arithmatex">\(\prec\)</span> sur les arbres étiquetés par <span class="arithmatex">\(E\)</span> définie par </p>
+<p><span class="arithmatex">\(A \preceq B \Leftrightarrow\)</span> <span class="arithmatex">\(A\)</span> est un descendant de <span class="arithmatex">\(B\)</span></p>
+<p>C'est un ordre bien fondé et <span class="arithmatex">\(\prec\)</span> est un ordre strict.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Démonstration</p>
+<p>Un descendant est un sous-terme. Donc cet ordre n'est rien d'autre que l'ordre structurel (voir chapitre <a href="https://mp2i-thiers.github.io/Arbres/induction_structurelle/">induction</a>) lequel est bien fondé.</p>
+</div>
+<h3 id="elements-sans-predecesseur-de-displaystyle-mathcal-a">Eléments sans prédecesseur de <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span><a class="headerlink" href="#elements-sans-predecesseur-de-displaystyle-mathcal-a" title="Permanent link">&para;</a></h3>
+<div class="admonition waring">
+<p class="admonition-title">Proposition</p>
+<p>L'ensemble des éléments sans prédecesseur des arbres étiquetés par <span class="arithmatex">\(E\)</span> est réduit à <strong>nil</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve</p>
+</div>
+<p>Soit un arbre A.</p>
+<ul>
+<li>Si <span class="arithmatex">\(A =\)</span> <strong>nil</strong>, il n'a pas de prédécesseur car le constructeur est d'arité <span class="arithmatex">\(0\)</span>.</li>
+<li>Sinon, <span class="arithmatex">\(A\)</span> est de la forme (<span class="arithmatex">\(F_g ,x ,F_d\)</span> ) et donc <span class="arithmatex">\(F_g ≺A\)</span>. Donc <span class="arithmatex">\(A\)</span> admet un prédécesseur.</li>
+</ul>
+<h3 id="principe-dinduction-applique-aux-arbres">Principe d'induction appliqué aux arbres<a class="headerlink" href="#principe-dinduction-applique-aux-arbres" title="Permanent link">&para;</a></h3>
+<p>Soit <span class="arithmatex">\(P\)</span> un prédicat sur <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span></p>
+<ul>
+<li>On établit la propriété pour les éléments minimaux (donc <span class="arithmatex">\(\{\)</span><strong>nil</strong><span class="arithmatex">\(\}\)</span>).</li>
+<li>On prend <span class="arithmatex">\(A\)</span> avec prédécesseur. On suppose que pour tout prédécesseur <span class="arithmatex">\(B\)</span> de <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(P (B )\)</span> est vrai, et on tente d'établir que <span class="arithmatex">\(P(A)\)</span> est vrai.</li>
+</ul>
+<h2 id="fonction-inductives">Fonction inductives<a class="headerlink" href="#fonction-inductives" title="Permanent link">&para;</a></h2>
+<p>Soit <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span>, l'ensemble des arbres étiquetés par <span class="arithmatex">\(E\)</span>. De nombreuses fonction <span class="arithmatex">\(f : {\displaystyle {\mathcal {A}}}→F\)</span> se définissent par la donnée d'un élément <span class="arithmatex">\(a \in F\)</span> et d'une application <span class="arithmatex">\(φ : F ×E ×F →F\)</span> telles que :</p>
+<ul>
+<li><span class="arithmatex">\(f (\textbf{nil}) = a\)</span></li>
+<li><span class="arithmatex">\(∀(F_g ,F_d ) ∈{\displaystyle {\mathcal {A}}}^2, ∀x ∈E ,f (F_g ,x ,F_d ) = φ(f (F_g ),x ,f (F_d ))\)</span></li>
+</ul>
+<p>Le principe d'induction établit que <span class="arithmatex">\(f\)</span> est définie sur <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span> et qu'elle prend ses valeurs dans <span class="arithmatex">\(F\)</span> .</p>
+<h3 id="taille">Taille<a class="headerlink" href="#taille" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Taille</p>
+<p>La <em>taille</em> d'un arbre binaire est le nombre de ses nœuds qui ne sont pas <strong>nil</strong></p>
+<p>La <em>taille</em> d'un arbre <span class="arithmatex">\(A\)</span>, notée <span class="arithmatex">\(|A|\)</span>, se définie inductivement par :</p>
+<ul>
+<li><span class="arithmatex">\(|\textbf{nil}|= 0\)</span></li>
+<li><span class="arithmatex">\(∀(F_g ,F_d ) ∈{\displaystyle {\mathcal {A}}}^2,∀x ∈E ,|(F_g ,x ,F_d )|= 1 + |F_g |+ |F_d |\)</span></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Cette définition est différente de la taille structurelle vue au chapitre <a href="https://mp2i-thiers.github.io/Arbres/induction_structurelle/">induction</a> en ce sens qu'elle ne compte pas les constructeurs d'arité <span class="arithmatex">\(0\)</span>. La définition varie selon les auteurs : il faut donc bien lire l'énoncé.</p>
+</div>
+<h3 id="profondeur">Profondeur<a class="headerlink" href="#profondeur" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Hauteur</p>
+<p>La <em>hauteur</em> d'un arbre binaire est la longueur de la plus longue branche (sans arriver jusqu'à <strong>nil</strong>).</p>
+<p>La <em>hauteur</em> d'un arbre binaire <span class="arithmatex">\(A\)</span>, notée <span class="arithmatex">\(h(A)\)</span>, est la fonction définie inductivement par :</p>
+<ul>
+<li><span class="arithmatex">\(h(nil) = −1\)</span></li>
+<li><span class="arithmatex">\(∀(F_g ,F_d ) ∈\displaystyle {\mathcal {A}}^2,∀x ∈E ,h((F_g ,x ,F_d )) = 1 + max(h(F_g ),h(F_d ))\)</span></li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Profondeur</p>
+<p>La <em>profondeur</em> d'un nœud dans un arbre binaire est la longueur du chemin qui le relie à la racine.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Là encore, la définition varie selon les auteurs.</p>
+</div>
+<h3 id="un-type-textocaml-pour-les-arbres-binaires">Un type <span class="arithmatex">\(\text{OCAML}\)</span> pour les arbres binaires<a class="headerlink" href="#un-type-textocaml-pour-les-arbres-binaires" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c">(* type possible pour les arbres binaires *)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">arbre</span> <span class="o">=</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="nc">Nil</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">a</span> <span class="n">arbre</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">arbre</span><span class="o">);;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Node</span> <span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span> <span class="k">and</span> <span class="n">c</span> <span class="o">=</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nc">Node</span> <span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span> <span class="k">and</span> <span class="n">d</span> <span class="o">=</span> <span class="nc">Node</span> <span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span> <span class="k">in</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="nc">Node</span> <span class="o">(</span><span class="n">b</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="n">c</span><span class="o">)</span> <span class="k">and</span> <span class="n">f</span><span class="o">=</span> <span class="nc">Node</span> <span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="nc">Node</span><span class="o">(</span><span class="n">d</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="nc">Nil</span><span class="o">))</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="k">in</span> <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="n">f</span><span class="o">);;</span><span class="c">(* un arbre à représenter *)</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="hauteur-et-taille">Hauteur et taille<a class="headerlink" href="#hauteur-et-taille" title="Permanent link">&para;</a></h3>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">taille</span> <span class="n">a</span> <span class="o">=</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="k">match</span> <span class="n">a</span> <span class="k">with</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,_,</span><span class="n">d</span><span class="o">)</span> <span class="o">-&gt;</span><span class="mi">1</span><span class="o">+</span><span class="n">taille</span> <span class="n">g</span><span class="o">+</span><span class="n">taille</span> <span class="n">d</span><span class="o">;;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">hauteur</span> <span class="n">a</span> <span class="o">=</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="k">match</span> <span class="n">a</span> <span class="k">with</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,_,</span><span class="n">d</span><span class="o">)</span> <span class="o">-&gt;</span><span class="mi">1</span><span class="o">+</span> <span class="o">(</span><span class="n">max</span> <span class="o">(</span><span class="n">hauteur</span> <span class="n">g</span><span class="o">)</span> <span class="o">(</span><span class="n">hauteur</span> <span class="n">d</span><span class="o">));;</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>On observe d'abord que pour ces fonctions, la complexité au pire est croissante avec la taille de la variable.</li>
+<li>En effet, soit <span class="arithmatex">\(A\)</span> un arbre avec <span class="arithmatex">\(n\)</span> nœuds qui atteint le maximum de complexité. Pour (<span class="arithmatex">\(A\)</span>,<span class="arithmatex">\(x\)</span> ,<strong>nil</strong>), qui a <span class="arithmatex">\(n + 1\)</span> nœuds, le calcul nécessite au moins une opération de plus (ne serait-ce que le filtrage).</li>
+</ul>
+<h3 id="complexite-du-calcul-de-la-hauteur">Complexité du calcul de la hauteur<a class="headerlink" href="#complexite-du-calcul-de-la-hauteur" title="Permanent link">&para;</a></h3>
+<h4 id="methode-informelle">Méthode informelle<a class="headerlink" href="#methode-informelle" title="Permanent link">&para;</a></h4>
+<p>Pour un arbre de taille <span class="arithmatex">\(n\)</span> :</p>
+<ul>
+<li>De façon empirique on peut dire que chaque nœud est parcouru trois fois : quand on y accède (au moment du filtrage), quand le parcours revient du fils gauche (avec l'info sur sa hauteur), quand il revient du fils droit (avec l'info sur sa hauteur).</li>
+<li>Pour chacun de ces trois passages dans le nœud, le nombre d'opérations élémentaires hors appels récursifs est borné par une constante (disons <span class="arithmatex">\(c\)</span>).</li>
+<li>Au total, on peut donc majorer le nombre d'opérations par <span class="arithmatex">\(3nc\)</span> et le minorer par <span class="arithmatex">\(n\)</span>.</li>
+<li>Donc complexité en <span class="arithmatex">\(Θ(n)\)</span></li>
+</ul>
+<h3 id="relation-entre-taille-et-hauteur">Relation entre taille et hauteur<a class="headerlink" href="#relation-entre-taille-et-hauteur" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Proposition</p>
+<p>Soit <span class="arithmatex">\(A\)</span> un arbre. Alors <span class="arithmatex">\(h(A) + 1 ≤|A|≤2^{h(A)+1} −1\)</span>. Et les bornes sont atteintes.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Preuve par induction</p>
+<ul>
+<li>Si <span class="arithmatex">\(A =\)</span> <strong>nil</strong>, alors <span class="arithmatex">\(|A|= 0\)</span>; <span class="arithmatex">\(h(A) = −1. −1 + 1 ≤0 ≤2^{−1+1} −1.\)</span> OK</li>
+<li>Si <span class="arithmatex">\(A = (G ,x ,D )\)</span>, et si la propriété est vraie pour <span class="arithmatex">\(G\)</span> ,<span class="arithmatex">\(D\)</span> , alors</li>
+</ul>
+<p><span class="arithmatex">\(|A|= 1 + |G |+ |D |≥ 1 + h(G ) + 1 + h(D ) + 1 ≥1 + (1 + max(h(G ),h(D ))) = 1 + h(A)\)</span></p>
+<p>Et <span class="arithmatex">\(|A|= 1 + |G |+ |D |≤1 + 2^{h(G )+1} −1 + 2^{h(D)+1} −1\)</span></p>
+<p>Donc <span class="arithmatex">\(|A| ≤−1 + 2 ·2^{max(h(G ),h(D))+1} = 2 ·2^{h(A)} −1 = 2^{h(A)+1} −1\)</span></p>
+<p>Les deux bornes sont atteintes : à gauche par les listes chaînées et à droite par les arbres parfaits.</p>
+</div>
+<h2 id="profondeur-moyenne-et-applications">Profondeur moyenne et applications<a class="headerlink" href="#profondeur-moyenne-et-applications" title="Permanent link">&para;</a></h2>
+<h3 id="profondeur-moyenne">Profondeur moyenne<a class="headerlink" href="#profondeur-moyenne" title="Permanent link">&para;</a></h3>
+<p>La <em>profondeur moyenne</em> d'un arbre est la moyenne des longueurs de ses branches ou encore la moyenne des profondeurs des feuilles.</p>
+<div class="admonition warning">
+<p class="admonition-title">Proposition</p>
+<p>Dans un arbre binaire à <span class="arithmatex">\(n &gt; 0\)</span> feuilles, la profondeur moyenne est égale ou supérieure à <span class="arithmatex">\(log_2(n)\)</span></p>
+</div>
+<h4 id="cas-de-base">Cas de base<a class="headerlink" href="#cas-de-base" title="Permanent link">&para;</a></h4>
+<p>Par récurrence sur le nombre de feuille <span class="arithmatex">\(n\)</span> de <span class="arithmatex">\(A\)</span>, on montre que la profondeur moyenne <span class="arithmatex">\(m_A\)</span> est plus grande que <span class="arithmatex">\(log_2(n)\)</span>.</p>
+<ul>
+<li>Vrai pour <span class="arithmatex">\(n = 1\)</span> (profondeur au moins zéro, <span class="arithmatex">\(log_2 (1) = 0\)</span>).</li>
+</ul>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph LR;
+A((1))
+B((1))--&gt;C((...))
+C--&gt;D(feuille) </code></pre>
+<ul>
+<li>Si <span class="arithmatex">\(n = 2\)</span>, la plus petite profondeur moyenne intervient quand les deux feuilles sont à la profondeur <span class="arithmatex">\(1\)</span>. Alors la profondeur moyenne vaut <span class="arithmatex">\(1\)</span> et <span class="arithmatex">\(log_2 (2) = 1\)</span>. Si l'une des feuilles n'est pas à la profondeur <span class="arithmatex">\(1\)</span>, la profondeur moyenne est strictement supérieure à <span class="arithmatex">\(log_2 (2)\)</span>.</li>
+</ul>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TD;
+A((1))--&gt;B((2))
+A--&gt;C((3))
+
+D((1))--&gt;E((2))
+D--&gt;F((3))
+F~~~G(( ))
+F--&gt;H((4))
+style G display:none</code></pre>
+<h4 id="cas-dun-fils-unique">Cas d'un fils unique<a class="headerlink" href="#cas-dun-fils-unique" title="Permanent link">&para;</a></h4>
+<p>Par récurrence sur le nombre de feuille <span class="arithmatex">\(n\)</span> de <span class="arithmatex">\(A\)</span>, on montre que la profondeur moyenne <span class="arithmatex">\(m_A\)</span> est plus grande que <span class="arithmatex">\(log_2(n)\)</span>. Supposons la propriété vraie pour tout arbre binaire d'au plus <span class="arithmatex">\(n\)</span> feuilles <span class="arithmatex">\((2 ≤n)\)</span>. On se donne un arbre <span class="arithmatex">\(A\)</span> de <span class="arithmatex">\(n + 1\)</span> feuilles <span class="arithmatex">\((n ≥2)\)</span>. Si <span class="arithmatex">\(A\)</span> n'a qu'un fils, on se ramène au problème à deux fils :</p>
+<ul>
+<li>L'unique fils <span class="arithmatex">\(F\)</span> de <span class="arithmatex">\(A\)</span> a autant de feuilles que <span class="arithmatex">\(A\)</span> mais la profondeur de ses feuilles est plus petite (car <span class="arithmatex">\(m_A = m_F + 1\)</span>).</li>
+<li>En descendant dans l'arbre on finit par trouver un premier descendant <span class="arithmatex">\(D\)</span> qui a deux fils (car <span class="arithmatex">\(A\)</span> a au moins deux feuilles) et <span class="arithmatex">\(n + 1\)</span> feuilles.</li>
+<li>On montre donc la propriété pour <span class="arithmatex">\(D\)</span> , elle sera vraie pour <span class="arithmatex">\(A\)</span> car la profondeur moyenne y est plus grande.</li>
+</ul>
+<h4 id="deux-fils-et-n1-feuilles">Deux fils et <span class="arithmatex">\(n+1\)</span> feuilles<a class="headerlink" href="#deux-fils-et-n1-feuilles" title="Permanent link">&para;</a></h4>
+<p>On suppose que <span class="arithmatex">\(A\)</span> a deux fils <span class="arithmatex">\(F_g ,F_d\)</span> . Soit <span class="arithmatex">\(k\)</span> tel que <span class="arithmatex">\(F_g\)</span> possède <span class="arithmatex">\(k\)</span> feuilles <span class="arithmatex">\((n + 1 &gt; k ≥1)\)</span>, <span class="arithmatex">\(F_d\)</span> en a <span class="arithmatex">\(n + 1 −k\)</span></p>
+<p>Relation moyenne <span class="arithmatex">\(/\)</span> somme des profondeurs :</p>
+<p>On a à gauche : <span class="arithmatex">\(\frac{\sum_{i =1}^k{ p^g_i}}{k} = m_g\)</span></p>
+<div class="admonition note">
+<p class="admonition-title">Notation</p>
+<ul>
+<li><span class="arithmatex">\(p^g_i\)</span> = profondeur de la feuille i du fils gauche, </li>
+<li><span class="arithmatex">\(m_g\)</span> moyenne des profondeurs à gauche.</li>
+</ul>
+</div>
+<p>Gauche : <span class="arithmatex">\(\sum_{i =1}^k{ p^g_i} = k \times \underbrace{m_g}_{\text{prof. moy.}} \underbrace{≥}_{\text{par HR}} k \times log_2(k)\)</span></p>
+<p>Droite :</p>
+<p><span class="arithmatex">\(\sum^{n+1−k}_{i =1} {p^d_i} = (n + 1 −k )\times m_d ≥ (n + 1 −k )\times log_2(n + 1 −k )\)</span>.</p>
+<p>La somme des profondeurs des feuilles dans <span class="arithmatex">\(A\)</span> vérifie</p>
+<p><span class="arithmatex">\(\begin{matrix}
+ S_{n+1}&amp; =  &amp; \sum_{r=1}^{n+1}p_r\\
+ &amp; &amp; \\
+ &amp; = &amp; \sum_{i=1}^{k}{(1 + p_i^g)} + \sum_{i=1}^{n+1-k}{(1+p_i^d)}\\
+ &amp; &amp; \\
+ &amp; = &amp; n+1+\sum_{i=1}^k{p_i^g}+\sum_{i=1}^{n+1-k}{p_i^d}\\
+ &amp; &amp; \\
+ &amp; ≥ &amp; n+1+k\times log_2(k) + (n+1-k) \times log_2(n+1-k)
+\end{matrix}\)</span></p>
+<p>La somme <span class="arithmatex">\(S_{n+1}\)</span> des profondeurs est :</p>
+<p><span class="arithmatex">\(S_{n+1} ≥n + 1 + k \times log_2 (k) + (n + 1 −k )\times log_2(n + 1 −k)\)</span></p>
+<p>La fonction <span class="arithmatex">\(f : k \mapsto k \times log_2(k) + (n + 1 −k ) log_2(n + 1 −k )\)</span> se dérive en <span class="arithmatex">\(f' : k \mapsto log_2(k) − log_2(n + 1 −k )\)</span>.</p>
+<p>Cette dérivée s'annule en <span class="arithmatex">\(n+1\)</span> <span class="arithmatex">\(f′(1) &lt; 0, f′(n) &gt; 0\)</span> donc <span class="arithmatex">\(f(\frac{n+1}{2})\)</span> est minimale.</p>
+<p>Par suite <span class="arithmatex">\(f (k) = k\times log_2 (k) + (n + 1 −k )\times log_2(n + 1 −k )\)</span> </p>
+<p>Donc <span class="arithmatex">\(f(k) ≥ f(\frac{n + 1}{2}) = (n + 1)\times log_2(\frac{n + 1}{2})\)</span></p>
+<p>Alors la moyenne <span class="arithmatex">\(m_A = \frac{Sn+1}{n + 1}\)</span> des profondeurs vérifie</p>
+<p><span class="arithmatex">\(\begin{matrix}
+(n + 1) \times m_A &amp;=&amp; \sum_{r=1}^{n+1} p_r \\
+&amp;&amp; \\
+&amp;≥&amp; n + 1 + (n + 1)\times log_2(\frac{n + 1}{2})\\
+&amp;&amp; \\
+&amp;=&amp; n + 1 + (n + 1)\times log_2(n + 1) −(n + 1) \\
+&amp;&amp; \\
+&amp;=&amp; (n + 1)\times log_2(n + 1)
+\end{matrix}\)</span></p>
+<p>Donc <span class="arithmatex">\(m_A ≥log_2(n + 1)\)</span> : OK !</p>
+<h3 id="application-aux-tris">Application aux tris<a class="headerlink" href="#application-aux-tris" title="Permanent link">&para;</a></h3>
+<h4 id="permutation-associee-a-une-liste">Permutation associée à une liste<a class="headerlink" href="#permutation-associee-a-une-liste" title="Permanent link">&para;</a></h4>
+<p>Considérons un tri <span class="arithmatex">\(T\)</span> donné (par ex : tri fusion ou tri insertion).</p>
+<ul>
+<li>Considérons une liste (ou un tableau) à <span class="arithmatex">\(n\)</span> nombres <span class="arithmatex">\(\color{red}\text{tous distincts}\)</span>. La complexité du tri sur cette structure ne dépend pas des valeurs de ces nombres mais de l'ordre initial dans lequel ils sont placés.</li>
+<li>Classer <span class="arithmatex">\([12; 50; 3; 28; 46]\)</span> a la même complexité que le classement de
+<span class="arithmatex">\([2; 5; 1; 3; 4]\)</span> (permutation d'éléments dans J1,nK).</li>
+<li>A une liste <span class="arithmatex">\(L\)</span> de <span class="arithmatex">\(n\)</span> nombres distincts à trier, on associe ainsi une
+unique permutation <span class="arithmatex">\(σ ∈S_n\)</span> . Le coût <span class="arithmatex">\(C (L)\)</span> du tri de <span class="arithmatex">\(L\)</span> selon l'algorithme <span class="arithmatex">\(T\)</span> dépend seulement de <span class="arithmatex">\(σ\)</span> (ordre des éléments) et on le note donc <span class="arithmatex">\(C (σ)\)</span>.</li>
+</ul>
+<h4 id="complexite-en-moyenne">Complexité en moyenne<a class="headerlink" href="#complexite-en-moyenne" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Complexité en moyenne</p>
+<p>La <em>complexité en moyenne</em> <span class="arithmatex">\(c (n)\)</span> du tri selon l'algo <span class="arithmatex">\(T\)</span> des liste de taille <span class="arithmatex">\(n\)</span> est le coût moyen des permutations associées : </p>
+<p><span class="arithmatex">\(c (n) = \frac{1}{n!} \sum_{σ∈Sn}{ C (σ)}\)</span>.</p>
+</div>
+<h4 id="arbre-de-decision">Arbre de décision<a class="headerlink" href="#arbre-de-decision" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Arbre de décision</p>
+<p>Un <em>arbre de décision</em> est un arbre binaire tel que </p>
+<ul>
+<li>chaque nœud interne est étiqueté avec une comparaison, </li>
+<li>chaque feuille est étiquetée avec une permutation</li>
+</ul>
+</div>
+<p>A un algorithme de tri appliqué à des listes de taille <span class="arithmatex">\(n\)</span> on associe un arbre binaire de décision unique (admis). Une permutation donnée est l'extrémité d'une branche complète de l'arbre.</p>
+<p>On construit ainsi cet arbre de décision : La racine est la première comparaison observée entre éléments. Son fils gauche est la première comparaison effectuée lorsque le test correspondant à la racine est positif, le droit est la première comparaison effectuée si le premier test est négatif etc.</p>
+<p>L'arbre de décision associé à un tri par comparaison sur des structures
+de longueur <span class="arithmatex">\(n\)</span> est unique (c'est une affirmation, pas une preuve : il
+faudrait le montrer) et il a <span class="arithmatex">\(n!\)</span> feuilles (autant que de permutations).</p>
+<div class="admonition example">
+<p>Arbre de décision du tri par insertion pour les listes <span class="arithmatex">\([A; B ; C ]\)</span></p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+graph TB; 
+    A((A &lt; B))-- oui [A;B;C] --&gt;B((B &lt; C))
+    A-- non [B;A;C] --&gt;C((A &lt; C))
+    C-- oui --&gt;D((BAC))
+    C-- non [B;C;A] --&gt;E((B &lt; C))
+    E-- oui --&gt;F((BCA))
+    E-- non --&gt;G((CBA))
+    B-- oui --&gt;H((ABC))
+    B-- non [A;C;B] --&gt;I((A &lt; C))
+    I-- oui --&gt;J((ACB))
+    I-- non --&gt;K((CAB))</code></pre>
+</div>
+<h4 id="complexite-en-moyenne-a-partir-de-larbre-de-decision">Complexité en moyenne à partir de l'arbre de décision<a class="headerlink" href="#complexite-en-moyenne-a-partir-de-larbre-de-decision" title="Permanent link">&para;</a></h4>
+<p>Soit un tri <span class="arithmatex">\(T\)</span> et son arbre de décision <span class="arithmatex">\(A\)</span>.</p>
+<ul>
+<li>La complexité du tri par <span class="arithmatex">\(T\)</span> d'une liste <span class="arithmatex">\(L\)</span> de longueur <span class="arithmatex">\(n\)</span> est proportionnelle à la longueur de la branche de A empruntée en traitant L. <span class="arithmatex">\(\color{red}\text{Si }L\text{ est associée à la permutation σ, la feuille sur laquelle arrive}\)</span> <span class="arithmatex">\(\color{red}\text{ l'algorithme en traitant }L\text{ est la permutation réciproque σ−1 (car} σ ◦σ^{−1} = id_{S_n})\)</span></li>
+</ul>
+<div class="admonition example">
+<p>Si <span class="arithmatex">\(L\)</span> est associe à la permutation <span class="arithmatex">\([2,3,1]\)</span> on arrive sur la feuille <strong>CAB</strong> qui correspond à la permutation <span class="arithmatex">\([3,1,2]\)</span> réciproque de la précédente.</p>
+</div>
+<ul>
+<li>La complexité en moyenne de <span class="arithmatex">\(T\)</span> est donc proportionnelle à la profondeur moyenne des <span class="arithmatex">\(n!\)</span> feuilles.</li>
+<li>Or, celle-ci est minorée par <span class="arithmatex">\(log_2(n!)\)</span> Et la formule de Stirling nous donne <span class="arithmatex">\(log_2(n!) = Θ(n \times log(n))\)</span>.</li>
+<li>Ainsi, la meilleure complexité possible en moyenne pour un tri par comparaison est <span class="arithmatex">\(Θ(n \times log (n))\)</span>.</li>
+<li>La complexité au pire est supérieure à la complexité en moyenne. Un algorithme qui, comme le tri fusion, réalise une complexité au pire en <span class="arithmatex">\(Θ(n\times log (n))\)</span> est donc un algorithme de tri par comparaison optimal.</li>
+</ul>
+<h2 id="parcours-darbres-binaires">Parcours d'arbres binaires<a class="headerlink" href="#parcours-darbres-binaires" title="Permanent link">&para;</a></h2>
+<h3 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h3>
+<p>Un <em>parcours d'arbre</em> est une façon d'ordonner les nœuds d'un arbre afin de tous les parcourir.</p>
+<p>On peut le voir comme une fonction qui à un arbre associe une liste de ses nœuds même si la liste n'est souvent pas explicitement construite par le parcours.</p>
+<h3 id="parcours-en-profondeur">Parcours en profondeur<a class="headerlink" href="#parcours-en-profondeur" title="Permanent link">&para;</a></h3>
+<h4 id="depth-first-search-dfs">Depth-first search (DFS)<a class="headerlink" href="#depth-first-search-dfs" title="Permanent link">&para;</a></h4>
+<p>Les <em>parcours en profondeur</em> se définissent de manière récursive sur les arbres. Le parcours d'un arbre consiste à traiter la racine de l'arbre et à parcourir récursivement les sous-arbres gauche et droit de la racine. Les parcours <em>préfixe</em>, <em>infixe</em> et <em>suffixe</em> se distinguent par l'ordre dans lequel sont faits ces trois traitements.</p>
+<p><em>Figure</em> – Ordre dans lequel les nœuds sont visités (en exposant) dans un parcours en profondeur préfixe. Les lettres correspondent à la numérotation par parcours en largeur.</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear'} } }%%
+graph TB;
+A((a¹)) --&gt; B((b²))
+A --&gt; C((c⁵))
+B --&gt; D((d³))
+B --&gt; E((e⁴))
+C --&gt; F((f⁶))
+C --&gt; G(( ))
+style G display:none</code></pre>
+<h4 id="type-ocaml-rappel">Type OCAML (rappel)<a class="headerlink" href="#type-ocaml-rappel" title="Permanent link">&para;</a></h4>
+<p>Il y a beaucoup de façon de définir les arbres binaires en Ocaml. En voici une :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Nil</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span><span class="o">;;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="nc">Node</span><span class="o">(</span><span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="nc">Nil</span><span class="o">),</span><span class="mi">2</span><span class="o">,</span><span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="nc">Nil</span><span class="o">))</span> <span class="k">and</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="n">d</span> <span class="o">=</span> <span class="nc">Node</span><span class="o">(</span><span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="nc">Nil</span><span class="o">),</span><span class="mi">5</span><span class="o">,</span><span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,</span><span class="mi">7</span><span class="o">,</span><span class="nc">Nil</span><span class="o">))</span> <span class="k">in</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="n">d</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="parcours-prefixe">Parcours préfixe<a class="headerlink" href="#parcours-prefixe" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Principe</p>
+<p>Dès qu'on passe par un nœud, on effectue un traitement de son étiquette. On n'attend pas que les descendants du nœud soient traités. On fait ce qu'on a à faire avec ce nœud dès qu'on passe dessus.</p>
+</div>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">parcours_prefixe</span> <span class="o">=</span> <span class="k">function</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="o">|</span> <span class="nc">Node</span> <span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">r</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%d &quot;</span> <span class="n">r</span><span class="o">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>        <span class="n">parcours_prefixe</span> <span class="n">g</span><span class="o">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="n">parcours_prefixe</span> <span class="n">d</span> <span class="o">;;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="n">parcours_prefixe</span> <span class="n">a</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On obtient <strong>1 2 3 4 3 6 7</strong>.</p>
+<h4 id="parcours-suffixe">Parcours suffixe<a class="headerlink" href="#parcours-suffixe" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Principe</p>
+<p>Quand on passe sur un nœud, on attend que tous ses descendants soient traités avant d'agir sur ce nœud.</p>
+</div>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">parcours_suffixe</span> <span class="o">=</span> <span class="k">function</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="o">|</span> <span class="nc">Node</span> <span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">r</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>        <span class="n">parcours_suffixe</span> <span class="n">g</span><span class="o">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>        <span class="n">parcours_suffixe</span> <span class="n">d</span> <span class="o">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>        <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%d &quot;</span> <span class="n">r</span><span class="o">;;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="n">parcours_suffixe</span> <span class="n">a</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On obtient <strong>3 4 2 6 7 5 1</strong></p>
+<h4 id="parcours-infixe">Parcours infixe<a class="headerlink" href="#parcours-infixe" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Principe</p>
+<p>Quand on passe sur un nœud, on traite d'abord le fils gauche. Puis on traite le nœud lui même. Et enfin on traite le second fils.</p>
+</div>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span>
+<span class="normal"><a href="#__codelineno-5-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">parcours_infixe</span> <span class="o">=</span> <span class="k">function</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="o">|</span> <span class="nc">Node</span> <span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">r</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>        <span class="n">parcours_infixe</span> <span class="n">g</span><span class="o">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>        <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%d &quot;</span> <span class="n">r</span><span class="o">;;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>        <span class="n">parcours_infixe</span> <span class="n">d</span> <span class="o">;;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">parcours_infixe</span> <span class="n">a</span><span class="o">;;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>On obtient <strong>3 2 4 1 6 5 7</strong></p>
+<h4 id="complements">Compléments<a class="headerlink" href="#complements" title="Permanent link">&para;</a></h4>
+<p>La complexité du parcours en profondeur pour un arbre a déjà été étudiée : c'est celle du calcul de la hauteur (laquelle est un parcours suffixe dans notre code puisque le traitement a lieu lorsqu'on connaît la hauteur des <span class="arithmatex">\(2\)</span> fils) : <span class="arithmatex">\(Θ(n)\)</span></p>
+<p>Le parcours préfixe (resp. suffixe) est injectif (si l'on considère que
+<strong>Node(Nil,x,f)=Node(f,x,Nil)</strong>). Voir TD.</p>
+<h3 id="parcours-en-largeur">Parcours en largeur<a class="headerlink" href="#parcours-en-largeur" title="Permanent link">&para;</a></h3>
+<h4 id="bfs">BFS<a class="headerlink" href="#bfs" title="Permanent link">&para;</a></h4>
+<p>L'algorithme de <em>parcours en largeur</em> (ou BFS, pour Breadth First Search en anglais) permet le parcours d'un arbre de la manière suivante : on commence par explorer un nœud source, puis tous ses fils, puis les fils des fils, etc.</p>
+<p>En bref, on visite complètement une génération avant de visiter la génération suivante.</p>
+<div class="admonition example">
+<p class="admonition-title">Un BFS</p>
+<p>La dénomination des nœuds suivants respecte le parcours en largeur :</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear'} } }%%
+graph TB;
+A((a)) --&gt; B((b))
+A --&gt; C((c))
+B --&gt; D((d))
+B --&gt; E((e))
+C --&gt; F((f))
+C --&gt; G((g))
+D --&gt; H((h))</code></pre>
+</div>
+<div class="admonition example">
+<p class="admonition-title">BFS vs DFS</p>
+<p>La dénomination des nœuds suivants respecte le parcours en profondeur (prefixe) :</p>
+<pre class="mermaid"><code>%%{ init: { 'flowchart': { 'curve': 'linear'} } }%%
+graph TB;
+A((a)) --&gt; B((b))
+A --&gt; C((f))
+B --&gt; D((c))
+B --&gt; E((e))
+C --&gt; F((g))
+C --&gt; G((h))
+D --&gt; H((d))</code></pre>
+</div>
+<h4 id="deux-fonctions-auxiliaires">Deux fonctions auxiliaires<a class="headerlink" href="#deux-fonctions-auxiliaires" title="Permanent link">&para;</a></h4>
+<p>Liste des étiquettes des racines d'une forêt (i.e. un ens. d'arbres) :</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">label_list</span> <span class="n">f</span> <span class="o">=</span> <span class="k">match</span> <span class="n">f</span> <span class="k">with</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="o">|</span> <span class="nc">Nil</span><span class="o">::</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">label_list</span> <span class="n">q</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(_,</span><span class="n">x</span><span class="o">,_)::</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">x</span><span class="o">::(</span> <span class="n">label_list</span> <span class="n">q</span><span class="o">);;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Liste des fils des racines d'une forêt (si ce sont des nœuds internes).</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">let</span> <span class="k">rec</span> <span class="n">sons</span> <span class="n">f</span> <span class="o">=</span> <span class="k">match</span> <span class="n">f</span> <span class="k">with</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="o">|</span> <span class="nc">Nil</span><span class="o">::</span><span class="n">q</span> <span class="o">-&gt;</span> <span class="n">sons</span> <span class="n">q</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,_,</span><span class="nc">Nil</span><span class="o">)::</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">sons</span> <span class="n">q</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="nc">Nil</span> <span class="o">,_,</span><span class="n">d</span><span class="o">)::</span><span class="n">q</span><span class="o">-&gt;</span> <span class="n">d</span><span class="o">::(</span> <span class="n">sons</span> <span class="n">q</span><span class="o">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,_,</span><span class="nc">Nil</span><span class="o">)::</span><span class="n">q</span><span class="o">-&gt;</span> <span class="n">g</span><span class="o">::(</span> <span class="n">sons</span> <span class="n">q</span><span class="o">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="o">|</span> <span class="nc">Node</span><span class="o">(</span><span class="n">g</span><span class="o">,_,</span><span class="n">d</span><span class="o">)::</span><span class="n">q</span><span class="o">-&gt;</span> <span class="n">g</span><span class="o">::(</span><span class="n">d</span><span class="o">::(</span> <span class="n">sons</span> <span class="n">q</span><span class="o">));;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="principe-du-parcours-en-largeur">Principe du parcours en largeur<a class="headerlink" href="#principe-du-parcours-en-largeur" title="Permanent link">&para;</a></h4>
+<p>La fonction <strong>sons</strong> retourne une forêt, <strong>label_list</strong> retourne la liste des étiquettes de la forêt.</p>
+<p>La fonction <strong>bfs</strong> utilise la fonction aux qui prend une forêt et concatène la liste de ses étiquettes avec la liste des étiquettes des fils des racines.</p>
+<div class="language-OCaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">bfs</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">let</span> <span class="n">bfs</span> <span class="n">t</span> <span class="o">=</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>    <span class="k">let</span> <span class="k">rec</span> <span class="n">aux</span> <span class="n">les_t</span> <span class="o">=</span> <span class="k">match</span> <span class="n">les_t</span> <span class="k">with</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>        <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>        <span class="o">|</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">label_list</span> <span class="n">les_t</span><span class="o">)</span> <span class="o">@</span> <span class="o">(</span><span class="n">aux</span> <span class="o">(</span><span class="n">sons</span> <span class="n">les_t</span><span class="o">))</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="k">in</span> <span class="n">aux</span> <span class="o">[</span><span class="n">t</span><span class="o">];;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Complexité : chaque étiquette est ajoutée une fois et une seule à la liste résultat, <span class="arithmatex">\(\text{on a envie de dire que la complexité est en }Θ(n)\)</span>.</p>
+<p>Dans ce qui suit on note <span class="arithmatex">\(u_p\)</span> la complexité pour calculer la liste des étiquettes de l'arbre à la profondeur <span class="arithmatex">\(p\)</span>. Il s'agit de calculer <span class="arithmatex">\(u_0\)</span>.</p>
+<h4 id="complexite-du-parcours-en-largeur">Complexité du parcours en largeur<a class="headerlink" href="#complexite-du-parcours-en-largeur" title="Permanent link">&para;</a></h4>
+<p>Pour un arbre à <span class="arithmatex">\(n\)</span> nœuds de hauteur <span class="arithmatex">\(h\)</span> :</p>
+<ul>
+<li>La fonction qui récupére les étiquettes des racines d'une forêt <span class="arithmatex">\(F\)</span> et celle qui récupère les fils sont de complexité <span class="arithmatex">\(Θ(|F |)\)</span>.</li>
+<li>A chaque étape, on récupère la liste des étiquettes des sous-arbres d'une même profondeur et on l'ajoute au résultat.</li>
+<li>Lorsqu'on traite la liste des nœuds de profondeurs <span class="arithmatex">\(p\)</span> (disons qu'il y en a <span class="arithmatex">\(n_p\)</span> ) :<ul>
+<li>on récupère la liste de leurs étiquettes en <span class="arithmatex">\(O (n_p )\)</span> ;</li>
+<li>on les concatènes à gauche du résultat de l'appel récursif en <span class="arithmatex">\(O (n_p )\)</span> ;</li>
+<li>la liste des fils des nœuds de profondeur <span class="arithmatex">\(p\)</span> s'obtient aussi en <span class="arithmatex">\(O (n_p )\)</span>.</li>
+<li>A ceci s'ajoute le coût de l'appel interne.</li>
+</ul>
+</li>
+<li>La complexité <span class="arithmatex">\(u_p\)</span> vérifie donc une relation de la forme : <span class="arithmatex">\(u_p = n_p + u_{p+1}\)</span>. <span class="arithmatex">\(\color{red}\text{Donc }u_p −u_{p+1} = n_p\)</span>.</li>
+<li>Au départ <span class="arithmatex">\(u_0 −u_1 = 1\)</span> (nombre de nœuds à la profondeur <span class="arithmatex">\(0\)</span> : racine) et <span class="arithmatex">\(u_h −u_{h+1} = n_h\)</span> avec <span class="arithmatex">\(h\)</span> la hauteur et <span class="arithmatex">\(u_{h+1}\)</span> qui correspond au traitement de la liste vide (pas de nœud à la profondeur <span class="arithmatex">\(h + 1\)</span>).</li>
+<li>On somme sur les profondeurs allant de <span class="arithmatex">\(0\)</span> (la racine) à <span class="arithmatex">\(h\)</span> (la hauteur de l'arbre). C'est une série telescopique. On obtient : </li>
+</ul>
+<p><span class="arithmatex">\(u_0 - \underbrace{u_{h+1}}_{\text{exploration liste vide}} = \sum_{p=0}^h{n_p} = Θ(n)\)</span></p>
+<p>La complexité est proportionnelle au nombre de nœuds : on aurait pu s'en douter !</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3885 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2-PilesFiles/">
+      
+      
+        <link rel="next" href="../../Tests/1-Tests/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Dictionnaires - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dictionnaires" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dictionnaires
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SQL/1-BDD_intro/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/1-BDD_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tableaux-associatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tableaux associatifs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-courantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations courantes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-des-cles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre des clés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implémentations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implémentations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structures-courantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structures courantes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implémentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implémentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparaison-des-complexites-temporelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison des complexités temporelles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-bemol-sur-la-complexite-temporelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un bémol sur la complexité temporelle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rappels-sur-les-listes-textttpython-et-les-tableaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rappels sur les listes \(\texttt{Python}\) et les tableaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rappels sur les listes \(\texttt{Python}\) et les tableaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonctionnement-dun-tableau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctionnement d'un tableau
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe de fonctionnement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe de fonctionnement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif-et-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif et fonctionnement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presentation-simplifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation simplifiée
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collisions-grumelage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collisions, grumelage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collisions, grumelage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestion-des-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestion des collisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestion des collisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#par-chainage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par chaînage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-adressage-ouvert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par adressage ouvert
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Par adressage ouvert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-dun-sondage-lineaire-insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas d'un sondage linéaire (Insertion)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sondage-quadratique-et-double-sondage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sondage quadratique et double sondage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparaison-des-performances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison des performances
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choix-dune-bonne-fonction-de-hachage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix d'une bonne fonction de hachage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hachage-en-textttpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hachage en \(\texttt{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hachage en \(\texttt{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction hash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-tableau-sous-jacent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille du tableau sous-jacent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-du-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul du modulo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de hash
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulation-de-dictionnaires-en-textttpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipulation de dictionnaires en \(\texttt{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulation de dictionnaires en \(\texttt{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-classe-ou-le-type-textttdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      La classe ou le type \(\texttt{dict}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajout-de-cles-et-valeurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajout de clés et valeurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completion-simultanee-suppression-de-cle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complétion simultanée, suppression de clé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valeurs-hachables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valeurs hachables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-et-parametres-nommes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions et paramètres nommés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonctions et paramètres nommés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperer-les-parametres-nommes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Récupérer les paramètres nommés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par compréhensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionnaires par compréhensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construction-par-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Construction par compréhension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#presentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Présentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Généralités
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Généralités">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tableaux-associatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tableaux associatifs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-courantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opérations courantes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordre-des-cles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordre des clés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implémentations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implémentations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structures-courantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structures courantes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implémentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implémentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparaison-des-complexites-temporelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison des complexités temporelles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-bemol-sur-la-complexite-temporelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un bémol sur la complexité temporelle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rappels-sur-les-listes-textttpython-et-les-tableaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rappels sur les listes \(\texttt{Python}\) et les tableaux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rappels sur les listes \(\texttt{Python}\) et les tableaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonctionnement-dun-tableau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctionnement d'un tableau
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe de fonctionnement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principe de fonctionnement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif-et-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif et fonctionnement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presentation-simplifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Présentation simplifiée
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collisions-grumelage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collisions, grumelage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collisions, grumelage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestion-des-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestion des collisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestion des collisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#par-chainage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par chaînage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-adressage-ouvert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Par adressage ouvert
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Par adressage ouvert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cas-dun-sondage-lineaire-insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cas d'un sondage linéaire (Insertion)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sondage-quadratique-et-double-sondage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sondage quadratique et double sondage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparaison-des-performances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparaison des performances
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choix-dune-bonne-fonction-de-hachage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choix d'une bonne fonction de hachage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hachage-en-textttpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hachage en \(\texttt{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hachage en \(\texttt{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-fonction-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction hash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-tableau-sous-jacent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taille du tableau sous-jacent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calcul-du-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calcul du modulo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietes-de-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propriétés de hash
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulation-de-dictionnaires-en-textttpython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipulation de dictionnaires en \(\texttt{Python}\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulation de dictionnaires en \(\texttt{Python}\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-classe-ou-le-type-textttdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      La classe ou le type \(\texttt{dict}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajout-de-cles-et-valeurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ajout de clés et valeurs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accès
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completion-simultanee-suppression-de-cle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complétion simultanée, suppression de clé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valeurs-hachables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valeurs hachables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parcours
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctions-et-parametres-nommes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctions et paramètres nommés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fonctions et paramètres nommés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperer-les-parametres-nommes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Récupérer les paramètres nommés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionnaires-par-comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionnaires par compréhensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionnaires par compréhensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construction-par-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Construction par compréhension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="dictionnaires">Dictionnaires<a class="headerlink" href="#dictionnaires" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Félix qui continue le travail fait par Lorentzo et Elowan et Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Crédits</p>
+<ul>
+<li><a href="https://fr.wikipedia.org/wiki/Tableau_associatif">Tableaux associatifs (Wikipedia)</a></li>
+<li><a href="https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python/7290721-enregistrez-des-donnees-complexes-avec-des-dictionnaires">openclassrooms</a></li>
+<li>Informatique Tronc Commun (Serge Bays - Ellipse)</li>
+</ul>
+</div>
+<h2 id="presentation">Présentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
+<h3 id="generalites">Généralités<a class="headerlink" href="#generalites" title="Permanent link">&para;</a></h3>
+<h4 id="tableaux-associatifs">Tableaux associatifs<a class="headerlink" href="#tableaux-associatifs" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Un tableau associatif</p>
+<p>Aussi appelé <em>dictionnaire</em> ou <em>table d'association</em> est un type de données associant à un ensemble de clefs un ensemble correspondant de valeurs.</p>
+<p>Chaque clef est associée à une valeur : un tableau associatif correspond donc à une application en mathématiques.</p>
+</div>
+<p>Grossièrement, le tableau associatif est une généralisation du tableau : alors que le tableau traditionnel associe des entiers consécutifs à des valeurs d'un certain type, le tableau associatif associe des valeurs d'un type arbitraire à des valeurs d'un autre type.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemples de la vie courrante</p>
+<ul>
+<li>Dictionnaire franco-anglais. Les clés sont les mots en français et les valeurs les traductions en anglais.</li>
+<li>Annuaire : les clefs sont les noms des usagers, les valeurs sont les numéros de téléphone.</li>
+</ul>
+</div>
+<h4 id="operations-courantes">Opérations courantes<a class="headerlink" href="#operations-courantes" title="Permanent link">&para;</a></h4>
+<p>Opérations dont la complexité temporelle attendue est en <span class="arithmatex">\(O (1)\)</span> :</p>
+<ul>
+<li>ajout : association d'une nouvelle valeur à une nouvelle clef ;</li>
+<li>modification : association d'une nouvelle valeur à une ancienne clef ;</li>
+<li>suppression : suppression d'une clef et de la valeur correspondante ;</li>
+<li>recherche : détermination de la valeur associée à une clef, si elle existe ;</li>
+</ul>
+<p><span class="arithmatex">\(\color{red}\text{Le plus souvent ces opérations ont un coup moyen en } O (1)\)</span>
+<span class="arithmatex">\(\color{red}\text{et une complexité au pire (rarement atteinte) en } O (n)\)</span> <span class="arithmatex">\(\color{red}\text{ (où n est le nombre de clés)}\)</span></p>
+<p>Dans les sujets de concours d'ITC, sauf mention du contraire, on peut supposer abusivement que
+<span class="arithmatex">\(\color{red}\text{les opérations d'ajout-insertion-recherche-modification}\)</span> <span class="arithmatex">\(\color{red}\text{sont en temps constant au pire cas.}\)</span></p>
+<p>Souvent, on s'accorde la possibilité de boucler sur les clés du dictionnaire.</p>
+<h4 id="ordre-des-cles">Ordre des clés<a class="headerlink" href="#ordre-des-cles" title="Permanent link">&para;</a></h4>
+<p>Dans un tableau (considéré comme un dictionnaire dont les clés sont des entiers), il y a un ordre naturel pour les clefs : celui des entiers.</p>
+<p>Mais la notion théorique de dictionnaire <span class="arithmatex">\(\color{red}\text{n'impose en rien que
+l'ensemble des clés possibles soit ordonné.}\)</span></p>
+<p>Toutefois, les langages implémentant les dictionnaires autorisent
+souvent le parcours des clés.</p>
+<ul>
+<li>En <span class="arithmatex">\(\texttt{Python}\)</span>, un dictionnaire est un <em>itérable</em>, c'est à dire qu'on peut parcourir son contenu avec une boucle <code>for</code> .</li>
+<li>Actuellement en <span class="arithmatex">\(\texttt{Python}\)</span> (mais ça peut changer), l'ordre du parcours des clés est celui de l'insertion.</li>
+</ul>
+<p>Il faut bien comprendre que même si l'ensemble des clés est ordonné, le parcours des clés ne respecte pas en général ce caractère.</p>
+<h3 id="implementations">Implémentations<a class="headerlink" href="#implementations" title="Permanent link">&para;</a></h3>
+<h4 id="structures-courantes">Structures courantes<a class="headerlink" href="#structures-courantes" title="Permanent link">&para;</a></h4>
+<p>L'implémentation la plus simple est la <em>liste d'association</em> (liste de couples clé, valeur)</p>
+<div class="admonition example">
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;toto&quot;</span><span class="p">,</span><span class="mi">45</span><span class="p">),(</span><span class="mi">53</span><span class="p">,</span><span class="mi">89</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span><span class="mf">203.5</span><span class="p">)]</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Insertion en <span class="arithmatex">\(O(1)\)</span>, recherche en <span class="arithmatex">\(O(n)\)</span>.</p>
+<p>Les dictionnaires sont le plus souvent utilisés lorsque l'opération de recherche est la plus fréquente. Pour cette raison, la conception privilégie fréquemment cette opération, au détriment de l'efficacité de l'ajout et de l'occupation mémoire par rapport à d'autres structures de données.</p>
+<p>Deux structures sont particulièrement efficaces pour représenter les tableaux associatifs : la <em>table de hachage</em> et <em>l'arbre équilibré</em> (cette dernière notion n'est pas explicitement au programme d'ITC).</p>
+<h4 id="implementation">Implémentation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h4>
+<h5 id="comparaison-des-complexites-temporelles">Comparaison des complexités temporelles<a class="headerlink" href="#comparaison-des-complexites-temporelles" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Opérations</th>
+<th style="text-align: center;">Tables de hachage</th>
+<th style="text-align: center;">Arbre équilibré</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Insertion</td>
+<td style="text-align: center;"><span class="arithmatex">\(O (1)\)</span> moyenne, <span class="arithmatex">\(O (n)\)</span> pire</td>
+<td style="text-align: center;"><span class="arithmatex">\(O (log (n))\)</span> moyenne et pire.</td>
+</tr>
+<tr>
+<td style="text-align: center;">recherche</td>
+<td style="text-align: center;"><span class="arithmatex">\(O (1)\)</span> moyenne, <span class="arithmatex">\(O (n\)</span>) pire</td>
+<td style="text-align: center;"><span class="arithmatex">\(O (log (n))\)</span> moyenne et pire.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>En général, les tables de hachage ont une représentation plus compacte en mémoire.</li>
+<li>Les tables de hachage imposent la création (souvent difficile) d'une <em>fonction de hachage</em>, les arbres équilibrés ont juste besoin d'un ordre total sur les clefs.</li>
+<li>L'ensemble des clés n'a pas besoin d'un ordre total pour les tables de hachage.</li>
+<li>Les arbres équilibrés s'implémentent bien avec des structures de données persistantes.</li>
+<li>Les tables de hachage utilisent un tableau (donc mutable).</li>
+<li>En <span class="arithmatex">\(\texttt{Python}\)</span>, les dictionnaires sont implémentés par des tables de hachage.</li>
+</ul>
+<h5 id="un-bemol-sur-la-complexite-temporelle">Un bémol sur la complexité temporelle<a class="headerlink" href="#un-bemol-sur-la-complexite-temporelle" title="Permanent link">&para;</a></h5>
+<p>En coût amorti, les dictionnaires implantés par tables de hachages (comme étudiés dans le cours) ont une insertion et une recherche en <span class="arithmatex">\(O (1)\)</span> en coût amorti dans un monde merveilleux sans collision.</p>
+<p>Cette affirmation doit être relativisée :</p>
+<ul>
+<li>D'abord le hachage lui-même de la clé peut être coûteux (en général de l'ODG de la taille de la clé). Sauf si (comme c'est souvent le cas), on travaille avec des clés de tailles bornées.</li>
+<li>Dans le cas d'une gestion des collisions par listes chaînées ou par sondage linéaire, si le hachage ne suit pas une loi de distribution uniforme, la complexité des insertions et recherches peut être alourdie.</li>
+</ul>
+<h3 id="rappels-sur-les-listes-textttpython-et-les-tableaux">Rappels sur les listes <span class="arithmatex">\(\texttt{Python}\)</span> et les tableaux<a class="headerlink" href="#rappels-sur-les-listes-textttpython-et-les-tableaux" title="Permanent link">&para;</a></h3>
+<h4 id="fonctionnement-dun-tableau">Fonctionnement d'un tableau<a class="headerlink" href="#fonctionnement-dun-tableau" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Considérons une liste <span class="arithmatex">\(\texttt{Python}\)</span> <span class="arithmatex">\(L\)</span> dont les éléments sont notés <span class="arithmatex">\(E_0,E_1,E_2,...\)</span></li>
+<li>Les adresses des éléments de <span class="arithmatex">\(L\)</span> (des <em>mots binaires</em> de <span class="arithmatex">\(8\)</span> ou <span class="arithmatex">\(4\)</span> octets) sont enregistrées dans un tableau d'adresse. Ces mots/adresses occupent des places contiguës en mémoire.</li>
+<li><span class="arithmatex">\(\texttt{Python}\)</span> connaît l'adresse du début du tableau des adresses de la liste <span class="arithmatex">\(L\)</span>. Il retrouve n'importe quel élément par une opération simple. Par exemple il trouve l'adresse de <span class="arithmatex">\(E_3\)</span> en calculant :</li>
+</ul>
+<p><span class="arithmatex">\(\kern 3pc\)</span><strong>adresse de <span class="arithmatex">\(E_0 + 3 ×\)</span> taille d'une adresse</strong></p>
+<p>Dans la suite on note <span class="arithmatex">\(a_0\)</span> l'adresse de <span class="arithmatex">\(E_0\)</span> et <span class="arithmatex">\(t\)</span> la taille d'une adresse.</p>
+<div class="admonition example">
+<p class="admonition-title">Trouver le <span class="arithmatex">\(3\)</span>ème élément d'une liste <span class="arithmatex">\(L\)</span></p>
+<p><p align='center'><img src='/images/Dico/dico1.png'/></p></p>
+<p>Lorsqu'on entre <span class="arithmatex">\(\texttt{L[3]}\)</span>, <span class="arithmatex">\(\texttt{Python}\)</span> accède à l'adresse où est stockée <span class="arithmatex">\(E_3\)</span> en ajoutant <span class="arithmatex">\(3\)</span> fois la taille d'une adresse à l'adresse <span class="arithmatex">\(a_0\)</span>. <span class="arithmatex">\(\texttt{Python}\)</span> retourne alors le contenu trouvé à l'adresse <span class="arithmatex">\(a_3\)</span>.</p>
+</div>
+<h3 id="principe-de-fonctionnement">Principe de fonctionnement<a class="headerlink" href="#principe-de-fonctionnement" title="Permanent link">&para;</a></h3>
+<h4 id="objectif-et-fonctionnement">Objectif et fonctionnement<a class="headerlink" href="#objectif-et-fonctionnement" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Une <em>fonction de hachage</em> répartit les paires clé–valeur dans un tableau d'<em>alvéoles</em> (une case du tableau est une alvéole).</li>
+<li>Elle transforme une clé en une valeur de hachage, ce qui donne la position dans un tableau.</li>
+<li>Son calcul se fait parfois en deux temps :<ul>
+<li>Une fonction de hachage particulière à l'application est utilisée pour produire un nombre entier à partir de la clé ;</li>
+<li>Ce nombre entier est converti en une position possible de la table, en général en calculant le reste modulo la taille de la table.</li>
+</ul>
+</li>
+<li>Si la clé n'est pas un entier naturel, on fait en sorte de la considérer comme telle. Par exemple, pour les chaînes de caractères :<ul>
+<li>on considère chaque caractère comme un nombre (par exemple avec le code <span class="arithmatex">\(\texttt{ASCII}\)</span>) ;</li>
+<li>puis on le combine tous les nombres obtenus par une fonction rapide (souvent le <span class="arithmatex">\(\texttt{XOR -OU EXCLUSIF-}\)</span>).</li>
+<li>Les divisions sont à éviter en raison de leur relative lenteur sur certaines machines.</li>
+</ul>
+</li>
+</ul>
+<h4 id="presentation-simplifiee">Présentation simplifiée<a class="headerlink" href="#presentation-simplifiee" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On dispose donc d'une fonction <span class="arithmatex">\(h\)</span> dite de <em>hachage</em> qui va de l'ensemble des clés vers l'ensemble des indexes d'un tableau de couples (clés,valeurs) (les éléments du tableau sont appelés <em>alvéoles</em>).</li>
+<li>Lorsqu'on ajoute une nouvelle association (John Smith,+1555-8976), la valeur <span class="arithmatex">\(h\)</span>(John Smith) est calculée. C'est l'indice d'une case du tableau d'association.</li>
+<li>A la case <span class="arithmatex">\(h\)</span>(John Smith), on met le tuple (John Smith,+1555-8976).</li>
+<li>Si la fonction de hachage est injective (ce qui n'arrive presque jamais), deux clés différentes ont deux valeurs de hachage différentes et on n'a aucun problème de collision.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Un annuaire ; cas sans colllision</p>
+<p><p align='center'><img src='/images/Dico/dico2.png'/></p></p>
+</div>
+<h3 id="collisions-grumelage">Collisions, grumelage<a class="headerlink" href="#collisions-grumelage" title="Permanent link">&para;</a></h3>
+<h4 id="gestion-des-collisions">Gestion des collisions<a class="headerlink" href="#gestion-des-collisions" title="Permanent link">&para;</a></h4>
+<h5 id="par-chainage">Par chaînage<a class="headerlink" href="#par-chainage" title="Permanent link">&para;</a></h5>
+<ul>
+<li>On gère un tableau de liste chaînées.</li>
+<li>Les alvéoles ne sont plus des tuples (clé,valeur) mais des <span class="arithmatex">\(\color{red}\text{listes chaînées de tuples}\)</span>. Ces listes sont vides par défaut.</li>
+<li>Lors de l'ajout d'une nouvelle association comme <span class="arithmatex">\((B ,230)\)</span>, on cherche l'avéole à l'indice <span class="arithmatex">\(h(B )\)</span> du tableau des alvéoles. Il s'agit d'une liste chaînée. On ajoute au bout de cette liste chaînée l'association <span class="arithmatex">\((B ,230)\)</span>.</li>
+<li>Dans une recherche, le pire cas se produit quand la fonction de hachage associe un même indice à de nombreuses clés. Pour rechercher une clé particulière, il faut alors parcourir toute la liste chaînée de l'alvéole.</li>
+</ul>
+<div class="admonition example">
+<p><p align='center'><img src='/images/Dico/dico3.png'/></p></p>
+</div>
+<h5 id="par-adressage-ouvert">Par adressage ouvert<a class="headerlink" href="#par-adressage-ouvert" title="Permanent link">&para;</a></h5>
+<p>Les enregistrements (clés,valeurs) sont stockés dans un tableau.</p>
+<p>Lorsqu'on insère l'association <span class="arithmatex">\((k ,v )\)</span>, on vérifie si la case <span class="arithmatex">\(h(k )\)</span> du tableau est libre.</p>
+<ul>
+<li>Si c'est le cas, tout va bien, on place l'association case <span class="arithmatex">\(h(k )\)</span>.</li>
+<li>Sinon, on part de la case <span class="arithmatex">\(h(k)\)</span> et on explore le tableau selon une certaine <em>fonction de sondage</em>.<ul>
+<li>La plus simple de ces fonctions consiste à exlorer d'abord la case <span class="arithmatex">\(h(k ) + 1\)</span> puis la case <span class="arithmatex">\(h(k ) + 2\)</span> etc. On l'appelle <em>sondage linéaire</em> (l'intervalle entre deux cases explorées est constant). 
+Bien sûr, il faut travailler modulo le nombre de cases dans le tableau.</li>
+<li>Autre méthode, le <em>sondage quadratique</em> : l'écart entre deux sondages augmente linéairement. Encore une fois, travailler modulo.</li>
+</ul>
+</li>
+</ul>
+<h6 id="cas-dun-sondage-lineaire-insertion">Cas d'un sondage linéaire (Insertion)<a class="headerlink" href="#cas-dun-sondage-lineaire-insertion" title="Permanent link">&para;</a></h6>
+<ul>
+<li>On insère d'abord John Smith et son numéro. La valeur de hachage est <span class="arithmatex">\(152\)</span>. Pas de problème.</li>
+<li>On veut insérer ensuite Sandra Dee et son numéro. Malheureusement, la valeur de hachage est aussi <span class="arithmatex">\(152\)</span> : il y a collision. On ajoute donc les coordonnées de Sandra à la première case libre après <span class="arithmatex">\(152\)</span>, soit <span class="arithmatex">\(153\)</span>.</li>
+<li>Arrive Ted Baker. La valeur de hachage associée est <span class="arithmatex">\(153\)</span>. Cette valeur est bien unique mais la case correspondante est hélas occupée par Sandra (laquelle a été déplacée par rapport à sa valeur de hachage). On cherche donc pour Ted, la prochaine case vide, soit <span class="arithmatex">\(154\)</span>.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple tiré de wikipedia</p>
+<p><p align='center'><img src='/images/Dico/dico4.png'/></p></p>
+</div>
+<ul>
+<li>On cherche les coordonnées de Ted. La valeur de hachage est <span class="arithmatex">\(153\)</span>.</li>
+<li>En inspectant l'alvéole de la case <span class="arithmatex">\(153\)</span>, on se rend compte que la clé stockée est Sandra Dee et non Ted Baker.</li>
+<li>On examine donc la prochaine case selon le sondage linéaire (ici, case courante <span class="arithmatex">\(+ 1\)</span>). Cette fois-ci, la clé stockée est bien Ted Baker. On renvoie son numéro.</li>
+</ul>
+<h6 id="sondage-quadratique-et-double-sondage">Sondage quadratique et double sondage<a class="headerlink" href="#sondage-quadratique-et-double-sondage" title="Permanent link">&para;</a></h6>
+<p>D'après Wikipedia</p>
+<ul>
+<li>Sondage quadratique : l'intervalle entre les alvéoles augmente linéairement (les indices des alvéoles augmentent donc quadratiquement). En voici un exemple :</li>
+</ul>
+<div class="admonition example">
+<p><span class="arithmatex">\(h_i (x ) = \left(h(x) + (−1)^{i +1} ·\left\lceil \frac{i}{2} \right\rceil^2 \right) \text{ mod }k\)</span></p>
+<p>où <span class="arithmatex">\(k\)</span> est le nombre d'alvéoles et <span class="arithmatex">\(i\)</span> le numéro de la tentative (les <span class="arithmatex">\(i −1\)</span> premières tentatives ont échoué à trouver une case vide) ;</p>
+</div>
+<ul>
+<li>le double hachage : l'indice de l'alvéole est donné par une deuxième
+fonction de hachage, ou <em>hachage secondaire</em>. En cas de collision en
+case <span class="arithmatex">\(h(k)\)</span> on calcule la nouvelle position en <span class="arithmatex">\(h_2(h(k))\)</span>.</li>
+</ul>
+<h5 id="comparaison-des-performances">Comparaison des performances<a class="headerlink" href="#comparaison-des-performances" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Le sondage linéaire possède la meilleure performance en termes de cache, mais est sensible à l'effet de grumelage décrit plus haut. </li>
+<li>Le double hachage ne permet pas d'utiliser le cache efficacement, mais permet de réduire presque complètement ce grumelage, au prix d'une complexité plus élevée.</li>
+<li>Le sondage quadratique se situe entre le linéaire et le double hachage au niveau des performances.</li>
+</ul>
+<h4 id="choix-dune-bonne-fonction-de-hachage">Choix d'une bonne fonction de hachage<a class="headerlink" href="#choix-dune-bonne-fonction-de-hachage" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Pour de bonnes performances il faut trouver un compromis entre<ul>
+<li>la rapidité du calcul du hachage</li>
+<li>La taille à réserver pour l'espace de hachage,</li>
+<li>La réduction du risque de collisions</li>
+</ul>
+</li>
+<li>Prendre un nombre premier comme taille de table de hachage évite les problèmes de diviseurs communs et donc de collisions. Prendre une puissance de 2 comme taille permet un calcul modulo rapide.</li>
+<li>Il y a <em>grumelage</em> quand les valeurs de hachage se retrouvent côte à côte dans la table (cf exemple avec Ted Baker). Pour l'éviter :<ul>
+<li>Privilégier les fonctions de hachage avec une distribution uniforme des valeurs de hachage.</li>
+<li>Le rapport <span class="arithmatex">\(\text{fc} = \frac{n}{k}\)</span> où <span class="arithmatex">\(n\)</span> est le nombre de tuples clés-valeurs et <span class="arithmatex">\(k\)</span> la capacité du tableau est appelé <em>facteur de compression</em>.
+Si <span class="arithmatex">\(\text{fc} &gt; \frac{1}{3}\)</span> , le risque de collision augmente.</li>
+<li>En <span class="arithmatex">\(\texttt{Python}\)</span>, redimensionnement du tableau dès que le facteur de compression dépasse <span class="arithmatex">\(\frac{2}{3}\)</span>. La capacité est alors multipliée par <span class="arithmatex">\(2\)</span>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="hachage-en-textttpython">Hachage en <span class="arithmatex">\(\texttt{Python}\)</span><a class="headerlink" href="#hachage-en-textttpython" title="Permanent link">&para;</a></h2>
+<h3 id="la-fonction-hash">La fonction <code>hash</code><a class="headerlink" href="#la-fonction-hash" title="Permanent link">&para;</a></h3>
+<ul>
+<li>La fonction <code>hash</code> code les clés (Les clés doivent être immutables -tuples, chaînes de caractères...-).</li>
+<li>Puis, <span class="arithmatex">\(\texttt{Python}\)</span> calcule <code>hash(clé)%n</code> où <span class="arithmatex">\(n\)</span> est la taille du tableau sous-jacent.</li>
+<li>Deux clés considérées comme égales par <code>==</code> ont la même valeur de hash. Ainsi</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 3 – Python Console</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">&gt;&gt;&gt;</span><span class="nb">hash</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="nb">hash</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kc">True</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="taille-du-tableau-sous-jacent">Taille du tableau sous-jacent<a class="headerlink" href="#taille-du-tableau-sous-jacent" title="Permanent link">&para;</a></h3>
+<ul>
+<li>En <span class="arithmatex">\(\texttt{Python}\)</span>, on redimensionne le dictionnaire si le facteur de compression dépasse <span class="arithmatex">\(\frac{2}{3}\)</span></li>
+<li>Les tailles sont des puissances de <span class="arithmatex">\(2\)</span><ul>
+<li>De <span class="arithmatex">\(1\)</span> à <span class="arithmatex">\(5\)</span> éléments la capacité est <span class="arithmatex">\(2^3 = 8\)</span> car <span class="arithmatex">\(\frac{3}{2} ×5 = 7.5 &lt;2^3\)</span>; en revanche <span class="arithmatex">\(\frac{3}{2} ×6 = 9\)</span> (redimensionner).</li>
+<li>De <span class="arithmatex">\(6\)</span> jusqu'à <span class="arithmatex">\(10\)</span> éléments la capacité est <span class="arithmatex">\(16\)</span> puisque <span class="arithmatex">\(\frac{3}{2} ×10 = 15 &lt;2^4\)</span>; mais <span class="arithmatex">\(\frac{3}{2} ×11 = 16.5\)</span></li>
+<li>On a <span class="arithmatex">\(\frac{2}{3} ×32 = 21.3\)</span> : donc à partir de <span class="arithmatex">\(22\)</span> la capacité passe à <span class="arithmatex">\(64\)</span></li>
+</ul>
+</li>
+</ul>
+<h3 id="calcul-du-modulo">Calcul du modulo<a class="headerlink" href="#calcul-du-modulo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>La capacité du dictionnaire est de la forme <span class="arithmatex">\(n = 2^p\)</span></li>
+<li><span class="arithmatex">\(2^p −1\)</span> s'écrit en binaire comme un mot avec <span class="arithmatex">\(p\)</span> lettres <span class="arithmatex">\(1\)</span></li>
+<li><code>h%n</code> et <code>h&amp;(n-1)</code> ont la même valeur ( <code>&amp;</code> désigne le <span class="arithmatex">\(\texttt{ET}\)</span> bit à bit).</li>
+</ul>
+<div class="admonition example">
+<p>Si on crée un dictionnaire avec un élément, la capacité est <span class="arithmatex">\(8\)</span>. On calcule la position pour insérer un nouvel élément de clé <code>c</code> par <code>hash(c)%8</code> ou encore <code>h(c)&amp;7</code>.</p>
+</div>
+<h3 id="proprietes-de-hash">Propriétés de <code>hash</code><a class="headerlink" href="#proprietes-de-hash" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Si <span class="arithmatex">\(i ∈\mathbb{N}, i \neq −1\)</span> et <span class="arithmatex">\(−2^{61} + 1 &lt;i &lt;2^{61} + 1\)</span>, alors <code>hash(i)</code> vaut <span class="arithmatex">\(i\)</span>. <code>hash(2**61-1)</code> et <code>hash(-2**61+1)</code> valent <span class="arithmatex">\(0\)</span>, <code>hash(-1)</code> vaut <span class="arithmatex">\(-2\)</span></li>
+<li>Si <span class="arithmatex">\(x\)</span> est un flottant égal à <span class="arithmatex">\(\frac{p}{q}\)</span> alors <code>hash(x)</code> vaut <code>int(p*M/q)%M</code> avec <span class="arithmatex">\(M = 2^{61} −1\)</span> (on l'appelle le <em>modulus</em>).</li>
+<li>Si la clé est une chaîne de caractères, la valeur de hachage<ul>
+<li>est calculée à partir d'une fonction aléatoirement choisie à chaque ouverture de session,</li>
+<li>et a pour valeur un entier sur <span class="arithmatex">\(64\)</span> bits.</li>
+</ul>
+</li>
+</ul>
+<h2 id="manipulation-de-dictionnaires-en-textttpython">Manipulation de dictionnaires en <span class="arithmatex">\(\texttt{Python}\)</span><a class="headerlink" href="#manipulation-de-dictionnaires-en-textttpython" title="Permanent link">&para;</a></h2>
+<h3 id="primitives">Primitives<a class="headerlink" href="#primitives" title="Permanent link">&para;</a></h3>
+<h4 id="la-classe-ou-le-type-textttdict">La classe ou le type <span class="arithmatex">\(\texttt{dict}\)</span><a class="headerlink" href="#la-classe-ou-le-type-textttdict" title="Permanent link">&para;</a></h4>
+<p>En <span class="arithmatex">\(\texttt{Python}\)</span>, un dictionnaire est une instance de la classe <code>dict</code> .</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">mydico</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span><span class="c1">#creation d&#39;un dico vide</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">type</span><span class="p">(</span><span class="n">mydico</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">dict</span>
+</span></code></pre></div>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">mydico</span><span class="o">=</span><span class="p">{}</span><span class="c1">#creation d&#39;un dico vide</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nb">type</span><span class="p">(</span><span class="n">mydico</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">dict</span>
+</span></code></pre></div>
+<h4 id="ajout-de-cles-et-valeurs">Ajout de clés et valeurs<a class="headerlink" href="#ajout-de-cles-et-valeurs" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Ajouts successifs depuis un dictionnaire vide :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">mydico</span><span class="o">=</span><span class="p">{}</span><span class="c1">#cree dico vide</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;ceciEstUneClef1&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;CeciEstUneValeur1&quot;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;blabla&quot;</span><span class="p">]</span><span class="o">=</span><span class="mi">132</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="n">mydico</span><span class="p">[</span><span class="mf">125.36</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">mydico</span><span class="p">)</span><span class="c1"># clés et valeurs peuvent etre n&#39;importe quoi</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Méthode <span class="arithmatex">\(2\)</span> :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="mi">1</span> <span class="n">dico2</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ceciEstUneClef1&#39;</span><span class="p">:</span> <span class="s1">&#39;CeciEstUneValeur1&#39;</span><span class="p">,</span>\
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>         <span class="s1">&#39;blabla&#39;</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span> <span class="mf">125.36</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="acces">Accès<a class="headerlink" href="#acces" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Accès. On indique entre crochet la clé à laquelle on veut accéder :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;blabla&quot;</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="mi">123</span>
+</span></code></pre></div>
+<ul>
+<li>Si la clé n'existe pas, une exception est soulevée :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 5 – clé inexistante</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;cleFarfelue&quot;</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">---</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="ne">KeyError</span>       <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mi">62</span><span class="n">aa81b7dbb7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>      <span class="mi">1</span> <span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;blabla&quot;</span><span class="p">]</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="o">----&gt;</span> <span class="mi">2</span> <span class="n">mydico</span><span class="p">[</span><span class="s2">&quot;cleFarfelue&quot;</span><span class="p">]</span> <span class="c1">#exception KeyError</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;cleFarfelue&#39;</span>
+</span></code></pre></div>
+<h4 id="completion-simultanee-suppression-de-cle">Complétion simultanée, suppression de clé<a class="headerlink" href="#completion-simultanee-suppression-de-cle" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On peut créer un dictionnaire complexe d'une seule commande :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">placard</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chemise&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;pantalon&quot;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;tee-shirt&quot;</span><span class="p">:</span><span class="mi">7</span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>On supprime une clé et la valeur associée, sans retour de valeur :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">del</span> <span class="n">placard</span><span class="p">[</span><span class="s2">&quot;chemise&quot;</span><span class="p">]</span><span class="c1"># pas de valeur retournee</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="n">placard</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">rendu</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">{</span><span class="s1">&#39;tee-shirt&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;pantalon&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>Suppression de clé avec retour de la valeur supprimée correspondante :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">placard</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;tee-shirt&#39;</span><span class="p">))</span> <span class="c1"># une valeur retournee</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="n">placard</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="mi">7</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="p">{</span><span class="s1">&#39;pantalon&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="modifier">Modifier<a class="headerlink" href="#modifier" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Clé existante, la valeur correspondante est modifiée :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">placard</span><span class="p">[</span><span class="s1">&#39;pantalon&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">19</span> <span class="c1"># passe de 6 a 19 pantalons</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">{</span><span class="s1">&#39;pantalon&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>Si la clé n'existe pas déjà, elle est créée :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">placard</span><span class="p">[</span><span class="s1">&#39;smoking&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">placard</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">{</span><span class="s1">&#39;smoking&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pantalon&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="valeurs-hachables">Valeurs hachables<a class="headerlink" href="#valeurs-hachables" title="Permanent link">&para;</a></h4>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;toto&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="n">d</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">----------------------------------------------</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="ne">TypeError</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>      <span class="mi">1</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;toto&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>      <span class="mi">2</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="o">----&gt;</span> <span class="mi">3</span> <span class="n">d</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+</span></code></pre></div>
+<p>Les clefs de dictionnaires doivent être <em>immuables</em>.</p>
+<h4 id="parcours">Parcours<a class="headerlink" href="#parcours" title="Permanent link">&para;</a></h4>
+<p>Parcourir les clés :
+- Avec la méthode <code>.keys</code> </p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">for</span> <span class="n">cle</span> <span class="ow">in</span> <span class="n">placard</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;la cle &quot;</span><span class="p">,</span><span class="n">cle</span><span class="p">,</span> <span class="s2">&quot;correspond a la valeur &quot;</span><span class="p">,</span><span class="n">placard</span><span class="p">[</span><span class="n">cle</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">la</span> <span class="n">cle</span> <span class="n">smoking</span> <span class="n">correspond</span> <span class="n">a</span> <span class="n">la</span> <span class="n">valeur</span> <span class="mi">2</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">la</span> <span class="n">cle</span> <span class="n">pantalon</span> <span class="n">correspond</span> <span class="n">a</span> <span class="n">la</span> <span class="n">valeur</span> <span class="mi">19</span>
+</span></code></pre></div>
+<ul>
+<li>En utilisant une syntaxe allégée :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 7 – Effet similaire au précédent</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">for</span> <span class="n">cle</span> <span class="ow">in</span> <span class="n">placard</span><span class="p">:</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;la cle &quot;</span><span class="p">,</span><span class="n">cle</span><span class="p">,</span> <span class="s2">&quot;correspond a la valeur &quot;</span><span class="p">,</span><span class="n">placard</span><span class="p">[</span><span class="n">cle</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Parcourir les valeurs :</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="n">inventaire</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pommes&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="s2">&quot;bières&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bananes&quot;</span><span class="p">:</span><span class="mi">17</span><span class="p">}</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">inventaire</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span>
+</span></code></pre></div>
+<ul>
+<li>Tester une valeur :</li>
+</ul>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">inventaire</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a>    <span class="k">if</span> <span class="n">v</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attention, refaire le stock de </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">Attention</span><span class="p">,</span> <span class="n">refaire</span> <span class="n">le</span> <span class="n">stock</span> <span class="n">de</span> <span class="n">bières</span>
+</span></code></pre></div>
+<h3 id="fonctions-et-parametres-nommes">Fonctions et paramètres nommés<a class="headerlink" href="#fonctions-et-parametres-nommes" title="Permanent link">&para;</a></h3>
+<h4 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h4>
+<ul>
+<li>On veut passer à une fonction un nombre arbitraire de variables (par exemple) numériques et en faire (par exemple) la somme.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exemple d'appel</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="n">somme</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<ul>
+<li>On souhaite effectuer <span class="arithmatex">\(1+3+2\)</span>.</li>
+<li><code>p,q,r</code> sont ce qu'on appelle des <em>paramètres nommés</em>. Ils sont passé à la fonction en arguments de la forme <code>nom_var=valeur</code>.</li>
+<li>On ne connaît pas à l'avance les nom, les valeur ni le nombre des sparamètres nommés</li>
+</ul>
+<h4 id="recuperer-les-parametres-nommes">Récupérer les paramètres nommés<a class="headerlink" href="#recuperer-les-parametres-nommes" title="Permanent link">&para;</a></h4>
+<p>Récupérer les paramètres nommés : faire précéder un nom quelconque par deux étoiles <code>**</code>.</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 8 – Les paramètres nommés sont en fait stockés dans un dictionnaire</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="k">def</span> <span class="nf">recupere</span><span class="p">(</span><span class="o">**</span><span class="n">parametres_nommes</span><span class="p">):</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a>    <span class="nb">print</span> <span class="s2">&quot;paramètres nommés</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parametres_nommes</span><span class="p">)</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a>    <span class="n">recupere</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>paramètres nommés : <code>{'q': 2, ' p' : 1}</code></p>
+<div class="admonition example">
+<p class="admonition-title">Exercice</p>
+<p>Écrire la fonction <code>somme</code> qui fait la somme de ses paramètres nommés (ceux-ci étant en nombre arbitraire)</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Correction</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">args</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 9 – Deux façons équivalentes d'appeler la fonction</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="n">somme</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">somme</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<h3 id="dictionnaires-par-comprehensions">Dictionnaires par compréhensions<a class="headerlink" href="#dictionnaires-par-comprehensions" title="Permanent link">&para;</a></h3>
+<h4 id="construction-par-comprehension">Construction par compréhension<a class="headerlink" href="#construction-par-comprehension" title="Permanent link">&para;</a></h4>
+<p>Comme les listes, les dictionnaires peuvent se construire par compréhension.</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Listing 10 – dictionnaire plusDeTrois construit par compréhension</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="n">bac_legumes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bananes&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;courgettes&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;carottes&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="n">plusDeTrois</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bac_legumes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">}</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="n">plusDeTrois</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><span class="filename">Rendu</span><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="p">{</span><span class="s1">&#39;bananes&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;carottes&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

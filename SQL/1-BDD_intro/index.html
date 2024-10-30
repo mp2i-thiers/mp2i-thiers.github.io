@@ -1,0 +1,3783 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/">
+      
+      
+        <link rel="next" href="../2-UneTable/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Modèle relationnel, bases de données - Nussbaum le retour</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modele-relationnel-bases-de-donnees" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Nussbaum le retour" class="md-header__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nussbaum le retour
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modèle relationnel, bases de données
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode nuit"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode nuit" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Passer au mode jour"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode jour" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Algorithmique/1-Glouton/" class="md-tabs__link">
+          
+  
+  Algorithmique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-tabs__link">
+          
+  
+  Analyse d'algorithmes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Arbres/1-Induction_structurelle/" class="md-tabs__link">
+          
+  
+  Arbres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-tabs__link">
+          
+  
+  Bonnes Pratiques
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../C/01-MinimC/" class="md-tabs__link">
+          
+  
+  C
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Divers/1-Backtracking/" class="md-tabs__link">
+          
+  
+  Divers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Graphes/1-Graphes/" class="md-tabs__link">
+          
+  
+  Graphes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/1-Linux/" class="md-tabs__link">
+          
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Logique/1-Logique/" class="md-tabs__link">
+          
+  
+  Logique
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Nombres/1-Entiers/" class="md-tabs__link">
+          
+  
+  Nombres
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-tabs__link">
+          
+  
+  Ocaml
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-tabs__link">
+          
+  
+  Structures Sequentielles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tests/1-Tests/" class="md-tabs__link">
+          
+  
+  Tests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Textes/1-Textes/" class="md-tabs__link">
+          
+  
+  Textes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nussbaum le retour" class="md-nav__button md-logo" aria-label="Nussbaum le retour" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nussbaum le retour
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithmique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithmique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/1-Glouton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithmes gloutons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithmique/2-Prodgyn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programmation dynamique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analyse d'algorithmes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Analyse d'algorithmes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/1-Terminaison%20Correction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminaison et correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/2-Complexit%C3%A9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analyse%20d%27algorithmes/3-Complexit%C3%A9%20moyenne%20et%20amortie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complexité moyenne et amortie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arbres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arbres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/1-Induction_structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Induction structurelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/2-Arbres%20binaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les arbres binaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/3-Rec_Ter_Abr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbres et récursions terminales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arbres/4-ABR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arbre Binaire de Recherche et Tas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bonnes Pratiques
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Bonnes Pratiques
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bonnes%20Pratiques/1-Bonne_pratiques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bonnes pratiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            C
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/01-MinimC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C si facile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/02-ChaineCompil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaîne de compilation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/03-Bytes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bytes et tailles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/04-Matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux à deux indices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/05-Bitwise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérateurs bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/06-Boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/07-array_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taille d'un tableau en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/08-Pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Les pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/09-Structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Définition de types (Structures)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/10-Conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complément sur les expressions conditionnelles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/11-CompilSeparee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation séparée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/12-EntreeSorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture écriture dans des fichiers : langage \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/13-hasard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hasard en \(\texttt{C}\)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Divers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Divers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/1-Backtracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/2-Serialisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sérialisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Divers/3-Rencontre%20au%20milieu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rencontre au milieu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Graphes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/1-Graphes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphes/2-PCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plus cours chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/1-Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/2-Fichiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fichiers, systèmes de fichiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/3-Droits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accès droits et attributs sous Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux/4-Redirections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redirections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Logique
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/1-Logique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Logique/2-Quine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Quine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Nombres
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Nombres
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/1-Entiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Représentation des entiers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nombres/2-Flottants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nombres flottants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ocaml
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Ocaml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/1-Prise%20en%20main%20en%20OCaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/2-R%C3%A9cursion%20terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursion terminale et gestion de la mémoire en OCaml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/3-Entr%C3%A9es-Sorties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entrées-sorties en OCAML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/4-Imp%C3%A9ratif%20et%20types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impératif et types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ocaml/5-Arguments%20en%20ligne%20de%20commande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arguments en ligne de commande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Modèle relationnel, bases de données
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#e-f-codd-wikipedie" class="md-nav__link">
+    <span class="md-ellipsis">
+      E. F. Codd (Wikipedié)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-modele-relationnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le modèle relationnel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le modèle relationnel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quelques-considerations-generales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quelques considérations générales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-relationnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schéma relationnel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-schemas-relationnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des schémas relationnels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-ensemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-ensemble
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cles-uniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clés uniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clés uniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notation-objet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notation objet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé unique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé primaire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clé primaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cle-unique-vs-cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé unique VS clé primaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#details-sur-la-cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Détails sur la clé primaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relation-entre-deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation entre deux tables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relation entre deux tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deux-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux schémas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-etrangere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé étrangère
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-client-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle client-serveur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modèle client-serveur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-client-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture client-serveur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture client-serveur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-de-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mode de communication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristiques-dun-processus-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caractéristiques d'un processus serveur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristiques-dun-processus-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caractéristiques d'un processus client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-trois-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture trois-tiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture trois-tiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sgbd-et-architecture-trois-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      SGBD et architecture trois-tiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-UneTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur une table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-DeuxTables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requêtes sur plusieurs tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-Agregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agrégations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Entit%C3%A9-Relation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle entité-association
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structures Sequentielles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Structures Sequentielles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/1-Tableaux-ListeChainee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux redimensionnables et Listes chaînées
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/2-PilesFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piles et Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Structures%20Sequentielles/3-Dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tests/1-Tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Textes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Textes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/1-Textes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recherche dans un texte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/2-Huffman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithme de Huffman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Textes/3-LZW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LZW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#e-f-codd-wikipedie" class="md-nav__link">
+    <span class="md-ellipsis">
+      E. F. Codd (Wikipedié)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-modele-relationnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le modèle relationnel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le modèle relationnel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quelques-considerations-generales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quelques considérations générales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-relationnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schéma relationnel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representation-des-schemas-relationnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Représentation des schémas relationnels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-ensemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-ensemble
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cles-uniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clés uniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clés uniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notation-objet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notation objet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé unique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé primaire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clé primaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cle-unique-vs-cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé unique VS clé primaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#details-sur-la-cle-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Détails sur la clé primaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relation-entre-deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation entre deux tables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relation entre deux tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deux-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux schémas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deux tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cle-etrangere" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clé étrangère
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-client-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle client-serveur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modèle client-serveur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-client-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture client-serveur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture client-serveur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-de-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mode de communication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vocabulaire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notion-de-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notion de port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristiques-dun-processus-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caractéristiques d'un processus serveur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristiques-dun-processus-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caractéristiques d'un processus client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-trois-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture trois-tiers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture trois-tiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sgbd-et-architecture-trois-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      SGBD et architecture trois-tiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="modele-relationnel-bases-de-donnees">Modèle relationnel, bases de données<a class="headerlink" href="#modele-relationnel-bases-de-donnees" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ce cours a été automatiquement traduit des transparents de M.Noyer par Lorentzo et <strong>Elowan</strong> et mis en forme par Mehdi, nous ne nous accordons en aucun cas son travail, ce site à pour seul but d'être plus compréhensible pendant les périodes de révision que des diaporamas.</p>
+</div>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="e-f-codd-wikipedie">E. F. Codd (Wikipedié)<a class="headerlink" href="#e-f-codd-wikipedie" title="Permanent link">&para;</a></h3>
+<p align='center'><img src='/images/BDDIntro/bdd1-1.png'/></p>
+<p align='center'><img src='/images/BDDIntro/bdd1-2.png'/></p>
+
+<h3 id="resume">Résumé<a class="headerlink" href="#resume" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Le <em>Modèle relationnel</em> pour la gestion des <strong>Bases De Données</strong> (BDD)  est un modèle de BDD basé sur la logique du premier ordre proposé  et formulé pour la <span class="arithmatex">\(1^{ère}\)</span> fois par Edgar F. Codd <span class="arithmatex">\((1969)\)</span>.  </li>
+<li>Dans une BDD <em>relationnelle</em> l'information est organisée dans des  tableaux à deux dimensions appelées <em>relations</em> ou <em>tables</em>.  </li>
+<li>Une BDD est donc un ensemble de tables. Les lignes sont appelées  <em>tuples</em>, <em>nuplets</em> ou encore <em>enregistrements</em>.  </li>
+<li>Le <em>modèle relationnel</em> fournit une méthode déclarative pour spécifier  <em>données</em> (l'ensemble étudié) et <em>requêtes</em> (questions permises sur cet  ensemble).  </li>
+<li>L'<em>utilisateur</em> décrit les informations que contient la BDD et quelles  informations il souhaite connaître et laisse <em>le système de gestion de  BDD</em> (SGBD) gérer la description machine de la base et son stokage  ainsi que la manière dont il retrouve l'information.  </li>
+</ul>
+<h2 id="le-modele-relationnel">Le modèle relationnel<a class="headerlink" href="#le-modele-relationnel" title="Permanent link">&para;</a></h2>
+<h3 id="quelques-considerations-generales">Quelques considérations générales<a class="headerlink" href="#quelques-considerations-generales" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Toutes les données sont représentées comme des <em>relations <span class="arithmatex">\(\textit{n−aires}\)</span></em>,  des sous-ensembles de produits cartésiens de n ensembles.  </li>
+<li>Calculs sur les données : <em>calcul relationnel</em> ou <em>algèbre relationnelle</em>.  </li>
+<li>Le concepteur de BDD relationnelle crée un modèle logique <em>cohérent</em>  (sans contradiction).  </li>
+</ul>
+<h3 id="attributs">Attributs<a class="headerlink" href="#attributs" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Attribut</p>
+<p>On considère donné un ensemble infini <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span>, dont les éléments sont appelés des <em>attributs</em>, un ensemble <span class="arithmatex">\(D\)</span> (ensemble des <em>domaine</em>), et une application <span class="arithmatex">\(\text{dom}\)</span> de <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span> dans <span class="arithmatex">\(D\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Si <span class="arithmatex">\(A \in {\displaystyle {\mathcal {A}}}\)</span>, l'élément <span class="arithmatex">\(\text{dom}(A)\)</span> de <span class="arithmatex">\(D\)</span> est appelé <em>domaine</em> de <span class="arithmatex">\(A\)</span>.
+La domaine de <span class="arithmatex">\(A\)</span> est lui-même un ensemble, par exemple ensemble des
+entiers, des flottants, des chaı̂nes de caractères...</p>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p>Soit le lycée <span class="arithmatex">\(\texttt{Pierre Dupont}\)</span> contenant des CPGE. Les classes sont des couples <span class="arithmatex">\(\texttt{(filière,numéro)}\)</span> comme <span class="arithmatex">\(\texttt{(MPSI,1)}\)</span> ; <span class="arithmatex">\(\texttt{(MPSI,2)}\)</span> ou <span class="arithmatex">\(\texttt{(PCSI,1)}\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(\textsf{filière}\)</span> est un attribut dont le domaine est l'ensemble fini de chaînes de caractères <span class="arithmatex">\(\textsf{ \{MPSI,PCSI,PC,PSI,MP,BCPST,HK\} }\)</span>. </li>
+<li><span class="arithmatex">\(\texttt{numéro}\)</span> est un attribut dont le domaine est l'ensemble <span class="arithmatex">\(\mathbb{N}^∗\)</span> ou mieux : un intervalle <span class="arithmatex">\([\![0,m]\!]\)</span> où <span class="arithmatex">\(m\)</span> est le nombre maximum de classes de même niveau dans le lycée.</li>
+</ul>
+</div>
+<h3 id="schema-relationnel">Schéma relationnel<a class="headerlink" href="#schema-relationnel" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : Schéma relationnel</p>
+<p>Soit <span class="arithmatex">\({\displaystyle {\mathcal {A}}}\)</span> un ensemble d'attributs et <span class="arithmatex">\(\text{dom}\)</span> une application qui associe un domaine à chaque attribut.
+Un <em>Schéma relationnel</em> est un tuple <span class="arithmatex">\(S = (A_1, A_2, ..., A_n) \in {\displaystyle {\mathcal {A}}}^n\)</span> où les <span class="arithmatex">\(A_i\)</span> sont distincts deux à deux (mais peuvent avoir les mêmes domaines).</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>Généralement, on écrit le schéma relationnel sous forme de tuples de couples (<span class="arithmatex">\(\textsf{attribut, domaine}\)</span>) comme <span class="arithmatex">\(S = ((A_1, \text{dom}(A_1)), ...  , (A_n , \text{dom}(A_n)))\)</span></li>
+<li>Le plus souvent, on ajoute au schéma des symboles indiquant les <em>clés primaires</em> et <em>clés étrangères</em> (voir sections dédiées).</li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p>Schéma des classes du lycée :</p>
+<div class="arithmatex">\[S = \left( (\texttt{filiere, \{MPSI,PCSI,...\}}), (\texttt{numéro,} \mathbb{N}^∗ )\right)\]</div>
+</div>
+<div class="admonition tip">
+<p><strong>Notation</strong></p>
+<ul>
+<li>On écrit <span class="arithmatex">\(B \in S\)</span> si <span class="arithmatex">\(B \in {A_1, ... , A_n}\)</span>.</li>
+<li>Si <span class="arithmatex">\(X = \{B_1, ... , B_m\}\)</span> est un ensemble d'attributs (distincts), on écrit  <span class="arithmatex">\(X \subset S\)</span> si tous les <span class="arithmatex">\(B_i\)</span> sont dans <span class="arithmatex">\({A_1, ... , A_n}\)</span>.  </li>
+<li>On s'autorise aussi des notations de la forme :  </li>
+</ul>
+<div class="arithmatex">\[(\texttt{nom,ville}) \subset (\texttt{téléphone,nom,ville,classe})\]</div>
+</div>
+<h3 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition: Relation ou table associée à un schéma relationnel</p>
+<p>On appelle <em>relation</em> ou <em>table associée</em> à un schéma relationnel <span class="arithmatex">\((A_1, A_2, ... , A_n)\)</span> tout ensemble fini de tuples de <span class="arithmatex">\(\text{dom}(A_1) × \text{dom}(A_2) × . . . \text{dom}(A_n)\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Notation</strong></p>
+<ul>
+<li>Les relations sont souvent notées sous la forme <span class="arithmatex">\(R(S)\)</span> (pour indiquer
+que <span class="arithmatex">\(R\)</span> est associé au schéma <span class="arithmatex">\(S\)</span>).</li>
+<li>Explication : dans la colonne <span class="arithmatex">\(i\)</span> d'une table de schéma <span class="arithmatex">\(S\)</span>, les valeurs sont obligatoirement dans le domaine <span class="arithmatex">\(\text{dom}(A_i)\)</span>. C'est ce qu'on appelle une <em>contrainte d'intégrité</em> (ici, on parle d'<em>intégrité de domaine</em>).</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ul>
+<li>Si la table <span class="arithmatex">\(\text{classe}\)</span> est finie on peut la représenter par un tableau :
+<span class="arithmatex">\(\text{classe}\left(\texttt{filière}, \texttt{ numéro}\right) =\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Filière}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Numéro}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PC}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(3\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>L'ordre des attributs et des tuples n'a pas d'importance. On a aussi :
+<span class="arithmatex">\(\text{classe}\left(\texttt{filière}, \texttt{ numéro}\right) =\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Numéro}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Filière}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{MPSI}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(3\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PC}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{PCSI}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="representation-des-schemas-relationnels">Représentation des schémas relationnels<a class="headerlink" href="#representation-des-schemas-relationnels" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span class="arithmatex">\(\text{Nom du schéma}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Attribut 1}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{type 1}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Attribut 2}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{type 2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>Deux relations distinctes peuvent avoir le même schéma.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemple</p>
+<p>Le schéma :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\text{élève}\)</span></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Nom}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Année de naissance}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{int}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Possède les instances :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Nom}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Année de naissance}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Hoareau}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1996\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Grondin}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1995\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Nom}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Année de naissance}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Nativel}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1998\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Horeau}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1996\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Grondin}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1997\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="multi-ensemble">Multi-ensemble<a class="headerlink" href="#multi-ensemble" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<p>Un <em>multi-ensemble</em> est une sorte d'ensemble dans lequel un même élément  peut apparaître plusieurs fois comme dans <span class="arithmatex">\(\{1, 2, 3, 2\}\)</span>.<br />
+- Notion à mi-chemin des ensembles et des listes.<br />
+- On peut voir les multi-ensembles comme des listes quotientées par les  permutations, <em>i.e.</em> des listes commutatives.<br />
+- Le multi-ensemble <span class="arithmatex">\(\{1, 2, 2\}\)</span> est égal à <span class="arithmatex">\(\{2, 1, 2\}\)</span>.<br />
+- Les relations du modèle relationnel sont en fait des multi-ensembles.  </p>
+</div>
+<h2 id="cles-uniques">Clés uniques<a class="headerlink" href="#cles-uniques" title="Permanent link">&para;</a></h2>
+<h3 id="notation-objet">Notation objet<a class="headerlink" href="#notation-objet" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p><strong>Notation</strong></p>
+<p>Soit <span class="arithmatex">\(R(S)\)</span> une relation, <span class="arithmatex">\(e \in R(S)\)</span> un enregistrement et <span class="arithmatex">\(A \in S\)</span>. On note <span class="arithmatex">\(e.A\)</span> la composante du tuple <span class="arithmatex">\(e\)</span> associée à l'attribut <span class="arithmatex">\(A\)</span>. Si <span class="arithmatex">\(K \subset S\)</span>, on note <span class="arithmatex">\(e.K\)</span> le sous-tuple de <span class="arithmatex">\(e\)</span> constitué des composantes associées aux éléments de <span class="arithmatex">\(K\)</span>. Il s'agit de la projection de <span class="arithmatex">\(e\)</span> sur les attributs de <span class="arithmatex">\(K\)</span>.</p>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p><span class="arithmatex">\(\text{classe}\left(\texttt{filière}, \texttt{ numéro}, \texttt{ salle}\right) =\)</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Filière}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Numéro}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Salle}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{MPSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{B.10}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{MPSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{C.34}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{PCSI}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{B.1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Si <span class="arithmatex">\(e = (\texttt{PCSI}, 2, \text{B.1})\)</span>, alors <span class="arithmatex">\(e.\texttt{numéro} = 2\)</span> et <span class="arithmatex">\(e.\texttt{(numéro, salle)} = (2,\text{B.1})\)</span>.  On dit que <span class="arithmatex">\(e.{A}\)</span> est la projection de <span class="arithmatex">\(e\)</span> sur l'attribut <span class="arithmatex">\(A\)</span>. <span class="arithmatex">\(e.(A_1, ... , A_n)\)</span> est la projection de <span class="arithmatex">\(e\)</span> sur <span class="arithmatex">\(A_1 × ··· × A_n\)</span>.  </p>
+</div>
+<h3 id="cle-unique">Clé unique<a class="headerlink" href="#cle-unique" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition : clé unique</p>
+<p>Soit <span class="arithmatex">\(R(S)\)</span> une relation de schéma <span class="arithmatex">\(S\)</span>. On dit que <span class="arithmatex">\(K ⊂ S\)</span> est une <em>clé unique</em> pour <span class="arithmatex">\(R\)</span> si et seulement si</p>
+<div class="arithmatex">\[∀(t_1, t_2) \in R^2 , t_1.K = t_2.K ⟺ t_1 = t_2\]</div>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>La connaissance des attributs dans <span class="arithmatex">\(K\)</span> suffit à distinguer deux éléments.</li>
+<li><span class="arithmatex">\(K\)</span> est une clé unique si et seulement si la projection sur <span class="arithmatex">\(K\)</span> est injective.</li>
+<li>Lorsqu'il y a une clé unique, la table ne contient pas de doublon de lignes.</li>
+<li>Souvent, on impose que <span class="arithmatex">\(K\)</span> soit de cardinal minimum. C'est de bon sens : nous nous en tenons à cette pratique</li>
+</ul>
+</div>
+<div class="admonition example">
+<p><strong>Exemple</strong></p>
+<p><span class="arithmatex">\(\text{élève}\left(\texttt{Nom}, \texttt{ Prénom}, \texttt{ Année de naissance}\right) =\)</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Nom}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Prénom}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Année de naissance}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Hoareau}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Patrice}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1996\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Hoareau}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Patrice}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1995\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Dupont}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Marie}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1997\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Grondin}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Patrice}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1996\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\((\texttt{Nom},\texttt{Prénom})\)</span> n'est pas une clé unique, ni <span class="arithmatex">\((\texttt{Prénom},\texttt{Année})\)</span> mais <span class="arithmatex">\((\texttt{Nom},\texttt{Année})\)</span> est une clé unique.  </p>
+</div>
+<p>Soit <span class="arithmatex">\(R(S)\)</span> une relation de schéma <span class="arithmatex">\(S\)</span>.  </p>
+<ul>
+<li>Souvent, on cherche à limiter la clé unique à un seul attribut.  </li>
+<li>Le terme <em>clé unique</em> est trompeur : il peut y en avoir plusieurs !<br />
+Exemple : dans la table <span class="arithmatex">\(\text{Etudiant}(\texttt{id},\texttt{ nom},\texttt{ prénom},\texttt{ num. de  sécu})\)</span> il y a deux clés uniques possibles :  <ul>
+<li><span class="arithmatex">\(\texttt{id}\)</span> (le numéro d'étudiant).  </li>
+<li><span class="arithmatex">\(\texttt{num. de sécu}\)</span>
+Les clés sont choisies par le développeur au moment de la conception.  </li>
+</ul>
+</li>
+<li>Une clé unique peut porter sur plusieurs attributs : il peut très bien ne pas y avoir de clé à un seul élément.  </li>
+<li>Et d'ailleurs, il est possible qu'il n'y ait pas de clé unique (si la table  possède des doublons de lignes). Mais on décourage d'utiliser de telles  tables.  </li>
+</ul>
+<h3 id="cle-primaire">Clé primaire<a class="headerlink" href="#cle-primaire" title="Permanent link">&para;</a></h3>
+<p><strong>MySQL</strong> fait la distinction entre les notions de <em>clé unique</em> et <em>clé primaire</em>.  </p>
+<div class="admonition quote">
+<p class="admonition-title">Définition: clé primaire</p>
+<p>Une <em>clé primaire</em> est une clé unique particulière associée à un <em>index</em>.</p>
+</div>
+<div class="admonition tip">
+<p><strong>Remarque</strong></p>
+<ul>
+<li>On peut voir l'index comme une table des matières facilitant un accès  rapide aux enregistrement d'une table ayant une clé primaire.  </li>
+<li>En particulier, la complexité des jointures est grandement diminuée  par l'usage d'une clé primaire ; les valeurs possibles étant triées dans  l'index.</li>
+<li>Il peut y avoir plusieurs clés unique par table mais une seule clé  primaire.</li>
+<li>Une clé unique peut prendre la valeur <code>NULL</code> (case vide, équivalent  <strong>Python</strong> de <code>None</code>) pas la clé primaire.  </li>
+</ul>
+</div>
+<h4 id="cle-unique-vs-cle-primaire">Clé unique VS clé primaire<a class="headerlink" href="#cle-unique-vs-cle-primaire" title="Permanent link">&para;</a></h4>
+<p style="color : red">Conformément au programme nous ferons désormais la confusion :  nous n'emploirons plus que l'expression "clé primaire" sans nous  soucier de la présence d'un index ou non.</p>
+
+<p>Une conséquence est que nous avons au plus une clé primaire par  table.  </p>
+<p>Une autre est que les cases des colonnes définissant la clé primaire ne sont jamais vide (pas de valeur <code>NULL</code>).  </p>
+<h3 id="details-sur-la-cle-primaire">Détails sur la clé primaire<a class="headerlink" href="#details-sur-la-cle-primaire" title="Permanent link">&para;</a></h3>
+<ul>
+<li>On indique par un symbole dans le schéma qu'une clé est  unique/primaire.  </li>
+<li>Nous signalons les clés uniques en les soulignant. Sous  <strong>PHPMYADMIN</strong>, les clés primaires sont représentées par des clés  jaunes, les clés uniques par une clé grise.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">élève</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Nom}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\underline{\text{Numéro SS}}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{int}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Un mot clé <span class="arithmatex">\(\texttt{PRIMARY}\)</span> indique, au moment de la création de la table  dans la plupart des SGBD, qu'une clé est primaire.  </li>
+<li>Si un tuple déjà défini possède une valeur <span class="arithmatex">\(v\)</span> pour la clé primaire de la table <span class="arithmatex">\(T\)</span>, alors le SGBD devrait empêcher l'ajout de tout nouveau tuple  à <span class="arithmatex">\(T\)</span> possédant la valeur <span class="arithmatex">\(v\)</span> pour la clé.  </li>
+</ul>
+<h2 id="relation-entre-deux-tables">Relation entre deux tables<a class="headerlink" href="#relation-entre-deux-tables" title="Permanent link">&para;</a></h2>
+<h3 id="deux-schemas">Deux schémas<a class="headerlink" href="#deux-schemas" title="Permanent link">&para;</a></h3>
+<p>Soit une BDD modélisant une bibliothèque simplifiée avec deux tables dont les schémas sont :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">livre</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\underline{\text{titre}}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{auteur}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{année de publication}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{int}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">emprunteur</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Nom}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Livre emprunté}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="deux-tables">Deux tables<a class="headerlink" href="#deux-tables" title="Permanent link">&para;</a></h3>
+<p>Une table <span class="arithmatex">\(\text{bibliothèque}\)</span> instanciant <span class="arithmatex">\(\text{livre}\)</span> :  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{titre}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{auteur}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Publication}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Harry Potter}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{J.K Rowling}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1997\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Pensées}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Pascal}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1670\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Marseille coquin}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Anonyme}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2016\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Une table <span class="arithmatex">\(\text{Clients}\)</span> instanciant <span class="arithmatex">\(\text{emprunteur}\)</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Nom}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(\texttt{Livre emprunté}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Hoareau}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Harry Potter}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Grondin}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Pensées}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Dupont}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\text{Maths MP}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>On en conclut que Hoareau a emprunté "Harry Potter" et que Grondin est un petit coquin !  </p>
+<p>Dupont emprunte un ouvrage qui n'existe pas dans la <span class="arithmatex">\(\text{bibliothèque}\)</span>,  ce qui concerne davantage l'administrateur de BDD que la vie privée  de Grondin.  </p>
+<h3 id="cle-etrangere">Clé étrangère<a class="headerlink" href="#cle-etrangere" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>Une clé étrangère (représentée dans ce cours par un <code>#</code>) est un attribut qui est la clé primaire d'une autre relation. Elle permet d'établir le lien entre plusieurs relations. Elle met en évidence les dépendances fonctionnelles entre <span class="arithmatex">\(2\)</span> tables.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Remarque</p>
+<p>En <strong>SQL</strong>, on déclare une clé étrangère avec les mots clés <span class="arithmatex">\(\texttt{FOREIGN KEY}\)</span>.</p>
+</div>
+<p>On peut représenter les liens entre deux relations dans un diagramme  par une ﬂèche depuis l'attribut vers la clé primaire.</p>
+<p>Si on impose que le domaine de livre <span class="arithmatex">\(\texttt{emprunté}\)</span> est constitué  exactement des livres apparaissant dans la relation <span class="arithmatex">\(\texttt{bibliothèque}\)</span>, le schéma de <span class="arithmatex">\(\texttt{emprunteur}\)</span> devient</p>
+<p>Shéma référençant :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">emprunteur</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Nom}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{Livre emprunté } \#\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{titre}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">\[↓\]</div>
+<p>Shéma référencé :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">livre</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\underline{\text{titre}}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{auteur}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{string}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(\text{année de publication}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{int}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Le tuple <span class="arithmatex">\((\texttt{Dupont}, \texttt{Maths MP})\)</span> ne peut plus être un enregistrement de <span class="arithmatex">\(\texttt{Clients}\)</span> (vu plus haut) car <span class="arithmatex">\(\texttt{Maths MP}\)</span> n'est pas dans la colonne "titre" de  <span class="arithmatex">\(\texttt{Bibliothèque}\)</span>.  </p>
+<p>La contrainte de clé étrangère est gérée par la plupart des SGBD :  <span class="arithmatex">\(\texttt{Oracle, Microsoft SQL Server, PostgreSQL, SQLite, etc.}\)</span>  </p>
+<h2 id="modele-client-serveur">Modèle client-serveur<a class="headerlink" href="#modele-client-serveur" title="Permanent link">&para;</a></h2>
+<h3 id="architecture-client-serveur">Architecture client-serveur<a class="headerlink" href="#architecture-client-serveur" title="Permanent link">&para;</a></h3>
+<h4 id="mode-de-communication">Mode de communication<a class="headerlink" href="#mode-de-communication" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Environnement <em>client-serveur</em> : mode de communication à travers un  réseau entre plusieurs programmes ou logiciels :</li>
+<li>le premier, le <em>client</em>, envoie des requêtes ;</li>
+<li>l'autre ou les autres,les <em>serveurs</em>, attendent les requêtes des clients et y répondent.  </li>
+</ul>
+<p><strong>Par extension</strong>, le client désigne également l'ordinateur sur lequel est exécuté le logiciel client, et le serveur, l'ordinateur sur lequel est exécuté le logiciel serveur.  </p>
+<h4 id="vocabulaire">Vocabulaire<a class="headerlink" href="#vocabulaire" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Serveurs</p>
+<p>Souvent des ordinateurs dédiés au logiciel serveur qu'ils  abritent (ex : serveur Web, serveur de bases de données, d'impression  ...). Ils sont dotés de capacités supérieures à celles des ordinateurs  personnels en termes de puissance de calcul, d'entrées-sorties et de  connexions réseau.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Clients</p>
+<p>Souvent des ordinateurs personnels ou des appareils  individuels (téléphone, tablette), mais pas systématiquement.  </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nombre de clients</p>
+<p>Un serveur peut répondre aux requêtes d'un grand  nombre de clients.  </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exemples</p>
+<p>Grande variété de logiciels serveurs et de logiciels clients en fonction des  besoins à servir :</p>
+<ul>
+<li>un serveur web publie des pages web demandées par des navigateurs  web ;  </li>
+<li>un serveur de messagerie électronique envoie des mails à des clients  de messagerie ;  </li>
+<li>un serveur de fichiers permet de stocker et consulter des fichiers sur le  réseau ;  </li>
+<li>un serveur de données à communiquer des données stockées dans une  base de données, etc...  </li>
+</ul>
+</div>
+<h4 id="notion-de-port">Notion de port<a class="headerlink" href="#notion-de-port" title="Permanent link">&para;</a></h4>
+<p>La notion de <em>port logiciel</em> permet, sur un ordinateur donné, de  distinguer diﬀérents interlocuteurs. Ces interlocuteurs sont des  programmes informatiques qui, selon les cas, écoutent ou émettent  des informations sur ces ports. Un port est distingué par son numéro.  </p>
+<p>Image : <span class="arithmatex">\(\texttt{PORT} = \texttt{PORTE}\)</span> donnant accès au système d'exploitation. Pour fonctionner, un programme ouvre des portes pour accéder aux  services de l'OS. Quand on ferme le programme, la porte n'a plus  besoin d'être ouverte.</p>
+<p>Lorsqu'un logiciel client veut dialoguer avec un logiciel serveur (le  <em>service</em>), il a besoin de connaître le port écouté par ce dernier. Par  exemple port <span class="arithmatex">\(80\)</span> pour un serveur web HTTP ; port <span class="arithmatex">\(3306\)</span> serveur de bases de données MySQL ; port <span class="arithmatex">\(8888\)</span> pour jupyter...  </p>
+<p><code>cat /etc/services</code> pour avoir la liste des services bien connus. Ou  <code>sudo netstat -antup | grep LISTEN</code> pour la liste des ports en écoute.  </p>
+<h4 id="caracteristiques-dun-processus-serveur">Caractéristiques d'un processus serveur<a class="headerlink" href="#caracteristiques-dun-processus-serveur" title="Permanent link">&para;</a></h4>
+<p>Attend une connexion entrante sur un ou plusieurs <em>ports</em> réseaux.  </p>
+<p>À la connexion d'un client sur le port en écoute, ouvre un <em>socket local</em>  (interface de comunication) avec le système d'exploitation;</p>
+<p>Suite à la connexion, le processus serveur communique avec le client  suivant le protocole prévu par la couche <span class="arithmatex">\(\texttt{application}\)</span> du modèle OSI.  </p>
+<h4 id="caracteristiques-dun-processus-client">Caractéristiques d'un processus client<a class="headerlink" href="#caracteristiques-dun-processus-client" title="Permanent link">&para;</a></h4>
+<p>Établit la connexion au serveur grâce à son adresse IP et le port, qui  désigne un service particulier du serveur. Un socket est créé côté client.</p>
+<p>Lorsque la connexion est acceptée par le serveur, les deux côtés  communiquent via les sockets comme le prévoit la couche <span class="arithmatex">\(\texttt{application}\)</span> du modèle OSI.</p>
+<p align='center'><img src='/images/BDDIntro/bdd1-3.png'/></p>
+
+<p><em>Figure – Architecture client-serveur</em></p>
+<div class="admonition example">
+<p class="admonition-title">La machine à café</p>
+<p>Dans une cafétéria, les cafés sont délivrés par un automate.</p>
+<p>Le client insère des pièces dans l'automate, sélectionne sa boisson et  attend que la machine remplisse son gobelet.</p>
+<p>Le serveur est la machine à café. Le couple (client, automate) est une  architecture client-serveur.</p>
+<p>Le client accède directement à la ressource.</p>
+<ul>
+<li>Si le serveur est en panne, c'est au client d'en trouver un autre (pb de  maintenance)</li>
+<li>Si le client est malhonnête, il peut tenter d'insérer de fausses pièces (il  ne court aucun risque).  </li>
+</ul>
+</div>
+<h3 id="architecture-trois-tiers">Architecture trois-tiers<a class="headerlink" href="#architecture-trois-tiers" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Une brasserie</p>
+<p>Dans une brasserie, les garçons de café ont accès directement au  percolateur.</p>
+<p>Le client (couche présentation) s'assied à une table, attend que le  garçon (couche métier) vienne prendre sa commande.</p>
+<p>Une fois que le garçon a pris la commande, il accède au percolateur  (couche accès aux données) derrière le comptoir, prépare l'expresso et  le ramène au client.</p>
+<p>Le triplet (client,garçon,percolateur) est une architecture trois-tiers  (ou trois couches)  </p>
+<p>Le client accède n'accède plus directement à la ressource. </p>
+<ul>
+<li>Si le percolateur est en panne, c'est au garçon et pas au client d'en  trouver un autre (maintenance facilitée, on peut imaginer un  percolateur d'appoint en attendant la réparation du principal)  </li>
+<li>Si le client est malhonnête, il lui est plus diﬃcile d'accéder au  percolateur pour se servir gratuitement (sécurité renforcée).  </li>
+<li>Bien sûr, le client pourrait attendre que le garçon prenne la  commande d'une autre personne pour accéder en cachette au  percolateur. Il suﬃrait alors de mettre quelqu'un en permanence  derrière le bar (le patron) et ce problème serait résolu (mais on  passerait en architecture <span class="arithmatex">\(4\)</span> couches).  </li>
+</ul>
+</div>
+<h4 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">Définition</p>
+<p>Le mot <em>tier</em> signifie étage ou niveau en anglais. On dit aussi <em>couche</em>.</p>
+</div>
+<p>Une <em>application</em> est composée de <span class="arithmatex">\(3\)</span> couches indépendantes :</p>
+<ul>
+<li>couche présentation,</li>
+<li>couche traitements (on dit aussi métier ou application)</li>
+<li>couche d'accès aux données.</li>
+</ul>
+<p>Ces <span class="arithmatex">\(3\)</span> couches communiqueront entre elles à l'aide de fonctions  spécifiques (des <em>API</em> : <span class="arithmatex">\(A\)</span>pplication <span class="arithmatex">\(P\)</span>rogramming <span class="arithmatex">\(I\)</span>nterface ou Interfaces de programmation).  </p>
+<h4 id="sgbd-et-architecture-trois-tiers">SGBD et architecture trois-tiers<a class="headerlink" href="#sgbd-et-architecture-trois-tiers" title="Permanent link">&para;</a></h4>
+<p>On répartit les rôles entre :</p>
+<ul>
+<li>Un serveur contenant la base données (non accessible par les clients)  </li>
+<li>Un système de gestion de base données : une interface souvent graphique entre les clients et la base.  <ul>
+<li>Elle transmet la demande (requête) du client au serveur de données.</li>
+<li>Elle récupère la réponse du serveur de données et la transmet au client.  </li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\color{red}\text{Le point important : le client ne communique}\)</span> <span class="arithmatex">\(\color{red}\underline{\text{jamais}}\text{ directement avec  le serveur de données}\)</span>.  </li>
+</ul>
+<p align='center'><img src='/images/BDDIntro/bdd1-4.png'/></p>
+
+<ul>
+<li>Seul le SGBD peut accéder aux données et les modifier.  </li>
+<li>Le client n'a pas besoin de connaître le SQL : souvent une interface  graphique avec des cases à cliquer lui évite de le faire.  </li>
+<li>Le client n'a pas besoin d'installer de logiciel : un navigateur Web lui suffit.  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/printLuzz" target="_blank" rel="noopener"> Mehdi Tahri</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/printLuzz" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.section", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "search.hihlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "header.autohide"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
