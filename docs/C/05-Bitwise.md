@@ -112,7 +112,7 @@ Cet opérateur binaire réalise le $\text{XOR}$ bit-à-bit de ses deux opérande
 
     $\begin{matrix}
     & 1001 \\
-    \^{} & 1100 \\
+    \^{ } & 1100 \\
     \underline{\kern0.8pc} & \underline{\kern2pc} \\
     & 0101 \\
     \end{matrix}$
@@ -150,7 +150,7 @@ Dans la fonction main, entrons ceci :
     
     Si on travaille avec des entiers signés cete fois ci alors 
     
-     ```C linenums="1"
+    ```C linenums="1"
     int8_t u = 5; int8_t t = ~v; // entiers 8 bits
     printf("~%d=%d\n", u, v); // %d pour les entiers signés
     ```
@@ -203,7 +203,7 @@ Cet opérateur dit de _décalage à droite_, décale les bits vers la droite. Le
     
     - L'écriture de $-13$ en complément à $2$ sur $32$ bits est en effet :
     $1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1$
-    - On décale de deux rangs vers la droite, et on ajoute la séquence 11 à gauche (on comble les vides par le bit de poids fort de la séquence initiale). On se retrouve donc avec :
+    - On décale de deux rangs vers la droite, et on ajoute la séquence $11$ à gauche (on comble les vides par le bit de poids fort de la séquence initiale). On se retrouve donc avec :
     $111 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0$
 
     C'est l'expression de $-4$ en complément à deux sur $32$ bits.
@@ -223,4 +223,4 @@ multiplication par une puissance de deux.
     ```
     - Le codage de $3$ en complément à $2$ sur $8$ bits est $0000011$.
     - Le décalage de $4$ rangs à gauche produit $0110000$, ce qui fait $48$.
-    - Il se trouve que $3 ×2^4 = 48$. On a donc multiplié $3 par 2^4$ en faisant notre décalage de $4$ bits.
+    - Il se trouve que $3 ×2^4 = 48$. On a donc multiplié $3$ par $2^4$ en faisant notre décalage de $4$ bits.

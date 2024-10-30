@@ -148,7 +148,7 @@ extern int produit(int, int);
 ### Mot clé `extern` pour les fonctions
 
 - Pour une fonction les deux déclarations suivantes sont équivalentes `extern int fct(char c, float x)` et `int fct(char c, float x)`.
-- La fonction sera utilisable dans les 2 cas à l'extérieur du fichier source. Son nom devient ce qu'on appelle un _identificateur externe_, c'est à dire qu'il est accessible à l'éditeur de lien.
+- La fonction sera utilisable dans les $2$ cas à l'extérieur du fichier source. Son nom devient ce qu'on appelle un _identificateur externe_, c'est à dire qu'il est accessible à l'éditeur de lien.
 - Le mot `static` empêche que l'identificateur de la fonction soit utilisé à l'extérieur du fichier source où elle est définie. On parle alors de fonction _cachée_ ou _privée_.
 
 !!!example ""
@@ -200,7 +200,7 @@ gcc produit.c main.c −o prod
 - Pour éviter cela, on crée une constante `PRODUIT_H`.
 - Cette constante, partagée par tout le projet, est définie la première fois qu'on inclue le fichier $\texttt{produit.h}$.
 - La seconde fois qu'on importe le fichier d'en-tête, la constante est déjà définie et on se débrouille pour empêcher une nouvelle inclusion des prototypes de $\texttt{produit.c}$.
-- Il y a une convention de nommage pour cette constante : nom du fichier d'en-tête mis en majuscules (mais sans l'extension $\texttt{.h}$) ; le tout suivi de $\texttt{\_H}$.
+- Il y a une convention de nommage pour cette constante : nom du fichier d'en-tête mis en majuscules (mais sans l'extension $\texttt{.h}$) ; le tout suivi de $\_\texttt{H}$.
 
 ### `ifndef`
 
@@ -268,7 +268,7 @@ L'évaluation d'une règle se fait en plusieurs étapes :
 - **Analyse des dépendances :** si une dépendance est la cible d'une autre règle du Makefile, cette règle est préalablement évaluée.
 - **Exécution des commandes :** Après analyse des dépendances, si
     - la cible ne correspond pas à un fichier existant
-    - 2 ou si un fichier dépendance est plus récent que la règle, les différentes commandes sont exécutées.
+    - ou si un fichier dépendance est plus récent que la règle, les différentes commandes sont exécutées.
 
 ### Un Makefile minimum
 
@@ -305,7 +305,7 @@ main.o : main.c
 
 ### Nettoyage et régénération
 
-Avec le Makefile précédent, on ne peut pas créer plusieurs exécutables, ni supprimer les fichiers intermédiaires .o (ils restent sur le disque dur) ni forcer la régénération complète du projet.
+Avec le Makefile précédent, on ne peut pas créer plusieurs exécutables, ni supprimer les fichiers intermédiaires $\texttt{.o}$ (ils restent sur le disque dur) ni forcer la régénération complète du projet.
 
 - En effet, les fichiers objets $\texttt{produit.o}$ et $\texttt{main.o}$ sont restés sur le disque dur. Lorsqu'on relance la commande $\texttt{make}$, on obtient le message suivant :
 

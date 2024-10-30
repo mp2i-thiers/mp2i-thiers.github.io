@@ -241,10 +241,7 @@ Transforme une chaîne de caractères, représentant une valeur entière, en une
 
     !!!warning "Attention"
 
-        La fonction `atoi` retourne 0 si la chaîne de caractères ne
-        contient pas une représentation de valeur numérique. Il n'est donc pas
-        possible de distinguer la chaîne "0" d'une chaîne ne contenant pas un
-        nombre entier. Préférer strtol dans ce cas.
+        La fonction `atoi` retourne $0$ si la chaîne de caractères ne contient pas une représentation de valeur numérique. Il n'est donc pas possible de distinguer la chaîne `"0"` d'une chaîne ne contenant pas un nombre entier. Préférer `strtol` dans ce cas.
 
     - On compile avec `gcc -Wall commande.c -o produit`
     - Exécution :

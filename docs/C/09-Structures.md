@@ -77,7 +77,7 @@ struct modele {
 
     On définit une structure `temps` qui modélise un triplet (heure,minute,secondes) :
 
-    ```C linenums ="1"
+    ```C linenums="1"
     struct temps {
         unsigned int heures ;
         unsigned int minutes;
@@ -87,7 +87,7 @@ struct modele {
 
     La déclaration d'un objet de type `temps` se fait ainsi :
 
-    ```C linenums ="1"
+    ```C linenums="1"
     1 struct temps t;
     ```
 
@@ -100,41 +100,41 @@ Il reste à affecter les différents champs d'un objet `obj` de type structuré 
 
 !!!example ""
 
-- Affichage d'une structure de temps :
+    - Affichage d'une structure de temps :
 
-```C linenums="1"
-void affichage ( struct temps t){
-    printf ("temps=%uh %umin %fs\n",t.heures,t.minutes,t.secondes);
-}
-```
+    ```C linenums="1"
+    void affichage ( struct temps t){
+        printf ("temps=%uh %umin %fs\n",t.heures,t.minutes,t.secondes);
+    }
+    ```
 
-- Affectation
+    - Affectation
 
-```C linenums="1"
-void main() {
-    struct temps t1 = { 1, 45, 30.560 };//Syntaxe type tableau
-    affiche (t1) ;
-    struct temps t2;
-    t2.heures = 5;//Syntaxe de type pointée
-    t2.minutes = 23;
-    t2.secondes = 10.06;
-    affiche (t2) ;
-}
-```
+    ```C linenums="1"
+    void main() {
+        struct temps t1 = { 1, 45, 30.560 };//Syntaxe type tableau
+        affiche (t1) ;
+        struct temps t2;
+        t2.heures = 5;//Syntaxe de type pointée
+        t2.minutes = 23;
+        t2.secondes = 10.06;
+        affiche (t2) ;
+    }
+    ```
 
-On obtient :
+    On obtient :
 
-```bash title="Rendu"
-temps =1h 45min 30.560000s
-temps =5h 23min 10.060000s
-```
+    ```bash title="Rendu"
+    temps =1h 45min 30.560000s
+    temps =5h 23min 10.060000s
+    ```
 
 ### Alias de structure
 
 - L'écriture `struct temps t` est un peu lourde. Il est plus agréable de faire des déclarations sous la forme temps t.
 - Pour celà, on utilise l'instruction `typedef` dont voici la syntaxe :
 
-```C linenums ="1"
+```C linenums="1"
 typedef struct nomModele nomAlias;
 struct nomModele{
 // les diff é rents champs et leurs types
@@ -145,7 +145,7 @@ struct nomModele{
 
 !!!example ""
 
-    ```C linenums ="1"
+    ```C linenums="1"
     typedef struct temps time;
     struct temps {
         unsigned int heures ;
@@ -156,7 +156,7 @@ struct nomModele{
 
     - Fonction d'affichage
 
-    ```C linenums ="1"
+    ```C linenums="1"
     void affiche (time t){
         printf ("temps=%ih %imin %fs\n",t.heures,t.minutes,t.secondes);
     }
@@ -164,7 +164,7 @@ struct nomModele{
 
     - Affectation
 
-    ```C linenums ="1"
+    ```C linenums="1"
     void main() {
         time t2 ;
         t2.heures = 5;
@@ -204,7 +204,7 @@ time t = { .secondes = 30.560, . minutes = 45,
 
 - On peut aussi mélanger les plaisirs :
 
-```C linenums ="1"
+```C linenums="1"
 time t = { .minutes = 45, 30.560 };
 ```
 
@@ -219,7 +219,7 @@ Les différents champs d'une structure sont contigus en mémoire.
 - Dans certaines implémentations, les int sont alignés sur des adresses multiples de 4 (leur premier octet est nécessairement sur une adresse multiple de $4$).
 - Considérons, dans une telle implémentation, la déclaration
 
-```C linenums ="1"
+```C linenums="1"
 struct essai { int n;// 4 octets
     char c ;// 1 octet
     int p; // 4 octets

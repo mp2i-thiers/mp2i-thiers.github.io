@@ -16,7 +16,7 @@ Ainsi, pour déclarer un tableau de tableaux, on utilise la syntaxe `decl2 [nb2]
 
 !!!example "Exemple"
 
-    `int tab [5] [3]`; . Dans ce cas :
+    Prenons `int tab [5] [3];`. Dans ce cas :
     
     - `tab [4] [2]` est un `int`
     - `tab [4]` est un tableau de $3$ `int`
@@ -54,4 +54,5 @@ Considérons `int tab [5][3]`
 On écrit donc `void f(int tab[5][3])` ou même `void f(int tab[][3])` , dans la mesure où `5` n'a qu'une valeur informative tandis que `3` est indispensable à la localisation des éléments.
 - Dans le cas d'un tableau multidimensionnel dont la taille n'est pas connue à la compilation, on utilise plutôt un tableau de pointeurs et on écrit `void f(int n, int m, int **tab);`.
 On fait l'hypothèse ici que `tab` est un tableau de $n$ pointeurs, chacun représentant un tableau de $m$ entiers.
+
 $\color{red}\text{Avec }$`**tab` $\color{red}\text{en paramètre, les « lignes » de la matrice ne sont plus contiguës en mémoire}$.

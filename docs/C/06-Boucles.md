@@ -70,14 +70,14 @@ le compteur vaut 0.
 
 La boucle `for` a une forme non limitée à l'exemple du transparent précédent.
 
-- Pour une variable x déclarée hors de la boucle, on peut écrire :
+- Pour une variable $x$ déclarée hors de la boucle, on peut écrire :
 
 ```C linenums="1"
 int x = 3 ; ...
 for(; x != 1; x=f(x)){...}
 ```
 
-- Et si start, stop, step sont 3 fonctions définies par ailleurs
+- Et si `start`, `stop`, `step` sont $3$ fonctions définies par ailleurs
 
 ```C linenums="1"
 for(start(); tests(); step()){...}

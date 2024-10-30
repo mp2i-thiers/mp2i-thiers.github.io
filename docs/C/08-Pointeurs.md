@@ -441,7 +441,7 @@ Le seul paramètre à passer est l'adresse du premier octet de la zone allouée 
 
 !!!example "Exemple ♥"
 
-    - Réserver 32 octets et les libérer immédiatement.
+    - Réserver $32$ octets et les libérer immédiatement.
 
     ```C linenums="1"
     #include <stdlib.h>// tiré de Wikipedia
@@ -585,7 +585,7 @@ p1 = 0x7ffcadcfc8e0 p2 = 0x7ffcadcfc8d8 p2−p1=−1
 
 La différence entre les adresses est
 
-$e0_16 −d8_16 = 14_10 ×16_10 + 0 −(13_10 ×16_10 + 8_10) = 8_10$
+$e0_{16} −d8_{16} = 14_{10} ×16_{10} + 0 −(13_{10} ×16_{10} + 8_{10}) = 8_{10}$
 
 C'est la taille d'un `double`
 
@@ -641,7 +641,7 @@ void affiche ( int *tableau , int tailleTableau ){
 
 - Les tableaux sont en fait passés en paramètre comme des copies de pointeur sur leur $1$er élément.
 
-!!!example "Exemple de **main**
+!!!example "Exemple de **main**"
 
     ```C linenums="1"
     int main(){
@@ -1035,7 +1035,7 @@ int main(){
 
 - `int atoi(const char *theString);` de **strlib**
 - Cette fonction permet de transformer une chaîne de caractères, représentant une valeur entière comme `"12356"` , en une valeur numérique de type int . Le terme d'« atoi » est un acronyme signifiant : ASCII to integer.
-- Retourne la valeur $0$ si la chaîne de caractères ne contient pas une représentation de valeur numérique. Il n'est donc pas possible de distinguer la chaîne "0" d'une chaîne ne contenant pas un nombre entier. L'utilisation de la fonction `strtol` permet bien de distinguer les deux cas.
+- Retourne la valeur $0$ si la chaîne de caractères ne contient pas une représentation de valeur numérique. Il n'est donc pas possible de distinguer la chaîne `"0"` d'une chaîne ne contenant pas un nombre entier. L'utilisation de la fonction `strtol` permet bien de distinguer les deux cas.
 
 ### Modifier une constante chaîne
 
@@ -1043,7 +1043,7 @@ int main(){
 - Pour imposer un caractère immuable indépendamment des implémentations, préférer :
 
 ```C linenums="1"
-const char *a = ‘‘ hello ";
+const char *a = "hello";
 ```
 
 ### Concaténation ♥
