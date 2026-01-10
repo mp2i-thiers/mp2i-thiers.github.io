@@ -1,0 +1,25 @@
+.md-typeset .admonition {
+    font-size: 0.8rem;
+}
+
+.md-typeset details, .tabbed-set {
+    font-size: 0.8rem;
+}
+
+:root {
+  --md-admonition-icon--definition: url('https://www.svgrepo.com/show/309519/dictionary.svg')
+}
+.md-typeset .admonition.definition,
+.md-typeset details.definition {
+  border-color: rgb(236, 54, 54);
+}
+.md-typeset .definition > .admonition-title,
+.md-typeset .definition > summary {
+  background-color: rgba(236, 54, 54, 0.1);
+}
+.md-typeset .definition > .admonition-title::before,
+.md-typeset .definition > summary::before {
+  background-color: rgb(236, 54, 54);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
