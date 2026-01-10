@@ -41,7 +41,7 @@ C'est tout bon !
 
 #### Complexité temporelle de la partition
 
-Dans tous les cas de la forme $C_{n} = C_{n} - 1 + 1$ pour une liste de taille $n$. Linéaire.
+Dans tous les cas de la forme $C_{n} = C_{n - 1} + 1$ pour une liste de taille $n$. Linéaire.
 
 #### Correction par induction
 
